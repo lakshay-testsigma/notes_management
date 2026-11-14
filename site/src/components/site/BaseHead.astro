@@ -1,0 +1,36 @@
+---
+// Global styles are imported here so every page gets them through <BaseHead />.
+import '../../styles/global.css';
+import '../../styles/learn.css';
+import { Font } from 'astro:assets';
+import { SITE_TITLE } from '../../site.config';
+
+interface Props {
+	title: string;
+	description?: string;
+}
+
+const { title, description = '' } = Astro.props;
+const fullTitle = title === SITE_TITLE ? title : `${title} · ${SITE_TITLE}`;
+---
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<meta name="generator" content={Astro.generator} />
+<Font cssVariable="--font-atkinson" preload />
+<title>{fullTitle}</title>
+<meta name="description" content={description} />
+<!-- Set the theme before first paint so the page never flashes. -->
+<script is:inline>
+	(function () {
+		var theme = null;
+		try {
+			theme = localStorage.getItem('tutor:theme');
+		} catch (error) {}
+		if (theme !== 'light' && theme !== 'dark') {
+			theme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+		}
+		document.documentElement.setAttribute('data-theme', theme);
+	})();
+</script>

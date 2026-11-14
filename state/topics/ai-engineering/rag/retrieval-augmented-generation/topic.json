@@ -1,0 +1,597 @@
+{
+  "schema": 1,
+  "id": "ai-engineering/rag/retrieval-augmented-generation",
+  "title": "Retrieval-Augmented Generation (RAG)",
+  "slug": "retrieval-augmented-generation",
+  "domain": "ai-engineering",
+  "subdomain": "rag",
+  "depth": "quick",
+  "created_at": "2026-11-14T07:24:00Z",
+  "updated_at": "2026-11-14T08:07:09Z",
+  "paths": {
+    "state": "state/topics/ai-engineering/rag/retrieval-augmented-generation",
+    "vault": "vault/ai-engineering/rag/retrieval-augmented-generation",
+    "lessons": "site/src/content/lessons/ai-engineering/rag/retrieval-augmented-generation",
+    "projects": "projects/ai-engineering/rag/retrieval-augmented-generation",
+    "cache": ".cache"
+  },
+  "profile": {
+    "lesson_pages": [
+      3,
+      4
+    ],
+    "mini_projects": 1,
+    "digests": [
+      1,
+      2
+    ],
+    "repos": [
+      0,
+      0
+    ],
+    "capstone": false,
+    "sources": [
+      3,
+      8
+    ],
+    "recall_cards": 5
+  },
+  "plan": {
+    "summary": "Retrieval-augmented generation (RAG) is a way to make a language model answer from documents it was never trained on: the application first finds the few most relevant passages, then puts them into the prompt so the model writes its answer from them.",
+    "prerequisites": [
+      {
+        "concept": "Large language model",
+        "known": false,
+        "bridge": "A large language model is a program that continues text one small piece at a time; it only knows what was in its training data, which stopped at a fixed date and did not include your private files."
+      },
+      {
+        "concept": "Context window",
+        "known": false,
+        "bridge": "The context window is all the text a model can read in one call (your instructions plus anything you paste in); the model forgets everything outside it."
+      },
+      {
+        "concept": "Embedding",
+        "known": false,
+        "bridge": "An embedding is a list of numbers that stands for the meaning of a piece of text, so that texts with similar meaning get lists of numbers that are close together."
+      },
+      {
+        "concept": "Python basics",
+        "known": false,
+        "bridge": "The project uses plain Python: functions, lists, dictionaries, and reading a text file are enough."
+      }
+    ],
+    "outcomes": [
+      "Explain why a language model on its own cannot answer questions about private or recent documents, and how adding retrieved text to the prompt fixes that.",
+      "Explain how embeddings and cosine similarity choose the top-k chunks for a question.",
+      "Build a small RAG pipeline in Python that chunks documents, retrieves the best chunks for a question, and builds a prompt that makes the answer cite its sources.",
+      "Decide when to use RAG instead of fine-tuning or simply pasting the whole document into the prompt.",
+      "Diagnose a wrong answer as a retrieval failure or a generation failure, and name the usual fix for each."
+    ],
+    "lesson_outline": [
+      {
+        "order": 1,
+        "slug": "why-rag-exists",
+        "title": "Why a model needs to look things up",
+        "visual": "FlowAnimation",
+        "activity": "PredictReveal"
+      },
+      {
+        "order": 2,
+        "slug": "retrieval-by-meaning",
+        "title": "Retrieval: finding text by meaning",
+        "visual": "VectorSpace3D",
+        "activity": "Quiz"
+      },
+      {
+        "order": 3,
+        "slug": "chunking-documents",
+        "title": "Chunking: cutting documents into pieces worth retrieving",
+        "visual": "ParamPlayground",
+        "activity": "OrderSteps"
+      },
+      {
+        "order": 4,
+        "slug": "rag-in-production",
+        "title": "RAG in production: where it breaks and how teams fix it",
+        "visual": "SystemDiagram",
+        "activity": "MatchPairs"
+      }
+    ],
+    "mini_projects": [
+      {
+        "n": 1,
+        "slug": "handbook-qa",
+        "use_case": "A new employee asks questions about the company handbook, and the people team needs every answer to quote the handbook section it came from, or to say plainly that the handbook does not cover it."
+      }
+    ],
+    "digest_targets": 2,
+    "repo_targets": 0,
+    "capstone": {
+      "name": "Docs assistant service",
+      "problem": "A software company's support team answers the same product questions every day; they need an HTTP service that answers from the product documentation with citations, refuses when the docs do not cover the question, and reports retrieval quality on a fixed test set after every documentation update."
+    }
+  },
+  "stages": [
+    {
+      "id": "intake",
+      "wave": 0,
+      "skill": "learn-intake",
+      "status": "done",
+      "started_at": "2026-11-14T07:24:00Z",
+      "finished_at": "2026-11-14T07:24:40Z",
+      "attempts": 1,
+      "units": [],
+      "note": ""
+    },
+    {
+      "id": "research",
+      "wave": 1,
+      "skill": "learn-research",
+      "status": "done",
+      "started_at": "2026-11-14T07:24:45Z",
+      "finished_at": "2026-11-14T07:26:38Z",
+      "attempts": 1,
+      "units": [],
+      "note": ""
+    },
+    {
+      "id": "brief",
+      "wave": 1,
+      "skill": "learn-brief",
+      "status": "done",
+      "started_at": "2026-11-14T07:26:58Z",
+      "finished_at": "2026-11-14T07:28:02Z",
+      "attempts": 1,
+      "units": [],
+      "note": ""
+    },
+    {
+      "id": "digest",
+      "wave": 2,
+      "skill": "learn-digest",
+      "status": "done",
+      "started_at": "2026-11-14T07:28:33Z",
+      "finished_at": "2026-11-14T07:32:31Z",
+      "attempts": 1,
+      "units": [
+        {
+          "id": "lewis-2020-rag",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "anthropic-contextual-retrieval-blog",
+          "status": "done",
+          "handoff": null
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "repo-intel",
+      "wave": 2,
+      "skill": "learn-repo-intel",
+      "status": "skipped",
+      "started_at": null,
+      "finished_at": null,
+      "attempts": 0,
+      "units": [],
+      "note": "depth \"quick\" has no repository deep dive"
+    },
+    {
+      "id": "lesson",
+      "wave": 3,
+      "skill": "learn-site",
+      "status": "done",
+      "started_at": "2026-11-14T07:32:44Z",
+      "finished_at": "2026-11-14T07:38:26Z",
+      "attempts": 1,
+      "units": [
+        {
+          "id": "pages-01-02",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "pages-03-04",
+          "status": "done",
+          "handoff": null
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "mini-projects",
+      "wave": 3,
+      "skill": "learn-projects",
+      "status": "done",
+      "started_at": "2026-11-14T07:32:44Z",
+      "finished_at": "2026-11-14T07:53:25Z",
+      "attempts": 1,
+      "units": [
+        {
+          "id": "mini-01",
+          "status": "done",
+          "handoff": null
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "capstone",
+      "wave": 4,
+      "skill": "learn-capstone",
+      "status": "skipped",
+      "started_at": null,
+      "finished_at": null,
+      "attempts": 0,
+      "units": [],
+      "note": "depth \"quick\" has no capstone"
+    },
+    {
+      "id": "notes",
+      "wave": 5,
+      "skill": "learn-notes",
+      "status": "done",
+      "started_at": "2026-11-14T07:54:08Z",
+      "finished_at": "2026-11-14T07:55:00Z",
+      "attempts": 1,
+      "units": [],
+      "note": ""
+    },
+    {
+      "id": "finalize",
+      "wave": 5,
+      "skill": "learn",
+      "status": "done",
+      "started_at": "2026-11-14T07:55:08Z",
+      "finished_at": "2026-11-14T08:07:09Z",
+      "attempts": 1,
+      "units": [],
+      "note": ""
+    }
+  ],
+  "recall": {
+    "cards": {
+      "rag-01": {
+        "box": 1,
+        "due": "2026-11-14",
+        "added": "2026-11-14",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      },
+      "rag-02": {
+        "box": 1,
+        "due": "2026-11-14",
+        "added": "2026-11-14",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      },
+      "rag-03": {
+        "box": 1,
+        "due": "2026-11-14",
+        "added": "2026-11-14",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      },
+      "rag-04": {
+        "box": 1,
+        "due": "2026-11-14",
+        "added": "2026-11-14",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      },
+      "rag-05": {
+        "box": 1,
+        "due": "2026-11-14",
+        "added": "2026-11-14",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      },
+      "rag-06": {
+        "box": 1,
+        "due": "2026-11-14",
+        "added": "2026-11-14",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      },
+      "rag-07": {
+        "box": 1,
+        "due": "2026-11-14",
+        "added": "2026-11-14",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      },
+      "rag-08": {
+        "box": 1,
+        "due": "2026-11-14",
+        "added": "2026-11-14",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      }
+    }
+  },
+  "log": [
+    {
+      "at": "2026-11-14T07:24:00Z",
+      "event": "init",
+      "message": "created with depth quick"
+    },
+    {
+      "at": "2026-11-14T07:24:00Z",
+      "event": "start",
+      "message": "attempt 1",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-14T07:24:39Z",
+      "event": "plan",
+      "message": "plan fields set: summary, prerequisites, outcomes, lesson_outline, mini_projects, digest_targets, repo_targets, capstone",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-14T07:24:40Z",
+      "event": "note",
+      "message": "intake: domain=ai-engineering/rag, depth=quick (given by the learner). Assumptions: slug drops the '(RAG)' acronym; 4 pages (why, retrieval by meaning, chunking, production); reranking and evaluation are only touched on page 4 because quick allows 4 pages; 2 digests (the defining paper and one official doc set); mini project runs offline without a paid API key."
+    },
+    {
+      "at": "2026-11-14T07:24:40Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-14T07:24:45Z",
+      "event": "start",
+      "message": "attempt 1",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-14T07:26:37Z",
+      "event": "source-add",
+      "message": "added lewis-2020-rag",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-14T07:26:37Z",
+      "event": "source-add",
+      "message": "added anthropic-contextual-retrieval-blog",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-14T07:26:37Z",
+      "event": "source-add",
+      "message": "added llamaindex-docs",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-14T07:26:38Z",
+      "event": "source-add",
+      "message": "added karpukhin-2020-dpr",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-14T07:26:38Z",
+      "event": "source-add",
+      "message": "added huyen-2025-ai-engineering",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-14T07:26:38Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-14T07:26:58Z",
+      "event": "start",
+      "message": "attempt 1",
+      "stage": "brief"
+    },
+    {
+      "at": "2026-11-14T07:27:51Z",
+      "event": "gate-failed",
+      "message": "1 problems",
+      "stage": "brief"
+    },
+    {
+      "at": "2026-11-14T07:28:02Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "brief"
+    },
+    {
+      "at": "2026-11-14T07:28:33Z",
+      "event": "start",
+      "message": "attempt 1",
+      "stage": "digest"
+    },
+    {
+      "at": "2026-11-14T07:28:33Z",
+      "event": "unit-add",
+      "message": "unit lewis-2020-rag",
+      "stage": "digest"
+    },
+    {
+      "at": "2026-11-14T07:28:33Z",
+      "event": "unit-add",
+      "message": "unit anthropic-contextual-retrieval-blog",
+      "stage": "digest"
+    },
+    {
+      "at": "2026-11-14T07:28:59Z",
+      "event": "unit-start",
+      "message": "unit lewis-2020-rag",
+      "stage": "digest"
+    },
+    {
+      "at": "2026-11-14T07:29:01Z",
+      "event": "unit-start",
+      "message": "unit anthropic-contextual-retrieval-blog",
+      "stage": "digest"
+    },
+    {
+      "at": "2026-11-14T07:31:48Z",
+      "event": "unit-done",
+      "message": "unit lewis-2020-rag",
+      "stage": "digest"
+    },
+    {
+      "at": "2026-11-14T07:32:02Z",
+      "event": "unit-done",
+      "message": "unit anthropic-contextual-retrieval-blog",
+      "stage": "digest"
+    },
+    {
+      "at": "2026-11-14T07:32:31Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "digest"
+    },
+    {
+      "at": "2026-11-14T07:32:44Z",
+      "event": "start",
+      "message": "attempt 1",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-14T07:32:44Z",
+      "event": "start",
+      "message": "attempt 1",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-14T07:32:44Z",
+      "event": "unit-add",
+      "message": "unit pages-01-02",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-14T07:32:44Z",
+      "event": "unit-add",
+      "message": "unit pages-03-04",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-14T07:32:44Z",
+      "event": "unit-add",
+      "message": "unit mini-01",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-14T07:33:06Z",
+      "event": "unit-start",
+      "message": "unit pages-01-02",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-14T07:33:13Z",
+      "event": "unit-start",
+      "message": "unit pages-03-04",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-14T07:35:31Z",
+      "event": "unit-done",
+      "message": "unit pages-01-02",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-14T07:37:33Z",
+      "event": "unit-done",
+      "message": "unit pages-03-04",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-14T07:37:58Z",
+      "event": "unit-start",
+      "message": "unit mini-01",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-14T07:38:26Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-14T07:53:04Z",
+      "event": "unit-done",
+      "message": "unit mini-01",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-14T07:53:25Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-14T07:54:08Z",
+      "event": "start",
+      "message": "attempt 1",
+      "stage": "notes"
+    },
+    {
+      "at": "2026-11-14T07:54:45Z",
+      "event": "recall-sync",
+      "message": "8 added, 0 removed, 8 total"
+    },
+    {
+      "at": "2026-11-14T07:55:00Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "notes"
+    },
+    {
+      "at": "2026-11-14T07:55:08Z",
+      "event": "start",
+      "message": "attempt 1",
+      "stage": "finalize"
+    },
+    {
+      "at": "2026-11-14T08:01:56Z",
+      "event": "source-add",
+      "message": "added openai-accuracy-docs",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-14T08:01:56Z",
+      "event": "source-remove",
+      "message": "removed llamaindex-docs: verifier: stars and last_commit were read from the GitHub API, not from verified_via; re-adding with only the evidence read on the docs page",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-14T08:01:56Z",
+      "event": "source-add",
+      "message": "added llamaindex-docs",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-14T08:03:11Z",
+      "event": "unit-start",
+      "message": "unit pages-03-04",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-14T08:04:28Z",
+      "event": "unit-done",
+      "message": "unit pages-03-04",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-14T08:07:09Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "finalize"
+    }
+  ]
+}

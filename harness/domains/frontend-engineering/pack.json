@@ -1,0 +1,127 @@
+{
+  "id": "frontend-engineering",
+  "title": "Frontend Engineering",
+  "description": "Building fast, accessible user interfaces for the browser with HTML, CSS, TypeScript, and a component framework.",
+  "subdomains": [
+    {
+      "id": "web-fundamentals",
+      "title": "HTML, CSS & the Browser",
+      "examples": [
+        "Semantic HTML",
+        "CSS Flexbox and Grid",
+        "The DOM and events",
+        "Browser rendering pipeline"
+      ]
+    },
+    {
+      "id": "javascript-typescript",
+      "title": "JavaScript & TypeScript",
+      "examples": [
+        "Event loop",
+        "Closures and scope",
+        "Promises and async/await",
+        "TypeScript generics"
+      ]
+    },
+    {
+      "id": "frameworks",
+      "title": "UI Frameworks",
+      "examples": [
+        "React hooks",
+        "React Server Components",
+        "Vue reactivity",
+        "Svelte runes"
+      ]
+    },
+    {
+      "id": "state-management",
+      "title": "State & Data Fetching",
+      "examples": [
+        "TanStack Query",
+        "Redux Toolkit",
+        "Zustand",
+        "Optimistic updates"
+      ]
+    },
+    {
+      "id": "routing-rendering",
+      "title": "Routing & Rendering Strategies",
+      "examples": [
+        "CSR vs SSR vs SSG",
+        "Next.js App Router",
+        "Hydration",
+        "Streaming server rendering"
+      ]
+    },
+    {
+      "id": "styling-design-systems",
+      "title": "Styling & Design Systems",
+      "examples": [
+        "Tailwind CSS",
+        "Design tokens",
+        "Headless components with Radix",
+        "CSS animations and transitions"
+      ]
+    },
+    {
+      "id": "performance",
+      "title": "Web Performance",
+      "examples": [
+        "Core Web Vitals",
+        "Code splitting and lazy loading",
+        "Image optimization",
+        "List virtualization"
+      ]
+    },
+    {
+      "id": "accessibility",
+      "title": "Accessibility",
+      "examples": [
+        "ARIA roles and labels",
+        "Keyboard navigation",
+        "Focus management",
+        "Screen reader testing"
+      ]
+    },
+    {
+      "id": "testing",
+      "title": "Frontend Testing",
+      "examples": [
+        "React Testing Library",
+        "Playwright end-to-end tests",
+        "Mock Service Worker",
+        "Visual regression testing"
+      ]
+    },
+    {
+      "id": "tooling-build",
+      "title": "Build Tooling",
+      "examples": [
+        "Vite",
+        "Bundling and tree shaking",
+        "ESLint and Prettier",
+        "Monorepos with pnpm workspaces"
+      ]
+    }
+  ],
+  "stages": {
+    "repo-intel": {
+      "enabled": true
+    },
+    "capstone": {
+      "enabled": true,
+      "kind": "web-app"
+    }
+  },
+  "depth_overrides": {},
+  "default_stack": {
+    "language": "TypeScript",
+    "runtime": "Node.js 20+ with Vite and React (runs in the browser)",
+    "test": "vitest"
+  },
+  "safety": [
+    "Never commit secrets: API keys, tokens, and passwords live in a git-ignored .env file, with a committed .env.example that holds placeholder values only.",
+    "Anything shipped to the browser is public: never place a secret key in client-side code or in a VITE_/NEXT_PUBLIC_ variable.",
+    "Use only assets (images, fonts, icons) whose license allows reuse, and record the license in the project README."
+  ]
+}

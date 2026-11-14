@@ -1,0 +1,1045 @@
+/*
+  Styles for the lesson components (src/components/learn) and the recall deck.
+  Rules of the house: no borders around components, no cards, no shadows.
+  Controls are plain text buttons. Colours come from the tokens in global.css.
+*/
+
+.lc {
+	margin: 2.4rem 0;
+	padding: 0;
+}
+.lc-title {
+	margin: 0 0 0.7rem;
+	font-size: 0.82rem;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+	color: var(--muted);
+}
+.lc-quiet {
+	color: var(--muted);
+}
+.lc-good {
+	color: var(--good-text);
+}
+.lc-bad {
+	color: var(--bad-text);
+}
+.lc-error {
+	margin: 0.4rem 0 0;
+	color: var(--bad-text);
+	font-size: 0.9rem;
+}
+
+/* ---------- controls ---------- */
+
+.lc-controls {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	gap: 0 1.15rem;
+	margin-top: 0.55rem;
+	font-size: 0.95rem;
+}
+.lc-controls-label {
+	color: var(--muted);
+}
+.lc-controls-note {
+	font-size: 0.88rem;
+}
+.lc-btn {
+	appearance: none;
+	background: none;
+	border: 0;
+	margin: 0;
+	padding: 0.35rem 0;
+	font: inherit;
+	color: var(--link);
+	cursor: pointer;
+	text-decoration: underline;
+	text-decoration-color: transparent;
+	text-underline-offset: 0.22em;
+	transition: text-decoration-color 0.15s;
+}
+.lc-btn:hover:not(:disabled) {
+	text-decoration-color: currentColor;
+}
+.lc-btn:disabled {
+	color: var(--muted);
+	opacity: 0.55;
+	cursor: default;
+}
+.lc-btn[aria-pressed='true'] {
+	color: var(--text);
+	font-weight: 700;
+	text-decoration-color: var(--accent);
+	text-decoration-thickness: 2px;
+}
+
+.lc-caption,
+.lc-detail {
+	margin: 0.5rem 0 0;
+	color: var(--text-2);
+	font-size: 1rem;
+	line-height: 1.55;
+	min-height: 3.1em;
+}
+.lc-detail p {
+	margin: 0 0 0.3em;
+}
+.lc-detail strong,
+.lc-caption strong {
+	color: var(--text);
+}
+.lc-count {
+	display: inline-block;
+	margin-right: 0.7em;
+	font-size: 0.78rem;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+	color: var(--muted);
+}
+
+/* ---------- 2D diagrams: flow, system, state machine ---------- */
+
+.lc-graph {
+	width: 100%;
+}
+.lc-graph svg {
+	display: block;
+	max-width: 100%;
+	height: auto;
+	overflow: visible;
+	font-family: inherit;
+}
+.lc-graph svg:focus-visible {
+	outline: 2px solid var(--accent);
+	outline-offset: 4px;
+}
+
+.lc-node rect {
+	fill: var(--bg);
+	stroke: var(--line-strong);
+	stroke-width: 1.5;
+	transition:
+		stroke 0.2s,
+		fill 0.2s,
+		stroke-width 0.2s;
+}
+.lc-node text {
+	font-size: 13px;
+	fill: var(--text);
+}
+.lc-node-mark {
+	stroke: var(--line-strong);
+	stroke-width: 1.5;
+}
+.lc-node {
+	transition: opacity 0.2s;
+}
+.lc-node.is-visited rect {
+	stroke: var(--text-2);
+}
+.lc-node.is-active rect {
+	stroke: var(--accent);
+	stroke-width: 2;
+	fill: var(--accent-soft);
+}
+.lc-node.is-selected rect {
+	stroke: var(--accent);
+	stroke-width: 2.5;
+	fill: var(--accent-soft);
+}
+.lc-node.is-selected text {
+	font-weight: 700;
+}
+.lc-node.is-dim {
+	opacity: 0.35;
+}
+.lc-node.is-broken rect {
+	stroke: var(--bad);
+	stroke-dasharray: 5 4;
+	fill: var(--bg);
+}
+.lc-node.is-broken text {
+	fill: var(--muted);
+	text-decoration: line-through;
+}
+.lc-node.is-clickable {
+	cursor: pointer;
+}
+.lc-node.is-clickable:hover rect {
+	stroke: var(--accent);
+}
+.lc-node.is-clickable:focus {
+	outline: none;
+}
+.lc-node.is-clickable:focus-visible rect {
+	stroke: var(--accent);
+	stroke-width: 3;
+}
+
+.lc-edge {
+	transition: opacity 0.2s;
+}
+.lc-edge path {
+	fill: none;
+	stroke: var(--line-strong);
+	stroke-width: 1.5;
+	transition: stroke 0.2s;
+}
+.lc-edge path.is-dashed {
+	stroke-dasharray: 4 4;
+}
+.lc-edge polygon {
+	fill: var(--line-strong);
+	transition: fill 0.2s;
+}
+.lc-edge text,
+.lc-packet text,
+.lc-seq-msg text {
+	font-size: 11.5px;
+	fill: var(--muted);
+	paint-order: stroke;
+	stroke: var(--bg);
+	stroke-width: 4px;
+	stroke-linejoin: round;
+}
+.lc-edge.is-visited path {
+	stroke: var(--text-2);
+}
+.lc-edge.is-visited polygon {
+	fill: var(--text-2);
+}
+.lc-edge.is-active path {
+	stroke: var(--accent);
+	stroke-width: 2.25;
+}
+.lc-edge.is-active polygon {
+	fill: var(--accent);
+}
+.lc-edge.is-active text {
+	fill: var(--text);
+}
+.lc-edge.is-dim {
+	opacity: 0.28;
+}
+
+.lc-packet circle {
+	fill: var(--accent);
+	stroke: var(--bg);
+	stroke-width: 2;
+}
+.lc-packet text {
+	fill: var(--text);
+	font-weight: 700;
+}
+.lc-packet.is-failed circle {
+	fill: var(--bad);
+}
+
+/* ---------- sequence diagram ---------- */
+
+.lc-seq-actor text {
+	font-size: 13px;
+	font-weight: 700;
+	fill: var(--text-2);
+}
+.lc-seq-actor line {
+	stroke: var(--line);
+	stroke-width: 1.5;
+}
+.lc-seq-actor.is-active text {
+	fill: var(--text);
+}
+.lc-seq-actor.is-active line {
+	stroke: var(--line-strong);
+}
+.lc-seq-msg path {
+	fill: none;
+	stroke: var(--text-2);
+	stroke-width: 1.5;
+}
+.lc-seq-msg polygon {
+	fill: var(--text-2);
+}
+.lc-seq-msg text {
+	font-size: 12px;
+	fill: var(--text-2);
+}
+.lc-seq-msg.is-reply.is-past path,
+.lc-seq-msg.is-reply.is-future path {
+	stroke-dasharray: 5 4;
+}
+.lc-seq-msg.is-future {
+	opacity: 0.24;
+}
+.lc-seq-msg.is-current path {
+	stroke: var(--accent);
+	stroke-width: 2.25;
+	stroke-dasharray: 1;
+	stroke-dashoffset: 1;
+	animation: lc-draw 0.55s ease-out forwards;
+}
+.lc-seq-msg.is-current polygon {
+	fill: var(--accent);
+	animation: lc-appear 0.55s ease-out;
+}
+.lc-seq-msg.is-current text {
+	fill: var(--text);
+	font-weight: 700;
+}
+@keyframes lc-draw {
+	to {
+		stroke-dashoffset: 0;
+	}
+}
+@keyframes lc-appear {
+	0%,
+	70% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+/* ---------- timeline ---------- */
+
+.lc-tl-track {
+	position: relative;
+	display: flex;
+	padding-top: 0.3rem;
+}
+.lc-tl-track::before {
+	content: '';
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: calc(0.3rem + 9px);
+	height: 2px;
+	background: var(--line);
+}
+.lc-tl-stop {
+	appearance: none;
+	background: none;
+	border: 0;
+	margin: 0;
+	padding: 0 0 0.2rem;
+	flex: 1 1 0;
+	min-width: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.5rem;
+	font: inherit;
+	color: var(--muted);
+	cursor: pointer;
+	position: relative;
+}
+.lc-tl-dot {
+	width: 12px;
+	height: 12px;
+	margin-top: 4px;
+	border-radius: 50%;
+	background: var(--bg);
+	border: 2px solid var(--line-strong);
+	transition:
+		transform 0.2s,
+		background 0.2s,
+		border-color 0.2s;
+}
+.lc-tl-stop.is-past .lc-tl-dot {
+	background: var(--line-strong);
+}
+.lc-tl-stop:hover .lc-tl-dot {
+	border-color: var(--accent);
+}
+.lc-tl-stop.is-selected .lc-tl-dot {
+	background: var(--accent);
+	border-color: var(--accent);
+	transform: scale(1.4);
+}
+.lc-tl-when {
+	font-size: 0.8rem;
+	white-space: nowrap;
+}
+.lc-tl-when.is-hidden {
+	visibility: hidden;
+}
+.lc-tl-stop.is-selected .lc-tl-when {
+	color: var(--text);
+	font-weight: 700;
+}
+
+/* ---------- chart and parameter playground ---------- */
+
+.lc-legend {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.1rem 1.2rem;
+	margin-bottom: 0.5rem;
+	font-size: 0.9rem;
+	color: var(--text-2);
+}
+.lc-key {
+	display: inline-block;
+	width: 10px;
+	height: 10px;
+	margin-right: 0.45em;
+	border-radius: 2px;
+}
+.lc-key.is-line {
+	width: 14px;
+	height: 3px;
+	vertical-align: middle;
+}
+.lc-key.is-dot {
+	border-radius: 50%;
+}
+.lc-grid line {
+	stroke: var(--line);
+}
+.lc-grid text,
+.lc-tick {
+	font-size: 11.5px;
+	fill: var(--muted);
+	font-variant-numeric: tabular-nums;
+}
+.lc-axis {
+	stroke: var(--line-strong);
+}
+.lc-axis-title {
+	font-size: 11.5px;
+	fill: var(--text-2);
+}
+.lc-line {
+	fill: none;
+	stroke-width: 2;
+	stroke-linejoin: round;
+	stroke-linecap: round;
+}
+.lc-dot {
+	stroke: var(--bg);
+	stroke-width: 2;
+}
+.lc-bar {
+	transition: opacity 0.15s;
+}
+.lc-bar.is-hover {
+	opacity: 0.72;
+}
+.lc-crosshair {
+	stroke: var(--line-strong);
+}
+.lc-readout {
+	margin: 0.35rem 0 0;
+	min-height: 1.7em;
+	font-size: 0.95rem;
+	font-variant-numeric: tabular-nums;
+}
+.lc-readout-item {
+	margin-left: 1.1em;
+	white-space: nowrap;
+}
+.lc-sliders.is-compact {
+	grid-template-columns: repeat(auto-fit, minmax(8.5rem, 1fr));
+	gap: 0.5rem 1.6rem;
+}
+.lc-sliders {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+	gap: 0.5rem 2.2rem;
+	margin: 0.5rem 0 0.9rem;
+}
+.lc-params .lc-chart {
+	margin: 0;
+}
+.lc-slider {
+	display: block;
+	font-size: 0.95rem;
+}
+.lc-slider-label {
+	display: flex;
+	justify-content: space-between;
+	gap: 1rem;
+	color: var(--text-2);
+}
+.lc-slider-label strong {
+	color: var(--text);
+	font-variant-numeric: tabular-nums;
+}
+.lc-slider input[type='range'] {
+	display: block;
+	width: 100%;
+	height: 1.6rem;
+	margin: 0.1rem 0 0;
+	accent-color: var(--accent);
+}
+.lc-toggle {
+	display: flex;
+	align-items: center;
+	gap: 0.55rem;
+	font-size: 0.95rem;
+}
+.lc-toggle input {
+	width: 1.05rem;
+	height: 1.05rem;
+	accent-color: var(--accent);
+}
+.lc-outputs {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.1rem 1.8rem;
+	margin: 0 0 0.9rem;
+	font-size: 1rem;
+	font-variant-numeric: tabular-nums;
+}
+
+/* ---------- code walkthrough ---------- */
+
+.lc-code {
+	margin: 0;
+	padding: 0.8rem 0;
+	max-height: 27rem;
+	overflow: auto;
+	font-size: 0.84rem;
+	line-height: 1.65;
+}
+.lc-code code {
+	display: inline-block;
+	min-width: 100%;
+}
+.lc-code-line {
+	display: block;
+	padding-right: 1rem;
+	border-left: 3px solid transparent;
+	transition:
+		opacity 0.2s,
+		background 0.2s;
+}
+.lc-code.has-steps .lc-code-line {
+	opacity: 0.45;
+}
+.lc-code.has-steps .lc-code-line.is-on {
+	opacity: 1;
+	background: var(--accent-soft);
+	border-left-color: var(--accent);
+}
+.lc-code-n {
+	display: inline-block;
+	width: 2.7rem;
+	padding-right: 0.9rem;
+	text-align: right;
+	color: var(--muted);
+	user-select: none;
+}
+.lc-tok {
+	color: var(--l, inherit);
+}
+:root[data-theme='dark'] .lc-tok {
+	color: var(--d, inherit);
+}
+@media (prefers-color-scheme: dark) {
+	:root:not([data-theme]) .lc-tok {
+		color: var(--d, inherit);
+	}
+}
+
+/* ---------- activities ---------- */
+
+.lc-prompt {
+	margin: 0 0 0.5rem;
+	font-weight: 700;
+	font-size: 1.08rem;
+	line-height: 1.45;
+}
+.lc-prompt .lc-quiet {
+	font-weight: 400;
+	font-size: 0.95rem;
+}
+.lc-kicker {
+	display: block;
+	margin-bottom: 0.25rem;
+	font-size: 0.78rem;
+	font-weight: 400;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+	color: var(--muted);
+}
+.lc-options {
+	display: flex;
+	flex-direction: column;
+}
+.lc-option {
+	appearance: none;
+	background: none;
+	border: 0;
+	margin: 0;
+	padding: 0.42rem 0;
+	display: grid;
+	grid-template-columns: 1.7rem 1fr;
+	align-items: baseline;
+	text-align: left;
+	font: inherit;
+	line-height: 1.5;
+	color: var(--text);
+	cursor: pointer;
+}
+.lc-option[aria-disabled='true'] {
+	cursor: default;
+}
+.lc-option-mark {
+	display: inline-block;
+	width: 0.95rem;
+	height: 0.95rem;
+	border: 1.5px solid var(--line-strong);
+	border-radius: 50%;
+	transform: translateY(0.12rem);
+	transition:
+		background 0.15s,
+		border-color 0.15s;
+}
+.lc-option.is-multi .lc-option-mark {
+	border-radius: 3px;
+}
+.lc-option:hover:not([aria-disabled='true']) .lc-option-mark {
+	border-color: var(--accent);
+}
+.lc-option.is-picked .lc-option-mark {
+	border-color: var(--accent);
+	background: var(--accent);
+	box-shadow: inset 0 0 0 2.5px var(--bg);
+}
+.lc-option.is-right .lc-option-mark {
+	border-color: var(--good);
+	background: var(--good);
+	box-shadow: inset 0 0 0 2.5px var(--bg);
+}
+.lc-option.is-wrong .lc-option-mark {
+	border-color: var(--bad);
+	background: var(--bad);
+	box-shadow: inset 0 0 0 2.5px var(--bg);
+}
+.lc-verdict {
+	font-size: 0.9em;
+	white-space: nowrap;
+}
+.lc-verdict.is-right {
+	color: var(--good-text);
+}
+.lc-verdict.is-wrong {
+	color: var(--bad-text);
+}
+.lc-feedback {
+	margin: 0.5rem 0 0;
+}
+.lc-feedback p {
+	margin: 0 0 0.5em;
+}
+.lc-input {
+	display: block;
+	width: 100%;
+	padding: 0.4rem 0;
+	font: inherit;
+	color: var(--text);
+	background: transparent;
+	border: 0;
+	border-bottom: 1.5px solid var(--line-strong);
+	border-radius: 0;
+	resize: vertical;
+}
+.lc-input:focus {
+	outline: none;
+	border-bottom-color: var(--accent);
+}
+.lc-input.is-inline {
+	display: inline-block;
+	width: auto;
+	flex: 0 1 11rem;
+	min-width: 7rem;
+	padding: 0.15rem 0;
+	font-size: 0.95rem;
+}
+.lc-input::placeholder {
+	color: var(--muted);
+}
+
+.lc-order {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+.lc-order li {
+	display: grid;
+	grid-template-columns: 1.5rem 1.6rem 1fr auto;
+	align-items: baseline;
+	gap: 0 0.2rem;
+	margin: 0;
+	padding: 0.42rem 0;
+	border-bottom: 1px solid var(--line);
+	transition: background 0.15s;
+}
+.lc-order li:first-child {
+	border-top: 1px solid var(--line);
+}
+.lc-order li.is-dragging {
+	background: var(--accent-soft);
+}
+.lc-grip {
+	display: inline-flex;
+	align-self: center;
+	padding: 0.3rem 0.25rem;
+	color: var(--muted);
+	cursor: grab;
+	touch-action: none;
+}
+.lc-grip svg {
+	fill: currentColor;
+}
+.lc-order-n {
+	color: var(--muted);
+	font-variant-numeric: tabular-nums;
+}
+.lc-order li.is-right .lc-order-n {
+	color: var(--good-text);
+	font-weight: 700;
+}
+.lc-order li.is-wrong .lc-order-n {
+	color: var(--bad-text);
+	font-weight: 700;
+}
+.lc-order-moves {
+	display: flex;
+	gap: 0.8rem;
+	padding-left: 0.8rem;
+	font-size: 0.88rem;
+}
+.lc-order-moves .lc-btn {
+	padding: 0;
+}
+
+.lc-match {
+	display: grid;
+	grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+	gap: 0 1.6rem;
+}
+.lc-match-col {
+	display: flex;
+	flex-direction: column;
+}
+.lc-match-item {
+	appearance: none;
+	background: none;
+	border: 0;
+	border-bottom: 1px solid var(--line);
+	margin: 0;
+	padding: 0.5rem 0;
+	display: grid;
+	grid-template-columns: 1.6rem 1fr;
+	align-items: baseline;
+	text-align: left;
+	font: inherit;
+	font-size: 0.98rem;
+	line-height: 1.45;
+	color: var(--text);
+	cursor: pointer;
+	transition: background 0.15s;
+}
+.lc-match-item:first-child {
+	border-top: 1px solid var(--line);
+}
+.lc-match-item:hover .lc-letter {
+	color: var(--accent);
+}
+.lc-match-item.is-active {
+	background: var(--accent-soft);
+}
+.lc-letter {
+	font-size: 0.9rem;
+	font-weight: 700;
+	color: var(--muted);
+}
+.lc-letter:empty::before {
+	content: '–';
+	color: var(--line-strong);
+}
+.lc-match-item.is-matched .lc-letter,
+.lc-match-item.is-active .lc-letter {
+	color: var(--link);
+}
+.lc-match-item.is-right .lc-letter {
+	color: var(--good-text);
+}
+.lc-match-item.is-wrong .lc-letter {
+	color: var(--bad-text);
+}
+
+/* ---------- 3D ---------- */
+
+.lc-3d {
+	position: relative;
+	width: 100%;
+	aspect-ratio: 16 / 10;
+	overflow: hidden;
+}
+.lc-3d-canvas {
+	position: absolute;
+	inset: 0;
+	width: 100% !important;
+	height: 100% !important;
+	display: block;
+	cursor: grab;
+	outline-offset: -2px;
+}
+.lc-3d-canvas:active {
+	cursor: grabbing;
+}
+.lc-3d-labels {
+	position: absolute;
+	inset: 0;
+	overflow: hidden;
+	pointer-events: none;
+}
+.lc-3d-label {
+	position: absolute;
+	left: 0;
+	top: 0;
+	font-size: 12px;
+	line-height: 1.2;
+	white-space: nowrap;
+	color: var(--text-2);
+	/* A solid outline in the page colour, then a soft glow: readable over lines and dots in both themes. */
+	text-shadow:
+		1px 0 0 var(--bg),
+		-1px 0 0 var(--bg),
+		0 1px 0 var(--bg),
+		0 -1px 0 var(--bg),
+		0 0 3px var(--bg),
+		0 0 6px var(--bg);
+	will-change: transform;
+	transition: opacity 0.18s ease;
+}
+.lc-3d-label.is-strong,
+.lc-3d-label.is-query {
+	color: var(--text);
+	font-weight: 700;
+}
+.lc-3d-label.is-dim {
+	color: var(--muted);
+}
+.lc-3d-label.is-axis {
+	font-size: 11px;
+	color: var(--muted);
+}
+/* Lost its place to a more important label that it would overlap (three-stage.ts). */
+.lc-3d-label.is-crowded {
+	opacity: 0;
+}
+.lc-3d-fallback {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+}
+.lc-3d.is-loading .lc-3d-fallback {
+	opacity: 0.3;
+}
+.lc-3d-fallback line {
+	stroke: var(--line-strong);
+	stroke-width: 1.2;
+}
+.lc-3d-fallback line.is-active {
+	stroke: var(--accent);
+	stroke-width: 2;
+}
+.lc-3d-fallback text {
+	font-size: 13px;
+	fill: var(--text-2);
+}
+.lc-3d-fallback-node {
+	cursor: pointer;
+}
+.lc-3d-fallback-node:focus {
+	outline: none;
+}
+.lc-3d-fallback-node:focus-visible circle {
+	stroke: var(--accent);
+	stroke-width: 3;
+}
+.lc-3d-fallback text {
+	transition: opacity 0.18s ease;
+	paint-order: stroke;
+	stroke: var(--bg);
+	stroke-width: 3px;
+	stroke-linejoin: round;
+}
+.lc-3d-fallback-node text.is-crowded {
+	opacity: 0;
+}
+.lc-3d-fallback-node:hover text.is-crowded,
+.lc-3d-fallback-node:focus text.is-crowded {
+	opacity: 1;
+}
+.lc-3d-fallback text.lc-3d-fallback-axis {
+	font-size: 11px;
+	fill: var(--muted);
+}
+.lc-3d-fallback-node circle {
+	stroke: var(--bg);
+	stroke-width: 2;
+}
+.lc-3d-fallback-node.is-selected text {
+	fill: var(--text);
+	font-weight: 700;
+}
+.lc-3d-fallback-node.is-query circle {
+	fill: var(--text);
+}
+.lc-edit {
+	margin-top: 0.3rem;
+}
+.lc-hint {
+	margin: 0.6rem 0 0;
+	font-size: 0.9rem;
+}
+.lc-rank {
+	margin-right: 1em;
+	white-space: nowrap;
+}
+p.lc-detail {
+	min-height: 0;
+}
+
+/* ---------- utility: figure, mermaid, resources ---------- */
+
+.lc-figure-body {
+	margin: 0 auto;
+}
+.lc-figure-body > img {
+	display: block;
+	margin: 0 auto;
+}
+.lc-figure-body > .lc:first-child,
+.lc-figure-body > astro-island:first-child > .lc {
+	margin-top: 0;
+}
+.lc-figure .lc-caption,
+.lc-mermaid .lc-caption {
+	min-height: 0;
+	font-size: 0.92rem;
+	color: var(--muted);
+}
+
+.mermaid-diagram {
+	margin: 1.6rem 0;
+	overflow-x: auto;
+}
+.lc-mermaid .mermaid-diagram {
+	margin: 0;
+}
+.mermaid-diagram svg * {
+	filter: none !important;
+}
+.mermaid-diagram svg {
+	display: block;
+	max-width: 100%;
+	height: auto;
+	margin: 0 auto;
+}
+.mermaid-diagram:not(.is-drawn) pre {
+	margin: 0;
+	opacity: 0.6;
+}
+
+.lc-resources h3 {
+	margin: 1.8em 0 0.3em;
+	font-size: 0.82rem;
+	font-weight: 400;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+	color: var(--muted);
+}
+.lc-resources ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+.lc-resources li {
+	margin: 0;
+	padding: 0.6rem 0;
+	border-bottom: 1px solid var(--line);
+}
+.lc-resources li a {
+	font-weight: 700;
+}
+.lc-resource-meta {
+	margin-left: 0.7em;
+	font-size: 0.88rem;
+	color: var(--muted);
+}
+.lc-resource-why {
+	display: block;
+	font-size: 0.97rem;
+	line-height: 1.5;
+	color: var(--text-2);
+}
+
+/* ---------- recall deck ---------- */
+
+.recall-progress {
+	display: block;
+	margin: 0 0 1rem;
+}
+.recall-question {
+	min-height: 4.2rem;
+	margin-bottom: 1rem;
+	font-size: 1.35rem;
+	font-weight: 700;
+	line-height: 1.4;
+}
+.recall-question p,
+.recall-answer p {
+	margin: 0 0 0.5em;
+}
+.recall-answer {
+	margin-bottom: 0.8rem;
+	font-size: 1.1rem;
+}
+.recall-reveal {
+	font-size: 1.05rem;
+	font-weight: 700;
+}
+.recall-commands {
+	font-size: 0.78rem;
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+@media (max-width: 520px) {
+	.lc-3d {
+		aspect-ratio: 1 / 1;
+	}
+	.lc-match {
+		gap: 0 1rem;
+	}
+	.lc-order li {
+		grid-template-columns: 1.4rem 1.4rem 1fr;
+	}
+	.lc-order-moves {
+		grid-column: 3;
+		padding: 0.1rem 0 0;
+	}
+	.lc-controls {
+		gap: 0 1rem;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.lc-seq-msg.is-current path {
+		stroke-dashoffset: 0;
+		animation: none;
+	}
+	.lc-seq-msg.is-current polygon {
+		animation: none;
+	}
+}

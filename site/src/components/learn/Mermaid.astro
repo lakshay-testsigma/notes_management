@@ -1,0 +1,18 @@
+---
+// Lesson component <Mermaid />. Drawn in the browser by src/scripts/mermaid.ts,
+// the same script that draws ```mermaid fences in vault notes.
+interface Props {
+	chart: string;
+	title?: string;
+	caption?: string;
+}
+
+const { chart = '', title, caption } = Astro.props;
+const source = String(chart).replace(/^\s*\n/, '').replace(/\s+$/, '');
+---
+
+<figure class="lc lc-mermaid">
+	{title && <figcaption class="lc-title">{title}</figcaption>}
+	<pre data-mermaid>{source}</pre>
+	{caption && <p class="lc-caption">{caption}</p>}
+</figure>

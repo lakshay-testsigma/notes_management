@@ -1,0 +1,16 @@
+{
+  "name": "notes-management",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Personal AI tutor + note-taker harness",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "tutor": "node harness/bin/tutor.mjs",
+    "test": "node --test harness/tests",
+    "site:dev": "npm --prefix site run dev",
+    "site:build": "npm --prefix site run build"
+  }
+}

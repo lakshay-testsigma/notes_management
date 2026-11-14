@@ -1,0 +1,118 @@
+{
+  "id": "data-engineering",
+  "title": "Data Engineering",
+  "description": "Moving and shaping data reliably: ingestion, batch and stream processing, orchestration, storage formats, modeling, and data quality.",
+  "subdomains": [
+    {
+      "id": "data-modeling",
+      "title": "Data Modeling",
+      "examples": [
+        "Dimensional modeling (star schema)",
+        "Slowly changing dimensions",
+        "Normalization vs denormalization",
+        "Data vault"
+      ]
+    },
+    {
+      "id": "ingestion",
+      "title": "Ingestion & Integration",
+      "examples": [
+        "Change data capture with Debezium",
+        "Batch extraction from APIs",
+        "Incremental loads",
+        "Schema evolution"
+      ]
+    },
+    {
+      "id": "batch-processing",
+      "title": "Batch Processing",
+      "examples": [
+        "Apache Spark",
+        "DuckDB",
+        "Partitioning and shuffles",
+        "Idempotent backfills"
+      ]
+    },
+    {
+      "id": "stream-processing",
+      "title": "Stream Processing",
+      "examples": [
+        "Kafka topics and consumer groups",
+        "Apache Flink",
+        "Windowing and watermarks",
+        "Exactly-once processing"
+      ]
+    },
+    {
+      "id": "orchestration",
+      "title": "Orchestration",
+      "examples": [
+        "Apache Airflow DAGs",
+        "Dagster assets",
+        "Scheduling and retries",
+        "Backfills"
+      ]
+    },
+    {
+      "id": "storage-formats",
+      "title": "Storage & Table Formats",
+      "examples": [
+        "Parquet and columnar storage",
+        "Apache Iceberg",
+        "Delta Lake",
+        "Warehouse vs lake vs lakehouse"
+      ]
+    },
+    {
+      "id": "transformation",
+      "title": "Transformation & Analytics Engineering",
+      "examples": [
+        "dbt models",
+        "ELT vs ETL",
+        "Incremental models",
+        "Medallion architecture"
+      ]
+    },
+    {
+      "id": "data-quality",
+      "title": "Data Quality & Testing",
+      "examples": [
+        "Data contracts",
+        "dbt tests",
+        "Great Expectations",
+        "Freshness and volume monitoring"
+      ]
+    },
+    {
+      "id": "governance",
+      "title": "Governance & Lineage",
+      "examples": [
+        "Data lineage with OpenLineage",
+        "Data catalogs",
+        "Access control and PII handling",
+        "Retention policies"
+      ]
+    }
+  ],
+  "stages": {
+    "repo-intel": {
+      "enabled": true
+    },
+    "capstone": {
+      "enabled": true,
+      "kind": "pipeline"
+    }
+  },
+  "depth_overrides": {},
+  "default_stack": {
+    "language": "Python and SQL",
+    "runtime": "Python 3.11+ with DuckDB (PostgreSQL and Kafka in Docker when needed)",
+    "test": "pytest"
+  },
+  "safety": [
+    "Never commit secrets: API keys, tokens, and passwords live in a git-ignored .env file, with a committed .env.example that holds placeholder values only.",
+    "Use public or synthetic datasets only; never copy production or personal data into a learning project.",
+    "When a dataset contains personal fields, mask or drop them at ingestion and say so in the README.",
+    "Run warehouses and brokers locally (DuckDB, Docker); use paid cloud warehouses only when the learner explicitly asks, with a cost note."
+  ]
+}

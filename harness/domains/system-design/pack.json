@@ -1,0 +1,118 @@
+{
+  "id": "system-design",
+  "title": "System Design",
+  "description": "Designing systems of many machines: how data is stored, replicated, and moved so the whole stays fast, correct, and available when parts fail.",
+  "subdomains": [
+    {
+      "id": "foundations",
+      "title": "Foundations & Estimation",
+      "examples": [
+        "Latency and throughput",
+        "Back-of-envelope estimation",
+        "CAP and PACELC",
+        "SLAs, SLOs, and availability math"
+      ]
+    },
+    {
+      "id": "networking",
+      "title": "Networking & Traffic",
+      "examples": [
+        "Load balancing",
+        "DNS",
+        "API gateways",
+        "Content delivery networks"
+      ]
+    },
+    {
+      "id": "data-storage",
+      "title": "Data Storage & Partitioning",
+      "examples": [
+        "Replication",
+        "Sharding",
+        "Consistent hashing",
+        "LSM trees vs B-trees"
+      ]
+    },
+    {
+      "id": "consistency-consensus",
+      "title": "Consistency & Consensus",
+      "examples": [
+        "Raft",
+        "Quorums",
+        "Consistency models",
+        "Distributed transactions and sagas"
+      ]
+    },
+    {
+      "id": "caching",
+      "title": "Caching at Scale",
+      "examples": [
+        "Cache topologies",
+        "Cache stampede",
+        "Write-through vs write-behind",
+        "Eviction policies"
+      ]
+    },
+    {
+      "id": "async-processing",
+      "title": "Asynchronous Processing",
+      "examples": [
+        "Message queues vs logs",
+        "Event-driven architecture",
+        "Exactly-once semantics",
+        "Stream processing"
+      ]
+    },
+    {
+      "id": "reliability",
+      "title": "Reliability Patterns",
+      "examples": [
+        "Rate limiting",
+        "Circuit breakers",
+        "Retries with backoff and jitter",
+        "Failover and redundancy"
+      ]
+    },
+    {
+      "id": "architecture-styles",
+      "title": "Architecture Styles",
+      "examples": [
+        "Microservices",
+        "Event sourcing and CQRS",
+        "Service mesh",
+        "Multi-region design"
+      ]
+    },
+    {
+      "id": "case-studies",
+      "title": "Classic Design Problems",
+      "examples": [
+        "URL shortener",
+        "News feed",
+        "Chat system",
+        "Ride-matching service",
+        "Distributed key-value store"
+      ]
+    }
+  ],
+  "stages": {
+    "repo-intel": {
+      "enabled": true
+    },
+    "capstone": {
+      "enabled": true,
+      "kind": "service"
+    }
+  },
+  "depth_overrides": {},
+  "default_stack": {
+    "language": "TypeScript",
+    "runtime": "Node.js 20+ with Docker Compose (several local nodes)",
+    "test": "vitest"
+  },
+  "safety": [
+    "Never commit secrets: API keys, tokens, and passwords live in a git-ignored .env file, with a committed .env.example that holds placeholder values only.",
+    "Simulate scale locally with Docker Compose and load generators; do not create paid cloud resources unless the learner explicitly asks.",
+    "Load tests and fault-injection experiments target only the learner's own local containers."
+  ]
+}

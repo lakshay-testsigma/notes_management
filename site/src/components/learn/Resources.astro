@@ -1,0 +1,63 @@
+---
+// Lesson component <Resources />: the topic's vetted sources from
+// state/topics/<topic>/sources.json, grouped by type. Inside a lesson it needs
+// no props: the topic comes from the page it is rendered on.
+import { getTopic, loadTopics } from '../../lib/topics';
+
+interface Props {
+	/** `domain/subdomain/slug`. Only needed outside a topic page (the playground). */
+	topic?: string;
+	title?: string;
+}
+
+const fromUrl = () => {
+	const [domain, subdomain, slug] = Astro.url.pathname.split('/').filter(Boolean);
+	return loadTopics().find((t) => t.domain === domain && t.subdomain === subdomain && t.slug === slug);
+};
+const topic = getTopic(Astro.props.topic ?? Astro.locals.topicId ?? '') ?? fromUrl();
+const sources = topic?.sources ?? [];
+
+const TYPES: [string, string][] = [
+	['official-docs', 'Official documentation'],
+	['paper', 'Papers'],
+	['book', 'Books'],
+	['standard', 'Standards'],
+	['repo', 'Repositories'],
+	['engineering-blog', 'Engineering blogs'],
+	['course', 'Courses'],
+	['talk', 'Talks'],
+];
+const known = new Set(TYPES.map(([type]) => type));
+const groups = [
+	...TYPES.map(([type, heading]) => ({ heading, items: sources.filter((s) => s.type === type) })),
+	{ heading: 'More', items: sources.filter((s) => !known.has(s.type)) },
+].filter((group) => group.items.length > 0);
+---
+
+<section class="lc lc-resources">
+	{Astro.props.title && <h2>{Astro.props.title}</h2>}
+	{
+		groups.length === 0 ? (
+			<p class="lc-quiet">No vetted sources have been recorded for this topic yet.</p>
+		) : (
+			groups.map((group) => (
+				<>
+					<h3>{group.heading}</h3>
+					<ul>
+						{group.items.map((source) => (
+							<li>
+								<a href={source.url} rel="noopener noreferrer" target="_blank">
+									{source.title}
+								</a>
+								<span class="lc-resource-meta">
+									{[source.authors, source.year, source.tier === 'A' ? 'canonical' : null].filter(Boolean).join(' · ')}
+								</span>
+								{source.why_trusted && <span class="lc-resource-why">{source.why_trusted}</span>}
+							</li>
+						))}
+					</ul>
+				</>
+			))
+		)
+	}
+</section>

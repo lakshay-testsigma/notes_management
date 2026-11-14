@@ -1,0 +1,112 @@
+---
+import Crumbs from '../../../../components/site/Crumbs.astro';
+import Base from '../../../../layouts/Base.astro';
+import { getTopicNav, type NavPage, type NavStep } from '../../../../lib/navigation';
+import { domainInfo, loadTopics, subdomainTitle, type Topic } from '../../../../lib/topics';
+
+export function getStaticPaths() {
+	return loadTopics().map((topic) => ({
+		params: { domain: topic.domain, subdomain: topic.subdomain, slug: topic.slug },
+		props: { topic },
+	}));
+}
+
+interface Props {
+	topic: Topic;
+}
+const { topic } = Astro.props;
+const nav = await getTopicNav(topic);
+const domain = domainInfo(topic.domain);
+const first = nav.pages[0];
+
+/** Split a step's pages into [heading or null, pages] runs (repositories in the deep dive). */
+function runs(step: NavStep): { name: string | null; pages: NavPage[] }[] {
+	const out: { name: string | null; pages: NavPage[] }[] = [];
+	for (const page of step.pages) {
+		const name = page.note?.data.group ?? null;
+		const last = out[out.length - 1];
+		if (last && last.name === name) last.pages.push(page);
+		else out.push({ name, pages: [page] });
+	}
+	return out;
+}
+---
+
+<Base title={topic.title} description={topic.summary}>
+	<Crumbs
+		items={[
+			{ label: domain.title, href: `/${topic.domain}/` },
+			{ label: subdomainTitle(domain, topic.subdomain), href: `/${topic.domain}/#${topic.subdomain}` },
+		]}
+	/>
+	<p class="eyebrow">Topic</p>
+	<h1 class="page-title">{topic.title}</h1>
+	{topic.summary && <p class="lede">{topic.summary}</p>}
+
+	{
+		first ? (
+			<p>
+				<a class="start-link" href={first.url}>
+					Start: {first.eyebrow.replace(/ · .*/, '')} →
+				</a>
+			</p>
+		) : (
+			<p>Nothing has been written for this topic yet. Run the tutor to generate its first stage.</p>
+		)
+	}
+	<p data-continue={topic.id} hidden>Continue where you left off: <a href={topic.url}>last page</a></p>
+
+	{
+		topic.outcomes.length > 0 && (
+			<>
+				<h2>After this topic you can</h2>
+				<ul>
+					{topic.outcomes.map((outcome) => (
+						<li>{outcome}</li>
+					))}
+				</ul>
+			</>
+		)
+	}
+
+	{
+		nav.steps.length > 0 && (
+			<>
+				<h2>The path</h2>
+				<ol class="path">
+					{nav.steps.map((step) => (
+						<li id={`step-${step.id}`}>
+							<span class="path-n">{step.n || '·'}</span>
+							<div>
+								<a class="path-title" href={step.pages[0].url}>
+									{step.title}
+								</a>
+								{step.blurb && <span class="path-blurb">{step.blurb}</span>}
+								{step.pages.length > 1 &&
+									runs(step).map((run) => (
+										<>
+											{run.name && <div class="group-name">{run.name}</div>}
+											<ol>
+												{run.pages.map((page) => (
+													<li>
+														<span class="sub-n">{step.pages.indexOf(page) + 1}</span>
+														<a href={page.url}>{page.note?.data.role === 'index' ? 'Overview' : page.title}</a>
+													</li>
+												))}
+											</ol>
+										</>
+									))}
+							</div>
+						</li>
+					))}
+				</ol>
+			</>
+		)
+	}
+
+	{nav.upcoming.length > 0 && <p class="note-quiet">Not written yet: {nav.upcoming.join(', ')}.</p>}
+</Base>
+
+<script>
+	import '../../../../scripts/continue';
+</script>

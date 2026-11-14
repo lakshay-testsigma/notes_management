@@ -1,0 +1,21 @@
+---
+// Lesson component <Figure />: an image, or any content placed inside it, with a caption.
+interface Props {
+	src?: string;
+	alt?: string;
+	caption?: string;
+	title?: string;
+	/** maximum width in pixels (the figure never exceeds the text column) */
+	width?: number;
+}
+
+const { src, alt = '', caption, title, width } = Astro.props;
+---
+
+<figure class="lc lc-figure">
+	{title && <div class="lc-title">{title}</div>}
+	<div class="lc-figure-body" style={width ? `max-width:${Number(width)}px` : undefined}>
+		{src ? <img src={src} alt={alt} loading="lazy" decoding="async" /> : <slot />}
+	</div>
+	{caption && <figcaption class="lc-caption">{caption}</figcaption>}
+</figure>

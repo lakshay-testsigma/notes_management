@@ -1,0 +1,118 @@
+{
+  "id": "backend-engineering",
+  "title": "Backend Engineering",
+  "description": "Building reliable server-side services: APIs, data storage, caching, messaging, authentication, and the code structure that keeps them maintainable.",
+  "subdomains": [
+    {
+      "id": "apis",
+      "title": "APIs & Protocols",
+      "examples": [
+        "REST API design",
+        "GraphQL",
+        "gRPC",
+        "WebSockets",
+        "Idempotency keys"
+      ]
+    },
+    {
+      "id": "databases",
+      "title": "Databases",
+      "examples": [
+        "PostgreSQL indexes",
+        "Transactions and isolation levels",
+        "Schema migrations",
+        "Connection pooling"
+      ]
+    },
+    {
+      "id": "caching",
+      "title": "Caching",
+      "examples": [
+        "Redis caching",
+        "Cache invalidation",
+        "Cache-aside pattern",
+        "HTTP caching"
+      ]
+    },
+    {
+      "id": "messaging",
+      "title": "Messaging & Streaming",
+      "examples": [
+        "Kafka",
+        "Redis Streams",
+        "RabbitMQ",
+        "Background job queues"
+      ]
+    },
+    {
+      "id": "auth",
+      "title": "Authentication & Authorization",
+      "examples": [
+        "Sessions vs JWT",
+        "OAuth 2.0 and OpenID Connect",
+        "Password hashing",
+        "Role-based access control"
+      ]
+    },
+    {
+      "id": "concurrency",
+      "title": "Concurrency & Runtime",
+      "examples": [
+        "Node.js event loop",
+        "Worker threads",
+        "Race conditions and locks",
+        "Backpressure"
+      ]
+    },
+    {
+      "id": "observability",
+      "title": "Observability",
+      "examples": [
+        "Structured logging",
+        "Metrics with Prometheus",
+        "Distributed tracing with OpenTelemetry",
+        "Health checks"
+      ]
+    },
+    {
+      "id": "testing",
+      "title": "Backend Testing",
+      "examples": [
+        "Unit tests with test doubles",
+        "Integration tests with Testcontainers",
+        "Contract testing",
+        "Load testing with k6"
+      ]
+    },
+    {
+      "id": "architecture",
+      "title": "Service Architecture",
+      "examples": [
+        "Layered architecture",
+        "Dependency injection",
+        "Hexagonal architecture",
+        "Monolith vs microservices"
+      ]
+    }
+  ],
+  "stages": {
+    "repo-intel": {
+      "enabled": true
+    },
+    "capstone": {
+      "enabled": true,
+      "kind": "service"
+    }
+  },
+  "depth_overrides": {},
+  "default_stack": {
+    "language": "TypeScript",
+    "runtime": "Node.js 20+",
+    "test": "vitest"
+  },
+  "safety": [
+    "Never commit secrets: API keys, tokens, and passwords live in a git-ignored .env file, with a committed .env.example that holds placeholder values only.",
+    "Run databases, caches, and brokers locally in Docker; never point a learning project at a production or shared database.",
+    "Load tests and fuzzing target only services running on the learner's own machine."
+  ]
+}

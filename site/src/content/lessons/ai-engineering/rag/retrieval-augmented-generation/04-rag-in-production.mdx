@@ -1,0 +1,67 @@
+---
+title: "RAG in production: where it breaks and how teams fix it"
+description: A wrong answer is either a retrieval failure or a generation failure, and each one has its own fix.
+order: 4
+concepts: [retrieval failure, generation failure, contextual retrieval, reranking]
+---
+
+The handbook assistant goes live. A new employee asks how many leave days carry over to next year and gets a wrong number. Before anyone changes anything, the team asks one question: was the right chunk in the prompt?
+
+<PredictReveal
+  prompt="The log of that wrong answer shows the prompt. The handbook chunk with the correct carry-over rule is in it, third of the retrieved chunks. Which part of the system do you repair?"
+  options={[
+    "The chunking: cut the handbook into smaller chunks",
+    "The embeddings: compute them with a better model",
+    "The retrieval step: fetch more chunks for each question",
+    "The prompt and the model's answering step"
+  ]}
+  correct={3}
+  answer="The prompt and the answering step. Retrieval did its job: the right chunk arrived."
+  reasoning="Smaller chunks, better embeddings, or more retrieved chunks only change which chunks arrive, and the right one was already there. The answer went wrong after retrieval, so the fix is there too."
+/>
+
+This is the pipeline the Anthropic engineering team measured. Click each part, starting with the chunker, to read how it breaks and what its fix did to the failure rate.
+
+<SystemDiagram
+  title="A production RAG pipeline, with the failure each part causes or repairs"
+  initial="chunker"
+  nodes={[
+    { id: "docs", label: "Documents", kind: "store", detail: "The source of truth. If a rule is missing or outdated here, no later part can repair it. The fix is to edit the document and index it again, with no retraining: in the original RAG paper, a model with a 2016 Wikipedia index was right for 70% of the 2016 world leaders and 4% of the 2018 leaders; with the 2018 index it was right for 68% of the 2018 leaders." },
+    { id: "chunker", label: "Chunker", detail: "Cuts each document into chunks of a few hundred tokens. Breaks when a chunk loses its context: 'The company's revenue grew by 3% over the previous quarter' names no company and no quarter. In Anthropic's tests this plain pipeline missed 5.7% of the relevant chunks in its top 20." },
+    { id: "notes", label: "Context notes", detail: "The fix for lost context. A small model (the post uses Claude 3 Haiku) reads the whole document and one chunk, and writes a note of 50 to 100 tokens that goes in front of the chunk, for example that it comes from ACME Corp's Q2 2023 filing. Failure rate: 5.7% down to 3.7%. Cost with prompt caching: $1.02 per million document tokens, once." },
+    { id: "emb", label: "Embedding index", kind: "store", detail: "Holds the embedding of every chunk and finds the chunks whose meaning is close to the user's question. Breaks on exact identifiers: a question about 'Error code TS-999' can return chunks about error codes in general and miss the one with that code." },
+    { id: "bm25", label: "BM25 index", kind: "store", detail: "An older ranking method that matches exact words, so it finds 'TS-999'. It runs next to the embedding index and the two result lists are merged with rank fusion. With context notes in both indexes the failure rate falls to 2.9%, which is 49% lower than the plain pipeline." },
+    { id: "rerank", label: "Reranker", detail: "A model that scores how well each candidate chunk fits the question. The pipeline retrieves 150 candidates and keeps the 20 best. With it the failure rate falls to 1.9%, which is 67% lower than the plain pipeline." },
+    { id: "prompt", label: "Prompt and model", detail: "The user's question plus the top chunks go to the language model in one call; passing 20 chunks worked better than 10 or 5. A generation failure happens here: the right chunk was in the prompt and the answer still ignores or contradicts it. The repair is in the prompt: tell the model to answer only from the chunks, to cite the chunk it used, and to say plainly when the chunks do not cover the question. None of the percentages in this diagram measure this step; they measure retrieval only." }
+  ]}
+  edges={[
+    { from: "docs", to: "chunker", label: "text" },
+    { from: "chunker", to: "notes", label: "chunks" },
+    { from: "notes", to: "emb", label: "note + chunk" },
+    { from: "notes", to: "bm25", label: "note + chunk" },
+    { from: "emb", to: "rerank", label: "candidates" },
+    { from: "bm25", to: "rerank", label: "candidates" },
+    { from: "rerank", to: "prompt", label: "top 20" }
+  ]}
+/>
+
+Every part before the prompt is retrieval. A **retrieval failure** means the right chunk never reached the prompt. The post measures it as the share of relevant chunks missing from the top 20, and each fix in the diagram lowers that share: 5.7%, then 3.7%, 2.9%, and 1.9%. A **generation failure** means the chunk was there and the answer still went wrong, so no index change helps. The repair is in the prompt.
+
+**Note.** These are Anthropic's own measurements, and they cover retrieval only, not the quality of the final answer. The same post says a knowledge base under about 200,000 tokens can go into the prompt whole, with no RAG at all.
+
+**Fine-tuning**, which means retraining the model itself, repairs a different problem: use RAG when the model lacks knowledge or its knowledge is out of date, and fine-tuning when its behaviour is inconsistent or its format or tone is wrong.
+
+<MatchPairs
+  prompt="Five things went wrong in the handbook assistant. Match each symptom to the fix that addresses it."
+  pairs={[
+    { term: "Chunk never says which policy it is about", definition: "Put a short context note in front of every chunk before indexing" },
+    { term: "Question contains form number HR-204", definition: "Add BM25 keyword search next to the embedding index" },
+    { term: "Right chunk is candidate 60 of 150", definition: "Rerank the candidates and keep the 20 that fit the question best" },
+    { term: "Right chunk in prompt, wrong answer", definition: "Make the prompt demand an answer from the chunks only, with a citation" },
+    { term: "Rule changed last week", definition: "Edit the document and index it again; the model is not retrained" }
+  ]}
+/>
+
+That is the whole path of one question, from the handbook to an answer that cites it. The sources below are where to go deeper.
+
+<Resources />

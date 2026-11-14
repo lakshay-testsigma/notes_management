@@ -1,0 +1,10 @@
+---
+// Lesson component <SequenceDiagram />. Authors use it in MDX with no import and no
+// client directive; this wrapper hydrates the island when it scrolls into view.
+// Props are documented in site/COMPONENTS.md.
+import Island, { type SequenceDiagramProps } from './react/SequenceDiagram.tsx';
+
+type Props = SequenceDiagramProps;
+---
+
+<Island client:visible {...Astro.props} />

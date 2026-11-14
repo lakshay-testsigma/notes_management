@@ -1,0 +1,117 @@
+{
+  "id": "core-ai",
+  "title": "Core AI & Machine Learning",
+  "description": "How learning machines work underneath: the math, classical machine learning, neural networks, transformers, generative models, and how to train and evaluate them.",
+  "subdomains": [
+    {
+      "id": "math-foundations",
+      "title": "Math Foundations",
+      "examples": [
+        "Linear algebra for ML",
+        "Gradients and the chain rule",
+        "Probability and Bayes rule",
+        "Information theory basics"
+      ]
+    },
+    {
+      "id": "classical-ml",
+      "title": "Classical Machine Learning",
+      "examples": [
+        "Linear and logistic regression",
+        "Decision trees and gradient boosting",
+        "k-means clustering",
+        "Bias-variance trade-off"
+      ]
+    },
+    {
+      "id": "deep-learning-fundamentals",
+      "title": "Deep Learning Fundamentals",
+      "examples": [
+        "Backpropagation",
+        "Optimizers: SGD and Adam",
+        "Regularization and dropout",
+        "Normalization layers"
+      ]
+    },
+    {
+      "id": "computer-vision",
+      "title": "Computer Vision",
+      "examples": [
+        "Convolutional networks",
+        "ResNet",
+        "Vision Transformer",
+        "Object detection"
+      ]
+    },
+    {
+      "id": "nlp-sequence-models",
+      "title": "NLP & Sequence Models",
+      "examples": [
+        "Word embeddings",
+        "RNNs and LSTMs",
+        "Tokenization",
+        "Sequence-to-sequence with attention"
+      ]
+    },
+    {
+      "id": "transformers-llms",
+      "title": "Transformers & LLM Internals",
+      "examples": [
+        "Self-attention",
+        "Positional encoding",
+        "GPT architecture",
+        "Pretraining and scaling laws"
+      ]
+    },
+    {
+      "id": "generative-models",
+      "title": "Generative Models",
+      "examples": [
+        "Variational autoencoders",
+        "GANs",
+        "Diffusion models",
+        "Latent diffusion"
+      ]
+    },
+    {
+      "id": "reinforcement-learning",
+      "title": "Reinforcement Learning",
+      "examples": [
+        "Markov decision processes",
+        "Q-learning",
+        "Policy gradients",
+        "PPO"
+      ]
+    },
+    {
+      "id": "training-evaluation",
+      "title": "Training, Evaluation & Interpretability",
+      "examples": [
+        "Train/validation/test splits",
+        "Evaluation metrics",
+        "Hyperparameter tuning",
+        "Mechanistic interpretability"
+      ]
+    }
+  ],
+  "stages": {
+    "repo-intel": {
+      "enabled": true
+    },
+    "capstone": {
+      "enabled": true,
+      "kind": "model"
+    }
+  },
+  "depth_overrides": {},
+  "default_stack": {
+    "language": "Python",
+    "runtime": "Python 3.11+ with NumPy and PyTorch (CPU-sized models)",
+    "test": "pytest"
+  },
+  "safety": [
+    "Size every training run for a laptop CPU (minutes, not hours); state the expected run time in the README.",
+    "Use only public datasets with a clear license (for example MNIST, CIFAR-10, Tiny Shakespeare, scikit-learn built-ins) and record the license.",
+    "Never train on personal or scraped private data; state dataset bias and limits of the trained model in the README."
+  ]
+}

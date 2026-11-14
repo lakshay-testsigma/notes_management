@@ -1,0 +1,38 @@
+---
+import Crumbs from '../../components/site/Crumbs.astro';
+import Base from '../../layouts/Base.astro';
+import { loadDomains, type DomainGroup } from '../../lib/topics';
+
+export function getStaticPaths() {
+	return loadDomains().map((domain) => ({ params: { domain: domain.info.id }, props: { domain } }));
+}
+
+interface Props {
+	domain: DomainGroup;
+}
+const { domain } = Astro.props;
+---
+
+<Base title={domain.info.title} description={domain.info.description}>
+	<Crumbs items={[{ label: 'All domains', href: '/' }]} />
+	<h1 class="page-title">{domain.info.title}</h1>
+	{domain.info.description && <p class="lede">{domain.info.description}</p>}
+
+	{
+		domain.subdomains.map((sub) => (
+			<section>
+				<h2 id={sub.id}>{sub.title}</h2>
+				<ul class="index-list">
+					{sub.topics.map((topic) => (
+						<li>
+							<a class="index-title" href={topic.url}>
+								{topic.title}
+							</a>
+							{topic.summary && <p>{topic.summary}</p>}
+						</li>
+					))}
+				</ul>
+			</section>
+		))
+	}
+</Base>

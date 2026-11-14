@@ -1,0 +1,30 @@
+# Caches (cloned repos, fetched pages)
+.cache/
+
+# Dependencies
+node_modules/
+
+# Astro site build output
+site/dist/
+site/.astro/
+
+# tutor CLI lock and temp files
+state/.tutor.lock/
+*.tmp
+
+# Obsidian per-machine files
+vault/.obsidian/workspace*.json
+vault/.obsidian/cache
+vault/.trash/
+
+# OS and editor noise
+.DS_Store
+Thumbs.db
+*.log
+.idea/
+.vscode/
+
+# Local secrets
+.env
+.env.*
+!.env.example

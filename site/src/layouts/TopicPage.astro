@@ -1,0 +1,56 @@
+---
+import Crumbs from '../components/site/Crumbs.astro';
+import Pager from '../components/site/Pager.astro';
+import type { NavPage, TopicNav } from '../lib/navigation';
+import { neighbours } from '../lib/navigation';
+import { domainInfo, subdomainTitle } from '../lib/topics';
+import Base from './Base.astro';
+
+interface Props {
+	nav: TopicNav;
+	page: NavPage;
+	description?: string;
+}
+
+const { nav, page, description } = Astro.props;
+const { topic } = nav;
+const domain = domainInfo(topic.domain);
+const around = neighbours(nav, page.route);
+---
+
+<Base title={`${page.title} · ${topic.title}`} description={description ?? topic.summary}>
+	<Crumbs
+		items={[
+			{ label: domain.title, href: `/${topic.domain}/` },
+			{ label: subdomainTitle(domain, topic.subdomain), href: `/${topic.domain}/#${topic.subdomain}` },
+			{ label: topic.title, href: topic.url },
+		]}
+	/>
+	<article data-topic={topic.id} data-topic-title={topic.title} data-page-title={page.title}>
+		<p class="eyebrow">{page.eyebrow}</p>
+		<h1 class="page-title">{page.title}</h1>
+		{description && <p class="lede">{description}</p>}
+		<div class="prose">
+			<slot />
+		</div>
+	</article>
+	<Pager neighbours={around} endHref={topic.url} endLabel={`Back to ${topic.title}`} />
+</Base>
+
+<script>
+	// Remember the last page read, so the home pages can offer "continue reading".
+	const article = document.querySelector<HTMLElement>('article[data-topic]');
+	if (article) {
+		const entry = JSON.stringify({
+			url: location.pathname,
+			title: article.dataset.pageTitle,
+			topic: article.dataset.topicTitle,
+		});
+		try {
+			localStorage.setItem('tutor:last', entry);
+			localStorage.setItem(`tutor:last:${article.dataset.topic}`, entry);
+		} catch {
+			// Reading works without storage.
+		}
+	}
+</script>

@@ -1,0 +1,124 @@
+{
+  "id": "security",
+  "title": "Security",
+  "description": "Understanding how systems are attacked in order to build and defend them: web and API security, identity, cryptography, networks, cloud, secure development, and detection.",
+  "subdomains": [
+    {
+      "id": "web-security",
+      "title": "Web Application Security",
+      "examples": [
+        "Cross-site scripting (XSS)",
+        "SQL injection",
+        "CSRF",
+        "Server-side request forgery",
+        "Content Security Policy"
+      ]
+    },
+    {
+      "id": "identity-access",
+      "title": "Identity & Access",
+      "examples": [
+        "OAuth 2.0 and OpenID Connect",
+        "Session management",
+        "Multi-factor authentication and passkeys",
+        "Broken access control"
+      ]
+    },
+    {
+      "id": "cryptography",
+      "title": "Applied Cryptography",
+      "examples": [
+        "Hashing and password storage",
+        "Symmetric vs asymmetric encryption",
+        "TLS 1.3 handshake",
+        "Digital signatures"
+      ]
+    },
+    {
+      "id": "network-security",
+      "title": "Network Security",
+      "examples": [
+        "Firewalls and segmentation",
+        "Packet analysis with Wireshark",
+        "DNS security",
+        "Zero trust networking"
+      ]
+    },
+    {
+      "id": "cloud-container-security",
+      "title": "Cloud & Container Security",
+      "examples": [
+        "IAM least privilege",
+        "Container image hardening",
+        "Kubernetes security",
+        "Secrets management"
+      ]
+    },
+    {
+      "id": "secure-development",
+      "title": "Secure Development",
+      "examples": [
+        "Threat modeling with STRIDE",
+        "Static analysis with Semgrep",
+        "Dependency and supply-chain security",
+        "Secure code review"
+      ]
+    },
+    {
+      "id": "security-testing",
+      "title": "Security Testing in Labs",
+      "examples": [
+        "Penetration testing methodology",
+        "Reconnaissance with Nmap",
+        "Intercepting traffic with Burp Suite or ZAP",
+        "Privilege escalation in a lab VM"
+      ]
+    },
+    {
+      "id": "detection-response",
+      "title": "Detection & Response",
+      "examples": [
+        "Security logging",
+        "MITRE ATT&CK",
+        "Incident response",
+        "Detection rules with Sigma"
+      ]
+    },
+    {
+      "id": "system-security",
+      "title": "System & Memory Security",
+      "examples": [
+        "Buffer overflows",
+        "Linux hardening",
+        "Memory-safe languages",
+        "Sandboxing"
+      ]
+    }
+  ],
+  "stages": {
+    "repo-intel": {
+      "enabled": true
+    },
+    "capstone": {
+      "enabled": true,
+      "kind": "lab-and-hardening-report"
+    }
+  },
+  "depth_overrides": {},
+  "default_stack": {
+    "language": "Python",
+    "runtime": "Python 3.11+ with Docker for isolated lab targets",
+    "test": "pytest"
+  },
+  "safety": [
+    "Authorized targets only: the learner's own machines, local containers and VMs, intentionally vulnerable apps (OWASP Juice Shop, DVWA, WebGoat, crAPI), and training platforms (PortSwigger Web Security Academy, Hack The Box, TryHackMe, OverTheWire, picoCTF).",
+    "Never scan, probe, or attack real third-party systems, networks, accounts, or people, including \"just to check\". Example commands always use localhost, 127.0.0.1, or a named lab container.",
+    "Run vulnerable apps bound to 127.0.0.1 on an isolated Docker network; never expose them to the internet or a shared network; remove them after the lab.",
+    "Defensive framing: every attack technique is taught together with how to detect it and how to fix it, and every exploit exercise ends with the patch and a regression test.",
+    "Do not write or keep malware, ransomware, credential stealers, phishing kits, or tools built to evade detection on real systems.",
+    "Never use real leaked credentials, real personal data, or real breach dumps; use generated test data.",
+    "Bug bounty work is done only inside a program's published scope and rules; when in doubt, do not test.",
+    "A vulnerability found by accident in a real product is reported privately to the vendor (coordinated disclosure), never exploited or published first.",
+    "Never commit secrets: API keys, tokens, and passwords live in a git-ignored .env file, with a committed .env.example that holds placeholder values only."
+  ]
+}

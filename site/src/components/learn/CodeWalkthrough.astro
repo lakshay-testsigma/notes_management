@@ -1,0 +1,48 @@
+---
+// Lesson component <CodeWalkthrough />. The code is highlighted here, at build
+// time, and handed to the island as plain token data.
+import { bundledLanguages, codeToTokens } from 'shiki';
+import Island, { type CodeToken } from './react/CodeWalkthrough.tsx';
+
+type Range = number | [number, number];
+
+interface Props {
+	title?: string;
+	code: string;
+	lang?: string;
+	steps?: { lines: Range | Range[]; caption: string; title?: string }[];
+}
+
+const { title, code = '', lang = 'text', steps = [] } = Astro.props;
+
+// Trim blank edges and the indentation shared by every line (MDX template literals).
+const raw = String(code).replace(/\t/g, '  ').replace(/^\s*\n/, '').replace(/\s+$/, '').split('\n');
+const indent = Math.min(...raw.filter((line) => line.trim()).map((line) => line.match(/^ */)![0].length), 99);
+const source = raw.map((line) => line.slice(indent === 99 ? 0 : indent)).join('\n');
+
+let lines: CodeToken[][];
+try {
+	const language = lang in bundledLanguages ? lang : 'text';
+	const result = await codeToTokens(source, {
+		lang: language as keyof typeof bundledLanguages,
+		themes: { light: 'github-light', dark: 'github-dark' },
+		defaultColor: false,
+	});
+	lines = result.tokens.map((line) =>
+		line.map((token) => {
+			const style = (token.htmlStyle ?? {}) as Record<string, string>;
+			return { c: token.content, l: style['--shiki-light'], d: style['--shiki-dark'] };
+		}),
+	);
+} catch {
+	lines = source.split('\n').map((line) => [{ c: line }]);
+}
+
+const toRanges = (value: Range | Range[]): [number, number][] => {
+	const list = Array.isArray(value) && (value.length !== 2 || Array.isArray(value[0]) || Array.isArray(value[1])) ? (value as Range[]) : [value as Range];
+	return list.map((item) => (Array.isArray(item) ? [Number(item[0]), Number(item[1] ?? item[0])] : [Number(item), Number(item)]));
+};
+const prepared = steps.map((step) => ({ ranges: toRanges(step.lines), caption: step.caption, title: step.title }));
+---
+
+<Island client:visible title={title} lines={lines} steps={prepared} />

@@ -1,0 +1,65 @@
+---
+title: "Chunking: cutting documents into pieces worth retrieving"
+description: Chunk size is a trade-off between a focused prompt and pieces that still make sense alone.
+order: 3
+concepts: [chunking, chunk size, chunk overlap, top-k]
+---
+
+The retriever compares your question with pieces of text, not with whole documents. So before anything is embedded, the company handbook is cut into **chunks**: short pieces measured in tokens, the word pieces a model counts text in. How long should one piece be?
+
+<PredictReveal
+  prompt="A handbook is 8,000 tokens long. You cut it into chunks of 1,600 tokens and the retriever puts the 5 best chunks into the prompt. How much of the handbook does the model receive?"
+  options={[
+    "About a fifth of it: only the 5 most relevant pieces",
+    "About half of it",
+    "All of it"
+  ]}
+  correct={2}
+  answer="All of it. 5 chunks of 1,600 tokens are 8,000 tokens, which is the whole handbook."
+  reasoning="The handbook only has 5 chunks of that size, so 'the 5 best' means every chunk. The retriever selected nothing, and the model has to find the right sentence by itself."
+/>
+
+The playground does this arithmetic for the same handbook, with the chunk size on the horizontal axis. Leave **Chunks retrieved** at 5 and read both curves at 200 tokens, then at 1,600. Then raise the overlap.
+
+<ParamPlayground
+  title="One 8,000-token handbook, cut at different chunk sizes"
+  params={[
+    { name: "k", label: "Chunks retrieved (top k)", min: 1, max: 20, step: 1, value: 5 },
+    { name: "overlap", label: "Overlap between neighbouring chunks", min: 0, max: 20, step: 5, value: 0, unit: "%" }
+  ]}
+  chart={{
+    x: { name: "size", label: "Chunk size (tokens)", min: 100, max: 2000, steps: 95 },
+    series: [
+      { label: "Chunks in the index", expr: "ceil((800000 - size * overlap) / (size * (100 - overlap)))" },
+      { label: "Share of the handbook that lands in the prompt (%)", expr: "min(100, k * size / 80)" }
+    ],
+    yLabel: "Chunks, or percent",
+    yMin: 0,
+    yMax: 100
+  }}
+  outputs={[
+    { label: "Chunks in the index at 800-token chunks", expr: "ceil((1000 - overlap) / (100 - overlap))", digits: 0 },
+    { label: "Share of the handbook in the prompt at 800-token chunks", expr: "min(100, k * 10)", digits: 0, unit: "%" },
+    { label: "Chunk size at which the top k is the whole handbook", expr: "8000 / k", digits: 0, unit: "tokens" }
+  ]}
+/>
+
+The curves pull in opposite directions. Large chunks fill the prompt with text the question never asked for. Small chunks keep it focused, but at 100 tokens the handbook is in 80 pieces, and a piece cut out of its section often no longer says what it is about. Anthropic's example is the chunk "The company's revenue grew by 3% over the previous quarter." It names no company and no quarter, so a question about ACME Corp in Q2 2023 may never find it.
+
+**Overlap** repeats the last tokens of one chunk at the start of the next, so a sentence cut at a border stays whole in one of them. The price is more chunks to store.
+
+**Note.** The curves are arithmetic, not measurements. The Anthropic post describes chunks of a few hundred tokens and uses 800 in its cost example.
+
+<OrderSteps
+  prompt="Chunking is one step of building the index. Put the whole path in order, from the handbook file to the prompt."
+  steps={[
+    "Read the handbook as plain text",
+    "Cut the text into chunks of a few hundred tokens",
+    "Turn every chunk into an embedding",
+    "Store each embedding next to its chunk text and section name",
+    "Embed the question and fetch the top k closest chunks",
+    "Paste those chunks into the prompt with the question"
+  ]}
+/>
+
+Next: the measured fix for the chunk that lost its context, and the other places where RAG breaks.

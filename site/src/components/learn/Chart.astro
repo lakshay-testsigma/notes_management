@@ -1,0 +1,10 @@
+---
+// Lesson component <Chart />. Authors use it in MDX with no import and no
+// client directive; this wrapper hydrates the island when it scrolls into view.
+// Props are documented in site/COMPONENTS.md.
+import Island, { type ChartProps } from './react/Chart.tsx';
+
+type Props = ChartProps;
+---
+
+<Island client:visible {...Astro.props} />

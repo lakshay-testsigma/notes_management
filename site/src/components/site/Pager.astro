@@ -1,0 +1,37 @@
+---
+import type { Neighbours } from '../../lib/navigation';
+
+interface Props {
+	neighbours: Neighbours;
+	/** Where "next" goes after the last page of the topic. */
+	endHref: string;
+	endLabel: string;
+}
+const { neighbours, endHref, endLabel } = Astro.props;
+const { prev, next, index, total } = neighbours;
+---
+
+<nav class="pager" aria-label="Previous and next page">
+	{
+		prev && (
+			<a class="prev" href={prev.url} rel="prev">
+				<span class="pager-label">Previous · {prev.label}</span>
+				<span class="pager-title">{prev.title}</span>
+			</a>
+		)
+	}
+	{
+		next ? (
+			<a class="next" href={next.url} rel="next">
+				<span class="pager-label">Next · {next.label}</span>
+				<span class="pager-title">{next.title}</span>
+			</a>
+		) : (
+			<a class="next" href={endHref}>
+				<span class="pager-label">You reached the end of this topic</span>
+				<span class="pager-title">{endLabel}</span>
+			</a>
+		)
+	}
+</nav>
+{index >= 0 && <p class="pager-progress">Page {index + 1} of {total} in this topic</p>}

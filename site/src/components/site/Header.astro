@@ -1,0 +1,31 @@
+---
+import { SITE_TITLE } from '../../site.config';
+---
+
+<header class="site-header wrap">
+	<a class="brand" href="/">{SITE_TITLE}</a>
+	<nav aria-label="Site">
+		<a href="/playground/">Playground</a>
+		<button type="button" class="text-button" id="theme-toggle" aria-label="Switch colour theme">Theme</button>
+	</nav>
+</header>
+
+<script>
+	const button = document.getElementById('theme-toggle');
+	const root = document.documentElement;
+	const label = () => {
+		if (button) button.textContent = root.getAttribute('data-theme') === 'dark' ? 'Light' : 'Dark';
+	};
+	label();
+	button?.addEventListener('click', () => {
+		const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+		root.setAttribute('data-theme', next);
+		try {
+			localStorage.setItem('tutor:theme', next);
+		} catch {
+			// Storage can be blocked; the theme still changes for this page view.
+		}
+		label();
+		document.dispatchEvent(new CustomEvent('themechange', { detail: next }));
+	});
+</script>

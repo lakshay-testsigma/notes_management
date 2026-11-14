@@ -1,0 +1,126 @@
+{
+  "id": "general",
+  "title": "General",
+  "description": "Adaptive fallback for any topic outside the engineering domains, such as mathematics, business, marketing, finance, science, and writing.",
+  "subdomains": [
+    {
+      "id": "mathematics",
+      "title": "Mathematics",
+      "examples": [
+        "Linear algebra",
+        "Calculus",
+        "Probability",
+        "Proof techniques",
+        "Discrete mathematics"
+      ]
+    },
+    {
+      "id": "science",
+      "title": "Science",
+      "examples": [
+        "Classical mechanics",
+        "Thermodynamics",
+        "Genetics basics",
+        "The scientific method"
+      ]
+    },
+    {
+      "id": "business-strategy",
+      "title": "Business & Strategy",
+      "examples": [
+        "Competitive strategy",
+        "Business models",
+        "Unit economics",
+        "Pricing strategy"
+      ]
+    },
+    {
+      "id": "marketing-growth",
+      "title": "Marketing & Growth",
+      "examples": [
+        "Positioning",
+        "Marketing funnels",
+        "Search engine optimization",
+        "Brand building"
+      ]
+    },
+    {
+      "id": "finance-economics",
+      "title": "Finance & Economics",
+      "examples": [
+        "Time value of money",
+        "Reading financial statements",
+        "Company valuation",
+        "Supply and demand"
+      ]
+    },
+    {
+      "id": "product-design",
+      "title": "Product & Design",
+      "examples": [
+        "Product discovery",
+        "User research interviews",
+        "Prioritization frameworks",
+        "Visual design principles"
+      ]
+    },
+    {
+      "id": "communication-writing",
+      "title": "Communication & Writing",
+      "examples": [
+        "Clear technical writing",
+        "Presentations",
+        "Negotiation",
+        "Persuasion"
+      ]
+    },
+    {
+      "id": "career-productivity",
+      "title": "Career & Productivity",
+      "examples": [
+        "Learning how to learn",
+        "Time management",
+        "Interview preparation",
+        "Project management"
+      ]
+    },
+    {
+      "id": "humanities-social-science",
+      "title": "Humanities & Social Science",
+      "examples": [
+        "Behavioral economics",
+        "Cognitive biases",
+        "History of computing",
+        "Ethics"
+      ]
+    },
+    {
+      "id": "other",
+      "title": "Other",
+      "examples": [
+        "Any topic that fits no other subdomain"
+      ]
+    }
+  ],
+  "stages": {
+    "repo-intel": {
+      "enabled": false
+    },
+    "capstone": {
+      "enabled": true,
+      "kind": "case-study"
+    }
+  },
+  "depth_overrides": {},
+  "default_stack": {
+    "language": "Markdown and CSV (Python only where a calculation or simulation helps)",
+    "runtime": "Python 3.11+ when code is used; otherwise none",
+    "test": "pytest for calculations; a written acceptance checklist otherwise"
+  },
+  "safety": [
+    "Health, legal, tax, and investment topics are taught as education, not personal advice; say so in the brief and never recommend a specific personal action.",
+    "Mark clearly which statements are established consensus and which are contested or one school of thought.",
+    "Never invent statistics, quotes, studies, or case-study facts; every number carries its source id.",
+    "Case studies use public information only (filings, published interviews, official reports); no private or leaked material."
+  ]
+}

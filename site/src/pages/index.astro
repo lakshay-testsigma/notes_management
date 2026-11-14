@@ -1,0 +1,51 @@
+---
+import Base from '../layouts/Base.astro';
+import { loadDomains } from '../lib/topics';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../site.config';
+
+const domains = loadDomains();
+const plural = (n: number, word: string) => `${n} ${word}${n === 1 ? '' : 's'}`;
+---
+
+<Base title={SITE_TITLE} description={SITE_DESCRIPTION}>
+	<h1 class="page-title">{SITE_TITLE}</h1>
+	<p class="lede">Each topic is one numbered path. Open a topic, start at 01, and keep pressing Next.</p>
+	<p data-continue="" hidden>Continue reading: <a href="/">last page</a></p>
+
+	{
+		domains.length === 0 ? (
+			<p>
+				There are no topics yet. Ask the tutor to teach you something (for example "teach me Redis Streams") and the
+				topic will appear here once its first stage is written.
+			</p>
+		) : (
+			<ul class="index-list">
+				{domains.map((domain) => (
+					<li>
+						<a class="index-title" href={`/${domain.info.id}/`}>
+							{domain.info.title}
+						</a>{' '}
+						<span class="index-meta">{plural(domain.topicCount, 'topic')}</span>
+						{domain.info.description && <p>{domain.info.description}</p>}
+						<p>
+							{domain.subdomains
+								.flatMap((sub) => sub.topics)
+								.slice(0, 6)
+								.map((topic, i) => (
+									<>
+										{i > 0 && ', '}
+										<a href={topic.url}>{topic.title}</a>
+									</>
+								))}
+							{domain.topicCount > 6 && `, and ${domain.topicCount - 6} more`}
+						</p>
+					</li>
+				))}
+			</ul>
+		)
+	}
+</Base>
+
+<script>
+	import '../scripts/continue';
+</script>

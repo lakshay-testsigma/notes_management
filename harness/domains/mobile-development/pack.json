@@ -1,0 +1,128 @@
+{
+  "id": "mobile-development",
+  "title": "Mobile Development",
+  "description": "Building apps for phones: UI and navigation, device capabilities, offline data, performance on constrained hardware, and shipping through app stores.",
+  "subdomains": [
+    {
+      "id": "platform-fundamentals",
+      "title": "Platform Fundamentals",
+      "examples": [
+        "App lifecycle",
+        "Navigation stacks and tabs",
+        "Permissions",
+        "Deep links"
+      ]
+    },
+    {
+      "id": "react-native",
+      "title": "React Native & Expo",
+      "examples": [
+        "Expo Router",
+        "React Native New Architecture",
+        "Native modules",
+        "Reanimated animations"
+      ]
+    },
+    {
+      "id": "android-native",
+      "title": "Android (Kotlin)",
+      "examples": [
+        "Jetpack Compose",
+        "ViewModel and StateFlow",
+        "Room database",
+        "Kotlin coroutines"
+      ]
+    },
+    {
+      "id": "ios-native",
+      "title": "iOS (Swift)",
+      "examples": [
+        "SwiftUI",
+        "Swift concurrency",
+        "SwiftData",
+        "UIKit interoperability"
+      ]
+    },
+    {
+      "id": "flutter",
+      "title": "Flutter",
+      "examples": [
+        "Widget tree",
+        "State management with Riverpod",
+        "Platform channels",
+        "Flutter rendering pipeline"
+      ]
+    },
+    {
+      "id": "state-data",
+      "title": "State, Storage & Sync",
+      "examples": [
+        "Offline-first sync",
+        "SQLite on device",
+        "Secure storage",
+        "Caching API responses"
+      ]
+    },
+    {
+      "id": "device-apis",
+      "title": "Device Capabilities",
+      "examples": [
+        "Push notifications",
+        "Camera and media",
+        "Location and maps",
+        "Background tasks"
+      ]
+    },
+    {
+      "id": "ui-ux",
+      "title": "Mobile UI & Interaction",
+      "examples": [
+        "Gestures",
+        "List performance",
+        "Platform design guidelines",
+        "Mobile accessibility"
+      ]
+    },
+    {
+      "id": "performance",
+      "title": "Mobile Performance",
+      "examples": [
+        "Startup time",
+        "Frame rate and jank",
+        "Memory and battery",
+        "App size"
+      ]
+    },
+    {
+      "id": "testing-release",
+      "title": "Testing & Release",
+      "examples": [
+        "Component tests",
+        "End-to-end tests with Maestro",
+        "App store release process",
+        "Over-the-air updates"
+      ]
+    }
+  ],
+  "stages": {
+    "repo-intel": {
+      "enabled": true
+    },
+    "capstone": {
+      "enabled": true,
+      "kind": "mobile-app"
+    }
+  },
+  "depth_overrides": {},
+  "default_stack": {
+    "language": "TypeScript",
+    "runtime": "React Native with Expo (Expo Go or a simulator)",
+    "test": "jest with jest-expo and React Native Testing Library"
+  },
+  "safety": [
+    "Never commit secrets: API keys, tokens, and passwords live in a git-ignored .env file, with a committed .env.example that holds placeholder values only.",
+    "Request only the device permissions the feature needs, explain why in the permission prompt, and handle denial gracefully.",
+    "Store tokens in the platform secure store (Keychain / Keystore via expo-secure-store), never in plain AsyncStorage.",
+    "Do not commit signing keys, keystores, or provisioning profiles; do not publish to an app store unless the learner explicitly asks."
+  ]
+}

@@ -1,0 +1,102 @@
+---
+import Crumbs from '../components/site/Crumbs.astro';
+import { lessonComponents as C } from '../components/learn';
+import * as sample from '../data/playground';
+import Base from '../layouts/Base.astro';
+import { loadTopics } from '../lib/topics';
+
+// <Resources /> needs a topic outside a lesson: use the first one that has sources.
+const withSources = loadTopics().find((topic) => topic.sources.length > 0);
+---
+
+<Base title="Playground" description="Every shared lesson component with sample data.">
+	<Crumbs items={[{ label: 'Home', href: '/' }]} />
+	<h1 class="page-title">Playground</h1>
+	<p class="lede">
+		Every shared lesson component with sample data. Use it to see what a component does before choosing it for a page. The
+		props are documented in <code>site/COMPONENTS.md</code>.
+	</p>
+
+	<h2 id="visual">Visual</h2>
+
+	<h3 id="FlowAnimation">FlowAnimation</h3>
+	<p>Something moving through a system, step by step. Nodes can be switched off to see what breaks.</p>
+	<C.FlowAnimation {...sample.flow} />
+
+	<h3 id="SystemDiagram">SystemDiagram</h3>
+	<p>The parts of a system. Selecting a part explains it under the diagram.</p>
+	<C.SystemDiagram {...sample.system} />
+
+	<h3 id="SequenceDiagram">SequenceDiagram</h3>
+	<p>Who says what to whom, one message at a time.</p>
+	<C.SequenceDiagram {...sample.sequence} />
+
+	<h3 id="StateMachine">StateMachine</h3>
+	<p>One thing changing state. The learner sends the events.</p>
+	<C.StateMachine {...sample.machine} />
+
+	<h3 id="Graph3D">Graph3D</h3>
+	<p>A network in three dimensions. In editable mode the learner can add, connect and remove parts.</p>
+	<C.Graph3D {...sample.graph} />
+
+	<h3 id="VectorSpace3D">VectorSpace3D</h3>
+	<p>Points in space with a movable query and its nearest neighbours.</p>
+	<C.VectorSpace3D {...sample.space} />
+
+	<h3 id="Chart">Chart</h3>
+	<p>Line, bar and scatter charts from rows of data.</p>
+	<C.Chart {...sample.lineChart} />
+	<C.Chart {...sample.barChart} />
+	<C.Chart {...sample.scatterChart} />
+
+	<h3 id="ParamPlayground">ParamPlayground</h3>
+	<p>Sliders and toggles that drive a formula, written as a plain string.</p>
+	<C.ParamPlayground {...sample.params} />
+
+	<h3 id="CodeWalkthrough">CodeWalkthrough</h3>
+	<p>Code read a few highlighted lines at a time.</p>
+	<C.CodeWalkthrough {...sample.code} />
+
+	<h3 id="Timeline">Timeline</h3>
+	<p>Events in order. Select a point or use the arrow keys.</p>
+	<C.Timeline {...sample.timeline} />
+
+	<h3 id="Mermaid">Mermaid</h3>
+	<p>A static diagram written in mermaid syntax.</p>
+	<C.Mermaid {...sample.mermaid} />
+
+	<h2 id="activity">Activity</h2>
+
+	<h3 id="Quiz">Quiz</h3>
+	<C.Quiz {...sample.quiz} />
+	<C.Quiz {...sample.multiQuiz} />
+
+	<h3 id="PredictReveal">PredictReveal</h3>
+	<C.PredictReveal {...sample.predict} />
+	<C.PredictReveal {...sample.predictOpen} />
+
+	<h3 id="OrderSteps">OrderSteps</h3>
+	<C.OrderSteps {...sample.order} />
+
+	<h3 id="MatchPairs">MatchPairs</h3>
+	<C.MatchPairs {...sample.match} />
+
+	<h2 id="utility">Utility</h2>
+
+	<h3 id="Figure">Figure</h3>
+	<C.Figure caption="Figure wraps an image, or any content, and gives it a caption.">
+		<svg viewBox="0 0 640 120" width="100%" role="img" aria-label="Three circles joined by lines">
+			<path d="M120 60 H320 H520" fill="none" stroke="var(--line-strong)" stroke-width="2"></path>
+			<circle cx="120" cy="60" r="22" fill="var(--s1)"></circle>
+			<circle cx="320" cy="60" r="22" fill="var(--s2)"></circle>
+			<circle cx="520" cy="60" r="22" fill="var(--s3)"></circle>
+		</svg>
+	</C.Figure>
+
+	<h3 id="Resources">Resources</h3>
+	<p>
+		The vetted sources of a topic, grouped by type. Inside a lesson it takes no props.
+		{withSources ? ` Shown here for "${withSources.title}".` : ' No topic with sources exists yet, so the list is empty.'}
+	</p>
+	<C.Resources topic={withSources?.id} />
+</Base>

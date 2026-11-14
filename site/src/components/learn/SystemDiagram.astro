@@ -1,0 +1,10 @@
+---
+// Lesson component <SystemDiagram />. Authors use it in MDX with no import and no
+// client directive; this wrapper hydrates the island when it scrolls into view.
+// Props are documented in site/COMPONENTS.md.
+import Island, { type SystemDiagramProps } from './react/SystemDiagram.tsx';
+
+type Props = SystemDiagramProps;
+---
+
+<Island client:visible {...Astro.props} />

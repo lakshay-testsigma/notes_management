@@ -1,0 +1,150 @@
+# Personal AI Tutor + Note-Taker
+
+Tell Claude a topic. It researches it, teaches it through an interactive site,
+gives you projects to build, studies how a real company implements it, and leaves
+you with short notes and recall cards you can come back to a year later.
+
+Everything lives in this repository, in the same place for every topic.
+
+## How to use it
+
+Open this folder in Claude Code and talk to it.
+
+| You say | What happens | Skill |
+|---------|--------------|-------|
+| `teach me Redis Streams` or `/learn Redis Streams` | The whole pipeline runs for that topic, start to finish. | `learn` |
+| `/learn Kafka --depth deep` | Same, with more lessons, more digests, more repositories. | `learn` |
+| `continue redis-streams` | Picks up where the last session stopped. | `learn` |
+| `add this to my Redis Streams notes: ...` | Your own learning is saved, dated, and linked to the related note. | `learn-insight` |
+| `quiz me` or `what's due` | A recall session on the cards that are due today. | `learn-recall` |
+
+Depth is a dial:
+
+| Depth | Lesson pages | Mini projects | Digests | Repositories | Capstone |
+|-------|--------------|---------------|---------|--------------|----------|
+| `quick` | 3–4 | 1 | 1–2 | none | no |
+| `standard` (default) | 5–7 | 2 | 2–3 | 1 | yes |
+| `deep` | 8–12 | 3 | 4–6 | 2–3 | yes |
+
+## Reading a topic
+
+Each topic is read in the same numbered order:
+
+1. **Brief** — what it is, in plain words
+2. **Lesson** — the interactive pages: animated flows, 3D graphs, small activities
+3. **Mini projects** — small real use cases, each with a starter and a solution
+4. **Digests** — the canonical papers and docs, summarized
+5. **Open-source deep dive** — how a production repository really does it
+6. **Capstone** — a production-style project with a clear class-based architecture
+7. **Final notes** — the one page to re-read later
+8. **Recall** — flashcards with spaced review
+9. **Resources** — the vetted sources, and why each one is trusted
+
+Two ways to read:
+
+- **The site** (best for learning): `npm --prefix site install` once, then
+  `npm run site:dev`, and open the address it prints. Home → domain → topic →
+  follow "next" from page to page.
+- **Obsidian** (best for the knowledge graph): open the `vault/` folder as a vault.
+  Start at `Home`, open a topic's `00-start-here` note.
+
+## Where everything is
+
+Four folders hold your content. All four use the same sub-path,
+`<domain>/<subdomain>/<topic>`, so a topic is always at the same address.
+
+```
+notes_management/
+│
+├── vault/                         YOUR NOTES — open this folder in Obsidian
+│   ├── Home.md                    list of every domain and topic
+│   ├── _concepts/                 one note per idea shared between topics
+│   ├── _tech/                     one note per technology or external service
+│   └── <domain>/
+│       ├── <domain>.md            map of this domain
+│       └── <subdomain>/<topic>/
+│           ├── 00-start-here-<topic>.md     the topic map, read this first
+│           ├── 01-brief-<topic>.md
+│           ├── 02-lesson-<topic>.md         index of the lesson pages
+│           ├── 03-mini-projects-<topic>.md
+│           ├── 04-digests/                  one note per paper or doc
+│           ├── 05-repo-intel/<org>-<repo>/  the open-source deep dive
+│           ├── 06-capstone-<topic>.md
+│           ├── 07-final-notes-<topic>.md
+│           ├── 08-recall-<topic>.md
+│           ├── 09-resources-<topic>.md
+│           └── my-insights-<topic>.md       your own additions
+│
+├── site/                          THE LESSON SITE (Astro)
+│   ├── src/content/lessons/<domain>/<subdomain>/<topic>/NN-<page>.mdx
+│   ├── src/components/learn/      shared interactive components
+│   ├── src/components/topics/     components written for one topic
+│   └── COMPONENTS.md              reference for every component
+│
+├── projects/                      CODE YOU BUILD
+│   └── <domain>/<subdomain>/<topic>/
+│       ├── mini-01-<name>/        README.md, starter/, solution/
+│       └── capstone/              README.md, ARCHITECTURE.md, docs/adr/, src/, tests/
+│
+├── state/                         PROGRESS (managed by the tutor, do not edit)
+│   ├── registry.json
+│   └── topics/<domain>/<subdomain>/<topic>/topic.json, sources.json
+│
+├── harness/                       THE ENGINE
+│   ├── bin/tutor.mjs              the `tutor` command line tool
+│   ├── domains/<domain>/          pack.json + playbook.md: how each domain is taught
+│   ├── rubrics/                   quality rules: sources, lesson pages, vault notes
+│   └── templates/                 note templates
+│
+├── .claude/
+│   ├── skills/                    one skill per step of the workflow
+│   └── agents/                    the worker subagents
+│
+├── docs/ARCHITECTURE.md           how the harness works, in full
+└── CLAUDE.md                      rules every Claude session here follows
+```
+
+Domains: `frontend-engineering`, `backend-engineering`, `system-design`, `devops`,
+`ai-engineering`, `core-ai`, `data-engineering`, `data-analytics`,
+`mobile-development`, `game-development`, `security`, and `general` for anything
+else (marketing, business, math).
+
+Example: Redis Streams is `backend-engineering/messaging/redis-streams` in
+`vault/`, in `site/src/content/lessons/`, in `projects/`, and in `state/topics/`.
+
+## How a topic is generated
+
+The order of generation is not the order of reading. Research comes first so that
+every later page is based on real, verified sources.
+
+| Wave | Stage | Skill | What it writes |
+|------|-------|-------|----------------|
+| 0 | intake | `learn-intake` | domain, depth, prerequisites, the plan |
+| 1 | research | `learn-research` | vetted sources |
+| 1 | brief | `learn-brief` | 01 brief |
+| 2 | digest | `learn-digest` | 04 digests |
+| 2 | repo-intel | `learn-repo-intel` | 05 open-source deep dive |
+| 3 | lesson | `learn-site` | 02 lesson pages |
+| 3 | mini-projects | `learn-projects` | 03 mini projects |
+| 4 | capstone | `learn-capstone` | 06 capstone |
+| 5 | notes | `learn-notes` | 07 final notes, 08 recall cards |
+| 5 | finalize | `learn` | checks everything, builds the site |
+
+Stages in the same wave run in parallel on up to 5 subagents. Each subagent gets
+one small unit of work so that it never fills more than 40% of its context; when a
+unit turns out too large it hands off to a fresh subagent.
+
+## Checking progress yourself
+
+```bash
+node harness/bin/tutor.mjs list                  # every topic and how far it is
+node harness/bin/tutor.mjs status <topic>        # the stages of one topic
+node harness/bin/tutor.mjs next <topic>          # what runs next
+node harness/bin/tutor.mjs validate <topic> --all
+node harness/bin/tutor.mjs recall due            # cards due today
+node harness/bin/tutor.mjs doctor                # is the harness healthy
+```
+
+Step-by-step usage, deeper research, other agents: [USAGE.md](USAGE.md).
+All commands: [harness/README.md](harness/README.md).
+Full design: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).

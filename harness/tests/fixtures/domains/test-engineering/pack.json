@@ -1,0 +1,16 @@
+{
+  "id": "test-engineering",
+  "title": "Test Engineering",
+  "description": "Fixture domain used by the CLI tests.",
+  "subdomains": [
+    { "id": "messaging", "title": "Messaging & Streaming", "examples": ["Kafka", "Redis Streams"] },
+    { "id": "storage", "title": "Storage", "examples": ["PostgreSQL"] }
+  ],
+  "stages": {
+    "repo-intel": { "enabled": true },
+    "capstone": { "enabled": true, "kind": "service" }
+  },
+  "depth_overrides": {},
+  "default_stack": { "language": "TypeScript", "runtime": "Node.js", "test": "vitest" },
+  "safety": []
+}

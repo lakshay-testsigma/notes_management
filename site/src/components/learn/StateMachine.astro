@@ -1,0 +1,10 @@
+---
+// Lesson component <StateMachine />. Authors use it in MDX with no import and no
+// client directive; this wrapper hydrates the island when it scrolls into view.
+// Props are documented in site/COMPONENTS.md.
+import Island, { type StateMachineProps } from './react/StateMachine.tsx';
+
+type Props = StateMachineProps;
+---
+
+<Island client:visible {...Astro.props} />

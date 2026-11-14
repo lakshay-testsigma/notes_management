@@ -1,0 +1,52 @@
+---
+import { render } from 'astro:content';
+import { lessonComponents } from '../../../../components/learn';
+import Resources from '../../../../components/learn/Resources.astro';
+import RecallDeck from '../../../../components/site/RecallDeck.tsx';
+import TopicPage from '../../../../layouts/TopicPage.astro';
+import { getTopicNav, type NavPage, type TopicNav } from '../../../../lib/navigation';
+import { loadTopics } from '../../../../lib/topics';
+
+/** One static page per lesson page, vault note, recall deck and resources list. */
+export async function getStaticPaths() {
+	const paths = [];
+	for (const topic of loadTopics()) {
+		const nav = await getTopicNav(topic);
+		for (const page of nav.pages) {
+			paths.push({
+				params: { domain: topic.domain, subdomain: topic.subdomain, slug: topic.slug, step: page.route.replace(/\/$/, '') },
+				props: { nav, page },
+			});
+		}
+	}
+	return paths;
+}
+
+interface Props {
+	nav: TopicNav;
+	page: NavPage;
+}
+const { nav, page } = Astro.props;
+const { topic } = nav;
+
+// Lets <Resources /> inside a lesson find its topic without props.
+Astro.locals.topicId = topic.id;
+
+const entry = page.lesson ?? page.note;
+const { Content } = entry ? await render(entry) : { Content: null };
+const description =
+	page.lesson?.data.description ??
+	(page.kind === 'recall' ? 'Answer from memory first, then reveal and grade yourself.' : undefined) ??
+	(page.kind === 'resources' ? 'Every source here was checked against a live page before it was recommended.' : undefined);
+---
+
+<TopicPage nav={nav} page={page} description={description}>
+	{page.kind === 'lesson' && Content && <Content components={lessonComponents} />}
+	{page.kind === 'note' && Content && <Content />}
+	{
+		page.kind === 'recall' && page.note && (
+			<RecallDeck client:load topicId={topic.id} topicTitle={topic.title} cards={page.note.data.cards} />
+		)
+	}
+	{page.kind === 'resources' && <Resources topic={topic.id} />}
+</TopicPage>

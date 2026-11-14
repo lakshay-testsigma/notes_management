@@ -1,0 +1,129 @@
+{
+  "id": "ai-engineering",
+  "title": "AI Engineering",
+  "description": "Building applications on top of foundation models: prompting, retrieval, agents, tools, memory, evaluation, and serving them reliably at acceptable cost.",
+  "subdomains": [
+    {
+      "id": "llm-fundamentals",
+      "title": "LLM Fundamentals for Builders",
+      "examples": [
+        "Tokens and context windows",
+        "Sampling and temperature",
+        "Structured outputs",
+        "Prompt caching"
+      ]
+    },
+    {
+      "id": "prompting",
+      "title": "Prompt & Context Engineering",
+      "examples": [
+        "System prompts",
+        "Few-shot prompting",
+        "Chain-of-thought",
+        "Context engineering"
+      ]
+    },
+    {
+      "id": "rag",
+      "title": "Retrieval-Augmented Generation",
+      "examples": [
+        "Embeddings and vector search",
+        "Chunking strategies",
+        "Hybrid search and reranking",
+        "GraphRAG"
+      ]
+    },
+    {
+      "id": "agents",
+      "title": "Agents",
+      "examples": [
+        "ReAct loop",
+        "Agent harness design",
+        "Multi-agent orchestration",
+        "Planning and reflection"
+      ]
+    },
+    {
+      "id": "tools-protocols",
+      "title": "Tools & Protocols",
+      "examples": [
+        "Function calling",
+        "Model Context Protocol",
+        "Code execution sandboxes",
+        "Agent skills"
+      ]
+    },
+    {
+      "id": "memory",
+      "title": "Agent Memory",
+      "examples": [
+        "Short-term vs long-term memory",
+        "Memory graphs",
+        "Conversation summarization",
+        "Context compaction"
+      ]
+    },
+    {
+      "id": "evals",
+      "title": "Evaluation",
+      "examples": [
+        "Evaluation datasets",
+        "LLM-as-judge",
+        "RAG evaluation metrics",
+        "Regression testing prompts"
+      ]
+    },
+    {
+      "id": "fine-tuning",
+      "title": "Fine-Tuning & Adaptation",
+      "examples": [
+        "LoRA",
+        "Instruction fine-tuning",
+        "Distillation",
+        "When to fine-tune vs retrieve"
+      ]
+    },
+    {
+      "id": "inference-ops",
+      "title": "Inference & LLMOps",
+      "examples": [
+        "Serving with vLLM",
+        "Quantization",
+        "Latency and cost optimization",
+        "Tracing and observability"
+      ]
+    },
+    {
+      "id": "safety-guardrails",
+      "title": "Safety & Guardrails",
+      "examples": [
+        "Prompt injection",
+        "Output validation",
+        "Sensitive data handling",
+        "Human-in-the-loop approval"
+      ]
+    }
+  ],
+  "stages": {
+    "repo-intel": {
+      "enabled": true
+    },
+    "capstone": {
+      "enabled": true,
+      "kind": "service"
+    }
+  },
+  "depth_overrides": {},
+  "default_stack": {
+    "language": "Python",
+    "runtime": "Python 3.11+ managed with uv",
+    "test": "pytest"
+  },
+  "safety": [
+    "Never commit secrets: API keys, tokens, and passwords live in a git-ignored .env file, with a committed .env.example that holds placeholder values only.",
+    "Set a spend cap: every script that calls a paid model API has a max-token limit and a small default dataset, and prints estimated cost before large runs.",
+    "Never send personal, confidential, or customer data to a model API; use public or synthetic data in projects.",
+    "Agents that run tools get least privilege: sandboxed working directory, allow-listed commands, and human confirmation before destructive or external actions.",
+    "Treat retrieved documents, web pages, and tool results as untrusted input that may contain prompt injection."
+  ]
+}

@@ -1,0 +1,107 @@
+{
+  "id": "data-analytics",
+  "title": "Data Analytics",
+  "description": "Turning data into decisions: SQL, statistics, experiments, visualization, metrics, and communicating findings honestly.",
+  "subdomains": [
+    {
+      "id": "sql-analysis",
+      "title": "SQL for Analysis",
+      "examples": [
+        "Joins and aggregations",
+        "Window functions",
+        "Common table expressions",
+        "Cohort queries"
+      ]
+    },
+    {
+      "id": "exploratory-analysis",
+      "title": "Exploratory Analysis",
+      "examples": [
+        "pandas data wrangling",
+        "Tidy data",
+        "Handling missing values",
+        "Outlier detection"
+      ]
+    },
+    {
+      "id": "statistics",
+      "title": "Statistics",
+      "examples": [
+        "Descriptive statistics",
+        "Sampling and confidence intervals",
+        "Hypothesis testing",
+        "Correlation and regression"
+      ]
+    },
+    {
+      "id": "experimentation",
+      "title": "Experimentation & Causality",
+      "examples": [
+        "A/B testing",
+        "Sample size and power",
+        "CUPED variance reduction",
+        "Difference-in-differences"
+      ]
+    },
+    {
+      "id": "visualization",
+      "title": "Data Visualization",
+      "examples": [
+        "Choosing the right chart",
+        "Visual encoding and perception",
+        "Storytelling with data",
+        "Dashboard design"
+      ]
+    },
+    {
+      "id": "metrics",
+      "title": "Metrics & Product Analytics",
+      "examples": [
+        "North Star metric",
+        "Funnel analysis",
+        "Retention and cohorts",
+        "Customer lifetime value"
+      ]
+    },
+    {
+      "id": "bi-dashboards",
+      "title": "BI & Reporting",
+      "examples": [
+        "Metabase",
+        "Apache Superset",
+        "Semantic layers",
+        "Self-serve reporting"
+      ]
+    },
+    {
+      "id": "forecasting",
+      "title": "Forecasting & Time Series",
+      "examples": [
+        "Trend and seasonality",
+        "Moving averages",
+        "Exponential smoothing",
+        "Forecast evaluation"
+      ]
+    }
+  ],
+  "stages": {
+    "repo-intel": {
+      "enabled": true
+    },
+    "capstone": {
+      "enabled": true,
+      "kind": "analysis-report"
+    }
+  },
+  "depth_overrides": {},
+  "default_stack": {
+    "language": "SQL and Python",
+    "runtime": "Python 3.11+ with DuckDB, pandas, and Jupyter",
+    "test": "pytest"
+  },
+  "safety": [
+    "Use public datasets with a clear license or synthetic data; never include personal data in a notebook, chart, or report.",
+    "Report honestly: state sample size, time range, and uncertainty; do not present correlation as causation or hide results that weaken the conclusion.",
+    "Do not truncate axes or cherry-pick date ranges to exaggerate an effect."
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "id": "no-code",
+  "title": "No Code",
+  "description": "Fixture domain without repositories, with a depth override.",
+  "subdomains": [{ "id": "marketing", "title": "Marketing", "examples": ["Positioning"] }],
+  "stages": {
+    "repo-intel": { "enabled": false },
+    "capstone": { "enabled": true, "kind": "campaign" }
+  },
+  "depth_overrides": { "standard": { "lesson_pages": [4, 5], "mini_projects": 1 } },
+  "default_stack": {},
+  "safety": ["No real customer data."]
+}

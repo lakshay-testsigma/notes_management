@@ -1,0 +1,117 @@
+{
+  "id": "game-development",
+  "title": "Game Development",
+  "description": "Making interactive real-time software: the game loop, rendering, physics, game AI, multiplayer networking, and the design that makes play feel good.",
+  "subdomains": [
+    {
+      "id": "game-loop-architecture",
+      "title": "Game Loop & Architecture",
+      "examples": [
+        "Fixed timestep game loop",
+        "Entity component system",
+        "Scene graph",
+        "Game state machines"
+      ]
+    },
+    {
+      "id": "graphics-rendering",
+      "title": "Graphics & Rendering",
+      "examples": [
+        "Rendering pipeline",
+        "Shaders",
+        "Lighting and shadows",
+        "Sprites and 2D cameras"
+      ]
+    },
+    {
+      "id": "physics-collision",
+      "title": "Physics & Collision",
+      "examples": [
+        "Collision detection (AABB, SAT)",
+        "Rigid body integration",
+        "Spatial partitioning (quadtree)",
+        "Raycasting"
+      ]
+    },
+    {
+      "id": "game-ai",
+      "title": "Game AI",
+      "examples": [
+        "A* pathfinding",
+        "Behavior trees",
+        "Steering behaviors",
+        "Finite state machines for enemies"
+      ]
+    },
+    {
+      "id": "gameplay-programming",
+      "title": "Gameplay Programming",
+      "examples": [
+        "Input handling",
+        "Character controllers",
+        "Camera systems",
+        "Save systems"
+      ]
+    },
+    {
+      "id": "multiplayer-networking",
+      "title": "Multiplayer Networking",
+      "examples": [
+        "Client-side prediction",
+        "Server reconciliation",
+        "Lag compensation",
+        "Rollback netcode"
+      ]
+    },
+    {
+      "id": "game-design",
+      "title": "Game Design & Feel",
+      "examples": [
+        "MDA framework",
+        "Core gameplay loop",
+        "Game feel and juice",
+        "Level design and difficulty curves"
+      ]
+    },
+    {
+      "id": "procedural-generation",
+      "title": "Procedural Generation",
+      "examples": [
+        "Perlin and simplex noise",
+        "Dungeon generation",
+        "Wave function collapse",
+        "Random seeds"
+      ]
+    },
+    {
+      "id": "engines-tools",
+      "title": "Engines & Tools",
+      "examples": [
+        "Godot",
+        "Unity",
+        "Phaser",
+        "three.js"
+      ]
+    }
+  ],
+  "stages": {
+    "repo-intel": {
+      "enabled": true
+    },
+    "capstone": {
+      "enabled": true,
+      "kind": "game"
+    }
+  },
+  "depth_overrides": {},
+  "default_stack": {
+    "language": "TypeScript",
+    "runtime": "Browser (HTML Canvas / Phaser 3) served by Vite on Node.js 20+",
+    "test": "vitest"
+  },
+  "safety": [
+    "Use only original assets or assets under a permissive license (CC0, CC-BY with credit; for example Kenney or OpenGameArt) and keep a CREDITS.md.",
+    "Do not copy characters, art, music, or names from commercial games.",
+    "Avoid rapidly flashing full-screen effects; add a reduced-motion or reduced-flash option when using screen shake and flashes."
+  ]
+}

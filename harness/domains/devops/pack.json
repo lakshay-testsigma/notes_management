@@ -1,0 +1,119 @@
+{
+  "id": "devops",
+  "title": "DevOps",
+  "description": "Getting software from a commit to a running, observable, recoverable production system: Linux, containers, CI/CD, infrastructure as code, and reliability practice.",
+  "subdomains": [
+    {
+      "id": "linux-networking",
+      "title": "Linux & Networking",
+      "examples": [
+        "Processes and signals",
+        "File permissions",
+        "TCP/IP and DNS",
+        "systemd services",
+        "SSH"
+      ]
+    },
+    {
+      "id": "containers",
+      "title": "Containers",
+      "examples": [
+        "Docker images and layers",
+        "Multi-stage builds",
+        "Namespaces and cgroups",
+        "Docker Compose"
+      ]
+    },
+    {
+      "id": "orchestration",
+      "title": "Orchestration",
+      "examples": [
+        "Kubernetes pods and deployments",
+        "Services and Gateway API",
+        "Helm",
+        "Autoscaling"
+      ]
+    },
+    {
+      "id": "ci-cd",
+      "title": "CI/CD & Release",
+      "examples": [
+        "GitHub Actions",
+        "Blue-green and canary deployments",
+        "GitOps with Argo CD",
+        "Trunk-based development"
+      ]
+    },
+    {
+      "id": "infrastructure-as-code",
+      "title": "Infrastructure as Code",
+      "examples": [
+        "Terraform",
+        "OpenTofu",
+        "Ansible",
+        "State and modules"
+      ]
+    },
+    {
+      "id": "cloud",
+      "title": "Cloud Platforms",
+      "examples": [
+        "AWS core services",
+        "IAM",
+        "VPC networking",
+        "Serverless functions"
+      ]
+    },
+    {
+      "id": "observability",
+      "title": "Observability",
+      "examples": [
+        "Prometheus and Grafana",
+        "Log aggregation with Loki",
+        "OpenTelemetry",
+        "Alerting"
+      ]
+    },
+    {
+      "id": "reliability",
+      "title": "Reliability & SRE",
+      "examples": [
+        "SLOs and error budgets",
+        "Incident response",
+        "Postmortems",
+        "Chaos engineering"
+      ]
+    },
+    {
+      "id": "platform-security",
+      "title": "Secrets & Supply Chain",
+      "examples": [
+        "Secrets management",
+        "Image scanning with Trivy",
+        "SLSA and signed artifacts",
+        "Least-privilege IAM"
+      ]
+    }
+  ],
+  "stages": {
+    "repo-intel": {
+      "enabled": true
+    },
+    "capstone": {
+      "enabled": true,
+      "kind": "pipeline"
+    }
+  },
+  "depth_overrides": {},
+  "default_stack": {
+    "language": "Bash and YAML (Terraform HCL for infrastructure; a small Node.js service as the thing being deployed)",
+    "runtime": "Docker, kind (local Kubernetes), and GitHub Actions",
+    "test": "bats-core plus linters (hadolint, actionlint, terraform validate)"
+  },
+  "safety": [
+    "Never commit secrets: API keys, tokens, and passwords live in a git-ignored .env file, with a committed .env.example that holds placeholder values only.",
+    "Default to local infrastructure (Docker, kind, LocalStack). Create real cloud resources only when the learner explicitly asks, inside free-tier limits, with a budget alert, and always provide the teardown command.",
+    "Never run destructive commands (rm -rf, terraform destroy, kubectl delete, docker system prune) outside the project directory or a disposable local cluster.",
+    "Never store cloud credentials in a repository, a container image, or CI logs; use the CI provider's secret store."
+  ]
+}
