@@ -176,7 +176,7 @@ lesson page batch): `{ "id": "...", "status": "...", "handoff": "path or null" }
 
 Stages in the same wave run in parallel, with two ordering exceptions: `brief`
 runs after `research` (it is grounded in the vetted sources) and `finalize` runs
-after `notes`. A wave starts only when the previous wave is `done` or `skipped`.
+after `notes`. Earlier waves must be verified or explicitly continued after failure. Research must precede brief, and notes must precede finalize even inside the same wave.
 Stages a domain pack or depth switches off stay in the list as `skipped`.
 
 ### 4.2 Depth profiles
@@ -189,6 +189,49 @@ Stages a domain pack or depth switches off stay in the list as `skipped`.
 
 The domain pack may switch stages off (for example `repo-intel` in a non-code
 domain) or rename what the capstone is (a campaign, a model, a threat model).
+
+### 4.3 Verified completion and retained-artifact reruns
+
+`complete` means every required stage has a current successful gate receipt. `generation_finished`
+is scheduling state; a run with failed, waived or forced required work is `degraded`, never
+complete. `fail --continue` permits useful downstream generation except after intake/research;
+it preserves the failure. Only configured depth/domain omissions belong in `not_part_of_topic`.
+`done` always runs its gate, including on an already-done stage. Content fingerprints bind
+receipts to plan, sources, generated artifacts and validator code. Changed inputs appear stale.
+
+`tutor rerun <topic>` archives units/receipts and reopens requirements while retaining all
+notes, insights and recall state. `write-note <topic> <note> --file <draft>` replaces only
+generated prose, preserving the existing insight suffix byte-for-byte. Rerun snapshots also
+reject deleted/changed learner content at gates. Never write `my-insights-*` through this API.
+
+`tutor order <topic> import-indexes` records `reader_order.digest` and `reader_order.repo-intel`
+as topic-relative child paths in the authored index sequence. Every child occurs exactly once.
+Site navigation uses that same sequence. Legacy topic previews derive missing sequences from
+the authored indexes without writing state; readiness gates still require persisted sequences. Duplicate basenames require vault-relative wikilinks;
+ambiguous bare links fail validation. Existing note identities are retained.
+
+`plan.requested_sources` optionally holds `{name,url,use_for}` entries explicitly named by the
+learner. Research either includes their vetted URLs or records `resolution:"rejected"` with a
+reason. A request is not silently discarded during delegation.
+
+`tutor check <topic> research|mini-projects|capstone|finalize` executes checks outside the state
+lock, then commits evidence only if inputs still match. Research records HTTP status/body
+hashes for verification/evidence URLs. Projects declare argv-based commands in `verification.json`:
+solution-tests, starter-tests and starter-start for minis; solution-tests for capstones, plus
+appropriate build, integration, end-to-end, type and dependency checks. Starter TODO failures
+are expected only when explicit exit/output expectations match. Every npm package with
+dependencies needs an audit check. Finalize runs site build, smoke and manifest checks.
+
+`tutor review <topic> --file <json>` records independent assessment, with scope content/projects,
+reviewer, verdict pass/fix-needed, checks, findings, not_checked. Required checks are listed in
+`harness/lib/quality.mjs`. All required checks must be assessed and no errors remain for pass.
+These are reviewer attestations, not automatic semantic proofs. Changed inputs invalidate them.
+`validate --files` and `validate --structure-only` are authoring diagnostics, not completion.
+
+Recall exports use `{schema:1,topic,events:[{id,card_id,grade,at}]}`. `recall import <topic> --file`
+validates the whole batch and applies new events once; repeated IDs are deduplicated, conflicting
+reuse is rejected. Card IDs and history survive regeneration. The static site exports events;
+there is no unauthenticated filesystem-writing web service.
 
 ## 5. The `tutor` CLI
 
@@ -204,7 +247,7 @@ Exit code 0 = success, 1 = validation failure, 2 = usage error.
 | `list` | All topics with progress. |
 | `status [<topic>]` | Stage table for one topic, or summary for all. |
 | `paths <topic>` | Every path for the topic, including each numbered vault file, plus `site_url` and `open_lesson` (the one canonical sentence that says how to open the lesson: `npm run site:dev`, then the site path). Skills use this instead of building paths by hand. |
-| `next <topic>` | The stages that can run now (the current wave), with skill name, inputs, outputs, and gate. When every stage is done or skipped: the reading order of this topic with only the steps it has (`reading_order`, `reading_order_line`), the skipped stage ids (`not_part_of_topic`), and `open_lesson`. |
+| `next <topic>` | The stages that can run now (the current wave), with skill name, inputs, outputs, and gate. When all required stages have current passing receipts and depth/domain omissions are accounted for: the reading order of this topic with only the steps it has (`reading_order`, `reading_order_line`), the skipped stage ids (`not_part_of_topic`), and `open_lesson`. |
 | `depth <topic> <quick\|standard\|deep>` | Change the depth of an existing topic: recompute `profile`; stages the new depth adds go from `skipped` to `pending` (their notes are scaffolded); `pending` stages it drops go to `skipped`; `done` stages and real file content are never touched. Prints what changed, whether the plan needs more lesson pages, which done stages no longer pass their gate, and the `next` hint. |
 | `plan <topic> --set <file.json>` | Merge a plan object into topic.json (used by intake). `plan <topic>` prints it. |
 | `start <topic> <stage>` | Mark `in_progress`. |
@@ -270,9 +313,11 @@ must read first.
 A worker must stay under 40% of its context window. Nobody can read a token meter,
 so the rule is enforced by planning, not by hoping:
 
-- **Budget per unit: 60,000 tokens of reading** (40% of a 200k window is 80k; the
-  other 20k is instructions, tool output, and writing). Use `tutor budget` /
-  `tutor slice` to size units before spawning.
+- **Budget per unit:** `min(60000, floor(0.4 * model_window) - reserve)` input tokens,
+  counting instructions and prior tool results. Pass `--window` and `--reserve` to
+  `budget` and `slice`. Unknown capacity defaults to32768 with3000 reserved. Character/4
+  estimates are planning aids, not actual context telemetry or a hard runtime guarantee.
+  Large text files split into contiguous zero-based character ranges, read with `tutor read`.
 - **One unit, one subagent.** A unit is one source, one repo slice, 2–3 lesson
   pages, or one project.
 - **Write as you go.** After each file or section read, append findings to the
@@ -287,8 +332,7 @@ so the rule is enforced by planning, not by hoping:
   read by section, not whole.
 - **Max 5 concurrent subagents.** More units than 5 → queue them in batches.
 - The orchestrator itself only reads `topic.json`, `tutor next` output, and worker
-  summaries. If its own session grows long, it stops after a wave; state on disk
-  lets a new session continue with `/learn <topic>`.
+  summaries. Persist a wave handoff; after compaction reload CLI state and continue. Use host-native continuations when available. A host that cannot continue must report that limitation honestly;15 returns alone never require another learner request.
 
 ## 8. Domain packs
 
@@ -372,7 +416,7 @@ Per repository, under `05-repo-intel/<org>-<repo>/`, every file name prefixed wi
 <repo>-overview.md            what it is, why chosen, commit SHA analyzed, license, stack
 <repo>-architecture.md        module map + mermaid diagram + main request/data flow
 <repo>-module-<name>.md       one per slice: responsibility, key files, how it works
-<repo>-tech-and-services.md   every technology and external service, why it is used
+<repo>-tech-and-services.md   scoped inventory of direct/runtime/build/test dependencies and services
 <repo>-pattern-<name>.md      one per best practice, with evidence
 <repo>-findings.md            ranked: what they do beyond the textbook version
 <repo>-takeaways.md           what to borrow for the capstone
@@ -477,7 +521,7 @@ place, in order, with previous / next links. Navigation is derived from
 | mini-projects | each project has README.md, `starter/`, `solution/`; index note lists them |
 | capstone | README.md, ARCHITECTURE.md, ≥1 ADR, `src/`, `tests/`; vault note exists |
 | notes | final notes 200–600 words; ≥8 recall cards with ids (quick: ≥5) |
-| finalize | all of the above + every wikilink in the topic resolves |
+| finalize | all artifact gates and resolving unambiguous links + all required stages current + passing execution receipts + independent content and project reviews for current inputs |
 
 All notes: frontmatter present, no content below `## My insights` written by a
 generator.
@@ -499,10 +543,24 @@ uses: for a lesson page the prose outside frontmatter, imports, code, and
 components; for a vault note the body above `## My insights` without
 frontmatter, code blocks, and comments.
 
-**Skipped stages.** A skipped stage is not checked. Its scaffolded note holds
+**Skipped stages.** Only stages omitted by depth/domain are excluded. A required stage skipped by a user remains an undelivered requirement and fails readiness validation. Its scaffolded note holds
 `<!-- tutor:skipped -->` and one sentence that says the step is not part of
 this topic at its depth and how to add it (`/learn <slug> --depth standard`);
 `00-start-here` lists the step as plain text without a link. When the stage
 becomes active again the normal placeholder returns, but only if the note still
 holds the skip text. `tutor depth <topic> <depth>` moves a topic to another
 depth without touching `done` stages or real content.
+
+Repository coverage is evidence-scoped: declare selected first-party paths, direct runtime,
+build/test/CI tools, transitive/vendor scope and skipped areas at the pinned commit. Do not
+call a selected slice an exhaustive whole-repository audit. Group aliases and routine shell
+commands into canonical families for new shared notes; retain existing shared notes. The
+Redis inventory retains its255 definitions and explicitly states the unreviewed vendor scope.
+
+The full workflow requires Node >=22.23.4 (site engine), network access for source checks,
+and any services named by project recipes. Doctor checks the runtime; the orchestrator must
+verify required tools/services before dispatch, including Docker daemon readiness when using
+Compose or an explicitly documented external Redis URL. Untested environments remain stated
+limitations, not passing checks.
+
+Worker metadata is projected through `tutor plan --json` and `tutor paths --json`; pass only assigned source entries. Full topic.json now includes execution evidence and protection/history snapshots and must not be copied into worker prompts. Size the complete filled brief and instructions before dispatch.

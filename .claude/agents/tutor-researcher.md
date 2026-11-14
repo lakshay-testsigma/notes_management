@@ -35,7 +35,7 @@ prove, from live pages, that each one deserves that trust.
 
 ## Context budget
 
-- Read at most 60,000 tokens in total. Give every fetch one specific question so the answer
+- Use the capacity-aware allowance from `tutor budget --window <actual window> --reserve <overhead>` (assume32768 and reserve3000 when unknown). Give every fetch one specific question so the answer
   is short. Never read a whole paper, book, or repository; later stages do that.
 - Write as you go: write the entry file of a source right after verifying it, before you
   look at the next candidate.

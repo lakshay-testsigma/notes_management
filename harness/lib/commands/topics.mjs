@@ -1,3 +1,4 @@
+import { markFreshness } from '../freshness.mjs';
 // Commands about topics as a whole: domains, init, list, status, paths, next, plan, log.
 
 import path from 'node:path';
@@ -11,7 +12,7 @@ import { listPackIds, loadPack, packProblems, tryLoadPack } from '../packs.mjs';
 import { CLI } from '../root.mjs';
 import { scaffoldTopic } from '../scaffold.mjs';
 import { readingOrderOf, refreshMaps } from '../maps.mjs';
-import { buildStages, currentWave, DEPTHS, progressOf, resolveProfile, runnableStages, skipReason } from '../stages.mjs';
+import { buildStages, completionOf, isOmitted, currentWave, DEPTHS, progressOf, resolveProfile, runnableStages, skipReason } from '../stages.mjs';
 import { describeStage } from '../stage-io.mjs';
 import {
   appendLog, loadAllTopics, loadTopic, openLessonLine, resolveTopic, saveTopic, scanTopicIds,
@@ -222,7 +223,7 @@ export function statusCommand(ctx) {
     stageTable(topic),
     '',
     `Progress: ${progress.finished} of ${progress.total} stages done` +
-      (topic.stages.some((s) => s.status === 'skipped') ? ' (skipped stages are not counted).' : '.'),
+      (topic.stages.some(isOmitted) ? ' (depth/domain omissions are not counted).' : '.'),
     nextActionLine(topic),
   ].join('\n');
 
@@ -233,7 +234,7 @@ export function statusCommand(ctx) {
       depth: topic.depth,
       profile: topic.profile ?? null,
       progress,
-      complete: summary.complete,
+      ...completionOf(topic),
       wave: summary.wave,
       runnable: summary.runnable,
       stages: topic.stages,
@@ -283,6 +284,7 @@ export function nextCommand({ root, args }) {
   const paths = topicPaths(topic);
   const wave = currentWave(topic);
   const base = {
+    ...completionOf(topic),
     topic: topic.id,
     title: topic.title,
     depth: topic.depth,
@@ -296,15 +298,16 @@ export function nextCommand({ root, args }) {
   };
 
   if (wave === null) {
-    const message = 'Every stage is done or skipped. Nothing left to generate.';
+    const outcome=completionOf(topic);
+    const message = outcome.complete ? 'Every required stage is current and verified. Nothing left to generate.' : `Generation finished with missing or failed required work: ${outcome.failed_required.join(', ')}.`;
     // The reading order of this topic: only the steps it has. Copy it; do not rebuild it by hand.
     const order = readingOrderOf(topic);
-    const notPart = topic.stages.filter((s) => s.status === 'skipped').map((s) => s.id);
+    const notPart = topic.stages.filter(isOmitted).map((s) => s.id);
     const hasLesson = !notPart.includes('lesson');
     return {
       data: {
         ...base,
-        complete: true,
+        ...outcome,
         wave: null,
         stages: [],
         message,
@@ -455,6 +458,7 @@ export function depthCommand({ root, args }) {
     }
   }
 
+  for (const stage of topic.stages) stage.scope = skipReason(stage.id, depth, pack, profile) ? (pack.stages?.[stage.id]?.enabled===false?'domain':'depth') : 'required';
   topic.depth = depth;
   topic.profile = profile;
   appendLog(
@@ -466,6 +470,7 @@ export function depthCommand({ root, args }) {
   upsertRegistry(root, topic);
   const { created } = scaffoldTopic(root, topic);
   refreshMaps(root, topic);
+  markFreshness(root,topic);
 
   // Stages that are done but were made for the old depth: their gate may fail now.
   const ctx = createContext(root, topic);

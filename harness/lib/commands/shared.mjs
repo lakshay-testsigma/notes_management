@@ -1,5 +1,6 @@
 // Helpers shared by the command handlers.
 
+import { markFreshness } from '../freshness.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
 import { isFile, readText } from '../io.mjs';
@@ -8,7 +9,7 @@ import { UsageError } from '../errors.mjs';
 import { CLI } from '../root.mjs';
 import { saveTopic } from '../topic-store.mjs';
 import { refreshMaps } from '../maps.mjs';
-import { currentWave, progressOf, runnableStages, unitsSummary } from '../stages.mjs';
+import { completionOf, currentWave, progressOf, runnableStages, unitsSummary } from '../stages.mjs';
 
 /** Read a file argument; "-" means standard input. Paths are relative to the working directory. */
 export function readInputFile(file, flagName) {
@@ -31,13 +32,14 @@ export function readJsonInput(file, flagName) {
 export function saveAndRefresh(root, topic) {
   saveTopic(root, topic);
   refreshMaps(root, topic);
+  markFreshness(root,topic);
 }
 
 export function stageTable(topic) {
   const rows = topic.stages.map((stage) => [
     stage.wave,
     stage.id,
-    stage.status,
+    stage.status === 'done' && stage.fresh === false ? 'stale' : stage.status,
     stage.skill,
     unitsSummary(stage),
     stage.note ?? '',
@@ -49,7 +51,7 @@ export function stageTable(topic) {
 export function nextActionLine(topic) {
   const runnable = runnableStages(topic);
   if (runnable.length === 0) {
-    return `All stages are finished. Review cards with: ${CLI} recall due ${topic.id}`;
+    return completionOf(topic).complete ? `All stages are finished. Review cards with: ${CLI} recall due ${topic.id}` : `Generation is degraded; required stages need repair: ${completionOf(topic).failed_required.join(', ')}.`;
   }
   return `Next: ${CLI} next ${topic.id}   (wave ${currentWave(topic)}: ${runnable.map((s) => s.id).join(', ')})`;
 }
@@ -66,7 +68,7 @@ export function topicSummary(topic) {
     subdomain: topic.subdomain,
     depth: topic.depth,
     progress,
-    complete: runnable.length === 0,
+    ...completionOf(topic),
     wave: currentWave(topic),
     runnable: runnable.map((s) => s.id),
     updated_at: topic.updated_at,

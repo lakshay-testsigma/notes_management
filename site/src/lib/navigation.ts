@@ -51,16 +51,20 @@ export async function getTopicNav(topic: Topic): Promise<TopicNav> {
 			)
 		: [];
 	const notes = await getCollection('vault', (entry) => entry.data.topic === topic.id);
-	const notesOf = (step: StepId) =>
-		notes
-			.filter((n) => n.data.step === step)
-			.sort(
-				(a, b) =>
-					(a.data.role === 'index' ? 0 : 1) - (b.data.role === 'index' ? 0 : 1) ||
-					(a.data.group ?? '').localeCompare(b.data.group ?? '') ||
-					a.data.order - b.data.order ||
-					a.data.rel.localeCompare(b.data.rel),
-			);
+	const notesOf = (step: StepId) => {
+		const stage = step === 'digests' ? 'digest' : step;
+		const sequence = topic.readerOrder[stage];
+		const children = notes.filter(n => n.data.step === step);
+		if (['digest','repo-intel'].includes(stage) && children.some(n => n.data.role !== 'index')) {
+			const paths = children.filter(n => n.data.role !== 'index').map(n => n.data.rel);
+			if (!sequence || new Set(sequence).size !== sequence.length || sequence.length !== paths.length || paths.some(p => !sequence.includes(p)))
+				throw new Error(`${topic.id}: ${stage} needs a complete reader_order; run tutor order import-indexes`);
+		}
+		return children.sort((a,b) =>
+			(a.data.role === 'index' ? 0 : 1) - (b.data.role === 'index' ? 0 : 1) ||
+			(sequence ? sequence.indexOf(a.data.rel) - sequence.indexOf(b.data.rel) : a.data.order - b.data.order) ||
+			a.data.rel.localeCompare(b.data.rel));
+	};
 
 	const steps: NavStep[] = [];
 	for (const step of STEPS) {

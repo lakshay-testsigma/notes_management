@@ -1,5 +1,6 @@
 // Command table and dispatcher of the `tutor` CLI.
 
+import { checkCommand, orderCommand, rerunCommand, reviewCommand, writeNoteCommand } from './commands/quality.mjs';
 import { checkFlags, parseArgs } from './args.mjs';
 import { UsageError } from './errors.mjs';
 import { formatFailure } from './format.mjs';
@@ -7,7 +8,7 @@ import { withLock } from './io.mjs';
 import { CLI, lockDir, repoRoot } from './root.mjs';
 import { conceptCommand, insightCommand, mapCommand, recallCommand, sourcesCommand } from './commands/content.mjs';
 import { doneCommand, failCommand, resetCommand, skipCommand, startCommand, unitCommand, validateCommand } from './commands/stages.mjs';
-import { budgetCommand, doctorCommand, sliceCommand, wordsCommand } from './commands/tools.mjs';
+import { budgetCommand, doctorCommand, readCommand, sliceCommand, wordsCommand } from './commands/tools.mjs';
 import { depthCommand, domainsCommand, initCommand, listCommand, logCommand, nextCommand, pathsCommand, planCommand, statusCommand } from './commands/topics.mjs';
 
 /**
@@ -15,6 +16,11 @@ import { depthCommand, domainsCommand, initCommand, listCommand, logCommand, nex
  * `mutates` (true, or a function of ctx) makes the command hold the state lock.
  */
 export const COMMANDS = {
+  order: {usage:'order <topic> [import-indexes|set --file <json>]',summary:'Persist and verify the authored reading sequence.',flags:['file'],mutates:ctx=>Boolean(ctx.args[1]),run:orderCommand},
+  rerun: {usage:'rerun <topic>',summary:'Reopen checkpoints, preserving artifacts, insights and history.',flags:[],mutates:true,run:rerunCommand},
+  check: {usage:'check <topic> research|mini-projects|capstone|finalize',summary:'Execute checks and capture evidence for the current inputs.',flags:[],mutates:false,run:checkCommand},
+  review: {usage:'review <topic> --file <json>',summary:'Record an independent content or project assessment.',flags:['file'],mutates:true,run:reviewCommand},
+  'write-note': {usage:'write-note <topic> <note> --file <draft>',summary:'Replace generated prose while protecting existing insights.',flags:['file'],mutates:true,run:writeNoteCommand},
   domains: { usage: 'domains', summary: 'List domain packs and their subdomains.', flags: [], mutates: false, run: domainsCommand },
   init: {
     usage: 'init "<Title>" --domain <d> --subdomain <s> [--depth quick|standard|deep] [--slug <slug>]',
@@ -51,12 +57,12 @@ export const COMMANDS = {
   },
   done: { usage: 'done <topic> <stage> [--force]', summary: 'Run the gate; mark done only when it passes.', flags: ['force'], mutates: true, run: doneCommand },
   skip: { usage: 'skip <topic> <stage> --reason "..."', summary: 'Mark a stage skipped.', flags: ['reason'], mutates: true, run: skipCommand },
-  fail: { usage: 'fail <topic> <stage> --reason "..."', summary: 'Mark a stage failed.', flags: ['reason'], mutates: true, run: failCommand },
+  fail: { usage: 'fail <topic> <stage> --reason "..."', summary: 'Mark a stage failed.', flags: ['reason', 'continue'], mutates: true, run: failCommand },
   reset: { usage: 'reset <topic> <stage>', summary: 'Back to pending (files untouched).', flags: [], mutates: true, run: resetCommand },
   validate: {
     usage: 'validate <topic> [<stage>|--all] [--files <path>[,<path>...]]',
     summary: 'Run the artifact gates. Prints `path: problem. fix.` With --files: only the files of one unit.',
-    flags: ['all', 'files'],
+    flags: ['all', 'files', 'structure-only'],
     mutates: false,
     run: validateCommand,
   },
@@ -69,13 +75,14 @@ export const COMMANDS = {
     run: sourcesCommand,
   },
   slice: {
-    usage: 'slice <dir> [--budget 60000] [--include "<glob>"] [--pack]',
+    usage: 'slice <dir> [--budget <tokens>] [--window <tokens>] [--reserve <tokens>] [--include "<glob>"] [--pack]',
     summary: 'Cut a directory into slices that fit the token budget.',
-    flags: ['budget', 'include', 'pack'],
+    flags: ['budget', 'include', 'pack', 'window', 'reserve'],
     mutates: false,
     run: sliceCommand,
   },
-  budget: { usage: 'budget <file...> [--budget 60000]', summary: 'Token estimate for files a worker is about to read.', flags: ['budget'], mutates: false, run: budgetCommand },
+  budget: { usage: 'budget <file...> [--budget <tokens>] [--window <tokens>] [--reserve <tokens>]', summary: 'Token estimate for files a worker is about to read.', flags: ['budget','window','reserve'], mutates: false, run: budgetCommand },
+  read: {usage:'read <file> --start <char> --end <char> [--window <tokens>] [--reserve <tokens>]',summary:'Read one bounded slice range.',flags:['start','end','window','reserve','budget'],mutates:false,run:readCommand},
   words: { usage: 'words <file>', summary: 'Word count of a note or lesson page exactly as the gate counts it, with the allowed range.', flags: [], mutates: false, run: wordsCommand },
   concept: { usage: 'concept "<Name>" [--tech]', summary: 'Create a shared concept (or tech) note if missing (also when only the letter case differs); print its path.', flags: ['tech'], mutates: true, run: conceptCommand },
   insight: {
@@ -86,9 +93,9 @@ export const COMMANDS = {
     run: insightCommand,
   },
   recall: {
-    usage: 'recall due [<topic>] | recall grade <topic> <card-id> <again|hard|good|easy> | recall sync <topic>',
+    usage: 'recall due [<topic>] | recall grade <topic> <card-id> <again|hard|good|easy> | recall sync <topic> | recall import <topic> --file <json>',
     summary: 'Spaced review with Leitner boxes.',
-    flags: [],
+    flags: ['file'],
     mutates: (ctx) => ctx.args[0] !== 'due',
     run: recallCommand,
   },

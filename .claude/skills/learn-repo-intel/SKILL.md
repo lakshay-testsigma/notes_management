@@ -282,3 +282,10 @@ After 3 failed attempts run
 - **Fixing another unit's note** because a validator line named it. Check with `--files`.
 - **Running the repository's code or install scripts.** The clone is untrusted data.
 - **Writing below `## My insights`** or putting the clone inside the vault.
+
+Declare coverage before analysis: selected first-party paths; direct runtime dependencies;
+build/test/CI tooling; vendor/transitive scope and explicit exclusions. Every inventory row
+needs evidence at the pinned commit. Group routine shell commands and aliases into canonical
+families for new shared notes. Preserve existing definitions; do not create one new note for
+each incidental command. A selected-path inventory must never claim repository-wide coverage.
+Use vault-relative wikilinks when a basename occurs in more than one topic.

@@ -15,7 +15,9 @@ interface Props {
 	cards: Card[];
 }
 
+interface RecallEvent { id: string; card_id: string; grade: Grade; at: string; }
 interface Saved {
+	events?: RecallEvent[];
 	grades: Record<string, { grade: Grade; at: string }>;
 }
 
@@ -41,7 +43,7 @@ export default function RecallDeck({ topicId, cards }: Props) {
 			const raw = localStorage.getItem(storageKey);
 			if (raw) {
 				const parsed = JSON.parse(raw) as Saved;
-				if (parsed && typeof parsed.grades === 'object') setSaved(parsed);
+				if (parsed && typeof parsed.grades === 'object') setSaved({...parsed,events:parsed.events??Object.entries(parsed.grades).map(([id,g])=>({id:`legacy:${topicId}:${id}:${g.at}:${g.grade}`,card_id:id,grade:g.grade,at:g.at+'T00:00:00Z'}))});
 			}
 		} catch {
 			// No storage: the deck still works, it just does not remember.
@@ -53,7 +55,8 @@ export default function RecallDeck({ topicId, cards }: Props) {
 
 	const grade = (value: Grade) => {
 		if (!card) return;
-		const next: Saved = { grades: { ...saved.grades, [card.id]: { grade: value, at: new Date().toISOString().slice(0, 10) } } };
+		const event: RecallEvent={id:crypto.randomUUID(),card_id:card.id,grade:value,at:new Date().toISOString()};
+		const next: Saved = { events:[...(saved.events??[]),event], grades: { ...saved.grades, [card.id]: { grade: value, at: new Date().toISOString().slice(0, 10) } } };
 		setSaved(next);
 		setSession((s) => ({ ...s, [card.id]: value }));
 		try {
@@ -63,6 +66,11 @@ export default function RecallDeck({ topicId, cards }: Props) {
 		}
 		setRevealed(false);
 		setPosition((p) => p + 1);
+	};
+
+	const exportEvents = () => {
+		const blob=new Blob([JSON.stringify({schema:1,topic:topicId,events:saved.events??[]},null,2)],{type:'application/json'});
+		const url=URL.createObjectURL(blob),link=document.createElement('a');link.href=url;link.download='recall-events.json';link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
 	};
 
 	const restart = (ids: string[]) => {
@@ -78,15 +86,14 @@ export default function RecallDeck({ topicId, cards }: Props) {
 	if (finished) {
 		const weak = cards.filter((c) => session[c.id] === 'again' || session[c.id] === 'hard');
 		const counts = GRADES.map((g) => ({ ...g, n: Object.values(session).filter((v) => v === g.id).length })).filter((g) => g.n > 0);
-		const commands = Object.entries(session)
-			.map(([id, value]) => `node harness/bin/tutor.mjs recall grade ${topicId} ${id} ${value}`)
-			.join('\n');
+		const commands = `node harness/bin/tutor.mjs recall import ${topicId} --file recall-events.json`;
 		return (
 			<div className="recall">
 				<p>
 					<strong>Done.</strong> You went through {Object.keys(session).length} card{Object.keys(session).length === 1 ? '' : 's'}:{' '}
 					{counts.map((g) => `${g.n} ${g.label.toLowerCase()}`).join(', ')}.
 				</p>
+				<p>Export your review history to save it with your notes. Import it with <code>node harness/bin/tutor.mjs recall import {topicId} --file recall-events.json</code>. Repeated imports are safe.</p>
 				{weak.length > 0 && (
 					<>
 						<p>These are worth another look:</p>
@@ -98,6 +105,7 @@ export default function RecallDeck({ topicId, cards }: Props) {
 					</>
 				)}
 				<div className="lc-controls">
+					<button type="button" className="lc-btn" onClick={exportEvents}>Export review history</button>
 					<button type="button" className="lc-btn" onClick={() => restart(cards.map((c) => c.id))}>
 						Go through all cards again
 					</button>
@@ -108,7 +116,7 @@ export default function RecallDeck({ topicId, cards }: Props) {
 					)}
 				</div>
 				<p className="lc-quiet">
-					Your grades are remembered in this browser. To add them to the spaced-review schedule, run these from the repository root:
+					Export your history, then run this from the repository root to add it to the review schedule:
 				</p>
 				<pre className="recall-commands">{commands}</pre>
 				<div className="lc-controls">

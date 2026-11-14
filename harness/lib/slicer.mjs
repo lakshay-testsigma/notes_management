@@ -5,7 +5,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { toPosix } from './io.mjs';
 
-export const DEFAULT_BUDGET = 60000;
+export const DEFAULT_BUDGET = 10107; // 40% of an assumed 32K window, less 3000 tokens of overhead/reserve.
 const MAX_FILE_BYTES = 400 * 1024;
 const ROOT_GROUP = '(root files)';
 
@@ -127,7 +127,9 @@ export function scanDirectory(dir, { include = [] } = {}) {
         skip('binary');
         continue;
       }
-      files.push({ path: relative, tokens: estimateTokens(buffer.toString('utf8')) });
+      const text=buffer.toString('utf8'),file={path:relative,tokens:estimateTokens(text)};
+      Object.defineProperty(file,'text',{value:text});
+      files.push(file);
     }
   };
 
@@ -221,6 +223,15 @@ function sliceId(text) {
  * Returns [{ id, tokens, files: [paths], covers: [paths], oversized? }].
  */
 export function buildSlices(files, budget = DEFAULT_BUDGET, { pack = false } = {}) {
+  files=files.flatMap(file=> {
+    if(file.tokens<=budget||typeof file.text!=='string')return [file];
+    const fragments=[];
+    for(let start=0;start<file.text.length;start+=budget*4) {
+      const end=Math.min(file.text.length,start+budget*4);
+      fragments.push({path:file.path,tokens:estimateTokens(file.text.slice(start,end)),range:{path:file.path,start_char:start,end_char:end,start_line:1+file.text.slice(0,start).split('\n').length-1,end_line:file.text.slice(0,end).split('\n').length,tokens:estimateTokens(file.text.slice(start,end))}});
+    }
+    return fragments;
+  });
   const tree = buildTree(files);
   let pieces = [];
 
@@ -265,6 +276,7 @@ export function buildSlices(files, budget = DEFAULT_BUDGET, { pack = false } = {
       tokens: part.tokens,
       files: part.files.map((file) => file.path),
       covers: part.covers,
+      ...(part.files.some(f=>f.range)?{ranges:part.files.filter(f=>f.range).map(f=>f.range)}:{}),
     };
     if (part.tokens > budget) slice.oversized = true;
     return slice;

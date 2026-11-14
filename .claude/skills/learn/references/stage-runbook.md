@@ -43,7 +43,7 @@ do Part C of that skill, which includes the coverage check of step 4 below.
 | Unit id | Category | Sources to add | Flags to set |
 |---------|----------|----------------|--------------|
 | `docs` | official docs and standards | 2–4 | exactly 1 source gets `digest` |
-| `papers` | defining papers and standard books | 2–4 | exactly `digest_targets − 1` sources get `digest` (0 when `digest_targets` is 1) |
+| `papers` | defining papers and standard books | 2–5 | exactly `digest_targets − 1` sources get `digest` (0 when `digest_targets` is 1) |
 | `repos` | production repositories and engineering blogs | 2–4 | exactly `repo_targets` repositories get `repo-intel` |
 
 Put the numbers from the table into the `TASK` line of each brief, for example: "Add 2–4
@@ -200,7 +200,7 @@ Fill the input list of the brief from `tutor paths <topic> --json` with exactly 
 for a topic with a deep dive, `<repo>-findings.md` and `<repo>-takeaways.md`; and each
 project's `README.md` (the verifier also runs each project's tests). Never pass "every
 path": the verifier then spends its budget on harness files. Each verifier reads at most
-60,000 tokens.
+the capacity-aware budget printed by `tutor budget`.
 
 **Step 4 — the findings.** Fix up to 5 small findings yourself with the Edit tool. Give
 larger groups to the worker of the stage that owns the file, with the findings in

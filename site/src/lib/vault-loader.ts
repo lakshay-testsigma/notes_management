@@ -50,6 +50,20 @@ async function sync({ store, renderMarkdown, parseData, generateDigest, logger }
 	const notes: Pending[] = [];
 	/** note file name (lower case, no extension) -> site URL */
 	const links = new Map<string, string>();
+	const bare = new Map<string, string[]>();
+	const counts = new Map<string,number>();
+	const countNames = (dir:string) => {
+		for(const e of fs.readdirSync(dir,{withFileTypes:true})) {
+			if(e.name.startsWith('.'))continue;
+			if(e.isDirectory())countNames(path.join(dir,e.name));
+			else if(e.name.endsWith('.md')) {const stem=e.name.slice(0,-3).toLowerCase();counts.set(stem,(counts.get(stem)??0)+1);}
+		}
+	};
+	countNames(path.join(repoRoot(),'vault'));
+	const register = (file: string, stem: string, url: string) => {
+		links.set(path.relative(path.join(repoRoot(),'vault'),file).replace(/\.md$/i,'').split(path.sep).join('/').toLowerCase(),url);
+		bare.set(stem,[...(bare.get(stem)??[]),url]);
+	};
 
 	for (const topic of topics) {
 		for (const rel of listNoteFiles(topic)) {
@@ -59,15 +73,16 @@ async function sync({ store, renderMarkdown, parseData, generateDigest, logger }
 			let url: string | null = null;
 			if (cls.role === 'map') {
 				// 00-start-here and 02-lesson have no page: the topic home is their page.
-				links.set(stem, cls.step === 'lesson' ? `${topic.url}#step-lesson` : topic.url);
+				register(file,stem,cls.step === 'lesson' ? `${topic.url}#step-lesson` : topic.url);
 			} else if (cls.route && cls.step && stepOpen(topic, cls.step)) {
 				url = topic.url + cls.route;
 			}
 			notes.push({ topic, rel, file, url });
-			if (url) links.set(stem, url);
+			if (url) register(file,stem,url);
 		}
 	}
 
+	for (const [name,urls] of bare) if (urls.length === 1 && counts.get(name)===1) links.set(name,urls[0]);
 	const resolve = (name: string) => links.get(name.toLowerCase()) ?? null;
 	const seen = new Set<string>();
 

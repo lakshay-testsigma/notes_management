@@ -46,7 +46,7 @@ Your brief gives you **one unit**, and its id tells you which kind:
 
 ## Context budget
 
-- Read at most 60,000 tokens in total. Size files first with
+- Use the capacity-aware allowance from `tutor budget --window <actual window> --reserve <overhead>` (assume32768 and reserve3000 when unknown). Size files first with
   `node harness/bin/tutor.mjs budget <files>`. For a long file, search it with `grep -n` and
   read only the relevant line ranges.
 - Write as you go: create the note before reading, and add to it after each group of files.

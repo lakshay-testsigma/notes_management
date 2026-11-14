@@ -121,17 +121,17 @@ export function nextBox(box, grade) {
 }
 
 /** Grade one registered card. Returns { id, grade, from, to, due, interval_days }. */
-export function gradeCard(topic, id, grade) {
+export function gradeCard(topic, id, grade, date = today()) {
   const card = registry(topic)[id];
   const from = card.box;
   const to = nextBox(from, grade);
   const interval = INTERVALS[to - 1];
 
   card.box = to;
-  card.due = addDays(today(), interval);
-  card.last_reviewed = today();
+  card.due = addDays(date, interval);
+  card.last_reviewed = date;
   card.reviews = (card.reviews ?? 0) + 1;
-  card.history = [...(card.history ?? []), { date: today(), grade, from, to }].slice(-MAX_HISTORY);
+  card.history = [...(card.history ?? []), { date, grade, from, to }].slice(-MAX_HISTORY);
 
   return { id, grade, from, to, due: card.due, interval_days: interval };
 }

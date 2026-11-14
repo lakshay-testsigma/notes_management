@@ -57,7 +57,7 @@ acknowledges the event, and Redis stops tracking it as unfinished.
 
 - [[Redis basics]] — Redis is an in-memory database that stores values under keys.
 - [[Message queue]] — a message queue lets one program leave work for another.
-- [[At-least-once delivery]] — a message is never lost but may arrive twice.
+- [[At-least-once delivery]] — delivery may repeat; survival depends on persistence and retention.
 
 ## What you will be able to do
 

@@ -40,8 +40,8 @@ export function skipInfo(root, topic, stage) {
     return {
       kind: 'manual',
       add_depth: null,
-      sentence: `This step is not part of this topic: it was skipped${why ? ` (${why})` : ''}. To add it, run ${reset} and then ask Claude: ${learn()}.`,
-      short: `not part of this topic: it was skipped${why ? ` (${why})` : ''}. To add it: ${reset}, then ${learn()}`,
+      sentence: `This required step remains undelivered: it was waived${why ? ` (${why})` : ''}. To add it, run ${reset} and then ask Claude: ${learn()}.`,
+      short: `required work remains undelivered: it was waived${why ? ` (${why})` : ''}. To add it: ${reset}, then ${learn()}`,
     };
   }
 

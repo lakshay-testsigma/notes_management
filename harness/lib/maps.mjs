@@ -4,6 +4,7 @@
 // It also keeps two things in sync: the notes of skipped stages
 // (stage-notes.mjs) and the backlinks of shared notes (backlinks.mjs).
 
+import { buildVaultIndex } from './vault-index.mjs';
 import path from 'node:path';
 import { isFile, listDirs, listFiles, readText, writeTextAtomic } from './io.mjs';
 import { replaceGeneratedRegion, yamlEscape } from './markdown.mjs';
@@ -12,7 +13,7 @@ import { lessonPageUrl, loadAllTopics, openLessonLine, topicPaths } from './topi
 import { syncBacklinks } from './backlinks.mjs';
 import { skipInfo, syncStageNotes } from './stage-notes.mjs';
 import { listPackIds, tryLoadPack } from './packs.mjs';
-import { progressOf, runnableStages } from './stages.mjs';
+import { isOmitted, progressOf, runnableStages } from './stages.mjs';
 import { readSources, SOURCE_TYPES, SOURCE_TYPE_LABELS } from './sources.mjs';
 import { today } from './clock.mjs';
 import { CLI } from './root.mjs';
@@ -47,7 +48,7 @@ export function readingOrderOf(topic) {
       path: paths[step.key],
       note: noteName(paths[step.key]),
     }))
-    .filter((step) => statusOf(step.stage) !== 'skipped');
+    .filter((step) => !isOmitted(topic.stages.find(s=>s.id===step.stage)??{}));
   return { steps, line: steps.map((step) => `${step.n} ${step.step}`).join(' → ') };
 }
 
@@ -63,8 +64,11 @@ function noteName(relativePath) {
   return path.basename(relativePath, '.md');
 }
 
+let linkIndex;
 function link(relativePath, shown) {
-  return `[[${noteName(relativePath)}|${shown}]]`;
+  const name=noteName(relativePath);
+  const target=(linkIndex?.matches.get(name)?.length??0)>1?relativePath.replace(/^vault\//,'').replace(/\.md$/,''):name;
+  return `[[${target}|${shown}]]`;
 }
 
 /** Write a note's generated region, creating the note from its template when it is missing or empty. */
@@ -77,6 +81,7 @@ function writeGenerated(file, template, vars, content) {
 
 /** Regenerate every map that mentions this topic. Returns the files touched. */
 export function refreshMaps(root, topic) {
+  linkIndex=buildVaultIndex(root);
   return refreshTopic(root, topic).written;
 }
 
@@ -88,6 +93,7 @@ export function refreshMaps(root, topic) {
  * }
  */
 export function refreshTopic(root, topic) {
+  linkIndex=buildVaultIndex(root);
   const paths = topicPaths(topic);
   const vars = topicVars(topic);
 
@@ -101,6 +107,7 @@ export function refreshTopic(root, topic) {
 
 /** Regenerate the domain maps (all domains that have topics, or the given ones) and Home. */
 export function refreshSharedMaps(root, onlyDomains = null) {
+  linkIndex=buildVaultIndex(root);
   const topics = loadAllTopics(root);
   const domains = onlyDomains ?? [...new Set(topics.map((t) => t.domain))];
   const written = [];

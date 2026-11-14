@@ -59,7 +59,7 @@ Spend your budget in this order, because the earlier items hurt the learner most
 
 ## Context budget
 
-- Read at most 60,000 tokens in total. Size the input list first with
+- Use the capacity-aware allowance from `tutor budget --window <actual window> --reserve <overhead>` (assume32768 and reserve3000 when unknown). Size the input list first with
   `node harness/bin/tutor.mjs budget <files>`. Read `sources.json`, the lesson pages, and the
   brief in full; sample the rest. Use `grep` to check rules across many files (for example
   `grep -n '^>' <lessons path>/*.mdx`) instead of reading each file in full.

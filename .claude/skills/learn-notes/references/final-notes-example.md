@@ -27,8 +27,8 @@ sources: [redis-streams-docs, redis-source]
 ## In one sentence
 
 A Redis Stream is an append-only log inside Redis that several workers can read
-as a group, so each message is processed once and nothing is lost when a worker
-crashes.
+as a group, sharing new deliveries while tracking work that still needs acknowledgement.
+Recovery needs explicit reads or claims, and repeated delivery needs duplicate-safe handling.
 
 ## The mental model
 
@@ -38,22 +38,23 @@ flowchart LR
   S -->|XREADGROUP| G[Consumer group]
   G --> W1[Worker 1]
   G --> W2[Worker 2]
-  W1 -->|XACK| S
+  W1 -->|XACK after handling| Done[Pending tracking cleared]
   W2 -. crash .-> PEL[Pending list]
   PEL -->|XAUTOCLAIM| W1
 ```
 
 Entries are never moved, only read. The group remembers what it handed out and
-to whom, and an entry leaves the pending list only when a worker acknowledges it.
+to whom. XACK clears pending tracking without deleting retained history. Deletion,
+trimming and cleanup commands can also affect that tracking, depending on version.
 
 ## Key ideas
 
 - Every entry gets an id of the form `milliseconds-sequence`, so ids are ordered
   and you can ask for "everything after this id".
-- A consumer group gives each entry to exactly one consumer, because the group,
+- A consumer group assigns each new delivery to one consumer, because the group,
   not the consumer, stores the last delivered id.
-- Delivery is at-least-once: an unacknowledged entry is delivered again, so
-  handlers must be idempotent.
+- Recovery is explicit: read your own pending history or claim idle work. A
+  recovery loop may repeat delivery, so handlers must be idempotent.
 - The pending entries list is the safety net: it records who holds each entry
   and for how long.
 - Reading with `>` means "new entries"; reading with `0` means "my own pending
@@ -71,10 +72,11 @@ with `BRPOP`).
 
 ## Trade-offs and failure modes
 
-- Memory is the limit: an untrimmed stream ends in an out-of-memory eviction.
+- Memory is finite: growth can reject writes or evict eligible keys, depending
+  on maxmemory and the configured policy. Persistence also needs an explicit choice.
 - A consumer that never acknowledges makes the pending list grow; the symptom is
   rising `XPENDING` counts while throughput looks normal.
-- A poison message is redelivered forever unless you check the delivery count
+- A recovery loop may repeatedly claim a poison message unless you check the delivery count
   and move it to a dead-letter stream.
 
 ## Commands or code worth remembering
@@ -94,7 +96,8 @@ XTRIM orders MAXLEN '~' 100000
   [[bullmq-pattern-dead-letter|BullMQ dead-letter pattern]].
 - They trim approximately (`~`) because exact trimming costs CPU on every write,
   see [[bullmq-findings|BullMQ findings]].
-- They run claim and acknowledge steps in Lua scripts to keep them atomic, see
+- They use atomic scripts for coordinated state transitions; a handler outside
+  Redis still needs duplicate-safe effects, see
   [[bullmq-takeaways|BullMQ takeaways]].
 
 ## Go deeper

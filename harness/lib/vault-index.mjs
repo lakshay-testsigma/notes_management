@@ -7,6 +7,7 @@ import { toPosix, walkFiles } from './io.mjs';
 export function buildVaultIndex(root) {
   const vault = path.join(root, 'vault');
   const names = new Set();
+  const matches = new Map();
   const lowerNames = new Map();
   const paths = new Set();
 
@@ -16,12 +17,13 @@ export function buildVaultIndex(root) {
     const isNote = base.toLowerCase().endsWith('.md');
     const name = isNote ? base.slice(0, -3) : base;
 
+    matches.set(name,[...(matches.get(name)??[]),relative.replace(/\.md$/i,'')]);
     names.add(name);
     lowerNames.set(name.toLowerCase(), name);
     paths.add(relative);
     if (isNote) paths.add(relative.slice(0, -3));
   }
-  return { names, lowerNames, paths };
+  return { names, lowerNames, paths, matches };
 }
 
 /**
@@ -41,6 +43,7 @@ export function resolveWikilink(index, rawTarget) {
     return { ok: false, suggestion: index.names.has(base) ? base : null };
   }
 
+  if (index.matches?.get(target)?.length > 1) return {ok:false,suggestion:index.matches.get(target)[0],ambiguous:true};
   if (index.names.has(target)) return { ok: true, suggestion: null };
   return { ok: false, suggestion: index.lowerNames.get(target.toLowerCase()) ?? null };
 }

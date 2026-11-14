@@ -50,7 +50,7 @@ Topic "Redis Streams", domain `backend-engineering`, subdomain `messaging`, dept
   "prerequisites": [
     { "concept": "Redis basics", "known": false, "bridge": "Redis is an in-memory database that stores values under keys." },
     { "concept": "Message queue", "known": false, "bridge": "A message queue lets one program leave work for another." },
-    { "concept": "At-least-once delivery", "known": false, "bridge": "A message is never lost but may arrive twice." }
+    { "concept": "At-least-once delivery", "known": false, "bridge": "Delivery may repeat; survival depends on persistence and retention." }
   ],
   "outcomes": [
     "Explain how a stream differs from a list and from pub/sub.",

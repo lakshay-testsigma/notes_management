@@ -1,6 +1,7 @@
 // Stage list (§4.1), depth profiles (§4.2), and wave logic.
 
 export const STATUSES = ['pending', 'in_progress', 'done', 'skipped', 'failed'];
+export const DEPENDENCIES = { brief: ['research'], finalize: ['notes'] };
 export const DEPTHS = ['quick', 'standard', 'deep'];
 
 /** Generation order. Stages in the same wave are independent. */
@@ -112,6 +113,7 @@ export function buildStages(depth, pack, profile) {
       wave: definition.wave,
       skill: definition.skill,
       status: reason ? 'skipped' : 'pending',
+      scope: reason ? (pack?.stages?.[definition.id]?.enabled === false ? 'domain' : 'depth') : 'required',
       started_at: null,
       finished_at: null,
       attempts: 0,
@@ -139,41 +141,40 @@ export function stageDefinition(stageId) {
   return STAGES.find((s) => s.id === stageId) ?? null;
 }
 
+export function isOmitted(stage) {
+  return stage.status === 'skipped' && ['depth','domain'].includes(stage.scope);
+}
 export function isFinished(stage) {
-  return stage.status === 'done' || stage.status === 'skipped';
+  return (stage.status === 'done' && stage.fresh !== false) || isOmitted(stage);
 }
-
-/** Lowest wave that still has an unfinished stage, or null when all are finished. */
+export function isSettled(stage) {
+  return isFinished(stage) || stage.status==='skipped' || (stage.status === 'failed' && stage.continue_after_failure === true);
+}
+export function completionOf(topic) {
+  const failed_required = topic.stages.filter(s=>!isOmitted(s) && (s.status==='failed'||s.status==='skipped'||s.validation?.forced)).map(s=>s.id);
+  const stale_stages = topic.stages.filter(s=>s.status==='done'&&s.fresh===false).map(s=>s.id);
+  const generation_finished = topic.stages.every(isSettled);
+  const complete = generation_finished && !failed_required.length && !stale_stages.length;
+  return {complete,generation_finished,completion:complete?'complete':failed_required.length?'degraded':'in_progress',failed_required,stale_stages};
+}
 export function currentWave(topic) {
-  const open = topic.stages.filter((stage) => !isFinished(stage));
-  if (open.length === 0) return null;
-  return Math.min(...open.map((stage) => stage.wave));
+  const open=topic.stages.filter(s=>!isSettled(s));
+  return open.length ? Math.min(...open.map(s=>s.wave)) : null;
 }
-
-/** Unfinished stages of the current wave (pending, in_progress, or failed). */
+export function blockersOf(topic,stage) {
+  return topic.stages.filter(other =>
+    (other.wave < stage.wave && !isSettled(other)) ||
+    ((DEPENDENCIES[stage.id]??[]).includes(other.id) && !isFinished(other)));
+}
 export function runnableStages(topic) {
-  const wave = currentWave(topic);
-  if (wave === null) return [];
-  return topic.stages.filter((stage) => stage.wave === wave && !isFinished(stage));
+  const wave=currentWave(topic);
+  return wave===null?[]:topic.stages.filter(s=>s.wave===wave&&!isSettled(s)&&!blockersOf(topic,s).length);
 }
-
-/** Unfinished stages in earlier waves: they block this stage from starting. */
-export function blockersOf(topic, stage) {
-  return topic.stages.filter((other) => other.wave < stage.wave && !isFinished(other));
-}
-
-/** { finished, total } where skipped stages are left out of both numbers. */
 export function progressOf(topic) {
-  const active = topic.stages.filter((stage) => stage.status !== 'skipped');
-  return {
-    finished: active.filter((stage) => stage.status === 'done').length,
-    total: active.length,
-  };
+  const active=topic.stages.filter(s=>!isOmitted(s));
+  return { finished:active.filter(s=>s.status==='done'&&s.fresh!==false&&!s.validation?.forced).length,total:active.length };
 }
-
-/** "2/3" units done, or "-" when the stage has no units. */
 export function unitsSummary(stage) {
-  if (!stage.units || stage.units.length === 0) return '-';
-  const done = stage.units.filter((unit) => unit.status === 'done').length;
-  return `${done}/${stage.units.length}`;
+  if(!stage.units?.length)return '-';
+  return `${stage.units.filter(u=>u.status==='done').length}/${stage.units.length}`;
 }

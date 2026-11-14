@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import { indexOrder } from '../../../harness/lib/reading-order.mjs';
 import path from 'node:path';
 import { domainPacksDir, humanize, readJson, repoRoot, stateTopicsDir } from './paths';
 
@@ -29,6 +30,7 @@ export interface Topic {
 	outcomes: string[];
 	/** stage id -> status, straight from topic.json */
 	stages: Record<string, StageStatus>;
+	readerOrder: Record<string, string[]>;
 	/** absolute path of the topic's folder in the Obsidian vault */
 	vaultDir: string;
 	sources: Source[];
@@ -73,6 +75,13 @@ function toTopic(file: string): Topic | null {
 		(s): s is Source => !!s && typeof s === 'object' && typeof (s as Source).url === 'string' && typeof (s as Source).title === 'string',
 	);
 	const vaultRel = typeof raw.paths?.vault === 'string' ? raw.paths.vault : path.join('vault', domain, subdomain, slug);
+	// Preview legacy topics without writing their state; readiness still requires saved order.
+	const readerOrder: Record<string, string[]> = { ...(raw.reader_order ?? {}) };
+	for (const stage of ['digest', 'repo-intel']) {
+		if (!Array.isArray(readerOrder[stage])) {
+			readerOrder[stage] = indexOrder(repoRoot(), { slug, paths: { vault: vaultRel } }, stage);
+		}
+	}
 	return {
 		id,
 		domain,
@@ -83,6 +92,7 @@ function toTopic(file: string): Topic | null {
 		depth: raw.depth ?? 'standard',
 		outcomes: Array.isArray(raw.plan?.outcomes) ? raw.plan.outcomes.filter((o: unknown) => typeof o === 'string') : [],
 		stages,
+		readerOrder,
 		vaultDir: path.resolve(repoRoot(), vaultRel),
 		sources,
 		url: `/${domain}/${subdomain}/${slug}/`,

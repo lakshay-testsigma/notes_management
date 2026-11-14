@@ -3,6 +3,7 @@
 // under its "## Where it shows up" heading. `tutor map <topic>` keeps this in
 // sync; lines are only ever added, never removed or rewritten.
 
+import { buildVaultIndex } from './vault-index.mjs';
 import path from 'node:path';
 import { listFiles, readText, walkFiles, writeTextAtomic } from './io.mjs';
 import { extractWikilinks, findSection, insertAtSectionEnd, sectionEnd } from './markdown.mjs';
@@ -21,25 +22,29 @@ function noteNameOf(target) {
  */
 export function syncBacklinks(root, topic) {
   const paths = topicPaths(topic);
+  const index=buildVaultIndex(root);
 
   // name -> file of every shared note; `byLower` forgives a link whose letter case is off.
   const shared = new Map();
   for (const folder of [paths.concepts_dir, paths.tech_dir]) {
     for (const name of listFiles(path.join(root, folder))) {
-      if (name.endsWith('.md')) shared.set(name.slice(0, -3), `${folder}/${name}`);
+      if (name.endsWith('.md')) shared.set(`${folder.replace(/^vault\//,'')}/${name.slice(0,-3)}`, `${folder}/${name}`);
     }
   }
   if (shared.size === 0) return [];
-  const byLower = new Map([...shared.keys()].map((name) => [name.toLowerCase(), name]));
+
 
   // shared note name -> names of the topic notes that link to it, in file order
   const linkers = new Map();
   for (const file of walkFiles(path.join(root, paths.vault_dir))) {
     if (!file.endsWith('.md')) continue;
-    const linker = path.basename(file, '.md');
+    const base=path.basename(file,'.md');
+    const linker=(index.matches.get(base)?.length??0)>1?path.relative(path.join(root,'vault'),file).split(path.sep).join('/').replace(/\.md$/,''):base;
     for (const target of extractWikilinks(readText(file))) {
       const name = noteNameOf(target);
-      const sharedName = shared.has(name) ? name : byLower.get(name.toLowerCase());
+      const normalized=target.replace(/^vault\//,'').replace(/\.md$/,'');
+      const candidates=[...shared.keys()].filter(k=>path.basename(k).toLowerCase()===name.toLowerCase());
+      const sharedName=normalized.includes('/')?(shared.has(normalized)?normalized:null):(candidates.length===1?candidates[0]:null);
       if (!sharedName) continue;
       if (!linkers.has(sharedName)) linkers.set(sharedName, []);
       if (!linkers.get(sharedName).includes(linker)) linkers.get(sharedName).push(linker);
@@ -73,7 +78,7 @@ function addBacklinks(file, notes) {
   }
 
   const section = lines.slice(heading + 1, sectionEnd(lines, heading)).join('\n');
-  const present = new Set(extractWikilinks(section).map(noteNameOf));
+  const present = new Set(extractWikilinks(section).map(t=>t.replace(/^vault\//,'').replace(/\.md$/,'')));
   const added = [];
   for (const note of notes) {
     if (present.has(note)) continue;
@@ -81,6 +86,11 @@ function addBacklinks(file, notes) {
     present.add(note);
     added.push(note);
   }
-  if (added.length > 0) writeTextAtomic(file, `${lines.join('\n').replace(/\s*$/, '')}\n`);
+  if (added.length > 0) {
+    let next=`${lines.join('\n').replace(/\s*$/,'')}\n`;
+    const marker=/^## My insights\s*$/m,old=marker.exec(text),fresh=marker.exec(next);
+    if(old&&fresh)next=next.slice(0,fresh.index)+text.slice(old.index);
+    writeTextAtomic(file,next);
+  }
   return added;
 }

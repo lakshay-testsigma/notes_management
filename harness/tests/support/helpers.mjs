@@ -1,6 +1,8 @@
 // Test helpers: a temporary repository root with fixture domain packs, a
 // runner for the CLI, and builders that write valid artifacts for each stage.
 
+import { stageDigest, RECEIPT_VERSION } from '../../lib/freshness.mjs';
+import { REVIEW_CHECKS } from '../../lib/quality.mjs';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
@@ -31,7 +33,7 @@ export function tutor(root, args, { now = NOW, input } = {}) {
   const result = spawnSync(process.execPath, [TUTOR, ...args], {
     encoding: 'utf8',
     input,
-    env: { ...process.env, TUTOR_ROOT: root, TUTOR_NOW: now, TZ: 'UTC' },
+    env: { ...Object.fromEntries(Object.entries(process.env).filter(([k])=>k!=='NODE_TEST_CONTEXT')), TUTOR_ROOT: root, TUTOR_NOW: now, TZ: 'UTC' },
   });
   return { code: result.status, stdout: result.stdout, stderr: result.stderr };
 }
@@ -121,7 +123,7 @@ export function sourceEntry(id, overrides = {}) {
     year: 2024,
     tier: 'A',
     why_trusted: 'It is the official documentation maintained by the authors of the system.',
-    evidence: { stars: null, last_commit: null, citations: null, venue: null, publisher: 'Redis Ltd.', used_by: ['Example Corp'] },
+    evidence: { stars: null, last_commit: null, citations: null, venue: 'Test venue', publisher: 'Redis Ltd.', used_by: ['Example Corp'] },
     verified_at: TODAY,
     verified_via: `https://example.com/${id}/about`,
     use_for: ['brief', 'digest'],
@@ -131,12 +133,14 @@ export function sourceEntry(id, overrides = {}) {
 
 export function addSource(root, topic, entry) {
   write(root, 'tmp/source.json', JSON.stringify(entry));
-  return tutorJson(root, ['sources', topic, 'add', '--file', path.join(root, 'tmp/source.json')]);
+  const result=tutorJson(root, ['sources', topic, 'add', '--file', path.join(root, 'tmp/source.json')]);
+  if(result.code===0) mockExternalEvidence(root,topic,'research');
+  return result;
 }
 
 export function addSources(root, topic, count) {
   for (let i = 1; i <= count; i++) {
-    const result = addSource(root, topic, sourceEntry(`source-${i}`, i === 1 ? {} : { tier: 'B', type: i === 2 ? 'repo' : 'paper' }));
+    const result = addSource(root, topic, sourceEntry(`source-${i}`, i === 1 ? {} : { tier: 'B', type: i === 2 ? 'repo' : 'paper', evidence:{archived:false,license:'MIT',stars:12000,last_commit:TODAY,citations:1200,venue:'Test conference',publisher:'Test publisher',used_by:['Test adopter']} }));
     if (result.code !== 0) throw new Error(JSON.stringify(result.data));
   }
 }
@@ -182,6 +186,7 @@ export function writeDigests(root, topic, count) {
     ].join('\n'));
   }
   write(root, p.digests_index, [frontmatter(topic, 'digest', 'Digests'), '# Digests', '', ...links, '', '## My insights', ''].join('\n'));
+  tutor(root,['order',topic,'import-indexes']);
 }
 
 export function writeRepoIntel(root, topic) {
@@ -197,7 +202,8 @@ export function writeRepoIntel(root, topic) {
   note('tech-and-services', 'Uses [[Lua scripting]] for atomic moves.');
   note('findings', '1. Jobs are moved atomically, a form of [[At-least-once delivery]]. Evidence: `src/classes/worker.ts:120 @ 3f2a9c1`.');
   note('takeaways', 'Borrow the atomic move for the capstone.');
-  write(root, p.repo_intel_index, [frontmatter(topic, 'repo-intel', 'Repository deep dive'), '- [[bullmq-overview|taskforcesh/bullmq]]', '', '## My insights', ''].join('\n'));
+  write(root, p.repo_intel_index, [frontmatter(topic, 'repo-intel', 'Repository deep dive'), ...['overview','architecture','findings','tech-and-services','takeaways','module-worker'].map(n=>`- [[bullmq-${n}]]`), '', '## My insights', ''].join('\n'));
+  tutor(root,['order',topic,'import-indexes']);
 }
 
 /** A lesson page that passes §12. Options change one thing to make it fail. */
@@ -262,9 +268,11 @@ export function writeMiniProjects(root, topic, count) {
     write(root, `${p.projects_dir}/${name}/README.md`, `# Project ${i}\n\nBuild a job queue.\n`);
     write(root, `${p.projects_dir}/${name}/starter/index.js`, '// TODO\n');
     write(root, `${p.projects_dir}/${name}/solution/index.js`, 'export const done = true;\n');
+    projectVerification(root,`${p.projects_dir}/${name}`);
     lines.push(`- \`${p.projects_dir}/${name}/\` — proves that a group delivers each entry once.`);
   }
   write(root, p.mini_projects, [frontmatter(topic, 'mini-projects', 'Mini projects'), ...lines, '', '## My insights', ''].join('\n'));
+  const checked=tutorJson(root,['check',topic,'mini-projects']); if(checked.code)throw new Error(JSON.stringify(checked.data));
 }
 
 export function writeCapstone(root, topic) {
@@ -275,6 +283,8 @@ export function writeCapstone(root, topic) {
   write(root, `${p.capstone_dir}/src/order-queue.js`, 'export class OrderQueue {}\n');
   write(root, `${p.capstone_dir}/tests/order-queue.test.js`, '// tests\n');
   write(root, p.capstone, [frontmatter(topic, 'capstone', 'Capstone'), `The project lives in \`${p.capstone_dir}/\`.`, '', '## My insights', ''].join('\n'));
+  projectVerification(root,p.capstone_dir,true);
+  const checked=tutorJson(root,['check',topic,'capstone']); if(checked.code)throw new Error(JSON.stringify(checked.data));
 }
 
 export function recallCards(count, prefix = 'rs') {
@@ -289,4 +299,30 @@ export function writeNotes(root, topic, { cards = 8, words = 300 } = {}) {
   const p = paths(root, topic);
   write(root, p.final_notes, [frontmatter(topic, 'final-notes', 'Final notes'), '## In one sentence', '', prose(words), '', '## My insights', ''].join('\n'));
   write(root, p.recall, [frontmatter(topic, 'recall', 'Recall cards'), '# Recall cards', '', recallCards(cards), '## My insights', ''].join('\n'));
+}
+
+export function mockExternalEvidence(root,id,stage) {
+  const topic=readTopic(root,id);
+  topic.quality??={};topic.quality.executions??={};
+  topic.quality.executions[stage]={version:RECEIPT_VERSION,fingerprint:stageDigest(root,topic,stage),ok:true,checks:[{label:'mock external network boundary',ok:true}]};
+  write(root,`state/topics/${id}/topic.json`,JSON.stringify(topic));
+}
+export function prepareFinalReview(root,id) {
+  mockExternalEvidence(root,id,'finalize');
+  for(const [scope,checks] of Object.entries(REVIEW_CHECKS)) {
+    write(root,'tmp/review.json',JSON.stringify({scope,checks,reviewer:'Fixture reviewer',verdict:'pass',findings:[],not_checked:[]}));
+    const r=tutorJson(root,['review',id,'--file',path.join(root,'tmp/review.json')]);
+    if(r.code)throw new Error(JSON.stringify(r.data));
+  }
+}
+function projectVerification(root,base,capstone=false) {
+  const folders=capstone?['.']:['starter','solution'];
+  for(const folder of folders) {
+    const test=folder==='starter'?"import test from 'node:test'; test('implement queue',()=>{throw Error('TODO queue')});\n":"import test from 'node:test'; import assert from 'node:assert/strict'; test('FIFO delivery',()=>{const q=[];q.push('first','second');assert.equal(q.shift(),'first');assert.equal(q.shift(),'second');assert.equal(q.shift(),undefined)});\n";
+    write(root,`${base}/${folder}/verify.mjs`,test);
+    write(root,`${base}/${folder}/start.mjs`,"throw Error('TODO queue')\n");
+  }
+  const checks=[{kind:'solution-tests',command:'node',args:['--test','verify.mjs'],cwd:capstone?'.':'solution'}];
+  if(!capstone)checks.push({kind:'starter-tests',command:'node',args:['--test','verify.mjs'],cwd:'starter',expected_exit:1,expect_output:'TODO'},{kind:'starter-start',command:'node',args:['start.mjs'],cwd:'starter',expected_exit:1,expect_output:'TODO'});
+  write(root,`${base}/verification.json`,JSON.stringify({checks}));
 }

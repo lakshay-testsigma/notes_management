@@ -1,9 +1,12 @@
 // Reading and writing topic state: topic.json, the registry, and topic addressing.
 
+import { tryLoadPack } from './packs.mjs';
+import { resolveProfile, skipReason } from './stages.mjs';
 import path from 'node:path';
 import { isFile, listDirs, readJson, writeJsonAtomic } from './io.mjs';
 import { isoNow } from './clock.mjs';
 import { UsageError, ValidationError } from './errors.mjs';
+import { markFreshness } from './freshness.mjs';
 
 const MAX_LOG_ENTRIES = 200;
 
@@ -89,7 +92,13 @@ export function topicJsonPath(root, id) {
 export function loadTopic(root, id) {
   const file = topicJsonPath(root, id);
   try {
-    return readJson(file);
+    const topic=readJson(file),pack=tryLoadPack(root,topic.domain);
+    topic.profile=resolveProfile(topic.depth,pack);
+    for(const stage of topic.stages) {
+      const omitted=skipReason(stage.id,topic.depth,pack,topic.profile);
+      stage.scope=omitted?(pack?.stages?.[stage.id]?.enabled===false?'domain':'depth'):'required';
+    }
+    return markFreshness(root,topic);
   } catch (error) {
     throw new ValidationError(`Cannot read state/topics/${id}/topic.json: ${error.message}`);
   }
@@ -101,7 +110,9 @@ export function saveTopic(root, topic) {
   if (Array.isArray(topic.log) && topic.log.length > MAX_LOG_ENTRIES) {
     topic.log = topic.log.slice(-MAX_LOG_ENTRIES);
   }
-  writeJsonAtomic(topicJsonPath(root, topic.id), topic);
+  const stored=structuredClone(topic);
+  for(const stage of stored.stages)delete stage.fresh;
+  writeJsonAtomic(topicJsonPath(root, topic.id), stored);
 }
 
 /** Append one entry to the topic log (saved by the next saveTopic call). */

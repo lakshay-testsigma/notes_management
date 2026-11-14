@@ -22,6 +22,10 @@ export function researchGate(ctx) {
     failures.push(failure(where, `has ${entries.length} sources, depth "${topic.depth}" allows ${min}–${max}`, `keep the best ${max}: delete the weakest tier B entries from the file`));
   }
 
+  for(const requested of topic.plan?.requested_sources??[]) {
+    if(!entries.some(s=>s.url===requested.url) && !(requested.resolution==='rejected'&&requested.reason?.trim()))failures.push(failure(where,`requested source ${requested.name} was not vetted or explicitly rejected`,'verify it or record resolution: rejected with a reason in the plan'));
+  }
+
   const seenIds = new Set();
   const seenUrls = new Set();
   entries.forEach((entry, i) => {

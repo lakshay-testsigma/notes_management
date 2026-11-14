@@ -39,7 +39,7 @@ describe('slice and budget', () => {
   after(() => removeRoot(root));
 
   test('every slice fits the budget and every readable file is in exactly one slice', () => {
-    const { code, data } = tutorJson(root, ['slice', repo, '--budget', '5000']);
+    const { code, data } = tutorJson(root, ['slice', repo, '--window', '200000', '--budget', '5000']);
     assert.equal(code, 0);
 
     const files = data.slices.flatMap((s) => s.files).sort();
@@ -58,7 +58,7 @@ describe('slice and budget', () => {
   });
 
   test('top-level directories are separate slices; an oversized one is split by sub-directory', () => {
-    const { data } = tutorJson(root, ['slice', repo, '--budget', '5000']);
+    const { data } = tutorJson(root, ['slice', repo, '--window', '200000', '--budget', '5000']);
     const byId = Object.fromEntries(data.slices.map((s) => [s.id, s]));
 
     assert.deepEqual(byId.docs.files, ['docs/guide.md']);
@@ -76,7 +76,7 @@ describe('slice and budget', () => {
   });
 
   test('skips .git, node_modules, dist, vendor, lockfiles, images, binaries, and large files', () => {
-    const { data } = tutorJson(root, ['slice', repo]);
+    const { data } = tutorJson(root, ['slice', repo, '--window', '200000']);
     assert.equal(data.budget, 60000);
     assert.equal(data.slices.length, 4, 'docs, scripts, src, root files at the default budget');
     assert.equal(data.skipped['directory node_modules'], 1);
@@ -89,49 +89,51 @@ describe('slice and budget', () => {
     assert.equal(data.skipped['larger than 400KB'], 1);
   });
 
-  test('a single file over the budget is its own slice, flagged oversized', () => {
-    const { data } = tutorJson(root, ['slice', repo, '--budget', '3500']);
+  test('large files are split into bounded character ranges', () => {
+    const { data } = tutorJson(root, ['slice', repo, '--window', '200000', '--budget', '3500']);
     const big = data.slices.filter((s) => s.oversized);
-    assert.deepEqual(big.map((s) => s.files), [['src/core/a.ts'], ['src/core/b.ts']]);
-    assert.equal(data.totals.oversized_slices, 2);
+    assert.deepEqual(big, []);
+    assert.equal(data.totals.oversized_slices, 0);
+    assert.ok(data.slices.flatMap(s=>s.ranges??[]).length>=4);
+    assert.ok(data.slices.every(s=>s.tokens<=3500));
   });
 
   test('--include filters by glob; --pack joins small top-level groups', () => {
-    const ts = tutorJson(root, ['slice', repo, '--include', '*.ts']).data;
+    const ts = tutorJson(root, ['slice', repo, '--window', '200000', '--include', '*.ts']).data;
     assert.deepEqual(ts.slices.map((s) => s.id), ['src']);
     assert.equal(ts.totals.files, 6);
 
-    const deep = tutorJson(root, ['slice', repo, '--include', 'src/**/*.ts,docs/**']).data;
+    const deep = tutorJson(root, ['slice', repo, '--window', '200000', '--include', 'src/**/*.ts,docs/**']).data;
     assert.deepEqual(deep.slices.flatMap((s) => s.files).sort(), ['docs/guide.md', 'src/core/a.ts', 'src/core/b.ts', 'src/index.ts', 'src/net/c.ts', 'src/util/d.ts', 'src/util/e.ts']);
 
-    const packed = tutorJson(root, ['slice', repo, '--pack']).data;
+    const packed = tutorJson(root, ['slice', repo, '--window', '200000', '--pack']).data;
     assert.equal(packed.slices.length, 1);
     assert.equal(packed.slices[0].tokens, 15200);
   });
 
   test('the human output ends with a totals line', () => {
-    const { stdout } = tutor(root, ['slice', repo, '--budget', '5000']);
+    const { stdout } = tutor(root, ['slice', repo, '--window', '200000', '--budget', '5000']);
     assert.match(stdout, /Total: 9 files, ~15,200 tokens, \d+ slices \(budget 5,000\)\./);
     assert.match(stdout, /Skipped: /);
   });
 
   test('budget estimates each file and flags a total over 60,000', () => {
-    const small = tutorJson(root, ['budget', path.join(repo, 'README.md'), path.join(repo, 'docs/guide.md')]).data;
+    const small = tutorJson(root, ['budget', '--window', '200000', path.join(repo, 'README.md'), path.join(repo, 'docs/guide.md')]).data;
     assert.deepEqual(small.files.map((f) => f.tokens), [500, 1000]);
     assert.equal(small.total, 1500);
     assert.equal(small.over_budget, false);
 
     write(root, 'huge.md', fileOf(60001));
-    const over = tutorJson(root, ['budget', path.join(root, 'huge.md')]);
+    const over = tutorJson(root, ['budget', '--window', '200000', path.join(root, 'huge.md')]);
     assert.equal(over.code, 0);
     assert.equal(over.data.over_budget, true);
-    assert.match(tutor(root, ['budget', path.join(root, 'huge.md')]).stdout, /OVER BUDGET/);
+    assert.match(tutor(root, ['budget', '--window', '200000', path.join(root, 'huge.md')]).stdout, /OVER BUDGET/);
   });
 
   test('bad arguments are usage errors', () => {
     assert.equal(tutor(root, ['slice', path.join(root, 'missing')]).code, 2);
-    assert.equal(tutor(root, ['slice', repo, '--budget', 'lots']).code, 2);
-    assert.equal(tutor(root, ['budget', path.join(root, 'missing.md')]).code, 2);
+    assert.equal(tutor(root, ['slice', repo, '--window', '200000', '--budget', 'lots']).code, 2);
+    assert.equal(tutor(root, ['budget', '--window', '200000', path.join(root, 'missing.md')]).code, 2);
     assert.equal(tutor(root, ['budget']).code, 2);
   });
 });

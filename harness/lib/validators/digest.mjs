@@ -46,7 +46,7 @@ export function digestGate(ctx) {
       }
     }
 
-    if (index.note && !linked.has(name.slice(0, -3))) {
+    if (index.note && ![...linked].some(t=>t.replace(/\.md$/,'')===name.slice(0,-3)||t.replace(/\.md$/,'').endsWith('/'+name.slice(0,-3)))) {
       failures.push(failure(paths.digests_index, `does not link to ${name}`, `add \`[[${name.slice(0, -3)}|<title>]]\` to the list of digests`));
     }
   }

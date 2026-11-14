@@ -9,7 +9,7 @@ const ID = `${DOMAIN}/messaging/redis-streams`;
 const LESSONS = `site/src/content/lessons/${ID}`;
 
 function validate(root, stage) {
-  return tutorJson(root, ['validate', ID, stage]);
+  return tutorJson(root, ['validate', ID, stage, '--structure-only']);
 }
 
 function problemsOf(result, file) {

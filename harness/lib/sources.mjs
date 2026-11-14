@@ -33,7 +33,7 @@ function isHttpUrl(value) {
   if (typeof value !== 'string') return false;
   try {
     const url = new URL(value.trim().split(/\s+/)[0]);
-    return url.protocol === 'http:' || url.protocol === 'https:';
+    return ['http:','https:'].includes(url.protocol) && !url.username && !url.password;
   } catch {
     return false;
   }
@@ -103,6 +103,20 @@ export function sourceEntryProblems(entry) {
       add('evidence', 'has no value at all', 'fill at least one of stars, citations, venue, publisher, used_by from a live page');
     }
   }
+
+  if (evidence && typeof evidence==='object') {
+    if(entry.type==='repo') {
+      if(evidence.archived!==false)add('evidence.archived','must be false','verify that the repository is not archived');
+      if(!isText(evidence.license))add('evidence.license','must name the license','verify the license file permits source study');
+      const threshold=entry.tier==='A'?10000:3000;
+      if(!(evidence.stars>=threshold) && !(entry.niche_reason?.trim() && evidence.stars >= (entry.tier==='A'?2000:1000))) add('evidence.stars','does not meet the repository threshold','choose a sufficiently adopted repository, or document a qualifying niche exception');
+      if(!isIsoDate(evidence.last_commit) || now()-new Date(evidence.last_commit)>(entry.use_for?.includes('repo-intel')?90:365)*86400000 || new Date(evidence.last_commit)>now()) add('evidence.last_commit','must show recent maintenance','verify a commit in the last year');
+      if(!evidence.used_by?.length) add('evidence.used_by','needs named production adoption','verify a named adopter with a linked primary source');
+    }
+    if(['official-docs','book','engineering-blog','standard','course','talk'].includes(entry.type) && !isText(evidence.publisher)) add('evidence.publisher','is required for this source type','identify the responsible publisher');
+    if(entry.type==='paper' && !(evidence.citations>= (entry.tier==='A'?1000:100)) && !isText(evidence.venue)) add('evidence.venue','needs a recognized venue or qualifying citation evidence','verify the original publication and explain its standing');
+  }
+  if(isIsoDate(entry.verified_at) && (now()-new Date(entry.verified_at)>365*86400000 || new Date(entry.verified_at)>now())) add('verified_at','is stale or in the future','recheck evidence live and record the current date');
 
   if (!isIsoDate(entry.verified_at)) {
     add('verified_at', 'must be a YYYY-MM-DD date', 'write the date the evidence was read');

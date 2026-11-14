@@ -14,6 +14,11 @@ dropped, never guessed. Fewer and better is the goal: 5–12 sources per topic (
 `tutor` means `node harness/bin/tutor.mjs`, run from the repository root. `<topic>` is the full
 topic id. `<slug>` is its last part.
 
+Explicit learner-named papers and repositories go in `plan.requested_sources` as
+`{name,url,use_for}` before delegation. Research must vet each URL or record
+`resolution: "rejected"` and a reason in that entry; never silently substitute it.
+Pass this list to every relevant research worker.
+
 ## When to use
 
 - `tutor next` lists stage `research`, or you are a `tutor-researcher` worker whose brief
@@ -57,10 +62,11 @@ Read only these.
    | Unit | Category | Sources to add | `use_for` quota |
    |------|----------|----------------|-----------------|
    | `docs` | official docs, standards | 2–4 | exactly 1 source gets `digest` |
-   | `papers` | defining papers, standard books | 2–4 | exactly `digest_targets − 1` get `digest` |
+   | `papers` | defining papers, standard books | 2–5 | exactly `digest_targets − 1` get `digest` |
    | `repos` | production repositories, engineering blogs | 2–4 | exactly `repo_targets` repositories get `repo-intel` |
 
    Write the numbers into the `TASK` line of each worker brief. The quotas matter because the
+   Keep the combined total at most 12: for six digests allocate 2 docs, 5 papers/books, and at most 3 repos/blogs (10 total).
    later stages create one digest per `digest` flag and one deep dive per `repo-intel` flag.
 
 ### Part B — one unit (worker, or inline for `quick`)

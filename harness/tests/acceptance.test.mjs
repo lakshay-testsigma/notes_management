@@ -12,7 +12,7 @@ import { countArrayItems, parseAttributes } from '../lib/mdx.mjs';
 import {
   addSource, addSources, DOMAIN, init, lessonPage, makeRoot, paths, planFor, prose, read, readTopic, removeRoot,
   setPlan, sourceEntry, tutor, tutorJson, write, writeBrief, writeCapstone, writeDigests, writeLessons,
-  writeMiniProjects, writeNotes, writeRepoIntel,
+  writeMiniProjects, writeNotes, writeRepoIntel, prepareFinalReview,
 } from './support/helpers.mjs';
 
 const ID = `${DOMAIN}/messaging/redis-streams`;
@@ -37,6 +37,7 @@ function finishTopic(root, id, { depth }) {
   run('mini-projects', () => writeMiniProjects(root, id, quick ? 1 : 2));
   if (!quick) run('capstone', () => writeCapstone(root, id));
   run('notes', () => writeNotes(root, id, { cards: quick ? 5 : 8 }));
+  prepareFinalReview(root,id);
   run('finalize');
 }
 
@@ -346,7 +347,7 @@ describe('sources update', () => {
     init(root);
     p = paths(root, ID);
     addSources(root, ID, 3);
-    addSource(root, ID, sourceEntry('source-9', { evidence: { stars: 500, last_commit: '2026-10-01', citations: null, venue: null, publisher: null, used_by: ['A'] } }));
+    addSource(root, ID, sourceEntry('source-9', { evidence: { stars: 500, last_commit: '2026-10-01', citations: null, venue: null, publisher: 'Test publisher', used_by: ['A'] } }));
   });
   after(() => removeRoot(root));
 
@@ -360,7 +361,7 @@ describe('sources update', () => {
     const entries = JSON.parse(read(root, p.sources_json));
     assert.deepEqual(entries.map((e) => e.id), ['source-1', 'source-2', 'source-3', 'source-9']);
     assert.equal(entries[3].title, 'Renamed source');
-    assert.deepEqual(entries[3].evidence, { stars: null, last_commit: '2026-10-01', citations: 12, venue: null, publisher: null, used_by: ['A'] });
+    assert.deepEqual(entries[3].evidence, { stars: null, last_commit: '2026-10-01', citations: 12, venue: null, publisher: 'Test publisher', used_by: ['A'] });
     assert.equal(entries[3].url, 'https://example.com/source-9');
 
     assert.match(read(root, p.resources), /Renamed source/, '09-resources is regenerated');
@@ -373,7 +374,7 @@ describe('sources update', () => {
     const before = read(root, p.sources_json);
     const noProof = tutorJson(root, patch({ evidence: { publisher: null, used_by: null } }));
     assert.equal(noProof.code, 1);
-    assert.match(noProof.data.failures.map((f) => f.problem).join('|'), /evidence has no value at all/);
+    assert.match(noProof.data.failures.map((f) => f.problem).join('|'), /evidence\.used_by needs named production adoption/);
 
     const badTier = tutorJson(root, patch({ tier: 'C' }));
     assert.equal(badTier.code, 1);
@@ -452,8 +453,8 @@ describe('skipped stages are honest', () => {
   test('a stage of this depth that was skipped by hand names the reason and the reset command', () => {
     tutor(root, ['skip', QUICK, 'digest', '--reason', 'no source was worth a digest.']);
     const text = read(root, p.digests_index);
-    assert.ok(text.includes(`<!-- tutor:skipped -->\nThis step is not part of this topic: it was skipped (no source was worth a digest). To add it, run \`node harness/bin/tutor.mjs reset ${QUICK} digest\` and then ask Claude: \`/learn bloom-filter\`.`), text);
-    assert.match(read(root, p.start_here), /4\. Digests — not part of this topic: it was skipped \(no source was worth a digest\)/);
+    assert.ok(text.includes(`<!-- tutor:skipped -->\nThis required step remains undelivered: it was waived (no source was worth a digest). To add it, run \`node harness/bin/tutor.mjs reset ${QUICK} digest\` and then ask Claude: \`/learn bloom-filter\`.`), text);
+    assert.match(read(root, p.start_here), /4\. Digests — required work remains undelivered: it was waived \(no source was worth a digest\)/);
     tutor(root, ['reset', QUICK, 'digest']);
     assert.ok(read(root, p.digests_index).includes('<!-- tutor:placeholder -->\n_Not written yet. The digest stage'));
   });
@@ -575,7 +576,7 @@ describe('depth: change the depth of an existing topic', () => {
     assert.deepEqual(data.plan, [{ key: 'digest_targets', from: 1, to: 2 }, { key: 'repo_targets', from: 0, to: 1 }]);
     assert.deepEqual(data.files_created, [p.capstone]);
     assert.deepEqual(data.lesson_pages, { planned: 3, wanted: [5, 7], fits: false });
-    assert.deepEqual(data.runnable, ['repo-intel']);
+    assert.deepEqual(data.runnable, ['intake']);
 
     const topic = readTopic(root, QUICK);
     assert.equal(topic.depth, 'standard');
@@ -611,11 +612,11 @@ describe('depth: change the depth of an existing topic', () => {
     assert.match(stdout, /Depth of .*bloom-filter: quick -> standard\./);
     assert.match(stdout, /repo-intel: skipped -> pending/);
     assert.match(stdout, /The plan has 3 lesson pages; this depth needs 5–7\. Add pages to plan\.lesson_outline/);
-    assert.match(stdout, /Next: node harness\/bin\/tutor\.mjs next .*\(wave 2: repo-intel\)/);
+    assert.match(stdout, /Next: node harness\/bin\/tutor\.mjs next .*\(wave 0: intake\)/);
   });
 
   test('standard -> quick skips stages that have not started and keeps started ones', () => {
-    tutor(root, ['start', QUICK, 'repo-intel']);
+    tutor(root, ['start', QUICK, 'repo-intel','--force']);
     const { data } = tutorJson(root, ['depth', QUICK, 'quick']);
     assert.deepEqual(data.stages.map((c) => [c.stage, c.from, c.to]), [['capstone', 'pending', 'skipped']]);
     assert.deepEqual(data.kept.map((k) => [k.stage, k.status]), [['repo-intel', 'in_progress']]);
@@ -796,6 +797,8 @@ describe('slug rule, templates, brief inputs', () => {
     setPlan(root, id, planFor(5));
     tutor(root, ['start', id, 'intake']);
     assert.equal(tutor(root, ['done', id, 'intake']).code, 0);
+    addSources(root,id,5);
+    assert.equal(tutor(root,['done',id,'research']).code,0);
     const brief = tutorJson(root, ['next', id]).data.stages.find((s) => s.id === 'brief');
     assert.deepEqual(brief.inputs.map((i) => i.path), [
       `state/topics/${id}/topic.json`,

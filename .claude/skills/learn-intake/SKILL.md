@@ -12,6 +12,11 @@ here and follows it without re-deciding, so a vague plan produces vague lessons.
 `tutor` means `node harness/bin/tutor.mjs`, run from the repository root. `<topic>` is the full
 topic id `<domain>/<subdomain>/<slug>`.
 
+Explicit learner-named papers and repositories go in `plan.requested_sources` as
+`{name,url,use_for}` before delegation. Research must vet each URL or record
+`resolution: "rejected"` and a reason in that entry; never silently substitute it.
+Pass this list to every relevant research worker.
+
 ## When to use
 
 - The `learn` orchestrator found that the topic is not in `tutor list`.

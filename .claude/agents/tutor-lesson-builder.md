@@ -42,7 +42,7 @@ activity that makes the learner think before reading on.
 
 ## Context budget
 
-- Read at most 60,000 tokens in total. Size files first with
+- Use the capacity-aware allowance from `tutor budget --window <actual window> --reserve <overhead>` (assume32768 and reserve3000 when unknown). Size files first with
   `node harness/bin/tutor.mjs budget <files>`. Do not read other workers' pages or the cloned
   repositories in `.cache/`.
 - Write as you go: finish and save one page before starting the next.

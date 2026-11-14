@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { after, before, describe, test } from 'node:test';
 import {
-  addSources, DOMAIN, init, makeRoot, planFor, read, readTopic, removeRoot, setPlan, tutor, tutorJson,
+  prepareFinalReview, write, addSources, DOMAIN, init, makeRoot, planFor, read, readTopic, removeRoot, setPlan, tutor, tutorJson,
   writeBrief, writeCapstone, writeDigests, writeLessons, writeMiniProjects, writeNotes, writeRepoIntel,
 } from './support/helpers.mjs';
 
@@ -71,14 +71,13 @@ describe('next / start / done through all waves (standard depth)', () => {
     const result = done(root, 'intake');
     assert.equal(result.code, 0);
     assert.equal(result.data.status, 'done');
-    assert.deepEqual(result.data.runnable, ['research', 'brief']);
+    assert.deepEqual(result.data.runnable, ['research']);
     assert.match(read(root, `vault/${ID}/00-start-here-redis-streams.md`), /Redis Streams is an append-only log/);
   });
 
   test('wave 1: research and brief', () => {
-    assert.deepEqual(next(root).stages.map((s) => s.id), ['research', 'brief']);
+    assert.deepEqual(next(root).stages.map((s) => s.id), ['research']);
     start(root, 'research');
-    start(root, 'brief');
 
     assert.equal(done(root, 'research').code, 1);
     addSources(root, ID, 5);
@@ -100,6 +99,7 @@ describe('next / start / done through all waves (standard depth)', () => {
     tutor(root, ['unit', ID, 'digest', 'add', 'source-2']);
     tutor(root, ['unit', ID, 'digest', 'start', 'source-1']);
     tutor(root, ['unit', ID, 'digest', 'done', 'source-1']);
+    write(root,`state/topics/${ID}/handoffs/digest-source-2.md`,'# Remaining\nFinish digest.');
     const failed = tutorJson(root, ['unit', ID, 'digest', 'fail', 'source-2', '--handoff', `state/topics/${ID}/handoffs/digest-source-2.md`]);
     assert.deepEqual(failed.data.units, [
       { id: 'source-1', status: 'done', handoff: null },
@@ -108,6 +108,8 @@ describe('next / start / done through all waves (standard depth)', () => {
 
     assert.equal(done(root, 'digest').code, 1);
     writeDigests(root, ID, 2);
+    assert.equal(done(root,'digest').code,1,'failed unit blocks completion');
+    tutor(root,['unit',ID,'digest','done','source-2']);
     const digest = done(root, 'digest');
     assert.equal(digest.code, 0, JSON.stringify(digest.data.failures));
 
@@ -146,7 +148,7 @@ describe('next / start / done through all waves (standard depth)', () => {
   });
 
   test('wave 5: notes registers the recall cards, finalize validates everything', () => {
-    assert.deepEqual(next(root).stages.map((s) => s.id), ['notes', 'finalize']);
+    assert.deepEqual(next(root).stages.map((s) => s.id), ['notes']);
     start(root, 'notes');
     writeNotes(root, ID, { cards: 7 });
     const tooFew = done(root, 'notes');
@@ -159,6 +161,7 @@ describe('next / start / done through all waves (standard depth)', () => {
     assert.equal(notes.data.recall.total, 8);
     assert.equal(Object.keys(readTopic(root, ID).recall.cards).length, 8);
 
+    prepareFinalReview(root,ID);
     start(root, 'finalize');
     const all = tutorJson(root, ['validate', ID, '--all']);
     assert.equal(all.code, 0, JSON.stringify(all.data.failures));
@@ -212,19 +215,20 @@ describe('stage outcomes', () => {
     assert.equal(skipped.data.note, 'no sources passed the gate');
 
     assert.equal(tutor(root, ['fail', ID, 'brief']).code, 2);
+    write(root,`state/topics/${ID}/handoffs/digest-source-2.md`,'# Remaining\nFinish digest.');
     const failed = tutorJson(root, ['fail', ID, 'brief', '--reason', 'gate kept failing']);
     assert.equal(failed.data.status, 'failed');
-    assert.deepEqual(next(root).stages.map((s) => [s.id, s.status]), [['brief', 'failed']]);
+    assert.deepEqual(next(root).stages.map((s) => [s.id, s.status]), [['intake','done']]); // required research waiver blocks its dependent brief
 
     const reset = tutorJson(root, ['reset', ID, 'brief']);
     assert.equal(reset.data.status, 'pending');
     assert.equal(reset.data.previous, 'failed');
   });
 
-  test('a skipped stage passes validation without being checked', () => {
+  test('a required skipped stage fails validation', () => {
     const { code, data } = tutorJson(root, ['validate', ID, 'research']);
-    assert.equal(code, 0);
-    assert.equal(data.stages[0].skipped, true);
+    assert.equal(code, 1);
+    assert.equal(data.stages[0].skipped, false);
   });
 
   test('the topic log keeps only the last 200 entries', () => {
@@ -280,9 +284,10 @@ describe('quick depth flow', () => {
     writeMiniProjects(root, QUICK, 1);
     assert.equal(run('mini-projects').code, 0);
 
-    assert.deepEqual(tutorJson(root, ['next', QUICK]).data.stages.map((s) => s.id), ['notes', 'finalize']);
+    assert.deepEqual(tutorJson(root, ['next', QUICK]).data.stages.map((s) => s.id), ['notes']);
     writeNotes(root, QUICK, { cards: 5 });
     assert.equal(run('notes').code, 0);
+    prepareFinalReview(root,QUICK);
     const finalize = run('finalize');
     assert.equal(finalize.code, 0, JSON.stringify(finalize.data.failures));
     assert.deepEqual(tutorJson(root, ['status', QUICK]).data.progress, { finished: 8, total: 8 });

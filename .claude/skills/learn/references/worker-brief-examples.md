@@ -46,7 +46,7 @@ SELF-CHECK: `node harness/bin/tutor.mjs sources backend-engineering/messaging/re
 rejects a bad entry and names the field; fix it and add again. Do not run `tutor validate`:
 the stage totals are checked by the stage runner, not by you.
 
-BUDGET: Read at most 60,000 tokens. Before reading files, size them with
+BUDGET: Use the capacity-aware input allowance, including instructions and reserve. Before reading files, size them with
 `node harness/bin/tutor.mjs budget <files>`. After each file or section you read, write what you
 learned into the output file. Never keep findings only in memory.
 
@@ -288,7 +288,7 @@ OUTPUT FILES: none. Do not create, edit, or delete any file.
 
 TASK: Review source quality, claims without evidence (including any citation of a page that is not in sources.json), the lesson page rules, and broken links. For each project, run its solution tests as its README says and report the real result. Follow the review order in your instructions.
 
-BUDGET: Read at most 60,000 tokens. Size the list with `node harness/bin/tutor.mjs budget <files>`
+BUDGET: Use the capacity-aware input allowance, including instructions and reserve. Size the list with `node harness/bin/tutor.mjs budget <files>`
 first. If it is over, read the sources, the lesson pages, and the brief in full and sample the rest.
 
 RETURN FORMAT (300 words at most, no other text):

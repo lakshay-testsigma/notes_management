@@ -244,10 +244,11 @@ export function insightCommand({ root, args, flags }) {
 
 // --- recall -----------------------------------------------------------------
 
-export function recallCommand({ root, args }) {
+export function recallCommand({ root, args, flags }) {
   const usage = 'recall due [<topic>]   |   recall grade <topic> <card-id> <again|hard|good|easy>   |   recall sync <topic>';
   const action = requireArg(args[0], 'the action (due|grade|sync)', usage);
 
+  if(action==='import')return recallImport(root,requireArg(args[1],'<topic>',usage),requireArg(stringFlag(flags,'file'),'--file',usage));
   if (action === 'due') return recallDue(root, args[1]);
   if (action === 'sync') return recallSync(root, requireArg(args[1], '<topic>', usage));
   if (action === 'grade') {
@@ -325,4 +326,28 @@ function recallGrade(root, reference, cardId, grade) {
     data: { topic: topic.id, ...result, intervals: INTERVALS },
     text: `Card ${cardId}: ${grade}. Box ${result.from} -> ${result.to}. Next review on ${result.due} (in ${result.interval_days} ${result.interval_days === 1 ? 'day' : 'days'}).`,
   };
+}
+
+function recallImport(root,reference,file) {
+  const topic=resolveTopic(root,reference),batch=readJsonInput(file,'--file');
+  if(batch.schema!==1||batch.topic!==topic.id||!Array.isArray(batch.events))throw new UsageError('Recall export must contain schema:1, this topic and an events array.');
+  const imported={...(topic.recall?.imported_events??{})},events=[],seen=new Map();
+  for(const e of batch.events) {
+    if(!e||typeof e.id!=='string'||!e.id.trim()||!topic.recall?.cards?.[e.card_id]||!GRADES.includes(e.grade)||typeof e.at!=='string'||Number.isNaN(Date.parse(e.at))||Date.parse(e.at)>Date.now())throw new UsageError('Invalid event ID, card, grade or timestamp. The whole batch was left unchanged.');
+    const body=JSON.stringify([e.card_id,e.grade,e.at]);
+    if((imported[e.id]&&imported[e.id]!==body)||(seen.has(e.id)&&seen.get(e.id)!==body))throw new UsageError('An event ID was reused with different content.');
+    if(!imported[e.id]&&!seen.has(e.id))events.push(e);
+    seen.set(e.id,body);
+  }
+  events.sort((a,b)=>a.at.localeCompare(b.at)||a.id.localeCompare(b.id));
+  for(const e of events) {
+    const card=topic.recall.cards[e.card_id];
+    if(card.last_reviewed&&e.at.slice(0,10)<card.last_reviewed)throw new UsageError('An event predates the current card history; reconcile it before importing. No changes were saved.');
+    gradeCard(topic,e.card_id,e.grade,e.at.slice(0,10));
+    card.history.at(-1).event_id=e.id;
+    imported[e.id]=seen.get(e.id);
+  }
+  topic.recall.imported_events=imported;
+  appendLog(topic,'recall-import',`${events.length} new events, ${batch.events.length-events.length} duplicates`);saveTopic(root,topic);
+  return {data:{topic:topic.id,imported:events.length,duplicates:batch.events.length-events.length},text:`Imported ${events.length} recall events; ignored ${batch.events.length-events.length} duplicates.`};
 }

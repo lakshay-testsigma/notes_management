@@ -21,8 +21,8 @@ export function parseWikilink(inner: string): { name: string; heading: string | 
 	const hash = target.search(/[#^]/);
 	const file = (hash === -1 ? target : target.slice(0, hash)).trim();
 	const heading = hash === -1 ? null : target.slice(hash + 1).trim() || null;
-	const name = (file.split('/').pop() ?? file).replace(/\.md$/i, '');
-	const shown = alias || name || heading || target;
+	const name = file.replace(/^vault\//, '').replace(/\.md$/i, '');
+	const shown = alias || name.split('/').pop() || heading || target;
 	return { name, heading, shown };
 }
 

@@ -14,6 +14,8 @@ export function intakeGate(ctx) {
   const failures = [];
   const fail = (problem, fix = setPlan) => failures.push(failure(where, problem, fix));
 
+  if(plan.requested_sources!==undefined && (!Array.isArray(plan.requested_sources)||plan.requested_sources.some(s=>!s||!isText(s.name)||!isText(s.url)||!Array.isArray(s.use_for)||!s.use_for.length)))fail('plan.requested_sources needs name, url and use_for for every explicit learner request');
+
   if (!isText(plan.summary)) fail('plan.summary is empty', `write one sentence that says what the topic is; ${setPlan}`);
 
   if (!Array.isArray(plan.prerequisites)) {

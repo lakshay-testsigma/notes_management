@@ -81,7 +81,7 @@ export function repoIntelGate(ctx) {
       }
     }
 
-    if (index.note && !linked.has(overview.slice(0, -3))) {
+    if (index.note && ![...linked].some(t=>t.replace(/\.md$/,'')===overview.slice(0,-3)||t.replace(/\.md$/,'').endsWith('/'+repo+'/'+overview.slice(0,-3)))) {
       failures.push(failure(paths.repo_intel_index, `does not link to ${overview}`, `add \`[[${overview.slice(0, -3)}|${repo}]]\` to the list of repositories`));
     }
   }

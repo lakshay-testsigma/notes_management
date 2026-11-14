@@ -30,8 +30,9 @@ Every command below is run from the repository root. `tutor` in prose always mea
 4. **Keep your own context small.** You read `tutor` output and worker summaries. You never read
    a cloned repository, a paper, or a long web page yourself; a worker does that and returns 150
    words. A full context is the main reason a long pipeline goes wrong, so protect it.
-5. **Resume by default.** If the topic already exists, continue it. Never start it again.
-6. **Report honestly.** If a stage failed, say so in the final message with the command to
+5. **Preserve learner content.** On regeneration, write stage-note drafts through `tutor write-note <topic> <note> --file <draft>`. Never overwrite `my-insights-*` or existing insight tails. Use `tutor rerun` to reopen an entire workflow without deleting its files.
+6. **Resume by default.** If the topic already exists, continue it. Never start it again.
+7. **Report honestly.** If a stage failed, say so in the final message with the command to
    rerun it. A package that looks complete but is not wastes the learner's time.
 
 ## Step 1 — Understand the request
@@ -78,7 +79,7 @@ Repeat until `tutor next` returns no stages:
 3. For each stage, run `node harness/bin/tutor.mjs start <topic> <stage>`, then run the stage as
    described in "How each stage runs". Stages in the same wave that have no order note run in
    parallel: put their worker units into one shared queue.
-4. Gate each stage with `node harness/bin/tutor.mjs done <topic> <stage>`. See "Gates and
+4. Before gating research or projects, run `tutor check <topic> research|mini-projects|capstone`. Import digest/repo child order with `tutor order <topic> import-indexes`. Gate each stage with `node harness/bin/tutor.mjs done <topic> <stage>`. See "Gates and
    failures" when it does not pass.
 5. When every stage of the wave is `done`, `skipped`, or handled as failed, go back to 1.
 
@@ -100,8 +101,7 @@ the table in `references/troubleshooting.md`.
 | 5 | `notes` | `learn-notes` | Run first. |
 | 5 | `finalize` | `learn` (this file) | Run after `notes`, because it validates the recall cards. |
 
-A stage that `tutor next` does not list does not exist for this topic (the domain pack or the
-depth removed it). Never add it back.
+A stage absent from `tutor next` may be blocked by a prerequisite. Inspect `status`; only depth/domain omissions are outside the topic.
 
 ## How each stage runs
 
@@ -151,7 +151,7 @@ return's FINDINGS, so wait for the return itself.
 
 ## The worker brief (fill this in, change nothing else)
 
-A worker starts with an empty context. This brief is everything it knows, so every field must
+A worker starts with an empty context. For topic metadata, pass the scoped output of `tutor plan <topic> --json` and `tutor paths <topic> --json`, plus only the assigned source entries; do not pass full topic.json with receipt/history snapshots. These metadata projections replace raw topic.json reads in stage input lists. Budget the filled brief and instructions together with assigned content. This brief is everything it knows, so every field must
 be filled with a real value. Copy the template, replace each `<...>`, and send it as the
 `prompt`. Filled examples for each agent are in `references/worker-brief-examples.md`; a
 research unit and the verifier have their own `SELF-CHECK` and return lines there.
@@ -181,9 +181,12 @@ SELF-CHECK: run `node harness/bin/tutor.mjs validate <topic> <stage> --files <yo
 files, separated by commas>` and fix what it reports. It checks only the files you list.
 A failure about a file you do not own is not your job: do not fix it, name it under PROBLEMS.
 
-BUDGET: Read at most 60,000 tokens. Before reading files, size them with
-`node harness/bin/tutor.mjs budget <files>`. After each file or section you read, write what you
-learned into the output file. Never keep findings only in memory.
+BUDGET: Keep the entire worker below 40% of its model window. Before dispatch, run
+`tutor budget <instructions + input files> --window <actual window> --reserve <output/tool overhead>`.
+If the host cannot report its window, assume 32768 and reserve at least 3000 tokens.
+Use `tutor slice` with the same flags, and `tutor read` for the returned character ranges.
+Input estimates use characters/4 and are not an actual context meter. Leave extra room for
+URLs, tool results and the return. Persist findings as you read; hand off before the reserve.
 
 IF THE UNIT IS TOO BIG: write <state path>/handoffs/<stage>-<unit>.md with the headings
 Done / Remaining / Next step, run
@@ -238,9 +241,9 @@ Each failure is printed as `path: problem. fix.`
 | `brief`, `digest`, `repo-intel`, `lesson`, `mini-projects`, `capstone` | Continue with the next wave. Later stages work without it; they just lose that input. |
 | `notes` | Continue to `finalize`, which will report the missing notes. |
 
-If `tutor next` refuses to move on because of the failed stage, close the wave with
-`node harness/bin/tutor.mjs skip <topic> <stage> --reason "FAILED: <reason>. Rerun: tutor reset <topic> <stage>, then /learn <slug>"`.
-The reason text keeps the record honest. Remember every failed stage for the final message.
+For a non-foundational failure, use `tutor fail <topic> <stage> --continue --reason "..."`
+to continue generating useful downstream artifacts. The failure stays required and the run
+is degraded. Never convert a failed requirement into a skip. `notes` must pass before finalize.
 
 ## Finalize (stage `finalize`)
 
@@ -250,10 +253,9 @@ Run these in order. Each command must finish before the next one starts.
 node harness/bin/tutor.mjs start <topic> finalize
 node harness/bin/tutor.mjs map <topic>
 node harness/bin/tutor.mjs recall sync <topic>
-node harness/bin/tutor.mjs validate <topic> --all
+node harness/bin/tutor.mjs validate <topic> --all --structure-only
 [ -d site/node_modules ] || npm --prefix site install
-npm --prefix site run build
-npm --prefix site run smoke
+node harness/bin/tutor.mjs check <topic> finalize
 ```
 
 `tutor map` also fills `## Where it shows up` in every shared `_concepts` and `_tech` note
@@ -271,7 +273,7 @@ input list) are in the `finalize` section of `references/stage-runbook.md`; read
 3. Spawn the reviewer: one `tutor-verifier` at depth `quick`; at `standard` and `deep` a
    second one in the same batch, scoped to the projects. It edits nothing.
 4. Fix what the verifier reports, then rerun `validate <topic> --all`, the build, and `smoke`
-   once. Do not spawn a verifier again after the fixes; one independent review is the budget.
+   once. A changed artifact invalidates review evidence: obtain a fresh focused review of the fixes. Record both scopes with `tutor review <topic> --file <review.json>`. Required checks are defined in `harness/lib/quality.mjs`. A passing review has no unresolved errors or required checks left unreviewed.
 5. Run `node harness/bin/tutor.mjs done <topic> finalize`. If it cannot pass only because of
    stages recorded as failed, run
    `node harness/bin/tutor.mjs fail <topic> finalize --reason "blocked by failed stages: <list>"`
@@ -279,12 +281,10 @@ input list) are in the `finalize` section of `references/stage-runbook.md`; read
 
 ## When to stop before the end
 
-Your own context also has a budget. Finish the current wave, then stop and hand over, when any
-of these is true: you have received 15 or more worker returns in this session; the
-conversation has been compacted or summarized; or you can no longer list the remaining units
-without rerunning `tutor status`. Tell the learner, in one or two sentences, which wave is
-done and the exact message to send in a new session: `/learn <slug>`. Stopping is safe because
-the state is on disk.
+Persist a compact handoff after each wave. After compaction, reload this skill and `tutor next`
+and continue automatically. Do not require a second learner request after 15 returns. If the
+host supports fresh workers/continuations, use its native facility. If it cannot continue,
+report the concrete host limitation and saved resume command; never claim a context guarantee.
 
 ## The final message to the learner
 

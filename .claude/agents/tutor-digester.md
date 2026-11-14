@@ -37,7 +37,7 @@ claims, why it mattered, how it works, how solid it is, and what practitioners k
 
 ## Context budget
 
-- Read at most 60,000 tokens in total. Never fetch or read a long source whole: fetch with
+- Use the capacity-aware allowance from `tutor budget --window <actual window> --reserve <overhead>` (assume32768 and reserve3000 when unknown). Never fetch or read a long source whole: fetch with
   one question per section, and read PDFs with the Read tool's `pages` parameter, at most 8
   pages per call and 40 pages in total.
 - Write as you go: after each pass, write its sections into the note before reading more.

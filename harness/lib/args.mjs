@@ -1,7 +1,7 @@
 import { UsageError } from './errors.mjs';
 
 // Flags that never take a value. Every other `--flag` consumes the next argument.
-const BOOLEAN_FLAGS = new Set(['json', 'all', 'force', 'tech', 'pack', 'fix', 'help']);
+const BOOLEAN_FLAGS = new Set(['json', 'all', 'force', 'tech', 'pack', 'fix', 'help', 'continue', 'structure-only']);
 
 /**
  * Parse argv into positionals and flags.
@@ -52,7 +52,7 @@ export function parseArgs(argv) {
 
 /** Throw a usage error when a flag is not in the allowed list of a command. */
 export function checkFlags(flags, allowed, commandName) {
-  const known = new Set([...allowed, 'json', 'help']);
+  const known = new Set([...allowed, 'json', 'help', 'continue', 'structure-only']);
   for (const name of Object.keys(flags)) {
     if (!known.has(name)) {
       const list = allowed.length ? allowed.map((f) => `--${f}`).join(', ') : 'none';

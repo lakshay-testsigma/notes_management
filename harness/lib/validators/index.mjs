@@ -1,6 +1,9 @@
 // Runs the §13 gates. One gate per stage; `finalize` is all of them plus a
 // check of every note in the topic's vault folder.
 
+import { isOmitted } from '../stages.mjs';
+import { qualityProblems } from '../quality.mjs';
+import { readingProblems, READER_STAGES } from '../reading-order.mjs';
 import path from 'node:path';
 import { exists, relPath, toPosix, walkFiles } from '../io.mjs';
 import { createContext, failure } from './context.mjs';
@@ -52,7 +55,7 @@ function dedupe(failures) {
 
 /** Stage ids whose gates apply to this topic (skipped stages are left out). */
 function activeStageIds(topic) {
-  return topic.stages.filter((s) => s.status !== 'skipped' && s.id !== 'finalize').map((s) => s.id);
+  return topic.stages.filter((s) => !isOmitted(s) && s.id !== 'finalize').map((s) => s.id);
 }
 
 /**
@@ -83,7 +86,7 @@ function isListed(files, candidate) {
 export function validateStage(root, topic, stageId, ctx = createContext(root, topic), options = {}) {
   const files = options.files?.length ? normalizeFileList(root, options.files) : null;
   const stage = topic.stages.find((s) => s.id === stageId);
-  if (stage?.status === 'skipped') {
+  if (stage && isOmitted(stage)) {
     return { stage: stageId, ok: true, skipped: true, failures: [], warnings: [], ...(files ? { files } : {}) };
   }
 
@@ -95,6 +98,12 @@ export function validateStage(root, topic, stageId, ctx = createContext(root, to
     ];
   } else {
     found = GATES[stageId](ctx);
+  }
+
+  if (!files) {
+    const ids = stageId === 'finalize' ? Object.keys(READER_STAGES) : [stageId];
+    for (const id of ids) if (READER_STAGES[id]) found.push(...readingProblems(root,topic,id).map(p=>failure(topic.paths.state+'/topic.json',p,'repair the authored index and import its sequence')));
+    if (!options.structuralOnly) found.push(...qualityProblems(root,topic,stageId).map(p=>failure(topic.paths.state+'/topic.json',p,'repair and rerun the indicated checkpoint')));
   }
 
   if (files) {
@@ -116,14 +125,14 @@ export function validateStage(root, topic, stageId, ctx = createContext(root, to
  * Validate every stage of the topic, reported stage by stage. The `finalize`
  * entry holds only the topic-wide checks, so no failure is listed twice.
  */
-export function validateAll(root, topic) {
+export function validateAll(root, topic, options = {}) {
   const ctx = createContext(root, topic);
   const results = topic.stages
     .filter((stage) => stage.id !== 'finalize')
-    .map((stage) => validateStage(root, topic, stage.id, ctx));
+    .map((stage) => validateStage(root, topic, stage.id, ctx, options));
 
   const reported = new Set(results.flatMap((r) => r.failures.map((f) => `${f.path}\u0000${f.problem}`)));
-  const wide = dedupe(topicWideChecks(ctx)).filter((f) => !reported.has(`${f.path}\u0000${f.problem}`));
+  const wide = dedupe(validateStage(root, topic, 'finalize', ctx, options).failures).filter((f) => !reported.has(`${f.path}\u0000${f.problem}`));
   results.push({ stage: 'finalize', ok: wide.length === 0, skipped: false, failures: wide, warnings: [] });
   return results;
 }

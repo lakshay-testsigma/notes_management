@@ -148,3 +148,9 @@ node harness/bin/tutor.mjs doctor                # is the harness healthy
 Step-by-step usage, deeper research, other agents: [USAGE.md](USAGE.md).
 All commands: [harness/README.md](harness/README.md).
 Full design: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
+
+For a retained-artifact verification run, use `node harness/bin/tutor.mjs rerun <topic>`.
+Run `check` for research/projects/finalize, import authored child order with `order`, record
+independent reviews with `review`, then `done`. Plain `validate --all` checks readiness;
+`--structure-only` is an authoring diagnostic. Browser recall history can be exported and
+imported once with `tutor recall import <topic> --file recall-events.json`.

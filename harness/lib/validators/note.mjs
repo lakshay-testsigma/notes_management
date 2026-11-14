@@ -82,7 +82,7 @@ function frontmatterFailures(ctx, relative, has, data, expectedStage) {
   if (data.sources != null) {
     if (!Array.isArray(data.sources)) {
       failures.push(failure(relative, 'frontmatter `sources` is not a list', 'write it as `sources: [id-one, id-two]` using ids from sources.json'));
-    } else if (isTopicNote && ctx.sourceIds.size > 0) {
+    } else if (isTopicNote) {
       for (const id of data.sources) {
         if (!ctx.sourceIds.has(String(id))) {
           failures.push(failure(relative, `frontmatter \`sources\` names "${id}", which is not in sources.json`, `use an id listed by \`${CLI} sources ${ctx.topic.id} list\``));

@@ -10,7 +10,7 @@ npm --prefix site install            # the lesson site's packages
 node harness/bin/tutor.mjs doctor    # must end with 0 failures
 ```
 
-You need Node 20 or newer, and an agent that can run shell commands, write
+You need Node22.23.4 or newer, and an agent that can run shell commands, write
 files, and search the web. The research step checks every source on a live
 page, so it cannot pass without web access.
 
@@ -142,3 +142,9 @@ node harness/bin/tutor.mjs reset redis-streams lesson   # run one stage again
 ```
 
 All commands: [harness/README.md](harness/README.md).
+
+For a retained-artifact verification run, use `node harness/bin/tutor.mjs rerun <topic>`.
+Run `check` for research/projects/finalize, import authored child order with `order`, record
+independent reviews with `review`, then `done`. Plain `validate --all` checks readiness;
+`--structure-only` is an authoring diagnostic. Browser recall history can be exported and
+imported once with `tutor recall import <topic> --file recall-events.json`.

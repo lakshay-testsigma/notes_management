@@ -20,13 +20,19 @@ import { FINAL_NOTES_WORDS } from '../validators/notes.mjs';
 import { requireArg } from './shared.mjs';
 
 function budgetFlag(flags) {
-  const raw = stringFlag(flags, 'budget');
-  if (raw === undefined) return DEFAULT_BUDGET;
-  const budget = Number(raw);
-  if (!Number.isInteger(budget) || budget < 1000) {
-    throw new UsageError(`--budget must be a whole number of tokens (at least 1000), got "${raw}".`);
-  }
-  return budget;
+  const window=Number(stringFlag(flags,'window')??32768),reserve=Number(stringFlag(flags,'reserve')??3000);
+  const cap=Math.floor(window*0.4)-reserve;
+  const requested=Number(stringFlag(flags,'budget')??Math.min(60000,cap));
+  if(!Number.isInteger(window)||!Number.isInteger(reserve)||reserve<0||!Number.isInteger(requested)||requested<1000||cap<1000)throw new UsageError('Budget/window must allow at least 1000 input tokens after overhead and reserve.');
+  return Math.min(requested,cap);
+}
+export function readCommand({args,flags}) {
+  const file=path.resolve(requireArg(args[0],'<file>','read <file> --start <char> --end <char>'));
+  const text=readText(file),start=Number(stringFlag(flags,'start')),end=Number(stringFlag(flags,'end'));
+  if(!Number.isInteger(start)||!Number.isInteger(end)||start<0||end<=start||end>text.length)throw new UsageError('Use valid zero-based [start,end) character offsets from a slice range.');
+  const excerpt=text.slice(start,end),tokens=estimateTokens(excerpt),budget=budgetFlag(flags);
+  if(tokens>budget)throw new UsageError('Excerpt exceeds the input allowance; request a smaller range.');
+  return {data:{file,start_char:start,end_char:end,tokens,text:excerpt},text:excerpt};
 }
 
 // --- slice ------------------------------------------------------------------
@@ -168,8 +174,9 @@ export function doctorCommand({ root, flags }) {
   const add = (check, status, detail, fix = null) => checks.push({ check, status, detail, ...(fix ? { fix } : {}) });
 
   // Node
-  const major = Number(process.versions.node.split('.')[0]);
-  add('node', major >= 20 ? 'ok' : 'fail', `Node ${process.versions.node}`, major >= 20 ? null : 'install Node 20 or newer');
+  const [major,minor,patch]=process.versions.node.split('.').map(Number);
+  const supported=major>22||(major===22&&(minor>23||(minor===23&&patch>=4)));
+  add('node',supported?'ok':'fail',`Node ${process.versions.node}; complete workflow needs >=22.23.4`,supported?null:'install Node >=22.23.4 as required by site/package.json');
 
   // Domain packs and playbooks
   const packIds = listPackIds(root);

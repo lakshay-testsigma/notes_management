@@ -53,7 +53,7 @@ fetched pages stay in `.cache/`.
 ## Context budget
 
 No agent may fill more than 40% of its context window. In practice, one unit of work reads
-at most 60,000 tokens (size files with `tutor budget`, cut repositories with `tutor slice`),
+at most `min(60000, floor(0.4 * model_window) - reserve)` input tokens (default window32768, reserve3000; size instructions and inputs with `tutor budget`, cut files with `tutor slice` and read only returned ranges),
 writes its findings to disk as it goes, and, when the unit is too big, hands off with a file
 in `handoffs/` and the reply `CONTINUE: <path>`. Only the session running `learn` spawns
 subagents: at most 5 at the same time (fewer at lower depth; the one table is "How many
@@ -86,3 +86,5 @@ a repository cite `path/to/file:line @ <short-sha>`.
 Every generated vault note ends with the heading `## My insights`. Never write below it and
 never overwrite `my-insights-<slug>.md`; that space belongs to the learner. When you
 regenerate a note, keep everything from `## My insights` down exactly as it is.
+
+For worker metadata, use `tutor plan <topic> --json` and `tutor paths <topic> --json` plus assigned sources. Do not load receipt/history/protected-content snapshots from full topic.json into workers. Apply this projection to stage input lists as well.
