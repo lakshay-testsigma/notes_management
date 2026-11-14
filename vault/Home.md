@@ -11,17 +11,9 @@ created: 2026-11-14
 Everything you have learned, by domain. Open a topic and follow its "start here" note from top to bottom.
 
 <!-- tutor:generated:start -->
-## Domains
+_No topics yet._
 
-- [[ai-engineering|AI Engineering]] — 1 topic
-
-## All topics
-
-- [[00-start-here-retrieval-augmented-generation|Retrieval-Augmented Generation (RAG)]] — quick · 8/8 steps ready
-
-## Review
-
-Ask Claude "what's due?" or run `node harness/bin/tutor.mjs recall due` to see the recall cards that are due today.
+Ask Claude: "teach me <topic>". The tutor creates the notes, the lesson site pages, and the projects, and lists the topic here.
 <!-- tutor:generated:end -->
 
 ## My insights

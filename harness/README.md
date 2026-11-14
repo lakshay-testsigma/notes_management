@@ -603,3 +603,27 @@ npm test
 The suites run the real CLI in a temporary `TUTOR_ROOT` with the fixture packs in
 `harness/tests/fixtures/domains/`. `harness/tests/support/helpers.mjs` has
 builders that write a valid artifact for every stage.
+
+
+`review <topic> --json` prints the current input fingerprint and required checks;
+`review <topic> --file <json>` imports the review. Curriculum plans require fresh
+reviewer run ids, independent:true, the matching input_fingerprint and evidence-based
+assessments for every check. See [research workflow](../docs/RESEARCH-WORKFLOW.md)
+for the optional curriculum schema, discovery and six-aspect coverage gates, adaptive
+visual metadata, and the model-neutral host protocol. `paths` also exposes curriculum_dir
+for supplementary concept notes; `write-note` preserves their learner insight tails.
+
+
+## Removing a topic on explicit request
+
+```bash
+node harness/bin/tutor.mjs remove <topic>              # preview, no mutation
+node harness/bin/tutor.mjs remove <topic> --delete     # delete the package
+```
+
+Multiple topic ids may be supplied together. Deletion includes topic state,
+generated notes, learner insights and recall history, lesson pages, projects and
+unshared topic components. All targets are validated before mutation; symlinked
+roots are refused. Registry and generated maps are refreshed. Shared concept/tech
+notes, research caches and external review files remain for separately authorized
+cleanup. This is never part of normal generation or resume.

@@ -1,6 +1,6 @@
 ---
 name: learn-intake
-description: Runs the intake stage of the tutor pipeline - classifies a new topic into a domain and subdomain, picks the depth (quick, standard, deep), creates the topic with `tutor init`, maps prerequisites against what the learner already studied, and writes the full learning plan (outcomes, lesson outline with a visual and an activity per page, mini projects, digest and repository targets, capstone). Use this skill whenever a topic does not exist yet and the learn orchestrator needs it created, whenever stage `intake` must run or be redone, and whenever the learner asks to re-plan or change the depth of a topic.
+description: Runs the intake stage of the tutor pipeline - classifies a new topic into a domain and subdomain, picks the depth (quick, standard, deep), creates the topic with `tutor init`, maps prerequisites against what the learner already studied, and writes the full learning plan (outcomes, lesson outline with adaptive visuals and an activity per page, mini projects, digest and repository targets, capstone). Use this skill whenever a topic does not exist yet and the learn orchestrator needs it created, whenever stage `intake` must run or be redone, and whenever the learner asks to re-plan or change the depth of a topic.
 argument-hint: "\"<Topic title>\" [--depth quick|standard|deep]"
 ---
 
@@ -25,11 +25,23 @@ Pass this list to every relevant research worker.
 Intake is always run inline by the orchestrator session, never by a worker. It is the one
 stage that starts itself, because the topic does not exist until `tutor init` has run.
 
+### Capacity-aware input allowance
+
+The input allowance is `min(60000, floor(0.4 * actual_window) - reserve)`, including
+instructions, role/skill text and assigned excerpts. Ask `tutor budget --window
+<actual_window> --reserve <overhead> <files>` before reading. Unknown window defaults
+to 32768 and reserve3000. Any 60,000-token figure below is a ceiling only; the CLI's
+smaller allowance wins. Split oversized units and persist handoffs before dispatch.
+Learner experience comes from plan.learner; this learner is an existing software
+developer learning a new subject. Keep clear prerequisite bridges, avoid redundant
+basic programming lessons, and teach practical mechanisms and failure modes.
+
 ## Inputs
 
 Read only these. Nothing here needs a web search unless you do not know what the topic is.
 
-1. The learner's request: the topic title, and the depth if they gave one.
+1. The learner's request: the topic title, depth, experience and explicit requirements.
+   Also read `docs/RESEARCH-WORKFLOW.md` for the curriculum and adaptive plan contract.
 2. `node harness/bin/tutor.mjs domains --json` — the domain packs and their subdomains.
 3. `node harness/bin/tutor.mjs list --json` — the topics that already exist, with progress.
 4. `ls vault/_concepts` — the names of the shared concept notes (names only; do not open them).
@@ -103,7 +115,9 @@ Read only these. Nothing here needs a web search unless you do not know what the
    `repo-intel` and `capstone` exist for this topic; the domain pack or the depth may have
    removed them.
 
-6. **Map the prerequisites.** List the 2–5 concepts a beginner must already understand to
+6. **Map the prerequisites.** Record `learner` with stated experience, known concepts,
+   and goals. This learner is a software developer; do not assume domain mastery.
+   List the 2–5 concepts the learner must already understand to
    follow this topic. For each one:
    - Set `known: true` only on evidence: `tutor list` shows a finished topic that teaches it,
      or the learner said they know it. A note in `vault/_concepts` alone is not evidence,
@@ -128,7 +142,8 @@ Read only these. Nothing here needs a web search unless you do not know what the
    | `summary` | One sentence: what the topic is and what it is for. No jargon that is not in the prerequisites. |
    | `outcomes` | 3–6 items, each at most 15 words. Each starts with a verb and can be checked. Include at least one of each kind: explain ("Explain why…"), build ("Build a…"), decide ("Decide when to use… instead of…"). Every outcome must be taught by at least one page of `lesson_outline` or one mini project; do not promise a comparison ("…instead of fine-tuning") that no page explains. |
    | `lesson_outline` | `quick` 3–4 pages, `standard` 5–7, `deep` 8–12. One idea per page. Page 1 answers "what is it and why does it exist". The last page shows it in real production use. `order` counts from 1 without gaps; `slug` is kebab-case and unique. |
-   | `visual` / `activity` | One of each per page, chosen from the playbook's "Lesson recipes"; fall back to the chooser in the reference file. Across the topic, use `FlowAnimation` at least once, use `Graph3D` or `VectorSpace3D` at least once when the topic has graph or spatial structure, and do not use the same activity on every page. |
+   | `visual` / `activity` | New plans set `visual_policy: "adaptive"`. Each page records complexity, importance, spatial, visual_reason, and interaction_goal for a visual. Basic noncritical pages may use visual:null; intermediate/critical pages need focused visuals; advanced spatial pages need manipulable 3D, advanced nonspatial pages a justified simulation. Every page retains an activity. See `docs/RESEARCH-WORKFLOW.md`. |
+   | `curriculum` | A provisional bounded concept tree, schema 1, scope, max_depth/max_concepts, concepts and discovery. Each concept records id/title/parent, complexity/importance and disposition. Initially source_ids/coverage/discovery may be empty. Use quick 2/12, standard 3/30, deep 4/60 as starting depth/count limits, not quotas. Research expands and verifies it. |
    | `mini_projects` | `quick` 1, `standard` 2, `deep` 3. Each `use_case` names who needs it and for what ("A shop's order service hands slow email sending to a background worker"). Each one exercises at least one outcome and fits 1–3 hours. |
    | `digest_targets` | `quick` 1–2, `standard` 2–3, `deep` 4–6. Choose the low end unless you can name that many defining sources. |
    | `repo_targets` | `quick` 0, `standard` 1, `deep` 2–3. Use 0 when the topic has no `repo-intel` stage. |
@@ -148,7 +163,9 @@ Read only these. Nothing here needs a web search unless you do not know what the
 
 ## Output contract
 
-- `plan` inside `topic.json`, stored only through `tutor plan --set`. Exactly these keys:
+- `plan` inside `topic.json`, stored only through `tutor plan --set`. Base fields below
+  plus `learner`, `visual_policy: "adaptive"`, and `curriculum` from
+  `docs/RESEARCH-WORKFLOW.md`. Add adaptive fields to every outline entry:
 
   ```json
   {
@@ -168,7 +185,10 @@ Read only these. Nothing here needs a web search unless you do not know what the
 - `00-start-here-<slug>.md` in the vault, generated by `tutor map`. Do not write it by hand.
 - One `tutor log` entry with the domain, the depth, and your assumptions.
 
-Do not add keys to the plan. Other skills and the validator read this exact shape.
+The base example above is abbreviated. New plans must add the curriculum/learner and
+adaptive fields; the legacy visual-only outline shape is for retained old plans.
+Research may revise the tree and outline through `plan --set`, then re-gate intake
+before closing research. Preserve explicitly requested sources and requirements.
 
 ## Gate
 
@@ -186,8 +206,7 @@ pipeline, because nothing can be built without a plan.
 
 ## Context budget
 
-- Intake is a single unit and is small: about 5,000 tokens of reading. The 60,000-token
-  reading budget is never close, as long as you read the three playbook headings and not
+- Intake is a single unit and is small: about 5,000 tokens of reading. Size instructions and inputs with tutor budget; do not assume they fit merely because you read the three playbook headings and not
   the whole playbook, and do not open concept notes or other topics.
 - You may make at most 2 narrow web searches, and only when you do not know what the topic
   is. Sources are found in the `research` stage, not here.

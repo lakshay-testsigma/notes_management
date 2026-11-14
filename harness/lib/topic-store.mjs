@@ -32,6 +32,7 @@ export function topicPaths(topic) {
     handoffs_dir: `${state}/handoffs`,
 
     vault_dir: vault,
+    curriculum_dir: `${vault}/concepts`,
     start_here: `${vault}/00-start-here-${slug}.md`,
     brief: `${vault}/01-brief-${slug}.md`,
     lesson: `${vault}/02-lesson-${slug}.md`,

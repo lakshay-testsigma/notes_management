@@ -4,6 +4,7 @@ import { isFile, readText } from '../io.mjs';
 import { CLI } from '../root.mjs';
 import { readSources, sourceEntryProblems } from '../sources.mjs';
 import { failure } from './context.mjs';
+import { curriculumProblems } from '../curriculum.mjs';
 
 export function researchGate(ctx) {
   const { topic, paths, profile } = ctx;
@@ -57,5 +58,6 @@ export function researchGate(ctx) {
       failures.push(failure(paths.resources, `is out of date (${missing.length} sources are not listed)`, `run \`${CLI} map ${topic.id}\``));
     }
   }
+  failures.push(...curriculumProblems(ctx, 'research').map(problem => failure(paths.topic_json, problem, 'update the bounded concept tree and discovery evidence with tutor plan --set')));
   return failures;
 }

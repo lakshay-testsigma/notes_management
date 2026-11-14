@@ -154,3 +154,10 @@ Run `check` for research/projects/finalize, import authored child order with `or
 independent reviews with `review`, then `done`. Plain `validate --all` checks readiness;
 `--structure-only` is an authoring diagnostic. Browser recall history can be exported and
 imported once with `tutor recall import <topic> --file recall-events.json`.
+
+
+New generation follows [evidence-led research](docs/RESEARCH-WORKFLOW.md): a bounded
+recursive concept map, source-to-note coverage, deeper per-concept notes, adaptive
+visuals for a developer learner, and fresh isolated reviews. This works through
+host capabilities and explicit skill files rather than a hardcoded model provider.
+See [using another model](USAGE.md#using-deepseek-or-another-modelhost).

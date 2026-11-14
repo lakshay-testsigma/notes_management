@@ -114,7 +114,7 @@ export function refreshSharedMaps(root, onlyDomains = null) {
 
   for (const domain of domains) {
     const inDomain = topics.filter((t) => t.domain === domain);
-    if (inDomain.length === 0) continue;
+    if (inDomain.length === 0 && !isFile(path.join(root, 'vault', domain, `${domain}.md`))) continue;
     const pack = tryLoadPack(root, domain);
     const title = pack?.title ?? domain;
     const vars = {
@@ -193,6 +193,20 @@ function renderStartHere(root, topic) {
       });
   }
 
+  const curriculum = plan.curriculum;
+  if (curriculum && Array.isArray(curriculum.concepts)) {
+    out.push('', '## Research scope and concept notes', '', String(curriculum.scope ?? ''));
+    for (const concept of curriculum.concepts.filter(c => c && typeof c === 'object')) {
+      const coverage = Array.isArray(concept.coverage) ? concept.coverage : [];
+      const files = [...new Set(coverage.map(c => c?.path).filter(f => typeof f === 'string' && f.startsWith(paths.vault_dir + '/') && isFile(path.join(root, f))))];
+      const notes = files.map(f => link(f, concept.title ?? concept.id)).join(', ');
+      out.push(`- ${concept.title ?? concept.id}: ${concept.disposition ?? 'planned'}${notes ? ` — ${notes}` : ''}${concept.reason ? ` — ${concept.reason}` : ''}`);
+    }
+    const rounds = Array.isArray(curriculum.discovery) ? curriculum.discovery : [];
+    const last = rounds.at(-1);
+    if (last?.stop_reason) out.push('', `Research stopped: ${last.stop_reason}. ${last.note ?? ''}`);
+  }
+
   out.push('', '## Projects', '');
   const miniOnDisk = listDirs(path.join(root, paths.projects_dir)).filter((name) => name.startsWith('mini-'));
   const planned = Array.isArray(plan.mini_projects) ? plan.mini_projects : [];
@@ -269,6 +283,7 @@ function topicLine(topic) {
 }
 
 function renderDomainMap(topics, pack) {
+  if (topics.length === 0) return '_No topics yet._';
   const out = [];
   const subdomains = [...new Set(topics.map((t) => t.subdomain))].sort();
   for (const subdomain of subdomains) {

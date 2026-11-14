@@ -1,6 +1,7 @@
 // Command table and dispatcher of the `tutor` CLI.
 
 import { checkCommand, orderCommand, rerunCommand, reviewCommand, writeNoteCommand } from './commands/quality.mjs';
+import { removeCommand } from './commands/remove.mjs';
 import { checkFlags, parseArgs } from './args.mjs';
 import { UsageError } from './errors.mjs';
 import { formatFailure } from './format.mjs';
@@ -16,10 +17,11 @@ import { depthCommand, domainsCommand, initCommand, listCommand, logCommand, nex
  * `mutates` (true, or a function of ctx) makes the command hold the state lock.
  */
 export const COMMANDS = {
+  remove: { usage: 'remove <topic> [<topic>...] [--delete]', summary: 'Preview or explicitly delete topic packages, including learner data; refresh registry/maps.', flags: ['delete'], mutates: ctx => Boolean(ctx.flags.delete), run: removeCommand },
   order: {usage:'order <topic> [import-indexes|set --file <json>]',summary:'Persist and verify the authored reading sequence.',flags:['file'],mutates:ctx=>Boolean(ctx.args[1]),run:orderCommand},
   rerun: {usage:'rerun <topic>',summary:'Reopen checkpoints, preserving artifacts, insights and history.',flags:[],mutates:true,run:rerunCommand},
   check: {usage:'check <topic> research|mini-projects|capstone|finalize',summary:'Execute checks and capture evidence for the current inputs.',flags:[],mutates:false,run:checkCommand},
-  review: {usage:'review <topic> --file <json>',summary:'Record an independent content or project assessment.',flags:['file'],mutates:true,run:reviewCommand},
+  review: {usage:'review <topic> [--file <json>]',summary:'Print the current review fingerprint and checks, or record an independent assessment.',flags:['file'],mutates:ctx=>ctx.flags.file!==undefined,run:reviewCommand},
   'write-note': {usage:'write-note <topic> <note> --file <draft>',summary:'Replace generated prose while protecting existing insights.',flags:['file'],mutates:true,run:writeNoteCommand},
   domains: { usage: 'domains', summary: 'List domain packs and their subdomains.', flags: [], mutates: false, run: domainsCommand },
   init: {

@@ -21,8 +21,9 @@ learning package, and keeps it as long-term notes:
 Plus two on-demand abilities: adding the learner's own insights to any topic, and
 running a recall session.
 
-The learner is a beginner. Everything is linear and numbered so they never hop
-around to understand a topic.
+The learner is an existing software developer who may be new to the subject. Record
+known prerequisites and goals; bridge unfamiliar concepts without re-teaching basic
+programming. Everything stays linear and numbered.
 
 ## 2. Design principles
 
@@ -37,6 +38,9 @@ around to understand a topic.
   Work is cut into units; each unit is one subagent; at most 5 run at once.
 - **Evidence over fluency.** Every recommended resource is verified as industry
   standard. Every open-source finding cites repo, file, and commit.
+- **Visuals serve understanding.** New plans use adaptive visuals: basic concepts may
+  need no diagram, intermediate/critical concepts get focused visuals, and advanced
+  concepts get meaningful manipulation or simulation. No decorative 3D or callout boxes.
 - **Mastery, not volume.** Each lesson page has a predict-or-quiz activity; each
   topic ends with recall cards scheduled for spaced review.
 - **Depth is a dial.** `quick`, `standard`, `deep` — not every topic deserves the
@@ -204,6 +208,14 @@ notes, insights and recall state. `write-note <topic> <note> --file <draft>` rep
 generated prose, preserving the existing insight suffix byte-for-byte. Rerun snapshots also
 reject deleted/changed learner content at gates. Never write `my-insights-*` through this API.
 
+An explicit learner request to delete a topic is a separate operation:
+`tutor remove <topic> [<topic>...]` previews canonical package paths; `--delete`
+removes selected state, notes (including insights and recall history), lessons,
+projects and topic components not shared by another same-slug topic. It validates
+all targets first, refuses symlinked roots, rebuilds the registry and refreshes maps.
+Shared concept/tech notes, research caches and external review files are retained
+for separate cleanup when explicitly requested. Normal generation never uses removal.
+
 `tutor order <topic> import-indexes` records `reader_order.digest` and `reader_order.repo-intel`
 as topic-relative child paths in the authored index sequence. Every child occurs exactly once.
 Site navigation uses that same sequence. Legacy topic previews derive missing sequences from
@@ -233,6 +245,55 @@ validates the whole batch and applies new events once; repeated IDs are deduplic
 reuse is rejected. Card IDs and history survive regeneration. The static site exports events;
 there is no unauthenticated filesystem-writing web service.
 
+### 4.4 Evidence-led concept discovery and adaptive plans
+
+New plans authored by `learn-intake` include `learner`, `visual_policy: "adaptive"`,
+and `curriculum`. Legacy plans remain valid and are upgraded only through the CLI.
+The executable curriculum contract is in `harness/lib/curriculum.mjs`; the operating
+procedure and a complete field example are in [RESEARCH-WORKFLOW.md](RESEARCH-WORKFLOW.md).
+
+`curriculum` holds schema 1, an explicit scope, max_depth/max_concepts (and optional
+max_rounds), a concept tree and discovery rounds. Concepts have stable ids, parents,
+complexity/importance, included/deferred/excluded dispositions, source_ids and coverage.
+Nonincluded concepts need reasons. Research requires vetted evidence for every included
+concept, chronological frontier expansion and a documented stop decision. Recursive
+breadth-first discovery replaces a fixed search quota as the research strategy; retain
+source quality and per-topic source caps. Scope/budget limits are reported, never called
+exhaustive coverage of a field.
+
+Each included concept is taught through explanation, mechanism, use-case, trade-offs,
+failure-modes and practice. Coverage entries name topic-relative artifacts through
+repository-relative paths, declare taught aspects, and optionally name a literal anchor.
+Each referenced generated body contains `<!-- concept: <id> -->`. Finalize checks paths,
+markers, references and all six aspects; independent reviewers assess their correctness.
+These checks prove traceability, not understanding or universal research completeness.
+
+Keep the short lesson-page profile; deeper concepts also get one-topic notes at
+`curriculum_dir` from `tutor paths` (`<vault>/concepts/`). Write them through `write-note`,
+link them in prerequisite order from the lesson index, and include them in coverage.
+The site renders these as More notes; the topic map exposes coverage and deferrals.
+Branches needing their own source budgets become separate CLI topics; queue them in
+handoffs and do not declare the requested whole course finished until delivered.
+
+Adaptive outlines record complexity basic/intermediate/advanced, importance
+supporting/core/critical, spatial boolean, visual name or null, visual_reason and
+interaction_goal for visuals. The intake/lesson gates enforce these decisions. Advanced
+spatial concepts require Graph3D (editable) or VectorSpace3D; advanced nonspatial concepts
+use a justified ParamPlayground, StateMachine or FlowAnimation. Basic noncritical pages
+may omit visuals; every page retains an activity and the no-box prose rules.
+
+`tutor review <topic> --json` returns the current input_fingerprint and required_checks.
+Curriculum content reviews additionally cover research-coverage, practical-depth,
+visual-usefulness and learner-fit. Both scopes require independent:true, the actual fresh
+reviewer_run_id, input_fingerprint, and an assessments object explaining every check with
+inspected evidence. Standard/deep use separate reviewer runs. The CLI rejects stale imports
+and missing assessments. Fresh isolation is a host-backed attestation, not a semantic proof.
+
+The harness is provider-neutral: use native fresh-worker APIs with explicit role files,
+min(host slots, depth limit), bounded inputs and durable CLI checkpoints. No provider API,
+model id, reasoning setting or comparative model-quality claim is hardcoded. If fresh
+review workers are unavailable, keep review pending for a separate session.
+
 ## 5. The `tutor` CLI
 
 Run as `node harness/bin/tutor.mjs <command>` from the repository root. Zero
@@ -245,6 +306,7 @@ Exit code 0 = success, 1 = validation failure, 2 = usage error.
 | `domains` | List domain packs and their subdomains. |
 | `init "<Title>" --domain <d> --subdomain <s> [--depth quick\|standard\|deep] [--slug <slug>]` | Create state, scaffold all four roots from templates, build the stage list from the domain pack and depth. Idempotent: never overwrites existing files. The slug comes from the title; a trailing acronym in parentheses is dropped ("Retrieval-Augmented Generation (RAG)" → `retrieval-augmented-generation`). |
 | `list` | All topics with progress. |
+| `remove <topic> [<topic>...] [--delete]` | Preview or explicitly delete selected learning packages, including learner data. Rebuilds registry/maps; retains shared notes, caches and external reviews. |
 | `status [<topic>]` | Stage table for one topic, or summary for all. |
 | `paths <topic>` | Every path for the topic, including each numbered vault file, plus `site_url` and `open_lesson` (the one canonical sentence that says how to open the lesson: `npm run site:dev`, then the site path). Skills use this instead of building paths by hand. |
 | `next <topic>` | The stages that can run now (the current wave), with skill name, inputs, outputs, and gate. When all required stages have current passing receipts and depth/domain omissions are accounted for: the reading order of this topic with only the steps it has (`reading_order`, `reading_order_line`), the skipped stage ids (`not_part_of_topic`), and `open_lesson`. |
@@ -478,9 +540,10 @@ Rules the validator enforces:
 
 - **Short prose.** 10–15 lines of description: 110–260 words of prose per page
   (everything outside frontmatter, code, and components).
-- **Visual first.** At least one *visual* component and at least one *activity*
-  component per page. Across a topic: at least one animated flow, and at least one
-  3D component when the topic has spatial or graph structure.
+- **Adaptive visuals.** For new adaptive plans, follow §4.4: a basic noncritical
+  page may omit visuals; intermediate/critical pages require a visual and advanced
+  pages need meaningful interaction. Every page has an activity. Legacy plans retain
+  one visual/activity per page, an animated flow per topic, and planned 3D.
 - **No boxes, no quotes.** No blockquotes (`>`), no `:::` asides, no `<aside>`,
   `<blockquote>`, `<details>`, no card or callout markup. An important note is a
   plain paragraph starting with `**Note.**`.
@@ -512,7 +575,7 @@ place, in order, with previous / next links. Navigation is derived from
 
 | Stage | Gate |
 |-------|------|
-| intake | `plan` has summary, prerequisites, outcomes, lesson_outline (count fits depth) |
+| intake | `plan` has summary, prerequisites, outcomes, lesson_outline (count fits depth); adaptive and curriculum contracts when present |
 | research | `sources.json` parses; 5–12 entries (quick: 3–8); every entry has all §9 fields, tier A/B, `verified_at`, `verified_via`; ≥1 tier A |
 | brief | file exists, frontmatter valid, 150–400 words, sections present, links resolve |
 | digest | index + one note per planned digest; each cites its source id |
@@ -521,7 +584,7 @@ place, in order, with previous / next links. Navigation is derived from
 | mini-projects | each project has README.md, `starter/`, `solution/`; index note lists them |
 | capstone | README.md, ARCHITECTURE.md, ≥1 ADR, `src/`, `tests/`; vault note exists |
 | notes | final notes 200–600 words; ≥8 recall cards with ids (quick: ≥5) |
-| finalize | all artifact gates and resolving unambiguous links + all required stages current + passing execution receipts + independent content and project reviews for current inputs |
+| finalize | all artifact gates, concept coverage when planned, resolving unambiguous links, all required stages current, passing execution receipts, independent content/project reviews for current inputs |
 
 All notes: frontmatter present, no content below `## My insights` written by a
 generator.
@@ -555,7 +618,7 @@ Repository coverage is evidence-scoped: declare selected first-party paths, dire
 build/test/CI tools, transitive/vendor scope and skipped areas at the pinned commit. Do not
 call a selected slice an exhaustive whole-repository audit. Group aliases and routine shell
 commands into canonical families for new shared notes; retain existing shared notes. The
-Redis inventory retains its255 definitions and explicitly states the unreviewed vendor scope.
+Retained inventories preserve existing definitions and explicitly state unreviewed vendor scope.
 
 The full workflow requires Node >=22.23.4 (site engine), network access for source checks,
 and any services named by project recipes. Doctor checks the runtime; the orchestrator must

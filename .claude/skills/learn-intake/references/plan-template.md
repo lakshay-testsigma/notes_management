@@ -5,7 +5,10 @@ plan, and a checklist to run before `tutor plan --set`.
 
 ## 1. Component chooser
 
-The playbook heading "Lesson recipes" of the topic's domain comes first. Use this table when
+For new plans, first apply the adaptive decision table in `docs/RESEARCH-WORKFLOW.md`.
+Basic noncritical pages may set visual:null; advanced nonspatial ideas use justified
+simulations. The playbook heading "Lesson recipes" suggests representations only
+after difficulty and learning value are decided. Use this table when
 the playbook says nothing about the kind of idea a page teaches. Only these names exist
 (`site/components.manifest.json` is the authority if it differs).
 
@@ -30,7 +33,7 @@ the playbook says nothing about the kind of idea a page teaches. Only these name
 | Connecting terms to their meanings | `MatchPairs` |
 | Choosing between options, trade-offs, "which is true" | `Quiz` |
 
-Rules across the whole outline:
+Rules across a legacy outline (without visual_policy:adaptive):
 
 - `FlowAnimation` appears at least once.
 - When the topic has graph or spatial structure, `Graph3D` or `VectorSpace3D` appears at
@@ -39,7 +42,12 @@ Rules across the whole outline:
   before reading improves memory.
 - `Resources` and `Figure` are utility components. Never put them in `visual` or `activity`.
 
-## 2. A complete filled plan
+## 2. A legacy filled plan (base fields)
+
+For a new plan add learner, visual_policy:adaptive, and the curriculum object shown
+in `docs/RESEARCH-WORKFLOW.md`. Add complexity, importance, spatial, visual_reason,
+and interaction_goal to each outline entry. This legacy example remains useful for
+base-field sizing; it is not the default plan for new topics.
 
 Topic "Redis Streams", domain `backend-engineering`, subdomain `messaging`, depth `standard`
 (6 pages, 2 mini projects, 3 digests, 1 repository, capstone enabled).
@@ -96,12 +104,13 @@ Why this plan is good:
 
 Go through every line. Fix the plan file when a line is not true.
 
-1. The file is valid JSON and has exactly the eight top-level keys.
+1. The file is valid JSON and includes base fields, learner, visual_policy:adaptive,
+   curriculum and any requested_sources; preserve explicit learner requirements.
 2. `lesson_outline` has the right number of pages for the depth, and `order` runs 1, 2, 3…
-3. Every `visual` is a visual component name and every `activity` is an activity component
-   name, spelled exactly.
-4. `FlowAnimation` is used at least once; a 3D component is used when the topic has graph or
-   spatial structure.
+3. Every visual is a manifest component name or a justified null for basic noncritical
+   pages. Every activity is a valid activity component. Adaptive metadata is complete.
+4. The visual choice matches difficulty and importance; advanced spatial ideas use 3D
+   and advanced nonspatial ideas use simulations. Legacy plans retain the old flow rule.
 5. `outcomes` has 3–6 items with at least one explain, one build, and one decide. Each has
    at most 15 words, and each is taught by a page of the outline or by a mini project.
 6. Every prerequisite with `known: false` has a one-sentence `bridge` of at most 12 words,

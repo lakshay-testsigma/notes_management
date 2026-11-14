@@ -104,7 +104,8 @@ This asks the recall cards that are due today and records how you did.
 
 4. **Split a large subject.** One topic holds at most 12 sources. For more
    coverage, run narrower topics ("RAG chunking", "RAG reranking", "RAG
-   evaluation"). They link to each other through the shared concept notes.
+   evaluation"). They link to each other through shared concept notes. The recursive discovery
+   queue in docs/RESEARCH-WORKFLOW.md records which branches still need their own topics.
 
 5. **Redo the research of a topic.** Reset the stages you want regenerated,
    then continue. The old files stay until the stage rewrites them.
@@ -114,24 +115,41 @@ This asks the recall cards that are due today and records how you did.
    node harness/bin/tutor.mjs reset redis-streams digest
    ```
 
-## Using another agent
+## Using DeepSeek or another model/host
 
-The skills in `.claude/skills/` load by themselves only in Claude Code. Any
-other agent (Codex, Cursor, Gemini CLI, and so on) has to be told to read
-them. Start it in this folder with this message:
+The workflow is provider-neutral. Select an actual model offered by your host;
+the harness does not choose provider ids or reasoning settings. A cheaper model
+gets the same research, evidence, visual and review requirements. Read the detailed
+[research workflow](docs/RESEARCH-WORKFLOW.md) for recursive discovery and budgets.
 
+Only Claude Code auto-loads .claude skills. In another host, start in this folder:
+
+```text
+Read docs/ARCHITECTURE.md, then CLAUDE.md, AGENTS.md, and
+.claude/skills/learn/SKILL.md. Follow docs/RESEARCH-WORKFLOW.md to generate
+"<topic>" at depth <quick|standard|deep>. I am a software developer;
+bridge unfamiliar domain concepts. Use recursive concept discovery,
+vetted sources, six-aspect notes, adaptive visuals and fresh isolated
+reviewers. Use tutor CLI state/paths; preserve notes and recall history.
+Use this host's fresh-worker API and load each assigned role explicitly.
 ```
-Read CLAUDE.md, then .claude/skills/learn/SKILL.md, and follow that skill
-exactly to generate the topic "<topic>" at depth <quick|standard|deep>.
-Take every path and every next step from `node harness/bin/tutor.mjs`; never
-build a path or edit state by hand. If you cannot spawn subagents, do each
-worker unit yourself, one at a time, following the stage skill and the worker
-file in .claude/agents/. Stop at the end of a stage when your context is more
-than 40% full, and tell me to send "continue <topic>" in a new session.
-```
 
-Then repeat `continue <topic>` in new sessions until `tutor list` shows the
-topic as complete. This path has been tested only with Claude Code.
+New plans record learner experience, a bounded concept tree/discovery log and
+adaptive visual decisions. The research stage investigates children recursively,
+checks claim support and declares its stopping boundary. Important hard concepts
+get meaningful interactive lessons; simple familiar ideas may use prose and code.
+Supplementary concept notes hold deeper mechanisms, practical uses, trade-offs,
+failures and exercises. They appear in Obsidian and the site's More notes section.
+
+Broad subjects split into scoped topics when their source budget is exceeded.
+The orchestrator keeps the remaining topic queue in handoffs and reports deferrals;
+a finite research pass never means every internet concept has been found.
+
+Fresh worker isolation is required for independent review. When the host lacks it,
+generation can continue serially, but completion remains pending until another
+fresh session performs the reviews. Resume from `tutor next <topic>` rather than
+copying an old conversation. Use `tutor review <topic> --json` for the current
+fingerprint and exact review checks. Host/model-specific quality is not guaranteed.
 
 ## When something goes wrong
 
@@ -148,3 +166,13 @@ Run `check` for research/projects/finalize, import authored child order with `or
 independent reviews with `review`, then `done`. Plain `validate --all` checks readiness;
 `--structure-only` is an authoring diagnostic. Browser recall history can be exported and
 imported once with `tutor recall import <topic> --file recall-events.json`.
+
+
+## Remove topics you no longer want
+
+Ask the agent explicitly to remove the named topics, or preview the exact package
+paths yourself with `node harness/bin/tutor.mjs remove <topic>`. Add `--delete`
+to apply. Multiple topic ids can be removed in one invocation. This deletes those
+notes, insights, recall history, lessons and projects. Shared reference notes,
+cached research and external review files are retained unless you separately ask
+to clean them up. A regular continue or rerun preserves existing learning material.

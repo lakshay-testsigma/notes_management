@@ -9,6 +9,13 @@ export const REVIEW_CHECKS = {
   content: ['sources','reading-order','activity-correctness','diagram-semantics','beginner-readability','insights'],
   projects: ['solution-tests','starter-behavior','dependency-health','architecture','documented-commands'],
 };
+export function requiredReviewChecks(topic, scope) {
+  if (typeof scope !== 'string' || !Object.hasOwn(REVIEW_CHECKS, scope)) return null;
+  const checks = REVIEW_CHECKS[scope];
+  return scope === 'content' && topic.plan?.curriculum
+    ? [...checks, 'research-coverage', 'practical-depth', 'visual-usefulness', 'learner-fit']
+    : [...checks];
+}
 export function qualityProblems(root,topic,stage) {
   const problems=[];
   for (const [file,tail] of Object.entries(topic.quality?.protected_insights??{})) {
@@ -33,7 +40,8 @@ export function qualityProblems(root,topic,stage) {
     }
     for(const scope of Object.keys(REVIEW_CHECKS)) {
       const r=topic.quality?.reviews?.[scope];
-      if(!r||r.verdict!=='pass'||r.fingerprint!==stageDigest(root,topic,'finalize'))problems.push(`missing, failed or stale independent ${scope} review; record it with tutor review`);
+      const checks = requiredReviewChecks(topic, scope);
+      if(!r||r.verdict!=='pass'||r.fingerprint!==stageDigest(root,topic,'finalize')||!checks.every(c=>r.checks?.includes(c)))problems.push(`missing, failed or stale independent ${scope} review; record it with tutor review`);
     }
   }
   return problems;

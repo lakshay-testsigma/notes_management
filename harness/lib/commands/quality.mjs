@@ -8,7 +8,7 @@ import { isoNow } from '../clock.mjs';
 import { UsageError, ValidationError } from '../errors.mjs';
 import { filesUnder, stageDigest, RECEIPT_VERSION } from '../freshness.mjs';
 import { READER_STAGES, indexOrder, readingProblems } from '../reading-order.mjs';
-import { executeChecks, projectChecks, sourceChecks, REVIEW_CHECKS } from '../quality.mjs';
+import { executeChecks, projectChecks, sourceChecks, requiredReviewChecks } from '../quality.mjs';
 import { withLock, writeTextAtomic } from '../io.mjs';
 import { lockDir } from '../root.mjs';
 import { isOmitted } from '../stages.mjs';
@@ -74,13 +74,28 @@ export function checkCommand({root,args}) {
   return {exitCode:ok?0:1,data:{topic:topic.id,stage,ok,checks},text:checks.map(c=>`${c.ok?'PASS':'FAIL'} ${c.label}${c.problem?'\n'+c.problem:''}`).join('\n')};
 }
 export function reviewCommand({root,args,flags}) {
-  const topic=resolveTopic(root,requireArg(args[0],'<topic>','review <topic> --file <review.json>'));
-  const review=readJsonInput(requireArg(stringFlag(flags,'file'),'--file','review'),'--file');
-  const required=REVIEW_CHECKS[review.scope];
-  if(!required||!['pass','fix-needed'].includes(review.verdict)||!review.reviewer?.trim()||!Array.isArray(review.findings)||!Array.isArray(review.not_checked)||!required.every(x=>review.checks?.includes(x)))throw new UsageError('Review needs scope, reviewer, verdict, findings, not_checked and all documented checks.');
+  const topic=resolveTopic(root,requireArg(args[0],'<topic>','review <topic> [--file <review.json>]'));
+  const fingerprint=stageDigest(root,topic,'finalize');
+  const file=stringFlag(flags,'file');
+  if(file===undefined) {
+    const data={topic:topic.id,input_fingerprint:fingerprint,requires_isolated_review:Boolean(topic.plan?.curriculum),
+      required_checks:Object.fromEntries(['content','projects'].map(scope=>[scope,requiredReviewChecks(topic,scope)]))};
+    return {data,text:JSON.stringify(data,null,2)};
+  }
+  const review=readJsonInput(file,'--file');
+  const required=requiredReviewChecks(topic,review?.scope);
+  if(!review || typeof review!=='object' || Array.isArray(review))throw new UsageError('Review must be a JSON object.');
+  if(!required||!['pass','fix-needed'].includes(review.verdict)||typeof review.reviewer!=='string'||!review.reviewer.trim()||!Array.isArray(review.findings)||review.findings.some(f=>!f||!['error','warning'].includes(f.severity))||!Array.isArray(review.not_checked)||!Array.isArray(review.checks)||!required.every(x=>review.checks.includes(x)))throw new UsageError('Review needs scope, reviewer, verdict, findings with severity error/warning, not_checked and all documented checks.');
+  if(topic.plan?.curriculum) {
+    if(review.independent!==true||typeof review.reviewer_run_id!=='string'||!review.reviewer_run_id.trim())throw new ValidationError('Curriculum reviews need independent: true and the fresh reviewer worker run id.');
+    if(review.input_fingerprint!==fingerprint)throw new ValidationError('Review inputs changed or input_fingerprint is missing; obtain a fresh review using tutor review <topic> --json.');
+    if(!required.every(check=>typeof review.assessments?.[check]==='string'&&review.assessments[check].trim()))throw new ValidationError('Curriculum reviews need an assessments entry for every required check, citing inspected paths or source ids and the result.');
+    const other=topic.quality?.reviews?.[review.scope==='content'?'projects':'content'];
+    if(topic.depth!=='quick'&&other?.reviewer_run_id===review.reviewer_run_id)throw new ValidationError('Standard and deep topics require separate isolated content and project reviewer runs.');
+  }
   if(review.verdict==='pass'&&review.findings.some(f=>f.severity!=='warning'))throw new ValidationError('A passing review cannot contain unresolved errors.');
   if(review.verdict==='pass'&&review.not_checked.some(x=>required.includes(x)))throw new ValidationError('Required review checks cannot be left unreviewed.');
-  topic.quality??={};topic.quality.reviews??={};topic.quality.reviews[review.scope]={...review,at:isoNow(),fingerprint:stageDigest(root,topic,'finalize')};
+  topic.quality??={};topic.quality.reviews??={};topic.quality.reviews[review.scope]={...review,at:isoNow(),fingerprint};
   appendLog(topic,'quality-review',`${review.scope}: ${review.verdict}`,'finalize');saveAndRefresh(root,topic);
   return {data:{topic:topic.id,review:topic.quality.reviews[review.scope]},text:`Recorded ${review.scope} review: ${review.verdict}.`};
 }

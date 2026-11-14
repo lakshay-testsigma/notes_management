@@ -31,45 +31,18 @@ Inline. Read `.claude/skills/learn-intake/SKILL.md` and follow it. It runs `tuto
 
 ## research
 
-Read the depth with `node harness/bin/tutor.mjs plan <topic> --json` (you also need
-`digest_targets` and `repo_targets` from it).
+Read `docs/RESEARCH-WORKFLOW.md` and `.claude/skills/learn-research/SKILL.md`.
+The latter's Parts A/B/C own source seeding, recursive frontier units, merging and
+closing. Register a bounded discovery queue, in addition to useful source-category
+units. Give each worker the assigned concepts, exact source slots, search/fetch
+budget, proposal path and learner requirements. Only the orchestrator merges the
+curriculum. Do not substitute three category searches for recursive discovery.
 
-**Depth `quick`: inline.** Read `.claude/skills/learn-research/SKILL.md` and follow Part B
-yourself for all three categories, with a total of 3–6 sources. Keep every fetch narrow. Then
-do Part C of that skill, which includes the coverage check of step 4 below.
-
-**Depth `standard` or `deep`: three units.**
-
-| Unit id | Category | Sources to add | Flags to set |
-|---------|----------|----------------|--------------|
-| `docs` | official docs and standards | 2–4 | exactly 1 source gets `digest` |
-| `papers` | defining papers and standard books | 2–5 | exactly `digest_targets − 1` sources get `digest` (0 when `digest_targets` is 1) |
-| `repos` | production repositories and engineering blogs | 2–4 | exactly `repo_targets` repositories get `repo-intel` |
-
-Put the numbers from the table into the `TASK` line of each brief, for example: "Add 2–4
-verified sources in the category papers and books. Flag exactly 2 of them with `digest`."
-Agent: `tutor-researcher`. Output file of each unit: none in the vault; the worker adds entries
-with `tutor sources <topic> add --file` and keeps its entry files in `.cache/tmp/<slug>/sources/`.
-
-**After the units.**
-
-1. Run `node harness/bin/tutor.mjs sources <topic> list --json`.
-2. Count the entries whose `use_for` contains `digest` and those whose `use_for` contains
-   `repo-intel`. If a count is lower than the plan, lower the plan to the real number. Write
-   `{"digest_targets": <n>}` or `{"repo_targets": <n>}` to `.cache/tmp/<slug>/plan-patch.json`
-   and run `node harness/bin/tutor.mjs plan <topic> --set .cache/tmp/<slug>/plan-patch.json`.
-   Log it: `node harness/bin/tutor.mjs log <topic> "research: digest_targets lowered to <n> (only <n> sources verified)"`.
-3. If the total is below the gate minimum (5, or 3 for `quick`), spawn one more
-   `tutor-researcher` for the category with the fewest entries, asking for the missing number.
-4. Coverage check (Part C of `learn-research` has the details): every plan outcome is
-   supported by at least one source, and every planned lesson page has a source to draw on.
-   For a gap, find one more source (Part B yourself, for that single source) or patch the
-   outcome with `tutor plan <topic> --set`.
-5. Run `node harness/bin/tutor.mjs map <topic>` so `09-resources-<slug>.md` is generated.
-6. Gate.
-
-If `repo_targets` is now 0 and a `repo-intel` stage exists, close it when its wave comes with
-`node harness/bin/tutor.mjs skip <topic> repo-intel --reason "no repository passed the source gate"`.
+After each round, persist source evidence and the unfinished frontier. At closing,
+freeze source assignments and planned six-aspect coverage paths, re-gate intake,
+run check research, then done research. Do not lower required digest/repo minima or
+skip required repo-intel when source discovery fails. Report a research failure or
+split the subject into bounded linked topics, preserving the requested course queue.
 
 ## brief
 
@@ -146,8 +119,15 @@ other skills" below. The defaults, used only when the skill does not say otherwi
 - Input files: whatever the Inputs section of `learn-site` lists; add the line "Outline entries
   with order <first> to <last> from `tutor plan <topic> --json`".
 - Output files: one `.mdx` file per page in `<lessons>/`, named `NN-<page-slug>.mdx`.
+- Extra units: `concept-<id>` for each included curriculum concept needing its own
+  note. Use curriculum_dir from tutor paths; one `<id>-<topic-slug>.md` per worker.
+  Follow learn-site Part B2, stage:concept, all six aspects with direct evidence,
+  marker above My insights, and write-note. Paths were assigned before generation.
+  Register and complete these as lesson units; gate MDX and concept notes together.
 - Index note: `<vault>/02-lesson-<slug>.md`. It names, for each page, the plan outcome the
-  page serves, so an outcome that no page teaches is visible.
+  page serves, and links supplementary notes in prerequisite order. Do not rewrite
+  the curriculum from parallel author workers. If the frozen plan changes, re-gate
+  earlier stages and renew checks before continuing.
 
 ## mini-projects
 
@@ -187,7 +167,18 @@ with those lines in `FIX LIST` and that page as its only output file. After each
 the build and then `smoke` again; at most 3 rounds, then record `finalize` as failed with the
 remaining lines.
 
-**Step 3 — the verifier.** Use the verifier briefs in `worker-brief-examples.md`.
+**Step 3 — the verifier.** Use the verifier briefs in `worker-brief-examples.md`,
+explicitly loading `.claude/agents/tutor-verifier.md`. Get current checks and fingerprint
+with tutor review <topic> --json. Fresh reviewers receive learner request, scoped plan,
+source assignments, curriculum and artifacts, without author reasoning. If the host
+cannot supply fresh isolation, save a handoff and leave review pending. Content checks
+include all concepts and six-aspect teaching coverage, not just a two-page sample.
+The orchestrator starts a bounded preview of the current build (follow site/AGENTS.md
+for dev lifecycle, or use the static-server procedure in site/scripts/smoke.mjs).
+Pass the actual live URL, host browser capability or installed headless Playwright
+procedure, and required interaction tasks. Keep it available through review and stop
+it afterwards. Reviewers must test visual controls/observable changes/reset. An
+unavailable browser or preview leaves visual-usefulness in not_checked.
 
 | Depth | Verifiers | Scope |
 |-------|-----------|-------|
@@ -197,10 +188,19 @@ remaining lines.
 Fill the input list of the brief from `tutor paths <topic> --json` with exactly these:
 `sources.json`; the lesson `.mdx` files; the numbered stage notes that exist (`01-brief` to
 `08-recall`, with the index notes of `04-digests/` and `05-repo-intel/`); the digest notes;
-for a topic with a deep dive, `<repo>-findings.md` and `<repo>-takeaways.md`; and each
+for a topic with a deep dive, `<repo>-findings.md` and `<repo>-takeaways.md`; supplementary concept notes; and each
 project's `README.md` (the verifier also runs each project's tests). Never pass "every
 path": the verifier then spends its budget on harness files. Each verifier reads at most
-the capacity-aware budget printed by `tutor budget`.
+the capacity-aware budget printed by tutor budget. Split large reviews into fresh
+bounded inspection units with evidence files, then a final isolated reviewer checks
+all required assessments. Unread requirements go in not_checked and block pass.
+Reviewers use validate --all --structure-only for artifact findings and inspect
+execution status separately. Missing review imports are expected until they return;
+full readiness validation runs after both scopes are imported, never as a circular
+prerequisite for producing the reviews.
+Return exact review JSON (checks from the packet, findings, not_checked, evidence
+assessments, independent:true, input_fingerprint and actual reviewer_run_id); the
+orchestrator saves/imports it. Standard/deep scopes use different worker ids.
 
 **Step 4 — the findings.** Fix up to 5 small findings yourself with the Edit tool. Give
 larger groups to the worker of the stage that owns the file, with the findings in
@@ -208,8 +208,12 @@ larger groups to the worker of the stage that owns the file, with the findings i
 `node harness/bin/tutor.mjs sources <topic> update <id> --file <patch.json>`; remove a source
 that fails the quality gate with `sources <topic> remove <id> --reason "..."` (both rows are
 in `troubleshooting.md`). A sentence that cites a page outside `sources.json` is either
-backed by a newly verified source or removed. Then rerun `validate <topic> --all`, the
-build, and `smoke` once.
+backed by a newly verified source or removed. After repairs, inspect stale receipts
+with status/next. Re-gate affected stages in generation order, renewing research and
+project execution checks before done as necessary. Plan/source changes may stale
+all stages. Run tutor check <topic> finalize after the final edit and stage re-gating;
+plain build/smoke does not record evidence. Obtain a fresh review packet and refresh
+BOTH scopes for its new fingerprint, then done finalize without changing artifacts.
 
 ---
 

@@ -3,6 +3,7 @@
 import { isFile } from '../io.mjs';
 import { CLI } from '../root.mjs';
 import { failure } from './context.mjs';
+import { adaptiveVisualProblems } from '../visual-policy.mjs';
 
 const isText = (value) => typeof value === 'string' && value.trim().length > 0;
 
@@ -13,6 +14,8 @@ export function intakeGate(ctx) {
   const setPlan = `fix it in a JSON file and run \`${CLI} plan ${topic.id} --set <file.json>\``;
   const failures = [];
   const fail = (problem, fix = setPlan) => failures.push(failure(where, problem, fix));
+
+  if (plan.visual_policy !== undefined && !['adaptive', 'legacy'].includes(plan.visual_policy)) fail('plan.visual_policy must be adaptive or legacy');
 
   if(plan.requested_sources!==undefined && (!Array.isArray(plan.requested_sources)||plan.requested_sources.some(s=>!s||!isText(s.name)||!isText(s.url)||!Array.isArray(s.use_for)||!s.use_for.length)))fail('plan.requested_sources needs name, url and use_for for every explicit learner request');
 
@@ -53,7 +56,9 @@ export function intakeGate(ctx) {
       orders.add(page.order);
       if (!isText(page.slug) || !/^[a-z0-9]+(-[a-z0-9]+)*$/.test(page.slug)) fail(`${label} needs a lowercase "slug" such as "what-is-a-stream"`);
       if (!isText(page.title)) fail(`${label} needs a "title"`);
-      if (!isText(page.visual)) fail(`${label} needs a "visual" component`, `pick one of ${ctx.kinds.visual.join(', ')}; ${setPlan}`);
+      if (plan.visual_policy === 'adaptive') {
+        for (const problem of adaptiveVisualProblems(page, ctx.kinds)) fail(`${label} ${problem}`);
+      } else if (!isText(page.visual)) fail(`${label} needs a "visual" component`, `pick one of ${ctx.kinds.visual.join(', ')}; ${setPlan}`);
       if (!ctx.kinds.activity.includes(page.activity)) fail(`${label} needs an "activity" component`, `pick one of ${ctx.kinds.activity.join(', ')}; ${setPlan}`);
     });
   }

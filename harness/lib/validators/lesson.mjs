@@ -1,11 +1,12 @@
 // Gate: lesson. The page count fits the depth and every page passes §12.
 
-import { listFiles, readText } from '../io.mjs';
+import { listFiles, readText, walkFiles, relPath } from '../io.mjs';
 import { analyzeLessonPage, countArrayItems } from '../mdx.mjs';
 import { sharedComponentNames } from '../components.mjs';
 import { siteUrl } from '../topic-store.mjs';
 import { failure, stageFailure, warning } from './context.mjs';
 import { checkNote, wordRangeFailure } from './note.mjs';
+import { adaptiveVisualProblems } from '../visual-policy.mjs';
 
 export const LESSON_WORDS = [110, 260];
 const PAGE_NAME = /^(\d{2})-[a-z0-9]+(-[a-z0-9]+)*\.mdx$/;
@@ -42,7 +43,20 @@ export function finalLessonPage(topic, pages) {
 export function lessonGate(ctx) {
   const { topic, paths, profile } = ctx;
   const failures = [];
+  for (const file of walkFiles(ctx.abs(paths.curriculum_dir))) {
+    if (file.endsWith('.md')) failures.push(...checkNote(ctx, relPath(ctx.root, file), { stage: 'concept' }).failures);
+  }
   const pages = listFiles(ctx.abs(paths.lessons_dir)).filter((name) => name.endsWith('.mdx'));
+  const outlined = topic.plan?.lesson_outline;
+  if (Array.isArray(outlined) && outlined.length) {
+    const planned = outlined.map(page => `${String(page.order).padStart(2, '0')}-${page.slug}.mdx`);
+    for (const name of planned) if (!pages.includes(name)) {
+      failures.push(stageFailure(paths.lessons_dir, `planned lesson page ${name} is missing`, 'write every planned page before closing the lesson stage'));
+    }
+    for (const name of pages) if (!planned.includes(name)) {
+      failures.push(stageFailure(paths.lessons_dir, `lesson page ${name} is not in the outline`, 'reconcile filenames with the plan before closing the lesson stage'));
+    }
+  }
 
   const [min, max] = profile.lesson_pages;
   if (pages.length < min || pages.length > max) {
@@ -57,7 +71,9 @@ export function lessonGate(ctx) {
   const finalPage = finalLessonPage(topic, pages);
   pages.forEach((name) => {
     const relative = `${paths.lessons_dir}/${name}`;
-    const result = checkLessonPage(relative, readText(ctx.abs(relative)), ctx.kinds, { isLast: name === finalPage, finalPage });
+    const adaptive = topic.plan?.visual_policy === 'adaptive';
+    const outline = (topic.plan?.lesson_outline ?? []).find(entry => entry?.order === pageNumber(name));
+    const result = checkLessonPage(relative, readText(ctx.abs(relative)), ctx.kinds, { isLast: name === finalPage, finalPage, adaptive, outline });
     failures.push(...result.failures);
     result.components.forEach((component) => used.add(component));
 
@@ -69,7 +85,7 @@ export function lessonGate(ctx) {
     }
   });
 
-  if (pages.length > 0) {
+  if (pages.length > 0 && topic.plan?.visual_policy !== 'adaptive') {
     if (!used.has(FLOW_COMPONENT)) {
       failures.push(stageFailure(paths.lessons_dir, 'no page has an animated flow', `add a \`<${FLOW_COMPONENT} />\` to the page that explains the main flow of the topic`));
     }
@@ -94,7 +110,7 @@ export function lessonGate(ctx) {
  * Returns { failures, components: [names used], order }. `failures` also holds
  * the warnings of the page (entries with `level: 'warning'`).
  */
-export function checkLessonPage(relative, text, kinds, { isLast, finalPage = null } = {}) {
+export function checkLessonPage(relative, text, kinds, { isLast, finalPage = null, adaptive = false, outline } = {}) {
   const failures = [];
   const fail = (problem, fix) => failures.push(failure(relative, problem, fix));
   const page = analyzeLessonPage(text);
@@ -186,7 +202,20 @@ export function checkLessonPage(relative, text, kinds, { isLast, finalPage = nul
     fail(`<${name}> is opened but never closed`, `add \`</${name}>\` or write it as a self-closing tag \`<${name} ... />\``);
   }
 
-  if (!names.some((name) => kindOf(name) === 'visual')) {
+  if (adaptive) {
+    for (const problem of adaptiveVisualProblems(outline, kinds)) fail(`adaptive visual plan ${problem}`, 'repair plan.lesson_outline with tutor plan --set');
+    if (outline) {
+      const expected = `${String(outline.order).padStart(2, '0')}-${outline.slug}.mdx`;
+      if (fileName !== expected) fail(`does not match its planned file ${expected}`, 'use the planned order and slug');
+      if (outline.visual && !names.includes(outline.visual)) fail(`does not use its planned visual <${outline.visual}>`, 'add the planned component with the recorded interaction goal');
+      if (outline.visual === null && names.some(name => kindOf(name) === 'visual')) fail('has a visual although the adaptive plan omits it', 'remove unnecessary visuals or update the plan with a reason');
+      if (outline.complexity === 'advanced' && outline.visual === 'Graph3D') {
+        const graphs = page.elements.filter(element => element.name === 'Graph3D');
+        const editable = graphs.some(element => element.props.some(prop => prop.name === 'editable' && (prop.value === null || /^\{\s*true\s*\}$/.test(prop.value))));
+        if (graphs.length && !editable) fail('advanced Graph3D has no editable interaction', 'use editable or editable={true} so the learner can change the graph');
+      }
+    }
+  } else if (!names.some((name) => kindOf(name) === 'visual')) {
     fail('has no visual component', `add one of ${kinds.visual.join(', ')}`);
   }
   if (!names.some((name) => kindOf(name) === 'activity')) {

@@ -1,3 +1,14 @@
+# Current worker contract
+
+For new plans, first apply `docs/RESEARCH-WORKFLOW.md`. Examples below show base
+artifact paths; add learner profile, assigned concept ids/source entries and planned
+coverage from the projected plan. Research includes bounded recursive frontier units.
+For reviewers obtain tutor review <topic> --json,
+launch a fresh isolated context without author history, and require the exact JSON
+return specified by `.claude/agents/tutor-verifier.md` (including all required
+assessments, actual worker id and input fingerprint). Use this JSON contract in every verifier brief. Never import a textual summary as proof
+that checks were performed. Input lists include supplementary curriculum notes.
+
 # Filled worker briefs
 
 One example per agent. Copy the one you need and replace the values. The structure is the
@@ -218,7 +229,8 @@ and fix what it reports. Pages of other units, the page count, and the pointer n
 <same four blocks, with stage `lesson` and unit `pages-01-03`>
 ```
 
-A lesson worker writes no vault note, so it creates no concept notes. In the `TASK` line,
+A page unit writes only its assigned MDX. A separate concept-<id> unit follows
+learn-site Part B2 and writes its assigned supplementary vault note through write-note. In the `TASK` line,
 always say which page is the final page of the topic (the highest `order` in the plan) and
 whether it belongs to this unit; only that page ends with `<Resources />`. For a repair
 after a failed build or smoke check, the output files are only the pages named in `FIX LIST`.
@@ -262,54 +274,46 @@ created only with `node harness/bin/tutor.mjs concept`)",
 
 ## tutor-verifier
 
-The verifier has its own return format, so its brief ends differently. Its input list is
-short and explicit. Fill it from `node harness/bin/tutor.mjs paths <topic> --json` and leave
-out what the topic does not have. Never write "every path": the verifier then spends its
-budget on harness files and reports the projects as not checked.
+Use the host's fresh-worker API with an empty context, explicitly loading the role
+file. Budget the complete brief. Fill exact artifact paths from tutor paths, include
+project verification recipes, and omit artifacts absent from this topic.
 
 ```text
-You are the independent reviewer of one finished topic. You change nothing.
-
-TOPIC: backend-engineering/messaging/redis-streams
+You are the independent reviewer of one finished topic. You change no authored files.
+TOPIC: <actual full topic id>
 STAGE: finalize
-UNIT: verify
-READ FIRST: harness/rubrics/source-quality.md, harness/rubrics/lesson-page.md, harness/rubrics/vault-notes.md
-(in source-quality.md skip the section "One valid entry per type"; it holds only examples)
-
-INPUT FILES (read these and nothing else):
-- state/topics/backend-engineering/messaging/redis-streams/sources.json
-- site/src/content/lessons/backend-engineering/messaging/redis-streams/*.mdx (the lesson pages)
-- vault/backend-engineering/messaging/redis-streams/01-brief-redis-streams.md, 02-lesson-…, 03-mini-projects-…, 06-capstone-…, 07-final-notes-…, 08-recall-… (the numbered stage notes that exist)
-- vault/backend-engineering/messaging/redis-streams/04-digests/*.md (the digest notes and their index)
-- vault/backend-engineering/messaging/redis-streams/05-repo-intel/00-repo-intel-redis-streams.md, and redis-redis/redis-findings.md and redis-takeaways.md
-- projects/backend-engineering/messaging/redis-streams/mini-01-job-queue/README.md (one line per project)
-
-OUTPUT FILES: none. Do not create, edit, or delete any file.
-
-TASK: Review source quality, claims without evidence (including any citation of a page that is not in sources.json), the lesson page rules, and broken links. For each project, run its solution tests as its README says and report the real result. Follow the review order in your instructions.
-
-BUDGET: Use the capacity-aware input allowance, including instructions and reserve. Size the list with `node harness/bin/tutor.mjs budget <files>`
-first. If it is over, read the sources, the lesson pages, and the brief in full and sample the rest.
-
-RETURN FORMAT (300 words at most, no other text):
-VERDICT: pass | fix-needed
-FINDINGS (most important first, at most 15, one per line):
-<path>: <problem>. <fix>.
-NOT CHECKED: <what you could not review within the budget, or "nothing">
+UNIT: verify-content or verify-projects (quick may cover both)
+READ FIRST: .claude/agents/tutor-verifier.md, docs/RESEARCH-WORKFLOW.md,
+  harness/rubrics/source-quality.md, lesson-page.md, vault-notes.md
+LEARNER REQUEST: <the actual original request and explicit requirements>
+LEARNER: <experience, known prerequisites and goals>
+REVIEW PACKET: <output of tutor review <topic> --json: fingerprint and required checks>
+PLAN: <scoped tutor plan output: outcomes, outline, curriculum and source assignments>
+PREVIEW URL: <live test URL provided by orchestrator for the current build>
+BROWSER: <actual host browser tool, or installed headless Playwright procedure>
+INPUT FILES:
+- <assigned sources.json entries plus URLs/sections>
+- <exact assigned MDX pages and supplementary curriculum notes>
+- <numbered notes, digest/repo notes within this inspection scope>
+- <project READMEs, verification.json and architecture for project scope>
+OUTPUT FILES: none (return JSON to orchestrator).
+TASK: Inspect every assigned requirement and record actual evidence. Content scope
+  checks all six concept aspects, source support and runtime visual controls/reset;
+  projects scope executes declared checks against established services. Never treat
+  source inspection as proof of working browser interaction. Record unperformed
+  requirements in not_checked; required gaps prevent pass.
+BUDGET: <actual allowance from tutor budget for filled brief plus inputs>
+RETURN: Exact JSON per assigned scope matching tutor-verifier.md, with scope,
+  reviewer, verdict, checks, findings, not_checked, independent:true,
+  reviewer_run_id (actual host worker id), input_fingerprint and evidence-based
+  assessments for EVERY required check. No prose or VERDICT/FINDINGS shorthand.
 ```
 
-**Depth `standard` or `deep`: two verifiers in one batch.** Split the brief above:
-
-- Verifier 1 (`UNIT: verify`): the same brief without the `projects/…` lines, without
-  `03-mini-projects` and `06-capstone`, and without the sentence about running tests.
-- Verifier 2 (`UNIT: verify-projects`): `READ FIRST` is only `harness/rubrics/vault-notes.md`.
-  Input files: `03-mini-projects-<slug>.md`, `06-capstone-<slug>.md`, and for each project
-  its `README.md` (for the capstone also `ARCHITECTURE.md`). `TASK`: "Review the projects
-  only. For each project, run the solution's tests as its README says and report how many
-  ran and passed; check that the starter starts and fails only on its TODOs; check that the
-  README's commands and file names match the folder. Do not review sources or lesson pages."
-
-At depth `quick`, one verifier with the full brief is the whole review.
+Standard/deep use different fresh workers for content and projects. Quick may return
+two JSON objects in one worker response. For a large curriculum, split read-only
+inspection units, persist their evidence outside state through the orchestrator,
+and let a fresh final reviewer consolidate the inspected evidence. Anything unread
+remains not_checked, even if a structural validator passes.
 
 ## Continuation brief (after `CONTINUE: <path>`)
 

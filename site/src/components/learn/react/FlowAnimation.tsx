@@ -85,7 +85,9 @@ export default function FlowAnimation(props: FlowAnimationProps) {
 		[steps, index, broken],
 	);
 	const current = index >= 0 ? resolved[index] : null;
-	const finished = index >= 0 && t >= 1 && (index === steps.length - 1 || current?.halted === true);
+	// A stopped route cannot advance while its last packet is still tweening.
+	// Playback waits for t separately; navigation must respect the halt immediately.
+	const finished = index >= 0 && (index === steps.length - 1 || current?.halted === true);
 
 	useEffect(() => {
 		if (props.autoplay && !reduced) {

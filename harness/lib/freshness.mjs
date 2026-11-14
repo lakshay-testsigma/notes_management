@@ -23,7 +23,7 @@ export function stageDigest(root, topic, stage) {
   const locations = {
     intake: [], research: [`${topic.paths.state}/sources.json`],
     brief: [`${v}/01-brief-${slug}.md`], digest: [`${v}/04-digests`],
-    'repo-intel': [`${v}/05-repo-intel`], lesson: [l, `${v}/02-lesson-${slug}.md`],
+    'repo-intel': [`${v}/05-repo-intel`], lesson: [l, `${v}/02-lesson-${slug}.md`, `${v}/concepts`, `site/src/components/topics/${slug}`],
     'mini-projects': [`${v}/03-mini-projects-${slug}.md`, ...filesUnder(root,p).filter(f=>!f.startsWith(`${p}/capstone/`))],
     capstone: [`${p}/capstone`, `${v}/06-capstone-${slug}.md`],
     notes: [`${v}/07-final-notes-${slug}.md`, `${v}/08-recall-${slug}.md`],

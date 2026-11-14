@@ -26,6 +26,17 @@ the clone is `.cache/repos/<org>__<repo>/`, the vault folder is
 - If you run this skill directly and not from `learn`, run `tutor start <topic> repo-intel`
   first.
 
+### Capacity-aware input allowance
+
+The input allowance is `min(60000, floor(0.4 * actual_window) - reserve)`, including
+instructions, role/skill text and assigned excerpts. Ask `tutor budget --window
+<actual_window> --reserve <overhead> <files>` before reading. Unknown window defaults
+to 32768 and reserve3000. Any 60,000-token figure below is a ceiling only; the CLI's
+smaller allowance wins. Split oversized units and persist handoffs before dispatch.
+Learner experience comes from plan.learner; this learner is an existing software
+developer learning a new subject. Keep clear prerequisite bridges, avoid redundant
+basic programming lessons, and teach practical mechanisms and failure modes.
+
 ## Inputs
 
 Read only these.
@@ -237,7 +248,7 @@ After 3 failed attempts run
 - **Units.** Scout: one per repository, reads the tree, README, manifests, and slice
   listing, not the code. Module: one slice of at most 60,000 tokens, sized by `tutor slice`
   and `tutor budget`. Synthesis: the module notes only (usually under 25,000 tokens).
-- **Reading budget: 60,000 tokens per unit**, which keeps a worker under 40% of its context.
+- **Reading budget: 60,000 tokens per unit**, as an absolute ceiling; the capacity-aware allowance above may be much smaller.
 - **Write as you go.** The note is created before reading and extended after each group of
   files. Findings held only in memory are lost when a worker stops.
 - **Handoff.** When a slice is bigger than planned or the synthesis cannot finish, stop at

@@ -12,6 +12,11 @@ stage (inline when it is small, through worker subagents when it has units), pas
 move to the next wave. All progress lives on disk, so any session can stop and another can
 continue.
 
+Read `docs/RESEARCH-WORKFLOW.md` before new generation or a curriculum upgrade.
+New plans record the developer learner profile, recursive research curriculum and
+adaptive visual decisions. The harness does not select provider models or change
+reasoning settings. Use the model configured by the host.
+
 Every command below is run from the repository root. `tutor` in prose always means
 `node harness/bin/tutor.mjs`. `<topic>` always means the full topic id
 `<domain>/<subdomain>/<slug>`.
@@ -43,6 +48,11 @@ Run the health check once per session:
 node harness/bin/tutor.mjs doctor
 node harness/bin/tutor.mjs list --json
 ```
+
+Also verify source-network access and actual fresh-worker capability. Inspect project
+verification recipes and establish their services before running them. Record host
+limits and unavailable capabilities with tutor log. Missing live evidence blocks
+research; missing fresh workers leaves independent reviews pending.
 
 If `tutor.mjs` does not exist or `doctor` reports a broken harness, stop and tell the learner
 exactly what `doctor` printed. Do not try to rebuild the harness.
@@ -108,11 +118,11 @@ A stage absent from `tutor next` may be blocked by a prerequisite. Inspect `stat
 | Stage | Runs as | One unit is | Agent |
 |-------|---------|-------------|-------|
 | `intake` | inline | — | — |
-| `research` | inline for `quick`; workers for `standard` and `deep` | one source category: `docs`, `papers`, `repos` | `tutor-researcher` |
+| `research` | inline for `quick`; workers for `standard` and `deep` | one source category or bounded recursive frontier | `tutor-researcher` |
 | `brief` | inline | — | — |
 | `digest` | workers | one source flagged `use_for: digest` | `tutor-digester` |
 | `repo-intel` | workers | one scout, then one per slice, then one synthesis, per repository | `tutor-repo-analyst` |
-| `lesson` | workers | 2–3 lesson pages | `tutor-lesson-builder` |
+| `lesson` | workers | 2–3 pages or one supplementary concept note | `tutor-lesson-builder` |
 | `mini-projects` | workers | one mini project | `tutor-project-builder` |
 | `capstone` | worker | the capstone project | `tutor-project-builder` |
 | `notes` | inline | — | — |
@@ -136,12 +146,15 @@ then gate the stage.
 | `standard` | at most 4 |
 | `deep` | at most 5 |
 
-This table is the only concurrency rule. Stage skills and the runbook refer to it; if one of
+The effective limit is min(host available worker slots, this depth limit).
+Use fewer simultaneous workers when requested for cost; never omit required units.
+This table defines the depth limit. Stage skills and the runbook refer to it; if one of
 them names another number, this table wins. The limit counts all workers of the wave together,
 across stages. When there are more units than the limit, spawn one batch, wait until every
-worker of that batch has returned, then spawn the next batch. Spawn a batch by sending all its
-Agent tool calls in one message (the tool is named Task in some versions), each with
-`subagent_type` set to the agent name from the table.
+worker of that batch has returned, then spawn the next batch. Use the host's native fresh-worker API. Agent names above are role-file names,
+not portable API types: explicitly load `.claude/agents/<role>.md` in each fresh
+worker. On hosts with Claude named types, the matching subagent_type is supported;
+otherwise pass the role as instructions. Do not copy the parent conversation.
 
 Workers may run in the background and return later by notification. Wait for every worker of
 the batch to return before you start the next batch or write an index note. To see where a
@@ -162,6 +175,8 @@ You are one worker in the tutor pipeline. Do exactly one unit of work, then retu
 TOPIC: <topic id, e.g. backend-engineering/messaging/redis-streams>
 STAGE: <stage id>
 UNIT: <unit id>
+ASSIGNED CONCEPTS: <ids or none, with their source_ids and planned coverage>
+LEARNER: <experience, known prerequisites, goals and explicit requirements>
 READ FIRST: .claude/skills/<skill>/SKILL.md — follow the part written for one unit.
 
 INPUT FILES (read these and nothing else):
@@ -265,16 +280,35 @@ headless browser and fails on a console or hydration error, which the build cann
 Then do these steps. The details of steps 2 to 4 (what to read, whom to spawn, the verifier's
 input list) are in the `finalize` section of `references/stage-runbook.md`; read it now.
 
-1. Fix what `validate --all` reports before building the site, with the fixing rule of "Gates
+1. Fix what `validate --all --structure-only` reports before building the site, with the fixing rule of "Gates
    and failures". Lines that belong to a stage you already recorded as failed stay unfixed;
    list them in the final message.
 2. Repair a failing build or a failing `smoke` check. A smoke failure always goes to one
    `tutor-lesson-builder` with the smoke lines in `FIX LIST`. At most 3 rounds.
-3. Spawn the reviewer: one `tutor-verifier` at depth `quick`; at `standard` and `deep` a
+3. Obtain `tutor review <topic> --json` (fingerprint and required checks), then spawn
+   fresh isolated reviewers. Pass the learner request, scoped plan/sources and artifact
+   paths, not author reasoning or self-review verdicts. One `tutor-verifier` at depth `quick`; at `standard` and `deep` a
    second one in the same batch, scoped to the projects. It edits nothing.
-4. Fix what the verifier reports, then rerun `validate <topic> --all`, the build, and `smoke`
-   once. A changed artifact invalidates review evidence: obtain a fresh focused review of the fixes. Record both scopes with `tutor review <topic> --file <review.json>`. Required checks are defined in `harness/lib/quality.mjs`. A passing review has no unresolved errors or required checks left unreviewed.
-5. Run `node harness/bin/tutor.mjs done <topic> finalize`. If it cannot pass only because of
+   Before dispatch, provide a live current-build preview URL and the host browser tool
+   or installed headless Playwright procedure. The orchestrator owns the preview's
+   bounded lifecycle and stops it after review. Test each required visual's controls,
+   observable changes and reset; a smoke pass alone checks rendering, not semantics.
+   If runtime inspection is unavailable, keep visual-usefulness unreviewed.
+4. Fix what the verifier reports through the owning worker. Renew stale receipts
+   in generation order: re-gate intake if plan/sources changed, run check research
+   when its inputs changed, then done each affected required stage (project stages
+   need their check renewed before done). All plan/source changes may stale all
+   earlier stages; use status/next, never assume only the edited file's stage changed.
+   After the LAST edit and stage re-gating, run tutor check <topic> finalize, then
+   obtain a NEW review packet and refresh BOTH review scopes against that fingerprint.
+   Direct build/smoke calls diagnose errors but do not renew CLI execution evidence.
+   Record both scopes through tutor review --file. Curriculum reviews require the
+   current input_fingerprint, independent:true, actual reviewer_run_id and evidence
+   assessments for every required check. Standard/deep use separate fresh runs.
+   Missing fresh workers leave review pending. Repeat repair/recheck/review within
+   the retry limits; no artifact may change between passing reviews and done finalize.
+5. After passing review imports, run `tutor validate <topic> --all`, then
+   `node harness/bin/tutor.mjs done <topic> finalize`. If it cannot pass only because of
    stages recorded as failed, run
    `node harness/bin/tutor.mjs fail <topic> finalize --reason "blocked by failed stages: <list>"`
    and say so in the final message.
@@ -298,7 +332,7 @@ them sends the learner to notes that do not exist.
 ```text
 Your notes for <Title> are ready.
 
-What I made: a short brief, <N> interactive lesson pages, <N> mini projects, <N> digests of
+What I made: a short brief, <N> lesson pages, <N> supplementary concept notes, <N> mini projects, <N> digests of
 the key papers and docs, a deep dive into <org>/<repo>, a capstone project (<name>), one-page
 final notes, and <N> recall cards.
 
@@ -309,8 +343,9 @@ Read in this order. You never need to jump around:
 Open the notes: open the `vault/` folder in Obsidian and start at `00-start-here-<slug>`.
 Projects: `projects/<domain>/<subdomain>/<slug>/`.
 
-Not finished: <"nothing", or each failed stage with one line on what is missing and the
-command to rerun it>.
+Not finished: <"nothing", or each failed stage/required child topic with what is missing and the
+command to resume it>.
+Research boundary: <scope, stop reason, deferred/excluded concepts and any unresolved evidence>.
 
 Later you can say "add this to my notes: ..." to save your own insight, and "quiz me on
 <Title>" for a recall session.

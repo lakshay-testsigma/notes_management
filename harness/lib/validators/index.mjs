@@ -3,6 +3,7 @@
 
 import { isOmitted } from '../stages.mjs';
 import { qualityProblems } from '../quality.mjs';
+import { curriculumProblems } from '../curriculum.mjs';
 import { readingProblems, READER_STAGES } from '../reading-order.mjs';
 import path from 'node:path';
 import { exists, relPath, toPosix, walkFiles } from '../io.mjs';
@@ -95,9 +96,11 @@ export function validateStage(root, topic, stageId, ctx = createContext(root, to
     found = [
       ...activeStageIds(topic).flatMap((id) => GATES[id](ctx)),
       ...topicWideChecks(ctx),
+      ...curriculumProblems(ctx, 'finalize').map(problem => failure(ctx.paths.topic_json, problem, 'repair concept coverage with tutor plan --set and write-note, then obtain a fresh independent review')),
     ];
   } else {
     found = GATES[stageId](ctx);
+    if (stageId === 'intake') found.push(...curriculumProblems(ctx, 'intake').map(problem => failure(ctx.paths.topic_json, problem, 'repair the bounded concept tree with tutor plan --set')));
   }
 
   if (!files) {

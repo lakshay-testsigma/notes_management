@@ -23,6 +23,17 @@ this skill (normally the `learn` orchestrator) does all of it, without workers.
 In this document, `tutor` always means `node harness/bin/tutor.mjs`, run from the
 repository root.
 
+### Capacity-aware input allowance
+
+The input allowance is `min(60000, floor(0.4 * actual_window) - reserve)`, including
+instructions, role/skill text and assigned excerpts. Ask `tutor budget --window
+<actual_window> --reserve <overhead> <files>` before reading. Unknown window defaults
+to 32768 and reserve3000. Any 60,000-token figure below is a ceiling only; the CLI's
+smaller allowance wins. Split oversized units and persist handoffs before dispatch.
+Learner experience comes from plan.learner; this learner is an existing software
+developer learning a new subject. Keep clear prerequisite bridges, avoid redundant
+basic programming lessons, and teach practical mechanisms and failure modes.
+
 ## Inputs
 
 Run this first and take every path from its output (the two output files are

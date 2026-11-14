@@ -32,7 +32,9 @@ export default function MatchPairs({ prompt = 'Match each term to its meaning.',
 
 	const pickTerm = (term: number) => {
 		setChecked(false);
-		setActive((current) => (current === term ? null : term));
+		// A term may already be selected initially or by automatic advancement.
+		// Clicking it still means "match this term", rather than deselecting it.
+		setActive(term);
 	};
 	const pickDefinition = (definition: number) => {
 		setChecked(false);

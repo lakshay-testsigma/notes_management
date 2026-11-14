@@ -13,9 +13,11 @@ that plays the real steps of the system, a 3D graph that can be explored and
 extended, a playground with real numbers, a small activity. Quote blocks and
 "mini boxes" (callouts, cards, asides) irritate them.
 
-The rule of this skill: **the visual carries the explanation, and the prose
-only frames it.** If a page still makes sense with its visual removed, the page
-is wrong. In this document, `tutor` means `node harness/bin/tutor.mjs`, run from
+The rule of this skill: **choose visuals for the mechanism and the learner.**
+With `plan.visual_policy: "adaptive"`, an experienced developer may have a basic
+page with `visual: null`; teach it through a concise example and an activity.
+When a visual is planned, it carries the mechanism and the prose frames it.
+Legacy plans retain a visual on every page. In this document, `tutor` means `node harness/bin/tutor.mjs`, run from
 the repository root.
 
 ## When to use
@@ -26,6 +28,17 @@ session doing everything) does Part A and Part C of the steps. A **worker** is a
 `tutor-lesson-builder` subagent that was given one unit such as `pages-01-03`;
 it does Part B only, for its two or three pages. Without subagents, one session
 does Part A, then Part B once per unit in order, then Part C.
+
+### Capacity-aware input allowance
+
+The input allowance is `min(60000, floor(0.4 * actual_window) - reserve)`, including
+instructions, role/skill text and assigned excerpts. Ask `tutor budget --window
+<actual_window> --reserve <overhead> <files>` before reading. Unknown window defaults
+to 32768 and reserve3000. Any 60,000-token figure below is a ceiling only; the CLI's
+smaller allowance wins. Split oversized units and persist handoffs before dispatch.
+Learner experience comes from plan.learner; this learner is an existing software
+developer learning a new subject. Keep clear prerequisite bridges, avoid redundant
+basic programming lessons, and teach practical mechanisms and failure modes.
 
 ## Inputs
 
@@ -42,7 +55,8 @@ Then read only these files:
 
 1. The plan, printed by `node harness/bin/tutor.mjs plan <topic> --json`:
    `lesson_outline` (each entry has `order`, `slug`, `title`, `visual`,
-   `activity`), `summary`, `outcomes`, and `prerequisites`. The outline is the
+   `activity`, and adaptive visual decision fields), `visual_policy`, `summary`,
+   `outcomes`, and `prerequisites`. The outline is the
    page list. Do not add, remove, or reorder pages.
 2. `site/COMPONENTS.md`, the authoritative reference for the props of every
    shared component. Do not read the whole file. List its headings with
@@ -62,10 +76,12 @@ Then read only these files:
    `<repo>-findings.md` and `<repo>-takeaways.md`. Real component names,
    numbers, and failure cases for the visuals come from these. Do not read the
    module notes or the cloned repository.
-6. This skill's `references/visual-design.md` (choosing and designing the
-   visual and the activity, and the MDX syntax that breaks the build) and
+6. This skill's `references/visual-design.md` (choosing and designing a
+   planned visual and the activity, and the MDX syntax that breaks the build) and
    `references/good-page.md` (one complete good page, followed by the
-   mistakes that make a page bad).
+   mistakes that make a page bad). Visual-first instructions in those examples
+   apply only when a visual is planned; the adaptive policy in this skill
+   controls omission, difficulty, and the learner profile.
 7. Only the worker that builds a topic-specific component:
    `references/topic-component.md`, the sections "Figure" and "Topic-specific
    components" of `site/COMPONENTS.md`, and what `site/README.md` says about
@@ -120,13 +136,17 @@ node harness/bin/tutor.mjs budget <file1> <file2> ...
 
    1. Write the one idea of the page as a single sentence. It becomes the
       `description`. If you need "and" to join two ideas, keep the first.
-   2. Choose the visual. The outline's `visual` field is the plan; confirm it
+   2. Follow the visual decision. For adaptive plans, read `complexity`,
+      `importance`, `spatial`, `visual_reason`, and `interaction_goal`. With
+      `visual: null`, omit the visual and its hand-over paragraph; use a concise
+      developer example and keep the activity. Otherwise the outline's `visual`
+      field is the plan; confirm it
       with the table in `references/visual-design.md` and the playbook's
       "Lesson recipes". Design its data from the brief, the digests, and the
       repo-intel findings: real component names, real commands, realistic
       numbers. Never use placeholder data such as "Service A" or "Step 1".
       Keep a diagram at 3 to 7 nodes; the gate warns above 7.
-   3. Copy the component's example from `site/COMPONENTS.md` and replace its
+   3. When a visual is planned, copy the component's example from `site/COMPONENTS.md` and replace its
       data. Use only the props documented there: the gate fails a page for
       any other prop. Do not open a component's source code to look for one.
    4. Choose the activity. The outline's `activity` field is the plan. It
@@ -134,8 +154,8 @@ node harness/bin/tutor.mjs budget <file1> <file2> ...
       `PredictReveal`, placed before the visual or paragraph that reveals the
       answer.
    5. Write the file with the skeleton under "Output contract". Write the
-      prose last, and only as much as the visual needs: the problem, what to
-      watch for, and what was just seen. Define every term in the sentence
+      prose last: the problem, mechanism, use case, and failure or limitation.
+      When there is a visual, explain what to change and what was just seen. Define every term in the sentence
       where it first appears, before a component uses it. Take facts only
       from the grounding notes. Never cite or link a page that is not in
       `sources.json`; leave that fact out and name it under PROBLEMS.
@@ -175,6 +195,41 @@ node harness/bin/tutor.mjs budget <file1> <file2> ...
    ```bash
    node harness/bin/tutor.mjs unit <topic> lesson done pages-NN-NN
    ```
+
+### Part B2 — supplementary concept note (only an assigned concept unit)
+
+A broad curriculum has more concepts than its short lesson outline can teach.
+The orchestrator may assign one `concept-<id>` unit to this worker instead of
+pages. Do not try to squeeze that unit into an existing page.
+
+1. Read only the assigned concept from `plan.curriculum`, its parent and
+   prerequisite summaries, learner profile, assigned vetted source entries,
+   relevant evidence excerpts, and the exact output path from the brief.
+   The orchestrator obtains `curriculum_dir` from `tutor paths`.
+2. Write one focused Markdown note with frontmatter `stage: concept`, the
+   current topic id, title, tags, creation date, and `sources` containing only
+   assigned source ids. Put `<!-- concept: <id> -->` above `## My insights`.
+3. Cover all six aspects explicitly: `explanation` (what it is and why it
+   exists), `mechanism` (how it works step by step), `use-case` (a concrete
+   developer or industry scenario), `trade-offs` (when to choose it or an
+   alternative), `failure-modes` (what it prevents, where it fails, and relevant
+   security limits), and `practice` (a checkable experiment with expected
+   behavior). Link source evidence beside the claims it supports. Mark
+   interpretation and uncertainty; do not invent facts to fill headings.
+4. Keep the same minimal prose style: connected short paragraphs, useful
+   examples, no quote blocks, cards, or callout boxes. The note can explain
+   the concept more fully than a 110–260-word lesson page. Link to the lesson
+   with its appropriate interactive visual when one exists. Markdown notes
+   do not execute MDX visual components: never paste one into a vault note.
+5. Write a draft outside `state/`, then preserve learner insights through
+   `tutor write-note <topic> <assigned note> --file <draft>`. Never hand-edit
+   learner insight suffixes. Return the note path, the six covered aspects,
+   and any evidence gaps to the orchestrator; it records
+   `{path, aspects: [...], anchor?}` in the concept coverage through
+   `tutor plan --set`. Every cited coverage file needs the concept marker.
+6. Run the scoped lesson validation named in the brief, mark this unit done
+   through the CLI only after its checks pass, and return at most 150 words.
+   If the unit cannot be grounded, report it failed and preserve a handoff.
 
 ### Part C — pointer note, build, gate (stage runner)
 
@@ -241,7 +296,7 @@ The rules, with the reason for each:
 | Rule | Reason |
 |------|--------|
 | 110 to 260 words of prose (everything outside frontmatter, code, and components). Aim for 150 to 220. | The learner asked for 10 to 15 lines; the visual does the teaching. |
-| At least one visual component and at least one activity component. | Seeing and doing is what makes it stick. |
+| At least one activity component. Adaptive plans use the exact planned visual, or omit it when `visual: null`; legacy plans require a visual on every page. | Spend attention on meaningful interaction. |
 | One idea per page. | A page with two ideas teaches neither. |
 | No blockquotes (`>`), no `:::` asides, no `<aside>`, `<blockquote>`, `<details>`, no card or callout markup. An important note is a plain paragraph that starts with `**Note.**` | The learner finds boxes and quotes irritating. |
 | Shared components have no `import` line and no `client:` directive. All props are plain data: strings, numbers, booleans, arrays, objects. Every prop is one that `site/COMPONENTS.md` documents. | The site provides them to every page; an import or a function prop breaks the page, and the gate fails an undocumented prop. |
@@ -259,10 +314,31 @@ Shared component names (fixed; no other shared component exists):
 | activity | `Quiz`, `PredictReveal`, `OrderSteps`, `MatchPairs` |
 | utility | `Resources`, `Figure` |
 
-Across the topic: at least one page uses `FlowAnimation`; when the outline
-plans a 3D visual (`Graph3D` or `VectorSpace3D`), or the topic has spatial or
-graph structure, at least one page uses one. Vary the visuals: a topic whose
-every page uses the same component reads like a slide deck.
+### Adaptive visual decisions
+
+New developer-focused plans use `visual_policy: "adaptive"`. Follow the decision
+for each page, rather than adding a graphic to fill a quota:
+
+| Planned idea | Required treatment |
+|---|---|
+| Basic, supporting or core | `visual: null` is allowed with a `visual_reason`; keep a concrete example and an activity. |
+| Intermediate, or any career-critical idea | Use the named visual to expose a useful mechanism, tradeoff, failure, or comparison. |
+| Advanced with `spatial: true` | Use the planned `Graph3D` or `VectorSpace3D`; `Graph3D` must be `editable` so the learner can change topology. |
+| Advanced with `spatial: false` | Use `ParamPlayground`, `StateMachine`, or `FlowAnimation`; record why 3D would distort the mechanism. |
+
+Every adaptive entry has `complexity: basic|intermediate|advanced`,
+`importance: supporting|core|critical`, `spatial: true|false`, and a nonempty
+`visual_reason`. A visual also needs `interaction_goal`: what the learner
+changes and what result they must predict. A 3D embedding view must explain
+that its three axes are a teaching projection of a higher-dimensional space.
+The reviewer tests the stated interaction and checks that it demonstrates the
+mechanism, including a failure or counterexample. Orbiting decorative objects
+alone does not satisfy that review.
+
+Adaptive plans have no topic-wide animation or 3D quota. Each planned visual
+must occur on its own page; a 3D component elsewhere cannot cover for it.
+Legacy plans require at least one `FlowAnimation` across the topic and a 3D
+component when one is planned. Vary useful visuals and activities.
 
 ### Pointer note `02-lesson-<slug>.md`
 
@@ -357,7 +433,7 @@ node harness/bin/tutor.mjs fail <topic> lesson --reason "<the failures that rema
 
 ## Common mistakes
 
-- A wall of text with a diagram at the end. Design the visual first.
+- A wall of text with a diagram at the end. Design a planned visual first; omit decorative visuals on basic adaptive pages.
 - Placeholder data ("Service A", "Step 1") or captions such as "the request is
   processed". Use the real names, commands, and numbers, and say what changes.
 - An invented prop, or a function or JSX passed as a prop.

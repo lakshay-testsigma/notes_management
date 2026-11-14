@@ -1,7 +1,7 @@
 # Personal AI tutor and note-taker
 
 This repository is a local harness that turns "teach me <topic>" into a complete learning
-package for a beginner: a short brief, an interactive lesson site, mini projects, digests of
+package for a software developer learning an unfamiliar subject: a short brief, an interactive lesson site, mini projects, digests of
 the key papers and docs, an Obsidian deep dive of a production repository, a capstone, final
 notes, and recall cards. Everything is numbered and linear so the learner never hops around.
 The full contract (paths, state, stages, CLI, gates) is `docs/ARCHITECTURE.md`; it wins over
@@ -44,6 +44,9 @@ fetched pages stay in `.cache/`.
 - Never edit `topic.json` by hand. Change state only with `tutor` commands (`plan --set`,
   `depth`, `start`, `unit`, `done`, `skip`, `fail`, `reset`, `sources add`, `sources update`,
   `sources remove`, `concept`, `insight`).
+- An explicit learner deletion request permits `tutor remove <topic> [<topic>...]`
+  to preview and `--delete` to remove the selected packages, including insights and
+  recall history. Never use removal during ordinary generation or resumption.
 - Helpers: `tutor validate <topic> <stage> --files <paths>` (a unit worker checks only its own files), `tutor words <file>` (the validator's word count), `tutor next <topic>` on a finished topic (its reading order).
 - A stage is finished only when `tutor done <topic> <stage>` passes. When the validator and
   a skill disagree, do what the validator says.
@@ -62,9 +65,14 @@ That session reads `tutor` output and worker summaries, never raw sources or clo
 
 ## Lesson page style
 
+New plans follow `docs/RESEARCH-WORKFLOW.md`: recursive concept discovery, six-aspect
+coverage, adaptive visuals, and fresh independent reviewers. Record this learner's
+software development experience in `plan.learner`; bridge unknown domain prerequisites.
+
 A lesson page reads like a short blog post about one idea: a title, a one-line description,
-10–15 lines of prose (110–260 words), and at least one visual and one activity component,
-with the visual doing most of the explaining. Use no quote blocks, boxes, callouts, `<aside>`,
+10–15 lines of prose (110–260 words), and an activity component. Adaptive plans
+choose visuals by complexity and importance (basic may omit); legacy plans require
+one visual per page. Visuals explain the mechanism through observable changes. Use no quote blocks, boxes, callouts, `<aside>`,
 or `<details>`; an important remark is a plain paragraph that starts with `**Note.**`. Shared
 components need no `import` and no `client:` directive; their props are in
 `site/COMPONENTS.md`; a prop that file does not document fails the gate. Only the last page

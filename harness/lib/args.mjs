@@ -1,7 +1,7 @@
 import { UsageError } from './errors.mjs';
 
 // Flags that never take a value. Every other `--flag` consumes the next argument.
-const BOOLEAN_FLAGS = new Set(['json', 'all', 'force', 'tech', 'pack', 'fix', 'help', 'continue', 'structure-only']);
+const BOOLEAN_FLAGS = new Set(['json', 'all', 'force', 'tech', 'pack', 'fix', 'help', 'continue', 'structure-only', 'delete']);
 
 /**
  * Parse argv into positionals and flags.

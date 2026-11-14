@@ -1,3 +1,9 @@
+For new plans, the adaptive policy in learn-site/SKILL.md and
+`docs/RESEARCH-WORKFLOW.md` decides whether a visual is useful. Examples below
+show how to design a planned visual; they do not require one on a basic
+noncritical page. Keep an activity on every page and choose complexity from
+what the learner must understand, not the presence of a convenient component.
+
 # Designing the visual, the activity, and the prose of a lesson page
 
 Read this before writing a page. Props are never listed here: the exact props
@@ -225,7 +231,8 @@ Answer each line with yes before you move to the next page.
 - The frontmatter has `title`, `description`, `order` (a number), and
   `concepts`.
 - The page states one idea, and the `description` is that idea.
-- There is at least one visual component and at least one activity component.
+- There is an activity and the exact planned visual; a justified basic noncritical
+  visual:null page may omit visuals under the adaptive policy.
 - Every label, command, and number inside the components belongs to the real
   topic. Nothing is a placeholder.
 - Every prop used is documented in `site/COMPONENTS.md` (the gate fails any
