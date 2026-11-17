@@ -1,0 +1,73 @@
+{
+  "id": "funnel-strategy-explorer",
+  "title": "Choose where to grow a funnel",
+  "mode": "branching",
+  "objective": "Compare traffic, conversion and retention investments with funnel arithmetic and pick the one that fits the numbers.",
+  "level": "intermediate",
+  "summary": "A branching deck shows a funnel of 10,000 visitors and 150 buyers and lets the learner open three deep dives, buying traffic, fixing the sign-up rate and improving retention, each with its arithmetic and what to measure.",
+  "concept_ids": [
+    "funnel-conversion"
+  ],
+  "source_ids": [
+    "SOURCE"
+  ],
+  "used_in": [
+    "LESSON_PAGE"
+  ],
+  "deck": "funnel-strategy-paths",
+  "fallback_visual": "funnel-stages",
+  "checkpoints": [
+    {
+      "id": "signup-buyers",
+      "kind": "verify",
+      "at": {
+        "slide": "compare-levers"
+      },
+      "prompt": "The sign-up rate rises from 20% to 30% and later rates stay the same. How many buyers do you get?",
+      "choices": [
+        {
+          "text": "225",
+          "correct": true
+        },
+        {
+          "text": "160",
+          "misconception": "Adds the 10-point change to the final count instead of multiplying through the funnel"
+        },
+        {
+          "text": "450",
+          "misconception": "Thinks a 10-point rise triples the buyers"
+        }
+      ],
+      "explanation": "10,000 visitors times 30% gives 3,000 sign-ups, times 30% gives 900 active users, times 25% gives 225 buyers.",
+      "concept_ids": [
+        "funnel-conversion"
+      ]
+    },
+    {
+      "id": "retention-count",
+      "kind": "verify",
+      "at": {
+        "tab": "practice"
+      },
+      "prompt": "Better retention makes buyers buy again. What does it change?",
+      "choices": [
+        {
+          "text": "Value per buyer, not the number of buyers",
+          "correct": true
+        },
+        {
+          "text": "The number of visitors",
+          "misconception": "Confuses retention with acquisition"
+        },
+        {
+          "text": "The sign-up rate",
+          "misconception": "Thinks retention acts on the top of the funnel"
+        }
+      ],
+      "explanation": "Retention acts after the purchase: the same buyers spend more over time, while the stages before the purchase keep their numbers.",
+      "concept_ids": [
+        "funnel-conversion"
+      ]
+    }
+  ]
+}

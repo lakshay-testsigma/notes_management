@@ -19,14 +19,18 @@ The page spends its small word budget on a concrete question and makes the learn
 | File name | `NN-<page>.mdx`: two digits, lowercase words, dashes. Example: `03-consumer-groups.mdx` |
 | Frontmatter | `title`, `description` (one line), `order` (whole number equal to `NN`), `concepts` (non-empty list) |
 | Prose length | 110–260 words outside frontmatter, code, and components. Aim for 150–220 |
-| Visual | Adaptive plans use the exact outline visual, or none when `visual: null`; legacy plans require at least one visual component: `FlowAnimation`, `SystemDiagram`, `SequenceDiagram`, `StateMachine`, `Graph3D`, `VectorSpace3D`, `Chart`, `ParamPlayground`, `CodeWalkthrough`, `Timeline`, `Mermaid`, or an imported topic component |
-| Activity | At least one activity component: `Quiz`, `PredictReveal`, `OrderSteps`, `MatchPairs` |
+| Visual | Adaptive plans use the exact outline visual, or none when `visual: null`; legacy plans require at least one visual component: `FlowAnimation`, `SystemDiagram`, `SequenceDiagram`, `StateMachine`, `Graph3D`, `VectorSpace3D`, `Chart`, `ParamPlayground`, `CodeWalkthrough`, `Timeline`, `Mermaid`, `Diagram`, `Video`, `ClusterSim`, `AlgorithmStepper`, `CompareView`, `CodePlayground`, or an imported topic component |
+| Activity | At least one activity component: `Quiz`, `PredictReveal`, `OrderSteps`, `MatchPairs`, `SortBuckets` |
 | No boxes, no quotes | No line starting with `>`, no `:::`, no `<aside>`, `<blockquote>`, `<details>`, `<summary>`, no card, callout, or alert markup or components |
 | Shared components | Used without an `import` and without a `client:` directive, and only with props that `site/COMPONENTS.md` documents |
 | Topic components | Live in `site/src/components/topics/<slug>/` and are imported explicitly |
 | Across the topic | Adaptive plans have no animation quota: each page implements its decision. Legacy plans require one `FlowAnimation` and a 3D component when planned |
 | Last page | The final page of the topic (the highest `order` in the plan's `lesson_outline`) ends with `<Resources />` as its last line; no other page has it |
 | Diagram size (warning) | A diagram with more than 7 nodes gets a warning; keep diagrams at 3–7 nodes |
+| Registered visuals | `<Diagram id>` and `<Video id>` name an entry of `visuals.json` of the right format whose `used_in` lists the page |
+| Depth blocks | At most two `<Depth level="internals|production">` blocks, 20–180 words each, counted apart from the 110–260 |
+| Visual-first plans | The planned `extra_visuals` and `video` are on the page; per topic at least 2/3/5 registered lesson visuals (quick/standard/deep) and an end-to-end workflow `Diagram` when the topic has a multi-stage process (`harness/rubrics/visuals.md`) |
+| Writing standard (warning) | Visual-first pages print `tutor style` warnings: long sentences, passive voice, academic words (`harness/rubrics/writing-standard.md`) |
 
 ## The page skeleton
 

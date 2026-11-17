@@ -1,0 +1,19 @@
+---
+// Lesson component <ClusterSim />: a distributed-systems simulation (majority
+// replication, gossip broadcast, or load balancing). Authors use it in MDX with
+// no import and no client directive; this wrapper hydrates the island when it
+// scrolls into view. Props are documented in site/COMPONENTS.md.
+import Island from './react/ClusterSim.tsx';
+
+export interface Props {
+	title?: string;
+	mode: 'replication' | 'broadcast' | 'load-balance';
+	servers?: number;
+	latency?: number;
+	failures?: string[];
+	intro?: string;
+	explain?: Record<string, string>;
+}
+---
+
+<Island client:visible {...Astro.props} />

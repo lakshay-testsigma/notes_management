@@ -18,6 +18,7 @@ import { lessonGate } from './lesson.mjs';
 import { miniProjectsGate } from './mini-projects.mjs';
 import { capstoneGate } from './capstone.mjs';
 import { notesGate } from './notes.mjs';
+import { visualStageFailures } from './visuals.mjs';
 
 const GATES = {
   intake: intakeGate,
@@ -94,12 +95,13 @@ export function validateStage(root, topic, stageId, ctx = createContext(root, to
   let found;
   if (stageId === 'finalize') {
     found = [
-      ...activeStageIds(topic).flatMap((id) => GATES[id](ctx)),
+      ...activeStageIds(topic).flatMap((id) => [...GATES[id](ctx), ...visualStageFailures(ctx, id)]),
+      ...visualStageFailures(ctx, 'finalize'),
       ...topicWideChecks(ctx),
       ...curriculumProblems(ctx, 'finalize').map(problem => failure(ctx.paths.topic_json, problem, 'repair concept coverage with tutor plan --set and write-note, then obtain a fresh independent review')),
     ];
   } else {
-    found = GATES[stageId](ctx);
+    found = [...GATES[stageId](ctx), ...visualStageFailures(ctx, stageId)];
     if (stageId === 'intake') found.push(...curriculumProblems(ctx, 'intake').map(problem => failure(ctx.paths.topic_json, problem, 'repair the bounded concept tree with tutor plan --set')));
   }
 

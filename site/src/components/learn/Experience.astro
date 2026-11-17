@@ -1,0 +1,36 @@
+---
+// Lesson component <Experience id="…" />: an adaptive learning experience
+// built by `tutor experience <topic> build <id>` — an explainer, an
+// interactive video lesson, a branching deck or a hybrid lab, chosen per idea
+// by the experience-mode selector. Props: site/COMPONENTS.md.
+import ExperienceView from './views/ExperienceView.astro';
+import type { BuiltExperience } from '../../lib/experience-logic';
+import { pageTopic, readRepoFile, resolveVisual } from '../../lib/visuals';
+
+interface Props {
+	/** The id of the experience in visuals.json (the folder of its experience.json). */
+	id: string;
+	/** `domain/subdomain/slug`. Only needed outside a topic page. */
+	topic?: string;
+}
+const { id, topic: topicId } = Astro.props;
+const topic = pageTopic(topicId, Astro.locals, Astro.url);
+const { entry, problem } = resolveVisual(topic, id);
+let config: BuiltExperience | null = null;
+let error = problem;
+if (entry && !error) {
+	if (entry.format !== 'experience' || !entry.experience) error = `visual "${id}" is a ${entry.format}, not an experience; build it with tutor experience ${topic?.id ?? '<topic>'} build ${id}`;
+	else {
+		const raw = readRepoFile(entry.experience.built);
+		try {
+			config = raw ? (JSON.parse(raw) as BuiltExperience) : null;
+		} catch {
+			config = null;
+		}
+		if (!config) error = `experience "${id}" is not built (${entry.experience.built}); run tutor experience ${topic?.id ?? '<topic>'} build ${id}`;
+	}
+}
+const fallback = config?.fallback_visual ? resolveVisual(topic, config.fallback_visual).entry : null;
+---
+
+{config && !error ? <ExperienceView config={config} fallback={fallback} /> : <p class="lc lc-error">{error}</p>}

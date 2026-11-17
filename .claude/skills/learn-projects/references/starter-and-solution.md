@@ -119,7 +119,13 @@ Answer each line with yes. If one is no, fix it first.
 - The solution's tests were run in this session and all passed.
 - The starter's tests were run in this session and failed only on TODO errors.
 - Every `TODO(n)` in the starter has a task `n` in the README, and the reverse.
-- The README has all ten headings in the required order.
+- The README has all twelve headings in the required order, including
+  `## How it works` (a mermaid diagram that matches the solution's code) and
+  `## Implementation walkthrough` (after `## Hints`, one step per `TODO(n)`).
+- The README diagram is registered: `node harness/bin/tutor.mjs visuals <topic> check` passes
+  and the entry lists the README path in `used_in`.
+- `node harness/bin/tutor.mjs style README.md` shows no long-sentence or passive-voice warning
+  you could easily fix.
 - Hints appear only under `## Hints`.
 - All dependency versions are exact.
 - No file contains a secret, a real API key, or an absolute path from this

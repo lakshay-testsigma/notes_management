@@ -28,3 +28,8 @@ Thumbs.db
 .env
 .env.*
 !.env.example
+
+# HyperFrames working files (the authored video.json and generated project stay tracked)
+projects/**/videos/*/renders/
+projects/**/videos/*/.hyperframes/
+projects/**/videos/*/node_modules/

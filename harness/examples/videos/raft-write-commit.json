@@ -1,0 +1,165 @@
+{
+  "id": "raft-write-commit",
+  "title": "How a Raft cluster commits one write",
+  "purpose": "See why a write is safe only after a majority of servers store it.",
+  "sequence_reason": "The commit depends on an ordered chain of messages, so motion shows the cause and effect better than one static diagram.",
+  "summary": "A client sends a write to the leader. The leader appends it to its log and sends it to two followers. When a majority stores the entry, the leader commits it and replies to the client.",
+  "explanation": "The leader replies only after a majority of servers store the entry. A minority failure cannot lose a committed write.",
+  "learning_check": {
+    "question": "In a five-server cluster, how many servers must store an entry before the leader can commit it?",
+    "answer": "Three, a majority of five, including the leader."
+  },
+  "concept_ids": [
+    "log-replication"
+  ],
+  "source_ids": [
+    "raft-paper"
+  ],
+  "used_in": [
+    "LESSON_PAGE"
+  ],
+  "narration": {
+    "engine": "auto"
+  },
+  "scenes": [
+    {
+      "id": "intro",
+      "duration": 5,
+      "heading": "One write, three servers",
+      "narration": "A Raft cluster commits a write in a fixed order. Watch one write travel.",
+      "visual": {
+        "type": "title",
+        "subtitle": "Leader, followers, majority"
+      }
+    },
+    {
+      "id": "send",
+      "duration": 9,
+      "heading": "The leader appends, then replicates",
+      "narration": "The client sends the write to the leader. The leader appends it to its log, then sends AppendEntries to each follower.",
+      "source_ids": [
+        "raft-paper"
+      ],
+      "visual": {
+        "type": "flow",
+        "nodes": [
+          {
+            "id": "client",
+            "label": "Client"
+          },
+          {
+            "id": "leader",
+            "label": "Leader",
+            "sub": "term 3"
+          },
+          {
+            "id": "f1",
+            "label": "Follower 1"
+          },
+          {
+            "id": "f2",
+            "label": "Follower 2"
+          }
+        ],
+        "path": [
+          {
+            "from": "client",
+            "to": "leader",
+            "packet": "SET x=5"
+          },
+          {
+            "from": "leader",
+            "to": "f1",
+            "packet": "AppendEntries",
+            "label": "Each follower gets the same entry from the leader."
+          },
+          {
+            "from": "leader",
+            "to": "f2",
+            "packet": "AppendEntries",
+            "label": "The leader sends to Follower 2 directly, not through Follower 1."
+          }
+        ]
+      }
+    },
+    {
+      "id": "ack",
+      "duration": 9,
+      "heading": "A majority acknowledges",
+      "narration": "Follower 1 stores the entry and replies. The leader and Follower 1 are two of three servers, which is a majority.",
+      "source_ids": [
+        "raft-paper"
+      ],
+      "visual": {
+        "type": "flow",
+        "nodes": [
+          {
+            "id": "client",
+            "label": "Client"
+          },
+          {
+            "id": "leader",
+            "label": "Leader",
+            "sub": "2 of 3 stored"
+          },
+          {
+            "id": "f1",
+            "label": "Follower 1"
+          },
+          {
+            "id": "f2",
+            "label": "Follower 2",
+            "sub": "slow"
+          }
+        ],
+        "path": [
+          {
+            "from": "f1",
+            "to": "leader",
+            "packet": "success",
+            "label": "One acknowledgement is enough for a majority of three."
+          }
+        ]
+      }
+    },
+    {
+      "id": "commit",
+      "duration": 9,
+      "heading": "Commit, apply, reply",
+      "narration": "The leader marks the entry committed, applies it to its state machine, and replies to the client. Followers learn the commit on the next message.",
+      "visual": {
+        "type": "steps",
+        "items": [
+          "Leader marks the entry committed",
+          "Leader applies it to the state machine",
+          "Leader replies to the client",
+          "Followers apply it after the next AppendEntries"
+        ]
+      }
+    },
+    {
+      "id": "why",
+      "duration": 11,
+      "heading": "Why a majority",
+      "narration": "When a majority stored the entry, any new leader has it. When only a minority stored it, the entry can be lost. So the leader waits for a majority.",
+      "visual": {
+        "type": "compare",
+        "left": {
+          "label": "Majority stored",
+          "items": [
+            "Entry survives one failure",
+            "A new leader has the entry"
+          ]
+        },
+        "right": {
+          "label": "Minority stored",
+          "items": [
+            "Entry can be lost",
+            "Leader must not reply yet"
+          ]
+        },
+        "verdict": "Commit only after a majority stores the entry."
+      }
+    }
+  ]
+}

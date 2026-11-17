@@ -1,0 +1,7 @@
+stateDiagram-v2
+  [*] --> Follower
+  Follower --> Candidate: election timeout, term + 1
+  Candidate --> Leader: votes from a majority
+  Candidate --> Follower: sees a leader with an equal or higher term
+  Candidate --> Candidate: split vote, new timeout
+  Leader --> Follower: sees a higher term

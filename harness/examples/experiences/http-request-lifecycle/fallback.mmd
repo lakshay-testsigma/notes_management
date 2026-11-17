@@ -1,0 +1,11 @@
+sequenceDiagram
+  participant B as Browser
+  participant D as DNS resolver
+  participant S as Web server
+  B->>D: Where is example.com?
+  D-->>B: IP address
+  B->>S: TCP SYN
+  S-->>B: SYN-ACK
+  B->>S: ACK, then TLS handshake
+  B->>S: GET /index.html
+  S-->>B: 200 OK + HTML

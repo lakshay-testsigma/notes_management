@@ -1,0 +1,281 @@
+{
+  "config": {
+    "generated_by": "tutor experience build",
+    "id": "funnel-strategy-explorer",
+    "topic": "no-code/marketing/marketing-funnel-strategy",
+    "title": "Choose where to grow a funnel",
+    "mode": "branching",
+    "objective": "Compare traffic, conversion and retention investments with funnel arithmetic and pick the one that fits the numbers.",
+    "level": "intermediate",
+    "summary": "A branching deck shows a funnel of 10,000 visitors and 150 buyers and lets the learner open three deep dives, buying traffic, fixing the sign-up rate and improving retention, each with its arithmetic and what to measure.",
+    "page": "site/src/content/lessons/no-code/marketing/marketing-funnel-strategy/02-the-mechanism.mdx",
+    "page_url": "/no-code/marketing/marketing-funnel-strategy/lesson/02-the-mechanism/",
+    "tabs": [
+      "deepdive",
+      "practice"
+    ],
+    "watch": null,
+    "guided": null,
+    "summary_video": null,
+    "simulation": null,
+    "sync": [],
+    "inspect": [],
+    "deck": {
+      "deck_id": "funnel-strategy-paths",
+      "title": "Where to invest in a marketing funnel",
+      "composition_url": "/media/_demo/funnel-strategy-paths/composition/index.html",
+      "island": {
+        "slides": [
+          {
+            "sceneId": "question",
+            "notes": "State the decision: one budget, three candidate investments."
+          },
+          {
+            "sceneId": "funnel",
+            "notes": "Each bar keeps a share of the bar before it: 20%, then 30%, then 25%.",
+            "fragments": [
+              4.3,
+              4.6,
+              4.9,
+              5.2
+            ]
+          },
+          {
+            "sceneId": "compare-levers",
+            "notes": "Open a deep dive to work through one option; Back returns here.",
+            "hotspots": [
+              {
+                "id": "compare-levers-h1",
+                "label": "Buy more traffic",
+                "target": "traffic",
+                "region": {
+                  "x": 5,
+                  "y": 81,
+                  "w": 20,
+                  "h": 12
+                }
+              },
+              {
+                "id": "compare-levers-h2",
+                "label": "Fix sign-up rate",
+                "target": "signup",
+                "region": {
+                  "x": 27,
+                  "y": 81,
+                  "w": 20,
+                  "h": 12
+                }
+              },
+              {
+                "id": "compare-levers-h3",
+                "label": "Improve retention",
+                "target": "retention",
+                "region": {
+                  "x": 49,
+                  "y": 81,
+                  "w": 20,
+                  "h": 12
+                }
+              }
+            ]
+          },
+          {
+            "sceneId": "decide",
+            "notes": "Turn the comparison into a repeatable decision procedure.",
+            "fragments": [
+              12.3,
+              12.6,
+              12.9
+            ]
+          }
+        ],
+        "slideSequences": [
+          {
+            "id": "traffic",
+            "label": "Buy more traffic",
+            "slides": [
+              {
+                "sceneId": "traffic-math",
+                "notes": "At unchanged rates, twice the visitors give twice the buyers; new channels may convert at different rates."
+              }
+            ]
+          },
+          {
+            "id": "signup",
+            "label": "Fix sign-up rate",
+            "slides": [
+              {
+                "sceneId": "signup-math",
+                "notes": "Every later stage receives half as many people again, so buyers rise by half."
+              }
+            ]
+          },
+          {
+            "id": "retention",
+            "label": "Improve retention",
+            "slides": [
+              {
+                "sceneId": "retention-steps",
+                "notes": "Retention changes value per buyer, not the number of buyers, so measure the repeat purchase rate first."
+              }
+            ]
+          }
+        ]
+      },
+      "scenes": [
+        {
+          "id": "question",
+          "heading": "Where should the next budget go?",
+          "start": 0,
+          "duration": 4,
+          "sequence": null,
+          "fragments": []
+        },
+        {
+          "id": "funnel",
+          "heading": "Today's funnel",
+          "start": 4,
+          "duration": 4,
+          "sequence": null,
+          "fragments": [
+            4.3,
+            4.6,
+            4.9,
+            5.2
+          ]
+        },
+        {
+          "id": "compare-levers",
+          "heading": "Three levers, one budget",
+          "start": 8,
+          "duration": 4,
+          "sequence": null,
+          "fragments": []
+        },
+        {
+          "id": "decide",
+          "heading": "How to decide",
+          "start": 12,
+          "duration": 4,
+          "sequence": null,
+          "fragments": [
+            12.3,
+            12.6,
+            12.9
+          ]
+        },
+        {
+          "id": "traffic-math",
+          "heading": "Double the visitors",
+          "start": 16,
+          "duration": 4,
+          "sequence": "traffic",
+          "fragments": []
+        },
+        {
+          "id": "signup-math",
+          "heading": "Sign-up rate from 20% to 30%",
+          "start": 20,
+          "duration": 4,
+          "sequence": "signup",
+          "fragments": []
+        },
+        {
+          "id": "retention-steps",
+          "heading": "Grow value without new visitors",
+          "start": 24,
+          "duration": 4,
+          "sequence": "retention",
+          "fragments": []
+        }
+      ],
+      "outline": "# Where to invest in a marketing funnel\n\nA funnel turns 10,000 visitors into 2,000 sign-ups, 600 active users and 150 buyers. The deck compares three investments. Each deep dive works through the arithmetic of one choice and names what to measure before committing budget.\n\n**Purpose.** Compare three ways to grow buyers: more traffic, a better sign-up rate or better retention, using the same funnel numbers.\n\n## Main path\n\n### 1. Where should the next budget go?\n\n**On screen.** Title card with \"Traffic, conversion or retention?\".\n\n**Notes.** State the decision: one budget, three candidate investments.\n\n### 2. Today's funnel\n\n**On screen.** Bars grow for Visitors 10000, Sign-ups 2000, Active 600, Buyers 150.\n\n**Notes.** Each bar keeps a share of the bar before it: 20%, then 30%, then 25%.\n\n### 3. Three levers, one budget\n\n**On screen.** Numbered steps appear one at a time: More traffic: more people enter the top → Better sign-up rate: more of them continue → Better retention: buyers buy again.\n\n**Notes.** Open a deep dive to work through one option; Back returns here.\n\n**Branches.** deep dive \"Buy more traffic\", deep dive \"Fix sign-up rate\", deep dive \"Improve retention\".\n\n### 4. How to decide\n\n**On screen.** Numbered steps appear one at a time: Find the stage with the largest relative drop → Estimate buyers gained per unit of budget → Run one experiment, measure, repeat.\n\n**Notes.** Turn the comparison into a repeatable decision procedure.\n\n## Deep dive: Buy more traffic\n\n### 1. Double the visitors\n\n**On screen.** Two columns, \"Today\" and \"Double traffic, same rates\", fill in pairs; verdict: Check that new visitors convert like old ones..\n\n**Notes.** At unchanged rates, twice the visitors give twice the buyers; new channels may convert at different rates.\n\n## Deep dive: Fix sign-up rate\n\n### 1. Sign-up rate from 20% to 30%\n\n**On screen.** Bars grow for Sign-ups 3000, Active 900, Buyers 225.\n\n**Notes.** Every later stage receives half as many people again, so buyers rise by half.\n\n## Deep dive: Improve retention\n\n### 1. Grow value without new visitors\n\n**On screen.** Numbered steps appear one at a time: Measure how many buyers buy again → Improve onboarding for active users → Value per buyer grows; buyer count does not.\n\n**Notes.** Retention changes value per buyer, not the number of buyers, so measure the repeat purchase rate first.\n\n",
+      "explanation": "Every stage multiplies the stages after it, so the same improvement is worth a different number of buyers depending on where you make it."
+    },
+    "checkpoints": [
+      {
+        "id": "signup-buyers",
+        "kind": "verify",
+        "at": {
+          "slide": "compare-levers"
+        },
+        "prompt": "The sign-up rate rises from 20% to 30% and later rates stay the same. How many buyers do you get?",
+        "choices": [
+          {
+            "text": "225",
+            "correct": true
+          },
+          {
+            "text": "160",
+            "misconception": "Adds the 10-point change to the final count instead of multiplying through the funnel"
+          },
+          {
+            "text": "450",
+            "misconception": "Thinks a 10-point rise triples the buyers"
+          }
+        ],
+        "explanation": "10,000 visitors times 30% gives 3,000 sign-ups, times 30% gives 900 active users, times 25% gives 225 buyers.",
+        "concept_ids": [
+          "funnel-conversion"
+        ]
+      },
+      {
+        "id": "retention-count",
+        "kind": "verify",
+        "at": {
+          "tab": "practice"
+        },
+        "prompt": "Better retention makes buyers buy again. What does it change?",
+        "choices": [
+          {
+            "text": "Value per buyer, not the number of buyers",
+            "correct": true
+          },
+          {
+            "text": "The number of visitors",
+            "misconception": "Confuses retention with acquisition"
+          },
+          {
+            "text": "The sign-up rate",
+            "misconception": "Thinks retention acts on the top of the funnel"
+          }
+        ],
+        "explanation": "Retention acts after the purchase: the same buyers spend more over time, while the stages before the purchase keep their numbers.",
+        "concept_ids": [
+          "funnel-conversion"
+        ]
+      }
+    ],
+    "fallback_visual": "funnel-stages",
+    "concept_ids": [
+      "funnel-conversion"
+    ],
+    "sources": [],
+    "input_hash": "7ad062f029b196a8c18d7f3aab708677cb59ee9ca0772fc91a1550e61ac2af03"
+  },
+  "fallback": {
+    "id": "funnel-stages",
+    "title": "Marketing Funnel Strategy: the whole process",
+    "kind": "workflow",
+    "scope": "end-to-end",
+    "format": "mermaid",
+    "file": "vault/no-code/marketing/marketing-funnel-strategy/visuals/assets/funnel-stages-marketing-funnel-strategy.mmd",
+    "concept_ids": [
+      "funnel-conversion"
+    ],
+    "source_ids": [
+      "marketing-funnel-strategy-source"
+    ],
+    "purpose": "See every step before studying one.",
+    "explanation": "Each step hands its result to the next one, and the last step gives the outcome the learner predicts.",
+    "alt": "A diagram of every step of the mechanism in order, from the first input to the final outcome, joined by arrows.",
+    "learning_check": {
+      "question": "Which step decides the outcome?",
+      "answer": "The comparison step."
+    },
+    "used_in": [
+      "site/src/content/lessons/no-code/marketing/marketing-funnel-strategy/02-the-mechanism.mdx"
+    ]
+  },
+  "fallbackSource": "flowchart LR\n  v[\"Visitors 10,000\"] -- \"20% sign up\" --> s[\"Sign-ups 2,000\"]\n  s -- \"30% activate\" --> a[\"Active 600\"]\n  a -- \"25% buy\" --> b[\"Buyers 150\"]\n"
+}

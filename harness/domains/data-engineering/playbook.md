@@ -142,6 +142,13 @@ Guidance for the stage skills. Each `##` heading is read by one skill; keep the 
 
 **Custom simulation ideas.** A window-and-watermark simulator with draggable events on a timeline; a row-versus-column storage reader that shows which bytes a query touches; a shuffle visualiser with adjustable key skew; an idempotency tester that re-runs a load and compares row counts; a slowly-changing-dimension stepper; a partition-pruning demo over a folder tree.
 
+**Visual recipes** (visual-first plans; standard in `harness/rubrics/visuals.md`):
+
+- A registered end-to-end data-flow `Diagram` (sources, ingestion, storage, transformation, serving) for every pipeline topic.
+- `AlgorithmStepper` for joins, shuffles, deduplication and slowly changing dimensions on small tables.
+- `FlowAnimation` with `breakable` for streaming and late events; `Video` for a record moving through a pipeline with watermarks.
+- `CompareView` for row versus column storage, batch versus streaming, with measured numbers from the sources.
+
 ## Mini project patterns
 
 Use public datasets (for example NYC taxi trips, GitHub Archive samples, open government data) or generated data. Guided → independent.
@@ -238,3 +245,4 @@ Question styles: Explain ("why does columnar storage make aggregations faster?")
 - Credentials for warehouses and brokers live in environment variables; profiles with secrets are git-ignored.
 - Paid cloud warehouses only on request, with a cost note and query limits; local engines by default.
 - Scrape only sources that allow it, at a polite rate.
+- **Experience recipes** (adaptive plans; `harness/rubrics/experiences.md`, the selector decides): explainer for a batch run; interactive for partitioning and skew; branching for batch vs streaming vs lambda/kappa; hybrid for exactly-once delivery across failures.

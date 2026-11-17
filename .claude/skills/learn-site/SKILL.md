@@ -1,6 +1,6 @@
 ---
 name: learn-site
-description: Write the interactive lesson pages of a topic for the Astro site in the tutor harness — short blog-style MDX pages where an animated flow, a 3D graph, a diagram or a playground carries the explanation and a small activity tests it — plus the vault pointer note 02-lesson. This is the `lesson` stage. Use it whenever `tutor next` lists the `lesson` stage, whenever a `tutor-lesson-builder` worker is given a `pages-NN-NN` unit, whenever the learner asks for "a lesson page", "an interactive explanation", "an animation of how X works", "a visual for X" or "add a page about X" for a topic in this repository, and whenever `tutor validate <topic> lesson` or the site build reports a lesson page to repair.
+description: Write the interactive lesson pages of a topic for the Astro site in the tutor harness — short blog-style MDX pages where registered diagrams, an animated flow, a simulation (ClusterSim, AlgorithmStepper, CodePlayground), a short HyperFrames video, an interactive experience (<Experience>: explainer, guided interactive lesson, branching deck or hybrid lab chosen by `tutor experience`) or a 3D graph carries the explanation, progressive Depth blocks hold internals, and a small activity tests it — plus the vault pointer note 02-lesson. Calls the shared learn-visuals and learn-video skills. This is the `lesson` stage. Use it whenever `tutor next` lists the `lesson` stage, whenever a `tutor-lesson-builder` worker is given a `pages-NN-NN` unit, whenever the learner asks for "a lesson page", "an interactive explanation", "an animation of how X works", "a visual for X" or "add a page about X" for a topic in this repository, and whenever `tutor validate <topic> lesson` or the site build reports a lesson page to repair.
 argument-hint: "<topic id or slug> [unit id such as pages-01-03]"
 ---
 
@@ -19,6 +19,29 @@ page with `visual: null`; teach it through a concise example and an activity.
 When a visual is planned, it carries the mechanism and the prose frames it.
 Legacy plans retain a visual on every page. In this document, `tutor` means `node harness/bin/tutor.mjs`, run from
 the repository root.
+
+**Visual-first plans** (`plan.visual_first: true`, every new plan) add the
+shared standard `harness/rubrics/visuals.md`: each meaningful visual is drawn
+and registered through the shared skill `.claude/skills/learn-visuals/SKILL.md`
+(`tutor visuals <topic> add`), so the lesson site and the Obsidian vault show
+the same diagram with its explanation, alt text, sources and learning check;
+planned videos are built through `.claude/skills/learn-video/SKILL.md`; and all
+prose follows `harness/rubrics/writing-standard.md`. The gate then also
+requires at least 2 (quick), 3 (standard) or 5 (deep) registered lesson
+visuals, an end-to-end workflow `Diagram` when the topic has a multi-stage
+process, every planned video embedded, and at most two `<Depth>` blocks of
+20–180 words per page.
+
+**Adaptive experiences** (`plan.experience_policy: "adaptive"`, every new plan):
+each outline entry carries `experience.signals`, and the selector
+(`harness/rubrics/experiences.md`) has chosen static, explainer, interactive,
+branching or hybrid. A page whose mode is interactive, branching or hybrid
+embeds `<Experience id="<experience.id>" />` where its idea starts, and its
+experience is built by a `tutor-video-producer` (`learn-video`). The
+experience's Practice tab is that page's activity; keep the prose short and let
+the experience carry the mechanism. An explainer page embeds `<Video id>` (or an
+explainer `<Experience>` whose Watch part is the planned video). A static page
+embeds no video or experience.
 
 ## When to use
 
@@ -88,6 +111,11 @@ Then read only these files:
    topic-specific components.
 8. Only the stage runner: `02-lesson-<slug>.md` (created by `tutor init`) and
    `references/lesson-index-note.md`.
+9. Visual-first plans: `.claude/skills/learn-visuals/SKILL.md`, the section
+   "Every visual must" of `harness/rubrics/visuals.md`, the research file
+   `<handoffs_dir>/visual-candidates.md` (sourced sequences, dependencies and
+   comparisons; read only the entries for your pages), and the current
+   registry: `node harness/bin/tutor.mjs visuals <topic> list --json`.
 
 Size the list before reading, and stay under 60,000 tokens:
 
@@ -113,7 +141,29 @@ node harness/bin/tutor.mjs budget <file1> <file2> ...
    node harness/bin/tutor.mjs unit <topic> lesson add pages-04-05
    ```
 
-3. Spawn one `tutor-lesson-builder` worker per unit, within the limit of the
+3. Visual-first plans: for each outline entry with a `video`, register a video
+   unit and give it to a `tutor-video-producer` worker (it follows
+   `learn-video`):
+
+   ```bash
+   node harness/bin/tutor.mjs unit <topic> lesson add video-<id>
+   ```
+
+   With `experience_policy: "adaptive"`, also register one
+   `experience-<id>` unit per outline entry whose mode
+   (`tutor experience <topic> plan`) is interactive, branching or hybrid; that
+   unit writes the experience's videos, deck and `experience.json` and runs
+   `tutor experience <topic> build <id>`. A video that belongs to an experience
+   is built inside the experience unit, not as its own `video-<id>` unit.
+
+   Spawn video and experience units in the first batch: they need only the plan, the sources
+   and the grounding notes, and a render takes minutes. The page worker that
+   owns the page writes `<Video id="<id>" />`; if its `--files` check reports
+   only that this id is not registered yet, that is expected while the video
+   unit runs; it names it under PROBLEMS and the stage runner re-checks after
+   both returned.
+
+4. Spawn one `tutor-lesson-builder` worker per unit, within the limit of the
    table "How many workers at once" in `.claude/skills/learn/SKILL.md`. The
    one exception to running them in parallel is described under "Context
    budget": a topic-specific component that a later unit needs. In each
@@ -142,10 +192,19 @@ node harness/bin/tutor.mjs budget <file1> <file2> ...
       developer example and keep the activity. Otherwise the outline's `visual`
       field is the plan; confirm it
       with the table in `references/visual-design.md` and the playbook's
-      "Lesson recipes". Design its data from the brief, the digests, and the
+      "Lesson recipes" (and its "Visual recipes" lines). Design its data from the brief, the digests, and the
       repo-intel findings: real component names, real commands, realistic
       numbers. Never use placeholder data such as "Service A" or "Step 1".
       Keep a diagram at 3 to 7 nodes; the gate warns above 7.
+      Visual-first plans: follow `learn-visuals` steps 1–6 for every visual of
+      the page, the planned `visual` and any `extra_visuals`. Ground each
+      arrow, order and number in a source from `visual-candidates.md` or the
+      digests. Static diagrams that the notes also need (the end-to-end
+      workflow, an architecture, layers) are assets in `visual_assets_dir`,
+      registered, and shown with `<Diagram id="<id>" />`. Interactive visuals
+      worth keeping are registered with `format: "component"`. A planned
+      `video` is embedded with `<Video id="<id>" />` after the paragraph that
+      sets it up.
    3. When a visual is planned, copy the component's example from `site/COMPONENTS.md` and replace its
       data. Use only the props documented there: the gate fails a page for
       any other prop. Do not open a component's source code to look for one.
@@ -156,14 +215,18 @@ node harness/bin/tutor.mjs budget <file1> <file2> ...
    5. Write the file with the skeleton under "Output contract". Write the
       prose last: the problem, mechanism, use case, and failure or limitation.
       When there is a visual, explain what to change and what was just seen. Define every term in the sentence
-      where it first appears, before a component uses it. Take facts only
+      where it first appears, before a component uses it. Follow
+      `harness/rubrics/writing-standard.md`: short active sentences, plain
+      words, analogies marked `**Analogy.**`. Put internals and production
+      detail in at most two `<Depth>` blocks (20–180 words each). Take facts only
       from the grounding notes. Never cite or link a page that is not in
       `sources.json`; leave that fact out and name it under PROBLEMS.
    6. If this page has the highest `order` of the whole `lesson_outline` in
       the plan, end it with `<Resources />` and put nothing after it. Decide
       this from the plan, never from the files on disk, because other units
       may not have written their pages yet. No other page has it.
-   7. Go through the self-check at the end of `references/visual-design.md`.
+   7. Go through the self-check at the end of `references/visual-design.md`,
+      and run `node harness/bin/tutor.mjs style <page file>`.
 
 4. First unit only: when no shared component can show the core mechanism of a
    page, build one topic-specific component by following
@@ -178,6 +241,8 @@ node harness/bin/tutor.mjs budget <file1> <file2> ...
    ```
 
    It reports only failures in those files and skips the stage-level checks.
+   Add `node harness/bin/tutor.mjs visuals <topic> check` when you registered
+   visuals.
    Fix what it reports, also a warning about more than 7 nodes. Do not run
    the full `tutor validate <topic> lesson`: its lines about other units'
    pages, the page count, and the pointer note are not your job. For the
@@ -247,6 +312,13 @@ pages. Do not try to squeeze that unit into an existing page.
    npm --prefix site run build
    ```
 
+   Then confirm the visuals and refresh their vault export:
+
+   ```bash
+   node harness/bin/tutor.mjs visuals <topic> check
+   node harness/bin/tutor.mjs map <topic>
+   ```
+
    If the build fails, read the last 40 lines of its output. The error names a
    file and usually a line. Fix that file (the usual causes are in
    `references/visual-design.md`, section 6) and build again, at most three
@@ -254,8 +326,10 @@ pages. Do not try to squeeze that unit into an existing page.
 
 3. Run the gate: the full `tutor validate <topic> lesson`, which only the
    stage runner runs. It also checks the rules that span the topic. The
-   browser check `npm --prefix site run smoke` runs later, in `finalize`; a
-   page that fails it comes back to a `tutor-lesson-builder` with a fix list.
+   browser checks `npm --prefix site run smoke` and `npm --prefix site run
+   interact` run later, in `finalize`; a page that fails them comes back to a
+   `tutor-lesson-builder` with a fix list. A video that stayed a storyboard is
+   a warning, not a failure: report its blocker in the final message.
 
 ## Output contract
 
@@ -305,14 +379,16 @@ The rules, with the reason for each:
 | A topic-specific component is imported explicitly with the alias `@topics/<slug>/<Name>.tsx` and used with `client:visible`. | It is not provided globally, and the validator recognizes it by that import path. |
 | At most two `##` headings, and none before the first paragraph. | It is a blog post, not a document. |
 | The page with the highest `order` in `plan.lesson_outline` ends with `<Resources />` and nothing after it. No other page has it. | It renders the vetted sources of the topic; the gate takes the final page from the plan and requires it there only. |
+| Visual-first: every `<Diagram id>` / `<Video id>` is registered and lists the page in `used_in`; the planned `extra_visuals` and `video` are on the page; at least 2/3/5 registered lesson visuals per quick/standard/deep topic; an end-to-end workflow `Diagram` when the topic has a multi-stage process. | One registry feeds the site and the vault; the learner gets several meaningful visuals, not one. |
+| At most two `<Depth>` blocks per page (`level="internals"` or `level="production"`), 20–180 words each. | Progressive disclosure: intuition first, internals and practice on request. |
 
 Shared component names (fixed; no other shared component exists):
 
 | Kind | Components |
 |------|-----------|
-| visual | `FlowAnimation`, `SystemDiagram`, `SequenceDiagram`, `StateMachine`, `Graph3D`, `VectorSpace3D`, `Chart`, `ParamPlayground`, `CodeWalkthrough`, `Timeline`, `Mermaid` |
-| activity | `Quiz`, `PredictReveal`, `OrderSteps`, `MatchPairs` |
-| utility | `Resources`, `Figure` |
+| visual | `FlowAnimation`, `SystemDiagram`, `SequenceDiagram`, `StateMachine`, `Graph3D`, `VectorSpace3D`, `Chart`, `ParamPlayground`, `CodeWalkthrough`, `Timeline`, `Mermaid`, `Diagram`, `Video`, `ClusterSim`, `AlgorithmStepper`, `CompareView`, `CodePlayground` |
+| activity | `Quiz`, `PredictReveal`, `OrderSteps`, `MatchPairs`, `SortBuckets` |
+| utility | `Resources`, `Figure`, `Depth` |
 
 ### Adaptive visual decisions
 
@@ -324,7 +400,7 @@ for each page, rather than adding a graphic to fill a quota:
 | Basic, supporting or core | `visual: null` is allowed with a `visual_reason`; keep a concrete example and an activity. |
 | Intermediate, or any career-critical idea | Use the named visual to expose a useful mechanism, tradeoff, failure, or comparison. |
 | Advanced with `spatial: true` | Use the planned `Graph3D` or `VectorSpace3D`; `Graph3D` must be `editable` so the learner can change topology. |
-| Advanced with `spatial: false` | Use `ParamPlayground`, `StateMachine`, or `FlowAnimation`; record why 3D would distort the mechanism. |
+| Advanced with `spatial: false` | Use `ParamPlayground`, `StateMachine`, `FlowAnimation`, `ClusterSim`, `AlgorithmStepper` or `CodePlayground`; record why 3D would distort the mechanism. |
 
 Every adaptive entry has `complexity: basic|intermediate|advanced`,
 `importance: supporting|core|critical`, `spatial: true|false`, and a nonempty
@@ -346,7 +422,8 @@ Keep the frontmatter and title line of the template (`stage: lesson`), delete
 the scaffold lines, and write `## Open the lesson` (with the site path
 `site_url` from `tutor paths`, which the validator looks for), `## Pages` (one
 line per page: file name, title, the one idea, the visual, and the plan
-outcome it serves), and `## What you can do after it` (every plan outcome
+outcome it serves; link each registered visual's note
+`[[visual-<id>-<slug>|<title>]]` and the index `[[visuals-<slug>|all visuals]]`), and `## What you can do after it` (every plan outcome
 with the pages or project that teach it). `## My insights` stays the last
 heading with nothing below it. The rules and a filled example are in
 `references/lesson-index-note.md`.
@@ -424,6 +501,7 @@ node harness/bin/tutor.mjs fail <topic> lesson --reason "<the failures that rema
   FINDINGS:
   - Page NN "<title>": <the one idea> — <visual> + <activity> — outcome <n>.
   - (one such line per page of the unit)
+  VISUALS: <registered ids, or "none">
   PROBLEMS: <"none", or one line each; include any fact left out because no recorded source supports it>
   ```
 
@@ -451,3 +529,10 @@ node harness/bin/tutor.mjs fail <topic> lesson --reason "<the failures that rema
 - Running the site build or the full `tutor validate <topic> lesson` inside a
   parallel worker, or skipping the build and the smoke check at the end.
 - Writing below `## My insights` in `02-lesson-<slug>.md`.
+- A diagram arrow, order or number that no source in its `source_ids` states.
+- A static diagram pasted as `<Mermaid>` when the notes need it too: register
+  it and use `<Diagram id>`.
+- A video for a definition, or 3D for an ordinary flowchart.
+- A `<Depth>` block that carries the page's one idea (it is hidden on
+  "Essentials"), or more than two of them.
+- Editing `visuals.json` by hand instead of `tutor visuals` / `tutor video`.

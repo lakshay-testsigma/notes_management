@@ -1,0 +1,57 @@
+WEBVTT
+
+1
+00:00:00.200 --> 00:00:03.490
+A Raft cluster commits a write in a fixed order.
+
+2
+00:00:03.490 --> 00:00:04.800
+Watch one write travel.
+
+3
+00:00:05.200 --> 00:00:08.480
+The client sends the write to the leader.
+
+4
+00:00:08.480 --> 00:00:11.340
+The leader appends it to its log,
+
+5
+00:00:11.340 --> 00:00:13.800
+then sends AppendEntries to each follower.
+
+6
+00:00:14.200 --> 00:00:17.070
+Follower 1 stores the entry and replies.
+
+7
+00:00:17.070 --> 00:00:21.160
+The leader and Follower 1 are two of three servers,
+
+8
+00:00:21.160 --> 00:00:22.800
+which is a majority.
+
+9
+00:00:23.200 --> 00:00:25.260
+The leader marks the entry committed,
+
+10
+00:00:25.260 --> 00:00:29.050
+applies it to its state machine, and replies to the client.
+
+11
+00:00:29.050 --> 00:00:31.800
+Followers learn the commit on the next message.
+
+12
+00:00:32.200 --> 00:00:36.220
+When a majority stored the entry, any new leader has it.
+
+13
+00:00:36.220 --> 00:00:40.240
+When only a minority stored it, the entry can be lost.
+
+14
+00:00:40.240 --> 00:00:42.800
+So the leader waits for a majority.

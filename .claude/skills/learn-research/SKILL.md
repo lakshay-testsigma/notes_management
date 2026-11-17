@@ -112,7 +112,33 @@ Read only these.
    proposed scope decisions, and unresolved issues. A source's standing and its support
    for a claim are separate checks. Use the curriculum shape from the guide for proposals.
    The orchestrator imports the merged concept/discovery arrays, not this worker.
-7. Confirm sources through `tutor sources list`; mark the unit done only if its assigned
+   For each proposed concept also list `prerequisites`: the concept ids it depends on
+   (the vault's generated concept map draws them as dotted arrows).
+7. Record **visual candidates** in your assigned draft
+   `.cache/tmp/<slug>/visual-candidates-<unit>.md`. A candidate is a relationship worth
+   drawing that a vetted source states: an ordered sequence of steps (request lifecycle,
+   protocol, algorithm), a dependency between parts or concepts, an architecture with
+   named components, a comparison of approaches, a state change, or a key number. One line
+   each, with the source id and the exact section or page:
+
+   ```text
+   - sequence | client → leader → followers → ack → commit | raft-paper §5.3 | candidate for Video
+   - comparison | majority vs minority stored | raft-paper §5.4 | candidate for CompareView
+   - number | 5 servers tolerate 2 failures | raft-paper §5 | candidate for ClusterSim intro
+   - parameter | number of failed servers decides whether writes commit | raft-paper §5.2 | experiment for an interactive or hybrid experience
+   - decision | majority quorum vs all-replica acks vs single ack | raft-paper §5.4 | branch for a deck
+   ```
+
+   Mark what the experience selector needs (`harness/rubrics/experiences.md` §2): a
+   **sequence** (an explainer video), a **parameter** the learner could change with a
+   visible effect (an interactive lesson), and **decision paths** with their trade-offs
+   (a branching deck). Several of these on one complex concept make it a hybrid
+   candidate. These lines become `experience.signals` in the plan, so count only what a
+   source states.
+
+   Never list a relationship you inferred; it would become a misleading diagram. Write the
+   report and summaries in the writing standard (`harness/rubrics/writing-standard.md`).
+8. Confirm sources through `tutor sources list`; mark the unit done only if its assigned
    research was performed, and return the report path plus no more than 150 words.
    If incomplete, persist the frontier and resume instructions; never fabricate a stop.
 
@@ -131,10 +157,20 @@ Read only these.
 3. Confirm source counts, tier A evidence, requested_sources resolutions and exact digest/
    repo targets. Search gaps in another bounded unit. If a required minimum cannot be met,
    fail research honestly; never lower the quality threshold or silently shrink the promise.
-4. Record all deferrals/exclusions and a final stop reason/note. A budget-limited scope is
+4. Merge every unit's `visual-candidates-<unit>.md` into one file,
+   `<handoffs_dir>/visual-candidates.md` (from `tutor paths`), grouped by concept id,
+   dropping duplicates and any line without a source id and section. `learn-site`,
+   `learn-brief`, `learn-digest` and `learn-video` read it to choose and ground visuals
+   (`.claude/skills/learn-visuals/SKILL.md`, step 2). If the candidates show a
+   multi-stage process that the plan does not mark, set `multi_stage: true` (and a
+   planned `video` where a sequence needs motion) through `tutor plan --set` now, before
+   the plan is frozen. With `experience_policy: "adaptive"`, update each page's
+   `experience.signals` from the candidates (parameters, decision paths, dependent
+   steps) and run `tutor experience <topic> plan` to confirm modes and budget.
+5. Record all deferrals/exclusions and a final stop reason/note. A budget-limited scope is
    a stated limitation, not exhaustive completion. A requested whole course with queued
    required child topics remains unfinished until their pipelines complete.
-5. Plan changes stale intake. Re-gate `tutor done <topic> intake`, regenerate the map,
+6. Plan changes stale intake. Re-gate `tutor done <topic> intake`, regenerate the map,
    run `tutor check <topic> research`, then `tutor done <topic> research`. The CLI checks
    live HTTP evidence as well as the concept/discovery contract. Later content generation
    must follow the frozen plan and source assignments.
@@ -212,11 +248,14 @@ run `node harness/bin/tutor.mjs fail <topic> research --reason "<the remaining l
   - which source is the canonical one and why
   - which ids are flagged digest / repo-intel
   - candidates dropped and the reason (not verifiable, archived, too weak)
+  VISUALS: <n> visual candidates in <draft path>, e.g. "sequence: request lifecycle (docs §3)"
   PROBLEMS: none | quota not met: <which and why>
   ```
 
 ## Common mistakes
 
+- **A visual candidate without a section reference**, or one you reasoned out yourself.
+  The diagram drawn from it would teach an unverified relationship.
 - **Recommending from memory.** A famous name is not evidence. Open the page; record where
   you read each number.
 - **Guessing a number.** If the star count or citation count could not be read, drop the

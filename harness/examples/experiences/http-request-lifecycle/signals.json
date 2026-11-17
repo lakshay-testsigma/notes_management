@@ -1,0 +1,6 @@
+{
+  "topic": "HTTP request lifecycle",
+  "level": "beginner",
+  "expected": "explainer",
+  "signals": { "complexity": 2, "concepts": 3, "dependent_steps": 5, "changes_over_time": true, "spatial": false, "parameters": 0, "decision_paths": 0, "benefit": "medium" }
+}

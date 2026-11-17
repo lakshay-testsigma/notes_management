@@ -25,6 +25,15 @@ the playbook says nothing about the kind of idea a page teaches. Only these name
 | Code that must be read line by line | `CodeWalkthrough` |
 | History, versions, phases of a process | `Timeline` |
 | A small static relationship | `Mermaid` |
+| A diagram the notes also need: architecture, end-to-end workflow, layers, dependencies | `Diagram` |
+| A distributed system under failure, latency or concurrency | `ClusterSim` |
+| An algorithm executing on real data | `AlgorithmStepper` |
+| Two approaches, or a before and an after, with trade-offs | `CompareView` |
+| Code the learner should change and run | `CodePlayground` |
+
+A chronological or causal sequence that motion explains better than a picture also gets
+`"video": { "id": "...", "reason": "..." }` on its page (at most 3 per topic). The full
+choice table is "When a topic gets which visual" in `harness/rubrics/visuals.md`.
 
 | The learner should practise | Activity to choose |
 |-----------------------------|--------------------|
@@ -32,6 +41,7 @@ the playbook says nothing about the kind of idea a page teaches. Only these name
 | Putting the steps of a process in order | `OrderSteps` |
 | Connecting terms to their meanings | `MatchPairs` |
 | Choosing between options, trade-offs, "which is true" | `Quiz` |
+| Sorting items into groups (layers, failure types, funnel stages) | `SortBuckets` |
 
 Rules across a legacy outline (without visual_policy:adaptive):
 
@@ -40,7 +50,39 @@ Rules across a legacy outline (without visual_policy:adaptive):
   least once.
 - No single activity is used on every page. Use `PredictReveal` early, because predicting
   before reading improves memory.
-- `Resources` and `Figure` are utility components. Never put them in `visual` or `activity`.
+- `Resources`, `Figure` and `Depth` are utility components. Never put them in `visual` or `activity`.
+
+## 1b. Visual-first fields (every new plan)
+
+A new plan adds these to the adaptive fields. This example is valid against the intake
+gate; add `learner` and `curriculum` from `docs/RESEARCH-WORKFLOW.md` as usual.
+
+```json
+{
+  "visual_policy": "adaptive",
+  "visual_first": true,
+  "multi_stage": true,
+  "lesson_outline": [
+    { "order": 1, "slug": "why-consensus", "title": "Why servers must agree", "activity": "PredictReveal",
+      "complexity": "basic", "importance": "supporting", "spatial": false, "visual": null,
+      "visual_reason": "A concrete failure story is enough for a developer." },
+    { "order": 2, "slug": "the-write-path", "title": "The path of one write", "activity": "Quiz",
+      "complexity": "intermediate", "importance": "core", "spatial": false, "visual": "Diagram",
+      "visual_reason": "The write passes several dependent stages; the end-to-end view comes first.",
+      "interaction_goal": "Zoom into the acknowledgement step and predict when the leader replies.",
+      "video": { "id": "raft-write-commit", "reason": "The commit is caused by an ordered chain of messages." } },
+    { "order": 3, "slug": "break-the-cluster", "title": "Break the cluster", "activity": "SortBuckets",
+      "complexity": "advanced", "importance": "critical", "spatial": false, "visual": "ClusterSim",
+      "extra_visuals": ["CompareView"],
+      "visual_reason": "Failing servers and watching writes block exposes the quorum rule.",
+      "interaction_goal": "Fail servers until writes stop committing and predict the threshold." }
+  ]
+}
+```
+
+Visual budget: at least 2 (quick), 3 (standard) or 5 (deep) registered lesson visuals,
+each teaching something the others do not. `multi_stage: true` needs one page with an
+end-to-end workflow `Diagram`.
 
 ## 2. A legacy filled plan (base fields)
 
@@ -120,3 +162,7 @@ Go through every line. Fix the plan file when a line is not true.
 8. `digest_targets` and `repo_targets` are numbers within the depth profile; `repo_targets`
    is 0 when the topic has no `repo-intel` stage.
 9. `capstone.name` and `capstone.problem` are filled in.
+10. `visual_first: true`, `multi_stage` set; when `multi_stage` is true one page plans the
+    end-to-end `Diagram`. Every `video` has a unique id and a sequence reason (at most 3);
+    `extra_visuals` only on pages with a primary visual. The planned visuals reach the
+    depth minimum (2 / 3 / 5) without decoration.

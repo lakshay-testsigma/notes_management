@@ -28,6 +28,8 @@ npm run manifest:check   # components.manifest.json, the components and COMPONEN
 | `npm run smoke` | every page works in a browser | see below |
 | `npm run manifest:check` | the prop lists have not drifted | a component's `Props` type, its list under `"props"` in `components.manifest.json`, or its prop table in `COMPONENTS.md` name different props |
 | `npm run check` | the site's own TypeScript | a type error in `src/` |
+| `npm run interact` | the interactive components behave | a control does not change the result, Reset does not restore, the code sandbox reaches the page or the network, a video has no captions or does not load, a button has no name, a page scrolls sideways at 375 px, or reduced motion logs an error |
+| `npm test` | the pure logic of components | a unit test in `scripts/*.test.mjs` fails (FlowAnimation, MatchPairs, cluster engine, stepper, compare/sort/sandbox helpers) |
 
 **`npm run smoke`** (`scripts/smoke.mjs`) serves `dist/` on a free local port,
 opens every generated page (each `index.html` under `dist/`) in headless
@@ -175,6 +177,16 @@ in `docs/ARCHITECTURE.md` §12, which is the contract the validator follows.
 The same applies to a new prop on an existing component: the `Props` type,
 the manifest and the table in `COMPONENTS.md` change together.
 
+## Registry-backed visuals and videos
+
+`<Diagram id>` and `<Video id>` read the topic's `state/topics/<topic>/visuals.json`
+(written by `tutor visuals` and `tutor video`) through `src/lib/visuals.ts`. A
+diagram's asset is read from the vault (`visuals/assets/`) at build time and
+inlined after removing anything executable; a video plays from
+`public/media/<topic>/<id>.mp4` with its WebVTT track and a transcript read from
+the HyperFrames project. The views (`src/components/learn/views/`) also render
+demo data on the playground (`src/data/demo/`, `public/media/_demo/`).
+
 ## Design rules
 
 Minimal blog: a title, a one-line description, short prose, then visuals. No
@@ -182,7 +194,10 @@ quote blocks, no cards, no callout boxes, no shadows. Controls are text
 buttons. Blockquotes that appear in vault notes are shown as plain indented
 text. All colours are tokens in `src/styles/global.css`, with a light and a
 dark set; the header button switches between them. Motion respects
-`prefers-reduced-motion`. 3D components load three.js only when they scroll
+`prefers-reduced-motion`. Lesson pages with `<Depth>` blocks get a depth control
+(Essentials / + Internals / + Production, remembered per browser); without
+JavaScript every layer is shown. Simulations always offer instructions, Reset, an
+explanation of the last outcome in an `aria-live` region, and keyboard access. 3D components load three.js only when they scroll
 into view, keep a fixed aspect ratio, and fall back to a flat diagram when
 WebGL is unavailable. Their labels never print on top of each other: a few
 times a second the label rectangles are compared on screen

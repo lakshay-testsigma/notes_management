@@ -1,0 +1,74 @@
+{
+  "id": "raft-summary",
+  "title": "Raft in four rules",
+  "purpose": "Connect replication, commitment, elections and availability into one picture.",
+  "sequence_reason": "The four rules build on each other: replication feeds commitment, and elections restore replication after a failure.",
+  "summary": "A recap of Raft: the leader appends and replicates log entries, an entry commits once a majority stores it, a failed leader is replaced by an election that needs a majority of votes, and without a majority the cluster stops rather than give wrong answers.",
+  "explanation": "Every Raft rule uses the same majority, so any two majorities share a server, and that shared server carries the committed history forward.",
+  "learning_check": {
+    "question": "Why does using a majority for both commits and elections keep committed entries safe?",
+    "answer": "Any two majorities of the same cluster share at least one server, so the voters for a new leader include a server that stores every committed entry."
+  },
+  "concept_ids": [
+    "log-replication",
+    "leader-election"
+  ],
+  "source_ids": [
+    "SOURCE"
+  ],
+  "used_in": [
+    "LESSON_PAGE"
+  ],
+  "narration": {
+    "engine": "auto"
+  },
+  "scenes": [
+    {
+      "id": "intro",
+      "duration": 5,
+      "heading": "Raft in four rules",
+      "narration": "Four rules connect everything you explored.",
+      "visual": {
+        "type": "title",
+        "subtitle": "Replicate, commit, elect, stop safely"
+      }
+    },
+    {
+      "id": "rules",
+      "duration": 14,
+      "heading": "The rules",
+      "narration": "The leader appends and replicates entries. An entry commits once a majority stores it. A failed leader is replaced by an election. Without a majority, the cluster stops.",
+      "visual": {
+        "type": "steps",
+        "items": [
+          "The leader appends and replicates entries",
+          "An entry commits once a majority stores it",
+          "A failed leader is replaced by an election",
+          "Without a majority, the cluster stops"
+        ]
+      }
+    },
+    {
+      "id": "overlap",
+      "duration": 12,
+      "heading": "Why majorities keep data safe",
+      "narration": "A commit majority and an election majority of five always share at least one server. That server carries every committed entry into the next term.",
+      "visual": {
+        "type": "compare",
+        "left": {
+          "label": "Commit majority",
+          "items": [
+            "S1, S2, S3"
+          ]
+        },
+        "right": {
+          "label": "Election majority",
+          "items": [
+            "S3, S4, S5"
+          ]
+        },
+        "verdict": "S3 is in both, so no commit is lost."
+      }
+    }
+  ]
+}

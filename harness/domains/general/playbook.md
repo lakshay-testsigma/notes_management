@@ -117,6 +117,13 @@ The component set is the same; map the *kind of idea* to a component.
 
 **Custom simulation ideas.** A market simulator where the learner sets price and sees demand and profit; a compound-growth explorer; a "run the campaign" budget allocator with diminishing returns; a proof-step sorter; a Monte Carlo dice or coin lab for probability; a negotiation role-play with scripted counterpart moves; a readability meter that scores a paragraph as the learner edits it.
 
+**Visual recipes** (visual-first plans; standard in `harness/rubrics/visuals.md`):
+
+- Marketing: a `Video` of a customer moving through the funnel, a registered funnel `Diagram`, and `SortBuckets` to classify tactics by funnel stage.
+- Business and finance: `ParamPlayground` for unit economics, pricing and compound growth; `CompareView` for two strategies with numbers from the sources.
+- Mathematics: `AlgorithmStepper` for proofs or procedures step by step, `ParamPlayground` for functions, `VectorSpace3D` only for real spatial structure.
+- Any process topic gets one registered end-to-end workflow `Diagram`.
+
 ## Mini project patterns
 
 Mini projects are small experiments and exercises. The folder contract stays: `starter/` holds the blank working files (worksheet, template, dataset, problem set) and `solution/` holds a completed version plus a way to check it (`answers.md`, a checklist, or a `check.py`). Sized for 1–3 hours, guided → independent.
@@ -225,3 +232,4 @@ Question styles, matching the four card types: Explain ("why does a higher disco
 - **Experiments with people** (interviews, surveys, message tests): participants know what it is for, take part voluntarily, and their answers are kept anonymous. No deception.
 - **Persuasion topics** (marketing, sales, negotiation, influence) are taught with honest methods; manipulative techniques are described so they can be recognised, not practised.
 - **Academic honesty.** Problem-set solutions are for the learner's own study; cite sources and quote sparingly.
+- **Experience recipes** (adaptive plans; `harness/rubrics/experiences.md`, the selector decides): explainer for any process the sources describe in order; interactive when a learner-changeable input changes the outcome; branching when sources compare valid options; hybrid only when several of these meet in one complex idea.

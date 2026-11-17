@@ -23,7 +23,7 @@ sources: [redis-streams-docs]
 |---|---|
 | `title` | Human title. Quote it when it contains a colon. |
 | `topic` | The full topic id `domain/subdomain/slug` for notes inside a topic folder. Shared notes in `_concepts/` and `_tech/` keep `topic: shared` from their template. |
-| `stage` | One of `brief`, `lesson`, `mini-projects`, `digest`, `repo-intel`, `capstone`, `final-notes`, `recall`, `resources`, `insights`, `map`, `concept`, `tech`. It must match the kind of note. |
+| `stage` | One of `brief`, `lesson`, `mini-projects`, `digest`, `repo-intel`, `capstone`, `final-notes`, `recall`, `resources`, `insights`, `map`, `concept`, `tech`, `visual` (written only by `tutor map`). It must match the kind of note. |
 | `tags` | A non-empty list. Start with the domain and subdomain. Keep tags the template added (for example `flashcards` on the recall note, which the Spaced Repetition plugin needs). |
 | `created` | `YYYY-MM-DD`, the day the note was first written. Do not change it on later edits. |
 | `sources` | Ids from the topic's `sources.json` that the note relies on. Only ids that exist there. Omit or leave `[]` when the note relies on none. |
@@ -110,6 +110,24 @@ For a non-code case study (the `general` domain), cite the document the same way
 - Put labels with spaces or symbols in quotes: `A["Order service"] -->|"XADD"| B[("orders stream")]`. No HTML in labels.
 - Every diagram is followed by one or two sentences that say what to notice in it.
 - `<repo>-architecture.md` has a module map diagram and the main request or data flow.
+- Visual-first plans (`harness/rubrics/visuals.md`): the brief, every digest, each
+  repository architecture note (two diagrams), each mini-project README, the capstone
+  architecture (three diagrams) and note carry diagrams; a reusable diagram is a file in
+  `<vault>/visuals/assets/<id>-<slug>.svg|.mmd` registered with `tutor visuals add`,
+  embedded with `![[<id>-<slug>.svg]]` (or pasted as a mermaid block) and linked to its
+  note `[[visual-<id>-<slug>]]`.
+- `tutor map` writes `<vault>/visuals/`: `visuals-<slug>.md` (index), one
+  `visual-<id>-<slug>.md` per visual (`stage: visual`: embed, explanation, text
+  alternative, check question, sources, where it is used, video transcript), and
+  `concept-map-<slug>.md`. Never edit them above `## My insights`; edit the registry.
+- Final notes link `[[visuals-<slug>]]` and embed or link one to three visuals as a
+  visual refresher; at least one recall card links a visual note.
+
+## Writing
+
+Every generated note follows `harness/rubrics/writing-standard.md`: short active
+sentences, terms defined at first use, beginner explanation first and technical
+depth after it, analogies and assumptions marked. `tutor style <note>` reports it.
 
 ## The `## My insights` rule
 

@@ -47,6 +47,9 @@ Read only these.
 5. The source itself, read in sections as described in Part B (worker only).
 6. `references/digest-template.md` — the filled digest and the index template.
 7. `ls vault/_concepts` — names only, for links.
+8. `harness/rubrics/writing-standard.md` and `.claude/skills/learn-visuals/SKILL.md`
+   (steps 2–6), plus the lines of `<handoffs_dir>/visual-candidates.md` that cite your
+   source id (worker only).
 
 ## Steps
 
@@ -107,14 +110,38 @@ Read only these.
      write one honest sentence saying that adoption could not be verified, and stop.
    - Quote at most 3 short passages (2 sentences each), in quotation marks inside a normal
      paragraph. Do not use quote blocks. Everything else is in your own words.
-   - Use a mermaid diagram under "How it works" when the source describes a flow, a
-     pipeline, or an architecture. Keep it to 9 nodes or fewer.
+   - Write "How it works" in two layers (`harness/rubrics/writing-standard.md`): first a
+     beginner paragraph that says what happens in plain words, then the technical
+     mechanism with the source's terms, equations and parameters. Short active sentences;
+     an analogy starts with `**Analogy.**`; your own conclusions start with
+     `**Interpretation.**`.
+   - Put at least one diagram under "How it works": the paper's algorithm (a flowchart or
+     a step trace), its mathematical operation (the order in which terms are computed),
+     its experimental workflow (data → setup → measurement), its architecture, or its key
+     result (a small mermaid `xychart-beta` or a labelled comparison). For a plan with
+     `visual_first: true` the gate requires at least one diagram in every digest note,
+     also at depth `quick`. Keep it to 9 nodes or fewer, and draw only what your source
+     states, with the section it comes from in the sentence under the diagram.
+   - Register the diagram that teaches the core mechanism (`learn-visuals`, steps 3–5):
+     save the mermaid source to `<visual_assets_dir>/<id>-<slug>.mmd` with an id such as
+     `<source-id>-mechanism`, write the entry with `"used_in": ["<your digest path>"]`
+     and `"source_ids": ["<source-id>"]` to `.cache/tmp/<slug>/visual-<id>.json`, run
+     `node harness/bin/tutor.mjs visuals <topic> add --file <that file>`, keep the mermaid
+     block in the note, and link `[[visual-<id>-<slug>|explanation and sources]]` under it.
+     A small supporting diagram may stay unregistered.
+   - **Animate the mechanism.** When the core mechanism is an algorithm or a time
+     sequence, add under the diagram a numbered **step trace** on one concrete input
+     (5–9 steps, each with the state after it, numbers from the source). The lesson stage
+     (`learn-video`) turns it into `AlgorithmStepper` frames or a guided HyperFrames
+     walkthrough with checkpoints. Name it in your return as
+     `animation candidate: <source-id> §<section>`, with the parameters a learner could
+     change (for the experience selector's `parameters` signal).
    - Target 800–1,200 words at depth `standard` and `deep`. All ten headings with 3–6 key
      ideas, a diagram, and three questions do not fit in less. At depth `quick` target
      600–900 words by shortening exactly these: "Key ideas" holds 3 ideas; "Results and
      evidence" holds 2 bullets; "Limitations and criticisms" holds 2 bullets; "What
-     practitioners took from it" is 1–2 sentences; the diagram is left out unless the
-     source is about a flow. Every heading stays, because the index and the site expect
+     practitioners took from it" is 1–2 sentences; the diagram stays (a visual-first
+     plan requires it), but it may be one small flow of 3–5 nodes. Every heading stays, because the index and the site expect
      the same shape for every digest. Check the count with
      `node harness/bin/tutor.mjs words <your digest file>`.
 5. Add links. Link to the brief as `[[01-brief-<slug>|<Title> brief]]`. For each idea that is
@@ -132,6 +159,9 @@ Read only these.
    ```bash
    node harness/bin/tutor.mjs validate <topic> digest --files <vault>/04-digests/<source-id>-<slug>.md
    ```
+
+   Also run `node harness/bin/tutor.mjs style <your digest file>` and split the sentences
+   it lists; aim for 80% or more.
 
    With `--files` the validator reports only failures in the files you list and skips the
    stage-level checks (the index note, the number of digests). Fix what it reports. Do not
@@ -213,7 +243,10 @@ node harness/bin/tutor.mjs done <topic> digest
 ```
 
 The gate checks: the index exists, there is one note per planned digest, and each note cites
-its source id. On failure each line reads `path: problem. fix.` Fix exactly those lines (the
+its source id. For a visual-first plan every digest note also needs at least one diagram,
+every registered visual whose `used_in` names a digest must be valid (known source ids,
+an existing asset, alt text, a learning check), and long or passive prose prints a
+writing-standard warning. On failure each line reads `path: problem. fix.` Fix exactly those lines (the
 stage runner fixes the index; a `tutor-digester` with the lines in its `FIX LIST` fixes a
 digest) and rerun. After 3 failed attempts run
 `node harness/bin/tutor.mjs fail <topic> digest --reason "<the remaining lines>"`.
@@ -253,6 +286,7 @@ digest) and rerun. After 3 failed attempts run
   - the source's claim in one sentence
   - its place in the reading order (defines / extends / applies / critiques) and why
   - the most important limitation
+  VISUALS: <registered id(s)>, or "diagram only, not registered: <why>"
   PROBLEMS: none | <sections left thin and why> | <a page outside sources.json worth verifying: URL, what it supports>
   ```
 
@@ -264,6 +298,8 @@ digest) and rerun. After 3 failed attempts run
   not better. Read by pass.
 - **Summarizing section by section.** The template is organised by questions, not by the
   source's table of contents.
+- **A digest without a diagram**, or a diagram of something the source does not state.
+  Draw the source's own algorithm, workflow or result, and cite its section.
 - **Copying the abstract.** The claim is one sentence in your own plain words.
 - **Results without a location.** Every number names its table, figure, or section.
 - **Invented adoption.** "Widely used in industry" needs a named, recorded source.

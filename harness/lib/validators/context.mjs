@@ -8,6 +8,7 @@ import { resolveProfile } from '../stages.mjs';
 import { buildVaultIndex } from '../vault-index.mjs';
 import { loadComponentKinds } from '../components.mjs';
 import { sourceIds } from '../sources.mjs';
+import { readVisuals } from '../visuals.mjs';
 
 export function createContext(root, topic) {
   const pack = tryLoadPack(root, topic.domain);
@@ -29,6 +30,14 @@ export function createContext(root, topic) {
     },
     get sourceIds() {
       return (cache.sourceIds ??= sourceIds(root, topic));
+    },
+    /** { entries, error } of the topic's visual registry (visuals.json). */
+    get visuals() {
+      return (cache.visuals ??= readVisuals(root, topic));
+    },
+    /** True for plans that follow the visual-first standard (harness/rubrics/visuals.md). */
+    get visualFirst() {
+      return topic.plan?.visual_first === true;
     },
   };
 }

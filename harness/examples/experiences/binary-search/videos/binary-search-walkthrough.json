@@ -1,0 +1,24 @@
+{
+  "id": "binary-search-walkthrough",
+  "title": "Binary search halves the range at every step",
+  "purpose": "See how comparing with the middle element discards half of a sorted list, and why that needs so few steps.",
+  "sequence_reason": "The search is a loop: each comparison changes low or high, and the next step depends on that change.",
+  "summary": "Binary search looks for 23 in the sorted list 2, 5, 8, 12, 16, 23, 38, 56, 72. It compares with the middle element, keeps the half that can still hold 23, and finds it in three comparisons. A million items need at most twenty comparisons.",
+  "explanation": "Each comparison with the middle element removes half of the remaining range, so the number of steps grows with the logarithm of the list size, not the size itself.",
+  "learning_check": {
+    "question": "The middle element is 16 and the target is 23. Which half does the search keep, and why?",
+    "answer": "The right half, because the list is sorted, so every element left of 16 is smaller than 23."
+  },
+  "concept_ids": ["binary-search"],
+  "source_ids": ["SOURCE"],
+  "used_in": ["LESSON_PAGE"],
+  "narration": { "engine": "auto" },
+  "scenes": [
+    { "id": "intro", "duration": 5, "heading": "Find 23 in a sorted list", "narration": "We look for 23 in a sorted list of nine numbers.", "visual": { "type": "title", "subtitle": "2, 5, 8, 12, 16, 23, 38, 56, 72" } },
+    { "id": "idea", "duration": 10, "heading": "Compare with the middle", "narration": "Look at the middle element. If it equals the target, stop. If the target is larger, keep the right half. Otherwise, keep the left half.", "visual": { "type": "steps", "items": [ "Look at the middle element", "Equal to the target: stop", "Target larger: keep the right half", "Target smaller: keep the left half" ] } },
+    { "id": "formula", "duration": 9, "heading": "Where the middle is", "narration": "The middle index, mid, is low plus high, divided by two, rounded down. Low and high mark the range that is still possible.", "visual": { "type": "equation", "expression": "mid = (low + high) // 2", "terms": [ { "text": "low", "note": "first index that can still hold the target" }, { "text": "high", "note": "last index that can still hold the target" }, { "text": "mid", "note": "the index we compare next" } ] } },
+    { "id": "trace", "duration": 12, "heading": "Three comparisons find 23", "narration": "Mid is index 4, value 16, smaller than 23, so low becomes 5. Mid is index 6, value 38, larger, so high becomes 5. Mid is index 5: found.", "visual": { "type": "timeline", "events": [ { "label": "mid 4: 16 < 23", "detail": "low = 5" }, { "label": "mid 6: 38 > 23", "detail": "high = 5" }, { "label": "mid 5: 23 = 23", "detail": "found" } ] } },
+    { "id": "growth", "duration": 9, "heading": "Steps grow slowly with size", "narration": "Every comparison halves the range. A thousand items need at most ten comparisons, and a million need at most twenty.", "visual": { "type": "bars", "unit": " comparisons", "items": [ { "label": "1,000 items", "value": 10 }, { "label": "1,000,000 items", "value": 20 }, { "label": "1,000,000,000 items", "value": 30 } ] } },
+    { "id": "requirements", "duration": 9, "heading": "What binary search needs", "narration": "This works only on sorted data with fast access to any index, such as an array.", "visual": { "type": "compare", "left": { "label": "Works", "items": [ "Sorted array", "Any index in one step" ] }, "right": { "label": "Breaks", "items": [ "Unsorted data", "Linked list: reaching the middle is slow" ] }, "verdict": "Sorted data plus random access." } }
+  ]
+}

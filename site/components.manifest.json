@@ -10,27 +10,198 @@
     "ParamPlayground",
     "CodeWalkthrough",
     "Timeline",
-    "Mermaid"
+    "Mermaid",
+    "Diagram",
+    "Video",
+    "Experience",
+    "ClusterSim",
+    "AlgorithmStepper",
+    "CompareView",
+    "CodePlayground"
   ],
-  "activity": ["Quiz", "PredictReveal", "OrderSteps", "MatchPairs"],
-  "utility": ["Resources", "Figure"],
+  "activity": [
+    "Quiz",
+    "PredictReveal",
+    "OrderSteps",
+    "MatchPairs",
+    "SortBuckets"
+  ],
+  "utility": [
+    "Resources",
+    "Figure",
+    "Depth"
+  ],
   "props": {
-    "FlowAnimation": ["nodes", "steps", "edges", "title", "breakable", "brokenCaptions", "direction", "intro", "autoplay"],
-    "SystemDiagram": ["nodes", "edges", "title", "initial", "direction"],
-    "SequenceDiagram": ["actors", "messages", "title", "autoplay"],
-    "StateMachine": ["states", "transitions", "initial", "title", "direction"],
-    "Graph3D": ["nodes", "links", "groups", "editable", "labels", "title"],
-    "VectorSpace3D": ["points", "query", "k", "metric", "axes", "title"],
-    "Chart": ["data", "x", "y", "type", "labels", "xLabel", "yLabel", "yMin", "yMax", "height", "labelKey", "title"],
-    "ParamPlayground": ["params", "chart", "outputs", "title"],
-    "CodeWalkthrough": ["code", "lang", "steps", "title"],
-    "Timeline": ["events", "initial", "title"],
-    "Mermaid": ["chart", "title", "caption"],
-    "Quiz": ["question", "options", "answer", "explanation"],
-    "PredictReveal": ["prompt", "answer", "options", "correct", "reasoning"],
-    "OrderSteps": ["steps", "prompt"],
-    "MatchPairs": ["pairs", "prompt"],
-    "Resources": ["topic", "title"],
-    "Figure": ["src", "alt", "caption", "title", "width"]
+    "FlowAnimation": [
+      "nodes",
+      "steps",
+      "edges",
+      "title",
+      "breakable",
+      "brokenCaptions",
+      "direction",
+      "intro",
+      "autoplay"
+    ],
+    "SystemDiagram": [
+      "nodes",
+      "edges",
+      "title",
+      "initial",
+      "direction"
+    ],
+    "SequenceDiagram": [
+      "actors",
+      "messages",
+      "title",
+      "autoplay"
+    ],
+    "StateMachine": [
+      "states",
+      "transitions",
+      "initial",
+      "title",
+      "direction"
+    ],
+    "Graph3D": [
+      "nodes",
+      "links",
+      "groups",
+      "editable",
+      "labels",
+      "title"
+    ],
+    "VectorSpace3D": [
+      "points",
+      "query",
+      "k",
+      "metric",
+      "axes",
+      "title"
+    ],
+    "Chart": [
+      "data",
+      "x",
+      "y",
+      "type",
+      "labels",
+      "xLabel",
+      "yLabel",
+      "yMin",
+      "yMax",
+      "height",
+      "labelKey",
+      "title"
+    ],
+    "ParamPlayground": [
+      "params",
+      "chart",
+      "outputs",
+      "title"
+    ],
+    "CodeWalkthrough": [
+      "code",
+      "lang",
+      "steps",
+      "title"
+    ],
+    "Timeline": [
+      "events",
+      "initial",
+      "title"
+    ],
+    "Mermaid": [
+      "chart",
+      "title",
+      "caption"
+    ],
+    "Quiz": [
+      "question",
+      "options",
+      "answer",
+      "explanation"
+    ],
+    "PredictReveal": [
+      "prompt",
+      "answer",
+      "options",
+      "correct",
+      "reasoning"
+    ],
+    "OrderSteps": [
+      "steps",
+      "prompt"
+    ],
+    "MatchPairs": [
+      "pairs",
+      "prompt"
+    ],
+    "Resources": [
+      "topic",
+      "title"
+    ],
+    "Figure": [
+      "src",
+      "alt",
+      "caption",
+      "title",
+      "width"
+    ],
+    "Diagram": [
+      "id",
+      "topic"
+    ],
+    "Video": [
+      "id",
+      "topic"
+    ],
+    "ClusterSim": [
+      "title",
+      "mode",
+      "servers",
+      "latency",
+      "failures",
+      "intro",
+      "explain"
+    ],
+    "AlgorithmStepper": [
+      "title",
+      "frames",
+      "view",
+      "code",
+      "lang",
+      "speed"
+    ],
+    "CompareView": [
+      "title",
+      "left",
+      "right",
+      "unit",
+      "lowerIsBetter",
+      "question",
+      "verdict"
+    ],
+    "CodePlayground": [
+      "title",
+      "code",
+      "lang",
+      "expected",
+      "hint",
+      "timeout"
+    ],
+    "SortBuckets": [
+      "prompt",
+      "buckets",
+      "items",
+      "explanation"
+    ],
+    "Depth": [
+      "level",
+      "title"
+    ],
+    "Experience": [
+      "id",
+      "topic"
+    ]
   }
 }

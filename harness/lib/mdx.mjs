@@ -9,8 +9,9 @@ import { splitFrontmatter, stripFencedCode, countWords } from './markdown.mjs';
  * Returns {
  *   frontmatter: { has, data },
  *   imports:  [{ names: [...], from }],
- *   elements: [{ name, attrs, props, root }]   every <Capitalized> tag, nested ones included
- *                                       (attrs: the opening tag as written; props: parseAttributes of it)
+ *   elements: [{ name, attrs, props, root, inner }]   every <Capitalized> tag, nested ones included
+ *                                       (attrs: the opening tag as written; props: parseAttributes of it;
+ *                                        inner: the children text of a paired tag, '' when self-closing)
  *   unclosed: [name]                    paired tags that never close
  *   prose, words,
  *   endsWith: name of the last top-level component when nothing follows it, else null
@@ -157,7 +158,8 @@ function parseElement(text, start, elements, unclosed, isRoot) {
   const open = parseOpeningTag(text, start);
   if (!open) return null;
   const attrs = text.slice(start, open.end);
-  elements.push({ name: open.name, attrs, props: parseAttributes(attrs), root: isRoot });
+  const element = { name: open.name, attrs, props: parseAttributes(attrs), root: isRoot, inner: '' };
+  elements.push(element);
   if (open.selfClosing) return open.end;
 
   let i = open.end;
@@ -165,7 +167,10 @@ function parseElement(text, start, elements, unclosed, isRoot) {
     if (text.startsWith('</', i)) {
       const close = /^<\/([A-Za-z][\w.]*)\s*>/.exec(text.slice(i, i + 120));
       if (close) {
-        if (close[1] === open.name) return i + close[0].length;
+        if (close[1] === open.name) {
+          element.inner = text.slice(open.end, i);
+          return i + close[0].length;
+        }
         i += close[0].length;
         continue;
       }
@@ -331,6 +336,14 @@ export function countArrayItems(value) {
     }
   }
   return null;
+}
+
+/** The value of a plain string attribute (`id="x"` or `id={'x'}`), or null. */
+export function stringProp(element, name) {
+  const value = element.props.find((prop) => prop.name === name)?.value;
+  if (typeof value !== 'string') return null;
+  const match = /^(?:"([^"]*)"|'([^']*)'|\{\s*["'`]([^"'`]*)["'`]\s*\})$/.exec(value.trim());
+  return match ? (match[1] ?? match[2] ?? match[3]) : null;
 }
 
 /** From a `{`, return the index after its matching `}` (or -1). Strings are skipped. */

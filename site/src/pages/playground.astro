@@ -4,9 +4,29 @@ import { lessonComponents as C } from '../components/learn';
 import * as sample from '../data/playground';
 import Base from '../layouts/Base.astro';
 import { loadTopics } from '../lib/topics';
+import DiagramView from '../components/learn/views/DiagramView.astro';
+import VideoView from '../components/learn/views/VideoView.astro';
+import ExperienceView from '../components/learn/views/ExperienceView.astro';
+import type { BuiltExperience } from '../lib/experience-logic';
+import type { VisualEntry } from '../lib/visuals';
+import demoHttp from '../data/demo/experiences/http-request-lifecycle.json';
+import demoBinary from '../data/demo/experiences/binary-search.json';
+import demoConsensus from '../data/demo/experiences/distributed-consensus.json';
+import demoFunnel from '../data/demo/experiences/marketing-funnel-strategy.json';
+import DepthControl from '../components/site/DepthControl.astro';
+import writePathSvg from '../data/demo/write-path.svg?raw';
+import demoTranscript from '../data/demo/raft-write-commit.transcript.md?raw';
 
 // <Resources /> needs a topic outside a lesson: use the first one that has sources.
 const withSources = loadTopics().find((topic) => topic.sources.length > 0);
+// Demo experiences, one per mode: regenerate with `node scripts/demo-experiences.mjs`.
+type Demo = { config: unknown; fallback: unknown; fallbackSource: string | null };
+const demos = [
+	{ key: 'explainer', title: 'Mode A: explainer video (HTTP request lifecycle)', demo: demoHttp as Demo },
+	{ key: 'interactive', title: 'Mode B: interactive video lesson (binary search)', demo: demoBinary as Demo },
+	{ key: 'branching', title: 'Mode C: branching presentation (marketing funnel strategy)', demo: demoFunnel as Demo },
+	{ key: 'hybrid', title: 'Mode D: hybrid learning lab (distributed consensus)', demo: demoConsensus as Demo },
+];
 ---
 
 <Base title="Playground" description="Every shared lesson component with sample data.">
@@ -65,6 +85,49 @@ const withSources = loadTopics().find((topic) => topic.sources.length > 0);
 	<p>A static diagram written in mermaid syntax.</p>
 	<C.Mermaid {...sample.mermaid} />
 
+	<h3 id="Diagram">Diagram</h3>
+	<p>A registered diagram from the topic's visual registry, the same file the Obsidian note embeds. Zoom, drag and reset.</p>
+	<DiagramView entry={sample.demoDiagram} sources={[]} inline={writePathSvg} />
+	<DiagramView entry={sample.demoMermaid} sources={[]} inline={sample.demoMermaidSource} />
+
+	<h3 id="Video">Video</h3>
+	<p>A HyperFrames explainer rendered by <code>tutor video &lt;topic&gt; render &lt;id&gt;</code>, with captions and a transcript.</p>
+	<VideoView entry={sample.demoVideo} sources={[]} transcript={demoTranscript} />
+
+	<h3 id="ClusterSim">ClusterSim</h3>
+	<p>A small cluster to run and break: quorum replication, gossip, or load balancing.</p>
+	<C.ClusterSim {...sample.cluster} />
+	<C.ClusterSim {...sample.gossip} />
+	<C.ClusterSim {...sample.balancer} />
+
+	<h3 id="AlgorithmStepper">AlgorithmStepper</h3>
+	<p>A precomputed algorithm trace, one step at a time.</p>
+	<C.AlgorithmStepper {...sample.stepper} />
+	<C.AlgorithmStepper {...sample.stepperBars} />
+
+	<h3 id="CompareView">CompareView</h3>
+	<p>Two approaches with measured trade-offs; the verdict waits until the learner asks.</p>
+	<C.CompareView {...sample.compare} />
+
+	<h3 id="CodePlayground">CodePlayground</h3>
+	<p>Editable JavaScript that runs in a sandboxed frame with no network access.</p>
+	<C.CodePlayground {...sample.playgroundCode} />
+
+	<h3 id="Experience">Experience</h3>
+	<p>
+		An adaptive experience built by <code>tutor experience &lt;topic&gt; build &lt;id&gt;</code>. The selector picks the mode per idea:
+		watch when explanation is enough, interact when experimentation matters, explore paths when decisions matter, combine everything
+		when the idea is complex. Demo sources are placeholders.
+	</p>
+	{
+		demos.map(({ key, title, demo }) => (
+			<section data-demo-experience={key}>
+				<h4>{title}</h4>
+				<ExperienceView config={demo.config as BuiltExperience} fallback={demo.fallback as VisualEntry | null} fallbackInline={demo.fallbackSource ?? undefined} />
+			</section>
+		))
+	}
+
 	<h2 id="activity">Activity</h2>
 
 	<h3 id="Quiz">Quiz</h3>
@@ -81,7 +144,20 @@ const withSources = loadTopics().find((topic) => topic.sources.length > 0);
 	<h3 id="MatchPairs">MatchPairs</h3>
 	<C.MatchPairs {...sample.match} />
 
+	<h3 id="SortBuckets">SortBuckets</h3>
+	<C.SortBuckets {...sample.sortBuckets} />
+
 	<h2 id="utility">Utility</h2>
+
+	<h3 id="Depth">Depth</h3>
+	<p>Deeper layers of explanation. The control chooses how much to show.</p>
+	<DepthControl />
+	<C.Depth level="internals">
+		<p>Each consumer group stores a pending entries list. XREADGROUP adds the delivered entry id; XACK removes it.</p>
+	</C.Depth>
+	<C.Depth level="production">
+		<p>Teams alert on the pending list length and move entries that fail too often to a dead-letter stream.</p>
+	</C.Depth>
 
 	<h3 id="Figure">Figure</h3>
 	<C.Figure caption="Figure wraps an image, or any content, and gives it a caption.">

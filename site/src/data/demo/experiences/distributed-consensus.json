@@ -1,0 +1,497 @@
+{
+  "config": {
+    "generated_by": "tutor experience build",
+    "id": "raft-consensus-lab",
+    "topic": "test-engineering/messaging/distributed-consensus",
+    "title": "Raft consensus laboratory",
+    "mode": "hybrid",
+    "objective": "Predict when a Raft cluster can elect a leader and commit writes, and explain why it needs a majority.",
+    "level": "advanced",
+    "summary": "An intro video shows a write committing on a majority, a five-server simulation lets the learner fail servers and send writes, a guided walkthrough pauses during a leader failure, deep dives explain split brain and cluster sizes, and a final video connects the rules.",
+    "page": "site/src/content/lessons/test-engineering/messaging/distributed-consensus/02-the-mechanism.mdx",
+    "page_url": "/test-engineering/messaging/distributed-consensus/lesson/02-the-mechanism/",
+    "tabs": [
+      "watch",
+      "explore",
+      "guided",
+      "deepdive",
+      "practice"
+    ],
+    "watch": {
+      "video_id": "raft-write-commit",
+      "title": "How a Raft cluster commits one write",
+      "status": "storyboard",
+      "blocker": "not rendered yet; run `tutor video <topic> render <id>`",
+      "mp4_url": null,
+      "captions_url": null,
+      "composition_url": "/media/_demo/raft-write-commit/composition/index.html",
+      "duration": 43,
+      "scenes": [
+        {
+          "id": "intro",
+          "heading": "One write, three servers",
+          "start": 0,
+          "duration": 5
+        },
+        {
+          "id": "send",
+          "heading": "The leader appends, then replicates",
+          "start": 5,
+          "duration": 9
+        },
+        {
+          "id": "ack",
+          "heading": "A majority acknowledges",
+          "start": 14,
+          "duration": 9
+        },
+        {
+          "id": "commit",
+          "heading": "Commit, apply, reply",
+          "start": 23,
+          "duration": 9
+        },
+        {
+          "id": "why",
+          "heading": "Why a majority",
+          "start": 32,
+          "duration": 11
+        }
+      ],
+      "transcript": "# How a Raft cluster commits one write\n\nA client sends a write to the leader. The leader appends it to its log and sends it to two followers. When a majority stores the entry, the leader commits it and replies to the client.\n\n**00:00 One write, three servers.** A Raft cluster commits a write in a fixed order. Watch one write travel.\n\n**00:05 The leader appends, then replicates.** The client sends the write to the leader. The leader appends it to its log, then sends AppendEntries to each follower.\n\n**00:14 A majority acknowledges.** Follower 1 stores the entry and replies. The leader and Follower 1 are two of three servers, which is a majority.\n\n**00:23 Commit, apply, reply.** The leader marks the entry committed, applies it to its state machine, and replies to the client. Followers learn the commit on the next message.\n\n**00:32 Why a majority.** When a majority stored the entry, any new leader has it. When only a minority stored it, the entry can be lost. So the leader waits for a majority.\n\nSources:\n\n- Source distributed-consensus-source — https://example.com/distributed-consensus-source\n",
+      "explanation": "The leader replies only after a majority of servers store the entry. A minority failure cannot lose a committed write.",
+      "alt": "A client sends a write to the leader. The leader appends it to its log and sends it to two followers. When a majority stores the entry, the leader commits it and replies to the client."
+    },
+    "guided": {
+      "video_id": "raft-leader-election",
+      "title": "How Raft replaces a failed leader",
+      "status": "storyboard",
+      "blocker": "not rendered yet; run `tutor video <topic> render <id>`",
+      "mp4_url": null,
+      "captions_url": null,
+      "composition_url": "/media/_demo/raft-leader-election/composition/index.html",
+      "duration": 44,
+      "scenes": [
+        {
+          "id": "intro",
+          "heading": "When the leader fails",
+          "start": 0,
+          "duration": 5
+        },
+        {
+          "id": "heartbeats",
+          "heading": "The leader sends heartbeats",
+          "start": 5,
+          "duration": 9
+        },
+        {
+          "id": "crash",
+          "heading": "Heartbeats stop, a timeout fires",
+          "start": 14,
+          "duration": 10
+        },
+        {
+          "id": "votes",
+          "heading": "The candidate asks for votes",
+          "start": 24,
+          "duration": 10
+        },
+        {
+          "id": "minority",
+          "heading": "A minority cannot elect",
+          "start": 34,
+          "duration": 10
+        }
+      ],
+      "transcript": "# How Raft replaces a failed leader\n\nA five-server Raft cluster loses its leader. Heartbeats stop, a follower's election timeout fires, it becomes a candidate for term 2 and asks for votes. With three of five votes it becomes leader. When only two servers are alive, no candidate can reach a majority, so the cluster stops accepting writes.\n\n**00:00 When the leader fails.** What happens when the Raft leader crashes?\n\n**00:05 The leader sends heartbeats.** While it is alive, the leader sends heartbeats to the followers. Each heartbeat resets their election timers.\n\n**00:14 Heartbeats stop, a timeout fires.** The leader crashes and the heartbeats stop. Election timeouts are random, so one follower times out first and becomes a candidate.\n\n**00:24 The candidate asks for votes.** The candidate votes for itself and sends RequestVote to the others. Each server votes once per term. Three votes of five make it leader.\n\n**00:34 A minority cannot elect.** If only two of five servers are alive, no candidate gets three votes. There is no leader, so no write commits.\n\nSources:\n\n- Source distributed-consensus-source — https://example.com/distributed-consensus-source\n",
+      "explanation": "A leader rules only while a majority hears it. A new leader needs votes from a majority of all servers, so two leaders can never win the same term.",
+      "alt": "A five-server Raft cluster loses its leader. Heartbeats stop, a follower's election timeout fires, it becomes a candidate for term 2 and asks for votes. With three of five votes it becomes leader. When only two servers are alive, no candidate can reach a majority, so the cluster stops accepting writes."
+    },
+    "summary_video": {
+      "video_id": "raft-summary",
+      "title": "Raft in four rules",
+      "status": "storyboard",
+      "blocker": "not rendered yet; run `tutor video <topic> render <id>`",
+      "mp4_url": null,
+      "captions_url": null,
+      "composition_url": "/media/_demo/raft-summary/composition/index.html",
+      "duration": 31,
+      "scenes": [
+        {
+          "id": "intro",
+          "heading": "Raft in four rules",
+          "start": 0,
+          "duration": 5
+        },
+        {
+          "id": "rules",
+          "heading": "The rules",
+          "start": 5,
+          "duration": 14
+        },
+        {
+          "id": "overlap",
+          "heading": "Why majorities keep data safe",
+          "start": 19,
+          "duration": 12
+        }
+      ],
+      "transcript": "# Raft in four rules\n\nA recap of Raft: the leader appends and replicates log entries, an entry commits once a majority stores it, a failed leader is replaced by an election that needs a majority of votes, and without a majority the cluster stops rather than give wrong answers.\n\n**00:00 Raft in four rules.** Four rules connect everything you explored.\n\n**00:05 The rules.** The leader appends and replicates entries. An entry commits once a majority stores it. A failed leader is replaced by an election. Without a majority, the cluster stops.\n\n**00:19 Why majorities keep data safe.** A commit majority and an election majority of five always share at least one server. That server carries every committed entry into the next term.\n\nSources:\n\n- Source distributed-consensus-source — https://example.com/distributed-consensus-source\n",
+      "explanation": "Every Raft rule uses the same majority, so any two majorities share a server, and that shared server carries the committed history forward.",
+      "alt": "A recap of Raft: the leader appends and replicates log entries, an entry commits once a majority stores it, a failed leader is replaced by an election that needs a majority of votes, and without a majority the cluster stops rather than give wrong answers."
+    },
+    "simulation": {
+      "component": "ClusterSim",
+      "props": {
+        "title": "Five-server Raft cluster",
+        "mode": "replication",
+        "servers": 5,
+        "latency": 2,
+        "intro": "Fail servers, change latency, send writes and step the clock."
+      },
+      "presets": {
+        "healthy": {
+          "servers": 5,
+          "latency": 2,
+          "failures": []
+        },
+        "leader-down": {
+          "servers": 5,
+          "latency": 2,
+          "failures": [
+            "s1"
+          ]
+        },
+        "two-left": {
+          "servers": 5,
+          "latency": 2,
+          "failures": [
+            "s3",
+            "s4",
+            "s5"
+          ]
+        }
+      }
+    },
+    "sync": [
+      {
+        "scene": "heartbeats",
+        "preset": "healthy"
+      },
+      {
+        "scene": "crash",
+        "preset": "leader-down"
+      },
+      {
+        "scene": "minority",
+        "preset": "two-left"
+      }
+    ],
+    "inspect": [],
+    "deck": {
+      "deck_id": "consensus-tradeoffs",
+      "title": "Why consensus needs a majority",
+      "composition_url": "/media/_demo/consensus-tradeoffs/composition/index.html",
+      "island": {
+        "slides": [
+          {
+            "sceneId": "question",
+            "notes": "Ask the learner what would go wrong with fewer or more acknowledgments."
+          },
+          {
+            "sceneId": "options",
+            "notes": "Reveal the options one at a time and ask which survives a crash and stays available.",
+            "fragments": [
+              4.3,
+              4.6,
+              4.9
+            ]
+          },
+          {
+            "sceneId": "why-majority",
+            "notes": "Two majorities of five share at least one server, so a new leader always meets a server with the committed entries.",
+            "fragments": [
+              8.3,
+              8.6
+            ],
+            "hotspots": [
+              {
+                "id": "why-majority-h1",
+                "label": "Split brain without a majority",
+                "target": "split-brain",
+                "region": {
+                  "x": 5,
+                  "y": 81,
+                  "w": 31,
+                  "h": 12
+                }
+              },
+              {
+                "id": "why-majority-h2",
+                "label": "Why odd cluster sizes",
+                "target": "cluster-sizes",
+                "region": {
+                  "x": 38,
+                  "y": 81,
+                  "w": 31,
+                  "h": 12
+                }
+              }
+            ]
+          },
+          {
+            "sceneId": "takeaway",
+            "notes": "Raft chooses safety: without a majority it stops instead of risking two different histories."
+          }
+        ],
+        "slideSequences": [
+          {
+            "id": "split-brain",
+            "label": "Split brain without a majority",
+            "slides": [
+              {
+                "sceneId": "split",
+                "notes": "If each side could elect a leader with any number of votes, both sides would accept different writes."
+              },
+              {
+                "sceneId": "fixed",
+                "notes": "With the majority rule only side B, with three of five servers, can elect a leader, so only one history exists."
+              }
+            ]
+          },
+          {
+            "id": "cluster-sizes",
+            "label": "Why odd cluster sizes",
+            "slides": [
+              {
+                "sceneId": "sizes",
+                "notes": "A cluster of n servers survives floor of (n minus 1) over 2 failures; adding a fourth server adds no tolerance."
+              }
+            ]
+          }
+        ]
+      },
+      "scenes": [
+        {
+          "id": "question",
+          "heading": "Why wait for a majority?",
+          "start": 0,
+          "duration": 4,
+          "sequence": null,
+          "fragments": []
+        },
+        {
+          "id": "options",
+          "heading": "Three ways to acknowledge a write",
+          "start": 4,
+          "duration": 4,
+          "sequence": null,
+          "fragments": [
+            4.3,
+            4.6,
+            4.9
+          ]
+        },
+        {
+          "id": "why-majority",
+          "heading": "Majorities always overlap",
+          "start": 8,
+          "duration": 4,
+          "sequence": null,
+          "fragments": [
+            8.3,
+            8.6
+          ]
+        },
+        {
+          "id": "takeaway",
+          "heading": "The trade-off",
+          "start": 12,
+          "duration": 4,
+          "sequence": null,
+          "fragments": []
+        },
+        {
+          "id": "split",
+          "heading": "A partition splits the cluster",
+          "start": 16,
+          "duration": 4,
+          "sequence": "split-brain",
+          "fragments": []
+        },
+        {
+          "id": "fixed",
+          "heading": "The majority rule prevents it",
+          "start": 20,
+          "duration": 4,
+          "sequence": "split-brain",
+          "fragments": []
+        },
+        {
+          "id": "sizes",
+          "heading": "Failures each size survives",
+          "start": 24,
+          "duration": 4,
+          "sequence": "cluster-sizes",
+          "fragments": []
+        }
+      ],
+      "outline": "# Why consensus needs a majority\n\nA short deck asks why Raft waits for a majority. The main path compares waiting for all servers, one server and a majority. Two deep dives show split brain without a majority rule and how many failures clusters of three to seven servers tolerate.\n\n**Purpose.** Explore why Raft waits for a majority, what goes wrong without it, and how cluster size changes the failures it survives.\n\n## Main path\n\n### 1. Why wait for a majority?\n\n**On screen.** Title card with \"All, one, or a majority?\".\n\n**Notes.** Ask the learner what would go wrong with fewer or more acknowledgments.\n\n### 2. Three ways to acknowledge a write\n\n**On screen.** Numbered steps appear one at a time: Wait for all: one crash blocks every write → Wait for one: a crash can lose the write → Wait for a majority: survives crashes and stays safe.\n\n**Notes.** Reveal the options one at a time and ask which survives a crash and stays available.\n\n### 3. Majorities always overlap\n\n**On screen.** Two columns, \"Write acknowledged by\" and \"Next leader elected by\", fill in pairs; verdict: S3 is in both majorities..\n\n**Notes.** Two majorities of five share at least one server, so a new leader always meets a server with the committed entries.\n\n**Branches.** deep dive \"Split brain without a majority\", deep dive \"Why odd cluster sizes\".\n\n### 4. The trade-off\n\n**On screen.** Two columns, \"Majority alive\" and \"Majority lost\", fill in pairs; verdict: Consistency over availability during a partition..\n\n**Notes.** Raft chooses safety: without a majority it stops instead of risking two different histories.\n\n## Deep dive: Split brain without a majority\n\n### 1. A partition splits the cluster\n\n**On screen.** Two columns, \"Side A: S1, S2\" and \"Side B: S3, S4, S5\", fill in pairs; verdict: Two histories: which x is true?.\n\n**Notes.** If each side could elect a leader with any number of votes, both sides would accept different writes.\n\n### 2. The majority rule prevents it\n\n**On screen.** Numbered steps appear one at a time: Side A has 2 of 5 votes: no leader → Side B has 3 of 5 votes: S3 leads → Only side B commits writes.\n\n**Notes.** With the majority rule only side B, with three of five servers, can elect a leader, so only one history exists.\n\n## Deep dive: Why odd cluster sizes\n\n### 1. Failures each size survives\n\n**On screen.** Bars grow for 3 servers 1 failures, 4 servers 1 failures, 5 servers 2 failures, 6 servers 2 failures, 7 servers 3 failures.\n\n**Notes.** A cluster of n servers survives floor of (n minus 1) over 2 failures; adding a fourth server adds no tolerance.\n\n",
+      "explanation": "A majority is the smallest group that any other majority must overlap, which is what keeps two leaders from deciding different histories."
+    },
+    "checkpoints": [
+      {
+        "id": "why-wait",
+        "kind": "explain",
+        "at": {
+          "after": "watch"
+        },
+        "prompt": "In one sentence: why does the leader wait for a majority before it commits a write?",
+        "explanation": "A majority stores the entry before it commits, and any later majority overlaps it, so the next leader always meets a server that has the entry.",
+        "concept_ids": [
+          "leader-election"
+        ]
+      },
+      {
+        "id": "after-crash",
+        "kind": "predict",
+        "at": {
+          "scene": "crash"
+        },
+        "prompt": "The leader just crashed. What do the followers do first?",
+        "choices": [
+          {
+            "text": "Wait for an election timeout, then one becomes a candidate",
+            "correct": true
+          },
+          {
+            "text": "Keep committing writes without a leader",
+            "misconception": "Thinks followers can commit without a leader"
+          },
+          {
+            "text": "Immediately crown the server with the lowest id",
+            "misconception": "Thinks Raft elects by server id instead of by votes after a random timeout"
+          }
+        ],
+        "explanation": "Followers notice the failure only when heartbeats stop and their election timer expires. The first to time out becomes a candidate for a new term and asks the others for votes.",
+        "concept_ids": [
+          "leader-election"
+        ],
+        "revisit": "heartbeats"
+      },
+      {
+        "id": "stop-progress",
+        "kind": "experiment",
+        "at": {
+          "scene": "minority"
+        },
+        "prompt": "In the simulation, fail servers and send a write until the write cannot commit. How many live servers are left then?",
+        "goal": {
+          "preset": "healthy",
+          "condition": {
+            "all": [
+              {
+                "path": "live",
+                "op": "lte",
+                "value": 2
+              },
+              {
+                "path": "pending",
+                "op": "gte",
+                "value": 1
+              }
+            ]
+          },
+          "hint": "Fail three servers, press Send write, then press Step a few times."
+        },
+        "explanation": "With two of five servers alive there is no majority of three, so no leader can be elected and the write stays pending. Nothing wrong is committed; the cluster just waits.",
+        "concept_ids": [
+          "leader-election"
+        ]
+      },
+      {
+        "id": "four-servers",
+        "kind": "verify",
+        "at": {
+          "slide": "why-majority"
+        },
+        "prompt": "A cluster has four servers. How many can fail while it still commits writes?",
+        "choices": [
+          {
+            "text": "One",
+            "correct": true
+          },
+          {
+            "text": "Two",
+            "misconception": "Thinks half the servers is a majority"
+          },
+          {
+            "text": "Three",
+            "misconception": "Thinks one live server can commit alone"
+          }
+        ],
+        "explanation": "A majority of four is three. With one failure three servers remain, which is a majority; with two failures only two remain, which is not.",
+        "concept_ids": [
+          "leader-election"
+        ]
+      },
+      {
+        "id": "two-leaders",
+        "kind": "verify",
+        "at": {
+          "tab": "practice"
+        },
+        "prompt": "Why can two leaders never win the same term in Raft?",
+        "choices": [
+          {
+            "text": "Each server votes once per term and a leader needs a majority",
+            "correct": true
+          },
+          {
+            "text": "Servers with higher ids override others",
+            "misconception": "Thinks server ids decide leadership"
+          },
+          {
+            "text": "The client chooses the leader",
+            "misconception": "Thinks clients take part in elections"
+          }
+        ],
+        "explanation": "Two majorities of the same cluster overlap, and the shared server votes only once per term, so only one candidate can collect a majority in a term.",
+        "concept_ids": [
+          "leader-election"
+        ]
+      }
+    ],
+    "fallback_visual": "raft-election-states",
+    "concept_ids": [
+      "leader-election"
+    ],
+    "sources": [],
+    "input_hash": "97fc770971e37a9d145b95d00e4f32715bc0aa9e926e2477a6a4e95feebc809d"
+  },
+  "fallback": {
+    "id": "raft-election-states",
+    "title": "Distributed Consensus: the whole process",
+    "kind": "workflow",
+    "scope": "end-to-end",
+    "format": "mermaid",
+    "file": "vault/test-engineering/messaging/distributed-consensus/visuals/assets/raft-election-states-distributed-consensus.mmd",
+    "concept_ids": [
+      "leader-election"
+    ],
+    "source_ids": [
+      "distributed-consensus-source"
+    ],
+    "purpose": "See every step before studying one.",
+    "explanation": "Each step hands its result to the next one, and the last step gives the outcome the learner predicts.",
+    "alt": "A diagram of every step of the mechanism in order, from the first input to the final outcome, joined by arrows.",
+    "learning_check": {
+      "question": "Which step decides the outcome?",
+      "answer": "The comparison step."
+    },
+    "used_in": [
+      "site/src/content/lessons/test-engineering/messaging/distributed-consensus/02-the-mechanism.mdx"
+    ]
+  },
+  "fallbackSource": "stateDiagram-v2\n  [*] --> Follower\n  Follower --> Candidate: election timeout, term + 1\n  Candidate --> Leader: votes from a majority\n  Candidate --> Follower: sees a leader with an equal or higher term\n  Candidate --> Candidate: split vote, new timeout\n  Leader --> Follower: sees a higher term\n"
+}

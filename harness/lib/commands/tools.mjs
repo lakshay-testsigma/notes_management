@@ -18,6 +18,7 @@ import { BRIEF_WORDS } from '../validators/brief.mjs';
 import { LESSON_WORDS } from '../validators/lesson.mjs';
 import { FINAL_NOTES_WORDS } from '../validators/notes.mjs';
 import { requireArg } from './shared.mjs';
+import { videoTools } from '../video.mjs';
 
 function budgetFlag(flags) {
   const window=Number(stringFlag(flags,'window')??32768),reserve=Number(stringFlag(flags,'reserve')??3000);
@@ -166,8 +167,10 @@ export function wordsCommand({ root, args }) {
 
 // --- doctor -----------------------------------------------------------------
 
-const STAGE_SKILLS = [...new Set([...STAGES.map((s) => s.skill), 'learn-insight', 'learn-recall'])];
-const RUBRIC_FILES = ['source-quality.md', 'lesson-page.md', 'vault-notes.md'];
+const STAGE_SKILLS = [...new Set([...STAGES.map((s) => s.skill), 'learn-insight', 'learn-recall', 'learn-visuals', 'learn-video'])];
+const RUBRIC_FILES = ['source-quality.md', 'lesson-page.md', 'vault-notes.md', 'visuals.md', 'writing-standard.md', 'experiences.md'];
+/** Official HyperFrames agent skills the video workflow reads (installed by `npx hyperframes skills update`). */
+const HYPERFRAMES_SKILLS = ['hyperframes', 'hyperframes-cli', 'hyperframes-registry', 'media-use', 'slideshow'];
 
 export function doctorCommand({ root, flags }) {
   const checks = [];
@@ -237,6 +240,24 @@ export function doctorCommand({ root, flags }) {
   // Skills
   const missingSkills = STAGE_SKILLS.filter((skill) => !isFile(path.join(root, '.claude', 'skills', skill, 'SKILL.md')));
   add('skills', missingSkills.length ? 'warn' : 'ok', missingSkills.length ? `no SKILL.md for: ${missingSkills.join(', ')}` : `${STAGE_SKILLS.length} skills present`);
+
+  // Video tooling (optional: without it videos stay honest storyboards)
+  const tools = videoTools();
+  add('video', tools.renderer ? 'ok' : 'warn',
+    tools.renderer
+      ? `HyperFrames ${tools.hyperframes} renders ${tools.renderer === 'docker' ? 'in Docker' : 'locally'}; narration: ${tools.kokoro ? 'Kokoro' : tools.say ? 'macOS say' : 'none (captions only)'}`
+      : `videos stay storyboards: ${tools.blocker}`,
+    tools.renderer ? null : 'install FFmpeg or start Docker, then `tutor video <topic> render <id>`');
+
+  // Official HyperFrames skills, in the project or the user's skill folders.
+  const home = process.env.HOME ?? '';
+  const skillDirs = [path.join(root, '.claude', 'skills'), path.join(home, '.claude', 'skills'), path.join(home, '.agents', 'skills')];
+  const missingHf = HYPERFRAMES_SKILLS.filter((skill) => !skillDirs.some((dir) => isFile(path.join(dir, skill, 'SKILL.md'))));
+  add('hyperframes-skills', missingHf.length ? 'warn' : 'ok',
+    missingHf.length ? `official HyperFrames skills missing: ${missingHf.join(', ')}` : `official skills present: ${HYPERFRAMES_SKILLS.join(', ')}`,
+    missingHf.length ? 'run `npx hyperframes skills update` and `npx hyperframes skills update slideshow`, then start a new agent session' : null);
+  const vendor = ['site/node_modules/@hyperframes/player/package.json', 'site/node_modules/gsap/package.json'].filter((f) => !isFile(path.join(root, f)));
+  add('player', vendor.length ? 'warn' : 'ok', vendor.length ? `site dependencies missing: ${vendor.join(', ')}` : '@hyperframes/player and gsap installed for interactive experiences', vendor.length ? 'run `npm install` in site/' : null);
 
   // Vault
   add('vault', isFile(path.join(root, 'vault', 'Home.md')) ? 'ok' : 'warn', isFile(path.join(root, 'vault', 'Home.md')) ? 'vault/Home.md present' : 'vault/Home.md not found', isFile(path.join(root, 'vault', 'Home.md')) ? null : `run \`${CLI} map\``);

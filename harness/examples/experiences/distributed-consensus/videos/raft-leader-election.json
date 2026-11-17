@@ -1,0 +1,23 @@
+{
+  "id": "raft-leader-election",
+  "title": "How Raft replaces a failed leader",
+  "purpose": "See how followers detect a dead leader, elect a new one with a majority of votes, and why a minority cannot make progress.",
+  "sequence_reason": "Leader failure, election timeout, vote requests and the new term happen in a fixed causal order.",
+  "summary": "A five-server Raft cluster loses its leader. Heartbeats stop, a follower's election timeout fires, it becomes a candidate for term 2 and asks for votes. With three of five votes it becomes leader. When only two servers are alive, no candidate can reach a majority, so the cluster stops accepting writes.",
+  "explanation": "A leader rules only while a majority hears it. A new leader needs votes from a majority of all servers, so two leaders can never win the same term.",
+  "learning_check": {
+    "question": "Five servers, three of them are down. Can the two live servers elect a leader?",
+    "answer": "No. A leader needs votes from a majority of all five servers, which is three, and only two can vote."
+  },
+  "concept_ids": ["leader-election"],
+  "source_ids": ["SOURCE"],
+  "used_in": ["LESSON_PAGE"],
+  "narration": { "engine": "auto" },
+  "scenes": [
+    { "id": "intro", "duration": 5, "heading": "When the leader fails", "narration": "What happens when the Raft leader crashes?", "visual": { "type": "title", "subtitle": "Heartbeats, timeouts, votes, a new term" } },
+    { "id": "heartbeats", "duration": 9, "heading": "The leader sends heartbeats", "narration": "While it is alive, the leader sends heartbeats to the followers. Each heartbeat resets their election timers.", "visual": { "type": "flow", "nodes": [ { "id": "s1", "label": "Leader S1" }, { "id": "s2", "label": "Follower S2" }, { "id": "s3", "label": "Follower S3" } ], "path": [ { "from": "s1", "to": "s2", "packet": "heartbeat" }, { "from": "s1", "to": "s3", "packet": "heartbeat", "label": "Followers reset their election timers" } ] } },
+    { "id": "crash", "duration": 10, "heading": "Heartbeats stop, a timeout fires", "narration": "The leader crashes and the heartbeats stop. Election timeouts are random, so one follower times out first and becomes a candidate.", "visual": { "type": "steps", "items": [ "Leader S1 crashes", "No heartbeats arrive", "Follower S2 times out first", "S2 becomes a candidate for term 2" ] } },
+    { "id": "votes", "duration": 10, "heading": "The candidate asks for votes", "narration": "The candidate votes for itself and sends RequestVote to the others. Each server votes once per term. Three votes of five make it leader.", "visual": { "type": "flow", "nodes": [ { "id": "s2", "label": "Candidate S2" }, { "id": "s3", "label": "S3" }, { "id": "s4", "label": "S4" } ], "path": [ { "from": "s2", "to": "s3", "packet": "RequestVote" }, { "from": "s3", "to": "s2", "packet": "vote" }, { "from": "s2", "to": "s4", "packet": "RequestVote" }, { "from": "s4", "to": "s2", "packet": "vote", "label": "Three of five votes: S2 leads term 2" } ] } },
+    { "id": "minority", "duration": 10, "heading": "A minority cannot elect", "narration": "If only two of five servers are alive, no candidate gets three votes. There is no leader, so no write commits.", "visual": { "type": "compare", "left": { "label": "Three of five alive", "items": [ "Election succeeds", "Writes commit" ] }, "right": { "label": "Two of five alive", "items": [ "No majority of votes", "Writes wait" ] }, "verdict": "Safety first: no majority, no progress." } }
+  ]
+}

@@ -1,5 +1,6 @@
 ---
 import Crumbs from '../components/site/Crumbs.astro';
+import DepthControl from '../components/site/DepthControl.astro';
 import Pager from '../components/site/Pager.astro';
 import type { NavPage, TopicNav } from '../lib/navigation';
 import { neighbours } from '../lib/navigation';
@@ -30,6 +31,7 @@ const around = neighbours(nav, page.route);
 		<p class="eyebrow">{page.eyebrow}</p>
 		<h1 class="page-title">{page.title}</h1>
 		{description && <p class="lede">{description}</p>}
+		{page.kind === 'lesson' && <DepthControl />}
 		<div class="prose">
 			<slot />
 		</div>

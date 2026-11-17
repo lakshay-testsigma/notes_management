@@ -12,6 +12,11 @@ What makes it good:
 - Every command can be pasted as it is.
 - Each task says what done looks like.
 - Hints sit at the end, under their own heading, one per task.
+- "How it works" shows the real execution flow in one mermaid diagram, and the
+  same diagram is registered with `tutor visuals add` (its `.mmd` file sits in
+  the topic's `visuals/assets/` folder; the README path is in `used_in`).
+- The implementation walkthrough comes after the hints, because it gives the answer.
+- Short, active sentences (harness/rubrics/writing-standard.md).
 
 ````markdown
 # Mini project 01 — A job queue that survives worker crashes
@@ -31,6 +36,22 @@ was holding is picked up by another worker.
 Consumer groups and the pending entries list give at-least-once delivery: a job
 leaves the queue only when a worker acknowledges it. This serves the plan
 outcome "explain how a crashed consumer's work is recovered".
+
+## How it works
+
+```mermaid
+flowchart LR
+  producer["producer.ts: addJob"] -->|XADD| stream[("jobs stream")]
+  stream -->|"XREADGROUP >"| w1["worker A"]
+  w1 -->|"XACK after handler"| stream
+  stream -->|"XAUTOCLAIM idle > 10 s"| w2["worker B"]
+```
+
+The producer appends each job to the `jobs` stream. A worker reads it through
+the consumer group, and the job stays in the pending entries list until the
+worker calls `XACK`. If worker A crashes first, worker B claims the idle job.
+The lesson page "Consumer groups" animates this path with a `FlowAnimation`
+in which you can switch worker A off.
 
 ## Prerequisites
 
@@ -108,6 +129,21 @@ job. Put the acknowledgement on the line after the handler returns.
 
 `XAUTOCLAIM` needs a start id. Use `0` to scan the pending list from the
 beginning.
+
+## Implementation walkthrough
+
+Read this only after you finish, or when you are stuck after the hints.
+
+1. `src/queue.ts`, `addJob` (TODO 1): call `XADD jobs * ...fields` and return
+   the id. The stream generates the id, so two producers never collide.
+2. `src/queue.ts`, `readBatch` (TODO 2): call `XREADGROUP GROUP workers <name>
+   COUNT 10 BLOCK 5000 STREAMS jobs >` and return `[]` when the client returns
+   `null`. The id `>` asks only for jobs never delivered to this group.
+3. `src/worker.ts`, `process` (TODO 3): run the handler, then call `XACK`.
+   Acknowledging after success keeps a failed job in the pending list.
+4. `src/worker.ts`, `claimStale` (TODO 4): call `XAUTOCLAIM jobs workers
+   <name> 10000 0` every 5 seconds and process what it returns. This is the
+   recovery path for a crashed worker.
 
 ## Compare with the solution
 

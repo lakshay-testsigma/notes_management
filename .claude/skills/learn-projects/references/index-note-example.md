@@ -16,7 +16,9 @@ Rules:
   character would split the table cell.
 - Link concepts only when a note with that name exists in `vault/_concepts/` or
   `vault/_tech/` (`ls vault/_concepts vault/_tech`).
-- Take "What it proves" from each project's README, in one sentence.
+- Take "What it proves" from each project's README, in one sentence, and link
+  the project's registered diagram note `[[visual-<id>-<slug>]]` (written by
+  `tutor map`; ids from `node harness/bin/tutor.mjs visuals <topic> list`).
 - If you add `sources:` to the frontmatter, use only ids that
   `node harness/bin/tutor.mjs sources <topic> list` prints.
 
@@ -49,9 +51,11 @@ tests pass or after you have used the hints. Read the
 ## What each project proves
 
 - **Project 1** proves that consumer groups and the pending entries list give
-  at-least-once delivery. Related: [[Consumer group]], [[At-least-once delivery]].
+  at-least-once delivery. How it runs: [[visual-mini-01-flow-redis-streams]].
+  Related: [[Consumer group]], [[At-least-once delivery]].
 - **Project 2** proves that a stream is a log that can be read again from any
-  id, which a queue cannot do. Related: [[Append-only log]].
+  id, which a queue cannot do. How it runs: [[visual-mini-02-flow-redis-streams]].
+  Related: [[Append-only log]].
 
 ## My insights
 ````

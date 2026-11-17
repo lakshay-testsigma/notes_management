@@ -38,6 +38,10 @@ units. Give each worker the assigned concepts, exact source slots, search/fetch
 budget, proposal path and learner requirements. Only the orchestrator merges the
 curriculum. Do not substitute three category searches for recursive discovery.
 
+Each research unit also returns visual candidates (sequences, dependencies, comparisons,
+state changes, key numbers, each with source id and section); merge them into
+`<handoffs_dir>/visual-candidates.md` for the lesson, digest and video workers.
+
 After each round, persist source evidence and the unfinished frontier. At closing,
 freeze source assignments and planned six-aspect coverage paths, re-gate intake,
 run check research, then done research. Do not lower required digest/repo minima or
@@ -124,6 +128,26 @@ other skills" below. The defaults, used only when the skill does not say otherwi
   Follow learn-site Part B2, stage:concept, all six aspects with direct evidence,
   marker above My insights, and write-note. Paths were assigned before generation.
   Register and complete these as lesson units; gate MDX and concept notes together.
+- Video units (visual-first plans): `video-<id>` for each outline entry with a `video`, agent
+  `tutor-video-producer`, `READ FIRST` `.claude/skills/learn-video/SKILL.md`. Input files: the
+  outline entry, its assigned source entries, the brief, the digest index and the digests or
+  repo-intel findings that state the sequence, `<handoffs_dir>/visual-candidates.md`, and one
+  example from `harness/examples/videos/`. Output: `<videos_dir>/<id>/video.json` (plus
+  `scenes/` when needed). Spawn video units in the first batch. A unit that returns
+  `STATUS: blocked` (no FFmpeg/Docker) is done: the storyboard is the honest deliverable; record
+  the blocker with `tutor log` and in the final message.
+- Experience units (adaptive plans): `experience-<id>` for each outline entry whose mode
+  (`tutor experience <topic> plan`) is interactive, branching or hybrid; agent
+  `tutor-video-producer`; `READ FIRST` learn-video and `harness/rubrics/experiences.md`. It
+  writes the experience's videos, deck and `experience.json`, runs `tutor experience <topic>
+  build <id>` (lint and publish; renders only Watch and summary videos) and `tutor deck <topic>
+  check <id>`. Videos owned by an experience get no separate `video-<id>` unit. The page worker
+  embeds `<Experience id>`; a missing build is expected until the unit returns. Before `done`,
+  `tutor experience <topic> list` shows every planned experience built.
+- Visuals: page workers draw and register their visuals through
+  `.claude/skills/learn-visuals/SKILL.md`; add `.claude/skills/learn-visuals/SKILL.md`,
+  `harness/rubrics/visuals.md` (section "Every visual must") and `<handoffs_dir>/visual-candidates.md`
+  to their input files. After all units: `tutor visuals <topic> check` and `tutor map <topic>`.
 - Index note: `<vault>/02-lesson-<slug>.md`. It names, for each page, the plan outcome the
   page serves, and links supplementary notes in prerequisite order. Do not rewrite
   the curriculum from parallel author workers. If the frozen plan changes, re-gate
@@ -158,14 +182,18 @@ Inputs section lists. Run it before `finalize`.
 Inline. The commands and the five steps are in `SKILL.md` under "Finalize". The details of
 steps 2 to 4:
 
-**Step 2 — a failing build or smoke check.** If `npm --prefix site run build` fails, read
+**Step 2 — a failing build, smoke or interact check.** If `npm --prefix site run build` fails, read
 only the last 40 lines of its output. The error names a file. Fix that file yourself if the
 problem is small (a wrong prop, an unclosed tag); otherwise spawn one `tutor-lesson-builder`
 with the error lines in `FIX LIST`. If `npm --prefix site run smoke` fails, it names the page
 and the console or hydration error. Do not fix it yourself: spawn one `tutor-lesson-builder`
 with those lines in `FIX LIST` and that page as its only output file. After each repair run
 the build and then `smoke` again; at most 3 rounds, then record `finalize` as failed with the
-remaining lines.
+remaining lines. Then run `npm --prefix site run interact` (it drives the shared simulations,
+checks Reset, captions, the sandbox, accessibility names and a 375 px layout); a failure in a
+shared component is a harness bug to report, a failure on a topic page goes to the
+`tutor-lesson-builder` like a smoke failure. Visual-first topics: run `tutor visuals <topic>
+check` and `tutor map <topic>` before the reviewers so the vault visual notes are current.
 
 **Step 3 — the verifier.** Use the verifier briefs in `worker-brief-examples.md`,
 explicitly loading `.claude/agents/tutor-verifier.md`. Get current checks and fingerprint
@@ -179,6 +207,12 @@ Pass the actual live URL, host browser capability or installed headless Playwrig
 procedure, and required interaction tasks. Keep it available through review and stop
 it afterwards. Reviewers must test visual controls/observable changes/reset. An
 unavailable browser or preview leaves visual-usefulness in not_checked.
+Visual-first topics add the checks of `harness/rubrics/visuals.md` "Review":
+visual-accuracy, visual-efficacy (answer each visual's learning_check from the
+prose alone, then with the visual), interaction-behavior, accessibility-responsive,
+writing-standard, video-consistency when the topic has a video, and project-diagrams
+for the projects scope. Pass `tutor visuals <topic> list --json` and the visual
+notes under `<vault>/visuals/` in the input list.
 
 | Depth | Verifiers | Scope |
 |-------|-----------|-------|

@@ -8,6 +8,7 @@ import { openLessonLine, siteUrl } from './topic-store.mjs';
 import { stageDefinition } from './stages.mjs';
 import { BRIEF_SECTIONS, BRIEF_WORDS } from './validators/brief.mjs';
 import { LESSON_WORDS } from './validators/lesson.mjs';
+import { LESSON_VISUAL_MINIMUM } from './visuals.mjs';
 import { FINAL_NOTES_WORDS } from './validators/notes.mjs';
 import { digestTarget } from './validators/digest.mjs';
 import { repoTarget } from './validators/repo-intel.mjs';
@@ -16,7 +17,11 @@ const RUBRICS = {
   sources: 'harness/rubrics/source-quality.md',
   lesson: 'harness/rubrics/lesson-page.md',
   notes: 'harness/rubrics/vault-notes.md',
+  visuals: 'harness/rubrics/visuals.md',
+  writing: 'harness/rubrics/writing-standard.md',
+  experiences: 'harness/rubrics/experiences.md',
 };
+const VISUAL_STAGES = ['research', 'brief', 'digest', 'repo-intel', 'lesson', 'mini-projects', 'capstone', 'notes'];
 
 /**
  * Describe one stage for `tutor next`.
@@ -208,6 +213,33 @@ export function describeStage(ctx, stageId) {
   };
 
   const spec = specs[stageId];
+  // Visual-first plans: every content stage uses the shared visual capability
+  // and the writing standard; the lesson stage also produces registered visuals
+  // and planned videos.
+  if (topic.plan?.visual_first === true && VISUAL_STAGES.includes(stageId)) {
+    spec.inputs = [
+      ...spec.inputs,
+      input('.claude/skills/learn-visuals/SKILL.md', 'the shared visual capability: choose, ground, draw, register visuals'),
+      input(RUBRICS.visuals, 'what every visual must have, and the gates of this stage'),
+      input(RUBRICS.writing, 'the writing standard (about 80% ASD-STE100)'),
+    ];
+    if (['lesson', 'digest', 'brief'].includes(stageId)) spec.inputs.push(input(`${p.handoffs_dir}/visual-candidates.md`, 'sourced sequences, dependencies and comparisons found by research'));
+    spec.outputs = [...spec.outputs, output(`${p.visual_assets_dir}/<id>-${topic.slug}.svg|.mmd`, `diagram assets, registered with \`${CLI} visuals ${id} add --file <entry.json>\``)];
+    if (topic.plan?.experience_policy === 'adaptive' && ['intake', 'research', 'lesson', 'digest', 'repo-intel', 'mini-projects', 'capstone', 'notes'].includes(stageId)) {
+      spec.inputs.push(input(RUBRICS.experiences, 'which experience each idea gets (explainer, interactive, branching, hybrid), checkpoints, progress'));
+    }
+    if (stageId === 'lesson') {
+      spec.inputs.push(input('.claude/skills/learn-video/SKILL.md', 'planned videos, decks and experiences: storyboard, build, render or publish with HyperFrames'));
+      if (topic.plan?.experience_policy === 'adaptive') {
+        const planned = (topic.plan?.lesson_outline ?? []).filter((page) => page?.experience?.id);
+        spec.outputs.push(output(`${p.experiences_dir}/<id>/experience.json`, `one lesson definition per planned interactive, branching or hybrid page; \`${CLI} experience ${id} build <id>\``));
+        spec.outputs.push(output(`${p.videos_dir}/<id>/deck.json`, `branching decks; \`${CLI} deck ${id} check <id>\``));
+        spec.targets = { ...spec.targets, experiences: planned.map((page) => page.experience.id) };
+      }
+      spec.outputs.push(output(`${p.videos_dir}/<id>/video.json`, `one storyboard per planned video; \`${CLI} video ${id} build|render <id>\``));
+      spec.targets = { ...spec.targets, registered_lesson_visuals_min: LESSON_VISUAL_MINIMUM[topic.depth] ?? 3, end_to_end_workflow: topic.plan?.multi_stage === true || (topic.plan?.lesson_outline ?? []).some((page) => page?.video), videos: (topic.plan?.lesson_outline ?? []).filter((page) => page?.video).map((page) => page.video.id) };
+    }
+  }
   const inputs = spec.inputs
     .filter((item) => !item.from || !isSkipped(item.from))
     .map((item) => ({ ...item, exists: exists(path.join(root, item.path)) }));
@@ -219,6 +251,9 @@ export function describeStage(ctx, stageId) {
   };
   if (stageId === 'finalize') {
     commands.map = `${CLI} map ${id}`;
+    commands.visuals = `${CLI} visuals ${id} check`;
+    commands.interact = 'npm --prefix site run interact';
+    if (topic.plan?.experience_policy === 'adaptive') commands.experiences = `${CLI} experience ${id} list`;
     commands.validate = `${CLI} validate ${id} --all`;
     commands.site_build = 'npm run site:build';
   }

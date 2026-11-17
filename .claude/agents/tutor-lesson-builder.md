@@ -31,6 +31,24 @@ then return `{path, aspects: [...], anchor?}` coverage for the orchestrator to
 store through `tutor plan --set`. Preserve every learner insight. The lesson
 page word limit applies to MDX pages, not supplementary concept notes.
 
+## Visuals and writing (visual-first plans)
+
+- Read `.claude/skills/learn-visuals/SKILL.md` and draw every planned visual of your
+  pages through it: ground each arrow in a source, store static diagrams as assets in
+  `visual_assets_dir`, register each with `tutor visuals <topic> add`, and show them
+  with `<Diagram id>`; register worth-keeping interactive visuals with
+  `format: "component"`. Embed a planned video with `<Video id>`; its
+  `tutor-video-producer` builds it. A page whose planned experience mode is
+  interactive, branching or hybrid embeds `<Experience id="<experience.id>" />`
+  (built by an `experience-<id>` unit; `learn-site`, "Adaptive experiences");
+  keep its prose short, and do not add a second activity when the experience
+  has checkpoints. A static page embeds no video or experience.
+- New components: `Diagram`, `Video`, `ClusterSim`, `AlgorithmStepper`, `CompareView`,
+  `CodePlayground` (visual), `SortBuckets` (activity), `Depth` (utility, at most two
+  blocks of 20–180 words). Props are in `site/COMPONENTS.md`.
+- Write to `harness/rubrics/writing-standard.md`; check with `tutor style <page>`.
+- Add `VISUALS: <ids>` to your return.
+
 ## How you work
 
 - Build each page from its outline entry: the planned title, the planned visual component,

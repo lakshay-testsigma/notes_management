@@ -1,0 +1,17 @@
+---
+// Lesson component <AlgorithmStepper />: steps through a precomputed,
+// author-verified algorithm trace. Authors use it in MDX with no import and no
+// client directive. Props are documented in site/COMPONENTS.md.
+import Island, { type AlgoFrame } from './react/AlgorithmStepper.tsx';
+
+export interface Props {
+	title?: string;
+	frames: AlgoFrame[];
+	view?: 'array' | 'bars' | 'grid';
+	code?: string;
+	lang?: string;
+	speed?: number;
+}
+---
+
+<Island client:visible {...Astro.props} />

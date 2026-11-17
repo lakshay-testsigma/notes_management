@@ -53,6 +53,8 @@ Read only these.
 6. `references/note-templates.md` (only the template for the note you are writing) and
    `references/code-reading-checklist.md` (scout and module workers).
 7. Per part: the cloned files of your slice (B), or the module notes (C). Details below.
+8. Synthesis and module workers: `harness/rubrics/writing-standard.md`; synthesis also
+   `.claude/skills/learn-visuals/SKILL.md` (steps 2–6) for the architecture diagrams.
 
 ## Steps
 
@@ -154,6 +156,14 @@ For each repository, run three phases. Unit ids:
    findings, so this is the most important section.
 7. Under "Technologies and services seen", list every library, tool, and external service
    this slice uses, each with one line on what it is used for here and its evidence.
+7b. Under "Worth exploring interactively", name 1–2 significant code paths of the slice
+   that a learner would understand better by stepping through them, each with the ordered
+   steps and their `path:line @ sha` evidence, and the lesson component that fits:
+   `SystemDiagram` (which part does what), `FlowAnimation` (a request moving through
+   functions), `AlgorithmStepper` (a data structure changing step by step), `StateMachine`
+   (a lifecycle). The synthesis and the lesson stage use these as grounded visual
+   candidates. Write the note in the writing standard: what the code does in plain words
+   first, then the mechanism.
 8. Quote code only as short snippets: at most 12 lines each and at most 3 per note, each
    with its citation. If the license is missing or does not allow reuse, quote nothing and
    describe the code in words.
@@ -174,7 +184,27 @@ citation you are about to rank high.
 3. Write the notes in this order, one at a time, each from its template. The order puts the
    files the gate requires first.
    1. `<repo>-architecture.md` — the module map, a mermaid diagram, and the main request or
-      data flow through the modules.
+      data flow through the modules. For a plan with `visual_first: true` the gate requires
+      at least **two diagrams** here: (a) the module map (`flowchart`, 3–7 modules with
+      their responsibility as edge or node text), and (b) the main request or data flow as
+      a mermaid `sequenceDiagram` whose participants are real modules or classes. Add (c) a
+      module dependency graph when imports between modules teach something (a layer
+      boundary, a cycle that was avoided). Every arrow comes from a module note; the
+      sentence under each diagram cites the `path:line @ <short-sha>` lines that show the
+      calls. Register (a) and (b) with `learn-visuals` steps 3–5: save each mermaid source
+      to `<visual_assets_dir>/<repo>-<module-map|request-flow>-<slug>.mmd`, write entries
+      with `"kind": "architecture"` and `"kind": "sequence"`, `"used_in":
+      ["<path of <repo>-architecture.md>"]`, the repository's source id, then run
+      `node harness/bin/tutor.mjs visuals <topic> add --file <entry.json>` for each. Keep the
+      mermaid blocks in the note and link each `[[visual-<id>-<slug>|explanation and
+      sources]]`. Collect the "Worth exploring interactively" items of the module notes in
+      a short list at the end, so the lesson stage can turn the best one into a simulation.
+      Also list, for `learn-video`: (i) the main execution flow as 3–8 hops
+      `from → to: message (path:line @ sha)`, ready for a `flow` scene of a guided
+      walkthrough; (ii) each architectural decision the code shows with its alternatives
+      and trade-offs (2+ options), which become decision paths for a branching deck. Mark
+      them `animation candidate` and `decision candidate`; never invent a hop or an
+      alternative the code and docs do not show.
    2. `<repo>-tech-and-services.md` — every technology and external service from all
       "Technologies and services seen" sections, merged and de-duplicated. For each one run
       `node harness/bin/tutor.mjs concept "<Name>" --tech`, link it as `[[<Name>]]` (the file
@@ -195,7 +225,8 @@ citation you are about to rank high.
       it exists, because a link to a missing note fails the gate.
 4. Add a "Not analyzed" line to the architecture note that lists the skipped slices from
    the slice plan, so the learner knows the limits of the deep dive.
-5. Self-check with
+5. Run `node harness/bin/tutor.mjs style <file>` on the architecture, findings and
+   takeaways notes and split the sentences it lists (target 80% or more). Then self-check with
    `node harness/bin/tutor.mjs validate <topic> repo-intel --files <vault>/05-repo-intel/<org>-<repo>`
    (the folder of this repository). Fix the lines that name a note you wrote. A line that
    names the overview or a module note belongs to another unit: do not edit that note,
@@ -210,8 +241,8 @@ Per repository, in `<vault>/05-repo-intel/<org>-<repo>/`:
 | File | Written by | Required content |
 |------|-----------|------------------|
 | `<repo>-overview.md` | scout | what it is, why chosen, **full commit SHA**, license, stack |
-| `<repo>-architecture.md` | synthesis | module map, mermaid diagram, main flow, "Not analyzed" |
-| `<repo>-module-<name>.md` | module worker | responsibility, key files, how it works, beyond the textbook, tests, technologies seen |
+| `<repo>-architecture.md` | synthesis | module map, main request/data flow (`sequenceDiagram`), dependency graph when useful — at least 2 diagrams for visual-first plans, registered — main flow, "Not analyzed" |
+| `<repo>-module-<name>.md` | module worker | responsibility, key files, how it works, beyond the textbook, tests, technologies seen, worth exploring interactively |
 | `<repo>-tech-and-services.md` | synthesis | every technology and service, why it is used, links to `_tech` notes |
 | `<repo>-pattern-<name>.md` | synthesis | one best practice with evidence |
 | `<repo>-findings.md` | synthesis | ranked findings, each with `path:line @ sha` evidence |
@@ -238,7 +269,9 @@ node harness/bin/tutor.mjs done <topic> repo-intel
 
 The gate checks, per repository: overview, architecture, at least one module note,
 tech-and-services, findings, and takeaways exist; the overview names a commit SHA; the
-findings contain evidence citations. On failure each line reads `path: problem. fix.` Fix
+findings contain evidence citations. For a visual-first plan each architecture note also
+needs at least two diagrams, and every registered visual whose `used_in` names a repo-intel
+note must be valid. On failure each line reads `path: problem. fix.` Fix
 exactly those lines by sending the owning unit's worker the lines in `FIX LIST`, then rerun.
 After 3 failed attempts run
 `node harness/bin/tutor.mjs fail <topic> repo-intel --reason "<the remaining lines>"`.
@@ -266,6 +299,7 @@ After 3 failed attempts run
   - <finding 1>
   - <finding 2>
   - <finding 3>
+  VISUALS: <registered ids> (synthesis) | <code paths worth exploring> (module) | none (scout)
   PROBLEMS: none | <what is missing and why>
   ```
 
@@ -284,6 +318,9 @@ After 3 failed attempts run
 - **Analyzing every slice of a huge repository.** Choose 4–8 and list what was skipped.
 - **Forgetting the `build-and-infra` slice.** Then tech-and-services is thin and misses the
   external services.
+- **An architecture diagram that draws calls nobody read**, or a single diagram for a
+  visual-first plan. Draw the module map and the request flow from the module notes, and
+  cite the lines under each.
 - **Synthesis that rereads the code.** It works from module notes; that is why they exist.
 - **Large copied code blocks.** Short snippets with citation only; respect the license.
 - **Creating `_tech` or `_concepts` files by hand, or two names for one thing**

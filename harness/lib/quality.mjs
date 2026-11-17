@@ -4,17 +4,26 @@ import { spawnSync } from 'node:child_process';
 import { stageDigest, hash, RECEIPT_VERSION } from './freshness.mjs';
 import { ValidationError } from './errors.mjs';
 import { isOmitted } from './stages.mjs';
+import { readVisuals } from './visuals.mjs';
 
 export const REVIEW_CHECKS = {
   content: ['sources','reading-order','activity-correctness','diagram-semantics','beginner-readability','insights'],
   projects: ['solution-tests','starter-behavior','dependency-health','architecture','documented-commands'],
 };
-export function requiredReviewChecks(topic, scope) {
+/** Extra content checks of a visual-first plan (harness/rubrics/visuals.md, "Review"). */
+export const VISUAL_FIRST_CHECKS = ['visual-accuracy', 'visual-efficacy', 'interaction-behavior', 'accessibility-responsive', 'writing-standard'];
+export function requiredReviewChecks(topic, scope, root = null) {
   if (typeof scope !== 'string' || !Object.hasOwn(REVIEW_CHECKS, scope)) return null;
-  const checks = REVIEW_CHECKS[scope];
-  return scope === 'content' && topic.plan?.curriculum
-    ? [...checks, 'research-coverage', 'practical-depth', 'visual-usefulness', 'learner-fit']
-    : [...checks];
+  const checks = [...REVIEW_CHECKS[scope]];
+  if (scope === 'content' && topic.plan?.curriculum) checks.push('research-coverage', 'practical-depth', 'visual-usefulness', 'learner-fit');
+  if (scope === 'content' && topic.plan?.visual_first) {
+    checks.push(...VISUAL_FIRST_CHECKS.filter((c) => !checks.includes(c)));
+    const entries = root ? readVisuals(root, topic).entries : [];
+    if (entries.some((e) => e?.format === 'hyperframes')) checks.push('video-consistency');
+    if (topic.plan?.experience_policy === 'adaptive' || entries.some((e) => e?.format === 'experience')) checks.push('experience-behavior');
+  }
+  if (scope === 'projects' && topic.plan?.visual_first) checks.push('project-diagrams');
+  return checks;
 }
 export function qualityProblems(root,topic,stage) {
   const problems=[];
@@ -40,7 +49,7 @@ export function qualityProblems(root,topic,stage) {
     }
     for(const scope of Object.keys(REVIEW_CHECKS)) {
       const r=topic.quality?.reviews?.[scope];
-      const checks = requiredReviewChecks(topic, scope);
+      const checks = requiredReviewChecks(topic, scope, root);
       if(!r||r.verdict!=='pass'||r.fingerprint!==stageDigest(root,topic,'finalize')||!checks.every(c=>r.checks?.includes(c)))problems.push(`missing, failed or stale independent ${scope} review; record it with tutor review`);
     }
   }

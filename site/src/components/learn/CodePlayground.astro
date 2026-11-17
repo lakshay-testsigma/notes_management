@@ -1,0 +1,10 @@
+---
+// Lesson component <CodePlayground />. Authors use it in MDX with no import and no
+// client directive; this wrapper hydrates the island when it scrolls into view.
+// Props are documented in site/COMPONENTS.md.
+import Island, { type CodePlaygroundProps } from './react/CodePlayground.tsx';
+
+type Props = CodePlaygroundProps;
+---
+
+<Island client:visible {...Astro.props} />

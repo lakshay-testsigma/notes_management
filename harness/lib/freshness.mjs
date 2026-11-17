@@ -23,15 +23,16 @@ export function stageDigest(root, topic, stage) {
   const locations = {
     intake: [], research: [`${topic.paths.state}/sources.json`],
     brief: [`${v}/01-brief-${slug}.md`], digest: [`${v}/04-digests`],
-    'repo-intel': [`${v}/05-repo-intel`], lesson: [l, `${v}/02-lesson-${slug}.md`, `${v}/concepts`, `site/src/components/topics/${slug}`],
-    'mini-projects': [`${v}/03-mini-projects-${slug}.md`, ...filesUnder(root,p).filter(f=>!f.startsWith(`${p}/capstone/`))],
+    'repo-intel': [`${v}/05-repo-intel`], lesson: [l, `${v}/02-lesson-${slug}.md`, `${v}/concepts`, `site/src/components/topics/${slug}`,
+      `${p}/videos`, `${p}/experiences`, `site/public/media/${topic.domain}/${topic.subdomain}/${slug}`],
+    'mini-projects': [`${v}/03-mini-projects-${slug}.md`, ...filesUnder(root,p).filter(f=>!f.startsWith(`${p}/capstone/`)&&!f.startsWith(`${p}/videos/`)&&!f.startsWith(`${p}/experiences/`))],
     capstone: [`${p}/capstone`, `${v}/06-capstone-${slug}.md`],
     notes: [`${v}/07-final-notes-${slug}.md`, `${v}/08-recall-${slug}.md`],
   };
   const selected = stage === 'finalize'
     ? [...filesUnder(root,'vault').filter(f=> (f.split(path.sep).length > 3 || /^vault[/\\]_(tech|concepts)[/\\]/.test(f)) && !/^0[09]-/.test(path.basename(f))),
        ...filesUnder(root,'site/src'), ...filesUnder(root,'site/scripts'), 'site/astro.config.mjs', ...filesUnder(root,p), 'site/package.json','site/package-lock.json','site/components.manifest.json','site/COMPONENTS.md',
-       ...filesUnder(root,'state/topics').filter(f=>path.basename(f)==='sources.json')]
+       ...filesUnder(root,'state/topics').filter(f=>['sources.json','visuals.json'].includes(path.basename(f))), ...filesUnder(root,'site/public/media')]
     : (locations[stage] ?? []).flatMap(f=>filesUnder(root,f));
   const content = [...new Set([...selected, ...filesUnder(root,'harness/lib'), `harness/domains/${topic.domain}/pack.json`])].sort().map(f => {
     try { return [f,hash(generatedText(f,fs.readFileSync(path.join(root,f)),stage==='finalize'))]; }
@@ -46,8 +47,22 @@ export function stageDigest(root, topic, stage) {
     return {id:t.id,title:t.title,depth:t.depth,plan:t.plan,reader_order:t.reader_order,
       stages:t.stages.filter(s=>!['intake','finalize'].includes(s.id)).map(s=>[s.id,s.status])};
   }) : undefined;
+  // Only the registered visuals a stage uses (and their asset files) belong to its
+  // receipt, so registering a capstone diagram never stales the lesson stage.
+  let visuals;
+  if (stage !== 'intake' && stage !== 'finalize') {
+    let entries = [];
+    try { entries = JSON.parse(fs.readFileSync(path.join(root, topic.paths.state, 'visuals.json'), 'utf8')); } catch {}
+    const owned = (locations[stage] ?? []).map((f) => String(f));
+    const mine = (Array.isArray(entries) ? entries : []).filter((e) => (e?.used_in ?? []).some((u) => owned.some((o) => u === o || u.startsWith(`${o}/`))));
+    if (mine.length) visuals = mine.map((e) => {
+      let asset = null;
+      try { asset = e.file ? hash(fs.readFileSync(path.join(root, e.file))) : null; } catch { asset = 'missing'; }
+      return { e, asset };
+    });
+  }
   return hash(JSON.stringify({ version:RECEIPT_VERSION, siteInputs, stage, run_id:topic.quality?.run_id, plan:topic.plan, profile:topic.profile,
-    reader_order: stage==='finalize' ? topic.reader_order : topic.reader_order?.[stage], sources, content }));
+    reader_order: stage==='finalize' ? topic.reader_order : topic.reader_order?.[stage], sources, content, visuals }));
 }
 export function markFreshness(root, topic) {
   for (const stage of topic.stages) {

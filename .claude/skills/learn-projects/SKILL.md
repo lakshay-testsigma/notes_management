@@ -69,6 +69,10 @@ Then read only these files:
 8. This skill's `references/project-readme-example.md` and
    `references/starter-and-solution.md` (workers), and
    `references/index-note-example.md` (stage runner).
+9. The shared visual capability `.claude/skills/learn-visuals/SKILL.md`
+   (steps 2–7) and the writing standard `harness/rubrics/writing-standard.md`.
+   Every README diagram is drawn and registered the way that skill says. The
+   assets folder is `visual_assets_dir` from `tutor paths`.
 
 Do not read the lesson `.mdx` pages. The lesson stage runs at the same time as
 this one, so its pages may not exist yet.
@@ -170,9 +174,55 @@ node harness/bin/tutor.mjs budget <file1> <file2> ...
    implemented. That failing test run is the learner's starting line.
 
 9. Finish `README.md` with the remaining headings, following
-   `references/project-readme-example.md`.
+   `references/project-readme-example.md`. Write it in the writing standard:
+   short active sentences, every term defined before use. Two sections show
+   how the code works:
 
-10. Run the self-check at the end of `references/starter-and-solution.md`, then
+   - `## How it works`: one fenced `mermaid` diagram (3–7 boxes) of the
+     solution's architecture or execution flow, drawn from the code you just
+     wrote, with real module, function and command names, and two or three
+     sentences under it. When watching the flow run helps, add one line that
+     names the lesson component that animates it (`FlowAnimation` for a
+     request path, `AlgorithmStepper` for an algorithm on data, `ClusterSim`
+     for a cluster) or a short `CodePlayground` snippet the lesson site can
+     run. For a plan with `visual_first: true` the gate fails a README without
+     a diagram.
+   - `## Implementation walkthrough`: numbered steps from the starter to the
+     solution, one per `TODO(n)`, each naming the file, the function, and what
+     changes and why. It sits after `## Hints`, because it gives the answer.
+
+10. Register the README diagram with the shared capability, so the vault and
+    the review see it (`learn-visuals`, steps 3–5). Save the same mermaid source
+    as `<visual_assets_dir>/<id>-<slug>.mmd` (for example
+    `mini-01-flow-<slug>.mmd`), write the entry to a draft file outside
+    `state/`, and add it:
+
+    ```bash
+    node harness/bin/tutor.mjs visuals <topic> add --file <draft entry.json>
+    ```
+
+    The entry has `kind` `architecture`, `workflow` or `data-flow` (a
+    `workflow` also needs `scope`), `format: "mermaid"`, the `.mmd` path as
+    `file`, the README path in `used_in`, the concept ids the project proves,
+    the source ids its facts come from, `purpose`, `explanation`, `alt`, and a
+    `learning_check` that the diagram answers. If the README diagram changes
+    later, change the `.mmd` file too and run `tutor visuals <topic> update
+    <id> --file <patch.json>`. Check the README prose with
+    `node harness/bin/tutor.mjs style <project path>/README.md`.
+
+10a. **Animated implementation walkthrough (optional, at most one per topic).**
+    When the solution's execution order is not obvious from the code (4+
+    dependent steps across files: a worker loop, a retry with back-off, a
+    pipeline), write a storyboard `<videos_dir>/<project>-walkthrough/video.json`
+    (`.claude/skills/learn-video/SKILL.md`, steps 1–9) whose `flow` and `steps`
+    scenes name the real files and functions in the order the solution runs them,
+    with `used_in` = the README path. Run `node harness/bin/tutor.mjs video <topic>
+    build <id>` (and `render <id>` when `video tools` reports a renderer). Link the
+    visual note `[[visual-<id>-<slug>]]` from `## Implementation walkthrough`; it holds
+    the transcript, the MP4 path or the honest storyboard status. Skip it for a
+    linear script: the numbered steps already teach it.
+
+11. Run the self-check at the end of `references/starter-and-solution.md`, then
     check your own folder with the validator, and only your folder:
 
     ```bash
@@ -190,9 +240,12 @@ node harness/bin/tutor.mjs budget <file1> <file2> ...
 
 1. When every worker has returned, fill `03-mini-projects-<slug>.md` above its
    `## My insights` heading, following `references/index-note-example.md`. The
-   workers' summaries contain the use case and the concept each project proves.
-   If a summary is missing, read the first two sections of that project's
-   `README.md`.
+   workers' summaries contain the use case, the concept each project proves,
+   and the id of its registered diagram (`VISUALS:` line). Link each project's
+   visual note as `[[visual-<id>-<slug>]]`; `tutor map <topic>` writes those
+   notes from the registry, so run it before the gate. If a summary is
+   missing, read the first two sections of that project's `README.md` and
+   `node harness/bin/tutor.mjs visuals <topic> list --json`.
 2. Run the gate.
 
 ## Output contract
@@ -214,12 +267,14 @@ mini-NN-<slug>/
 | `# Mini project NN — <Title>` | One line under it: time estimate and guidance level. |
 | `## The real use case` | Three to five sentences: who has this problem and what goes wrong without the concept. |
 | `## What this proves` | The one concept from the topic that this project makes the learner use, and the plan outcome it serves. |
+| `## How it works` | One fenced `mermaid` diagram of the architecture or execution flow (registered with `tutor visuals add`), two or three sentences, and optionally the lesson component or `CodePlayground` snippet that animates it. |
 | `## Prerequisites` | Tools with versions, and services to start, with the exact commands. |
 | `## How to run` | Commands for installing, starting, and testing the starter. |
 | `## Your tasks` | Numbered tasks. Task `n` matches `TODO(n)` in the starter. |
 | `## How to check your work` | The test command, the expected output, and one manual check. |
 | `## Stretch goals` | Two or three extensions, without solutions. |
 | `## Hints` | One `### Hint for task n` subheading per task. This section is far down the file on purpose, so that the learner tries first. |
+| `## Implementation walkthrough` | Numbered steps from the starter to the solution, one per `TODO(n)`: the file, the function, what changes and why. |
 | `## Compare with the solution` | Where the solution is, and two or three things to look for in it. |
 
 The vault index note `03-mini-projects-<slug>.md` keeps the frontmatter and
@@ -228,7 +283,8 @@ title line of its template (`stage: mini-projects`). The scaffold lines
 `## How to use these projects`, `## Projects` (one table row per project: title,
 real use case, time, guidance level, and the path of its README as inline code;
 the validator checks that every folder name such as `mini-01-job-queue` appears
-in the note), and `## What each project proves`. `## My insights` stays the last heading with
+in the note), and `## What each project proves` (each line links the project's visual note
+`[[visual-<id>-<slug>]]`). `## My insights` stays the last heading with
 nothing below it. The filled example is `references/index-note-example.md`.
 
 Rules for both:
@@ -245,11 +301,14 @@ Rules for both:
   The folder names stay the same, because the gate looks for them.
 - For the `security` domain, follow `## Safety and ethics` in the playbook: the
   project runs only against a local lab that the project itself starts.
+- Every diagram shows the code that exists: the same module, function and
+  command names. The projects reviewer checks this as `project-diagrams`.
+- READMEs follow `harness/rubrics/writing-standard.md`.
 
 ## Gate
 
 Only the stage runner runs this full gate. A worker checks its own folder with the
-`--files` form of Part B, step 10; failures about files it does not own are not its job.
+`--files` form of Part B, step 11; failures about files it does not own are not its job.
 
 ```bash
 node harness/bin/tutor.mjs validate <topic> mini-projects
@@ -269,9 +328,10 @@ the remaining failures:
 node harness/bin/tutor.mjs fail <topic> mini-projects --reason "<the failures that remain>"
 ```
 
-The validator checks that the files exist. It cannot check that the tests pass,
-so steps 6 and 8 of Part B are part of the gate even though the CLI does not run
-them.
+The validator checks that the files exist, and for a visual-first plan that
+every README has a diagram and every registered visual is valid. It cannot
+check that the tests pass or that a diagram matches the code, so steps 6, 8
+and 9 of Part B are part of the gate even though the CLI does not run them.
 
 ## Context budget
 
@@ -309,6 +369,7 @@ them.
   - Title, real use case, and the one concept it proves (one sentence).
   - Stack, pinned dependencies, time estimate, guidance level; solution tests: <n> passed.
   - Starter check: runs, <n> tests fail on TODOs as intended.
+  VISUALS: <registered diagram id(s)>, animated by <component or "none">
   PROBLEMS: <"none", or one line each>
   ```
 
@@ -330,3 +391,6 @@ them.
   `solution/` has a `.gitignore`.
 - Writing wikilinks to project folders in the vault note. Project files are not
   vault notes; write their paths as inline code.
+- A README diagram that names modules the code does not have, or a diagram in
+  the README that was never registered (the vault and the reviewer cannot see it).
+- An implementation walkthrough placed above `## Hints`; it gives the answer away.

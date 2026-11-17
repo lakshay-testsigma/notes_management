@@ -1,0 +1,57 @@
+---
+// Renders one adaptive learning experience (harness/rubrics/experiences.md):
+// the interactive island (Watch, Explore, Guided, Deep dive, Practice) plus a
+// text version that works without JavaScript: the summary, the static
+// fallback diagram, the video transcripts and the deck outline. Used by
+// <Experience id /> (registry lookup) and by the playground (demo data).
+import Island from '../react/Experience.tsx';
+import DiagramView from './DiagramView.astro';
+import type { BuiltExperience } from '../../../lib/experience-logic';
+import { simpleMarkdown, type VisualEntry } from '../../../lib/visuals';
+
+interface Props {
+	config: BuiltExperience;
+	/** The registered static diagram shown in the text version, if any. */
+	fallback?: VisualEntry | null;
+	/** Demo data only: the fallback asset text. */
+	fallbackInline?: string;
+}
+const { config, fallback, fallbackInline } = Astro.props;
+const parts = [config.watch, config.guided, config.summary_video].filter((p): p is NonNullable<typeof p> => Boolean(p));
+const transcripts: Record<string, string> = {};
+for (const part of parts) if (part.transcript) transcripts[part.video_id] = simpleMarkdown(part.transcript);
+const outlineHtml = config.deck?.outline ? simpleMarkdown(config.deck.outline.replace(/^#{2,3} (.+)$/gm, '**$1**')) : '';
+---
+
+<div class="lc-exp-wrap" data-experience-wrap={config.id}>
+	<Island client:visible config={config} transcripts={transcripts} outlineHtml={outlineHtml} />
+	<details class="lc lc-exp-text">
+		<summary>Text version and static diagram</summary>
+		<p>{config.summary}</p>
+		{fallback && <DiagramView entry={fallback} sources={[]} inline={fallbackInline} />}
+		{parts.map((part) => (
+			<section>
+				<h4>{part.title}</h4>
+				<div set:html={transcripts[part.video_id] ?? ''} />
+			</section>
+		))}
+		{config.deck && (
+			<section>
+				<h4>{config.deck.title}</h4>
+				<div set:html={outlineHtml} />
+			</section>
+		)}
+		{config.checkpoints.length > 0 && (
+			<section>
+				<h4>Questions</h4>
+				<ol>
+					{config.checkpoints.map((cp) => (
+						<li>
+							{cp.prompt} <em>{cp.choices?.find((c) => c.correct)?.text}</em> {cp.explanation}
+						</li>
+					))}
+				</ol>
+			</section>
+		)}
+	</details>
+</div>

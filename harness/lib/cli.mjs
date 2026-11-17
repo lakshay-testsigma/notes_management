@@ -2,6 +2,8 @@
 
 import { checkCommand, orderCommand, rerunCommand, reviewCommand, writeNoteCommand } from './commands/quality.mjs';
 import { removeCommand } from './commands/remove.mjs';
+import { styleCommand, videoCommand, visualsCommand } from './commands/media.mjs';
+import { deckCommand, experienceCommand } from './commands/experience.mjs';
 import { checkFlags, parseArgs } from './args.mjs';
 import { UsageError } from './errors.mjs';
 import { formatFailure } from './format.mjs';
@@ -76,6 +78,35 @@ export const COMMANDS = {
     mutates: (ctx) => ['add', 'update', 'remove'].includes(ctx.args[1]),
     run: sourcesCommand,
   },
+  visuals: {
+    usage: 'visuals <topic> list | add --file <entry.json> | update <id> --file <patch.json> | remove <id> --reason "..." | check | export',
+    summary: 'Register, check, and export the visual explanations of a topic (diagrams, simulations, videos) with their concepts and sources.',
+    flags: ['file', 'reason'],
+    mutates: (ctx) => ['add', 'update', 'remove', 'export'].includes(ctx.args[1]),
+    run: visualsCommand,
+  },
+  video: {
+    usage: 'video tools | video <topic> list | build <id> | render <id> [--docker] [--force] | check <id>',
+    summary: 'Build a HyperFrames explainer from its storyboard (video.json), render it to MP4 when tools allow, and check it.',
+    flags: ['docker', 'force'],
+    mutates: (ctx) => ['build', 'render'].includes(ctx.args[1]),
+    run: videoCommand,
+  },
+  experience: {
+    usage: 'experience select --file <signals.json> | experience <topic> plan | list | build <id> [--skip-lint] | check <id> | progress [--file <export.json>]',
+    summary: 'Choose the learning experience per idea (explainer, interactive lesson, branching deck, hybrid lab), build it for the site, and import learner progress.',
+    flags: ['file', 'skip-lint'],
+    mutates: (ctx) => ['build', 'progress'].includes(ctx.args[1]) && (ctx.args[1] !== 'progress' || Boolean(ctx.flags?.file)),
+    run: experienceCommand,
+  },
+  deck: {
+    usage: 'deck <topic> list | build <id> | check <id> [--offline] | present <id>',
+    summary: 'Build a branching HyperFrames slideshow from deck.json, check it with the HyperFrames CLI, and print how to present it live.',
+    flags: ['offline'],
+    mutates: (ctx) => ['build', 'check'].includes(ctx.args[1]),
+    run: deckCommand,
+  },
+  style: { usage: 'style <file>', summary: 'Writing-standard report (ASD-STE100, ~80% target): sentence length, passive voice, plain words.', flags: [], mutates: false, run: styleCommand },
   slice: {
     usage: 'slice <dir> [--budget <tokens>] [--window <tokens>] [--reserve <tokens>] [--include "<glob>"] [--pack]',
     summary: 'Cut a directory into slices that fit the token budget.',

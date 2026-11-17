@@ -1,0 +1,47 @@
+---
+// Explanation depth for lesson pages that contain <Depth /> sections.
+// Hidden until the page has at least one `.lc-depth` block. The choice sets
+// `data-depth` on <html> and is remembered in localStorage (`tutor:depth`).
+// Without JavaScript the control stays hidden and every layer is visible.
+---
+
+<div class="lc-depth-control" role="group" aria-label="Explanation depth" hidden>
+	<span class="lc-controls-label">Depth</span>
+	<button type="button" class="lc-btn" data-depth-choice="essentials" aria-pressed="false">Essentials</button>
+	<button type="button" class="lc-btn" data-depth-choice="internals" aria-pressed="false">+ Internals</button>
+	<button type="button" class="lc-btn" data-depth-choice="production" aria-pressed="false">+ Production</button>
+</div>
+
+<script>
+	const LEVELS = ['essentials', 'internals', 'production'];
+	const root = document.documentElement;
+	const read = () => {
+		try {
+			const value = localStorage.getItem('tutor:depth');
+			return value && LEVELS.includes(value) ? value : 'internals';
+		} catch {
+			return 'internals';
+		}
+	};
+	const apply = (level: string) => {
+		root.setAttribute('data-depth', level);
+		document.querySelectorAll<HTMLButtonElement>('[data-depth-choice]').forEach((button) => {
+			button.setAttribute('aria-pressed', String(button.dataset.depthChoice === level));
+		});
+	};
+	if (document.querySelector('.lc-depth')) {
+		document.querySelectorAll<HTMLElement>('.lc-depth-control').forEach((control) => control.removeAttribute('hidden'));
+		apply(read());
+		document.querySelectorAll<HTMLButtonElement>('[data-depth-choice]').forEach((button) => {
+			button.addEventListener('click', () => {
+				const level = button.dataset.depthChoice ?? 'internals';
+				apply(level);
+				try {
+					localStorage.setItem('tutor:depth', level);
+				} catch {
+					// The choice still applies to this page view.
+				}
+			});
+		});
+	}
+</script>

@@ -1,0 +1,86 @@
+---
+// Renders one registered explainer video. A rendered video plays with native
+// controls, captions (WebVTT track) and a transcript. A video that is not
+// rendered yet says so honestly and shows its storyboard instead.
+import type { Source } from '../../../lib/topics';
+import { readRepoFile, simpleMarkdown, storyboardScenes, type StoryboardScene, type VisualEntry } from '../../../lib/visuals';
+
+interface Props {
+	entry: VisualEntry;
+	sources: Source[];
+	/** Demo data only: transcript text and scenes that are not in the repository. */
+	transcript?: string;
+	scenes?: StoryboardScene[];
+}
+const { entry, sources } = Astro.props;
+const video = entry.video;
+const rendered = video?.status === 'rendered' && Boolean(video.url);
+const transcript = Astro.props.transcript ?? readRepoFile(video?.transcript);
+const scenes = Astro.props.scenes ?? storyboardScenes(entry);
+const panelId = `video-transcript-${entry.id}`;
+const minutes = video?.duration_s ? `${Math.floor(video.duration_s / 60)}:${String(Math.round(video.duration_s % 60)).padStart(2, '0')}` : null;
+---
+
+<figure class="lc lc-video" data-video={entry.id}>
+	<figcaption class="lc-title">{entry.title}{minutes && <span class="lc-video-meta"> · {minutes}</span>}</figcaption>
+	{
+		rendered ? (
+			<video class="lc-video-player" controls preload="metadata" playsinline aria-label={entry.alt}>
+				<source src={video!.url} type="video/mp4" />
+				{video!.captions_url && <track kind="captions" src={video!.captions_url} srclang="en" label="English" default />}
+				<p>Your browser cannot play this video. Read the transcript below.</p>
+			</video>
+		) : (
+			<div class="lc-video-storyboard">
+				<p class="lc-quiet">
+					The animated version is not rendered yet{video?.blocker ? `: ${video.blocker}` : '.'} Here is its storyboard.
+				</p>
+				<ol>
+					{scenes.map((scene) => (
+						<li>
+							<strong>{scene.heading}.</strong> {scene.narration}
+						</li>
+					))}
+				</ol>
+			</div>
+		)
+	}
+	<p class="lc-caption">{entry.explanation}</p>
+	<div class="lc-controls">
+		{transcript && rendered && (
+			<button type="button" class="lc-btn" data-transcript-toggle aria-expanded="false" aria-controls={panelId}>
+				Show transcript
+			</button>
+		)}
+	</div>
+	{transcript && rendered && <div class="lc-video-transcript" id={panelId} hidden set:html={simpleMarkdown(transcript)} />}
+	{
+		sources.length > 0 && (
+			<p class="lc-diagram-sources">
+				Sources:{' '}
+				{sources.map((s, i) => (
+					<>
+						{i > 0 && ', '}
+						<a href={s.url} rel="noopener noreferrer" target="_blank">{s.title}</a>
+					</>
+				))}
+				. Animated with HyperFrames{video?.narration && video.narration !== 'none' ? `, narrated with a local voice (${video.narration})` : ''}.
+			</p>
+		)
+	}
+</figure>
+
+<script>
+	document.querySelectorAll<HTMLButtonElement>('[data-transcript-toggle]').forEach((button) => {
+		if (button.dataset.ready) return;
+		button.dataset.ready = 'true';
+		button.addEventListener('click', () => {
+			const panel = document.getElementById(button.getAttribute('aria-controls') ?? '');
+			if (!panel) return;
+			const open = panel.hidden;
+			panel.hidden = !open;
+			button.setAttribute('aria-expanded', String(open));
+			button.textContent = open ? 'Hide transcript' : 'Show transcript';
+		});
+	});
+</script>

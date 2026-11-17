@@ -229,6 +229,62 @@ and fix what it reports. Pages of other units, the page count, and the pointer n
 <same four blocks, with stage `lesson` and unit `pages-01-03`>
 ```
 
+Visual-first plans add to the lesson brief's INPUT FILES:
+`.claude/skills/learn-visuals/SKILL.md`, the "Every visual must" section of
+`harness/rubrics/visuals.md`, the entries of `<handoffs_dir>/visual-candidates.md`
+for these pages, and `node harness/bin/tutor.mjs visuals <topic> list --json`; to
+OUTPUT FILES: the assets `<visual_assets_dir>/<id>-<slug>.svg|.mmd` it draws (registered
+with `tutor visuals add`); and to the RETURN FORMAT a `VISUALS:` line.
+
+## tutor-video-producer
+
+```text
+You are one worker in the tutor pipeline. Do exactly one unit of work, then return.
+
+TOPIC: system-design/consistency-consensus/raft
+STAGE: lesson
+UNIT: video-raft-write-commit
+READ FIRST: .claude/agents/tutor-video-producer.md, then .claude/skills/learn-video/SKILL.md.
+
+INPUT FILES (read these and nothing else):
+- outline entry 2 (video.reason) from: node harness/bin/tutor.mjs plan system-design/consistency-consensus/raft --json
+- assigned sources: raft-paper (sections 5.3 Log replication, 5.4 Safety)
+- vault/system-design/consistency-consensus/raft/04-digests/raft-paper-raft.md (sections "How it works", "Results")
+- state/topics/system-design/consistency-consensus/raft/handoffs/visual-candidates.md (entries for the write path)
+- harness/examples/videos/raft-write-commit.json (format only; write your own content)
+
+OUTPUT FILES (write only these):
+- projects/system-design/consistency-consensus/raft/videos/raft-write-commit/video.json
+- projects/system-design/consistency-consensus/raft/videos/raft-write-commit/scenes/ (only if a custom scene is needed)
+
+TASK: Make the 30–90 s explainer of how one write commits (planned for page 02-the-write-path.mdx, used_in that page). Build and render it with tutor video; the lesson builder of pages-01-03 embeds <Video id="raft-write-commit" />.
+FIX LIST: none
+HANDOFF IN: none
+
+SELF-CHECK: node harness/bin/tutor.mjs video system-design/consistency-consensus/raft check raft-write-commit
+
+<same budget, handoff and finish blocks, with stage `lesson` and unit `video-raft-write-commit`>
+
+RETURN FORMAT: the block under "Worker unit" in learn-video (STATUS done | blocked | failed).
+```
+
+An experience unit (`experience-<id>`, adaptive plans) differs only in these lines:
+
+```text
+UNIT: experience-raft-consensus-lab
+INPUT FILES (add to the list above):
+- outline entry 4 (experience.signals, experience.id) and the output of:
+  node harness/bin/tutor.mjs experience system-design/consistency-consensus/raft plan --json
+- the fallback diagram id registered by the page worker (or draw it: learn-visuals)
+- harness/examples/experiences/distributed-consensus/ (format only; write your own content)
+OUTPUT FILES (write only these):
+- projects/system-design/consistency-consensus/raft/videos/<intro|guided|summary id>/video.json
+- projects/system-design/consistency-consensus/raft/videos/<deck id>/deck.json (only if the mode or the plan needs branches)
+- projects/system-design/consistency-consensus/raft/experiences/raft-consensus-lab/experience.json
+TASK: Build the hybrid lab selected for page 04-break-the-cluster.mdx: intro video, ClusterSim presets synced to the guided walkthrough, 3–8 checkpoints (one predict, one experiment), a deck of deep dives, a final summary video. Run `tutor experience <topic> build raft-consensus-lab`; render the intro and summary when `video tools` reports a renderer. The page worker embeds <Experience id="raft-consensus-lab" />.
+SELF-CHECK: node harness/bin/tutor.mjs experience system-design/consistency-consensus/raft check raft-consensus-lab
+```
+
 A page unit writes only its assigned MDX. A separate concept-<id> unit follows
 learn-site Part B2 and writes its assigned supplementary vault note through write-note. In the `TASK` line,
 always say which page is the final page of the topic (the highest `order` in the plan) and
@@ -284,7 +340,8 @@ TOPIC: <actual full topic id>
 STAGE: finalize
 UNIT: verify-content or verify-projects (quick may cover both)
 READ FIRST: .claude/agents/tutor-verifier.md, docs/RESEARCH-WORKFLOW.md,
-  harness/rubrics/source-quality.md, lesson-page.md, vault-notes.md
+  harness/rubrics/source-quality.md, lesson-page.md, vault-notes.md, and for
+  visual-first plans visuals.md and writing-standard.md
 LEARNER REQUEST: <the actual original request and explicit requirements>
 LEARNER: <experience, known prerequisites and goals>
 REVIEW PACKET: <output of tutor review <topic> --json: fingerprint and required checks>
@@ -296,6 +353,8 @@ INPUT FILES:
 - <exact assigned MDX pages and supplementary curriculum notes>
 - <numbered notes, digest/repo notes within this inspection scope>
 - <project READMEs, verification.json and architecture for project scope>
+- <visual-first: tutor visuals <topic> list --json, the notes under <vault>/visuals/,
+  and the video projects' storyboard.md and transcript.md>
 OUTPUT FILES: none (return JSON to orchestrator).
 TASK: Inspect every assigned requirement and record actual evidence. Content scope
   checks all six concept aspects, source support and runtime visual controls/reset;

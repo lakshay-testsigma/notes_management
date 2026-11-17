@@ -18,6 +18,14 @@ Only an explicit learner deletion request permits `tutor remove ... --delete`;
 its preview names the packages and learner data that will be removed. Shared notes,
 research caches and external review artifacts require separately authorized cleanup.
 
+New plans are visual-first: load `.claude/skills/learn-visuals/SKILL.md` (and
+`learn-video` for planned videos), `harness/rubrics/visuals.md` and
+`harness/rubrics/writing-standard.md`. Change the visual registry only through
+`tutor visuals` and `tutor video`. With `experience_policy: "adaptive"` also load
+`harness/rubrics/experiences.md`; build experiences and decks only with `tutor experience`
+and `tutor deck`. Official HyperFrames skills (`hyperframes`, `hyperframes-cli`,
+`hyperframes-registry`, `media-use`, `slideshow`) are read for craft; harness rules win.
+
 Before a full workflow, run `doctor`, check source-network access, and inspect each
 project's `verification.json`. Establish required local services (or a documented
 external test URL) before tests. Docker CLI presence does not prove daemon access.

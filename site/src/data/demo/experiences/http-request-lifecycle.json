@@ -1,0 +1,111 @@
+{
+  "config": {
+    "generated_by": "tutor experience build",
+    "id": "http-page-load",
+    "topic": "test-engineering/messaging/http-request-lifecycle",
+    "title": "Watch one page load from start to finish",
+    "mode": "explainer",
+    "objective": "Name the five steps of a page load in order and say why each waits for the one before.",
+    "level": "beginner",
+    "summary": "A short narrated video follows one page load: DNS lookup, TCP handshake, TLS handshake, the GET request with its 200 OK response, and the follow-up requests before rendering.",
+    "page": "site/src/content/lessons/test-engineering/messaging/http-request-lifecycle/02-the-mechanism.mdx",
+    "page_url": "/test-engineering/messaging/http-request-lifecycle/lesson/02-the-mechanism/",
+    "tabs": [
+      "watch",
+      "practice"
+    ],
+    "watch": {
+      "video_id": "http-request-lifecycle",
+      "title": "What happens when a browser loads a page",
+      "status": "storyboard",
+      "blocker": "not rendered yet; run `tutor video <topic> render <id>`",
+      "mp4_url": null,
+      "captions_url": null,
+      "composition_url": "/media/_demo/http-request-lifecycle/composition/index.html",
+      "duration": 50,
+      "scenes": [
+        {
+          "id": "intro",
+          "heading": "One page load, five steps",
+          "start": 0,
+          "duration": 6
+        },
+        {
+          "id": "dns",
+          "heading": "Find the server address",
+          "start": 6,
+          "duration": 8
+        },
+        {
+          "id": "tcp",
+          "heading": "Open a TCP connection",
+          "start": 14,
+          "duration": 9
+        },
+        {
+          "id": "tls",
+          "heading": "Agree on encryption with TLS",
+          "start": 23,
+          "duration": 9
+        },
+        {
+          "id": "request",
+          "heading": "Send the request, get the response",
+          "start": 32,
+          "duration": 9
+        },
+        {
+          "id": "render",
+          "heading": "Fetch the rest, then render",
+          "start": 41,
+          "duration": 9
+        }
+      ],
+      "transcript": "# What happens when a browser loads a page\n\nThe browser asks DNS for the server address, opens a TCP connection with a three-way handshake, agrees on encryption keys with TLS, sends a GET request and receives a 200 OK response with the HTML, then requests the files the page needs.\n\n**00:00 One page load, five steps.** Loading a page takes five steps, and each one waits for the step before it.\n\n**00:06 Find the server address.** First, the browser asks a DNS resolver for the IP address of the server name.\n\n**00:14 Open a TCP connection.** Next, the browser and the server do the TCP handshake: SYN, then SYN-ACK, then ACK.\n\n**00:23 Agree on encryption with TLS.** For HTTPS, a TLS handshake follows. The server sends its certificate, and both sides agree on keys.\n\n**00:32 Send the request, get the response.** Now the browser sends a GET request. The server answers with a status line, 200 OK, and the HTML.\n\n**00:41 Fetch the rest, then render.** The browser reads the HTML, requests the CSS, scripts and images it names, and renders the page.\n\nSources:\n\n- Source http-request-lifecycle-source — https://example.com/http-request-lifecycle-source\n",
+      "explanation": "A page load is a chain: name lookup, connection, encryption, request and response. A slow early step delays every later step.",
+      "alt": "The browser asks DNS for the server address, opens a TCP connection with a three-way handshake, agrees on encryption keys with TLS, sends a GET request and receives a 200 OK response with the HTML, then requests the files the page needs."
+    },
+    "guided": null,
+    "summary_video": null,
+    "simulation": null,
+    "sync": [],
+    "inspect": [],
+    "deck": null,
+    "checkpoints": [
+      {
+        "id": "order-check",
+        "kind": "verify",
+        "at": {
+          "after": "watch"
+        },
+        "prompt": "Which step must finish before the browser can send GET /index.html over HTTPS?",
+        "choices": [
+          {
+            "text": "The TLS handshake",
+            "correct": true
+          },
+          {
+            "text": "Rendering the page",
+            "misconception": "Thinks the page renders before the HTML arrives"
+          },
+          {
+            "text": "Requesting the images",
+            "misconception": "Thinks images are fetched before the HTML that names them"
+          }
+        ],
+        "explanation": "With HTTPS the request is encrypted, so the TLS handshake on top of the TCP connection must finish first. Rendering and image requests need the HTML, so they come later.",
+        "concept_ids": [
+          "http-request-lifecycle"
+        ]
+      }
+    ],
+    "fallback_visual": null,
+    "concept_ids": [
+      "http-request-lifecycle"
+    ],
+    "sources": [],
+    "input_hash": "20465099c310485e89a1dbd4f7531341b8b8a3f0d4eccf780f911adf8f69d599"
+  },
+  "fallback": null,
+  "fallbackSource": null
+}

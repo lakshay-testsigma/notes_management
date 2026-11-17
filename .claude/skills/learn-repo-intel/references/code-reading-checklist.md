@@ -53,6 +53,8 @@ Answer the ones that apply to your slice. Each answer needs evidence
 - Which data structures carry the state, and who owns them?
 - Where are the boundaries: what does this module expose, and what does it hide?
 - What is surprising compared with the simple version in the lesson?
+- Which path would a learner understand better by stepping through it or breaking it?
+  Record it under "Worth exploring interactively" with the ordered steps and their lines.
 
 ### Tests
 

@@ -65,7 +65,14 @@ material comes first.
 9. `06-capstone-<slug>.md`. Skip it when the `capstone` stage is `skipped`.
 10. `my-insights-<slug>.md`, so that the notes do not contradict what the learner
     wrote. Read it; never edit it.
-11. The two output files themselves, `07-final-notes-<slug>.md` and
+11. The visual registry, printed by
+    `node harness/bin/tutor.mjs visuals <topic> list --json`: each visual's
+    `id`, `title`, `kind`, `purpose`, `learning_check` and `used_in`. Do not open
+    the assets. The visual index note is `visuals_index` from `tutor paths`, and
+    each visual has a note `visual-<id>-<slug>` (written by `tutor map`).
+    Also read `harness/rubrics/writing-standard.md` and the "Who calls this
+    skill" row of `.claude/skills/learn-visuals/SKILL.md` for this stage.
+12. The two output files themselves, `07-final-notes-<slug>.md` and
     `08-recall-<slug>.md`. `tutor init` already created them from templates.
     Keep their frontmatter, their `# ` title line if they have one, and their
     `## My insights` heading. Delete the line `<!-- tutor:placeholder -->` and
@@ -90,7 +97,7 @@ node harness/bin/tutor.mjs budget <file1> <file2> ...
    If the file `<state path>/handoffs/notes-notes.md` exists, an earlier session
    stopped halfway. Read it first and continue from its `## Next step`.
 
-2. Open `07-final-notes-<slug>.md` and put the eight required headings into it
+2. Open `07-final-notes-<slug>.md` and put the nine required headings into it
    (see "Output contract"), above `## My insights`. Do this before reading the
    other inputs, so that you have a place to write findings as you read.
 
@@ -114,6 +121,30 @@ node harness/bin/tutor.mjs budget <file1> <file2> ...
    reads about 200 words too high; never cut a note because of such a number.
    Aim for 300 to 500 words.
 
+4a. Write `## Visual refresher`. Choose the one to three registered visuals
+   that best restore the mental model a year from now (usually the end-to-end
+   workflow, the key experience, simulation or video). For each, one line: the link
+   `[[visual-<id>-<slug>|<title>]]` and what to look at in it. Embed at most one
+   of them (its mermaid block, or `![[<id>-<slug>.svg]]` for a registered SVG).
+   End the section with `All visuals: [[visuals-<slug>|all visuals]].` Link the
+   deeper explanation; never copy it. For a plan with `visual_first: true` the
+   gate fails final notes that do not link `[[visuals-<slug>` or have no
+   diagram or `[[visual-…]]` link. Run `node harness/bin/tutor.mjs map <topic>`
+   first if the visual notes do not exist yet.
+
+4a2. Interactive experiences. When the topic has `<Experience>` pages
+   (`tutor experience <topic> list`), add one line per experience to the visual
+   refresher: `[[visual-<id>-<slug>|<title>]]`, its mode, and the one checkpoint
+   worth redoing. The experience note already holds the parts, transcripts,
+   storyboard, deck outline, checkpoints and sources: link it, never copy it. If
+   `tutor experience <topic> progress` lists weak concepts, name them in
+   `## Common mistakes` with the misconception the learner actually had. Recall
+   cards may reuse an experience checkpoint as a card (keep its explanation as the
+   answer) and link the experience note in the `## Reopen map`.
+
+4b. Check the writing: `node harness/bin/tutor.mjs style <path to 07-final-notes>`.
+   Short active sentences, one idea per bullet, terms the learner already met.
+
 5. Check that every outcome is covered. For each item of `plan.outcomes`, find
    where it was taught: `02-lesson-<slug>.md` lists every outcome with the
    pages that serve it, and `03-mini-projects-<slug>.md` says what each
@@ -129,7 +160,12 @@ node harness/bin/tutor.mjs budget <file1> <file2> ...
    `references/recall-cards.md` first: it has the exact card format, the four
    question types with examples, and the "Reopen map" table. Write one card for
    every entry in `plan.outcomes` before writing any other card, because the
-   outcomes are what the learner was promised.
+   outcomes are what the learner was promised. Then write two or three visual
+   cards (section "Visual cards" of `references/recall-cards.md`): build them
+   from the registered visuals' `learning_check`, ask the learner to predict
+   what the visual shows (an annotated-graphic question), and end the answer
+   with the link `[[visual-<id>-<slug>]]`. A visual-first plan needs at least
+   one card that links a visual note.
 
 7. Check the cards mechanically. The first command prints the number of cards.
    The second prints duplicated ids and must print nothing.
@@ -174,6 +210,7 @@ Body: exactly these headings, in this order, spelled exactly like this.
 |---------|--------------------|
 | `## In one sentence` | One sentence a beginner could repeat: what it is and what problem it removes. |
 | `## The mental model` | One small mermaid diagram (at most 8 nodes) and one or two sentences that explain how to read it. |
+| `## Visual refresher` | One to three links `[[visual-<id>-<slug>\|<title>]]` with what to look at in each, at most one embed, and the link to the visual index `[[visuals-<slug>\|all visuals]]`. |
 | `## Key ideas` | 5 to 9 bullets. Each bullet is one complete idea with its reason ("X, because Y"). |
 | `## When to use it / when not to` | Two short lists: "Use it when" and "Do not use it when", each with concrete conditions and the alternative to use instead. |
 | `## Trade-offs and failure modes` | What you pay for the benefits, and how it breaks in practice, with the symptom you would see. |
@@ -194,7 +231,12 @@ Rules for the content:
 - Every wikilink must point to a file that exists in the vault, written as
   `[[file-name-without-extension|Shown text]]`. Link only to files that
   `tutor paths` lists or that you saw in `vault/_concepts/` or `vault/_tech/`.
-- The diagram is a mermaid code block. Do not use images.
+- The mental model diagram is a mermaid code block. The only other picture is
+  at most one embed of a registered visual under `## Visual refresher`
+  (`![[<id>-<slug>.svg]]` or its mermaid block); never a new, unregistered image.
+- Write in `harness/rubrics/writing-standard.md`: short active sentences, terms
+  defined before use, analogies marked `**Analogy.**`. Keep the notes short:
+  link deeper explanations and visuals instead of copying them.
 - The notes are plain paragraphs, bullets, one diagram, and one code block. Do
   not add blockquotes or callout boxes; the learner finds them irritating.
 
@@ -208,7 +250,8 @@ Body, in this order:
 1. `## Cards` — at least 8 cards (at least 5 for depth `quick`). Good targets are
    6 for `quick`, 10 to 14 for `standard`, and 14 to 20 for `deep`.
 2. `## Reopen map` — one table row per card: card id, the plan outcome it
-   covers, and the exact lesson page or note to reopen when the card is missed.
+   covers, the exact lesson page or note to reopen when the card is missed, and
+   the visual note to look at first when one explains it (`[[visual-<id>-<slug>]]`).
 3. `## My insights` — the last heading, with nothing below it.
 
 Every card uses exactly this shape, with a blank line between cards and no blank
@@ -275,13 +318,14 @@ node harness/bin/tutor.mjs fail <topic> notes --reason "<the failures that remai
   - <n> words in the final notes, <n> cards, recall sync ran.
   - <outcome coverage, for example "all 5 outcomes have a page or project and a card">.
   - <the most important production difference recorded>.
+  VISUALS: <visual ids in the refresher>; <n> visual cards
   PROBLEMS: <"none", or one line each>
   ```
 
 ## Common mistakes
 
 - Writing a summary of the lesson pages in order. The final notes are organized
-  by the eight headings, not by the order in which things were taught.
+  by the nine headings, not by the order in which things were taught.
 - Definition cards such as "What is a consumer group?". The learner can recite a
   definition without understanding it. Ask what happens, why, which one to pick,
   or what is wrong.
@@ -294,6 +338,8 @@ node harness/bin/tutor.mjs fail <topic> notes --reason "<the failures that remai
 - Linking to a note that does not exist, for example a repo-intel note for a
   topic whose `repo-intel` stage was skipped.
 - Forgetting `tutor recall sync`, which leaves the cards unscheduled.
+- A visual refresher that copies the visual notes, embeds every diagram, or
+  links a visual that is not in `visuals.json`.
 - Padding the notes to look thorough. A year from now the learner wants the
   shortest text that restores the model.
 - Counting words with anything other than `tutor words`, and then cutting a

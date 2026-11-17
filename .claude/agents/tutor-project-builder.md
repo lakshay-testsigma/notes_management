@@ -37,6 +37,21 @@ use case, or the production-style capstone.
   capstone add `,<path of 06-capstone-<slug>.md>`). It reports only your files. Failures
   about another project or the index note are not your job.
 
+## Visuals and writing
+
+- Draw and register diagrams through `.claude/skills/learn-visuals/SKILL.md` (steps 2–7);
+  the README or `ARCHITECTURE.md` keeps the fenced mermaid block, the same source goes to
+  `<visual_assets_dir>/<id>-<slug>.mmd`, and `tutor visuals <topic> add --file <entry>`
+  registers it with the file path in `used_in`.
+- Mini project: `## How it works` with one architecture or execution-flow diagram, and an
+  `## Implementation walkthrough` after `## Hints` (one step per `TODO(n)`: file, function,
+  what changes).
+- Capstone: three diagrams in `ARCHITECTURE.md` (layers, request flow, deployment), an
+  `## Interactive walkthrough` component spec, and the architecture diagram in the vault note.
+- Every box and arrow exists in the code or the run recipe; reviewers check `project-diagrams`.
+- Write in `harness/rubrics/writing-standard.md`; check with `tutor style <file>`.
+- Writing the `.mmd` asset and registering it are allowed outside your project folder.
+
 ## Context budget
 
 - Use the capacity-aware allowance from `tutor budget --window <actual window> --reserve <overhead>` (assume32768 and reserve3000 when unknown). Size files first with
@@ -58,8 +73,9 @@ use case, or the production-style capstone.
 - Never spawn other agents.
 - Never edit `topic.json` or `sources.json` by hand. State changes go through the tutor CLI.
 - Never write outside your project folder, except the vault note the skill assigns to your
-  unit (for the capstone, `06-capstone-<slug>.md`) and the shared notes that note links to,
-  created only with `node harness/bin/tutor.mjs concept "<Name>" [--tech]`.
+  unit (for the capstone, `06-capstone-<slug>.md`), the shared notes that note links to,
+  created only with `node harness/bin/tutor.mjs concept "<Name>" [--tech]`, and your diagram
+  assets in `visual_assets_dir`, registered only with `tutor visuals add|update`.
 - Never install global packages, and never run commands that reach outside the repository
   beyond installing the project's own pinned dependencies.
 - Never recommend a library, service, or resource as "the standard" without a recorded
@@ -80,5 +96,6 @@ FINDINGS:
 - title, real use case, and the one concept it proves
 - stack and test result (how many tests ran, how many passed)
 - anything the learner must install or start to run it
+VISUALS: <registered diagram ids> | none
 PROBLEMS: none | <what is missing and why>
 ```

@@ -76,12 +76,49 @@ Spend your budget in this order, because the earlier items hurt the learner most
    put visual-usefulness in not_checked and return fix-needed.
    Record all of this in research-coverage, practical-depth, visual-usefulness,
    and learner-fit assessments from the packet.
+5b. **Visuals (visual-first plans).** Follow "Review" in `harness/rubrics/visuals.md`.
+   Read `tutor visuals <topic> list --json` and the notes under `<vault>/visuals/`.
+   - `visual-accuracy`: for each registered visual, compare every box, arrow, order
+     and number with its `source_ids` (open the cited section). An arrow that implies a
+     chain, dependency or order the source does not state is an error.
+   - `visual-efficacy`: answer the visual's `learning_check.question` twice and record
+     both answers: first from the page prose only (pretend the visual is absent), then
+     with the visual (zoom it, operate the simulation, watch the video or read its
+     transcript). Mark the visual `helps` (only the second answer is right, or it is
+     clearly faster), `neutral` or `decorative`. Decorative visuals and visuals whose
+     check cannot be answered are findings. This is a reviewer judgment, not a proof of
+     learning; say so in the assessment.
+   - `interaction-behavior`: in the live preview, each simulation changes a meaningful
+     result, explains why, reaches a failure or counterexample, and Reset restores the
+     first state (`npm --prefix site run interact` covers the shared components; you
+     test the topic's own data).
+   - `accessibility-responsive`: alt texts state structure and conclusion, controls are
+     keyboard reachable and named, videos have captions and a transcript, pages do not
+     scroll sideways at 375 px, nothing relies on colour alone.
+   - `writing-standard`: spot-check pages and notes with `tutor style <file>` and
+     `harness/rubrics/writing-standard.md`: short active sentences, defined terms,
+     analogies/assumptions marked, depth kept in its layer.
+   - `video-consistency` (when the topic has a video): the storyboard, the frames you
+     watch, the captions and the transcript tell the same sequence, and every claim
+     matches a source. A storyboard-only video with an honest blocker is acceptable;
+     a video claimed as rendered that `tutor video <topic> check <id>` cannot open is
+     an error.
+   - `experience-behavior` (adaptive plans, `harness/rubrics/experiences.md` §10): run
+     `tutor experience <topic> plan` and `list`. For each experience: the selected mode
+     fits the idea (no lab for a simple idea, no passive video where the learner must
+     manipulate); open the lesson page and use every tab; each checkpoint asks about
+     the mechanism and its explanation and misconceptions match the sources; an
+     experiment's condition is reachable and matches its explanation; sync presets
+     match their scenes; every deck branch returns to the main path; captions or
+     transcripts exist for every part; the static fallback shows the same mechanism.
 6. **Projects.** For each project in your brief, read its `README.md`, then run the
    solution's tests with the exact commands of the README (for example
    `npm --prefix <project>/solution install` and `npm --prefix <project>/solution test`) and
    report how many ran and passed. Check that the starter starts and fails only on its
    TODOs, and that the README's commands and file names match the folder. Do not read all
-   the source code.
+   the source code. Visual-first plans add `project-diagrams`: the README diagram of
+   each mini project and the three ARCHITECTURE.md diagrams of the capstone match the
+   classes, modules, data flow and deployment that actually exist in the code.
 
 ## Context budget
 

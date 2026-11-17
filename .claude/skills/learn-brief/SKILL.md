@@ -47,6 +47,9 @@ Read only these.
    keys and fill in its body.
 6. `ls vault/_concepts` — names only, to reuse existing concept notes.
 7. At most 3 narrow fetches of the sources flagged `brief` (see step 2).
+8. `<handoffs_dir>/visual-candidates.md` from research, only the lines of the main flow,
+   and `harness/rubrics/writing-standard.md`. The procedure for the diagram is
+   `.claude/skills/learn-visuals/SKILL.md` (steps 2–6); read it once.
 
 These are the same inputs that `tutor next` prints for stage `brief`. The vault-notes rubric
 is not an input of this stage; the rules the brief needs are in this file.
@@ -100,16 +103,39 @@ is not an input of this stage; the rules the brief needs are in this file.
      at their caps already take about 130 words, so the four sections above them have
      about 180 words together: two to three short sentences each.
    - One mermaid diagram with at most 7 nodes. It shows the single main flow, not the whole
-     system.
+     system. For a plan with `visual_first: true` it is required (the gate counts at least
+     one diagram in the brief), and every arrow comes from a source or a line of
+     `visual-candidates.md`.
+   - Write in the writing standard (`harness/rubrics/writing-standard.md`): the beginner
+     sentence first, then the technical term; sentences of 15–20 words in active voice;
+     an analogy, when it helps, is a plain paragraph that starts with `**Analogy.**` and
+     says where the comparison stops working.
    - No history lesson, no feature list, no comparison table. Those belong in the lesson.
    - If the file already has text below `## My insights`, keep it exactly. Change only what
      is above that heading (use the Edit tool, not a full rewrite).
 
-5. **Check the links.** Every `[[...]]` in the brief must be the file name of a note that
-   exists. Links to concept notes exist after step 3. Link to `[[00-start-here-<slug>]]`
-   only; do not link to notes that later stages have not written yet.
+5. **Register the diagram** (visual-first plans; follow `learn-visuals` steps 3–5). Save
+   the same mermaid source to `<visual_assets_dir>/how-it-works-<slug>.mmd`, write the
+   entry to a draft such as `.cache/tmp/<slug>/visual-how-it-works.json` with
+   `"id": "how-it-works"`, `"kind": "workflow"`, `"scope": "end-to-end"` (or the kind
+   that fits), `"format": "mermaid"`, `file`, `concept_ids`, the `source_ids` you used,
+   `purpose`, `explanation`, `alt`, `learning_check`, and `"used_in": ["<brief path>"]`,
+   then:
 
-6. **Count the words the way the gate counts them.** Run this before the gate.
+   ```bash
+   node harness/bin/tutor.mjs visuals <topic> add --file .cache/tmp/<slug>/visual-how-it-works.json
+   ```
+
+   Keep the mermaid block in the note (Obsidian draws it) and add, under it, the link
+   `[[visual-how-it-works-<slug>|explanation and sources]]`. A later stage that needs the
+   same flow reuses this id instead of drawing it again.
+
+6. **Check the links.** Every `[[...]]` in the brief must be the file name of a note that
+   exists. Links to concept notes exist after step 3, the visual note after step 5. Link
+   to `[[00-start-here-<slug>]]` otherwise; do not link to notes that later stages have
+   not written yet.
+
+7. **Count the words the way the gate counts them.** Run this before the gate.
    Do not use another word counter; it would also count the frontmatter and the diagram.
 
    ```bash
@@ -121,7 +147,10 @@ is not an input of this stage; the rules the brief needs are in this file.
    lines and the outcomes to their caps first, then cut background sentences. Do not cut
    the problem statement and do not remove a section.
 
-7. **Gate** (below).
+8. **Check the wording.** `node harness/bin/tutor.mjs style <path of 01-brief-<slug>.md>`.
+   Aim for at least 80%; split every sentence it lists as too long or passive.
+
+9. **Gate** (below).
 
 ## Output contract
 
@@ -156,7 +185,7 @@ flowchart LR
   A[...] --> B[...]
 ```
 
-<1–2 sentences that walk through the diagram.>
+<1–2 sentences that walk through the diagram.> [[visual-how-it-works-<slug>|explanation and sources]]
 
 ## Where it is used in the real world
 
@@ -190,7 +219,9 @@ node harness/bin/tutor.mjs done <topic> brief
 ```
 
 The gate checks: the file exists, the frontmatter is valid, the text has 150–400 words, the
-sections are present, and every link resolves. On failure each line reads
+sections are present, and every link resolves. For a visual-first plan it also needs at
+least one diagram in the brief, checks every registered visual whose `used_in` names the
+brief (source ids, file, alt, learning check), and prints writing-standard warnings. On failure each line reads
 `path: problem. fix.` Fix exactly those lines and rerun. Typical fixes: when over 400
 words, shorten the copied prerequisite and outcome lines first (step 1) and check again
 with `tutor words`; run `tutor concept "<Name>"` for a link that does not resolve; restore
@@ -218,6 +249,7 @@ a renamed heading. After 3 failed attempts run
   - the one-sentence definition used
   - the main flow shown in the diagram
   - real-world uses named, with source ids
+  VISUALS: how-it-works (registered) | none: <why>
   PROBLEMS: none | <what is missing and why>
   ```
 
@@ -229,6 +261,8 @@ a renamed heading. After 3 failed attempts run
 - **Unexplained jargon** ("a persistent, replicated commit log"). Say it in everyday words
   first, then give the term.
 - **A diagram of everything.** Seven nodes at most; one flow.
+- **A diagram that is not registered** in a visual-first plan, or an arrow no source
+  supports. Register it with `tutor visuals add`; leave out what is not sourced.
 - **A company named from memory.** Name a user only when a recorded source says so.
 - **New prerequisites or outcomes.** They come from the plan, word for word or shortened.
 - **Writing lines under `## Where it shows up` in a concept note,** or leaving its

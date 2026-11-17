@@ -1,0 +1,6 @@
+{
+  "topic": "Binary search",
+  "level": "intermediate",
+  "expected": "interactive",
+  "signals": { "complexity": 3, "concepts": 3, "dependent_steps": 4, "changes_over_time": true, "spatial": false, "parameters": 2, "decision_paths": 0, "benefit": "high" }
+}

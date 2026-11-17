@@ -1,12 +1,17 @@
 // Gate: lesson. The page count fits the depth and every page passes §12.
 
 import { listFiles, readText, walkFiles, relPath } from '../io.mjs';
-import { analyzeLessonPage, countArrayItems } from '../mdx.mjs';
+import { analyzeLessonPage, countArrayItems, stringProp } from '../mdx.mjs';
 import { sharedComponentNames } from '../components.mjs';
 import { siteUrl } from '../topic-store.mjs';
 import { failure, stageFailure, warning } from './context.mjs';
 import { checkNote, wordRangeFailure } from './note.mjs';
-import { adaptiveVisualProblems } from '../visual-policy.mjs';
+import { adaptiveVisualProblems, visualFirstOutlineProblems } from '../visual-policy.mjs';
+import { countWords } from '../markdown.mjs';
+import { styleReport } from '../style.mjs';
+import { visualRegistryFailures } from './visuals.mjs';
+import { LESSON_VISUAL_MINIMUM } from '../visuals.mjs';
+import { resolveExperience } from '../experience-mode.mjs';
 
 export const LESSON_WORDS = [110, 260];
 const PAGE_NAME = /^(\d{2})-[a-z0-9]+(-[a-z0-9]+)*\.mdx$/;
@@ -20,6 +25,11 @@ const DIAGRAM_NODE_PROPS = {
   SequenceDiagram: ['actors', 'participants'],
 };
 export const DIAGRAM_MAX_NODES = 7;
+/** Words a <Depth> block may hold, and how many blocks a page may have. */
+export const DEPTH_WORDS = [20, 180];
+export const DEPTH_BLOCKS = 2;
+/** Components that show a registered visual by id. */
+const REGISTRY_COMPONENTS = { Diagram: 'diagram', Video: 'video', Experience: 'experience' };
 
 const is3D = (name) => /3D$/.test(name ?? '');
 const pageNumber = (name) => {
@@ -73,7 +83,10 @@ export function lessonGate(ctx) {
     const relative = `${paths.lessons_dir}/${name}`;
     const adaptive = topic.plan?.visual_policy === 'adaptive';
     const outline = (topic.plan?.lesson_outline ?? []).find(entry => entry?.order === pageNumber(name));
-    const result = checkLessonPage(relative, readText(ctx.abs(relative)), ctx.kinds, { isLast: name === finalPage, finalPage, adaptive, outline });
+    const result = checkLessonPage(relative, readText(ctx.abs(relative)), ctx.kinds, {
+      isLast: name === finalPage, finalPage, adaptive, outline,
+      visuals: ctx.visuals.entries, visualFirst: ctx.visualFirst, experiences: topic.plan?.experience_policy === 'adaptive',
+    });
     failures.push(...result.failures);
     result.components.forEach((component) => used.add(component));
 
@@ -95,6 +108,8 @@ export function lessonGate(ctx) {
     }
   }
 
+  failures.push(...visualFirstLessonFailures(ctx, pages));
+
   const index = checkNote(ctx, paths.lesson, { stage: 'lesson' });
   failures.push(...index.failures);
   if (index.note && !index.note.body.includes(siteUrl(topic))) {
@@ -110,7 +125,7 @@ export function lessonGate(ctx) {
  * Returns { failures, components: [names used], order }. `failures` also holds
  * the warnings of the page (entries with `level: 'warning'`).
  */
-export function checkLessonPage(relative, text, kinds, { isLast, finalPage = null, adaptive = false, outline } = {}) {
+export function checkLessonPage(relative, text, kinds, { isLast, finalPage = null, adaptive = false, outline, visuals = null, visualFirst = false, experiences = false } = {}) {
   const failures = [];
   const fail = (problem, fix) => failures.push(failure(relative, problem, fix));
   const page = analyzeLessonPage(text);
@@ -202,6 +217,59 @@ export function checkLessonPage(relative, text, kinds, { isLast, finalPage = nul
     fail(`<${name}> is opened but never closed`, `add \`</${name}>\` or write it as a self-closing tag \`<${name} ... />\``);
   }
 
+  // Registered visuals: <Diagram id> and <Video id> must name an entry of visuals.json.
+  for (const element of page.elements) {
+    const expected = REGISTRY_COMPONENTS[element.name];
+    if (!expected) continue;
+    const id = stringProp(element, 'id');
+    if (!id) {
+      fail(`<${element.name}> has no plain \`id\``, `write \`<${element.name} id="<visual id>" />\` with the id from visuals.json`);
+      continue;
+    }
+    if (!Array.isArray(visuals)) continue;
+    const entry = visuals.find((e) => e?.id === id);
+    if (!entry) fail(`<${element.name} id="${id}"> is not registered`, `register it with \`tutor visuals <topic> add --file <entry.json>\` (or \`tutor video <topic> build ${id}\` for a video)`);
+    else if (expected === 'video' && entry.format !== 'hyperframes') fail(`<Video id="${id}"> names a ${entry.format} visual`, `use <Diagram id="${id}" /> or register a video`);
+    else if (expected === 'experience' && entry.format !== 'experience') fail(`<Experience id="${id}"> names a ${entry.format} visual`, `build the experience with \`tutor experience <topic> build ${id}\``);
+    else if (expected !== 'experience' && entry.format === 'experience') fail(`<${element.name} id="${id}"> names an experience`, `use <Experience id="${id}" />`);
+    else if (expected === 'diagram' && !['mermaid', 'svg', 'image'].includes(entry.format)) fail(`<Diagram id="${id}"> names a ${entry.format} visual`, entry.format === 'hyperframes' ? `use <Video id="${id}" />` : `use the <${entry.component ?? 'component'}> itself`);
+    else if (!(entry.used_in ?? []).includes(relative)) fail(`visual "${id}" does not list this page in \`used_in\``, `add "${relative}" to its used_in with \`tutor visuals <topic> update ${id}\``);
+  }
+
+  // Progressive disclosure: <Depth> blocks hold deeper prose, counted apart and capped.
+  const depthBlocks = page.elements.filter((element) => element.name === 'Depth');
+  if (depthBlocks.length > DEPTH_BLOCKS) fail(`has ${depthBlocks.length} <Depth> blocks`, `keep at most ${DEPTH_BLOCKS}; move the rest to a concept note`);
+  for (const block of depthBlocks) {
+    const level = stringProp(block, 'level');
+    if (!['internals', 'production'].includes(level)) fail('<Depth> needs level="internals" or level="production"', 'set the level of the deeper explanation');
+    const words = countWords(analyzeLessonPage(`---\n---\n${block.inner}`).prose);
+    if (words < DEPTH_WORDS[0] || words > DEPTH_WORDS[1]) fail(`<Depth level="${level}"> has ${words} words`, `write ${DEPTH_WORDS[0]}–${DEPTH_WORDS[1]} words; longer internals belong in a concept note`);
+  }
+
+  if (visualFirst) {
+    for (const problem of visualFirstOutlineProblems(outline, kinds)) fail(`visual-first plan ${problem}`, 'repair plan.lesson_outline with tutor plan --set');
+    for (const name of outline?.extra_visuals ?? []) if (!names.includes(name)) fail(`does not use its planned extra visual <${name}>`, 'add it, or update the plan');
+    if (outline?.video?.id) {
+      // The video plays either alone or as the Watch part of an explainer experience.
+      const used = page.elements.some((element) => (element.name === 'Video' && stringProp(element, 'id') === outline.video.id)
+        || (element.name === 'Experience' && Array.isArray(visuals) && visuals.find((v) => v?.id === stringProp(element, 'id'))?.experience?.parts?.watch === outline.video.id));
+      if (!used) fail(`does not embed its planned video <Video id="${outline.video.id}" />`, 'build it with `tutor video <topic> build <id>` and embed it after the paragraph it explains');
+    }
+    if (experiences && outline?.experience) {
+      const resolved = resolveExperience(outline);
+      const planned = outline.experience.id;
+      if (['interactive', 'branching', 'hybrid'].includes(resolved.mode)) {
+        const element = page.elements.find((e) => e.name === 'Experience' && stringProp(e, 'id') === planned);
+        const entry = Array.isArray(visuals) ? visuals.find((e) => e?.id === planned) : null;
+        if (!element) fail(`does not embed its planned ${resolved.mode} experience <Experience id="${planned}" />`, `write experience.json, run \`tutor experience <topic> build ${planned}\`, and embed it where the idea starts`);
+        else if (entry?.experience && entry.experience.mode !== resolved.mode) fail(`experience "${planned}" is ${entry.experience.mode}, but the plan selected ${resolved.mode}`, 'set `mode` in experience.json to the planned mode, or change the plan with an override_reason');
+      } else if (resolved.mode === 'static' && page.elements.some((e) => e.name === 'Experience' || e.name === 'Video')) {
+        fail('embeds a video or experience although the selector chose a static explanation', 'remove it, or record an `experience.mode` override with a reason in the plan');
+      }
+    }
+    for (const warn of styleReport(page.prose).warnings) failures.push(warning(relative, `writing standard: ${warn}`, 'shorten sentences and use active voice (harness/rubrics/writing-standard.md)'));
+  }
+
   if (adaptive) {
     for (const problem of adaptiveVisualProblems(outline, kinds)) fail(`adaptive visual plan ${problem}`, 'repair plan.lesson_outline with tutor plan --set');
     if (outline) {
@@ -218,7 +286,9 @@ export function checkLessonPage(relative, text, kinds, { isLast, finalPage = nul
   } else if (!names.some((name) => kindOf(name) === 'visual')) {
     fail('has no visual component', `add one of ${kinds.visual.join(', ')}`);
   }
-  if (!names.some((name) => kindOf(name) === 'activity')) {
+  // A built experience with checkpoints is its own practice activity.
+  const practiced = page.elements.some((e) => e.name === 'Experience' && Array.isArray(visuals) && (visuals.find((v) => v?.id === stringProp(e, 'id'))?.experience?.checkpoints ?? 0) > 0);
+  if (!practiced && !names.some((name) => kindOf(name) === 'activity')) {
     fail('has no activity component', `add one of ${kinds.activity.join(', ')}`);
   }
 
@@ -261,5 +331,46 @@ function forbiddenMarkup(relative, prose) {
   if (/class(Name)?\s*=\s*["'{][^"'}]*\b(card|callout|admonition|alert)\b/i.test(prose) || /\[!(NOTE|TIP|WARNING|IMPORTANT|CAUTION)\]/.test(prose)) {
     failures.push(failure(relative, 'has card or callout markup', `remove it; ${note}`));
   }
+  return failures;
+}
+
+/**
+ * Stage-wide checks of a visual-first plan: enough registered visuals for the
+ * depth, an end-to-end workflow diagram when the topic has a multi-stage
+ * process, every planned video, and every registry entry of the lesson valid.
+ */
+function visualFirstLessonFailures(ctx, pages) {
+  const { topic, paths } = ctx;
+  if (!ctx.visualFirst) return [];
+  const failures = [];
+  const { entries, error } = ctx.visuals;
+  if (error) return [stageFailure(paths.visuals_json, error, 'repair the registry with tutor visuals')];
+  const onPages = entries.filter((e) => (e.used_in ?? []).some((f) => f.startsWith(`${paths.lessons_dir}/`)));
+  const minimum = LESSON_VISUAL_MINIMUM[topic.depth] ?? 3;
+  if (pages.length && onPages.length < minimum) {
+    failures.push(stageFailure(paths.visuals_json, `registers ${onPages.length} lesson visuals, depth "${topic.depth}" needs at least ${minimum}`, 'register each meaningful diagram, simulation and video of the pages (learn-visuals skill)'));
+  }
+  const outline = topic.plan?.lesson_outline ?? [];
+  const sequences = topic.plan?.multi_stage === true || outline.some((page) => page?.video);
+  if (pages.length && sequences && !onPages.some((e) => e.kind === 'workflow' && e.scope === 'end-to-end')) {
+    failures.push(stageFailure(paths.visuals_json, 'has no end-to-end workflow diagram although the topic has a multi-stage process', 'register a `kind: "workflow"`, `scope: "end-to-end"` diagram of the whole process and show it on the page that introduces the process'));
+  }
+  for (const page of outline) {
+    if (!page?.video?.id) continue;
+    const entry = entries.find((e) => e.id === page.video.id);
+    if (!entry) failures.push(stageFailure(paths.visuals_json, `planned video "${page.video.id}" is not built`, `write ${paths.videos_dir}/${page.video.id}/video.json and run \`tutor video ${topic.id} build ${page.video.id}\``));
+    else if (entry.video?.status !== 'rendered') failures.push(warning(paths.visuals_json, `video "${page.video.id}" is not rendered: ${entry.video?.blocker ?? 'no reason recorded'}`, `run \`tutor video ${topic.id} render ${page.video.id}\` when FFmpeg or Docker is available`));
+  }
+  if (topic.plan?.experience_policy === 'adaptive') {
+    for (const page of outline) {
+      const id = page?.experience?.id;
+      if (!id) continue;
+      const mode = resolveExperience(page).mode;
+      if (!['interactive', 'branching', 'hybrid'].includes(mode)) continue;
+      const entry = entries.find((e) => e.id === id);
+      if (!entry) failures.push(stageFailure(paths.visuals_json, `planned ${mode} experience "${id}" is not built`, `write ${paths.experiences_dir}/${id}/experience.json and run \`tutor experience ${topic.id} build ${id}\``));
+    }
+  }
+  failures.push(...visualRegistryFailures(ctx, 'lesson'));
   return failures;
 }

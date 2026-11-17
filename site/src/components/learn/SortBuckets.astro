@@ -1,0 +1,10 @@
+---
+// Lesson component <SortBuckets />. Authors use it in MDX with no import and no
+// client directive; this wrapper hydrates the island when it scrolls into view.
+// Props are documented in site/COMPONENTS.md.
+import Island, { type SortBucketsProps } from './react/SortBuckets.tsx';
+
+type Props = SortBucketsProps;
+---
+
+<Island client:visible {...Astro.props} />

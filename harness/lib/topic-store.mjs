@@ -46,10 +46,18 @@ export function topicPaths(topic) {
     recall: `${vault}/08-recall-${slug}.md`,
     resources: `${vault}/09-resources-${slug}.md`,
     insights: `${vault}/my-insights-${slug}.md`,
+    visuals_dir: `${vault}/visuals`,
+    visual_assets_dir: `${vault}/visuals/assets`,
+    visuals_index: `${vault}/visuals/visuals-${slug}.md`,
+    visuals_json: `${state}/visuals.json`,
+    progress_json: `${state}/progress.json`,
 
     lessons_dir: `site/src/content/lessons/${sub}`,
     topic_components_dir: `site/src/components/topics/${slug}`,
     projects_dir: projects,
+    videos_dir: `${projects}/videos`,
+    experiences_dir: `${projects}/experiences`,
+    media_dir: `site/public/media/${sub}`,
     capstone_dir: `${projects}/capstone`,
     cache_dir: '.cache',
     repos_cache_dir: '.cache/repos',
@@ -69,6 +77,11 @@ export function topicPaths(topic) {
 /** The lesson site path of a topic, e.g. /backend-engineering/messaging/redis-streams/ */
 export function siteUrl(topic) {
   return `/${topic.domain}/${topic.subdomain}/${topic.slug}/`;
+}
+
+/** The site path under which rendered videos and captions are served, e.g. /media/…/redis-streams/ */
+export function mediaUrl(topic) {
+  return `/media/${topic.domain}/${topic.subdomain}/${topic.slug}/`;
 }
 
 export const SITE_DEV_COMMAND = 'npm run site:dev';

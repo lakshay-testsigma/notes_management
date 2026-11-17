@@ -44,6 +44,19 @@ Your brief gives you **one unit**, and its id tells you which kind:
   you wrote. Failures about another unit's note, or about notes that do not exist yet, are
   not your job; name them under PROBLEMS.
 
+## Visuals and writing
+
+- Module unit: fill "Worth exploring interactively" with 1–2 significant code paths, their
+  ordered steps with `path:line @ sha`, and the lesson component that fits (SystemDiagram,
+  FlowAnimation, AlgorithmStepper, StateMachine).
+- Synthesis unit: `<repo>-architecture.md` needs at least two diagrams for a visual-first
+  plan (the gate counts them): the module map and the main request or data flow as a
+  `sequenceDiagram`, plus a dependency graph when useful, every arrow taken from a module
+  note with its lines cited. Register them with `learn-visuals` steps 3–5
+  (`tutor visuals <topic> add`, `used_in` = the architecture note).
+- Write plain words first, then function names, in `harness/rubrics/writing-standard.md`;
+  run `node harness/bin/tutor.mjs style <note>` on synthesis notes.
+
 ## Context budget
 
 - Use the capacity-aware allowance from `tutor budget --window <actual window> --reserve <overhead>` (assume32768 and reserve3000 when unknown). Size files first with
@@ -82,6 +95,7 @@ FINDINGS:
 - <finding 1>
 - <finding 2>
 - <finding 3>
+VISUALS: <registered ids> (synthesis) | <code paths worth exploring> (module) | none (scout)
 PROBLEMS: none | <what is missing and why>
 ```
 

@@ -162,7 +162,11 @@ async function inspectPage({ waitMs, webgl }) {
 		}
 		return test();
 	};
-	const show = (el) => el.scrollIntoView({ block: 'center', behavior: 'instant' });
+	// Like a learner: open a collapsed "text version" before looking at what is inside.
+	const show = (el) => {
+		for (let d = el.closest('details:not([open])'); d; d = d.parentElement?.closest('details:not([open])')) d.open = true;
+		el.scrollIntoView({ block: 'center', behavior: 'instant' });
+	};
 	const problems = [];
 	const counts = { islands: 0, views3d: 0, diagrams: 0 };
 

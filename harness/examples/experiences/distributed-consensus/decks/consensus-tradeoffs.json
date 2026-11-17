@@ -1,0 +1,29 @@
+{
+  "id": "consensus-tradeoffs",
+  "title": "Why consensus needs a majority",
+  "purpose": "Explore why Raft waits for a majority, what goes wrong without it, and how cluster size changes the failures it survives.",
+  "summary": "A short deck asks why Raft waits for a majority. The main path compares waiting for all servers, one server and a majority. Two deep dives show split brain without a majority rule and how many failures clusters of three to seven servers tolerate.",
+  "explanation": "A majority is the smallest group that any other majority must overlap, which is what keeps two leaders from deciding different histories.",
+  "learning_check": {
+    "question": "How many failed servers can a cluster of four tolerate, and why not two?",
+    "answer": "One. A majority of four is three, so with two failures only two servers remain, which is not a majority."
+  },
+  "concept_ids": ["log-replication", "leader-election"],
+  "source_ids": ["SOURCE"],
+  "used_in": ["LESSON_PAGE"],
+  "slides": [
+    { "id": "question", "heading": "Why wait for a majority?", "notes": "Ask the learner what would go wrong with fewer or more acknowledgments.", "visual": { "type": "title", "subtitle": "All, one, or a majority?" } },
+    { "id": "options", "heading": "Three ways to acknowledge a write", "notes": "Reveal the options one at a time and ask which survives a crash and stays available.", "reveal": true, "visual": { "type": "steps", "items": [ "Wait for all: one crash blocks every write", "Wait for one: a crash can lose the write", "Wait for a majority: survives crashes and stays safe" ] } },
+    { "id": "why-majority", "heading": "Majorities always overlap", "notes": "Two majorities of five share at least one server, so a new leader always meets a server with the committed entries.", "reveal": true, "visual": { "type": "compare", "left": { "label": "Write acknowledged by", "items": [ "S1, S2, S3" ] }, "right": { "label": "Next leader elected by", "items": [ "S3, S4, S5" ] }, "verdict": "S3 is in both majorities." }, "hotspots": [ { "label": "Split brain without a majority", "target": "split-brain" }, { "label": "Why odd cluster sizes", "target": "cluster-sizes" } ] },
+    { "id": "takeaway", "heading": "The trade-off", "notes": "Raft chooses safety: without a majority it stops instead of risking two different histories.", "visual": { "type": "compare", "left": { "label": "Majority alive", "items": [ "Elects a leader", "Commits writes" ] }, "right": { "label": "Majority lost", "items": [ "No leader", "Writes wait, nothing is lost" ] }, "verdict": "Consistency over availability during a partition." } }
+  ],
+  "sequences": [
+    { "id": "split-brain", "label": "Split brain without a majority", "slides": [
+      { "id": "split", "heading": "A partition splits the cluster", "notes": "If each side could elect a leader with any number of votes, both sides would accept different writes.", "visual": { "type": "compare", "left": { "label": "Side A: S1, S2", "items": [ "Elects S1", "Accepts write x = 1" ] }, "right": { "label": "Side B: S3, S4, S5", "items": [ "Elects S3", "Accepts write x = 2" ] }, "verdict": "Two histories: which x is true?" } },
+      { "id": "fixed", "heading": "The majority rule prevents it", "notes": "With the majority rule only side B, with three of five servers, can elect a leader, so only one history exists.", "visual": { "type": "steps", "items": [ "Side A has 2 of 5 votes: no leader", "Side B has 3 of 5 votes: S3 leads", "Only side B commits writes" ] } }
+    ] },
+    { "id": "cluster-sizes", "label": "Why odd cluster sizes", "slides": [
+      { "id": "sizes", "heading": "Failures each size survives", "notes": "A cluster of n servers survives floor of (n minus 1) over 2 failures; adding a fourth server adds no tolerance.", "visual": { "type": "bars", "unit": " failures", "items": [ { "label": "3 servers", "value": 1 }, { "label": "4 servers", "value": 1 }, { "label": "5 servers", "value": 2 }, { "label": "6 servers", "value": 2 }, { "label": "7 servers", "value": 3 } ] } }
+    ] }
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "id": "marketing-funnel-dropoff",
+  "title": "How visitors move through a marketing funnel",
+  "purpose": "See where a funnel loses people and why the stage conversion rate matters more than the visitor count.",
+  "sequence_reason": "A funnel is a sequence of dependent stages; each stage only receives the people that the stage before it kept.",
+  "summary": "Ten thousand visitors reach a landing page. Two thousand sign up, six hundred activate, and one hundred and fifty buy. The largest drop is between visit and sign-up.",
+  "explanation": "Each stage keeps a share of the stage before it. Fixing the stage with the largest relative drop usually gives the largest gain.",
+  "learning_check": {
+    "question": "If the sign-up rate doubles and every later rate stays the same, how many buyers do you get?",
+    "answer": "Three hundred, because every later stage receives twice as many people."
+  },
+  "concept_ids": [
+    "funnel-conversion"
+  ],
+  "source_ids": [
+    "funnel-guide"
+  ],
+  "used_in": [
+    "LESSON_PAGE"
+  ],
+  "narration": {
+    "engine": "auto"
+  },
+  "scenes": [
+    {
+      "id": "intro",
+      "duration": 5,
+      "heading": "Four stages, one customer journey",
+      "narration": "A funnel follows people from the first visit to the first purchase.",
+      "visual": {
+        "type": "title",
+        "subtitle": "Visit, sign up, activate, buy"
+      }
+    },
+    {
+      "id": "stages",
+      "duration": 9,
+      "heading": "The stages in order",
+      "narration": "A visitor lands on the page, signs up, activates the product, and then buys. Each stage depends on the one before it.",
+      "visual": {
+        "type": "timeline",
+        "events": [
+          {
+            "label": "Visit",
+            "detail": "landing page"
+          },
+          {
+            "label": "Sign up",
+            "detail": "account created"
+          },
+          {
+            "label": "Activate",
+            "detail": "first real use"
+          },
+          {
+            "label": "Buy",
+            "detail": "first payment"
+          }
+        ]
+      }
+    },
+    {
+      "id": "numbers",
+      "duration": 10,
+      "heading": "Where people drop out",
+      "narration": "Ten thousand visit, two thousand sign up, six hundred activate, and one hundred fifty buy. The biggest drop is at sign up.",
+      "visual": {
+        "type": "bars",
+        "items": [
+          {
+            "label": "Visit",
+            "value": 10000
+          },
+          {
+            "label": "Sign up",
+            "value": 2000
+          },
+          {
+            "label": "Activate",
+            "value": 600
+          },
+          {
+            "label": "Buy",
+            "value": 150
+          }
+        ]
+      }
+    },
+    {
+      "id": "rates",
+      "duration": 9,
+      "heading": "Rates, not counts",
+      "narration": "Compare stage rates. Sign up keeps twenty percent, activate thirty percent, and buy twenty five percent.",
+      "visual": {
+        "type": "steps",
+        "items": [
+          "Visit to sign up: 20%",
+          "Sign up to activate: 30%",
+          "Activate to buy: 25%"
+        ]
+      }
+    }
+  ]
+}

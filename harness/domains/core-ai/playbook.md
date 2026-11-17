@@ -146,6 +146,13 @@ Top venues for the rubric: NeurIPS, ICML, ICLR, CVPR, ACL, EMNLP, JMLR, Nature, 
 
 **Custom simulation ideas.** A neural-network playground on 2D data where the decision boundary updates live; a gradient-descent ball with momentum and Adam side by side; a convolution kernel sliding over an image with editable kernel values; an attention matrix the learner can hover to see which tokens attend to which; a diffusion process that adds and removes noise step by step; a k-means stepper; a tiny bigram language model that generates text as the learner changes temperature.
 
+**Visual recipes** (visual-first plans; standard in `harness/rubrics/visuals.md`):
+
+- `AlgorithmStepper` for one gradient-descent or backpropagation step on real numbers; `ParamPlayground` for learning rate, momentum or temperature.
+- `Video` for backpropagation (forward pass, loss, backward pass, update), where the order of the gradient factors is the idea.
+- `VectorSpace3D` only for embeddings and geometry, labelled as a projection; `CompareView` for two optimizers or regularizers with measured results.
+- A registered end-to-end training-loop `Diagram` when the topic is a pipeline (data, model, loss, optimizer, evaluation).
+
 ## Mini project patterns
 
 Everything trains on a laptop CPU in minutes, with a fixed random seed. Guided → independent.
@@ -239,3 +246,4 @@ Question styles: Explain ("why do residual connections help deep networks train?
 - State dataset bias and model limits in the model card; do not present a toy model as fit for real decisions about people.
 - Keep compute small: CPU-sized runs with the expected time in the README; no paid GPU usage unless the learner asks.
 - Report results honestly: same test set for all variants, no tuning on the test set, variance across seeds where it matters.
+- **Experience recipes** (adaptive plans; `harness/rubrics/experiences.md`, the selector decides): explainer for one forward pass; interactive for learning rate or attention weights (AlgorithmStepper frames from the source equations); branching for choosing a model family; hybrid for training dynamics with checkpoints on loss behavior.

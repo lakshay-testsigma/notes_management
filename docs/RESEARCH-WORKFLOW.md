@@ -170,7 +170,7 @@ has a visual, `interaction_goal`. Activities remain required on every page.
 | Basic and already familiar | Short prose/code and a question; visual may be null with a reason |
 | Intermediate or career-critical | A focused diagram, trace, graph, or interactive control |
 | Advanced with geometric or graph relationships | Manipulable Graph3D or VectorSpace3D; editable Graph3D when advanced |
-| Advanced without spatial meaning | ParamPlayground, StateMachine, or FlowAnimation explaining the mechanism, with a reason for the choice |
+| Advanced without spatial meaning | ParamPlayground, StateMachine, FlowAnimation, ClusterSim, AlgorithmStepper or CodePlayground explaining the mechanism, with a reason for the choice |
 
 Do not add decorative 3D to a simple API call or invent geometry for security rules.
 For vector search, let the learner manipulate points/query/distance and observe
@@ -180,6 +180,26 @@ observable outcome, labels, an initial state, and a reset. Keep page layout line
 with plain paragraphs and open visual sections; no cards or callout boxes. Validate
 props against `site/COMPONENTS.md` and run browser smoke checks. Review semantics
 and controls as well as rendering.
+
+## Visual candidates and the writing standard
+
+New plans also set `visual_first: true` and `multi_stage` (see `learn-intake`), and the
+standard in `harness/rubrics/visuals.md` applies to every stage. Research feeds it:
+
+- Each concept may carry `prerequisites: [concept ids]` in `plan.curriculum`. The vault
+  export (`tutor map`) draws them, with the parent links, as `concept-map-<slug>.md`.
+- Research workers record **visual candidates**: ordered sequences, dependencies,
+  architectures, comparisons, state changes and key numbers that a vetted source states,
+  each with its source id and exact section. The orchestrator merges them into
+  `<handoffs_dir>/visual-candidates.md`. Later stages draw only relationships from that
+  file or from the digests and repo-intel evidence; an unsourced arrow is a defect.
+- A multi-stage process found here sets `multi_stage: true` and, for a true
+  chronological or causal sequence, a planned `video` on its page before the plan freezes.
+- Every summary, proposal and note follows `harness/rubrics/writing-standard.md` (about
+  80% of ASD-STE100): short active sentences, one term per thing, terms defined before
+  use, beginner explanation first and technical depth after it, and analogies,
+  assumptions and interpretations marked. `tutor style <file>` reports the measurable
+  part.
 
 ## Keep cheaper-model work small and recoverable
 

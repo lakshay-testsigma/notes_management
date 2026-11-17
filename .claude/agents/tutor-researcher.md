@@ -37,6 +37,17 @@ prove, from live pages, that each one deserves that trust.
 - Stay inside your category and your quotas. Other workers cover the other categories at the
   same time.
 
+## Visuals and writing
+
+- Record **visual candidates** as you read (Part B step 7 of `learn-research`): ordered
+  sequences, dependencies, architectures, comparisons, state changes and key numbers that a
+  source states, each with source id and exact section, in your assigned
+  `.cache/tmp/<slug>/visual-candidates-<unit>.md`. Never list an inferred relationship.
+- For discovery units, give each proposed concept its `prerequisites` (concept ids); the
+  vault concept map is generated from them.
+- Write proposals and summaries in `harness/rubrics/writing-standard.md`: short active
+  sentences, one term per thing, terms defined before use.
+
 ## Context budget
 
 - Use the capacity-aware allowance from `tutor budget --window <actual window> --reserve <overhead>` (assume32768 and reserve3000 when unknown). Give every fetch one specific question so the answer
@@ -71,5 +82,6 @@ FINDINGS:
 - which source is the canonical one and why
 - which ids are flagged digest / repo-intel
 - candidates dropped and the reason
+VISUALS: <n> candidates in <draft path>, the strongest one in a few words
 PROBLEMS: none | quota not met: <which and why>
 ```

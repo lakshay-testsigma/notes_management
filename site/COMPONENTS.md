@@ -16,9 +16,9 @@ it, so a prop that is not in the tables below does not exist.
 - [Choosing a component](#choosing-a-component)
 - [Rules for props](#rules-for-props)
 - [Data that reads well](#data-that-reads-well)
-- Visual: [FlowAnimation](#flowanimation) · [SystemDiagram](#systemdiagram) · [SequenceDiagram](#sequencediagram) · [StateMachine](#statemachine) · [Graph3D](#graph3d) · [VectorSpace3D](#vectorspace3d) · [Chart](#chart) · [ParamPlayground](#paramplayground) · [CodeWalkthrough](#codewalkthrough) · [Timeline](#timeline) · [Mermaid](#mermaid)
-- Activity: [Quiz](#quiz) · [PredictReveal](#predictreveal) · [OrderSteps](#ordersteps) · [MatchPairs](#matchpairs)
-- Utility: [Resources](#resources) · [Figure](#figure)
+- Visual: [FlowAnimation](#flowanimation) · [SystemDiagram](#systemdiagram) · [SequenceDiagram](#sequencediagram) · [StateMachine](#statemachine) · [Graph3D](#graph3d) · [VectorSpace3D](#vectorspace3d) · [Chart](#chart) · [ParamPlayground](#paramplayground) · [CodeWalkthrough](#codewalkthrough) · [Timeline](#timeline) · [Mermaid](#mermaid) · [Diagram](#diagram) · [Video](#video) · [Experience](#experience) · [ClusterSim](#clustersim) · [AlgorithmStepper](#algorithmstepper) · [CompareView](#compareview) · [CodePlayground](#codeplayground)
+- Activity: [Quiz](#quiz) · [PredictReveal](#predictreveal) · [OrderSteps](#ordersteps) · [MatchPairs](#matchpairs) · [SortBuckets](#sortbuckets)
+- Utility: [Resources](#resources) · [Figure](#figure) · [Depth](#depth)
 - [Topic-specific components](#topic-specific-components)
 - [Checking your page](#checking-your-page)
 
@@ -48,6 +48,7 @@ One more short paragraph.
 - At least one **visual** and at least one **activity** component.
 - No blockquotes (`>`), no `:::` asides, no `<aside>`, `<blockquote>`, `<details>`, no cards or callouts. An important remark is a normal paragraph that starts with `**Note.**`
 - The last lesson page of a topic ends with `<Resources />`.
+- Deeper explanation goes in at most two `<Depth>` blocks of 20–180 words each; they do not count toward the 110–260 words.
 - Do not write a `# Title` heading: the page prints the title and description from the frontmatter.
 
 ## Choosing a component
@@ -65,15 +66,28 @@ One more short paragraph.
 | A formula whose behaviour should be felt by moving a slider | `ParamPlayground` |
 | Code, explained a few lines at a time | `CodeWalkthrough` |
 | Events or versions in order | `Timeline` |
-| A quick static sketch | `Mermaid` |
+| A quick static sketch that only this page needs | `Mermaid` |
+| A diagram that also belongs in the notes (architecture, end-to-end workflow, dependencies, layers) | `Diagram` (registered in visuals.json) |
+| A chronological or causal sequence that motion explains better than a picture | `Video` (HyperFrames, 30–90 s) |
+| An idea the experience-mode selector (`tutor experience <topic> plan`) routed to an interactive lesson, a branching deck or a hybrid lab | `Experience` |
+| A distributed system the learner should run and break (servers, failures, latency, concurrency) | `ClusterSim` |
+| An algorithm executing step by step on real data | `AlgorithmStepper` |
+| Two approaches, or a before and an after, with measured trade-offs | `CompareView` |
+| Code the learner should change and run | `CodePlayground` |
+| Classify items into groups | `SortBuckets` |
+| Deeper internals or production detail, for learners who want it | `Depth` (around prose) |
 | Check one fact | `Quiz` |
 | Make the learner commit to a guess before the explanation | `PredictReveal` |
 | Check that an order of steps is understood | `OrderSteps` |
 | Check vocabulary | `MatchPairs` |
 | An image, or a topic-specific component, with a caption | `Figure` |
 
-Across one topic use at least one `FlowAnimation`, and at least one 3D
-component when the topic has spatial or graph structure.
+Legacy plans: across one topic use at least one `FlowAnimation`, and at
+least one 3D component when the topic has spatial or graph structure.
+Visual-first plans (`plan.visual_first`): choose per concept, register every
+meaningful visual in `visuals.json`, and give a topic with a multi-stage
+process one end-to-end workflow `Diagram`. Use 3D only when space or graph
+structure is the idea. The full standard is `harness/rubrics/visuals.md`.
 
 ## Rules for props
 
@@ -542,6 +556,275 @@ flowchart LR
 />
 ```
 
+## Diagram
+
+Kind: visual. A diagram that is **registered** in the topic's visual registry
+(`state/topics/<topic>/visuals.json`) and drawn from its asset in the vault
+(`vault/<topic>/visuals/assets/<id>-<slug>.svg` or `.mmd`). The vault note of
+the same visual embeds the same file, so the site and Obsidian never drift. The
+learner can zoom (buttons or `+`/`-`), drag to move, and reset. Under the
+figure the registered `explanation` and its sources are printed; the
+registered `alt` is the text alternative.
+
+Use it for architecture, workflow, dependency, layered and comparison diagrams
+that also belong in the notes. Register first (`tutor visuals <topic> add
+--file <entry.json>`, see `.claude/skills/learn-visuals/SKILL.md`), then:
+
+| Prop | Type | Default | Meaning |
+| --- | --- | --- | --- |
+| `id` | `string` | required | The id of the visual in `visuals.json`. Its `used_in` must list this page. |
+| `topic` | `string` | the topic of the page | Only outside a topic page (the playground). |
+
+```mdx
+<Diagram id="write-path-end-to-end" />
+```
+
+What the learner can do: zoom into a dense part, move around it, reset the view,
+read the explanation, and open the sources.
+
+## Video
+
+Kind: visual. A short animated explainer (30–90 s) built with HyperFrames from a
+storyboard (`projects/<topic>/videos/<id>/video.json`) by `tutor video <topic>
+build|render <id>`. A rendered video plays with native controls, English
+captions (WebVTT) and a transcript; it never autoplays. A video that could not
+be rendered says so and shows its storyboard instead, so the page never claims
+a video that does not exist.
+
+Use it only for a chronological or causal sequence that a static diagram cannot
+show well: a request lifecycle, an algorithm over time, a protocol, a funnel.
+Not for a definition.
+
+| Prop | Type | Default | Meaning |
+| --- | --- | --- | --- |
+| `id` | `string` | required | The id of the video in `visuals.json` (also its project folder name). |
+| `topic` | `string` | the topic of the page | Only outside a topic page (the playground). |
+
+```mdx
+<Video id="raft-write-commit" />
+```
+
+What the learner can do: play, pause and scrub the video, switch captions,
+open the transcript, and follow the sources.
+
+## Experience
+
+Kind: visual. An adaptive learning experience built by `tutor experience
+<topic> build <id>` from `projects/<topic>/experiences/<id>/experience.json`.
+The plan's selector chooses the mode per idea; the page only names the id.
+
+| Mode | When the selector picks it | Tabs the learner gets |
+| --- | --- | --- |
+| Explainer (A) | A chronological or causal process, nothing to change | Watch, Practice |
+| Interactive lesson (B) | Parameters change the behavior over time | Guided, Explore, Practice (Watch if planned) |
+| Branching presentation (C) | Several valid decisions or paths | Deep dive, Practice |
+| Hybrid lab (D) | Many interconnected concepts, parameters and paths | Watch, Explore, Guided, Deep dive, Practice |
+
+- **Watch** plays the explainer (the rendered MP4 with captions, or the live
+  HyperFrames composition) with a transcript.
+- **Guided** plays the composition in `<hyperframes-player>` (opaque sandbox)
+  with step forward and back, speed, chapters, clickable inspection regions and
+  pauses for predict, observe, explain, experiment and check questions. When a
+  scene starts, the simulation beside it loads the scene's preset; the
+  simulation keeps its own state.
+- **Explore** is the simulation (`ClusterSim` or `AlgorithmStepper`) with
+  named starting states and the experiment challenges.
+- **Deep dive** is a HyperFrames slideshow: fragment reveals, hotspot cards
+  that open branch paths, Previous to return. It is never rendered to MP4.
+- **Practice** lists every question, the misconceptions behind wrong answers,
+  the final summary video (hybrid), and *Export progress*. The exported file
+  goes back to the harness with `tutor experience <topic> progress --file`,
+  which updates mastery and makes related recall cards due.
+
+Progress (tab, answers, slides seen, walkthrough time) stays in the browser per
+experience, so switching tabs loses nothing. A "Text version and static
+diagram" section (summary, fallback diagram, transcripts, deck outline, the
+questions) works without JavaScript and when the animation cannot load. The
+player loads only when a tab needs it; it never autoplays.
+
+| Prop | Type | Default | Meaning |
+| --- | --- | --- | --- |
+| `id` | `string` | required | The id of the experience in `visuals.json` (the folder of its `experience.json`). |
+| `topic` | `string` | the topic of the page | Only outside a topic page (the playground). |
+
+```mdx
+<Experience id="binary-search-lab" />
+```
+
+An experience with questions counts as the page's activity.
+
+## ClusterSim
+
+Kind: visual. A distributed-systems simulation the learner runs and breaks.
+Servers sit on a circle around a client (or a load balancer); messages move
+between them one tick at a time. The learner sends one operation or three at
+once, adds and removes servers, selects a server to fail or recover it, changes
+the message latency, and pauses, steps or resets the clock. Underneath, a
+metrics row, a "Why" line that explains the last outcome, and an event log in
+plain words. Use it when a page is about what a cluster does under failure,
+latency or concurrency: quorum writes, leader election, gossip, eventual
+consistency, health checks and retries. Every mode is a simplified teaching
+model; the replication mode says so on screen.
+
+| Prop | Type | Default | Meaning |
+| --- | --- | --- | --- |
+| `mode` | `"replication" \| "broadcast" \| "load-balance"` | required | The model, see below. |
+| `servers` | `number` | `3` | Servers at the start, 1–7 (ids `s1`, `s2`, …). The learner can add and remove servers within 1–7. |
+| `latency` | `number` | `1` | Ticks a message takes to arrive, 1–5. The learner changes it with a slider. |
+| `failures` | `string[]` | `[]` | Ids of servers that start failed, for example `["s3"]`. |
+| `intro` | `string` | none | One sentence above the simulation: what to try first. |
+| `explain` | `Record<string, string>` | none | Replaces the default "Why" text for an outcome. Keys: `committed`, `blocked`, `election`, `stale`, `rerouted` (also `converged`, `served`, `changed`). |
+| `title` | `string` | none | Small heading. |
+
+Modes:
+
+- `replication`: leader-based majority quorum. The client sends a write to the
+  leader, the leader appends it and sends AppendEntries to every follower,
+  followers acknowledge, and the write commits when a majority of all
+  configured servers store it. With too few servers up the write stays pending
+  and the "Why" line says, for example, "only 2 of 5 servers are reachable and
+  a majority needs 3". A failed leader is replaced after 3 ticks by the
+  lowest-id live server, with the term raised by one, and only when a majority
+  is up.
+- `broadcast`: gossip. The first live server takes an update and forwards it
+  once to every other server. A server that is down misses it and stays stale
+  after it recovers, until the learner presses Sync (anti-entropy).
+- `load-balance`: round-robin over the servers the balancer believes healthy.
+  The balancer learns about failures only at health checks every 3 ticks, so
+  requests sent to a failed server time out and are rerouted. Each server
+  shows its queue and how many requests it served; latency changes response
+  time.
+
+```mdx
+<ClusterSim
+  title="Five servers, one majority"
+  mode="replication"
+  servers={5}
+  latency={2}
+  intro="Fail s4 and s5, send a write, then fail s3 too and send another."
+  explain={{ blocked: "Two servers cannot outvote three. The write waits until a third server answers." }}
+/>
+```
+
+What the learner can do: send a write and watch the acknowledgements arrive;
+fail followers until writes stop committing, then recover one and see the
+pending write commit; fail the leader and watch the election; send three
+writes at once; raise the latency and compare the tick count.
+
+## AlgorithmStepper
+
+Kind: visual. Steps through a precomputed algorithm trace, one frame at a
+time: the values (as cells, bars or a grid) with highlighted positions and
+named pointers, the variables of that step, the code line that runs, and a
+caption that says what happened. The learner moves with Back, Forward, Play
+and Reset, a step slider, or the arrow keys. Write the trace by running the
+algorithm on a small input and copying every state; the component computes
+nothing, so the trace must be correct.
+
+| Prop | Type | Default | Meaning |
+| --- | --- | --- | --- |
+| `frames` | `Frame[]` | required | One entry per step, see below. |
+| `view` | `"array" \| "bars" \| "grid"` | `"array"` | Draw `array` as cells or as bars, or draw `grid` as a table. |
+| `code` | `string` | none | The algorithm's code, shown with the frame's `line` highlighted. |
+| `lang` | `string` | none | Language name of `code` (shown only, not highlighted). |
+| `speed` | `number` | `1200` | Milliseconds per frame while playing. |
+| `title` | `string` | none | Small heading. |
+
+`Frame`: `{ caption, array?, highlight?, pointers?, vars?, grid?, line? }`
+
+- `caption`: what this step did and why, in one sentence. Required.
+- `array`: the values, numbers or short strings. `highlight`: indexes to mark.
+- `pointers`: names placed under a cell, for example `{ lo: 0, mid: 3, hi: 6 }`.
+- `vars`: variables to print, for example `{ target: 23, comparisons: 2 }`.
+- `grid`: rows of values for `view: "grid"`; `highlight` then counts cells row by row (row × width + column).
+- `line`: the 1-based line of `code` that runs in this step.
+
+```mdx
+<AlgorithmStepper
+  title="Binary search for 23"
+  code={"lo, hi = 0, len(a) - 1\nwhile lo <= hi:\n    mid = (lo + hi) // 2\n    if a[mid] == target: return mid\n    if a[mid] < target: lo = mid + 1\n    else: hi = mid - 1"}
+  lang="python"
+  frames={[
+    { caption: "Start with the whole sorted list.", array: [2, 5, 8, 12, 16, 23, 38], pointers: { lo: 0, hi: 6 }, vars: { target: 23, comparisons: 0 }, line: 1 },
+    { caption: "The middle value 12 is smaller than 23, so the left half cannot hold it.", array: [2, 5, 8, 12, 16, 23, 38], highlight: [3], pointers: { lo: 0, mid: 3, hi: 6 }, vars: { target: 23, comparisons: 1 }, line: 5 },
+    { caption: "Search only the right half. The middle value 23 is the target.", array: [2, 5, 8, 12, 16, 23, 38], highlight: [5], pointers: { lo: 4, mid: 5, hi: 6 }, vars: { target: 23, comparisons: 2 }, line: 4 }
+  ]}
+/>
+```
+
+What the learner can do: step forward and back to compare states, play the
+trace, jump with the slider, and match each caption to the highlighted code
+line.
+
+## CompareView
+
+Kind: visual. Two approaches, or a before and an after, side by side. Each side lists its
+points; measures that both sides report become paired bars with the winner named in text.
+The verdict stays hidden until the learner asks for the trade-off, so they can judge first.
+On a narrow screen the two sides become a toggle.
+
+| Prop | Type | Default | Meaning |
+| --- | --- | --- | --- |
+| `left` | `{ label, points, metrics? }` | required | The first approach or the "before". `points`: 2–5 short lines. `metrics`: `{ "<measure>": number }`. |
+| `right` | `{ label, points, metrics? }` | required | The second approach or the "after". Only measures present on both sides are drawn. |
+| `unit` | `string` | none | Unit shown after every metric value, such as `"ms"`. |
+| `lowerIsBetter` | `boolean` | `false` | Set for latency, cost, error rate: the smaller value wins. |
+| `question` | `string` | none | A prompt above the comparison, such as "Which one would you run for checkout?". |
+| `verdict` | `string` | none | The trade-off in one or two sentences, shown after "Show the trade-off". |
+| `title` | `string` | none | Small title above the component. |
+
+```mdx
+<CompareView
+  title="Write-through or write-behind cache"
+  question="Checkout must never lose an order. Which cache write policy fits?"
+  left={{ label: "Write-through", points: ["Writes the cache and the database in one request", "A crash after the reply loses nothing", "Every write waits for the database"], metrics: { "p99 write latency": 42, "orders lost per crash": 0 } }}
+  right={{ label: "Write-behind", points: ["Writes the cache now, the database later in a batch", "A crash loses the writes still in the batch", "Writes return as soon as the cache has them"], metrics: { "p99 write latency": 6, "orders lost per crash": 120 } }}
+  unit=""
+  lowerIsBetter
+  verdict="Write-through costs about 36 ms per write but loses nothing in a crash, so it fits checkout. Write-behind fits counters and analytics where a small loss is acceptable."
+/>
+```
+
+What the learner can do: read both sides, compare the measured bars (the winner is named in a
+column, not only coloured), switch sides on mobile, reveal the trade-off, and hide it again with Reset.
+
+## CodePlayground
+
+Kind: visual. Editable JavaScript that runs in the browser, in a sandboxed iframe that cannot
+reach the network or the page. Use it when changing one line and running again teaches the idea
+(an off-by-one, a race, a retry with backoff). Output appears below; with `expected`, the learner
+sees whether their output matches.
+
+| Prop | Type | Default | Meaning |
+| --- | --- | --- | --- |
+| `code` | `string` | required | Starting code. Use a template literal; shared indentation is removed. Top-level `await` works. |
+| `lang` | `"javascript"` | `"javascript"` | Only JavaScript runs. Any other value shows the code for reading, with a sentence that says so. |
+| `expected` | `string` | none | The console output a correct program prints. Compared after trimming line ends and blank edges. |
+| `hint` | `string` | none | Shown when the learner presses "Show hint". |
+| `timeout` | `number` | `2000` | Milliseconds before a run is stopped (200–5000), so an endless loop cannot freeze the page. |
+| `title` | `string` | none | Small title above the editor. |
+
+```mdx
+<CodePlayground
+  title="Retry with exponential backoff"
+  code={`
+    const delays = [];
+    let delay = 100;
+    for (let attempt = 1; attempt <= 4; attempt++) {
+      delays.push(delay);
+      delay = delay + 100; // TODO: double the delay instead
+    }
+    console.log(delays.join(' '));
+  `}
+  expected="100 200 400 800"
+  hint="Exponential backoff multiplies the delay by 2 after each failed attempt."
+/>
+```
+
+What the learner can do: edit the code (Tab inserts two spaces; Escape then Tab leaves the
+editor), Run it, read the output and the match result, Stop a long run, Reset the code, and
+reveal the hint. Runs are stopped after `timeout` with "Stopped after N ms (infinite loop?)".
+
 ## Quiz
 
 Kind: activity. One question, single or multiple choice. The explanation
@@ -636,6 +919,39 @@ learner picks a term, then its meaning, and checks when all are matched.
 />
 ```
 
+## SortBuckets
+
+Kind: activity. Items to sort into 2–4 named groups. The learner drags each item into a group,
+or uses the group names next to it (keyboard, touch and screen readers). Check marks every
+placed item right or wrong in words and shows the explanation. Use it when the idea is a
+classification: which layer, which failure type, which stage of a funnel.
+
+| Prop | Type | Default | Meaning |
+| --- | --- | --- | --- |
+| `prompt` | `string` | required | The instruction, such as "Sort each error by who should retry it." |
+| `buckets` | `string[]` | required | 2–4 group names. |
+| `items` | `{ text, bucket }[]` | required | 3–10 items; `bucket` is the name of the right group. They start shuffled. |
+| `explanation` | `string` | none | Why the items belong where they do, shown after Check. |
+
+```mdx
+<SortBuckets
+  prompt="Sort each HTTP response by whether the client should retry it."
+  buckets={["Retry", "Do not retry"]}
+  items={[
+    { text: "503 Service Unavailable", bucket: "Retry" },
+    { text: "429 Too Many Requests", bucket: "Retry" },
+    { text: "504 Gateway Timeout", bucket: "Retry" },
+    { text: "400 Bad Request", bucket: "Do not retry" },
+    { text: "404 Not Found", bucket: "Do not retry" },
+    { text: "401 Unauthorized", bucket: "Do not retry" }
+  ]}
+  explanation="5xx overload and timeout codes and 429 describe a temporary state of the server, so a retry with backoff can succeed. 4xx codes describe the request itself; sending it again gives the same answer."
+/>
+```
+
+What the learner can do: drag items between the pool and the groups, move them with buttons,
+take one back out, Check (count right plus a "belongs in" hint per wrong item), and Reset.
+
 ## Resources
 
 Kind: utility. Lists the topic's vetted sources from
@@ -681,6 +997,43 @@ Wrapping a topic-specific component:
 ```
 
 Figure does not count as a visual component for the "at least one visual" rule.
+
+## Depth
+
+Kind: utility. A deeper layer of explanation inside a page: `internals` (how it works inside)
+or `production` (how teams run it for real). It renders as a plain section with a small label,
+never a box. A depth control above the lesson ("Essentials", "+ Internals", "+ Production")
+lets the learner choose how much to see; the choice is remembered. By default internals are
+shown and production notes are hidden. Without JavaScript every layer is visible. Keep each
+block to one or two short paragraphs; the page's main prose still carries the one idea.
+
+| Prop | Type | Default | Meaning |
+| --- | --- | --- | --- |
+| `level` | `"internals" \| "production"` | required | Which layer this text belongs to. |
+| `title` | `string` | `"Technical internals"` or `"In production"` | Replaces the small label. |
+
+```mdx
+<Depth level="internals">
+
+Each consumer group stores a pending entries list (PEL). `XREADGROUP` adds the delivered entry
+id with the consumer name and a delivery counter; `XACK` removes it. `XAUTOCLAIM` moves entries
+idle longer than a threshold to another consumer and increases their counter.
+
+</Depth>
+
+<Depth level="production">
+
+Teams alert on the PEL length per group and move entries whose delivery counter passes a
+limit to a dead-letter stream, so one poison message cannot block a consumer forever.
+
+</Depth>
+```
+
+Leave a blank line after the opening tag and before the closing tag, so MDX reads the text as
+markdown paragraphs.
+
+What the learner can do: choose Essentials, + Internals or + Production above the lesson; the
+page shows or hides the matching sections instantly and keeps the choice for later pages.
 
 ---
 

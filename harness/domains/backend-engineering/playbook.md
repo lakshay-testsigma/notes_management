@@ -129,6 +129,13 @@ Guidance for the stage skills. Each `##` heading is read by one skill; keep the 
 
 **Custom simulation ideas.** B-tree insert and split animation; an isolation-level sandbox where two transactions are stepped by hand; a write-ahead log replay after a crash; an index-scan versus sequential-scan visualiser on a small table; a token-bucket rate limiter the learner can spam; a consumer-group simulator with crash and claim.
 
+**Visual recipes** (visual-first plans; standard in `harness/rubrics/visuals.md`):
+
+- `SequenceDiagram` for request paths, transactions and retries; a registered end-to-end request-flow `Diagram` when a page introduces the whole path.
+- `ClusterSim` (`load-balance` or `replication`) for health checks, retries, replicas and failover.
+- `AlgorithmStepper` for B-tree splits, index lookups or a WAL replay on a small real example.
+- `Video` for a request lifecycle or a transaction commit; `CompareView` for isolation levels or caching policies.
+
 ## Mini project patterns
 
 Progress from guided to independent.
@@ -225,3 +232,4 @@ Question styles: Explain ("why must a consumer be idempotent?"), Compare ("cache
 - Never teach string-concatenated SQL, plaintext or fast-hash password storage, or disabled TLS verification, even "for simplicity".
 - Use fake data for users and payments; never real personal data or real card numbers (use the provider's test numbers).
 - Load tests run only against the learner's own local services.
+- **Experience recipes** (adaptive plans; `harness/rubrics/experiences.md`, the selector decides): explainer for a request through middleware; interactive for retries, back-off and idempotency keys; branching for queue vs stream vs database polling; hybrid for an outbox pattern under failures (ClusterSim load-balance).

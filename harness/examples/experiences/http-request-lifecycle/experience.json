@@ -1,0 +1,27 @@
+{
+  "id": "http-page-load",
+  "title": "Watch one page load from start to finish",
+  "mode": "explainer",
+  "objective": "Name the five steps of a page load in order and say why each waits for the one before.",
+  "level": "beginner",
+  "summary": "A short narrated video follows one page load: DNS lookup, TCP handshake, TLS handshake, the GET request with its 200 OK response, and the follow-up requests before rendering.",
+  "concept_ids": ["http-request-lifecycle"],
+  "source_ids": ["SOURCE"],
+  "used_in": ["LESSON_PAGE"],
+  "watch": { "video": "http-request-lifecycle" },
+  "checkpoints": [
+    {
+      "id": "order-check",
+      "kind": "verify",
+      "at": { "after": "watch" },
+      "prompt": "Which step must finish before the browser can send GET /index.html over HTTPS?",
+      "choices": [
+        { "text": "The TLS handshake", "correct": true },
+        { "text": "Rendering the page", "misconception": "Thinks the page renders before the HTML arrives" },
+        { "text": "Requesting the images", "misconception": "Thinks images are fetched before the HTML that names them" }
+      ],
+      "explanation": "With HTTPS the request is encrypted, so the TLS handshake on top of the TCP connection must finish first. Rendering and image requests need the HTML, so they come later.",
+      "concept_ids": ["http-request-lifecycle"]
+    }
+  ]
+}

@@ -46,6 +46,10 @@ flowchart LR
 The order service appends an event. A consumer group, which is a named team of workers,
 hands each event to exactly one of its workers. When the worker has finished, it
 acknowledges the event, and Redis stops tracking it as unfinished.
+[[visual-how-it-works-redis-streams|Explanation and sources of this picture]]
+
+**Analogy.** A stream is like a shared to-do list that nobody erases: each team ticks off
+its own items. The comparison stops at storage, because Redis trims old entries by rule.
 
 ## Where it is used in the real world
 
@@ -77,6 +81,11 @@ acknowledges the event, and Redis stops tracking it as unfinished.
 - The diagram has six nodes and one direction. The two sentences after it walk through it in
   the same order as the arrows.
 - "Consumer group" is explained in the same sentence where it first appears.
+- The diagram is registered as visual `how-it-works` (asset
+  `visuals/assets/how-it-works-redis-streams.mmd`, `used_in` the brief), so the lesson and
+  the final notes reuse it, and its vault note carries the sources and a check question.
+- The analogy is marked `**Analogy.**` and says where it stops working.
+- Sentences stay short and active (`tutor style` reports above 80%).
 - The real-world uses describe kinds of systems, because the recorded sources of this example
   topic name no specific company for those uses. When a source does name one, write it as
   "<Company> uses it for <purpose>" and add the source id to `sources` in the frontmatter.
@@ -93,3 +102,5 @@ acknowledges the event, and Redis stops tracking it as unfinished.
 3. Does every `[[link]]` name a note that exists (run `ls vault/_concepts`)?
 4. Is there exactly one mermaid block with 7 nodes or fewer?
 5. Is `## My insights` the last line?
+6. Visual-first plan: is the diagram registered (`tutor visuals <topic> list` shows it) and
+   does `tutor style <path of the brief>` show 80% or more?

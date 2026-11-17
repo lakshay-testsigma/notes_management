@@ -66,6 +66,45 @@ Open the address the site prints, then Home → domain → topic. For the notes
 and the graph, open the `vault/` folder in Obsidian and start at
 `00-start-here-<topic>`.
 
+Every new topic is visual-first: several sourced diagrams, at least one
+simulation for an advanced idea, and a short video for each real sequence (a
+request lifecycle, an algorithm over time, a funnel). Check what the machine can
+render once:
+
+```bash
+node harness/bin/tutor.mjs video tools          # HyperFrames via npx; FFmpeg or Docker; local voice
+node harness/bin/tutor.mjs visuals redis-streams list
+node harness/bin/tutor.mjs video redis-streams render <id>   # render a storyboard later
+node harness/bin/tutor.mjs style <file>          # writing-standard report
+```
+
+Without FFmpeg and without a running Docker daemon, videos are delivered as
+storyboards with captions and transcripts, and the final message says so.
+`brew install ffmpeg` (or starting Docker) and `tutor video <topic> render <id>`
+turns them into MP4s; nothing is rendered twice for an unchanged storyboard.
+
+Ideas that need practice get an interactive experience instead of a passive
+video. The engine decides per idea: an explainer when following is enough, an
+interactive lesson (pause-and-predict, a simulation, clickable inspection) when
+experimenting matters, a branching deck when several decisions are valid, and a
+hybrid lab only for genuinely complex topics.
+
+```bash
+node harness/bin/tutor.mjs experience redis-streams plan     # mode per page, cost, why
+node harness/bin/tutor.mjs experience redis-streams list
+node harness/bin/tutor.mjs deck redis-streams present <id>   # present a deck live
+```
+
+On a lesson page, practice in the Practice tab, choose **Export progress**, then
+feed the results to your recall cards:
+
+```bash
+node harness/bin/tutor.mjs experience redis-streams progress --file ~/Downloads/progress-redis-streams-<id>.json
+```
+
+Interactive experiences play HyperFrames compositions in the browser, so they
+work without FFmpeg or Docker.
+
 ## 5. Add your own learnings
 
 ```

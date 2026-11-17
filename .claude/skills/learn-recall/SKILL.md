@@ -132,6 +132,19 @@ Suggested grade: hard. Reply "ok" to keep it, or say again / good / easy.
 Suggest honestly. A generous grade moves the card to a longer interval, and the
 learner then forgets it before it comes back.
 
+Write feedback in the writing standard (`harness/rubrics/writing-standard.md`):
+short active sentences, the missing idea named in the card's own terms.
+
+When you suggest `again` or `hard`, add one sentence that points to the visual
+refresher: the visual note that explains the card (the `[[visual-<id>-<slug>]]`
+link in the stored answer or in the card's `## Reopen map` row) and where it
+lives on the site. Find the lesson page, simulation or video from
+`node harness/bin/tutor.mjs visuals <topic> list --json` (its `used_in` and
+`format`). For example: "Look at the crash-recovery flow (vault note
+visual-crash-recovery-flow-redis-streams); on the lesson page
+04-pending-and-claiming you can switch worker 1 off and watch it." One sentence,
+one visual; skip it when no registered visual explains the card.
+
 ### 6. Record the grade
 
 When the learner confirms or names a different grade, record the one they chose.
@@ -149,6 +162,18 @@ If the learner shows that a stored answer is wrong or outdated, correct the
 answer text of that card in `08-recall-<slug>.md` (keep its id), run
 `node harness/bin/tutor.mjs recall sync <topic>`, and tell them it was corrected.
 
+### 6a. Use checkpoint results from the experiences
+
+Before the first card, run `node harness/bin/tutor.mjs experience <topic> progress`.
+It lists weak concepts (mastery below 0.6) with the misconceptions the learner
+showed in interactive lessons and the scenes to replay. When the learner says they
+exported progress from a lesson page (Practice → Export progress), import it first
+with `experience <topic> progress --file <file>`: related cards become due today.
+Ask the due cards about weak concepts first. When a card is graded `again` or `hard`
+and an experience covers its concept, point to that experience's checkpoint or
+`revisit` scene ("open the Guided tab of binary-search-lab and replay 'Compare with
+the middle'"), because redoing the prediction repairs the model faster than rereading.
+
 ### 7. Close the session
 
 When the cards are finished, or the learner stops, give a short summary:
@@ -158,7 +183,10 @@ When the cards are finished, or the learner stops, give a short summary:
    to reopen. Find that place in the `## Reopen map` table of
    `08-recall-<slug>.md`, in the row for the card id. If the file has no such
    table, open `02-lesson-<slug>.md` and choose the lesson page whose one-line
-   description matches the card.
+   description matches the card. When a registered visual explains the card,
+   name it first: its visual note, and the lesson page, simulation or video
+   where it can be used (`tutor visuals <topic> list --json`). A picture or a
+   simulation restores the model faster than a page of text.
 3. When the next cards are due.
 
 Point to one page or one note section per weak card, never to "the whole topic".
@@ -172,8 +200,9 @@ Reviewed 8 cards: 5 good, 1 easy, 1 hard, 1 again.
 Reopen these:
 - rs-04 (again) — growing pending list: final notes, section "Trade-offs and
   failure modes" (vault note 07-final-notes-redis-streams).
-- rs-01 (hard) — recovering a crashed consumer's work: lesson page
-  04-pending-and-claiming.
+- rs-01 (hard) — recovering a crashed consumer's work: first the visual note
+  visual-crash-recovery-flow-redis-streams, then the simulation on lesson page
+  04-pending-and-claiming (switch worker 1 off).
 
 Next review: 2 cards tomorrow, 3 cards on 2026-11-17.
 ```
@@ -205,5 +234,7 @@ node harness/bin/tutor.mjs log <topic> "recall session: 8 reviewed, 1 again, 1 h
 - Recording grades during free practice for cards that were not due.
 - Ending with "review the topic again" instead of naming the page for each weak
   card.
+- Sending the learner to a long page when a registered visual or simulation
+  explains the card in one look, or naming a visual that is not in `visuals.json`.
 - Forgetting `recall sync` when `recall due` shows no cards for a topic that has
   a recall file.

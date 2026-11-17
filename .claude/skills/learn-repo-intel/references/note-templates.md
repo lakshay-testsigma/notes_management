@@ -158,6 +158,10 @@ Write "Not present in this slice." for a part that does not apply.>
 
 - <Name> — <what it is used for here> (`path:line @ a1b2c3d`)
 
+## Worth exploring interactively
+
+- <Code path name> — <ordered steps, each with `path:line @ a1b2c3d`> — fits <FlowAnimation | SystemDiagram | AlgorithmStepper | StateMachine> because <what the learner would see change>
+
 ## Open questions
 
 <Things you could not determine from this slice. The synthesis may resolve them.>
@@ -188,10 +192,36 @@ flowchart LR
   ST --> AOF[Persistence]
 ```
 
+<One sentence: what the module map shows, with the lines that prove the calls, e.g.
+`src/server.c:3120 @ a1b2c3d`.> [[visual-redis-module-map-redis-streams|explanation and sources]]
+
 ## Main flow
 
+```mermaid
+sequenceDiagram
+  participant C as Client
+  participant N as Networking
+  participant CMD as Command table
+  participant ST as stream-core
+  C->>N: XADD orders * item 42
+  N->>CMD: lookup "XADD"
+  CMD->>ST: xaddCommand()
+  ST-->>C: new entry id
+```
+
 <The main request or data flow through the modules, as numbered steps with evidence taken
-from the module notes.>
+from the module notes. Plain words first, then the function names.>
+[[visual-redis-request-flow-redis-streams|explanation and sources]]
+
+## Module dependencies (when useful)
+
+<Optional third diagram: which module imports which, when a layer boundary or an avoided
+cycle teaches something. Visual-first plans need at least the two diagrams above.>
+
+## Worth exploring interactively
+
+<The best 1–3 code paths collected from the module notes, each with its suggested lesson
+component and evidence.>
 
 ## Design decisions worth noticing
 

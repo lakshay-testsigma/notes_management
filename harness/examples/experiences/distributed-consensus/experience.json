@@ -1,0 +1,198 @@
+{
+  "id": "raft-consensus-lab",
+  "title": "Raft consensus laboratory",
+  "mode": "hybrid",
+  "objective": "Predict when a Raft cluster can elect a leader and commit writes, and explain why it needs a majority.",
+  "level": "advanced",
+  "summary": "An intro video shows a write committing on a majority, a five-server simulation lets the learner fail servers and send writes, a guided walkthrough pauses during a leader failure, deep dives explain split brain and cluster sizes, and a final video connects the rules.",
+  "concept_ids": [
+    "log-replication",
+    "leader-election"
+  ],
+  "source_ids": [
+    "SOURCE"
+  ],
+  "used_in": [
+    "LESSON_PAGE"
+  ],
+  "watch": {
+    "video": "raft-write-commit"
+  },
+  "guided": {
+    "video": "raft-leader-election"
+  },
+  "summary_video": "raft-summary",
+  "deck": "consensus-tradeoffs",
+  "fallback_visual": "raft-election-states",
+  "simulation": {
+    "component": "ClusterSim",
+    "props": {
+      "title": "Five-server Raft cluster",
+      "mode": "replication",
+      "servers": 5,
+      "latency": 2,
+      "intro": "Fail servers, change latency, send writes and step the clock."
+    },
+    "presets": {
+      "healthy": {
+        "servers": 5,
+        "latency": 2,
+        "failures": []
+      },
+      "leader-down": {
+        "servers": 5,
+        "latency": 2,
+        "failures": [
+          "s1"
+        ]
+      },
+      "two-left": {
+        "servers": 5,
+        "latency": 2,
+        "failures": [
+          "s3",
+          "s4",
+          "s5"
+        ]
+      }
+    }
+  },
+  "sync": [
+    {
+      "scene": "heartbeats",
+      "preset": "healthy"
+    },
+    {
+      "scene": "crash",
+      "preset": "leader-down"
+    },
+    {
+      "scene": "minority",
+      "preset": "two-left"
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "why-wait",
+      "kind": "explain",
+      "at": {
+        "after": "watch"
+      },
+      "prompt": "In one sentence: why does the leader wait for a majority before it commits a write?",
+      "explanation": "A majority stores the entry before it commits, and any later majority overlaps it, so the next leader always meets a server that has the entry.",
+      "concept_ids": [
+        "log-replication"
+      ]
+    },
+    {
+      "id": "after-crash",
+      "kind": "predict",
+      "at": {
+        "scene": "crash"
+      },
+      "prompt": "The leader just crashed. What do the followers do first?",
+      "choices": [
+        {
+          "text": "Wait for an election timeout, then one becomes a candidate",
+          "correct": true
+        },
+        {
+          "text": "Keep committing writes without a leader",
+          "misconception": "Thinks followers can commit without a leader"
+        },
+        {
+          "text": "Immediately crown the server with the lowest id",
+          "misconception": "Thinks Raft elects by server id instead of by votes after a random timeout"
+        }
+      ],
+      "explanation": "Followers notice the failure only when heartbeats stop and their election timer expires. The first to time out becomes a candidate for a new term and asks the others for votes.",
+      "concept_ids": [
+        "leader-election"
+      ],
+      "revisit": "heartbeats"
+    },
+    {
+      "id": "stop-progress",
+      "kind": "experiment",
+      "at": {
+        "scene": "minority"
+      },
+      "prompt": "In the simulation, fail servers and send a write until the write cannot commit. How many live servers are left then?",
+      "goal": {
+        "preset": "healthy",
+        "condition": {
+          "all": [
+            {
+              "path": "live",
+              "op": "lte",
+              "value": 2
+            },
+            {
+              "path": "pending",
+              "op": "gte",
+              "value": 1
+            }
+          ]
+        },
+        "hint": "Fail three servers, press Send write, then press Step a few times."
+      },
+      "explanation": "With two of five servers alive there is no majority of three, so no leader can be elected and the write stays pending. Nothing wrong is committed; the cluster just waits.",
+      "concept_ids": [
+        "leader-election",
+        "log-replication"
+      ]
+    },
+    {
+      "id": "four-servers",
+      "kind": "verify",
+      "at": {
+        "slide": "why-majority"
+      },
+      "prompt": "A cluster has four servers. How many can fail while it still commits writes?",
+      "choices": [
+        {
+          "text": "One",
+          "correct": true
+        },
+        {
+          "text": "Two",
+          "misconception": "Thinks half the servers is a majority"
+        },
+        {
+          "text": "Three",
+          "misconception": "Thinks one live server can commit alone"
+        }
+      ],
+      "explanation": "A majority of four is three. With one failure three servers remain, which is a majority; with two failures only two remain, which is not.",
+      "concept_ids": [
+        "leader-election"
+      ]
+    },
+    {
+      "id": "two-leaders",
+      "kind": "verify",
+      "at": {
+        "tab": "practice"
+      },
+      "prompt": "Why can two leaders never win the same term in Raft?",
+      "choices": [
+        {
+          "text": "Each server votes once per term and a leader needs a majority",
+          "correct": true
+        },
+        {
+          "text": "Servers with higher ids override others",
+          "misconception": "Thinks server ids decide leadership"
+        },
+        {
+          "text": "The client chooses the leader",
+          "misconception": "Thinks clients take part in elections"
+        }
+      ],
+      "explanation": "Two majorities of the same cluster overlap, and the shared server votes only once per term, so only one candidate can collect a majority in a term.",
+      "concept_ids": [
+        "leader-election"
+      ]
+    }
+  ]
+}

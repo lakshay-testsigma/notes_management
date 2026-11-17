@@ -119,6 +119,13 @@ Guidance for the stage skills. Each `##` heading is read by one skill; keep the 
 
 **Custom simulation ideas** (under `site/src/components/topics/<slug>/`): a live flexbox or grid sandbox; a virtual DOM diff viewer that shows the patches for an edit; a render counter that flashes components as they re-render; a specificity calculator; a network waterfall that the learner rearranges with `preload` and `defer`; a focus-order walker that tabs through a page.
 
+**Visual recipes** (visual-first plans; standard in `harness/rubrics/visuals.md`):
+
+- `Video` for the rendering pipeline (parse, style, layout, paint, composite) or the event loop over time.
+- `CodePlayground` for small DOM, event or async snippets the learner changes and runs; `CompareView` for rendering strategies (CSR, SSR, SSG).
+- `AlgorithmStepper` for reconciliation or a virtual DOM diff on a tiny tree; `StateMachine` for component or request state.
+- A registered end-to-end request-to-pixels `Diagram` for page-load topics.
+
 ## Mini project patterns
 
 Progress from guided (starter has most of the code, 3–5 TODOs) to independent (starter has only the scaffold and tests).
@@ -214,3 +221,4 @@ Question styles: Explain ("why does this component re-render?"), Compare ("`useM
 - Never render untrusted HTML without sanitising; avoid `dangerouslySetInnerHTML` in examples unless the lesson is about XSS.
 - Accessibility is an obligation, not an extra; do not ship a capstone that cannot be used with a keyboard.
 - Use licensed assets and fonts only, and record the license. No dark patterns (hidden unsubscribe, fake urgency) in example UIs.
+- **Experience recipes** (adaptive plans; `harness/rubrics/experiences.md`, the selector decides): explainer for the render pipeline; interactive for component lifecycle and state updates (AlgorithmStepper frames of renders); branching for state-management choices; hybrid only for a full data-fetching strategy with caching.

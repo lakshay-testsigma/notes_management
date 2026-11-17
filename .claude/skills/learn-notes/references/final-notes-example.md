@@ -3,7 +3,7 @@
 This is a complete `07-final-notes-<slug>.md` for the topic
 `backend-engineering/messaging/redis-streams`. Copy the structure, not the
 content. The headings, their order, and their spelling are fixed. The example is
-about 370 words, which sits safely inside the 200 to 600 word gate.
+about 420 words, which sits safely inside the 200 to 600 word gate.
 
 What makes it good:
 
@@ -13,6 +13,8 @@ What makes it good:
 - "When not to" names the alternative, so the note is useful for a decision.
 - Failure modes name the symptom the learner would actually see.
 - The production section links to the exact repo-intel notes.
+- The visual refresher links the two visuals that restore the model fastest
+  and the visual index, and copies nothing from them.
 
 ````markdown
 ---
@@ -46,6 +48,15 @@ flowchart LR
 Entries are never moved, only read. The group remembers what it handed out and
 to whom. XACK clears pending tracking without deleting retained history. Deletion,
 trimming and cleanup commands can also affect that tracking, depending on version.
+
+## Visual refresher
+
+- [[visual-group-delivery-end-to-end-redis-streams|One entry, end to end]]: follow
+  one entry from XADD to XACK and note where it waits.
+- [[visual-crash-recovery-flow-redis-streams|Crash recovery]]: switch worker 1
+  off and watch XAUTOCLAIM hand its entry to worker 2.
+
+All visuals: [[visuals-redis-streams|all visuals]].
 
 ## Key ideas
 
@@ -124,3 +135,7 @@ XTRIM orders MAXLEN '~' 100000
   topic." Leave the repo-intel line out of `## Go deeper`.
 - Leave out any `## Go deeper` line whose file does not exist. A broken wikilink
   fails the `finalize` gate.
+- Take the visual ids for `## Visual refresher` from
+  `node harness/bin/tutor.mjs visuals <topic> list --json`. Prefer the end-to-end
+  workflow, the main simulation and the video. A topic with fewer visuals links
+  the ones it has; the link to `visuals-<slug>` is always there.

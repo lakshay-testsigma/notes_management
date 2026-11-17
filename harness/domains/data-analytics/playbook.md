@@ -135,6 +135,13 @@ Guidance for the stage skills. Each `##` heading is read by one skill; keep the 
 
 **Custom simulation ideas.** A coin-flip sampling simulator that builds a sampling distribution live; a peeking simulator that runs 1,000 A/A tests and counts false positives when stopped early; a "make this chart honest" editor (fix axis, order, colour); a join explorer that shows the result rows for each join type on two tiny tables; a regression-to-the-mean demo; a Simpson's paradox toggle that splits and merges groups.
 
+**Visual recipes** (visual-first plans; standard in `harness/rubrics/visuals.md`):
+
+- `Chart` and `ParamPlayground` for distributions, sample size, confidence intervals and effect size; never 3D charts.
+- `CompareView` for an honest versus a misleading chart, or two metric definitions.
+- `SortBuckets` for classifying metrics, biases or chart types; `AlgorithmStepper` for a join or a group-by on a tiny table.
+- A registered end-to-end analysis-workflow `Diagram` (question, data, cleaning, analysis, decision) for process topics.
+
 ## Mini project patterns
 
 Mini projects are analyses. `starter/` holds the dataset (or a download script), a notebook or SQL file with questions and TODOs; `solution/` holds the completed analysis and a `check.py` that asserts the key numbers. Guided → independent.
@@ -232,3 +239,4 @@ Question styles: Explain ("why does peeking inflate false positives?"), Compare 
 - No misleading visuals: no truncated bar axes, cherry-picked date ranges, or dual axes chosen to suggest a relationship.
 - Decide the metric and the test before looking at the outcome; do not search subgroups until something is significant.
 - Analyses about groups of people need care with fairness and wording; describe populations, do not judge them.
+- **Experience recipes** (adaptive plans; `harness/rubrics/experiences.md`, the selector decides): explainer for a metric pipeline; interactive for sample size against confidence; branching for choosing a test or a chart for a question; hybrid only for a full experiment design.

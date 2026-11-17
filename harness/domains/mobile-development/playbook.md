@@ -125,6 +125,13 @@ Default stack is React Native with Expo and TypeScript, because it runs on both 
 
 **Custom simulation ideas.** A phone frame that the learner can background, kill, rotate, and take offline to see how a sample screen reacts; a gesture playground (pan, pinch, swipe thresholds); a list scroller with a frame-drop meter; a deep-link tester that resolves a URL to a screen stack; a sync-conflict simulator with two devices editing one record; a safe-area and notch overlay tool.
 
+**Visual recipes** (visual-first plans; standard in `harness/rubrics/visuals.md`):
+
+- `StateMachine` plus a `Video` for the app lifecycle (launch, foreground, background, suspended, terminated) and what the app must save at each step.
+- A registered architecture `Diagram` of the app layers (UI, state, data, network) as the end-to-end workflow of architecture topics.
+- `CompareView` for native versus cross-platform or two state-management approaches; `SequenceDiagram` for push notifications and deep links.
+- `ClusterSim` in `broadcast` mode for offline sync between devices and a server.
+
 ## Mini project patterns
 
 Projects run in Expo Go or a simulator with no paid accounts. Guided → independent.
@@ -227,3 +234,4 @@ Question styles: Explain ("why can the system kill a backgrounded app, and what 
 - Secrets never ship in the app bundle; tokens go in the secure store; signing keys and provisioning files are never committed.
 - Do not publish to a store unless the learner asks; follow store policies and never copy another app's name, icon, or assets.
 - No dark patterns: honest notifications, easy opt-out, no fake urgency.
+- **Experience recipes** (adaptive plans; `harness/rubrics/experiences.md`, the selector decides): explainer for an app lifecycle; interactive for offline sync conflicts; branching for native vs cross-platform choices; hybrid for push delivery with failures.

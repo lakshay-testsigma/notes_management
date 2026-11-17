@@ -16,6 +16,7 @@ import { listPackIds, tryLoadPack } from './packs.mjs';
 import { isOmitted, progressOf, runnableStages } from './stages.mjs';
 import { readSources, SOURCE_TYPES, SOURCE_TYPE_LABELS } from './sources.mjs';
 import { today } from './clock.mjs';
+import { exportVisuals } from './visuals.mjs';
 import { CLI } from './root.mjs';
 
 /** Reading order 01 -> 09: which note, and which stage produces it. */
@@ -98,11 +99,13 @@ export function refreshTopic(root, topic) {
   const vars = topicVars(topic);
 
   const stageNotes = syncStageNotes(root, topic);
+  const visuals = exportVisuals(root, topic);
+  if (visuals.length) linkIndex = buildVaultIndex(root);
   writeGenerated(path.join(root, paths.start_here), TOPIC_TEMPLATES.start_here, vars, renderStartHere(root, topic));
   writeGenerated(path.join(root, paths.resources), TOPIC_TEMPLATES.resources, vars, renderResources(root, topic));
   const shared = refreshSharedMaps(root, [topic.domain]);
   const backlinks = syncBacklinks(root, topic);
-  return { written: [paths.start_here, paths.resources, ...shared], stage_notes: stageNotes, backlinks };
+  return { written: [paths.start_here, paths.resources, ...visuals, ...shared], stage_notes: stageNotes, backlinks };
 }
 
 /** Regenerate the domain maps (all domains that have topics, or the given ones) and Home. */
@@ -159,6 +162,9 @@ function renderStartHere(root, topic) {
     );
   });
   out.push('', `Your own additions live in ${link(paths.insights, 'My insights')}.`);
+  if (isFile(path.join(root, paths.visuals_index))) {
+    out.push('', `Every diagram, simulation and video, with its concepts and sources: ${link(paths.visuals_index, 'Visuals')}.`);
+  }
 
   const hasLesson = statusOf('lesson') !== 'skipped';
   if (hasLesson) out.push('', '## Open the lesson', '', openLessonLine(topic));

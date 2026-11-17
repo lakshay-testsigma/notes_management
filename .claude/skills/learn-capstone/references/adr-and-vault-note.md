@@ -115,6 +115,10 @@ yet" line under it, and write the content in their place. Keep
 Rules:
 
 - Project files are not vault notes. Write their paths as inline code.
+- `## Architecture at a glance` holds the system architecture diagram (mermaid,
+  or the registered SVG embedded with `![[<id>-<slug>.svg]]`) and links the
+  visual note of every capstone diagram, `[[visual-<id>-<slug>]]`. The visual
+  notes exist after `tutor map <topic>`; run it before validating the note.
 - Wikilinks go only to notes that exist: the repo-intel notes of this topic, and
   notes in `vault/_concepts/` and `vault/_tech/` (`ls` both folders first).
 - Inside a table, write wikilinks without the `|Shown text` part, because a pipe
@@ -155,6 +159,9 @@ flowchart LR
   D --> M[SmtpMailer]
   D --> L[(RedisDeliveryLog)]
 ```
+
+Diagrams with their explanations and sources: [[visual-capstone-architecture-redis-streams]],
+[[visual-capstone-request-flow-redis-streams]], [[visual-capstone-deployment-redis-streams]].
 
 ## Layers and key classes
 

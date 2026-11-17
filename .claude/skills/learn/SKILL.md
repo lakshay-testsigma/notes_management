@@ -13,6 +13,13 @@ move to the next wave. All progress lives on disk, so any session can stop and a
 continue.
 
 Read `docs/RESEARCH-WORKFLOW.md` before new generation or a curriculum upgrade.
+New plans are **visual-first** (`plan.visual_first: true`): every stage explains with
+meaningful, sourced visuals through the shared skill `.claude/skills/learn-visuals/SKILL.md`,
+sequences get short HyperFrames videos and ideas that need practice get interactive
+experiences through `.claude/skills/learn-video/SKILL.md`, and all
+prose follows `harness/rubrics/writing-standard.md` (about 80% ASD-STE100). The standard and
+its gates are in `harness/rubrics/visuals.md`. Pass these skills to workers; do not draw or
+render yourself.
 New plans record the developer learner profile, recursive research curriculum and
 adaptive visual decisions. The harness does not select provider models or change
 reasoning settings. Use the model configured by the host.
@@ -48,6 +55,18 @@ Run the health check once per session:
 node harness/bin/tutor.mjs doctor
 node harness/bin/tutor.mjs list --json
 ```
+
+Run `node harness/bin/tutor.mjs video tools` once: it says whether videos can render (FFmpeg
+or Docker) and which free local voice exists. Without a renderer, planned videos are delivered
+as storyboards with captions and transcripts and the blocker is reported; never install paid
+services to get around it. Interactive, branching and guided experiences need no renderer:
+they play HyperFrames compositions in the site player (`doctor` rows `player` and
+`hyperframes-skills` must be OK).
+
+Every new plan uses `experience_policy: "adaptive"`: per idea, the selector chooses a static
+diagram, an explainer video, an interactive video lesson, a branching deck or a hybrid lab
+(`harness/rubrics/experiences.md`). Do not ask the learner which; respect an explicit request
+("make it a video", "I want to experiment") as an override with that reason.
 
 Also verify source-network access and actual fresh-worker capability. Inspect project
 verification recipes and establish their services before running them. Record host
@@ -122,7 +141,7 @@ A stage absent from `tutor next` may be blocked by a prerequisite. Inspect `stat
 | `brief` | inline | — | — |
 | `digest` | workers | one source flagged `use_for: digest` | `tutor-digester` |
 | `repo-intel` | workers | one scout, then one per slice, then one synthesis, per repository | `tutor-repo-analyst` |
-| `lesson` | workers | 2–3 pages or one supplementary concept note | `tutor-lesson-builder` |
+| `lesson` | workers | 2–3 pages, one supplementary concept note, one planned video (`video-<id>`) or one planned experience (`experience-<id>`) | `tutor-lesson-builder`; `tutor-video-producer` for video and experience units |
 | `mini-projects` | workers | one mini project | `tutor-project-builder` |
 | `capstone` | worker | the capstone project | `tutor-project-builder` |
 | `notes` | inline | — | — |
@@ -268,13 +287,16 @@ Run these in order. Each command must finish before the next one starts.
 node harness/bin/tutor.mjs start <topic> finalize
 node harness/bin/tutor.mjs map <topic>
 node harness/bin/tutor.mjs recall sync <topic>
+node harness/bin/tutor.mjs visuals <topic> check
 node harness/bin/tutor.mjs validate <topic> --all --structure-only
 [ -d site/node_modules ] || npm --prefix site install
 node harness/bin/tutor.mjs check <topic> finalize
 ```
 
 `tutor map` also fills `## Where it shows up` in every shared `_concepts` and `_tech` note
-the topic links to; never write those lines by hand. `smoke` loads every built page in a
+the topic links to, and exports `visuals.json` to `<vault>/visuals/` (an index, one note per
+visual with its explanation, sources and check question, and the concept map); never write
+those lines by hand. `smoke` loads every built page in a
 headless browser and fails on a console or hydration error, which the build cannot see.
 
 Then do these steps. The details of steps 2 to 4 (what to read, whom to spawn, the verifier's
@@ -284,7 +306,9 @@ input list) are in the `finalize` section of `references/stage-runbook.md`; read
    and failures". Lines that belong to a stage you already recorded as failed stay unfixed;
    list them in the final message.
 2. Repair a failing build or a failing `smoke` check. A smoke failure always goes to one
-   `tutor-lesson-builder` with the smoke lines in `FIX LIST`. At most 3 rounds.
+   `tutor-lesson-builder` with the smoke lines in `FIX LIST`. At most 3 rounds. Then run
+   `npm --prefix site run interact` (simulation controls and Reset, captions, sandbox,
+   accessible names, 375 px layout) and repair what it reports the same way.
 3. Obtain `tutor review <topic> --json` (fingerprint and required checks), then spawn
    fresh isolated reviewers. Pass the learner request, scoped plan/sources and artifact
    paths, not author reasoning or self-review verdicts. One `tutor-verifier` at depth `quick`; at `standard` and `deep` a
@@ -335,6 +359,11 @@ Your notes for <Title> are ready.
 What I made: a short brief, <N> lesson pages, <N> supplementary concept notes, <N> mini projects, <N> digests of
 the key papers and docs, a deep dive into <org>/<repo>, a capstone project (<name>), one-page
 final notes, and <N> recall cards.
+Visuals: <N> diagrams, <N> simulations, <N> videos (<N> rendered; <N> storyboard only because
+<blocker>). Experiences: <N> explainer, <N> interactive, <N> branching, <N> hybrid (from
+`tutor experience <topic> list`), each with its page. All of them are listed in `visuals-<slug>`
+in the vault. After practicing, export progress from a Practice tab and run
+`tutor experience <topic> progress --file <file>` to feed recall.
 
 Read in this order. You never need to jump around:
 <the reading order, exactly as `tutor next <topic>` printed it>

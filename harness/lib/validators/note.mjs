@@ -18,7 +18,7 @@ import { failure } from './context.mjs';
 
 export const NOTE_STAGES = [
   'brief', 'lesson', 'mini-projects', 'digest', 'repo-intel', 'capstone', 'final-notes',
-  'recall', 'resources', 'insights', 'map', 'concept', 'tech',
+  'recall', 'resources', 'insights', 'map', 'concept', 'tech', 'visual',
 ];
 
 /**

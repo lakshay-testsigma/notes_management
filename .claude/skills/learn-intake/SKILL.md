@@ -142,7 +142,12 @@ Read only these. Nothing here needs a web search unless you do not know what the
    | `summary` | One sentence: what the topic is and what it is for. No jargon that is not in the prerequisites. |
    | `outcomes` | 3–6 items, each at most 15 words. Each starts with a verb and can be checked. Include at least one of each kind: explain ("Explain why…"), build ("Build a…"), decide ("Decide when to use… instead of…"). Every outcome must be taught by at least one page of `lesson_outline` or one mini project; do not promise a comparison ("…instead of fine-tuning") that no page explains. |
    | `lesson_outline` | `quick` 3–4 pages, `standard` 5–7, `deep` 8–12. One idea per page. Page 1 answers "what is it and why does it exist". The last page shows it in real production use. `order` counts from 1 without gaps; `slug` is kebab-case and unique. |
-   | `visual` / `activity` | New plans set `visual_policy: "adaptive"`. Each page records complexity, importance, spatial, visual_reason, and interaction_goal for a visual. Basic noncritical pages may use visual:null; intermediate/critical pages need focused visuals; advanced spatial pages need manipulable 3D, advanced nonspatial pages a justified simulation. Every page retains an activity. See `docs/RESEARCH-WORKFLOW.md`. |
+   | `visual` / `activity` | New plans set `visual_policy: "adaptive"`. Each page records complexity, importance, spatial, visual_reason, and interaction_goal for a visual. Basic noncritical pages may use visual:null; intermediate/critical pages need focused visuals; advanced spatial pages need manipulable 3D (`Graph3D` editable or `VectorSpace3D`); advanced nonspatial pages a justified simulation: `ParamPlayground`, `StateMachine`, `FlowAnimation`, `ClusterSim`, `AlgorithmStepper` or `CodePlayground`. Every page retains an activity (`SortBuckets` is new for classification). See `docs/RESEARCH-WORKFLOW.md`. |
+   | `visual_first` | `true` on every new plan (it requires `visual_policy: "adaptive"`). It switches on the visual-first gates of `harness/rubrics/visuals.md`: registered lesson visuals (at least 2 quick / 3 standard / 5 deep), diagrams in the brief, digests, repository architecture notes, project READMEs and the capstone, a visual refresher in the final notes, and extra review checks. Choose each visual from the table "When a topic gets which visual" in that rubric, not by quota. |
+   | `multi_stage` | `true` when the topic centers on a process with several dependent stages (a request lifecycle, a training loop, a deployment pipeline, a funnel). The lesson gate then requires one end-to-end workflow `Diagram` (`kind: workflow`, `scope: end-to-end`); plan the page that introduces the whole process with `visual: "Diagram"`. Otherwise `false`. |
+   | `extra_visuals` | Optional per page: `["CompareView"]` etc., shared visual names for a complex page that needs a second view (a diagram plus a simulation). Only on a page that also has a primary `visual`. Each one must appear on the page. |
+   | `video` | Optional per page: `{ "id": "raft-write-commit", "reason": "..." }`. Only for a chronological or causal sequence that motion explains better than a picture: a request lifecycle, an algorithm over time, a protocol exchange, a funnel, lifecycle states. At most 3 per topic, unique kebab-case ids. Never for a definition. The page embeds it with `<Video id>`; `learn-video` produces it. |
+   | `experience_policy` | `"adaptive"` on every new plan (needs `visual_first: true`). Every outline entry then gets `experience`: `{ "signals": {...}, "id": "<kebab-id>", "concept_ids": [...] }`. Count the signals from the sources (`harness/rubrics/experiences.md` §2): complexity 1–5, concepts, dependent_steps, changes_over_time, spatial, parameters (inputs that change behavior), decision_paths, benefit (low/medium/high). The selector picks static, explainer, interactive, branching or hybrid; do not pick by taste. Run `tutor experience select --file <signals.json>` per idea while you plan. Interactive, branching and hybrid pages need `visual: "Experience"` and an `id`; explainer pages need `video`. Override only with `mode` + `override_reason`. The sum of costs (static 0, explainer 2, interactive/branching 3, hybrid 6) must fit quick 4 / standard 10 / deep 18. Read `research-handoff` visual candidates: they list parameters and decision paths with sources. |
    | `curriculum` | A provisional bounded concept tree, schema 1, scope, max_depth/max_concepts, concepts and discovery. Each concept records id/title/parent, complexity/importance and disposition. Initially source_ids/coverage/discovery may be empty. Use quick 2/12, standard 3/30, deep 4/60 as starting depth/count limits, not quotas. Research expands and verifies it. |
    | `mini_projects` | `quick` 1, `standard` 2, `deep` 3. Each `use_case` names who needs it and for what ("A shop's order service hands slow email sending to a background worker"). Each one exercises at least one outcome and fits 1–3 hours. |
    | `digest_targets` | `quick` 1–2, `standard` 2–3, `deep` 4–6. Choose the low end unless you can name that many defining sources. |
@@ -151,21 +156,43 @@ Read only these. Nothing here needs a web search unless you do not know what the
 
    If `pack.json` has `depth_overrides` for this depth, its numbers replace the ones above.
 
+   **Choosing visuals.** For each page ask what the learner must be able to predict or
+   explain afterwards, then pick the representation from `harness/rubrics/visuals.md`
+   ("When a topic gets which visual"). The visual components are `FlowAnimation`,
+   `SystemDiagram`, `SequenceDiagram`, `StateMachine`, `Graph3D`, `VectorSpace3D`, `Chart`,
+   `ParamPlayground`, `CodeWalkthrough`, `Timeline`, `Mermaid`, and the visual-first set:
+   `Diagram` (a registered SVG or mermaid diagram that the vault reuses), `Video` (a
+   HyperFrames explainer), `ClusterSim` (distributed systems under failure, latency,
+   concurrency), `AlgorithmStepper` (an algorithm on real data), `CompareView` (two
+   approaches or before/after), `CodePlayground` (sandboxed code to change and run).
+   `SortBuckets` is an activity; `Depth` is a utility for deeper internals and production
+   notes inside a page, never a `visual`. Use 3D only when space or a graph is the idea.
+   Plan enough distinct visuals for the gate minimum (2 / 3 / 5) without adding decoration.
+   When a learner profile is written, record the learner's preference in `plan.learner`,
+   for example `"goals": [..., "learn visually and by experimenting with simulations"]`.
+
 8. **Store the plan and regenerate the map.**
 
    ```bash
    node harness/bin/tutor.mjs plan <topic> --set .cache/tmp/<slug>/plan.json
+   node harness/bin/tutor.mjs experience <topic> plan    # modes, cost vs budget, recorded mastery
    node harness/bin/tutor.mjs map <topic>
    node harness/bin/tutor.mjs log <topic> "intake: domain=<domain>/<subdomain>, depth=<depth>. Assumptions: <each decision you made for the learner>"
    ```
+
+   When `experience <topic> plan` shows recorded mastery for a page (the learner
+   practiced these concepts in an earlier topic), copy it into that page's
+   `signals.mastery` and set the plan again: mastery ≥ 0.8 lightens the mode, < 0.4
+   adds practice. The gates read only the plan, so later progress never changes them.
 
 9. **Gate** (next section), then return the topic id to the orchestrator.
 
 ## Output contract
 
 - `plan` inside `topic.json`, stored only through `tutor plan --set`. Base fields below
-  plus `learner`, `visual_policy: "adaptive"`, and `curriculum` from
-  `docs/RESEARCH-WORKFLOW.md`. Add adaptive fields to every outline entry:
+  plus `learner`, `visual_policy: "adaptive"`, `visual_first: true`, `multi_stage`, and
+  `curriculum` from `docs/RESEARCH-WORKFLOW.md`. Add adaptive fields to every outline entry,
+  and `extra_visuals` / `video` where step 7 allows them:
 
   ```json
   {
@@ -198,7 +225,13 @@ node harness/bin/tutor.mjs done <topic> intake
 ```
 
 The gate checks that the plan has a summary, prerequisites, outcomes, and a lesson outline
-whose page count fits the depth. When it fails, each line reads `path: problem. fix.` Correct
+whose page count fits the depth. For visual-first plans it also checks that `visual_first`
+comes with `visual_policy: "adaptive"`, that `multi_stage` is a boolean, that
+`extra_visuals` names shared visuals on a page with a primary visual, and that every
+`video` has a kebab-case id, a reason, no duplicate, and at most 3 per topic. With
+`experience_policy: "adaptive"` it also checks every page's signals, that each mode is
+the selector's choice or a justified override, that interactive modes have an id and
+`visual: "Experience"`, and that the total cost fits the depth budget. When it fails, each line reads `path: problem. fix.` Correct
 those fields in `.cache/tmp/<slug>/plan.json`, run `tutor plan <topic> --set` again, and rerun
 the gate. After 3 failed attempts, run
 `node harness/bin/tutor.mjs fail <topic> intake --reason "<the remaining lines>"` and stop the
@@ -238,6 +271,10 @@ pipeline, because nothing can be built without a plan.
 - **An outcome that no page or project teaches**, or an outcome longer than 15 words, or a
   bridge longer than 12 words. The first is found by the verifier at the very end; the
   other two make the brief fail its word limit.
+- **A video for a definition, or 3D for an ordinary flowchart.** A video needs a real
+  sequence; 3D needs spatial or graph structure. Otherwise use `Diagram` or a 2D component.
+- **`multi_stage: true` without a page planned for the whole process.** The lesson gate
+  will demand an end-to-end workflow diagram that no page shows.
 - **Component names that do not exist.** Use only names from the manifest. A misspelled name
   breaks the lesson stage three waves later.
 - **Marking a prerequisite as known because a concept note exists.** Only a finished topic or

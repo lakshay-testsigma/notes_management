@@ -1,0 +1,170 @@
+{
+  "id": "http-request-lifecycle",
+  "title": "What happens when a browser loads a page",
+  "purpose": "Follow one page load through DNS, TCP, TLS, the HTTP request and the response, in order.",
+  "sequence_reason": "Each step can start only after the step before it finishes, so the order of events is the idea.",
+  "summary": "The browser asks DNS for the server address, opens a TCP connection with a three-way handshake, agrees on encryption keys with TLS, sends a GET request and receives a 200 OK response with the HTML, then requests the files the page needs.",
+  "explanation": "A page load is a chain: name lookup, connection, encryption, request and response. A slow early step delays every later step.",
+  "learning_check": {
+    "question": "Why can the browser not send the GET request before the TCP handshake finishes?",
+    "answer": "The request travels over the TCP connection, and with HTTPS the TLS handshake must also finish first, so there is no channel to send it on yet."
+  },
+  "concept_ids": [
+    "http-request-lifecycle"
+  ],
+  "source_ids": [
+    "SOURCE"
+  ],
+  "used_in": [
+    "LESSON_PAGE"
+  ],
+  "narration": {
+    "engine": "auto"
+  },
+  "scenes": [
+    {
+      "id": "intro",
+      "duration": 6,
+      "heading": "One page load, five steps",
+      "narration": "Loading a page takes five steps, and each one waits for the step before it.",
+      "visual": {
+        "type": "title",
+        "subtitle": "DNS, TCP, TLS, request, response"
+      }
+    },
+    {
+      "id": "dns",
+      "duration": 8,
+      "heading": "Find the server address",
+      "narration": "First, the browser asks a DNS resolver for the IP address of the server name.",
+      "visual": {
+        "type": "flow",
+        "nodes": [
+          {
+            "id": "browser",
+            "label": "Browser"
+          },
+          {
+            "id": "dns",
+            "label": "DNS resolver"
+          },
+          {
+            "id": "server",
+            "label": "Web server"
+          }
+        ],
+        "path": [
+          {
+            "from": "browser",
+            "to": "dns",
+            "packet": "example.com?",
+            "label": "The browser asks for the address"
+          },
+          {
+            "from": "dns",
+            "to": "browser",
+            "packet": "IP address",
+            "label": "The resolver answers with the IP address"
+          }
+        ]
+      }
+    },
+    {
+      "id": "tcp",
+      "duration": 9,
+      "heading": "Open a TCP connection",
+      "narration": "Next, the browser and the server do the TCP handshake: SYN, then SYN-ACK, then ACK.",
+      "visual": {
+        "type": "flow",
+        "nodes": [
+          {
+            "id": "browser",
+            "label": "Browser"
+          },
+          {
+            "id": "server",
+            "label": "Web server"
+          }
+        ],
+        "path": [
+          {
+            "from": "browser",
+            "to": "server",
+            "packet": "SYN"
+          },
+          {
+            "from": "server",
+            "to": "browser",
+            "packet": "SYN-ACK"
+          },
+          {
+            "from": "browser",
+            "to": "server",
+            "packet": "ACK",
+            "label": "The connection is open"
+          }
+        ]
+      }
+    },
+    {
+      "id": "tls",
+      "duration": 9,
+      "heading": "Agree on encryption with TLS",
+      "narration": "For HTTPS, a TLS handshake follows. The server sends its certificate, and both sides agree on keys.",
+      "visual": {
+        "type": "steps",
+        "items": [
+          "ClientHello: the browser proposes keys and ciphers",
+          "ServerHello and certificate: the server proves its name",
+          "Keys agreed: from now on, traffic is encrypted"
+        ]
+      }
+    },
+    {
+      "id": "request",
+      "duration": 9,
+      "heading": "Send the request, get the response",
+      "narration": "Now the browser sends a GET request. The server answers with a status line, 200 OK, and the HTML.",
+      "visual": {
+        "type": "flow",
+        "nodes": [
+          {
+            "id": "browser",
+            "label": "Browser"
+          },
+          {
+            "id": "server",
+            "label": "Web server"
+          }
+        ],
+        "path": [
+          {
+            "from": "browser",
+            "to": "server",
+            "packet": "GET /index.html"
+          },
+          {
+            "from": "server",
+            "to": "browser",
+            "packet": "200 OK + HTML",
+            "label": "The status code says the request succeeded"
+          }
+        ]
+      }
+    },
+    {
+      "id": "render",
+      "duration": 9,
+      "heading": "Fetch the rest, then render",
+      "narration": "The browser reads the HTML, requests the CSS, scripts and images it names, and renders the page.",
+      "visual": {
+        "type": "steps",
+        "items": [
+          "Parse the HTML",
+          "Request CSS, scripts and images, often on the same connection",
+          "Render the page"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+---
+// Lesson component <Diagram id="…" />: a diagram registered in the topic's
+// visuals.json (state/topics/<topic>/visuals.json), drawn from its asset in the
+// vault (`visuals/assets/`). The vault note of the same visual embeds the same
+// file, so the site and Obsidian never drift. Props: site/COMPONENTS.md.
+import DiagramView from './views/DiagramView.astro';
+import { pageTopic, resolveVisual } from '../../lib/visuals';
+
+interface Props {
+	/** The id of the visual in visuals.json. */
+	id: string;
+	/** `domain/subdomain/slug`. Only needed outside a topic page. */
+	topic?: string;
+}
+const { id, topic: topicId } = Astro.props;
+const { entry, sources, problem } = resolveVisual(pageTopic(topicId, Astro.locals, Astro.url), id);
+---
+
+{entry && !problem ? <DiagramView entry={entry} sources={sources} /> : <p class="lc lc-error">{problem}</p>}

@@ -21,9 +21,16 @@ export const FALLBACK_KINDS = {
     'CodeWalkthrough',
     'Timeline',
     'Mermaid',
+    'Diagram',
+    'Video',
+    'Experience',
+    'ClusterSim',
+    'AlgorithmStepper',
+    'CompareView',
+    'CodePlayground',
   ],
-  activity: ['Quiz', 'PredictReveal', 'OrderSteps', 'MatchPairs'],
-  utility: ['Resources', 'Figure'],
+  activity: ['Quiz', 'PredictReveal', 'OrderSteps', 'MatchPairs', 'SortBuckets'],
+  utility: ['Resources', 'Figure', 'Depth'],
 };
 
 export function manifestPath(root) {

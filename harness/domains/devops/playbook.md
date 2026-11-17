@@ -138,6 +138,13 @@ For this domain the most valuable files are not source code: read `.github/workf
 
 **Custom simulation ideas.** A scheduler game where the learner places pods on nodes under resource limits; a layer-cache simulator for Dockerfile edits; an error-budget burn simulator; a DNS resolution walk; a "terraform plan" diff viewer for small edits; a namespace and cgroup explorer showing what a container can see.
 
+**Visual recipes** (visual-first plans; standard in `harness/rubrics/visuals.md`):
+
+- A registered deployment `Diagram` (build, registry, cluster, ingress, monitoring) as the end-to-end workflow of CI/CD topics.
+- `ClusterSim` in `load-balance` mode for health checks, rolling updates and failing instances.
+- `Video` for a deployment rollout or a request through ingress, service and pod; `StateMachine` for a pod lifecycle.
+- `CodePlayground` or `CodeWalkthrough` for configuration; `CompareView` for blue-green versus canary.
+
 ## Mini project patterns
 
 All run locally (Docker, kind, LocalStack) unless the learner asks for a real cloud. Guided → independent.
@@ -233,3 +240,4 @@ Question styles: Explain ("why does order of lines in a Dockerfile change build 
 - Never put credentials in repositories, images, Terraform state committed to git, or CI logs. Use the CI secret store and least-privilege, short-lived credentials.
 - Destructive commands (`rm -rf`, `kubectl delete`, `terraform destroy`, `docker system prune`) appear only with an explicit scope and a warning sentence, and only against disposable local environments.
 - Never disable TLS verification or run containers as root "to make it work" without stating the risk and the proper fix.
+- **Experience recipes** (adaptive plans; `harness/rubrics/experiences.md`, the selector decides): explainer for a deploy pipeline; interactive for rollout percentages and health checks (ClusterSim load-balance); branching for blue-green vs canary vs rolling; hybrid for incident response with failures and rollbacks.

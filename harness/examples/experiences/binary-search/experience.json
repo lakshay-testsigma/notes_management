@@ -1,0 +1,717 @@
+{
+  "id": "binary-search-lab",
+  "title": "Step through binary search yourself",
+  "mode": "interactive",
+  "objective": "Predict which half binary search keeps and explain when the search stops.",
+  "level": "intermediate",
+  "summary": "An animated walkthrough of binary search on a sorted list of nine numbers, paused at key moments for predictions, with a step-by-step stepper where the learner searches for a present and a missing value.",
+  "concept_ids": [
+    "binary-search"
+  ],
+  "source_ids": [
+    "SOURCE"
+  ],
+  "used_in": [
+    "LESSON_PAGE"
+  ],
+  "guided": {
+    "video": "binary-search-walkthrough"
+  },
+  "fallback_visual": "binary-search-steps",
+  "simulation": {
+    "component": "AlgorithmStepper",
+    "props": {
+      "title": "Binary search, one comparison per step",
+      "frames": [
+        {
+          "caption": "Search for 23. The whole list is possible: low 0, high 8.",
+          "array": [
+            2,
+            5,
+            8,
+            12,
+            16,
+            23,
+            38,
+            56,
+            72
+          ],
+          "highlight": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "pointers": {
+            "low": 0,
+            "high": 8
+          },
+          "vars": {
+            "target": 23,
+            "low": 0,
+            "high": 8
+          },
+          "line": 1
+        },
+        {
+          "caption": "mid = (0 + 8) // 2 = 4. a[4] = 16 is smaller than 23, so the target can only be right of mid: low = 5.",
+          "array": [
+            2,
+            5,
+            8,
+            12,
+            16,
+            23,
+            38,
+            56,
+            72
+          ],
+          "highlight": [
+            5,
+            6,
+            7,
+            8
+          ],
+          "pointers": {
+            "low": 0,
+            "mid": 4,
+            "high": 8
+          },
+          "vars": {
+            "target": 23,
+            "low": 5,
+            "high": 8,
+            "mid": 4,
+            "a[mid]": 16
+          },
+          "line": 6
+        },
+        {
+          "caption": "mid = (5 + 8) // 2 = 6. a[6] = 38 is larger than 23, so the target can only be left of mid: high = 5.",
+          "array": [
+            2,
+            5,
+            8,
+            12,
+            16,
+            23,
+            38,
+            56,
+            72
+          ],
+          "highlight": [
+            5
+          ],
+          "pointers": {
+            "low": 5,
+            "mid": 6,
+            "high": 8
+          },
+          "vars": {
+            "target": 23,
+            "low": 5,
+            "high": 5,
+            "mid": 6,
+            "a[mid]": 38
+          },
+          "line": 8
+        },
+        {
+          "caption": "mid = (5 + 5) // 2 = 5. a[5] = 23 equals 23: found at index 5.",
+          "array": [
+            2,
+            5,
+            8,
+            12,
+            16,
+            23,
+            38,
+            56,
+            72
+          ],
+          "highlight": [
+            5
+          ],
+          "pointers": {
+            "low": 5,
+            "mid": 5,
+            "high": 5
+          },
+          "vars": {
+            "target": 23,
+            "low": 5,
+            "high": 5,
+            "mid": 5,
+            "a[mid]": 23,
+            "found": "yes"
+          },
+          "line": 4
+        }
+      ],
+      "view": "array",
+      "code": "def binary_search(a, target):\n    low, high = 0, len(a) - 1\n    while low <= high:\n        mid = (low + high) // 2\n        if a[mid] == target: return mid\n        if a[mid] < target:\n            low = mid + 1\n        else:\n            high = mid - 1\n    return -1",
+      "lang": "python"
+    },
+    "presets": {
+      "find-23": {
+        "frames": [
+          {
+            "caption": "Search for 23. The whole list is possible: low 0, high 8.",
+            "array": [
+              2,
+              5,
+              8,
+              12,
+              16,
+              23,
+              38,
+              56,
+              72
+            ],
+            "highlight": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ],
+            "pointers": {
+              "low": 0,
+              "high": 8
+            },
+            "vars": {
+              "target": 23,
+              "low": 0,
+              "high": 8
+            },
+            "line": 1
+          },
+          {
+            "caption": "mid = (0 + 8) // 2 = 4. a[4] = 16 is smaller than 23, so the target can only be right of mid: low = 5.",
+            "array": [
+              2,
+              5,
+              8,
+              12,
+              16,
+              23,
+              38,
+              56,
+              72
+            ],
+            "highlight": [
+              5,
+              6,
+              7,
+              8
+            ],
+            "pointers": {
+              "low": 0,
+              "mid": 4,
+              "high": 8
+            },
+            "vars": {
+              "target": 23,
+              "low": 5,
+              "high": 8,
+              "mid": 4,
+              "a[mid]": 16
+            },
+            "line": 6
+          },
+          {
+            "caption": "mid = (5 + 8) // 2 = 6. a[6] = 38 is larger than 23, so the target can only be left of mid: high = 5.",
+            "array": [
+              2,
+              5,
+              8,
+              12,
+              16,
+              23,
+              38,
+              56,
+              72
+            ],
+            "highlight": [
+              5
+            ],
+            "pointers": {
+              "low": 5,
+              "mid": 6,
+              "high": 8
+            },
+            "vars": {
+              "target": 23,
+              "low": 5,
+              "high": 5,
+              "mid": 6,
+              "a[mid]": 38
+            },
+            "line": 8
+          },
+          {
+            "caption": "mid = (5 + 5) // 2 = 5. a[5] = 23 equals 23: found at index 5.",
+            "array": [
+              2,
+              5,
+              8,
+              12,
+              16,
+              23,
+              38,
+              56,
+              72
+            ],
+            "highlight": [
+              5
+            ],
+            "pointers": {
+              "low": 5,
+              "mid": 5,
+              "high": 5
+            },
+            "vars": {
+              "target": 23,
+              "low": 5,
+              "high": 5,
+              "mid": 5,
+              "a[mid]": 23,
+              "found": "yes"
+            },
+            "line": 4
+          }
+        ]
+      },
+      "missing-40": {
+        "frames": [
+          {
+            "caption": "Search for 40. The whole list is possible: low 0, high 8.",
+            "array": [
+              2,
+              5,
+              8,
+              12,
+              16,
+              23,
+              38,
+              56,
+              72
+            ],
+            "highlight": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ],
+            "pointers": {
+              "low": 0,
+              "high": 8
+            },
+            "vars": {
+              "target": 40,
+              "low": 0,
+              "high": 8
+            },
+            "line": 1
+          },
+          {
+            "caption": "mid = (0 + 8) // 2 = 4. a[4] = 16 is smaller than 40, so the target can only be right of mid: low = 5.",
+            "array": [
+              2,
+              5,
+              8,
+              12,
+              16,
+              23,
+              38,
+              56,
+              72
+            ],
+            "highlight": [
+              5,
+              6,
+              7,
+              8
+            ],
+            "pointers": {
+              "low": 0,
+              "mid": 4,
+              "high": 8
+            },
+            "vars": {
+              "target": 40,
+              "low": 5,
+              "high": 8,
+              "mid": 4,
+              "a[mid]": 16
+            },
+            "line": 6
+          },
+          {
+            "caption": "mid = (5 + 8) // 2 = 6. a[6] = 38 is smaller than 40, so the target can only be right of mid: low = 7.",
+            "array": [
+              2,
+              5,
+              8,
+              12,
+              16,
+              23,
+              38,
+              56,
+              72
+            ],
+            "highlight": [
+              7,
+              8
+            ],
+            "pointers": {
+              "low": 5,
+              "mid": 6,
+              "high": 8
+            },
+            "vars": {
+              "target": 40,
+              "low": 7,
+              "high": 8,
+              "mid": 6,
+              "a[mid]": 38
+            },
+            "line": 6
+          },
+          {
+            "caption": "mid = (7 + 8) // 2 = 7. a[7] = 56 is larger than 40, so the target can only be left of mid: high = 6.",
+            "array": [
+              2,
+              5,
+              8,
+              12,
+              16,
+              23,
+              38,
+              56,
+              72
+            ],
+            "highlight": [],
+            "pointers": {
+              "low": 7,
+              "mid": 7,
+              "high": 8
+            },
+            "vars": {
+              "target": 40,
+              "low": 7,
+              "high": 6,
+              "mid": 7,
+              "a[mid]": 56
+            },
+            "line": 8
+          },
+          {
+            "caption": "low 7 is greater than high 6: the range is empty, so 40 is not in the list.",
+            "array": [
+              2,
+              5,
+              8,
+              12,
+              16,
+              23,
+              38,
+              56,
+              72
+            ],
+            "highlight": [],
+            "pointers": {},
+            "vars": {
+              "target": 40,
+              "low": 7,
+              "high": 6,
+              "found": "no"
+            },
+            "line": 9
+          }
+        ],
+        "title": "Search for 40, which is not in the list"
+      },
+      "find-2": {
+        "frames": [
+          {
+            "caption": "Search for 2. The whole list is possible: low 0, high 8.",
+            "array": [
+              2,
+              5,
+              8,
+              12,
+              16,
+              23,
+              38,
+              56,
+              72
+            ],
+            "highlight": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ],
+            "pointers": {
+              "low": 0,
+              "high": 8
+            },
+            "vars": {
+              "target": 2,
+              "low": 0,
+              "high": 8
+            },
+            "line": 1
+          },
+          {
+            "caption": "mid = (0 + 8) // 2 = 4. a[4] = 16 is larger than 2, so the target can only be left of mid: high = 3.",
+            "array": [
+              2,
+              5,
+              8,
+              12,
+              16,
+              23,
+              38,
+              56,
+              72
+            ],
+            "highlight": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "pointers": {
+              "low": 0,
+              "mid": 4,
+              "high": 8
+            },
+            "vars": {
+              "target": 2,
+              "low": 0,
+              "high": 3,
+              "mid": 4,
+              "a[mid]": 16
+            },
+            "line": 8
+          },
+          {
+            "caption": "mid = (0 + 3) // 2 = 1. a[1] = 5 is larger than 2, so the target can only be left of mid: high = 0.",
+            "array": [
+              2,
+              5,
+              8,
+              12,
+              16,
+              23,
+              38,
+              56,
+              72
+            ],
+            "highlight": [
+              0
+            ],
+            "pointers": {
+              "low": 0,
+              "mid": 1,
+              "high": 3
+            },
+            "vars": {
+              "target": 2,
+              "low": 0,
+              "high": 0,
+              "mid": 1,
+              "a[mid]": 5
+            },
+            "line": 8
+          },
+          {
+            "caption": "mid = (0 + 0) // 2 = 0. a[0] = 2 equals 2: found at index 0.",
+            "array": [
+              2,
+              5,
+              8,
+              12,
+              16,
+              23,
+              38,
+              56,
+              72
+            ],
+            "highlight": [
+              0
+            ],
+            "pointers": {
+              "low": 0,
+              "mid": 0,
+              "high": 0
+            },
+            "vars": {
+              "target": 2,
+              "low": 0,
+              "high": 0,
+              "mid": 0,
+              "a[mid]": 2,
+              "found": "yes"
+            },
+            "line": 4
+          }
+        ],
+        "title": "Search for 2, the first element"
+      }
+    }
+  },
+  "sync": [
+    {
+      "scene": "trace",
+      "preset": "find-23"
+    },
+    {
+      "scene": "requirements",
+      "preset": "missing-40"
+    }
+  ],
+  "inspect": [
+    {
+      "id": "mid-formula",
+      "scene": "formula",
+      "label": "Why round down?",
+      "region": {
+        "x": 6,
+        "y": 24,
+        "w": 88,
+        "h": 12
+      },
+      "concept_id": "binary-search",
+      "text": "Integer division rounds down, so mid is always a valid index between low and high. In languages with fixed-size integers, low + (high - low) // 2 avoids an overflow of low + high."
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "which-half",
+      "kind": "predict",
+      "at": {
+        "scene": "trace"
+      },
+      "prompt": "The middle element is 16 and the target is 23. Which part of the list can still hold 23?",
+      "choices": [
+        {
+          "text": "Only the part right of 16",
+          "correct": true
+        },
+        {
+          "text": "Only the part left of 16",
+          "misconception": "Keeps the half with the smaller values, ignoring that the list is sorted ascending"
+        },
+        {
+          "text": "Both halves, so check them all",
+          "misconception": "Thinks binary search must still scan every element like linear search"
+        }
+      ],
+      "explanation": "The list is sorted, so every element left of 16 is smaller than 16 and therefore smaller than 23. Only the right part can hold 23, so low moves to mid + 1.",
+      "concept_ids": [
+        "binary-search"
+      ],
+      "revisit": "idea"
+    },
+    {
+      "id": "step-count",
+      "kind": "predict",
+      "at": {
+        "scene": "growth"
+      },
+      "prompt": "About how many comparisons does binary search need for one million sorted items?",
+      "choices": [
+        {
+          "text": "At most 20",
+          "correct": true
+        },
+        {
+          "text": "About 500,000",
+          "misconception": "Applies the linear search average to binary search"
+        },
+        {
+          "text": "About 1,000",
+          "misconception": "Confuses halving with a square root"
+        }
+      ],
+      "explanation": "Each comparison halves the range, and 2 to the power 20 is just over one million, so at most 20 comparisons remain.",
+      "concept_ids": [
+        "binary-search"
+      ],
+      "revisit": "growth"
+    },
+    {
+      "id": "empty-range",
+      "kind": "experiment",
+      "at": {
+        "scene": "requirements"
+      },
+      "prompt": "Search for 40, which is not in the list. Step until the search stops. What are low and high at the end?",
+      "goal": {
+        "preset": "missing-40",
+        "condition": {
+          "all": [
+            {
+              "path": "done",
+              "op": "eq",
+              "value": true
+            }
+          ]
+        },
+        "hint": "Press Next until the caption says the range is empty."
+      },
+      "explanation": "The search stops when low becomes greater than high. The range of possible positions is then empty, so the value is not in the list.",
+      "concept_ids": [
+        "binary-search"
+      ]
+    },
+    {
+      "id": "needs-sorted",
+      "kind": "verify",
+      "at": {
+        "tab": "practice"
+      },
+      "prompt": "Why does binary search fail on an unsorted list?",
+      "choices": [
+        {
+          "text": "Discarding a half is safe only when the order guarantees the target is not there",
+          "correct": true
+        },
+        {
+          "text": "Unsorted lists are too long",
+          "misconception": "Thinks the length, not the order, is the requirement"
+        },
+        {
+          "text": "The middle index cannot be computed",
+          "misconception": "Thinks the formula for mid depends on the values"
+        }
+      ],
+      "explanation": "Binary search drops a half because sorted order proves the target cannot be in it. Without that order, the target could be in the dropped half.",
+      "concept_ids": [
+        "binary-search"
+      ]
+    }
+  ]
+}

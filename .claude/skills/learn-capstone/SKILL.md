@@ -76,6 +76,10 @@ Then read only these files:
    `references/non-code-capstones.md`.
 10. The handoff file `<state path>/handoffs/capstone-capstone.md`, when it
     exists. Read it first and continue from its `## Next step`.
+11. The shared visual capability `.claude/skills/learn-visuals/SKILL.md`
+    (steps 2–7) and the writing standard `harness/rubrics/writing-standard.md`.
+    Every diagram of the capstone is drawn and registered the way that skill
+    says; the assets folder is `visual_assets_dir` from `tutor paths`.
 
 Check the size before reading, and stay under 60,000 tokens:
 
@@ -175,10 +179,55 @@ stopping point between them.
     another decision had a real alternative.
 
 14. Finish `ARCHITECTURE.md` so that it matches the code that now exists (class
-    names, file paths, the flow). Then write `README.md`.
+    names, file paths, the flow). Then write `README.md`. Both follow the
+    writing standard: short active sentences, terms defined first. Check them
+    with `node harness/bin/tutor.mjs style <file>`.
+
+    `ARCHITECTURE.md` carries at least three diagrams, each a fenced `mermaid`
+    block drawn from the code (real class, file and service names; 3–7 boxes);
+    for a plan with `visual_first: true` the gate fails with fewer:
+
+    | Diagram | Section | Shows |
+    |---|---|---|
+    | System architecture and component responsibilities | `## Layers` | the layers or components, which depends on which (inward), one line of responsibility each |
+    | Data flow or request sequence of the most important operation | `## Request flow` | the use case end to end, as a `sequenceDiagram` or `flowchart`, including the failure path |
+    | Deployment | `## Deployment` | the containers or processes from the run recipe, the ports, the services (database, queue) and the configuration they read |
+
+    Then add `## Interactive walkthrough`: the most important operation as a
+    ready-to-paste lesson component spec, with real names, that the lesson site
+    or a later session can render: a `FlowAnimation` (request path, with
+    `breakable` on the dependency that can fail), a `SequenceDiagram`, or a
+    `ClusterSim` (for replicated or load-balanced services). Use only props from
+    `site/COMPONENTS.md`.
+
+14a. Register each diagram with the shared capability (`learn-visuals`, steps
+    3–5): save the same mermaid source as `<visual_assets_dir>/<id>-<slug>.mmd`
+    (for example `capstone-deployment-<slug>.mmd`), write the entry to a draft
+    file outside `state/`, and run
+    `node harness/bin/tutor.mjs visuals <topic> add --file <draft entry.json>`.
+    `kind` is `architecture`, `data-flow`/`sequence`, and `deployment`;
+    `used_in` lists `ARCHITECTURE.md` and, for the diagram you embed there, the
+    vault note. Every arrow and box must exist in the code or the run recipe;
+    the projects reviewer checks this as `project-diagrams`.
+
+14b. **System in motion (optional, deep or when the plan asks).** To explain how
+    the capstone operates, write one storyboard
+    `<videos_dir>/capstone-request-path/video.json` (`learn-video`, steps 1–9): a
+    `flow` of one real request through the layers (controller → service →
+    repository → external service), named after the actual classes, plus a failure
+    scene (what the error handling does). `used_in` is `ARCHITECTURE.md`. Build it
+    with `tutor video <topic> build`, render when a renderer exists, and link its
+    visual note from the vault note's `## Architecture at a glance`. For a
+    distributed capstone, name the lesson's `ClusterSim` preset that reproduces its
+    failure mode. Every hop must exist in `src/`.
 
 15. Fill the vault note `06-capstone-<slug>.md` above its `## My insights`
-    heading, following `references/adr-and-vault-note.md`. For a link to a
+    heading, following `references/adr-and-vault-note.md`. Its `## Architecture
+    at a glance` holds the system architecture diagram (the mermaid block, or
+    the registered SVG embedded with `![[<id>-<slug>.svg]]`), and the note links
+    the visual notes of all capstone diagrams as `[[visual-<id>-<slug>]]`
+    (`tutor map <topic>` writes them from the registry; the gate needs at least
+    one diagram in this note). For a link to a
     shared note that does not exist yet, create it with
     `node harness/bin/tutor.mjs concept "<Name>"` (add `--tech` for a
     technology), replace the placeholder line under its title with 1–3 plain
@@ -237,9 +286,9 @@ Required headings:
 | File | Headings, in this order |
 |------|-------------------------|
 | `README.md` | `# <Name>`, `## The problem`, `## What it does`, `## How to run`, `## How to test`, `## Configuration`, `## Project layout`, `## Where to read next` |
-| `ARCHITECTURE.md` | `# Architecture`, `## Overview`, `## Layers` (mermaid diagram), `## Classes and their responsibilities` (table), `## Request flow` (mermaid sequence diagram), `## Object-oriented ideas and where they are used`, `## Borrowed from production`, `## Error handling, configuration, logging`, `## How to extend it` |
+| `ARCHITECTURE.md` | `# Architecture`, `## Overview`, `## Layers` (mermaid diagram), `## Classes and their responsibilities` (table), `## Request flow` (mermaid sequence diagram), `## Deployment` (mermaid diagram), `## Interactive walkthrough` (a lesson component spec), `## Object-oriented ideas and where they are used`, `## Borrowed from production`, `## Error handling, configuration, logging`, `## How to extend it` |
 | `docs/adr/NNNN-*.md` | `# NNNN. <Decision>`, `## Status`, `## Context`, `## Decision`, `## Alternatives considered`, `## Consequences` |
-| `06-capstone-<slug>.md` | frontmatter with `stage: capstone`, `## What it is`, `## Architecture at a glance` (mermaid), `## Layers and key classes`, `## Ideas applied`, `## Borrowed from production`, `## How to run it`, `## How to extend it`, `## My insights` (last, nothing below it) |
+| `06-capstone-<slug>.md` | frontmatter with `stage: capstone`, `## What it is`, `## Architecture at a glance` (mermaid or embedded SVG, plus `[[visual-<id>-<slug>]]` links), `## Layers and key classes`, `## Ideas applied`, `## Borrowed from production`, `## How to run it`, `## How to extend it`, `## My insights` (last, nothing below it) |
 
 Rules:
 
@@ -253,6 +302,8 @@ Rules:
   any file.
 - Logs are structured (JSON or key=value) and carry a request or job id.
 - Comments explain why, in one line. They do not restate the code.
+- Every diagram is registered with `tutor visuals add` and matches the code
+  that exists; a diagram of a planned but unbuilt part is labelled "planned".
 - Dependencies are few and pinned to exact versions. No dependency-injection
   framework: constructors receive what they need.
 - Follow the `safety` list in `pack.json` and `## Safety and ethics` in the
@@ -321,6 +372,7 @@ is part of the gate even though the CLI cannot see it.
   - What it solves, and the layers and number of classes.
   - The three practices borrowed, each with its source note.
   - Tests: <n> unit and <n> integration passed; run recipe verified or not.
+  VISUALS: <registered diagram ids>; walkthrough component: <name>
   PROBLEMS: <"none", or one line each>
   ```
 
@@ -341,3 +393,5 @@ is part of the gate even though the CLI cannot see it.
   not saying so.
 - Writing below `## My insights` in the vault note, or linking to a `_concepts`
   or `_tech` note that does not exist.
+- Fewer than three diagrams in `ARCHITECTURE.md`, a diagram that names a class
+  the code does not have, or diagrams that were never registered.

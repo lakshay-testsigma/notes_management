@@ -87,6 +87,23 @@ Kafka. A stream lives in memory, so 2 TB is not practical, while Kafka stores th
   important production difference from the repo-intel findings.
 - Do not write two cards with the same answer.
 
+### Visual cards
+
+Write two or three cards from the registered visuals
+(`node harness/bin/tutor.mjs visuals <topic> list --json`). Start from a visual's
+`learning_check`, turn it into a prediction about what the visual shows (an
+annotated-graphic question: "In the diagram, which arrow…", "In the simulation,
+what happens when…"), and end the answer with a link to the visual note, so a
+missed card opens the picture that explains it. A visual-first plan needs at
+least one such card. The link sits in the answer, never on the `?` line.
+
+```
+<!-- card: rs-09 -->
+In the crash-recovery flow, worker 1 is switched off after it reads entry 42. Which arrow brings entry 42 to worker 2, and when?
+?
+The XAUTOCLAIM arrow from the pending list, once entry 42 has been idle longer than the claim timeout. See [[visual-crash-recovery-flow-redis-streams]].
+```
+
 ## 5. The reopen map
 
 After the cards, add this table under the heading `## Reopen map`. The recall
@@ -98,7 +115,7 @@ topic when a card is missed.
 
 | Card | Outcome it covers | Reopen when missed |
 |------|-------------------|--------------------|
-| rs-01 | explain how a crashed consumer's work is recovered | lesson page `04-pending-and-claiming`, listed in [[02-lesson-redis-streams]] |
+| rs-01 | explain how a crashed consumer's work is recovered | [[visual-crash-recovery-flow-redis-streams]], then lesson page `04-pending-and-claiming`, listed in [[02-lesson-redis-streams]] |
 | rs-02 | explain what a consumer group stores | lesson page `03-consumer-groups`, listed in [[02-lesson-redis-streams]] |
 | rs-04 | diagnose a growing pending list | [[07-final-notes-redis-streams]], section "Trade-offs and failure modes" |
 | rs-05 | decide between Redis Streams and Kafka | [[01-brief-redis-streams]] |
@@ -107,6 +124,8 @@ topic when a card is missed.
 Rules for the table:
 
 - There is one row for every card id in the file.
+- When a registered visual explains the card, name its visual note first
+  (`[[visual-<id>-<slug>]]`): a picture restores the model faster than a page.
 - The lesson page is named by its file name without `.mdx`, exactly as it is
   listed in `02-lesson-<slug>.md`. Lesson pages are not vault notes, so the page
   name is written as inline code and only the lesson index is a wikilink.

@@ -79,11 +79,11 @@ export function reviewCommand({root,args,flags}) {
   const file=stringFlag(flags,'file');
   if(file===undefined) {
     const data={topic:topic.id,input_fingerprint:fingerprint,requires_isolated_review:Boolean(topic.plan?.curriculum),
-      required_checks:Object.fromEntries(['content','projects'].map(scope=>[scope,requiredReviewChecks(topic,scope)]))};
+      required_checks:Object.fromEntries(['content','projects'].map(scope=>[scope,requiredReviewChecks(topic,scope,root)]))};
     return {data,text:JSON.stringify(data,null,2)};
   }
   const review=readJsonInput(file,'--file');
-  const required=requiredReviewChecks(topic,review?.scope);
+  const required=requiredReviewChecks(topic,review?.scope,root);
   if(!review || typeof review!=='object' || Array.isArray(review))throw new UsageError('Review must be a JSON object.');
   if(!required||!['pass','fix-needed'].includes(review.verdict)||typeof review.reviewer!=='string'||!review.reviewer.trim()||!Array.isArray(review.findings)||review.findings.some(f=>!f||!['error','warning'].includes(f.severity))||!Array.isArray(review.not_checked)||!Array.isArray(review.checks)||!required.every(x=>review.checks.includes(x)))throw new UsageError('Review needs scope, reviewer, verdict, findings with severity error/warning, not_checked and all documented checks.');
   if(topic.plan?.curriculum) {

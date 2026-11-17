@@ -45,6 +45,13 @@ first always grows, and the visual then becomes decoration.
 | Code where the order of lines is the lesson | `CodeWalkthrough` | steps through highlighted lines with an explanation each |
 | History or versions | `Timeline` | scans the order of events |
 | A static structure that nothing else fits (a folder layout, an entity diagram) | `Mermaid` | reads it |
+| A diagram that also belongs in the notes: the end-to-end workflow, an architecture, layers, dependencies | `Diagram` (registered with `tutor visuals add`, see `learn-visuals`) | zooms into the part that decides the outcome |
+| A chronological or causal sequence where motion shows cause and effect (request lifecycle, backpropagation, OAuth, a funnel) | `Video` (planned `video` entry, built by `learn-video`) | watches 30–90 s with captions, then answers the activity |
+| A distributed system under failure, latency or concurrency (quorum, failover, gossip, load balancing) | `ClusterSim` | adds and fails servers, raises latency, sends concurrent writes, steps and resets |
+| An algorithm executing on real data (search, sort, a gradient step, a join) | `AlgorithmStepper` with an author-verified trace | steps forward and back and matches each caption to the code line |
+| Two approaches, or a before and an after, with measured trade-offs | `CompareView` | judges first, then reveals the trade-off |
+| Code the learner should change and run (an off-by-one, backoff, a race) | `CodePlayground` | edits, runs in a sandbox, compares with the expected output |
+| Classifying items (which layer, which failure type, which stage) | `SortBuckets` (activity) | drags or moves items into groups and checks |
 
 Choosing between them:
 
@@ -54,7 +61,16 @@ Choosing between them:
 - If the idea is about shape and connection, use `Graph3D` (many nodes,
   explorable) or `SystemDiagram` (few named parts).
 - `Mermaid` does not move and cannot be touched. Use it only when no other
-  component fits, and never as the only visual of a topic.
+  component fits, and never as the only visual of a topic. A static diagram
+  that the notes also need is a registered `Diagram`, so the vault and the site
+  share one file.
+- Visual-first plans: a topic with a multi-stage process needs one end-to-end
+  workflow `Diagram` (`kind: workflow`, `scope: end-to-end`) on the page that
+  introduces the process, before the focused visuals of its stages. A complex
+  page may carry `extra_visuals`; each must teach something the primary one
+  does not.
+- Use 3D only when space or graph structure is the idea; a video only for a
+  real sequence (`harness/rubrics/visuals.md`).
 - The playbook's `## Lesson recipes` section says which component fits which
   kind of concept in this domain, with examples. When it disagrees with this
   table, the playbook wins, because it knows the domain.
@@ -203,6 +219,15 @@ Rules:
   blocks; the learner dislikes them and the validator rejects them.
 - Write for a beginner: explain a term the first time it is used, or link it to
   the idea of an earlier page.
+- Follow `harness/rubrics/writing-standard.md`: sentences of about 15–20
+  words, active voice, one term per thing, plain words. `tutor style <page>`
+  reports it; visual-first gates print its warnings. Mark comparisons with
+  `**Analogy.**` (and where they break) and assumptions with `**Assumption.**`.
+- Layer the depth: intuition in the first paragraph, the mechanism with the
+  visual, then at most two `<Depth level="internals">` / `<Depth
+  level="production">` blocks (20–180 words each, outside the 110–260 count)
+  for internals and real-world practice. Leave a blank line after the opening
+  and before the closing tag. Longer internals go to a concept note.
 
 ## 6. MDX syntax that breaks the build
 
@@ -245,6 +270,15 @@ Answer each line with yes before you move to the next page.
 - The prose is between 110 and 260 words (`tutor words <page file>` prints the
   count the gate uses).
 - With the visual removed, the page would no longer explain the idea.
+- Every `<Diagram id>` and `<Video id>` is registered and lists this page in
+  `used_in`; every interactive visual worth keeping is registered with
+  `format: component`; each has a `learning_check` the page's activity or prose
+  lets the learner answer.
+- Every arrow, order and number in a visual is backed by a source in its
+  `source_ids`; nothing suggests a relationship the sources do not state.
+- A simulation has instructions (`intro`), controls that change the result, an
+  explanation of why, and Reset.
+- `tutor style <page>` shows no warning you could fix by splitting a sentence.
 - The activity cannot be answered by copying a phrase from the page.
 - There is no blockquote, callout, card, aside, or `<details>`.
 - There is no `import` and no `client:` for a shared component.

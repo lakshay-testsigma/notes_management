@@ -18,7 +18,7 @@ source you read in this run.
 | The claim in one sentence | What the source says is true or possible, in plain words. One sentence. | 1 sentence |
 | The problem before this | What people did before, and what was painful or impossible. | 2–4 sentences |
 | Key ideas | 3–6 ideas, each a `###` subheading and a plain explanation. An idea is something the learner could explain to a friend. | 2–4 sentences each |
-| How it works | The mechanism step by step. A mermaid diagram when there is a flow or an architecture, then a numbered walk-through. | 4–8 lines plus diagram |
+| How it works | A beginner paragraph first, then the mechanism step by step. At least one diagram (algorithm, math operation order, experimental workflow, architecture, or key result) drawn only from the source, then a numbered walk-through. Register the core diagram with `tutor visuals add` and link its visual note. | 4–8 lines plus diagram |
 | Results and evidence | What the source measured or guarantees, with the place it stands (table, figure, section). For docs: the guarantees and limits the docs state. | 2–5 bullets |
 | Limitations and criticisms | What it does not do, where it breaks, what later work or practitioners criticised. Name where each point comes from: a section of the source, or the id of another source in `sources.json`. | 2–4 bullets |
 | What practitioners took from it | What real systems kept, changed, or dropped. Supported only by a source recorded in `sources.json`, named by its id. Never by a page outside it. | 2–4 sentences |
@@ -81,6 +81,10 @@ entries list. If the worker dies, the entry stays there until another worker cla
 
 ## How it works
 
+In plain words: a producer adds work to a shared list, a worker takes one item, and Redis
+remembers every item a worker took but did not finish yet, so another worker can take it
+over.
+
 ```mermaid
 flowchart LR
   P[Producer] -->|XADD| S[(Stream)]
@@ -94,6 +98,9 @@ flowchart LR
 2. A worker asks its group for new entries with `XREADGROUP`. The entry is now pending.
 3. The worker does its job and confirms with `XACK`. The entry leaves the pending list.
 4. If no confirmation arrives, another worker takes the entry over with `XAUTOCLAIM`.
+
+The diagram follows the pages "Consumer groups" and "Recovering from permanent failures".
+[[visual-redis-streams-docs-mechanism-redis-streams|Explanation and sources of this diagram]]
 
 ## Results and evidence
 

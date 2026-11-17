@@ -1,0 +1,6 @@
+{
+  "topic": "Distributed consensus (Raft)",
+  "level": "advanced",
+  "expected": "hybrid",
+  "signals": { "complexity": 5, "concepts": 6, "dependent_steps": 6, "changes_over_time": true, "spatial": false, "parameters": 3, "decision_paths": 2, "benefit": "high" }
+}

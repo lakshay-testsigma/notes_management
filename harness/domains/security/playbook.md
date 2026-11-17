@@ -154,6 +154,13 @@ Top academic venues: IEEE Symposium on Security and Privacy, USENIX Security, AC
 
 **Custom simulation ideas.** All simulations run entirely inside the lesson page against simulated data, never against a network target. A toy login with a visible query string that shows injection and the fix; a cookie-flag sandbox with a simulated cross-site request; a CSP builder that shows which simulated scripts are blocked; a JWT inspector that decodes a sample token and flags weak settings; a password-hash work-factor demo; a permission matrix where the learner finds the broken access-control rule; a log viewer where the learner spots the attack lines.
 
+**Visual recipes** (visual-first plans; standard in `harness/rubrics/visuals.md`):
+
+- `SequenceDiagram` for every authentication and authorization flow; a `Video` for OAuth 2.0 / OIDC redirects, where the order of redirects and tokens is the idea.
+- A registered trust-boundary `Diagram` as the end-to-end view of an attack or a defense; `SortBuckets` to classify findings or controls.
+- `CompareView` for vulnerable versus fixed designs; `CodePlayground` only with simulated, local data.
+- `StateMachine` for session and token lifecycles.
+
 ## Mini project patterns
 
 Every project starts its own target with `docker compose up` bound to `127.0.0.1`, and every project ends with the fix and a regression test. `starter/` is the vulnerable or unprotected version; `solution/` is the hardened version plus the test that proves the flaw is closed. Guided → independent.
@@ -277,3 +284,4 @@ These rules bind every stage. A stage that cannot follow them stops and reports 
 - A vulnerability found by accident in a real product is reported privately to the vendor (coordinated disclosure) and is not exploited, shared, or published first.
 
 **Honest limits.** A lab exercise does not make a system "secure"; reports state remaining risks. Security advice changes; check the current OWASP and NIST guidance when notes are reused later.
+- **Experience recipes** (adaptive plans; `harness/rubrics/experiences.md`, the selector decides): explainer for a TLS or OAuth handshake; interactive for a token-validation step that the learner breaks; branching for threat-model paths (STRIDE per component); hybrid for an attack and its detection and response.

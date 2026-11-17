@@ -1,0 +1,20 @@
+---
+// Lesson component <Video id="…" />: a short HyperFrames explainer registered in
+// the topic's visuals.json by `tutor video <topic> build|render <id>`. Plays
+// with captions and a transcript; shows the storyboard when the MP4 is not
+// rendered. Never autoplays. Props: site/COMPONENTS.md.
+import VideoView from './views/VideoView.astro';
+import { pageTopic, resolveVisual } from '../../lib/visuals';
+
+interface Props {
+	/** The id of the video in visuals.json (the folder name of its HyperFrames project). */
+	id: string;
+	/** `domain/subdomain/slug`. Only needed outside a topic page. */
+	topic?: string;
+}
+const { id, topic: topicId } = Astro.props;
+const { entry, sources, problem } = resolveVisual(pageTopic(topicId, Astro.locals, Astro.url), id);
+const notVideo = entry && entry.format !== 'hyperframes' ? `visual "${id}" is a ${entry.format}, not a video; use <Diagram id="${id}" />` : null;
+---
+
+{entry && !problem && !notVideo ? <VideoView entry={entry} sources={sources} /> : <p class="lc lc-error">{problem ?? notVideo}</p>}

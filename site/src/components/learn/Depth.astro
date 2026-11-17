@@ -1,0 +1,18 @@
+---
+// Lesson component <Depth />: a deeper layer of explanation inside a page.
+// Plain section, no box. The site-wide depth control (components/site/
+// DepthControl.astro) shows or hides it; without JavaScript it is always shown.
+// Props are documented in site/COMPONENTS.md.
+interface Props {
+	level: 'internals' | 'production';
+	title?: string;
+}
+
+const { level = 'internals', title } = Astro.props;
+const label = title ?? (level === 'production' ? 'In production' : 'Technical internals');
+---
+
+<section class="lc-depth" data-level={level === 'production' ? 'production' : 'internals'} aria-label={label}>
+	<p class="lc-depth-label">{label}</p>
+	<slot />
+</section>

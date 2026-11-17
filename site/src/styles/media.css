@@ -1,0 +1,263 @@
+/*
+  Registry-backed visuals: <Diagram /> (zoomable SVG, mermaid or image) and
+  <Video /> (HyperFrames explainer with captions and transcript). Plain rules
+  and spacing only: no boxes, cards or callouts, like the rest of learn.css.
+*/
+
+.lc-zoom {
+	position: relative;
+	overflow: hidden;
+	border-top: 1px solid var(--line);
+	border-bottom: 1px solid var(--line);
+	padding: 0.75rem 0;
+	touch-action: pan-y;
+	outline: none;
+}
+.lc-zoom.is-zoomed {
+	cursor: grab;
+	touch-action: none;
+}
+.lc-zoom:focus-visible {
+	box-shadow: 0 0 0 2px var(--accent);
+}
+.lc-zoom-content {
+	transform-origin: center center;
+	transition: transform 120ms ease-out;
+}
+.lc-zoom-content svg,
+.lc-zoom-content img {
+	display: block;
+	width: 100%;
+	height: auto;
+	max-height: 70vh;
+	margin: 0 auto;
+}
+.lc-zoom-content svg text {
+	fill: var(--text);
+}
+.lc-diagram-sources {
+	font-size: 0.85rem;
+	color: var(--muted);
+	margin: 0.25rem 0 0;
+}
+
+.lc-video-player {
+	display: block;
+	width: 100%;
+	height: auto;
+	aspect-ratio: 16 / 9;
+	background: var(--surface);
+	border-radius: 4px;
+}
+.lc-video-meta {
+	color: var(--muted);
+	font-weight: normal;
+}
+.lc-video-storyboard ol {
+	margin: 0.5rem 0 0;
+	padding-left: 1.25rem;
+}
+.lc-video-storyboard li {
+	margin: 0.35rem 0;
+}
+.lc-video-transcript {
+	border-left: 2px solid var(--line-strong);
+	padding-left: 0.9rem;
+	margin: 0.5rem 0;
+	font-size: 0.95rem;
+	color: var(--text-2);
+}
+.lc-video-transcript[hidden] {
+	display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.lc-zoom-content {
+		transition: none;
+	}
+}
+
+/* ---- <Experience>: adaptive learning experiences -------------------------- */
+.lc-exp-objective {
+	margin: 0 0 0.5rem;
+}
+.lc-exp-tabs {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.25rem;
+	border-bottom: 1px solid var(--line);
+}
+.lc-exp-tab {
+	font: inherit;
+	background: none;
+	border: 0;
+	border-bottom: 2px solid transparent;
+	padding: 0.4rem 0.7rem;
+	color: var(--muted);
+	cursor: pointer;
+}
+.lc-exp-tab[aria-selected='true'] {
+	color: var(--text);
+	border-bottom-color: var(--accent);
+}
+.lc-exp-tab:focus-visible,
+.lc-exp-panel:focus-visible,
+.lc-exp-card h4:focus-visible {
+	outline: 2px solid var(--accent);
+	outline-offset: 2px;
+}
+.lc-exp-panel {
+	padding-top: 0.5rem;
+	min-width: 0;
+}
+.lc-exp-hint {
+	margin: 0 0 0.5rem;
+}
+.lc-exp-stage {
+	position: relative;
+	width: 100%;
+	aspect-ratio: 16 / 9;
+	background: var(--surface);
+	border: 1px solid var(--line);
+	overflow: hidden;
+}
+.lc-exp-stage > hyperframes-player,
+.lc-exp-hf {
+	display: block;
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+}
+.lc-exp-loading {
+	position: absolute;
+	inset: auto 0.75rem 0.5rem;
+	margin: 0;
+}
+.lc-exp-hotspot {
+	position: absolute;
+	z-index: 2;
+	display: flex;
+	align-items: flex-end;
+	justify-content: flex-end;
+	padding: 0.2rem;
+	font: inherit;
+	font-size: 0.8rem;
+	background: transparent;
+	border: 2px dashed var(--accent);
+	border-radius: 6px;
+	color: var(--text);
+	cursor: pointer;
+}
+.lc-exp-hotspot span {
+	background: var(--bg);
+	padding: 0 0.3rem;
+	border-radius: 4px;
+}
+.lc-exp-hotspot:focus-visible {
+	outline: 2px solid var(--accent);
+}
+.lc-exp-transport {
+	align-items: center;
+	margin-top: 0.5rem;
+}
+.lc-exp-speed select {
+	font: inherit;
+}
+.lc-exp-clock {
+	font-variant-numeric: tabular-nums;
+}
+.lc-exp-chapters {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 0.15rem;
+	padding: 0;
+	margin: 0.5rem 0;
+	list-style: none;
+	counter-reset: chapter;
+}
+.lc-exp-chapters li[data-current='true'] .lc-btn {
+	border-color: var(--accent);
+}
+.lc-exp-mark {
+	color: var(--muted);
+	font-size: 0.85rem;
+}
+.lc-exp-split {
+	display: grid;
+	gap: 1rem;
+	grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+	align-items: start;
+}
+@media (max-width: 760px) {
+	.lc-exp-split {
+		grid-template-columns: minmax(0, 1fr);
+	}
+}
+.lc-exp-main,
+.lc-exp-side {
+	min-width: 0;
+}
+.lc-exp-card,
+.lc-exp-inspector,
+.lc-exp-weak {
+	border-left: 3px solid var(--accent);
+	padding: 0.25rem 0 0.25rem 0.75rem;
+	margin: 0.75rem 0;
+}
+.lc-exp-card[data-status='correct'],
+.lc-exp-card[data-status='done'] {
+	border-left-color: var(--good);
+}
+.lc-exp-card[data-status='wrong'] {
+	border-left-color: var(--bad);
+}
+.lc-exp-card h4 {
+	margin: 0 0 0.4rem;
+	font-size: 1rem;
+}
+.lc-exp-choices {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 0.3rem;
+}
+.lc-exp-choice {
+	text-align: left;
+	white-space: normal;
+}
+.lc-exp-right {
+	color: var(--good-text);
+}
+.lc-exp-wrong {
+	color: var(--bad-text);
+}
+.lc-exp-notes {
+	display: block;
+	width: 100%;
+	font: inherit;
+	margin: 0.25rem 0;
+}
+.lc-exp-sub {
+	margin: 1rem 0 0.25rem;
+	font-size: 1rem;
+}
+.lc-exp-part-title {
+	font-weight: 600;
+	margin: 0 0 0.25rem;
+}
+.lc-exp-video + .lc-exp-video {
+	margin-top: 1rem;
+}
+.lc-exp-text {
+	margin-top: 0.75rem;
+}
+.lc-exp-text summary {
+	cursor: pointer;
+	color: var(--muted);
+}
+.lc-exp-blocked {
+	padding: 0.75rem;
+	border: 1px dashed var(--line-strong);
+}

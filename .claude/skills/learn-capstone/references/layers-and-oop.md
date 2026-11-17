@@ -107,6 +107,13 @@ Answer each line with yes. If one is no, fix it first.
   external client library.
 - Every class in the code appears in the table in `ARCHITECTURE.md` with the
   same name and file path, and the reverse.
+- `ARCHITECTURE.md` has at least three mermaid diagrams (layers, request flow,
+  deployment) whose boxes and arrows exist in the code and the run recipe, and
+  an `## Interactive walkthrough` component spec with documented props only.
+- Each diagram is registered: `node harness/bin/tutor.mjs visuals <topic> check`
+  passes, and `used_in` lists `ARCHITECTURE.md` (and the vault note for the one
+  embedded there).
+- `node harness/bin/tutor.mjs style ARCHITECTURE.md` shows no warning you could easily fix.
 - `## Borrowed from production` has at least three rows, each with a practice,
   a source note, and a file in this project.
 - Every object-oriented idea named in `ARCHITECTURE.md` points to a file.
@@ -114,5 +121,7 @@ Answer each line with yes. If one is no, fix it first.
 - Configuration is read only from the environment; `.env.example` is complete;
   no secret is committed.
 - Dependency versions are exact.
-- The vault note has all headings, ends with `## My insights`, and every
-  wikilink in it points to an existing file.
+- The vault note has all headings, ends with `## My insights`, has the
+  architecture diagram under `## Architecture at a glance`, links each capstone
+  visual note `[[visual-<id>-<slug>]]`, and every wikilink in it points to an
+  existing file (run `tutor map <topic>` first so the visual notes exist).

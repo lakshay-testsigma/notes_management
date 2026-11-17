@@ -153,6 +153,13 @@ The GDC Vault and the GDC YouTube channel are the main source of post-mortems an
 
 **Custom simulation ideas.** This domain should lean on topic-specific playable toys: a jump-tuning sandbox; a collision playground with draggable shapes showing overlap and the separating axis; a quadtree that subdivides as the learner adds points; a flocking sandbox; a noise-terrain generator with octave sliders; a pathfinding grid where walls are painted; a netcode simulator with a latency and packet-loss slider; a shader editor with a live preview; a "juice" toggle board that turns screen shake, particles, and easing on and off for the same game.
 
+**Visual recipes** (visual-first plans; standard in `harness/rubrics/visuals.md`):
+
+- `Video` for one frame of the game loop (input, update, physics, render) and `StateMachine` for character or game states.
+- `AlgorithmStepper` for pathfinding (A* on a small grid) or collision steps; `ParamPlayground` for jump arcs and easing.
+- `CompareView` for fixed versus variable time steps, with what the learner sees change.
+- A registered architecture `Diagram` of the engine loop or entity-component system when a page introduces it.
+
 ## Mini project patterns
 
 Each is a small playable thing that runs in the browser with `npm run dev`. Game logic lives in plain modules with unit tests; rendering stays thin. Guided → independent.
@@ -256,3 +263,4 @@ Question styles: Explain ("why accumulate time and step in fixed increments?"), 
 - Accessibility: avoid rapid full-screen flashing, offer reduced motion, do not rely on colour alone, allow control remapping where practical.
 - No manipulative monetisation mechanics (loot-box gambling loops, fake scarcity) in example designs; if the topic is game economy, teach it critically.
 - Multiplayer prototypes run on localhost; no cheating tools or bots for real online games.
+- **Experience recipes** (adaptive plans; `harness/rubrics/experiences.md`, the selector decides): explainer for one frame of the game loop; interactive for physics timestep or collision parameters; branching for engine architecture choices (ECS vs object hierarchies); hybrid for networked game state with latency.

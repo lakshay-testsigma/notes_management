@@ -16,7 +16,7 @@ import { buildStages, completionOf, isOmitted, currentWave, DEPTHS, progressOf, 
 import { describeStage } from '../stage-io.mjs';
 import {
   appendLog, loadAllTopics, loadTopic, openLessonLine, resolveTopic, saveTopic, scanTopicIds,
-  SITE_DEV_COMMAND, siteUrl, topicId, topicJsonPath, topicPaths, upsertRegistry,
+  SITE_DEV_COMMAND, mediaUrl, siteUrl, topicId, topicJsonPath, topicPaths, upsertRegistry,
 } from '../topic-store.mjs';
 import { createContext, validateStage } from '../validators/index.mjs';
 import { nextActionLine, readJsonInput, requireArg, saveAndRefresh, stageTable, topicSummary } from './shared.mjs';
@@ -255,7 +255,7 @@ export function pathsCommand({ root, args }) {
   const text = [
     `Paths of ${topic.id} (relative to ${root})`,
     '',
-    keyValues([...Object.entries(paths), ['site_url', siteUrl(topic)], ['open_lesson', openLessonLine(topic)]]),
+    keyValues([...Object.entries(paths), ['site_url', siteUrl(topic)], ['media_url', mediaUrl(topic)], ['open_lesson', openLessonLine(topic)]]),
   ].join('\n');
 
   return {
@@ -268,6 +268,7 @@ export function pathsCommand({ root, args }) {
       depth: topic.depth,
       root,
       site_url: siteUrl(topic),
+      media_url: mediaUrl(topic),
       open_lesson: openLessonLine(topic),
       ...paths,
       abs: absolute,

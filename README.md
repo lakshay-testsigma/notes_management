@@ -17,6 +17,9 @@ Open this folder in Claude Code and talk to it.
 | `continue redis-streams` | Picks up where the last session stopped. | `learn` |
 | `add this to my Redis Streams notes: ...` | Your own learning is saved, dated, and linked to the related note. | `learn-insight` |
 | `quiz me` or `what's due` | A recall session on the cards that are due today. | `learn-recall` |
+| `draw the write path of Raft` or `make a diagram of X` | A sourced diagram, registered once, shown on the site and in Obsidian. | `learn-visuals` |
+| `make a short video of how OAuth works` | A 30–90 s HyperFrames explainer with captions and transcript (MP4 when FFmpeg or Docker is available). | `learn-video` |
+| `let me experiment with binary search` or `compare the funnel strategies` | The experience that fits: an interactive video lesson with predictions and a stepper, a branching deck of deep dives, or a hybrid lab (chosen automatically, see `harness/rubrics/experiences.md`). | `learn-video` |
 
 Depth is a dial:
 
@@ -31,7 +34,11 @@ Depth is a dial:
 Each topic is read in the same numbered order:
 
 1. **Brief** — what it is, in plain words
-2. **Lesson** — the interactive pages: animated flows, 3D graphs, small activities
+2. **Lesson** — the interactive pages: diagrams you can zoom, simulations you can break
+   (add or fail servers, raise latency, step through an algorithm, run code), short
+   narrated explainer videos with captions, interactive experiences (Watch, Explore,
+   Guided, Deep dive and Practice tabs with predictions and experiments), small
+   activities, and a depth control (Essentials / + Internals / + Production)
 3. **Mini projects** — small real use cases, each with a starter and a solution
 4. **Digests** — the canonical papers and docs, summarized
 5. **Open-source deep dive** — how a production repository really does it
@@ -46,7 +53,9 @@ Two ways to read:
   `npm run site:dev`, and open the address it prints. Home → domain → topic →
   follow "next" from page to page.
 - **Obsidian** (best for the knowledge graph): open the `vault/` folder as a vault.
-  Start at `Home`, open a topic's `00-start-here` note.
+  Start at `Home`, open a topic's `00-start-here` note. Every diagram, simulation and
+  video of a topic is also in its `visuals/` folder (`visuals-<topic>`), with the
+  concept it teaches, its sources, a check question and the video transcript.
 
 ## Where everything is
 

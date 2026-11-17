@@ -155,6 +155,13 @@ Model and API details change monthly. For anything about a specific model, price
 
 **Custom simulation ideas.** A context-window packer where the learner chooses what to keep under a token budget; a tokenizer view that splits typed text into tokens; an HNSW layer-by-layer search animation; a chunking visualiser over a real paragraph; a prompt-injection sandbox where a retrieved document tries to hijack a toy agent and a guardrail blocks it; an eval table where the learner grades outputs and compares with an LLM judge.
 
+**Visual recipes** (visual-first plans; standard in `harness/rubrics/visuals.md`):
+
+- `FlowAnimation` with `breakable` for the RAG pipeline (break the retriever, the reranker or the cache and watch the answer degrade), registered as the end-to-end workflow.
+- `Video` for the agent loop (plan, call a tool, observe, repeat) and for one RAG query end to end; these are sequences where order is the idea.
+- `CompareView` for RAG versus fine-tuning, or two chunking strategies, with measured retrieval numbers from the sources.
+- `CodePlayground` for a tiny prompt-assembly or chunking function the learner edits; `VectorSpace3D` only for embedding similarity.
+
 ## Mini project patterns
 
 Use small public or synthetic datasets and cheap or local models; every script prints token use. Guided → independent.
@@ -254,3 +261,4 @@ Question styles: Explain ("why is the model called stateless and what follows fr
 - Agents with tools get least privilege: a sandboxed directory, an allow-list of commands, and a confirmation step before deleting, sending, paying, or publishing.
 - State model limits honestly in every project README: it can be wrong, and how the evaluation measured that.
 - Do not build projects that impersonate people, generate deceptive content at scale, or scrape sites against their terms.
+- **Experience recipes** (adaptive plans; `harness/rubrics/experiences.md`, the selector decides): explainer for a RAG request path; interactive for chunk size or top-k against retrieval quality (AlgorithmStepper frames); branching for RAG vs fine-tuning vs long context; hybrid for an agent loop with tools, failures and retries.

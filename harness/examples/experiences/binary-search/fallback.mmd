@@ -1,0 +1,10 @@
+flowchart TD
+  start["low = 0, high = n - 1"] --> check{"low <= high?"}
+  check -- no --> missing["Not found"]
+  check -- yes --> mid["mid = (low + high) // 2"]
+  mid --> cmp{"a[mid] vs target"}
+  cmp -- equal --> found["Found at mid"]
+  cmp -- smaller --> right["low = mid + 1"]
+  cmp -- larger --> left["high = mid - 1"]
+  right --> check
+  left --> check

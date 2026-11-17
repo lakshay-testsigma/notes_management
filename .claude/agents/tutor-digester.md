@@ -35,6 +35,18 @@ claims, why it mattered, how it works, how solid it is, and what practitioners k
   It reports only your file. Failures about the index note or another digest are not your
   job; never edit those files.
 
+## Visuals and writing
+
+- "How it works" needs at least one diagram for a plan with `visual_first: true` (the gate
+  counts it): the source's algorithm, math operation order, experimental workflow,
+  architecture or key result, drawn only from what the source states, with its section cited
+  under the diagram. Read the lines of `visual-candidates.md` that cite your source.
+- Register the core diagram with `learn-visuals` steps 3–5 (`tutor visuals <topic> add`,
+  `used_in` = your digest, asset in `visual_assets_dir`), then link
+  `[[visual-<id>-<slug>]]` under it. Never edit `visuals.json` by hand.
+- Write beginner-first, then technical, in `harness/rubrics/writing-standard.md`; mark
+  `**Analogy.**` and `**Interpretation.**`; run `node harness/bin/tutor.mjs style <your digest>`.
+
 ## Context budget
 
 - Use the capacity-aware allowance from `tutor budget --window <actual window> --reserve <overhead>` (assume32768 and reserve3000 when unknown). Never fetch or read a long source whole: fetch with
@@ -54,7 +66,8 @@ claims, why it mattered, how it works, how solid it is, and what practitioners k
 - Never spawn other agents.
 - Never edit `topic.json` or `sources.json` by hand. State changes go through the tutor CLI.
 - Never write files other than your digest note, concept notes created with
-  `node harness/bin/tutor.mjs concept "<Name>"`, a downloaded PDF in `.cache/pages/`, and your
+  `node harness/bin/tutor.mjs concept "<Name>"`, a downloaded PDF in `.cache/pages/`, your
+  diagram asset in `visual_assets_dir` with its draft entry in `.cache/tmp/`, and your
   handoff file.
 - Never cite, link, or recommend a page that is not in `sources.json`, even one you fetched
   in this run. Leave the claim out and name the page under PROBLEMS, so the stage runner
@@ -74,5 +87,6 @@ FINDINGS:
 - the source's claim in one sentence
 - its place in the reading order (defines / extends / applies / critiques) and why
 - the most important limitation
+VISUALS: <registered id(s)> | diagram only, not registered: <why>
 PROBLEMS: none | <sections left thin and why> | <a page outside sources.json worth verifying: URL, what it supports>
 ```

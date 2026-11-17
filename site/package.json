@@ -12,12 +12,16 @@
     "astro": "astro",
     "check": "astro check",
     "smoke": "node scripts/smoke.mjs",
-    "manifest:check": "node scripts/check-manifest.mjs"
+    "manifest:check": "node scripts/check-manifest.mjs",
+    "interact": "node scripts/interact.mjs",
+    "test": "node --test scripts/*.test.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^8.1.6",
     "@astrojs/react": "^7.1.9",
+    "@hyperframes/player": "0.9.59",
     "astro": "^7.4.12",
+    "gsap": "3.15.0",
     "mermaid": "^12.3.0",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",

@@ -60,10 +60,23 @@ again when rereading that note. Choose the note with this table.
 | How a production repository does something | the file name of the matching note in `05-repo-intel/<org>-<repo>/`, or `repo-intel` |
 | A design decision or lesson from the capstone | `capstone` |
 | A rule of thumb, trade-off, gotcha, or command worth remembering | `final-notes` |
+| What a diagram, simulation, video, deck or interactive experience of the topic shows, gets wrong, or made click (a checkpoint, a branch, an experiment) | the file name of that visual's note, `visual-<id>-<slug>` (in the topic's `visuals/` folder) |
 
 The short names stand for the numbered notes of the topic (`lesson` is
 `02-lesson-<slug>.md`, and so on). A file name is written exactly as
 `tutor paths` or `ls` shows it, for example `bullmq-findings.md`.
+
+Visual notes. Every registered diagram, simulation, video, deck and experience has a note
+`visual-<id>-<slug>.md` under the topic's `visuals_dir` (`tutor paths`). List the
+ids with `node harness/bin/tutor.mjs visuals <topic> list`. `--target` accepts
+the file name, for example `--target visual-crash-recovery-flow-redis-streams`,
+because it resolves any note of the topic by file name. `tutor map` and `tutor
+visuals` regenerate these notes, but they keep everything from `## My insights`
+down byte for byte, so the backlink survives. If the visual note does not exist
+yet (the topic was never mapped), run `node harness/bin/tutor.mjs map <topic>`
+first. Should `--target` ever reject a visual note, save the insight with
+`--target final-notes` instead and tell the learner that the visual note could
+not take the backlink; do not edit the visual note by hand.
 
 When nothing fits clearly, use `final-notes`, because that is the note the
 learner rereads most often. If the stage of the chosen note was skipped for
@@ -221,5 +234,7 @@ lines, in one sentence each.
   date and the backlink.
 - Adding a recall card below `## My insights`, where the validator treats it as
   generated content in the learner's area.
+- Saving an insight about a diagram or simulation against the lesson note when
+  the visual has its own note; the learner meets it again where the picture is.
 - Replying with a long explanation. The learner wants to know that it is saved
   and where.

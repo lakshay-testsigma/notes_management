@@ -1,0 +1,31 @@
+{
+  "id": "funnel-strategy-paths",
+  "title": "Where to invest in a marketing funnel",
+  "purpose": "Compare three ways to grow buyers: more traffic, a better sign-up rate or better retention, using the same funnel numbers.",
+  "summary": "A funnel turns 10,000 visitors into 2,000 sign-ups, 600 active users and 150 buyers. The deck compares three investments. Each deep dive works through the arithmetic of one choice and names what to measure before committing budget.",
+  "explanation": "Every stage multiplies the stages after it, so the same improvement is worth a different number of buyers depending on where you make it.",
+  "learning_check": {
+    "question": "The sign-up rate rises from 20% to 30% and later rates stay the same. How many buyers do you get?",
+    "answer": "225: 3,000 sign-ups, 900 active users, and 25% of them buy."
+  },
+  "concept_ids": ["funnel-conversion"],
+  "source_ids": ["SOURCE"],
+  "used_in": ["LESSON_PAGE"],
+  "slides": [
+    { "id": "question", "heading": "Where should the next budget go?", "notes": "State the decision: one budget, three candidate investments.", "visual": { "type": "title", "subtitle": "Traffic, conversion or retention?" } },
+    { "id": "funnel", "heading": "Today's funnel", "notes": "Each bar keeps a share of the bar before it: 20%, then 30%, then 25%.", "reveal": true, "visual": { "type": "bars", "items": [ { "label": "Visitors", "value": 10000 }, { "label": "Sign-ups", "value": 2000 }, { "label": "Active", "value": 600 }, { "label": "Buyers", "value": 150 } ] } },
+    { "id": "compare-levers", "heading": "Three levers, one budget", "notes": "Open a deep dive to work through one option; Back returns here.", "visual": { "type": "steps", "items": [ "More traffic: more people enter the top", "Better sign-up rate: more of them continue", "Better retention: buyers buy again" ] }, "hotspots": [ { "label": "Buy more traffic", "target": "traffic" }, { "label": "Fix sign-up rate", "target": "signup" }, { "label": "Improve retention", "target": "retention" } ] },
+    { "id": "decide", "heading": "How to decide", "notes": "Turn the comparison into a repeatable decision procedure.", "reveal": true, "visual": { "type": "steps", "items": [ "Find the stage with the largest relative drop", "Estimate buyers gained per unit of budget", "Run one experiment, measure, repeat" ] } }
+  ],
+  "sequences": [
+    { "id": "traffic", "label": "Buy more traffic", "slides": [
+      { "id": "traffic-math", "heading": "Double the visitors", "notes": "At unchanged rates, twice the visitors give twice the buyers; new channels may convert at different rates.", "visual": { "type": "compare", "left": { "label": "Today", "items": [ "10,000 visitors", "150 buyers" ] }, "right": { "label": "Double traffic, same rates", "items": [ "20,000 visitors", "300 buyers" ] }, "verdict": "Check that new visitors convert like old ones." } }
+    ] },
+    { "id": "signup", "label": "Fix sign-up rate", "slides": [
+      { "id": "signup-math", "heading": "Sign-up rate from 20% to 30%", "notes": "Every later stage receives half as many people again, so buyers rise by half.", "visual": { "type": "bars", "items": [ { "label": "Sign-ups", "value": 3000 }, { "label": "Active", "value": 900 }, { "label": "Buyers", "value": 225 } ] } }
+    ] },
+    { "id": "retention", "label": "Improve retention", "slides": [
+      { "id": "retention-steps", "heading": "Grow value without new visitors", "notes": "Retention changes value per buyer, not the number of buyers, so measure the repeat purchase rate first.", "visual": { "type": "steps", "items": [ "Measure how many buyers buy again", "Improve onboarding for active users", "Value per buyer grows; buyer count does not" ] } }
+    ] }
+  ]
+}

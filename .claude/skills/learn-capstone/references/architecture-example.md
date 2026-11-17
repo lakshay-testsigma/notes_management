@@ -1,5 +1,9 @@
 # `ARCHITECTURE.md` — filled example
 
+Three diagrams are required for a visual-first plan (`## Layers`, `## Request
+flow`, `## Deployment`), each registered with `tutor visuals add`; the
+`## Interactive walkthrough` spec uses only props from `site/COMPONENTS.md`.
+
 This is a complete `ARCHITECTURE.md` for a capstone of the topic Redis Streams:
 a notification service that must not lose or duplicate messages. Copy the
 headings and their order; replace the content with your project's real classes
@@ -106,6 +110,50 @@ sequenceDiagram
   W->>D: execute(notification)
   D->>M: send(email)
   D->>Q: acknowledge(id)
+```
+
+## Deployment
+
+```mermaid
+flowchart LR
+  subgraph compose["docker-compose.yml"]
+    api["relay-api :8080<br/>src/main.ts api"]
+    worker["relay-worker<br/>src/main.ts worker"]
+    redis[("redis:7.4 :6379")]
+    smtp["mailpit :1025"]
+  end
+  api -->|REDIS_URL| redis
+  worker -->|REDIS_URL| redis
+  worker -->|SMTP_URL| smtp
+```
+
+Both processes run the same image with a different command. They share only
+Redis; the worker alone talks to SMTP. Configuration comes from the
+environment variables listed under "Error handling, configuration, logging".
+
+## Interactive walkthrough
+
+The delivery path as a lesson component. Paste it into a lesson page (no
+import needed) to let the learner switch the mailer off and watch the retry:
+
+```mdx
+<FlowAnimation
+  title="Relay delivers one notification"
+  nodes={[
+    { id: "client", label: "Client", kind: "pill" },
+    { id: "api", label: "NotificationController" },
+    { id: "queue", label: "RedisStreamQueue", kind: "store" },
+    { id: "worker", label: "DeliveryWorker" },
+    { id: "mailer", label: "SmtpMailer" }
+  ]}
+  steps={[
+    { from: "client", to: "api", packet: "POST", caption: "The controller validates the request and returns 202." },
+    { from: "api", to: "queue", packet: "XADD", caption: "The use case appends the notification to the stream." },
+    { from: "queue", to: "worker", packet: "XREADGROUP", caption: "A worker reads it through the consumer group." },
+    { from: "worker", to: "mailer", packet: "send", caption: "The mailer sends the email, then the worker acknowledges.", fallback: { from: "worker", to: "queue", packet: "retry later", caption: "SMTP is down: the entry stays pending and is retried." } }
+  ]}
+  breakable={["mailer"]}
+/>
 ```
 
 ## Object-oriented ideas and where they are used

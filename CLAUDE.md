@@ -78,6 +78,32 @@ components need no `import` and no `client:` directive; their props are in
 `site/COMPONENTS.md`; a prop that file does not document fails the gate. Only the last page
 of a topic (the highest `order` in the plan) ends with `<Resources />`.
 
+## Visual-first explanations and the writing standard
+
+New plans are visual-first (`plan.visual_first: true`): explain simply, visualize,
+interact, animate, practice, retain. Every stage draws through the shared skill
+`learn-visuals` (and `learn-video` for a 30–90 s HyperFrames explainer of a real
+sequence); never invent a separate way to draw. Every drawn relationship comes from
+a vetted source. Register each visual with `tutor visuals <topic> add` (never edit
+`visuals.json` by hand); the site (`<Diagram id>`, `<Video id>`) and the vault
+(`tutor map` writes `<vault>/visuals/`) then show the same file with its
+explanation, alt text, sources and learning check. Build and render videos only
+with `tutor video <topic> build|render <id>`; with no FFmpeg or Docker the video
+stays an honest storyboard, and no paid API is used. All prose follows
+`harness/rubrics/writing-standard.md` (about 80% ASD-STE100: short active sentences,
+terms defined first, beginner layer first, depth kept in `<Depth>` blocks or notes;
+check with `tutor style <file>`). The contract and gates: `harness/rubrics/visuals.md`.
+
+## Adaptive experiences
+
+New plans also set `plan.experience_policy: "adaptive"`: per idea the selector chooses a
+static diagram, an explainer video, an interactive video lesson, a branching HyperFrames
+deck or a hybrid lab (`tutor experience select`, contract `harness/rubrics/experiences.md`).
+Trust the selector; override only with `override_reason`. Build experiences only with
+`tutor experience <topic> build <id>` and decks with `tutor deck`; never render a deck to
+MP4, never edit `experience.built.json` or `progress.json` by hand. Learner checkpoint
+results come back through `tutor experience <topic> progress --file <export.json>`.
+
 ## Source gate
 
 Recommend a source only when its standing was verified from a live page during the current

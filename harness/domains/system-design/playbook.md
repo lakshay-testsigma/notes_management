@@ -144,6 +144,13 @@ For a beginner, slice one path (for example "a write from client to committed") 
 
 **Custom simulation ideas.** A load simulator where the learner turns the QPS dial until the design falls over, then fixes it; a partition toggle that shows split-brain; a gossip-protocol spread animation; an LSM-tree compaction animation; a rate limiter under burst; a CRDT counter merged on two replicas; a back-of-envelope calculator with editable assumptions.
 
+**Visual recipes** (visual-first plans; standard in `harness/rubrics/visuals.md`):
+
+- `ClusterSim` (`replication`) for quorum writes, leader failover and partitions; (`broadcast`) for gossip and eventual consistency; (`load-balance`) for health checks and rerouting.
+- A registered end-to-end request-flow `Diagram` for every design case, then focused stage diagrams; a `Video` for the request lifecycle or a consensus commit.
+- `CompareView` for consistency and availability trade-offs (strong versus eventual, sync versus async replication) with numbers from the sources.
+- `ParamPlayground` for back-of-envelope capacity estimates; `Graph3D` only for large topologies the learner builds.
+
 ## Mini project patterns
 
 Each one runs several processes locally with Docker Compose so failure can be shown for real. Guided → independent.
@@ -236,3 +243,4 @@ Question styles: Explain ("why does Raft need a majority?"), Compare ("leader-fo
 - Run everything locally. Do not create cloud resources unless the learner asks; if they do, state the cost and give the teardown command.
 - Load and chaos experiments target only the learner's own containers.
 - Present company architectures as described in their own papers and posts, with the date; systems change, so do not state them as current fact.
+- **Experience recipes** (adaptive plans; `harness/rubrics/experiences.md`, the selector decides): explainer for a request lifecycle or one consensus commit; interactive for quorum, latency and failures (ClusterSim); branching for consistency and availability trade-offs and storage choices; hybrid for consensus or replication end to end.

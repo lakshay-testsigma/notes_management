@@ -3,6 +3,8 @@
  * component, written the way a lesson author would write them in MDX.
  */
 
+import type { AlgoFrame } from '../components/learn/react/AlgorithmStepper';
+
 export const flow = {
 	title: 'Retrieval-augmented generation, one question',
 	nodes: [
@@ -297,4 +299,145 @@ export const match = {
 		{ term: '404', definition: 'Nothing lives at this address' },
 		{ term: '500', definition: 'The server failed while handling the request' },
 	],
+};
+
+// --- visual-first components -------------------------------------------------
+
+export const cluster = {
+	title: 'Five servers, one majority',
+	mode: 'replication' as const,
+	servers: 5,
+	latency: 2,
+	intro: 'Fail s4 and s5, send a write, then fail s3 too and send another.',
+};
+
+export const gossip = {
+	title: 'Gossip while one server is down',
+	mode: 'broadcast' as const,
+	servers: 4,
+	failures: ['s3'],
+	intro: 'Send an update, recover s3, and press Sync to repair it.',
+};
+
+export const balancer = {
+	title: 'A balancer that learns failures late',
+	mode: 'load-balance' as const,
+	servers: 3,
+	intro: 'Fail s2, then send three requests at once.',
+};
+
+export const stepper = {
+	title: 'Binary search for 23',
+	code: 'lo, hi = 0, len(a) - 1\nwhile lo <= hi:\n    mid = (lo + hi) // 2\n    if a[mid] == target: return mid\n    if a[mid] < target: lo = mid + 1\n    else: hi = mid - 1',
+	lang: 'python',
+	frames: [
+		{ caption: 'Start with the whole sorted list.', array: [2, 5, 8, 12, 16, 23, 38], pointers: { lo: 0, hi: 6 }, vars: { target: 23, comparisons: 0 }, line: 1 },
+		{ caption: 'The middle value 12 is smaller than 23, so the left half cannot hold it.', array: [2, 5, 8, 12, 16, 23, 38], highlight: [3], pointers: { lo: 0, mid: 3, hi: 6 }, vars: { target: 23, comparisons: 1 }, line: 5 },
+		{ caption: 'Search only the right half. The middle value 23 is the target.', array: [2, 5, 8, 12, 16, 23, 38], highlight: [5], pointers: { lo: 4, mid: 5, hi: 6 }, vars: { target: 23, comparisons: 2 }, line: 4 },
+	] as AlgoFrame[],
+};
+
+export const stepperBars = {
+	title: 'One pass of bubble sort',
+	view: 'bars' as const,
+	frames: [
+		{ caption: 'Compare 5 and 1: out of order, so swap them.', array: [5, 1, 4, 2], highlight: [0, 1], vars: { swaps: 0 } },
+		{ caption: 'Compare 5 and 4: swap again. The largest value moves right.', array: [1, 5, 4, 2], highlight: [1, 2], vars: { swaps: 1 } },
+		{ caption: 'Compare 5 and 2: swap. After one pass, 5 is in its final place.', array: [1, 4, 5, 2], highlight: [2, 3], vars: { swaps: 2 } },
+		{ caption: 'End of pass one.', array: [1, 4, 2, 5], highlight: [3], vars: { swaps: 3 } },
+	],
+};
+
+export const compare = {
+	title: 'Write-through or write-behind cache',
+	question: 'Checkout must never lose an order. Which cache write policy fits?',
+	left: {
+		label: 'Write-through',
+		points: ['Writes the cache and the database in one request', 'A crash after the reply loses nothing', 'Every write waits for the database'],
+		metrics: { 'p99 write latency (ms)': 42, 'orders lost per crash': 0 },
+	},
+	right: {
+		label: 'Write-behind',
+		points: ['Writes the cache now, the database later in a batch', 'A crash loses the writes still in the batch', 'Writes return as soon as the cache has them'],
+		metrics: { 'p99 write latency (ms)': 6, 'orders lost per crash': 120 },
+	},
+	lowerIsBetter: true,
+	verdict: 'Write-through costs about 36 ms per write but loses nothing in a crash, so it fits checkout. Write-behind fits counters and analytics where a small loss is acceptable.',
+};
+
+export const playgroundCode = {
+	title: 'Retry with exponential backoff',
+	code: `const delays = [];
+let delay = 100;
+for (let attempt = 1; attempt <= 4; attempt++) {
+  delays.push(delay);
+  delay = delay + 100; // TODO: double the delay instead
+}
+console.log(delays.join(' '));`,
+	expected: '100 200 400 800',
+	hint: 'Exponential backoff multiplies the delay by 2 after each failed attempt.',
+};
+
+export const sortBuckets = {
+	prompt: 'Sort each HTTP response by whether the client should retry it.',
+	buckets: ['Retry', 'Do not retry'],
+	items: [
+		{ text: '503 Service Unavailable', bucket: 'Retry' },
+		{ text: '429 Too Many Requests', bucket: 'Retry' },
+		{ text: '504 Gateway Timeout', bucket: 'Retry' },
+		{ text: '400 Bad Request', bucket: 'Do not retry' },
+		{ text: '404 Not Found', bucket: 'Do not retry' },
+		{ text: '401 Unauthorized', bucket: 'Do not retry' },
+	],
+	explanation: '5xx overload and timeout codes and 429 describe a temporary state of the server, so a retry with backoff can succeed. 4xx codes describe the request itself; sending it again gives the same answer.',
+};
+
+/** Registry-style entries for the Diagram and Video demos (no topic needed). */
+export const demoDiagram = {
+	id: 'demo-write-path',
+	title: 'Raft write path, end to end',
+	kind: 'workflow',
+	format: 'svg' as const,
+	purpose: 'See the whole path of one write before studying each stage.',
+	explanation: 'The leader replies only after a majority of servers stores the entry; follower 2 can lag without blocking the write.',
+	alt: 'A client sends a write to the leader, the leader replicates it to two followers, one acknowledges, and the leader replies after a majority of three stores it.',
+	concept_ids: ['log-replication'],
+	source_ids: [],
+};
+
+export const demoMermaid = {
+	id: 'demo-funnel',
+	title: 'Marketing funnel stages',
+	kind: 'workflow',
+	format: 'mermaid' as const,
+	purpose: 'See that each stage only receives the people the stage before it kept.',
+	explanation: 'Fixing the stage with the largest relative drop, here sign-up, usually gives the largest gain.',
+	alt: 'Four stages in a row: 10,000 visit, 2,000 sign up, 600 activate, 150 buy, with the rate between each pair.',
+	concept_ids: ['funnel-conversion'],
+	source_ids: [],
+};
+
+export const demoMermaidSource = `flowchart LR
+  visit["Visit: 10,000"] -->|20%| signup["Sign up: 2,000"]
+  signup -->|30%| activate["Activate: 600"]
+  activate -->|25%| buy["Buy: 150"]`;
+
+export const demoVideo = {
+	id: 'raft-write-commit',
+	title: 'How a Raft cluster commits one write',
+	kind: 'video',
+	format: 'hyperframes' as const,
+	purpose: 'See why a write is safe only after a majority of servers store it.',
+	explanation: 'The leader replies only after a majority of servers store the entry. A minority failure cannot lose a committed write.',
+	alt: 'A client sends a write to the leader. The leader appends it and sends it to two followers. When a majority stores the entry, the leader commits it and replies.',
+	concept_ids: ['log-replication'],
+	source_ids: [],
+	video: {
+		status: 'rendered' as const,
+		project_dir: 'harness/examples/videos',
+		url: '/media/_demo/raft-write-commit.mp4',
+		captions_url: '/media/_demo/raft-write-commit.vtt',
+		duration_s: 43,
+		narration: 'say',
+	},
 };
