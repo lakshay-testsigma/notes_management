@@ -81,7 +81,9 @@ consensus, marketing funnel strategy). Copy the closest one.
 9. Narration (`say`, Kokoro or none) and captions (always, from the narration).
 10. Preview: `npx --yes hyperframes@0.9.59 preview` in the project folder.
 11. Check: `tutor video <topic> build <id>`, then `tutor experience … build`
-    (runs `hyperframes lint`) or `tutor video … render` (lints again).
+    (runs `hyperframes lint`) or `tutor video … render` (lints again). Fix every
+    error. Leave the sub-composition warnings (`nested_structure_needs_subcomposition`,
+    `timeline_track_too_dense`): the site needs one self-contained file (rubric §3).
 12. Render only when the output needs a file: the Watch part of an explainer
     or hybrid, and the hybrid summary. A guided walkthrough plays the
     composition in the player and needs no MP4.

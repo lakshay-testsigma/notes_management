@@ -253,6 +253,13 @@ export async function runExperienceChecks({ browser, base, open, check, expect, 
 				const s = await scope.locator('hyperframes-player').first().evaluate((el) => ({ paused: el.paused, t: el.currentTime }));
 				expect(s.paused !== false && s.t < 0.5, 'the walkthrough started by itself');
 			}
+			if (spec.deck) {
+				// On a phone the readable outline opens by default, and full screen is offered.
+				await f.locator('[role="tab"][data-tab="deepdive"]').click();
+				const scope = f.locator('[role="tabpanel"]');
+				await scope.locator('.lc-exp-outline').first().waitFor({ state: 'visible', timeout: 5000 });
+				expect(await scope.getByRole('button', { name: 'Open the slides full screen' }).count() === 1, 'no full-screen button for the slides');
+			}
 			expect(phoneErrors.length === 0, phoneErrors.slice(0, 2).join(' | '));
 			await phone.close();
 		});

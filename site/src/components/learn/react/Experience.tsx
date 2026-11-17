@@ -601,8 +601,20 @@ function DeepDive({ config, store, dispatch, snapshot, outlineHtml }: { config: 
 	const host = useRef<HTMLDivElement>(null);
 	const [slide, setSlide] = useState<string | null>(null);
 	const [failed, setFailed] = useState(false);
+	// On a phone the 16:9 slides are small and the navigation capsule covers much
+	// of them: open the readable outline by default and offer full screen.
 	const [outline, setOutline] = useState(false);
+	useEffect(() => {
+		if (typeof window.matchMedia === 'function' && window.matchMedia('(max-width: 600px)').matches) setOutline(true);
+	}, []);
 	const outlineId = useId().replace(/:/g, '');
+	const fullScreen = () => {
+		const el = host.current?.querySelector('hyperframes-slideshow') as (HTMLElement & { requestFullscreen?: () => Promise<void> }) | null;
+		el?.requestFullscreen?.()
+			.then(() => (screen.orientation as ScreenOrientation & { lock?: (o: string) => Promise<void> })?.lock?.('landscape'))
+			.catch(() => undefined);
+		el?.focus();
+	};
 	useEffect(() => {
 		let cancelled = false;
 		let player: PlayerElement | null = null;
@@ -646,6 +658,11 @@ function DeepDive({ config, store, dispatch, snapshot, outlineHtml }: { config: 
 				{store.branches.length ? `, deep dives: ${store.branches.join(', ')}` : ''}.
 			</p>
 			<div className="lc-controls">
+				{!failed && (
+					<button type="button" className="lc-btn" onClick={fullScreen}>
+						Open the slides full screen
+					</button>
+				)}
 				<button type="button" className="lc-btn" aria-expanded={outline} aria-controls={outlineId} onClick={() => setOutline(!outline)}>
 					{outline ? 'Hide the text outline' : 'Show the text outline'}
 				</button>

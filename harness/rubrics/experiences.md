@@ -73,6 +73,11 @@ Follow the official `/hyperframes` explainer guidance and this order:
    storyboard, published composition for the site player.
 8. Preview: `npx hyperframes@0.9.59 preview` in the project folder.
 9. Check: `tutor experience build` runs `hyperframes lint`; `tutor video render` lints again.
+   Lint errors block. The warnings `nested_structure_needs_subcomposition` and
+   `timeline_track_too_dense` are expected and accepted: they ask to split scenes
+   into separate files for the Studio timeline, but the site plays each
+   composition as one self-contained file in an opaque sandbox whose CSP blocks
+   fetching other files.
 10. Render only when the experience needs a file (Watch tab, summary video):
     `tutor video <topic> render <id>`. A guided walkthrough plays the
     composition itself and needs no MP4.
