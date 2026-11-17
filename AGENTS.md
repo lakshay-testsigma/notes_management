@@ -1,13 +1,17 @@
 # Tutor harness
 
 Read `docs/ARCHITECTURE.md` first, then `CLAUDE.md`. For tutor generation/resume,
-read `.claude/skills/learn/SKILL.md` and the applicable stage skill. Other hosts
+read `.claude/skills/learn/SKILL.md` and the applicable stage skill. For a whole field or a
+roadmap file, read `.claude/skills/learn-roadmap/SKILL.md` (ARCHITECTURE §4.5). Other hosts
 must explicitly load these local instructions; Claude auto-loading is not portable.
 For new plans also load `docs/RESEARCH-WORKFLOW.md`: recursive concept discovery,
 per-concept evidence/coverage, developer learner profile and adaptive visuals.
 Use the host's fresh-worker API when the learn runbook requests workers. Keep
 workers within the host limit and the skill's limit; do not assume named Claude
 agent types exist on another host. Persist handoffs and resume from CLI state.
+The learner's topic files live in `inputs/`; run `tutor roadmap inbox` first. Worker role
+files declare a model tier (`model:` fact = cheaper, writer = stronger); map them to the
+host's models and respect the per-topic spawn caps and coverage-audit rounds of `learn`.
 
 State under `state/` is owned by `node harness/bin/tutor.mjs`; change it only
 through that CLI. Preserve generated notes, learner insights, card IDs and recall

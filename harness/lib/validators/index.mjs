@@ -4,6 +4,7 @@
 import { isOmitted } from '../stages.mjs';
 import { qualityProblems } from '../quality.mjs';
 import { curriculumProblems } from '../curriculum.mjs';
+import { roadmapTopicProblems } from '../roadmap.mjs';
 import { readingProblems, READER_STAGES } from '../reading-order.mjs';
 import path from 'node:path';
 import { exists, relPath, toPosix, walkFiles } from '../io.mjs';
@@ -99,10 +100,12 @@ export function validateStage(root, topic, stageId, ctx = createContext(root, to
       ...visualStageFailures(ctx, 'finalize'),
       ...topicWideChecks(ctx),
       ...curriculumProblems(ctx, 'finalize').map(problem => failure(ctx.paths.topic_json, problem, 'repair concept coverage with tutor plan --set and write-note, then obtain a fresh independent review')),
+      ...roadmapTopicProblems(ctx, 'finalize').map(problem => failure(ctx.paths.topic_json, problem, 'map every roadmap item of the section to an included, covered concept with tutor plan --set')),
     ];
   } else {
     found = [...GATES[stageId](ctx), ...visualStageFailures(ctx, stageId)];
     if (stageId === 'intake') found.push(...curriculumProblems(ctx, 'intake').map(problem => failure(ctx.paths.topic_json, problem, 'repair the bounded concept tree with tutor plan --set')));
+    if (stageId === 'intake') found.push(...roadmapTopicProblems(ctx, 'intake').map(problem => failure(ctx.paths.topic_json, problem, `map every item from \`tutor roadmap section ${ctx.topic.roadmap?.id} ${ctx.topic.roadmap?.section}\` to an included concept with tutor plan --set`)));
   }
 
   if (!files) {

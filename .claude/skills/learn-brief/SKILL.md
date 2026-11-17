@@ -189,7 +189,7 @@ flowchart LR
 
 ## Where it is used in the real world
 
-<2–4 short bullets or sentences. Each is supported by a source.>
+<2–4 short bullets or sentences. Each names the use case and the benefit it gives over the alternative, and is supported by a source.>
 
 ## What you need to know first
 

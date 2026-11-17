@@ -11,7 +11,7 @@ export const REVIEW_CHECKS = {
   projects: ['solution-tests','starter-behavior','dependency-health','architecture','documented-commands'],
 };
 /** Extra content checks of a visual-first plan (harness/rubrics/visuals.md, "Review"). */
-export const VISUAL_FIRST_CHECKS = ['visual-accuracy', 'visual-efficacy', 'interaction-behavior', 'accessibility-responsive', 'writing-standard'];
+export const VISUAL_FIRST_CHECKS = ['visual-accuracy', 'visual-efficacy', 'interaction-behavior', 'interactive-topic-fit', 'accessibility-responsive', 'writing-standard'];
 export function requiredReviewChecks(topic, scope, root = null) {
   if (typeof scope !== 'string' || !Object.hasOwn(REVIEW_CHECKS, scope)) return null;
   const checks = [...REVIEW_CHECKS[scope]];

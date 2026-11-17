@@ -76,6 +76,7 @@ Order matters: situation, prediction, visual, explanation, activity. Explaining 
 - **Plain words.** Short sentences, active verbs, the same word for the same thing every time. Write for a beginner whose first language may not be English.
 - **Define each term on first use**, in the same sentence, in bold once. Never use a term the plan's prerequisites and earlier pages did not cover.
 - **Use real names and real values**: real commands, real field names, realistic numbers. No `foo`, no "some data".
+- **Say the use case and the benefit.** One or two lines name where a developer meets this idea at work and what it gains them over the obvious alternative ("Kafka keeps the event after it is read, so a new consumer can replay last week" — not "Kafka is useful"). This is the `use-case` aspect.
 - **Point at the visual.** Say what to press, what to watch, what changed. The text and the visual must need each other.
 - **Paragraphs of 1–3 lines.** At most one short list (5 items or fewer) per page; a list is for parallel items, not for explanation.
 - **Headings are optional.** A page is short enough to need none; use at most two `##` headings and no deeper levels.
@@ -152,6 +153,10 @@ Rules for an activity that tests understanding:
 - Every answer comes with a **one- or two-line reason**, including why the tempting wrong option is wrong.
 - It can be answered from this page and earlier pages only.
 - Vary the activity type across the topic.
+
+## Interactivity must fit the topic
+
+Every interactive object on the page (an experience, a simulation, a stepper, a playground, a 3D graph, an activity) uses this page's concept: its labels, presets, sample data and questions come from the page's idea and its sources, and each control changes something the prose explains. A generic demo, placeholder data, or a scenario copied from another topic fails review (`interactive-topic-fit`), even when the component renders.
 
 ## Anti-patterns
 

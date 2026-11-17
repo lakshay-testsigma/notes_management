@@ -2,8 +2,12 @@
 
 This is the operating guide for the `learn` orchestrator and its workers. Load it
 after `docs/ARCHITECTURE.md` and `CLAUDE.md`. The same contracts apply to DeepSeek,
-Kimi, or any other model used by the host. The harness does not call a provider API,
+Kimi, or any other model used by the host. The `tutor` CLI does not call a provider API,
 select a model, set reasoning parameters, or guarantee equal quality across models.
+The learner chose two model tiers, declared in the role files of `.claude/agents/`
+(`model:`): **fact** (cheaper: research, digests, repository analysis, projects, gap
+audits) and **writer** (stronger: lesson pages, experiences, review, and the inline brief
+and notes). On another host, map fact to its cheaper model and writer to its strongest.
 Use the model id actually available in the host; never invent an id from a spoken
 name. More reasoning cannot substitute for live sources, executable checks, and
 independent review.
@@ -128,7 +132,9 @@ needs coverage in an MDX lesson whose planned complexity is at least as high, wh
 importance is critical when the concept is critical, and whose visual is nonnull.
 A Markdown note alone cannot satisfy the requested interaction for a hard concept.
 
-Each included concept needs all six teaching aspects. For an abstract concept,
+Each included concept needs all six teaching aspects. `use-case` means a real
+situation where a developer meets the concept **and** the benefit it gives over the
+alternative; a use case without a stated benefit does not cover the aspect. For an abstract concept,
 practice can be a worked prediction or debugging exercise rather than a large app.
 Coverage can span multiple files; the union of `aspects` must contain all six.
 Put `<!-- concept: event-loop -->` in each referenced Markdown/MDX file above
@@ -222,7 +228,8 @@ reviews. Agent names in `.claude/agents` describe roles, not portable API types.
 Pass the role file to the host's fresh-worker API. If the host has no fresh workers,
 generation units may run serially with saved handoffs, but independent review stays
 pending until a separate fresh session performs it. Do not certify your own material
-as an independent review. Never switch to a more expensive model without instruction.
+as an independent review. Keep each role on its declared tier: never move fact work to
+the writer tier to fix wording; send the facts to a writer instead.
 
 ## Review after generation in fresh isolated sessions
 

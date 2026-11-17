@@ -134,6 +134,7 @@ The independent content reviewer of a visual-first topic assesses, with evidence
 
 - `visual-accuracy`: every drawn relationship matches a cited source; no invented arrows, orders or numbers.
 - `visual-efficacy`: for each visual, answer its `learning_check.question` twice: from the page prose alone, then with the visual (operate the simulation, watch the video). Record whether the visual made the correct answer possible or faster, and flag visuals that add nothing.
+- `interactive-topic-fit`: every interactive object (experience, simulation, stepper, playground, 3D graph, activity) uses its page's concept in labels, presets, data and questions; a control changes what the prose explains; no placeholder data or scenario copied from another topic.
 - `interaction-behavior`: each simulation's controls change the result, the explanation names the cause, a failure or counterexample is reachable, and Reset restores the start.
 - `accessibility-responsive`: text alternatives, keyboard use, captions and transcript, 375 px layout, reduced motion.
 - `writing-standard`: harness/rubrics/writing-standard.md.

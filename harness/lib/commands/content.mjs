@@ -2,6 +2,7 @@
 
 import path from 'node:path';
 import { stringFlag } from '../args.mjs';
+import { refreshRoadmapViews } from '../roadmap.mjs';
 import { today } from '../clock.mjs';
 import { UsageError, ValidationError } from '../errors.mjs';
 import { table } from '../format.mjs';
@@ -21,7 +22,7 @@ import { readInputFile, readJsonInput, requireArg, saveAndRefresh } from './shar
 
 export function mapCommand({ root, args }) {
   if (!args[0]) {
-    const written = refreshSharedMaps(root);
+    const written = [...refreshSharedMaps(root), ...refreshRoadmapViews(root)];
     return { data: { topic: null, written }, text: ['Regenerated:', ...written.map((f) => `  ${f}`)].join('\n') };
   }
   const topic = resolveTopic(root, args[0]);

@@ -177,6 +177,14 @@ Skill: `learn-capstone`. Agent: `tutor-project-builder`. First apply the rule be
 Inline. Read `.claude/skills/learn-notes/SKILL.md` and follow it, reading only the files its
 Inputs section lists. Run it before `finalize`.
 
+## coverage audit
+
+Between `notes` and `finalize`; not a CLI stage. Rounds: 1 at `quick`, 2 at `standard` and
+`deep`. One `tutor-coverage-auditor` per round (fact tier), brief in
+`worker-brief-examples.md`. It writes nothing; you apply its gaps with `tutor plan --set`,
+re-open only the stale stages, and spawn lesson units only for new or fixed pages. Count
+these spawns against the topic's worker cap. Full procedure: `SKILL.md`, "Coverage audit".
+
 ## finalize
 
 Inline. The commands and the five steps are in `SKILL.md` under "Finalize". The details of
@@ -209,7 +217,9 @@ it afterwards. Reviewers must test visual controls/observable changes/reset. An
 unavailable browser or preview leaves visual-usefulness in not_checked.
 Visual-first topics add the checks of `harness/rubrics/visuals.md` "Review":
 visual-accuracy, visual-efficacy (answer each visual's learning_check from the
-prose alone, then with the visual), interaction-behavior, accessibility-responsive,
+prose alone, then with the visual), interaction-behavior, interactive-topic-fit
+(every interactive object uses this page's concept, not a generic or copied scenario),
+accessibility-responsive,
 writing-standard, video-consistency when the topic has a video, and project-diagrams
 for the projects scope. Pass `tutor visuals <topic> list --json` and the visual
 notes under `<vault>/visuals/` in the input list.

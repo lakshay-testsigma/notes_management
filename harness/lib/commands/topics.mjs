@@ -20,6 +20,8 @@ import {
 } from '../topic-store.mjs';
 import { createContext, validateStage } from '../validators/index.mjs';
 import { nextActionLine, readJsonInput, requireArg, saveAndRefresh, stageTable, topicSummary } from './shared.mjs';
+import { findSection, nextSection, resolveRoadmap, refreshRoadmapViews, roadmapOfTopic } from '../roadmap.mjs';
+import { initCommandFor } from './roadmap.mjs';
 
 // --- domains ----------------------------------------------------------------
 
@@ -116,6 +118,7 @@ export function initCommand({ root, args, flags }) {
   const pack = loadPack(root, domain);
   const id = topicId(domain, subdomain, slug);
   const notes = [];
+  const roadmapLink = roadmapLinkFor(root, flags, id);
 
   const knownSubdomains = (pack.subdomains ?? []).map((s) => s.id);
   if (!knownSubdomains.includes(subdomain)) {
@@ -129,19 +132,29 @@ export function initCommand({ root, args, flags }) {
     if (stringFlag(flags, 'depth') && topic.depth !== depth) {
       notes.push(`The topic already exists with depth "${topic.depth}"; it was not changed to "${depth}".`);
     }
+    if (roadmapLink && topic.roadmap === undefined) {
+      topic.roadmap = roadmapLink;
+      appendLog(topic, 'roadmap', `linked to roadmap ${roadmapLink.id} section ${roadmapLink.section}`);
+      saveTopic(root, topic);
+      notes.push(`Linked to roadmap ${roadmapLink.id}, section ${roadmapLink.section}.`);
+    } else if (roadmapLink && (topic.roadmap.id !== roadmapLink.id || String(topic.roadmap.section) !== roadmapLink.section)) {
+      throw new UsageError(`${id} is already linked to roadmap ${topic.roadmap.id} section ${topic.roadmap.section}.`);
+    }
   } else {
     const sameSlug = scanTopicIds(root).filter((other) => other.split('/')[2] === slug);
     if (sameSlug.length > 0) {
       notes.push(`The slug "${slug}" is also used by ${sameSlug.join(', ')}. Address this topic by its full id.`);
     }
     topic = newTopic({ title, slug, domain, subdomain, depth, pack });
-    appendLog(topic, 'init', `created with depth ${depth}`);
+    if (roadmapLink) topic.roadmap = roadmapLink;
+    appendLog(topic, 'init', `created with depth ${depth}` + (roadmapLink ? ` for roadmap ${roadmapLink.id} section ${roadmapLink.section}` : ''));
     saveTopic(root, topic);
   }
 
   upsertRegistry(root, topic);
   const { created, existed } = scaffoldTopic(root, topic);
   refreshMaps(root, topic);
+  if (topic.roadmap) refreshRoadmapViews(root, topic.id);
 
   const paths = topicPaths(topic);
   const text = [
@@ -176,11 +189,30 @@ export function initCommand({ root, args, flags }) {
       files_created: created,
       files_existing: existed,
       notes,
+      roadmap: topic.roadmap ?? null,
       stages: topic.stages.map((s) => ({ id: s.id, wave: s.wave, status: s.status, note: s.note })),
       next_command: `${CLI} next ${id}`,
     },
     text,
   };
+}
+
+/**
+ * `--roadmap <r> --section <num>`: the topic must be exactly the one the roadmap
+ * planned for that section, so its items can be checked by the gates.
+ */
+function roadmapLinkFor(root, flags, id) {
+  const roadmapRef = stringFlag(flags, 'roadmap');
+  const sectionNum = stringFlag(flags, 'section');
+  if (roadmapRef === undefined && sectionNum === undefined) return null;
+  if (!roadmapRef || !sectionNum) throw new UsageError('--roadmap and --section go together.', `Copy the command printed by \`${CLI} roadmap next <roadmap>\`.`);
+  const roadmap = resolveRoadmap(root, roadmapRef);
+  const section = findSection(roadmap, sectionNum);
+  if (!section.topic) throw new UsageError(`Section ${section.num} of ${roadmap.id} is a reference section and has no topic.`);
+  if (section.topic.id !== id) {
+    throw new UsageError(`Section ${section.num} of ${roadmap.id} is planned as topic ${section.topic.id}, not ${id}.`, `Run: ${initCommandFor(roadmap, section)}`);
+  }
+  return { id: roadmap.id, section: section.num };
 }
 
 // --- list and status --------------------------------------------------------
@@ -219,6 +251,7 @@ export function statusCommand(ctx) {
   const summary = topicSummary(topic);
   const text = [
     `${topic.title}  ·  ${topic.id}  ·  depth: ${topic.depth}`,
+    ...(topic.roadmap ? [`Roadmap: ${topic.roadmap.id}, section ${topic.roadmap.section} (items: ${CLI} roadmap section ${topic.roadmap.id} ${topic.roadmap.section})`] : []),
     '',
     stageTable(topic),
     '',
@@ -233,6 +266,7 @@ export function statusCommand(ctx) {
       title: topic.title,
       depth: topic.depth,
       profile: topic.profile ?? null,
+      roadmap: topic.roadmap ?? null,
       progress,
       ...completionOf(topic),
       wave: summary.wave,
@@ -305,6 +339,11 @@ export function nextCommand({ root, args }) {
     const order = readingOrderOf(topic);
     const notPart = topic.stages.filter(isOmitted).map((s) => s.id);
     const hasLesson = !notPart.includes('lesson');
+    const linked = roadmapOfTopic(root, topic);
+    const following = linked?.roadmap ? nextSection(root, linked.roadmap) : null;
+    const roadmapNext = linked?.roadmap
+      ? { roadmap: linked.roadmap.id, section: following?.section ?? null, topic: following?.topic ?? null, command: `${CLI} roadmap next ${linked.roadmap.id}` }
+      : null;
     return {
       data: {
         ...base,
@@ -321,6 +360,7 @@ export function nextCommand({ root, args }) {
         start_here: paths.start_here,
         vault_dir: paths.vault_dir,
         recall_command: `${CLI} recall due ${topic.id}`,
+        roadmap_next: roadmapNext,
       },
       text: [
         `${topic.title}  ·  ${topic.id}`,
@@ -335,6 +375,7 @@ export function nextCommand({ root, args }) {
           ...(hasLesson ? [['Open the lesson', openLessonLine(topic)]] : []),
           ['Read in Obsidian', paths.start_here],
           ['Review cards', `${CLI} recall due ${topic.id}`],
+          ...(roadmapNext ? [['Roadmap', roadmapNext.section ? `next section ${roadmapNext.section} (${roadmapNext.topic}): ${roadmapNext.command}` : `${roadmapNext.roadmap} has no open sections`]] : []),
         ]),
       ].join('\n'),
     };

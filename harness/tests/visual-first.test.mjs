@@ -350,7 +350,7 @@ describe('visual-first lessons in three domains', () => {
       const { id } = buildTopic(root, DOMAINS[0]);
       const topic = loadTopic(root, id);
       const content = requiredReviewChecks(topic, 'content', root);
-      for (const check of ['visual-accuracy', 'visual-efficacy', 'interaction-behavior', 'accessibility-responsive', 'writing-standard', 'video-consistency']) assert.ok(content.includes(check), check);
+      for (const check of ['visual-accuracy', 'visual-efficacy', 'interaction-behavior', 'interactive-topic-fit', 'accessibility-responsive', 'writing-standard', 'video-consistency']) assert.ok(content.includes(check), check);
       assert.ok(requiredReviewChecks(topic, 'projects', root).includes('project-diagrams'));
       assert.ok(!requiredReviewChecks({ plan: {} }, 'content', root).includes('visual-accuracy'));
     } finally {

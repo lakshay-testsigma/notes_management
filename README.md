@@ -18,6 +18,7 @@ Open this folder in Claude Code and talk to it.
 | `add this to my Redis Streams notes: ...` | Your own learning is saved, dated, and linked to the related note. | `learn-insight` |
 | `quiz me` or `what's due` | A recall session on the cards that are due today. | `learn-recall` |
 | `draw the write path of Raft` or `make a diagram of X` | A sourced diagram, registered once, shown on the site and in Obsidian. | `learn-visuals` |
+| `master frontend engineering end to end`, or `learn inputs/frontend.html` (any topic file dropped in `inputs/`) | A roadmap of the whole field is published first (interactive checklist at `/roadmaps/<slug>.html`, map in Obsidian). Then every section is generated as its own topic, in order, and every roadmap item must be taught before a topic can finish. | `learn-roadmap` |
 | `make a short video of how OAuth works` | A 30–90 s HyperFrames explainer with captions and transcript (MP4 when FFmpeg or Docker is available). | `learn-video` |
 | `let me experiment with binary search` or `compare the funnel strategies` | The experience that fits: an interactive video lesson with predictions and a stepper, a branching deck of deep dives, or a hybrid lab (chosen automatically, see `harness/rubrics/experiences.md`). | `learn-video` |
 

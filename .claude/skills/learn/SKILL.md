@@ -21,8 +21,68 @@ prose follows `harness/rubrics/writing-standard.md` (about 80% ASD-STE100). The 
 its gates are in `harness/rubrics/visuals.md`. Pass these skills to workers; do not draw or
 render yourself.
 New plans record the developer learner profile, recursive research curriculum and
-adaptive visual decisions. The harness does not select provider models or change
-reasoning settings. Use the model configured by the host.
+adaptive visual decisions. The `tutor` CLI never selects a model; the model tier of each
+worker comes from its role file (see "The orchestrator layer").
+
+## The orchestrator layer
+
+This skill is the one orchestrator. Every other skill and agent is a step it calls in a
+fixed order (`learn-roadmap` → `learn-intake` → the wave loop → coverage audit →
+finalize). It owns five budgets. Check them before every spawn.
+
+**1. Inputs first.** At the start of every session run `tutor roadmap inbox`. Topic files
+the learner drops in `inputs/` (roadmap HTML like `inputs/frontend.html`, roadmap JSON, or
+a plain topic list) are the source of truth for what must be taught. A file with status
+`new` or `changed-since-import` goes to `learn-roadmap` (Step 2A or 2C) before anything else.
+
+**2. Model tiers: facts on the cheaper model, wording on the stronger one.** Each role file
+in `.claude/agents/` declares its tier in `model:`. Spawn with that tier; never upgrade a
+fact worker to fix wording; route the wording to a writer instead.
+
+| Tier | Work | Roles / stages |
+|------|------|----------------|
+| fact (`sonnet`) | Find, verify and extract facts that are on the public web: sources, digests, repository analysis, runnable projects, gap audits | `tutor-researcher`, `tutor-digester`, `tutor-repo-analyst`, `tutor-project-builder`, `tutor-coverage-auditor` |
+| writer (`opus`) | Turn those facts into the learner-facing wording and format: lesson pages, experiences, review of meaning | `tutor-lesson-builder`, `tutor-video-producer`, `tutor-verifier`; the inline stages `brief` and `notes` run in this session |
+
+Writers read the fact tier's output (digests, repo notes, verified sources), not raw pages,
+so the stronger model spends its tokens on clarity, not on searching. Every concept a writer
+teaches states its real use case **and** the benefit over the alternative (aspect
+`use-case`). On a host without these model names, map fact to the host's cheaper
+model and writer to its strongest; log the mapping once with `tutor log`.
+
+**3. Context: no agent above 40%.** Workers follow the BUDGET line of the brief. This
+session protects its own context the same way: read `tutor ... --json` output and worker
+returns only (never sources, pages, notes or code), pipe long JSON through
+`node -e` or `grep` to the fields you need, and never re-read a skill file you already
+followed in this session. After each wave write a three-line handoff with `tutor log`.
+At about 40% of your own window (as a rule of thumb, 20 worker returns or 2 finished topics
+in this session, whichever comes first) stop spawning, write the handoff, and continue in
+a fresh session or after compaction from `tutor next`.
+
+**4. Sessions: a fixed worker budget per topic.** Parallel slots are the table "How many
+workers at once". The total number of worker spawns per topic, retries and
+continuations included, is capped:
+
+| Depth | Max worker spawns per topic | Coverage-audit rounds |
+|-------|-----------------------------|-----------------------|
+| `quick` | 14 | 1 |
+| `standard` | 36 | 2 |
+| `deep` | 56 | 2 |
+
+Keep under the cap by packing units: 3 lesson pages per unit, one research unit per
+category, one digest per source only for sources flagged `digest`. Count spawns with
+`tutor log <topic> "SPAWN <n>/<cap>"` after each batch. When the next batch would pass the
+cap, do not spawn: fail the remaining units with `tutor unit ... fail`, mark the stage
+degraded as "Gates and failures" says, and report it. Never trade a review or a required
+unit for speed.
+
+**5. Time: run everything independent in parallel.** Send all workers of a batch in one
+message so they run at the same time. Fill a batch across stages of the same wave (lesson
+and mini-project units share one queue; digest and repo-intel share one queue). Fact
+workers for the next wave never wait for writer review of the current one unless the wave
+table orders it. In a roadmap, the next section's intake and research may run in free slots
+while the current topic is in wave 3 or later (`lookahead` in `tutor roadmap next --json`;
+see `learn-roadmap` Step 4).
 
 Every command below is run from the repository root. `tutor` in prose always means
 `node harness/bin/tutor.mjs`. `<topic>` always means the full topic id
@@ -76,13 +136,14 @@ research; missing fresh workers leaves independent reviews pending.
 If `tutor.mjs` does not exist or `doctor` reports a broken harness, stop and tell the learner
 exactly what `doctor` printed. Do not try to rebuild the harness.
 
-Then pick one of three modes:
+Then pick one of four modes:
 
 | The learner said | Mode | What you do |
 |------------------|------|-------------|
 | "status", "progress", "what is left" | status | Run `node harness/bin/tutor.mjs status <topic>` (or `status` with no topic for all topics), report it in plain words, and stop. Generate nothing. |
 | "continue X", "resume", or a topic that already appears in `tutor list` (match the slug or the title, ignoring case) | resume | Go to Step 3 with that topic id. With "continue" and no topic name, take the unfinished topic that was updated most recently and say which one you picked. |
 | A topic that is not in `tutor list` | new | Go to Step 2. |
+| A file in `inputs/` (or `tutor roadmap inbox` shows a `new` or `changed-since-import` file), a whole field ("master frontend engineering end to end", "become a backend engineer"), a roadmap HTML/JSON file, "continue <roadmap>", or a topic too broad for one bounded curriculum (more than about 60 concepts) | roadmap | Read `.claude/skills/learn-roadmap/SKILL.md` and follow it. It publishes the roadmap checklist first, then calls Steps 2 and 3 of this file once per section, in roadmap order. |
 
 **A different depth for an existing topic** (`/learn <topic> --depth standard`, "go deeper on
 X"). Do not create the topic again. Run `node harness/bin/tutor.mjs depth <topic> <depth>`; it
@@ -93,7 +154,9 @@ the plan is too small for the new depth, extend the plan as learn-intake step 7 
 
 ## Step 2 — Create the topic (new topics only)
 
-Read `.claude/skills/learn-intake/SKILL.md` and follow it exactly. Pass along the topic title and
+A topic that belongs to a roadmap section is created only with the exact `init` command that
+`tutor roadmap next <roadmap>` prints; intake then also follows "Intake for a roadmap topic" in
+`learn-roadmap`. Read `.claude/skills/learn-intake/SKILL.md` and follow it exactly. Pass along the topic title and
 the depth if the learner gave one (`--depth quick|standard|deep`, or words such as "quick
 overview" or "in depth"). Intake runs `tutor init`, starts and finishes the `intake` stage, and
 gives you the topic id. Then go to Step 3.
@@ -128,7 +191,8 @@ the table in `references/troubleshooting.md`.
 | 3 | `mini-projects` | `learn-projects` | Parallel with `lesson`. |
 | 4 | `capstone` | `learn-capstone` | — |
 | 5 | `notes` | `learn-notes` | Run first. |
-| 5 | `finalize` | `learn` (this file) | Run after `notes`, because it validates the recall cards. |
+| 5 | coverage audit | `learn` (this file), section "Coverage audit" | After `notes` passes, before `finalize`. Not a CLI stage. |
+| 5 | `finalize` | `learn` (this file) | Run after the coverage audit, because it validates the recall cards. |
 
 A stage absent from `tutor next` may be blocked by a prerequisite. Inspect `status`; only depth/domain omissions are outside the topic.
 
@@ -145,6 +209,7 @@ A stage absent from `tutor next` may be blocked by a prerequisite. Inspect `stat
 | `mini-projects` | workers | one mini project | `tutor-project-builder` |
 | `capstone` | worker | the capstone project | `tutor-project-builder` |
 | `notes` | inline | — | — |
+| coverage audit | one worker per round (1 round at `quick`, 2 otherwise) | the whole topic | `tutor-coverage-auditor` |
 | `finalize` | inline, plus one reviewer (two at `standard` and `deep`) | the whole topic | `tutor-verifier` |
 
 **Inline** means: read `.claude/skills/<skill>/SKILL.md` and follow its Steps yourself, reading
@@ -279,6 +344,32 @@ For a non-foundational failure, use `tutor fail <topic> <stage> --continue --rea
 to continue generating useful downstream artifacts. The failure stays required and the run
 is degraded. Never convert a failed requirement into a skip. `notes` must pass before finalize.
 
+## Coverage audit (after `notes`, before `finalize`)
+
+The notes exist; now check, with evidence, whether the package missed a subtopic a
+developer needs. The audit is bounded so it cannot burn the context or the worker budget.
+
+1. Spawn one `tutor-coverage-auditor` (fact tier). Its brief: the topic id, `ROUND: 1`, the
+   items of the roadmap section when the topic comes from `inputs/`
+   (`tutor roadmap section <roadmap> <num> --json`, ids and titles only), and the BUDGET
+   line. It reads the plan, sources and grep output, never full pages, and returns at most
+   8 ranked gaps.
+2. `VERDICT: complete`: go to Finalize.
+3. `VERDICT: gaps`: for each gap that cites a verified source or an input item, extend the
+   plan once with `tutor plan <topic> --set <file>`: add the concept to `plan.curriculum`
+   (included, with its source ids) and either a new lesson-outline page or the concept to an
+   existing page's coverage. A gap whose source is not in `sources.json` first needs one
+   `tutor-researcher` unit to verify it; drop it if verification fails. A `thin` or
+   `interactivity` gap goes to the owning page as a FIX LIST, not a new concept.
+4. Re-open only what the plan change made stale (`tutor status <topic>` shows it):
+   `tutor reset <topic> lesson` then `start`, and register and spawn units only for the new
+   or fixed pages (existing passing pages are kept); then `reset`/`start` `notes` and update
+   the final notes and recall cards inline. Gate each with `tutor done`.
+5. At `standard` and `deep`, run round 2 with the round-1 gaps listed as handled. Round 2
+   may only add gaps that are new or still open. There is no round 3: anything left goes
+   under "Research boundary" in the final message.
+6. Log each round: `tutor log <topic> "AUDIT round <n>: <k> gaps, <m> added"`.
+
 ## Finalize (stage `finalize`)
 
 Run these in order. Each command must finish before the next one starts.
@@ -317,6 +408,10 @@ input list) are in the `finalize` section of `references/stage-runbook.md`; read
    or installed headless Playwright procedure. The orchestrator owns the preview's
    bounded lifecycle and stops it after review. Test each required visual's controls,
    observable changes and reset; a smoke pass alone checks rendering, not semantics.
+   Each interactive object (experience, simulation, stepper, playground, 3D graph) must
+   also fit its page's topic: its labels, presets, data and questions name that page's
+   concept, and changing a control shows that concept's mechanism. A generic or copied
+   scenario is an error for the page's `tutor-lesson-builder`.
    If runtime inspection is unavailable, keep visual-usefulness unreviewed.
 4. Fix what the verifier reports through the owning worker. Renew stale receipts
    in generation order: re-gate intake if plan/sources changed, run check research

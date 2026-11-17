@@ -276,7 +276,7 @@ pages. Do not try to squeeze that unit into an existing page.
    assigned source ids. Put `<!-- concept: <id> -->` above `## My insights`.
 3. Cover all six aspects explicitly: `explanation` (what it is and why it
    exists), `mechanism` (how it works step by step), `use-case` (a concrete
-   developer or industry scenario), `trade-offs` (when to choose it or an
+   developer or industry scenario and the benefit it gives over the alternative), `trade-offs` (when to choose it or an
    alternative), `failure-modes` (what it prevents, where it fails, and relevant
    security limits), and `practice` (a checkable experiment with expected
    behavior). Link source evidence beside the claims it supports. Mark

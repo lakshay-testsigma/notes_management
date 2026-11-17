@@ -13,6 +13,7 @@ import { CLI, TEMPLATES_DIR } from '../root.mjs';
 import { buildSlices, DEFAULT_BUDGET, estimateTokens, scanDirectory } from '../slicer.mjs';
 import { STAGES, STAGE_IDS, STATUSES } from '../stages.mjs';
 import { ALL_TEMPLATE_FILES } from '../templates.mjs';
+import { loadRoadmap, scanRoadmapIds, storedRoadmapProblems } from '../roadmap.mjs';
 import { loadAllTopics, readRegistry, rebuildRegistry, registryPath, scanTopicIds, topicJsonPath, topicPaths } from '../topic-store.mjs';
 import { BRIEF_WORDS } from '../validators/brief.mjs';
 import { LESSON_WORDS } from '../validators/lesson.mjs';
@@ -167,7 +168,7 @@ export function wordsCommand({ root, args }) {
 
 // --- doctor -----------------------------------------------------------------
 
-const STAGE_SKILLS = [...new Set([...STAGES.map((s) => s.skill), 'learn-insight', 'learn-recall', 'learn-visuals', 'learn-video'])];
+const STAGE_SKILLS = [...new Set([...STAGES.map((s) => s.skill), 'learn-insight', 'learn-recall', 'learn-visuals', 'learn-video', 'learn-roadmap'])];
 const RUBRIC_FILES = ['source-quality.md', 'lesson-page.md', 'vault-notes.md', 'visuals.md', 'writing-standard.md', 'experiences.md'];
 /** Official HyperFrames agent skills the video workflow reads (installed by `npx hyperframes skills update`). */
 const HYPERFRAMES_SKILLS = ['hyperframes', 'hyperframes-cli', 'hyperframes-registry', 'media-use', 'slideshow'];
@@ -240,6 +241,22 @@ export function doctorCommand({ root, flags }) {
   // Skills
   const missingSkills = STAGE_SKILLS.filter((skill) => !isFile(path.join(root, '.claude', 'skills', skill, 'SKILL.md')));
   add('skills', missingSkills.length ? 'warn' : 'ok', missingSkills.length ? `no SKILL.md for: ${missingSkills.join(', ')}` : `${STAGE_SKILLS.length} skills present`);
+
+  // Roadmaps: each stored roadmap must be usable, and the HTML template must exist.
+  const roadmapIds = scanRoadmapIds(root);
+  const templateOk = isFile(path.join(TEMPLATES_DIR, 'roadmap.html'));
+  const roadmapProblems = [];
+  for (const id of roadmapIds) {
+    try {
+      for (const problem of storedRoadmapProblems(root, loadRoadmap(root, id))) roadmapProblems.push(`${id}: ${problem}`);
+    } catch (error) {
+      roadmapProblems.push(`${id}: ${error.message}`);
+    }
+  }
+  if (!templateOk) roadmapProblems.push('harness/templates/roadmap.html is missing');
+  add('roadmaps', roadmapProblems.length ? 'fail' : 'ok',
+    roadmapProblems.length ? roadmapProblems.slice(0, 5).join('; ') : `${roadmapIds.length} ${roadmapIds.length === 1 ? 'roadmap' : 'roadmaps'}, HTML template present`,
+    roadmapProblems.length ? 'restore the template or repair the roadmap with `tutor roadmap add` under a new slug' : null);
 
   // Video tooling (optional: without it videos stay honest storyboards)
   const tools = videoTools();

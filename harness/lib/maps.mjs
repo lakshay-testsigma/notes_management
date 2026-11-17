@@ -18,6 +18,7 @@ import { readSources, SOURCE_TYPES, SOURCE_TYPE_LABELS } from './sources.mjs';
 import { today } from './clock.mjs';
 import { exportVisuals } from './visuals.mjs';
 import { CLI } from './root.mjs';
+import { loadAllRoadmaps, refreshRoadmapViews, roadmapPaths, roadmapProgress } from './roadmap.mjs';
 
 /** Reading order 01 -> 09: which note, and which stage produces it. */
 export const READING_ORDER = [
@@ -104,8 +105,9 @@ export function refreshTopic(root, topic) {
   writeGenerated(path.join(root, paths.start_here), TOPIC_TEMPLATES.start_here, vars, renderStartHere(root, topic));
   writeGenerated(path.join(root, paths.resources), TOPIC_TEMPLATES.resources, vars, renderResources(root, topic));
   const shared = refreshSharedMaps(root, [topic.domain]);
+  const roadmaps = refreshRoadmapViews(root, topic.id);
   const backlinks = syncBacklinks(root, topic);
-  return { written: [paths.start_here, paths.resources, ...visuals, ...shared], stage_notes: stageNotes, backlinks };
+  return { written: [paths.start_here, paths.resources, ...visuals, ...shared, ...roadmaps], stage_notes: stageNotes, backlinks };
 }
 
 /** Regenerate the domain maps (all domains that have topics, or the given ones) and Home. */
@@ -304,16 +306,30 @@ function renderDomainMap(topics, pack) {
   return out.join('\n');
 }
 
+function roadmapLines(root) {
+  const roadmaps = loadAllRoadmaps(root);
+  if (!roadmaps.length) return [];
+  const out = ['## Roadmaps', ''];
+  for (const roadmap of roadmaps) {
+    const totals = roadmapProgress(root, roadmap).totals;
+    out.push(`- [[${roadmapPaths(roadmap.id).vault_note.replace(/^vault\//, '').replace(/\.md$/, '')}|${roadmap.title}]] — ${totals.complete}/${totals.topics} topics ready`);
+  }
+  out.push('');
+  return out;
+}
+
 function renderHome(root, topics) {
+  const roadmaps = roadmapLines(root);
   if (topics.length === 0) {
     return [
+      ...roadmaps,
       '_No topics yet._',
       '',
       'Ask Claude: "teach me <topic>". The tutor creates the notes, the lesson site pages, and the projects, and lists the topic here.',
     ].join('\n');
   }
 
-  const out = ['## Domains', ''];
+  const out = [...roadmaps, '## Domains', ''];
   const domains = [...new Set(topics.map((t) => t.domain))].sort();
   const knownPacks = new Set(listPackIds(root));
   for (const domain of domains) {

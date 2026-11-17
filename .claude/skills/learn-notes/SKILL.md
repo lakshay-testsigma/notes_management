@@ -212,7 +212,7 @@ Body: exactly these headings, in this order, spelled exactly like this.
 | `## The mental model` | One small mermaid diagram (at most 8 nodes) and one or two sentences that explain how to read it. |
 | `## Visual refresher` | One to three links `[[visual-<id>-<slug>\|<title>]]` with what to look at in each, at most one embed, and the link to the visual index `[[visuals-<slug>\|all visuals]]`. |
 | `## Key ideas` | 5 to 9 bullets. Each bullet is one complete idea with its reason ("X, because Y"). |
-| `## When to use it / when not to` | Two short lists: "Use it when" and "Do not use it when", each with concrete conditions and the alternative to use instead. |
+| `## When to use it / when not to` | Two short lists: "Use it when" (the real use case and the benefit it gives) and "Do not use it when", each with concrete conditions and the alternative to use instead. |
 | `## Trade-offs and failure modes` | What you pay for the benefits, and how it breaks in practice, with the symptom you would see. |
 | `## Commands or code worth remembering` | One code block with the three to eight commands or lines the learner would otherwise look up again. |
 | `## What production systems do differently` | Two to four points from the repo-intel findings and takeaways, each linked to the note it comes from. |

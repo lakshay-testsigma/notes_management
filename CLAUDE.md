@@ -29,12 +29,27 @@ Every topic lives at the same sub-path `<domain>/<subdomain>/<slug>` in four roo
 | `site/src/content/lessons/…` | the lesson pages (`NN-<page>.mdx`) |
 | `projects/…` | `mini-NN-<name>/` and `capstone/` |
 
+Roadmaps live in `state/roadmaps/<slug>/roadmap.json`, with views in
+`site/public/roadmaps/<slug>.html` and `vault/_roadmaps/<slug>.md` (ARCHITECTURE §4.5).
+
 Shared notes live in `vault/_concepts/` and `vault/_tech/`: created only with `tutor concept`,
 named in sentence case ("Dense retrieval"), their backlinks filled by `tutor map`. Clones and
 fetched pages stay in `.cache/`.
 
+## Inputs folder
+
+The learner drops topic files in `inputs/` (like `inputs/frontend.html`): roadmap HTML with
+`const DATA`, roadmap JSON, or a plain topic list. They are read-only. `tutor roadmap inbox`
+lists them and says which are new, imported, changed, or need conversion; the `learn`
+orchestrator checks it first in every session.
+
 ## Always use the learn skills
 
+- To learn a whole field end to end ("master frontend engineering"), or when the learner gives
+  a roadmap HTML/JSON file, use the `learn-roadmap` skill: `tutor roadmap add` stores the
+  roadmap and writes its HTML checklist (`/roadmaps/<slug>.html`) and vault map first; then
+  each section becomes one topic, created only with the `init` command `tutor roadmap next`
+  prints, and every roadmap item must be an included, covered curriculum concept.
 - To teach, generate, continue, or report on a topic, use the `learn` skill. It runs the
   stages in waves and calls the stage skills (`learn-intake`, `learn-research`, `learn-brief`,
   `learn-digest`, `learn-repo-intel`, `learn-site`, `learn-projects`, `learn-capstone`,
@@ -43,7 +58,7 @@ fetched pages stay in `.cache/`.
 - Never build a path by hand. Take every path from `tutor paths <topic> --json`.
 - Never edit `topic.json` by hand. Change state only with `tutor` commands (`plan --set`,
   `depth`, `start`, `unit`, `done`, `skip`, `fail`, `reset`, `sources add`, `sources update`,
-  `sources remove`, `concept`, `insight`).
+  `sources remove`, `concept`, `insight`, `roadmap add`, `init --roadmap`).
 - An explicit learner deletion request permits `tutor remove <topic> [<topic>...]`
   to preview and `--delete` to remove the selected packages, including insights and
   recall history. Never use removal during ordinary generation or resumption.
@@ -52,6 +67,19 @@ fetched pages stay in `.cache/`.
   a skill disagree, do what the validator says.
 - Run the pipeline without check-in questions. The learner wants everything generated
   first and adds their own insights afterwards.
+
+## Orchestrator layer and model tiers
+
+`learn` is the single orchestrator: it calls every other skill in sequence and owns the
+budgets (see "The orchestrator layer" in its skill). Fact work (research, digests, repo
+analysis, projects, gap audits) runs on the cheaper tier (`model: sonnet` in the role
+file); learner-facing wording (lesson pages, experiences, review, the inline brief and
+notes) runs on the stronger tier (`model: opus`). Each topic has a worker-spawn cap
+(14 / 36 / 56 by depth), and after `notes` a bounded coverage audit (1 round at quick, 2
+otherwise, `tutor-coverage-auditor`) finds missed subtopics before `finalize`. Every concept
+states its real use case and the benefit over the alternative, and every interactive object
+must fit its page's topic (review check `interactive-topic-fit`). Independent workers of a
+batch are spawned in one message so they run in parallel.
 
 ## Context budget
 

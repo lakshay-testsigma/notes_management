@@ -40,6 +40,45 @@ same. The agent then works alone, with no questions, in this order:
 
 Steps 5 and 8 run only at depth `standard` or `deep`.
 
+## 2b. Learn a whole field from a roadmap
+
+For a field too big for one topic, send one message:
+
+```
+/learn-roadmap frontend engineering end to end
+```
+
+or drop a topic file in `inputs/` (roadmap HTML with `const DATA = {...}`, roadmap JSON, or a
+plain `.md`/`.txt` list of topics) and say:
+
+```
+learn inputs/frontend.html
+```
+
+`node harness/bin/tutor.mjs roadmap inbox` shows every file in `inputs/` and whether it is
+new, imported, changed since import, or needs conversion (see `inputs/README.md`).
+
+The agent runs `tutor roadmap add`, which writes the interactive checklist
+(`npm run site:dev`, then `/roadmaps/<slug>.html`) and `vault/_roadmaps/<slug>.md`
+before anything else. Then it generates one topic per section, in order. Each roadmap
+item is a required concept: intake fails until every item is mapped to an included
+concept, and finalize fails until each one is covered. `adv` items get a visual lesson.
+
+```bash
+node harness/bin/tutor.mjs roadmap status <roadmap>   # topics ready, items covered
+node harness/bin/tutor.mjs roadmap next <roadmap>     # the next section and its init command
+```
+
+Say `continue <roadmap>` to resume. A roadmap is large (inputs/frontend.html: 107 topics,
+707 items), so it runs over many sessions (at most two topics per session); the position is
+always on disk. While one topic writes its lessons, the next topic's research already runs
+in free worker slots (`lookahead`), so at most two topics are active at once.
+
+Cost and quality: research, digests, repository analysis, projects and gap audits run on
+the cheaper model tier; lesson pages, experiences, the brief, the final notes and the
+review run on the stronger one. After the notes, one or two audit rounds look for missed
+subtopics and add them before the final review.
+
 ## 3. If the session stops halfway
 
 Progress is saved on disk after every step. Open a new session and send:

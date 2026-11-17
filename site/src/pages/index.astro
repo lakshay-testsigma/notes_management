@@ -1,9 +1,19 @@
 ---
 import Base from '../layouts/Base.astro';
+import fs from 'node:fs';
+import path from 'node:path';
 import { loadDomains } from '../lib/topics';
+import { readJson, repoRoot } from '../lib/paths';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../site.config';
 
 const domains = loadDomains();
+// Roadmaps (state/roadmaps/<slug>/roadmap.json): each links to its generated checklist page.
+const roadmapsDir = path.join(repoRoot(), 'state', 'roadmaps');
+const roadmaps = (fs.existsSync(roadmapsDir) ? fs.readdirSync(roadmapsDir) : [])
+	.map((slug) => readJson<{ id: string; title: string; goal?: string; phases?: { sections?: { topic?: unknown }[] }[] }>(path.join(roadmapsDir, slug, 'roadmap.json')))
+	.filter((r): r is NonNullable<typeof r> => !!r && typeof r.id === 'string')
+	.filter((r) => fs.existsSync(path.join(repoRoot(), 'site', 'public', 'roadmaps', `${r.id}.html`)))
+	.map((r) => ({ ...r, topicCount: (r.phases ?? []).flatMap((p) => p.sections ?? []).filter((s) => s.topic).length }));
 const plural = (n: number, word: string) => `${n} ${word}${n === 1 ? '' : 's'}`;
 ---
 
@@ -11,6 +21,26 @@ const plural = (n: number, word: string) => `${n} ${word}${n === 1 ? '' : 's'}`;
 	<h1 class="page-title">{SITE_TITLE}</h1>
 	<p class="lede">Each topic is one numbered path. Open a topic, start at 01, and keep pressing Next.</p>
 	<p data-continue="" hidden>Continue reading: <a href="/">last page</a></p>
+
+	{
+		roadmaps.length > 0 && (
+			<>
+				<h2>Roadmaps</h2>
+				<ul class="index-list">
+					{roadmaps.map((roadmap) => (
+						<li>
+							<a class="index-title" href={`/roadmaps/${roadmap.id}.html`}>
+								{roadmap.title}
+							</a>{' '}
+							<span class="index-meta">{plural(roadmap.topicCount, 'topic')}</span>
+							{roadmap.goal && <p>{roadmap.goal}</p>}
+						</li>
+					))}
+				</ul>
+				<h2>Topics</h2>
+			</>
+		)
+	}
 
 	{
 		domains.length === 0 ? (

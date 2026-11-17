@@ -2,6 +2,7 @@
 
 import { checkCommand, orderCommand, rerunCommand, reviewCommand, writeNoteCommand } from './commands/quality.mjs';
 import { removeCommand } from './commands/remove.mjs';
+import { roadmapCommand } from './commands/roadmap.mjs';
 import { styleCommand, videoCommand, visualsCommand } from './commands/media.mjs';
 import { deckCommand, experienceCommand } from './commands/experience.mjs';
 import { checkFlags, parseArgs } from './args.mjs';
@@ -25,11 +26,18 @@ export const COMMANDS = {
   check: {usage:'check <topic> research|mini-projects|capstone|finalize',summary:'Execute checks and capture evidence for the current inputs.',flags:[],mutates:false,run:checkCommand},
   review: {usage:'review <topic> [--file <json>]',summary:'Print the current review fingerprint and checks, or record an independent assessment.',flags:['file'],mutates:ctx=>ctx.flags.file!==undefined,run:reviewCommand},
   'write-note': {usage:'write-note <topic> <note> --file <draft>',summary:'Replace generated prose while protecting existing insights.',flags:['file'],mutates:true,run:writeNoteCommand},
+  roadmap: {
+    usage: 'roadmap add --file <roadmap.json|roadmap.html> --domain <d> [--slug <s>] [--title "<T>"] [--depth auto|quick|standard|deep] | inbox | list | status <roadmap> | next <roadmap> | section <roadmap> <num> | render [<roadmap>]',
+    summary: 'A roadmap over a whole field: one topic per section, every item a required concept; writes the HTML checklist and the vault map.',
+    flags: ['file', 'domain', 'slug', 'title', 'depth'],
+    mutates: (ctx) => ['add', 'render'].includes(ctx.args[0]),
+    run: roadmapCommand,
+  },
   domains: { usage: 'domains', summary: 'List domain packs and their subdomains.', flags: [], mutates: false, run: domainsCommand },
   init: {
-    usage: 'init "<Title>" --domain <d> --subdomain <s> [--depth quick|standard|deep] [--slug <slug>]',
-    summary: 'Create a topic: state, vault notes, lessons folder, projects folder.',
-    flags: ['domain', 'subdomain', 'depth', 'slug'],
+    usage: 'init "<Title>" --domain <d> --subdomain <s> [--depth quick|standard|deep] [--slug <slug>] [--roadmap <roadmap> --section <num>]',
+    summary: 'Create a topic: state, vault notes, lessons folder, projects folder. With --roadmap, link it to that roadmap section.',
+    flags: ['domain', 'subdomain', 'depth', 'slug', 'roadmap', 'section'],
     mutates: true,
     run: initCommand,
   },

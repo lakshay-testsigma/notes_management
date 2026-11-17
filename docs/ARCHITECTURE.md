@@ -65,6 +65,7 @@ notes_management/
 ├── README.md                    start here (how to use the tutor)
 ├── CLAUDE.md                    rules every Claude session in this repo follows
 ├── docs/                        how the harness works (this file, workflow guide)
+├── inputs/                      the learner's topic files (roadmap HTML/JSON or topic lists); read-only to the harness, listed by `tutor roadmap inbox`
 ├── .claude/
 │   ├── skills/                  one skill per workflow checkpoint (see §6)
 │   └── agents/                  subagent definitions used by the skills (see §7)
@@ -313,6 +314,54 @@ min(host slots, depth limit), bounded inputs and durable CLI checkpoints. No pro
 model id, reasoning setting or comparative model-quality claim is hardcoded. If fresh
 review workers are unavailable, keep review pending for a separate session.
 
+### 4.5 Roadmaps: a whole field as a sequence of topics
+
+A topic is bounded (at most 60 curriculum concepts at `deep`). A request to master a whole
+field ("frontend engineering end to end") is a **roadmap**: ordered phases → sections →
+items. Each section that has items becomes exactly one topic of the normal pipeline; each
+item of that section is a required concept of that topic. Sections without items (tables,
+appendices) are reference sections and have no topic.
+
+State lives in `state/roadmaps/<slug>/roadmap.json` (plus `source.html|json`, the input as
+given) and is written only by `tutor roadmap`. The input is roadmap JSON or an HTML page
+that embeds `const DATA = {...}` (the format of `harness/templates/roadmap.html`):
+
+```json
+{ "title": "...", "goal": "...", "intro": ["..."],
+  "phases": [{ "num": "00", "title": "...", "blurb": "...", "subdomain": "optional",
+    "sections": [{ "num": "00.1", "title": "...", "notes": [], "depth": "optional",
+      "items": [{ "id": "kebab-id", "title": "...", "level": "core|adv|opt",
+                  "desc": "...", "details": [{ "key": "Docs", "value": "..." }] }] }] }] }
+```
+
+`roadmap add` assigns each section a topic id `<domain>/<phase subdomain>/<section slug>`
+and a depth (`--depth auto`: ≤3 items and no `adv` → quick; ≥9 items or ≥3 `adv` → deep;
+else standard). `roadmap next` returns the first section that is in progress, else the first
+not started, with its items and the exact `init ... --roadmap <r> --section <num>` command.
+`init` refuses any other id for that section and stores `topic.roadmap = {id, section}`.
+Topics are generated one at a time, in roadmap order. To save time, `roadmap next --json`
+also returns `lookahead`: when exactly one section is in progress, the next not-started
+section, whose intake and research may run in free worker slots (never its writer stages).
+So at most two topics are active at once.
+
+The learner drops input files in `inputs/`. `tutor roadmap inbox` lists them as `new`,
+`imported` (byte-identical to a stored `source.*`), `changed-since-import`, or
+`needs-conversion` (not roadmap HTML/JSON: the orchestrator converts it to
+`.cache/roadmaps/<slug>.json` first), each with the next command to run.
+
+**Gate.** For a linked topic, intake and finalize require `plan.curriculum`, and every item
+of the section must appear in `roadmap_items` of at least one `included` concept. A `core`
+item needs a concept with importance `core` or `critical`; an `adv` item needs complexity
+`intermediate` or `advanced`, so the adaptive visual gate (§4.4) requires a visual lesson for
+it. Finalize's curriculum coverage (six aspects per included concept) then proves each item
+was taught. An item cannot be deferred or excluded.
+
+**Views.** `roadmap add`, `roadmap render`, `init` on a linked topic, and `tutor map` write
+`site/public/roadmaps/<slug>.html` (the interactive checklist: search, filters, progress,
+per-section status and a link to each generated lesson; served at `/roadmaps/<slug>.html`
+and listed on the site home) and `vault/_roadmaps/<slug>.md` (Obsidian map with a link to each
+topic's `00-start-here`; listed on `Home`). The learner's checkbox state stays in their browser.
+
 ## 5. The `tutor` CLI
 
 Run as `node harness/bin/tutor.mjs <command>` from the repository root. Zero
@@ -325,6 +374,7 @@ Exit code 0 = success, 1 = validation failure, 2 = usage error.
 | `domains` | List domain packs and their subdomains. |
 | `init "<Title>" --domain <d> --subdomain <s> [--depth quick\|standard\|deep] [--slug <slug>]` | Create state, scaffold all four roots from templates, build the stage list from the domain pack and depth. Idempotent: never overwrites existing files. The slug comes from the title; a trailing acronym in parentheses is dropped ("Retrieval-Augmented Generation (RAG)" → `retrieval-augmented-generation`). |
 | `list` | All topics with progress. |
+| `roadmap add --file <roadmap.json\|roadmap.html> --domain <d> [--slug <s>] [--title "<T>"] [--depth auto\|quick\|standard\|deep]` / `roadmap list` / `roadmap status <r>` / `roadmap next <r>` / `roadmap section <r> <num>` / `roadmap render [<r>]` | Roadmaps (§4.5): store a field-wide roadmap, plan one topic per section, show progress, name the next section with its exact `init` command, print a section's required items, and regenerate the HTML checklist and vault map. `init ... --roadmap <r> --section <num>` links the planned topic. |
 | `remove <topic> [<topic>...] [--delete]` | Preview or explicitly delete selected learning packages, including learner data. Rebuilds registry/maps; retains shared notes, caches and external reviews. |
 | `status [<topic>]` | Stage table for one topic, or summary for all. |
 | `paths <topic>` | Every path for the topic, including each numbered vault file, plus `site_url` and `open_lesson` (the one canonical sentence that says how to open the lesson: `npm run site:dev`, then the site path). Skills use this instead of building paths by hand. |
@@ -376,6 +426,7 @@ shape so a smaller model can run it without guessing:
 | `learn-projects` | stage `mini-projects` | Build mini projects (starter + solution). |
 | `learn-capstone` | stage `capstone` | Build the production-style project. |
 | `learn-notes` | stage `notes` | Final notes + recall cards. |
+| `learn-roadmap` | "master <field> end to end", a roadmap HTML/JSON, "continue <roadmap>" | Create or import a roadmap (§4.5), publish its checklist, then run `learn` for every section topic in order. |
 | `learn-insight` | "add this to my notes", "I learned that…" | Add the learner's own insight to a topic. |
 | `learn-recall` | "quiz me", "what's due" | Run a spaced-recall session and reopen weak spots (and their visual refresher). |
 | `learn-visuals` | called by every stage skill; "draw / diagram / visualize X" | Shared capability: choose, ground, draw, register visuals; writing standard. |
@@ -387,15 +438,21 @@ Defined in `.claude/agents/`. Subagents cannot spawn subagents, so only the
 session running `learn` fans out. Each agent definition names the skill file it
 must read first.
 
-| Agent | Used by stage | One unit of work |
-|-------|---------------|------------------|
-| `tutor-researcher` | research | one source category (docs / papers+books / repos) |
-| `tutor-digester` | digest | one source |
-| `tutor-repo-analyst` | repo-intel | one repo slice from `tutor slice` |
-| `tutor-lesson-builder` | lesson | 2–3 lesson pages |
-| `tutor-project-builder` | mini-projects, capstone | one project |
-| `tutor-verifier` | finalize | independent quality review of one topic |
-| `tutor-video-producer` | lesson | one planned explainer video (`video-<id>`) |
+| Agent | Tier (`model:`) | Used by stage | One unit of work |
+|-------|-----------------|---------------|------------------|
+| `tutor-researcher` | fact (`sonnet`) | research | one source category (docs / papers+books / repos) |
+| `tutor-digester` | fact (`sonnet`) | digest | one source |
+| `tutor-repo-analyst` | fact (`sonnet`) | repo-intel | one repo slice from `tutor slice` |
+| `tutor-project-builder` | fact (`sonnet`) | mini-projects, capstone | one project |
+| `tutor-coverage-auditor` | fact (`sonnet`) | coverage audit (after notes) | one gap-finding round over one topic, read-only |
+| `tutor-lesson-builder` | writer (`opus`) | lesson | 2–3 lesson pages |
+| `tutor-video-producer` | writer (`opus`) | lesson | one planned explainer video (`video-<id>`) |
+| `tutor-verifier` | writer (`opus`) | finalize | independent quality review of one topic |
+
+Fact-tier workers find and extract public facts; writer-tier workers (and the inline `brief`
+and `notes` stages of the orchestrator) turn them into the learner-facing wording. The
+orchestrator caps total worker spawns per topic (14 / 36 / 56 by depth, retries included)
+and runs at most 1 / 2 / 2 coverage-audit rounds (`learn` skill, "The orchestrator layer").
 
 ### 7.1 Context budget protocol (the 40% rule)
 
@@ -711,7 +768,7 @@ no network), `SortBuckets`, and `Depth` with a site-wide depth control
 components (controls change results, Reset restores, sandbox isolation, captions,
 accessible names, 375 px layout, reduced motion); content reviews add
 visual-accuracy, visual-efficacy (answer each visual's learning check without and
-with the visual), interaction-behavior, accessibility-responsive, writing-standard
+with the visual), interaction-behavior, interactive-topic-fit, accessibility-responsive, writing-standard
 and video-consistency; project reviews add project-diagrams. Regression tests cover
 three domains (`harness/tests/visual-first.test.mjs`); the end-to-end script
 `harness/tests/e2e/visual-topic-site.mjs [--render]` builds a visual-first topic

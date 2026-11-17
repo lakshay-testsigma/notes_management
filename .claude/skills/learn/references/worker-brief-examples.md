@@ -374,6 +374,29 @@ inspection units, persist their evidence outside state through the orchestrator,
 and let a fresh final reviewer consolidate the inspected evidence. Anything unread
 remains not_checked, even if a structural validator passes.
 
+## tutor-coverage-auditor
+
+```text
+You are one worker in the tutor pipeline. Do exactly one unit of work, then return.
+Load .claude/agents/tutor-coverage-auditor.md and follow it.
+
+TOPIC: frontend-engineering/rendering/browser-rendering-pipeline
+STAGE: coverage-audit
+UNIT: audit-round-1
+INPUT ITEMS (from inputs/frontend.html, roadmap section 01.2): critical-rendering-path, reflow-and-repaint, compositing-layers, render-blocking-resources
+HANDLED IN EARLIER ROUNDS: none
+LEARNER: <copied from plan.learner>
+
+INPUT (metadata only): tutor plan <topic> --json, tutor paths <topic> --json,
+tutor sources <topic> list --json, grep output over the lesson and vault folders.
+OUTPUT FILES: none. You write nothing.
+
+BUDGET: Keep the entire worker below 40% of its model window (assume 32768, reserve 3000
+when unknown). Fetch at most 4 navigation pages.
+
+RETURN FORMAT: the AUDIT / GAPS / NOT CHECKED block of the role file, 150 words at most.
+```
+
 ## Continuation brief (after `CONTINUE: <path>`)
 
 Send the same brief again with two changes:
