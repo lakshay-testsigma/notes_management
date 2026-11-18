@@ -1,0 +1,7 @@
+{
+  "manifest_version": 3,
+  "name": "Super Helper",
+  "permissions": ["webRequest", "cookies", "scripting", "declarativeNetRequestWithHostAccess"],
+  "host_permissions": ["<all_urls>"],
+  "content_scripts": [{ "matches": ["*://*/*"], "js": ["content.js"] }]
+}

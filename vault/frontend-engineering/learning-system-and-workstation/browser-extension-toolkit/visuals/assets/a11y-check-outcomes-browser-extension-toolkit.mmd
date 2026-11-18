@@ -1,0 +1,8 @@
+flowchart TD
+  start["One element in the scan"] --> known{"Can the tool see the real colors and the previous heading?"}
+  known -- "no: background image, overlap, one character, empty input, previous heading not found" --> incomplete["Incomplete: a person must review"]
+  known -- yes --> measure["Contrast: ratio = (L1 + 0.05) / (L2 + 0.05), rounded down<br/>Headings: level vs previous level"]
+  measure --> meets{"Ratio at least 4.5:1 (normal) or 3:1 (large)?<br/>Level at most one deeper than the previous?"}
+  meets -- yes --> pass["Pass for this rule"]
+  meets -- no --> fail["Fail: a violation"]
+  pass --> human["Still for a person: text on images, heading meaning, keyboard and screen reader use"]

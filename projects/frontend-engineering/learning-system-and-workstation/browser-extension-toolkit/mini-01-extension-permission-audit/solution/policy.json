@@ -1,0 +1,19 @@
+{
+  "broadHostPatterns": ["<all_urls>", "*://*/*", "http://*/*", "https://*/*", "*://*.*/*"],
+  "broadHostPoints": 40,
+  "contentScriptAllSitesPoints": 30,
+  "scriptingWithBroadHostPoints": 25,
+  "apiPoints": {
+    "debugger": 50,
+    "webRequest": 35,
+    "webRequestBlocking": 15,
+    "cookies": 30,
+    "history": 20,
+    "tabs": 10,
+    "declarativeNetRequest": 5,
+    "declarativeNetRequestWithHostAccess": 25,
+    "declarativeNetRequestFeedback": 10
+  },
+  "reviewAt": 30,
+  "rejectAt": 70
+}

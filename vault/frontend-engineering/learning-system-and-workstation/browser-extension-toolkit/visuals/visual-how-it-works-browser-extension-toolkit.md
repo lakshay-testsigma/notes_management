@@ -43,6 +43,7 @@ Answer: A content script reads the page DOM. Host permissions (or matches for th
 ## Used in
 
 - [[01-brief-browser-extension-toolkit]]
+- lesson page `/frontend-engineering/learning-system-and-workstation/browser-extension-toolkit/lesson/01-why-an-extension-toolkit/` (file `site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-extension-toolkit/01-why-an-extension-toolkit.mdx`)
 
 Back to [[visuals-browser-extension-toolkit|all visuals]].
 

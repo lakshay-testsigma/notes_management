@@ -1,0 +1,752 @@
+{
+  "id": "framework-devtools-lab",
+  "title": "Edit props and dispatch actions with framework devtools",
+  "mode": "interactive",
+  "objective": "Predict what React DevTools lets you change and what the Redux store and DevTools extension hold after a dispatched action.",
+  "level": "intermediate",
+  "summary": "A guided walkthrough of React DevTools and Redux DevTools, paused for predictions, with a stepper. In React DevTools you select TodoList in the Components panel and edit its filter prop. In a Redux todo store you dispatch todoAdded with the devTools option set to true, false or an options object, and watch the action pass the thunk middleware, the logger and the reducer, and see what the store and the extension hold.",
+  "concept_ids": [
+    "framework-devtools-extensions",
+    "react-devtools-components-profiler",
+    "redux-devtools-time-travel"
+  ],
+  "source_ids": [
+    "react-devtools-docs",
+    "redux-configure-store-docs"
+  ],
+  "used_in": [
+    "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-extension-toolkit/02-framework-devtools.mdx"
+  ],
+  "guided": {
+    "video": "framework-devtools-lab-guided"
+  },
+  "fallback_visual": "framework-devtools-fallback",
+  "simulation": {
+    "component": "AlgorithmStepper",
+    "props": {
+      "title": "Redux: dispatch todoAdded with devTools true",
+      "frames": [
+        {
+          "caption": "The store starts with no todos. devTools is true.",
+          "array": [
+            "dispatch",
+            "thunk middleware",
+            "logger",
+            "reducer",
+            "store",
+            "Redux DevTools"
+          ],
+          "highlight": [
+            4
+          ],
+          "vars": {
+            "state.todos": "[]",
+            "devTools": "true",
+            "extension sees": "store \"store\", 0 actions"
+          },
+          "line": 8
+        },
+        {
+          "caption": "dispatch(todoAdded) sends the action into the middleware chain. The thunk middleware passes a plain action on.",
+          "array": [
+            "dispatch",
+            "thunk middleware",
+            "logger",
+            "reducer",
+            "store",
+            "Redux DevTools"
+          ],
+          "highlight": [
+            0,
+            1
+          ],
+          "pointers": {
+            "action": 1
+          },
+          "vars": {
+            "state.todos": "[]",
+            "action": "todos/todoAdded",
+            "devTools": "true"
+          },
+          "line": 11
+        },
+        {
+          "caption": "The logger was added with concat, so it runs after the defaults. It logs 'dispatching' with the action.",
+          "array": [
+            "dispatch",
+            "thunk middleware",
+            "logger",
+            "reducer",
+            "store",
+            "Redux DevTools"
+          ],
+          "highlight": [
+            2
+          ],
+          "pointers": {
+            "action": 2
+          },
+          "vars": {
+            "state.todos": "[]",
+            "action": "todos/todoAdded",
+            "console": "dispatching todos/todoAdded"
+          },
+          "line": 7
+        },
+        {
+          "caption": "The reducer returns the next state. The logger logs 'next state' from store.getState().",
+          "array": [
+            "dispatch",
+            "thunk middleware",
+            "logger",
+            "reducer",
+            "store",
+            "Redux DevTools"
+          ],
+          "highlight": [
+            3,
+            4
+          ],
+          "pointers": {
+            "action": 3
+          },
+          "vars": {
+            "state.todos": "['Learn DevTools']",
+            "console": "next state: 1 todo"
+          },
+          "line": 5
+        },
+        {
+          "caption": "devTools is true, so the store sends the action and the new state to the Redux DevTools extension.",
+          "array": [
+            "dispatch",
+            "thunk middleware",
+            "logger",
+            "reducer",
+            "store",
+            "Redux DevTools"
+          ],
+          "highlight": [
+            5
+          ],
+          "pointers": {
+            "action": 5
+          },
+          "vars": {
+            "state.todos": "['Learn DevTools']",
+            "devTools": "true",
+            "extension sees": "store \"store\", 1 action: todos/todoAdded"
+          },
+          "line": 8
+        }
+      ],
+      "view": "array",
+      "code": "import { configureStore } from '@reduxjs/toolkit'\nimport { loggerMiddleware } from './middleware/logger'\n\nexport const store = configureStore({\n  reducer: { todos: todosReducer, filters: filtersReducer },\n  middleware: (getDefaultMiddleware) =>\n    getDefaultMiddleware().concat(loggerMiddleware),\n  devTools: true,\n})\n\nstore.dispatch(todoAdded('Learn DevTools'))",
+      "lang": "ts"
+    },
+    "presets": {
+      "edit-prop": {
+        "title": "React DevTools: edit a prop in the Components panel",
+        "frames": [
+          {
+            "caption": "You open a website built with React. The extension adds the Components and Profiler panels.",
+            "array": [
+              "App",
+              "TodoList",
+              "ul (DOM)"
+            ],
+            "highlight": [],
+            "vars": {
+              "panels": "Components, Profiler"
+            },
+            "line": 1
+          },
+          {
+            "caption": "In the Components panel you select TodoList. The panel shows its props: filter is \"all\".",
+            "array": [
+              "App",
+              "TodoList",
+              "ul (DOM)"
+            ],
+            "highlight": [
+              1
+            ],
+            "pointers": {
+              "selected": 1
+            },
+            "vars": {
+              "selected": "TodoList",
+              "props.filter": "\"all\""
+            },
+            "line": 5
+          },
+          {
+            "caption": "You edit the filter prop to \"done\" in the panel. You did not change the source code.",
+            "array": [
+              "App",
+              "TodoList",
+              "ul (DOM)"
+            ],
+            "highlight": [
+              1
+            ],
+            "pointers": {
+              "selected": 1
+            },
+            "vars": {
+              "selected": "TodoList",
+              "props.filter": "\"done\""
+            },
+            "line": 6
+          },
+          {
+            "caption": "The page now shows the list for the new filter. Edit props and state here to test a case quickly.",
+            "array": [
+              "App",
+              "TodoList",
+              "ul (DOM)"
+            ],
+            "highlight": [
+              1,
+              2
+            ],
+            "pointers": {
+              "selected": 1
+            },
+            "vars": {
+              "selected": "TodoList",
+              "props.filter": "\"done\"",
+              "page": "list for \"done\""
+            },
+            "line": 7
+          }
+        ],
+        "code": "function App() {\n  return <TodoList filter=\"all\" />\n}\n\nfunction TodoList({ filter }) {\n  const todos = useTodos(filter)\n  return <ul>{todos.map(renderTodo)}</ul>\n}",
+        "lang": "jsx"
+      },
+      "dispatch-todo": {
+        "title": "Redux: dispatch todoAdded with devTools true",
+        "frames": [
+          {
+            "caption": "The store starts with no todos. devTools is true.",
+            "array": [
+              "dispatch",
+              "thunk middleware",
+              "logger",
+              "reducer",
+              "store",
+              "Redux DevTools"
+            ],
+            "highlight": [
+              4
+            ],
+            "vars": {
+              "state.todos": "[]",
+              "devTools": "true",
+              "extension sees": "store \"store\", 0 actions"
+            },
+            "line": 8
+          },
+          {
+            "caption": "dispatch(todoAdded) sends the action into the middleware chain. The thunk middleware passes a plain action on.",
+            "array": [
+              "dispatch",
+              "thunk middleware",
+              "logger",
+              "reducer",
+              "store",
+              "Redux DevTools"
+            ],
+            "highlight": [
+              0,
+              1
+            ],
+            "pointers": {
+              "action": 1
+            },
+            "vars": {
+              "state.todos": "[]",
+              "action": "todos/todoAdded",
+              "devTools": "true"
+            },
+            "line": 11
+          },
+          {
+            "caption": "The logger was added with concat, so it runs after the defaults. It logs 'dispatching' with the action.",
+            "array": [
+              "dispatch",
+              "thunk middleware",
+              "logger",
+              "reducer",
+              "store",
+              "Redux DevTools"
+            ],
+            "highlight": [
+              2
+            ],
+            "pointers": {
+              "action": 2
+            },
+            "vars": {
+              "state.todos": "[]",
+              "action": "todos/todoAdded",
+              "console": "dispatching todos/todoAdded"
+            },
+            "line": 7
+          },
+          {
+            "caption": "The reducer returns the next state. The logger logs 'next state' from store.getState().",
+            "array": [
+              "dispatch",
+              "thunk middleware",
+              "logger",
+              "reducer",
+              "store",
+              "Redux DevTools"
+            ],
+            "highlight": [
+              3,
+              4
+            ],
+            "pointers": {
+              "action": 3
+            },
+            "vars": {
+              "state.todos": "['Learn DevTools']",
+              "console": "next state: 1 todo"
+            },
+            "line": 5
+          },
+          {
+            "caption": "devTools is true, so the store sends the action and the new state to the Redux DevTools extension.",
+            "array": [
+              "dispatch",
+              "thunk middleware",
+              "logger",
+              "reducer",
+              "store",
+              "Redux DevTools"
+            ],
+            "highlight": [
+              5
+            ],
+            "pointers": {
+              "action": 5
+            },
+            "vars": {
+              "state.todos": "['Learn DevTools']",
+              "devTools": "true",
+              "extension sees": "store \"store\", 1 action: todos/todoAdded"
+            },
+            "line": 8
+          }
+        ],
+        "code": "import { configureStore } from '@reduxjs/toolkit'\nimport { loggerMiddleware } from './middleware/logger'\n\nexport const store = configureStore({\n  reducer: { todos: todosReducer, filters: filtersReducer },\n  middleware: (getDefaultMiddleware) =>\n    getDefaultMiddleware().concat(loggerMiddleware),\n  devTools: true,\n})\n\nstore.dispatch(todoAdded('Learn DevTools'))",
+        "lang": "ts"
+      },
+      "devtools-off": {
+        "title": "Redux: dispatch todoAdded with devTools false",
+        "frames": [
+          {
+            "caption": "The store starts with no todos. devTools is false.",
+            "array": [
+              "dispatch",
+              "thunk middleware",
+              "logger",
+              "reducer",
+              "store",
+              "Redux DevTools"
+            ],
+            "highlight": [
+              4
+            ],
+            "vars": {
+              "state.todos": "[]",
+              "devTools": "false",
+              "extension sees": "no store"
+            },
+            "line": 8
+          },
+          {
+            "caption": "dispatch(todoAdded) sends the action into the middleware chain. The thunk middleware passes a plain action on.",
+            "array": [
+              "dispatch",
+              "thunk middleware",
+              "logger",
+              "reducer",
+              "store",
+              "Redux DevTools"
+            ],
+            "highlight": [
+              0,
+              1
+            ],
+            "pointers": {
+              "action": 1
+            },
+            "vars": {
+              "state.todos": "[]",
+              "action": "todos/todoAdded",
+              "devTools": "false"
+            },
+            "line": 11
+          },
+          {
+            "caption": "The logger was added with concat, so it runs after the defaults. It logs 'dispatching' with the action.",
+            "array": [
+              "dispatch",
+              "thunk middleware",
+              "logger",
+              "reducer",
+              "store",
+              "Redux DevTools"
+            ],
+            "highlight": [
+              2
+            ],
+            "pointers": {
+              "action": 2
+            },
+            "vars": {
+              "state.todos": "[]",
+              "action": "todos/todoAdded",
+              "console": "dispatching todos/todoAdded"
+            },
+            "line": 7
+          },
+          {
+            "caption": "The reducer returns the next state. The logger logs 'next state' from store.getState().",
+            "array": [
+              "dispatch",
+              "thunk middleware",
+              "logger",
+              "reducer",
+              "store",
+              "Redux DevTools"
+            ],
+            "highlight": [
+              3,
+              4
+            ],
+            "pointers": {
+              "action": 3
+            },
+            "vars": {
+              "state.todos": "['Learn DevTools']",
+              "console": "next state: 1 todo"
+            },
+            "line": 5
+          },
+          {
+            "caption": "devTools is false: the store holds the new todo, but nothing is sent to the extension. Its panel shows no store.",
+            "array": [
+              "dispatch",
+              "thunk middleware",
+              "logger",
+              "reducer",
+              "store",
+              "Redux DevTools"
+            ],
+            "highlight": [
+              4
+            ],
+            "vars": {
+              "state.todos": "['Learn DevTools']",
+              "devTools": "false",
+              "extension sees": "no store"
+            },
+            "line": 8
+          }
+        ],
+        "code": "import { configureStore } from '@reduxjs/toolkit'\nimport { loggerMiddleware } from './middleware/logger'\n\nexport const store = configureStore({\n  reducer: { todos: todosReducer, filters: filtersReducer },\n  middleware: (getDefaultMiddleware) =>\n    getDefaultMiddleware().concat(loggerMiddleware),\n  devTools: false,\n})\n\nstore.dispatch(todoAdded('Learn DevTools'))",
+        "lang": "ts"
+      },
+      "named-store": {
+        "title": "Redux: devTools options object names the store",
+        "frames": [
+          {
+            "caption": "The store starts with no todos. devTools is { name: 'Todo app', trace: true }.",
+            "array": [
+              "dispatch",
+              "thunk middleware",
+              "logger",
+              "reducer",
+              "store",
+              "Redux DevTools"
+            ],
+            "highlight": [
+              4
+            ],
+            "vars": {
+              "state.todos": "[]",
+              "devTools": "{ name: 'Todo app', trace: true }",
+              "extension sees": "store \"Todo app\", 0 actions"
+            },
+            "line": 8
+          },
+          {
+            "caption": "dispatch(todoAdded) sends the action into the middleware chain. The thunk middleware passes a plain action on.",
+            "array": [
+              "dispatch",
+              "thunk middleware",
+              "logger",
+              "reducer",
+              "store",
+              "Redux DevTools"
+            ],
+            "highlight": [
+              0,
+              1
+            ],
+            "pointers": {
+              "action": 1
+            },
+            "vars": {
+              "state.todos": "[]",
+              "action": "todos/todoAdded",
+              "devTools": "{ name: 'Todo app', trace: true }"
+            },
+            "line": 11
+          },
+          {
+            "caption": "The logger was added with concat, so it runs after the defaults. It logs 'dispatching' with the action.",
+            "array": [
+              "dispatch",
+              "thunk middleware",
+              "logger",
+              "reducer",
+              "store",
+              "Redux DevTools"
+            ],
+            "highlight": [
+              2
+            ],
+            "pointers": {
+              "action": 2
+            },
+            "vars": {
+              "state.todos": "[]",
+              "action": "todos/todoAdded",
+              "console": "dispatching todos/todoAdded"
+            },
+            "line": 7
+          },
+          {
+            "caption": "The reducer returns the next state. The logger logs 'next state' from store.getState().",
+            "array": [
+              "dispatch",
+              "thunk middleware",
+              "logger",
+              "reducer",
+              "store",
+              "Redux DevTools"
+            ],
+            "highlight": [
+              3,
+              4
+            ],
+            "pointers": {
+              "action": 3
+            },
+            "vars": {
+              "state.todos": "['Learn DevTools']",
+              "console": "next state: 1 todo"
+            },
+            "line": 5
+          },
+          {
+            "caption": "devTools is { name: 'Todo app', trace: true }, so the store sends the action and the new state to the Redux DevTools extension.",
+            "array": [
+              "dispatch",
+              "thunk middleware",
+              "logger",
+              "reducer",
+              "store",
+              "Redux DevTools"
+            ],
+            "highlight": [
+              5
+            ],
+            "pointers": {
+              "action": 5
+            },
+            "vars": {
+              "state.todos": "['Learn DevTools']",
+              "devTools": "{ name: 'Todo app', trace: true }",
+              "extension sees": "store \"Todo app\", 1 action: todos/todoAdded"
+            },
+            "line": 8
+          }
+        ],
+        "code": "import { configureStore } from '@reduxjs/toolkit'\nimport { loggerMiddleware } from './middleware/logger'\n\nexport const store = configureStore({\n  reducer: { todos: todosReducer, filters: filtersReducer },\n  middleware: (getDefaultMiddleware) =>\n    getDefaultMiddleware().concat(loggerMiddleware),\n  devTools: { name: 'Todo app', trace: true },\n})\n\nstore.dispatch(todoAdded('Learn DevTools'))",
+        "lang": "ts"
+      }
+    }
+  },
+  "sync": [
+    {
+      "scene": "edit-props",
+      "preset": "edit-prop"
+    },
+    {
+      "scene": "dispatch",
+      "preset": "dispatch-todo"
+    },
+    {
+      "scene": "devtools-option",
+      "preset": "devtools-off"
+    }
+  ],
+  "inspect": [
+    {
+      "id": "devtools-options-object",
+      "scene": "devtools-option",
+      "label": "The options object",
+      "concept_id": "redux-devtools-time-travel",
+      "region": {
+        "x": 6,
+        "y": 78,
+        "w": 88,
+        "h": 12
+      },
+      "text": "Instead of true, pass an object such as { name: \"Todo app\", trace: true }. It names the store instance, sets a trace limit, or sanitizes actions and state before the store sends them to the extension."
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "panels-appear",
+      "kind": "predict",
+      "at": {
+        "scene": "panels"
+      },
+      "prompt": "The React DevTools extension is installed. You open a plain HTML page that does not use React. Which panels do you get?",
+      "choices": [
+        {
+          "text": "Only the built-in DevTools panels",
+          "correct": true
+        },
+        {
+          "text": "Components and Profiler, but both empty",
+          "misconception": "Thinks the extension adds its panels on every page, not only on websites built with React"
+        },
+        {
+          "text": "A Components panel that shows the DOM elements",
+          "misconception": "Confuses React components with DOM elements that the Elements panel already shows"
+        }
+      ],
+      "explanation": "React DevTools adds the Components and Profiler panels when you visit a website built with React. A page without React has no components for it to read.",
+      "concept_ids": [
+        "framework-devtools-extensions",
+        "react-devtools-components-profiler"
+      ],
+      "revisit": "panels"
+    },
+    {
+      "id": "store-after-dispatch",
+      "kind": "experiment",
+      "at": {
+        "scene": "dispatch"
+      },
+      "prompt": "Load the devTools true preset and step until the action reaches the extension. What does the store hold, and what does the extension show?",
+      "goal": {
+        "preset": "dispatch-todo",
+        "condition": {
+          "all": [
+            {
+              "path": "done",
+              "op": "eq",
+              "value": true
+            }
+          ]
+        },
+        "hint": "Press Next until the caption says the store sends the action to the extension."
+      },
+      "explanation": "The reducer returns the next state with one todo. Because devTools is true, its default, the store then sends the action todos/todoAdded and that state to the Redux DevTools extension.",
+      "concept_ids": [
+        "redux-devtools-time-travel"
+      ]
+    },
+    {
+      "id": "devtools-false",
+      "kind": "predict",
+      "at": {
+        "scene": "devtools-option"
+      },
+      "prompt": "You set devTools: false and dispatch todoAdded. What happens?",
+      "choices": [
+        {
+          "text": "The store gets the new todo, but the extension receives nothing",
+          "correct": true
+        },
+        {
+          "text": "The dispatch fails because no DevTools is connected",
+          "misconception": "Thinks the store depends on the DevTools integration to process actions"
+        },
+        {
+          "text": "The extension still shows the action because it is installed",
+          "misconception": "Thinks installing the extension is enough, when the store must send the data"
+        }
+      ],
+      "explanation": "devTools: false turns off only the integration. The middleware and the reducer still run, so state changes, but the store sends no actions or state to the extension.",
+      "concept_ids": [
+        "redux-devtools-time-travel",
+        "framework-devtools-extensions"
+      ],
+      "revisit": "devtools-option"
+    },
+    {
+      "id": "logger-order",
+      "kind": "verify",
+      "at": {
+        "scene": "middleware-order"
+      },
+      "prompt": "You add the logger with concat and dispatch a thunk function. What does the logger see?",
+      "choices": [
+        {
+          "text": "The plain action, after the thunk middleware has resolved the thunk",
+          "correct": true
+        },
+        {
+          "text": "The thunk function itself",
+          "misconception": "Thinks middleware added with concat runs before the defaults"
+        },
+        {
+          "text": "Nothing, because thunks skip the middleware chain",
+          "misconception": "Thinks async logic bypasses the middleware chain"
+        }
+      ],
+      "explanation": "Middleware run in array order. concat places the logger after the default thunk middleware, which has already resolved thunk functions. Use prepend to run before the defaults.",
+      "concept_ids": [
+        "redux-devtools-time-travel"
+      ],
+      "revisit": "middleware-order"
+    },
+    {
+      "id": "safari-connect",
+      "kind": "verify",
+      "at": {
+        "tab": "practice"
+      },
+      "prompt": "You test a React site in Safari, which has no React DevTools extension. How do you inspect its components?",
+      "choices": [
+        {
+          "text": "Run the react-devtools npm package and add its localhost:8097 script to the head",
+          "correct": true
+        },
+        {
+          "text": "Use the Elements panel, which shows React components",
+          "misconception": "Confuses DOM elements with React components and their props"
+        },
+        {
+          "text": "Inspection is not possible outside Chrome",
+          "misconception": "Does not know the standalone react-devtools build exists for other browsers"
+        }
+      ],
+      "explanation": "For browsers without the extension, install react-devtools from npm, run it, add the script tag for http://localhost:8097 at the start of the head, and reload the website.",
+      "concept_ids": [
+        "react-devtools-components-profiler"
+      ],
+      "revisit": "safari"
+    }
+  ]
+}

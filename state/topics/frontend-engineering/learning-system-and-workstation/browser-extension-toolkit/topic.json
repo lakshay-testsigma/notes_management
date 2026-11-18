@@ -7,7 +7,7 @@
   "subdomain": "learning-system-and-workstation",
   "depth": "standard",
   "created_at": "2026-11-18T10:19:12Z",
-  "updated_at": "2026-11-18T12:27:54Z",
+  "updated_at": "2026-11-18T12:35:53Z",
   "paths": {
     "state": "state/topics/frontend-engineering/learning-system-and-workstation/browser-extension-toolkit",
     "vault": "vault/frontend-engineering/learning-system-and-workstation/browser-extension-toolkit",
@@ -1140,15 +1140,15 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T11:47:13Z",
-      "finished_at": "2026-11-18T11:48:07Z",
+      "finished_at": "2026-11-18T12:35:17Z",
       "attempts": 1,
       "units": [],
       "note": "",
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "e64428a5bd4b3320a30844f7ad91b1b66ecf2489de295133ce8aef66c9445b3e",
-        "at": "2026-11-18T11:48:07Z",
+        "fingerprint": "03b3a48a2c5f1e394efa287124e14f84730563a265997c5784b94b993674cbbd",
+        "at": "2026-11-18T12:35:17Z",
         "forced": false
       }
     },
@@ -1159,7 +1159,7 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T12:12:30Z",
-      "finished_at": "2026-11-18T12:27:48Z",
+      "finished_at": "2026-11-18T12:35:23Z",
       "attempts": 1,
       "units": [
         {
@@ -1178,7 +1178,7 @@
       "validation": {
         "version": 2,
         "fingerprint": "b243d3b84924c8a9a58f81f76819062444b91dc2fa850dfb9c0996ae13374409",
-        "at": "2026-11-18T12:27:48Z",
+        "at": "2026-11-18T12:35:23Z",
         "forced": false
       }
     },
@@ -1189,7 +1189,7 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T12:12:33Z",
-      "finished_at": "2026-11-18T12:27:54Z",
+      "finished_at": "2026-11-18T12:35:28Z",
       "attempts": 1,
       "units": [
         {
@@ -1238,7 +1238,7 @@
       "validation": {
         "version": 2,
         "fingerprint": "1c5d657d0487c20ba71c16ab49b518a5854cbc406b037f0e7a1c275c69b3d2c7",
-        "at": "2026-11-18T12:27:54Z",
+        "at": "2026-11-18T12:35:28Z",
         "forced": false
       }
     },
@@ -1246,24 +1246,73 @@
       "id": "lesson",
       "wave": 3,
       "skill": "learn-site",
-      "status": "pending",
+      "status": "done",
       "scope": "required",
-      "started_at": null,
-      "finished_at": null,
-      "attempts": 0,
-      "units": [],
-      "note": ""
+      "started_at": "2026-11-18T12:28:20Z",
+      "finished_at": "2026-11-18T12:35:33Z",
+      "attempts": 1,
+      "units": [
+        {
+          "id": "experience-framework-devtools-lab",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "experience-a11y-checks-lab",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "experience-security-pass-deck",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "pages-01-03",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "pages-04-05",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "pages-06-07",
+          "status": "done",
+          "handoff": null
+        }
+      ],
+      "note": "",
+      "continue_after_failure": false,
+      "validation": {
+        "version": 2,
+        "fingerprint": "6795a78b774b485fc5bbe9bef872bba70d240ffc56015ef8b350e99e2de5e3e2",
+        "at": "2026-11-18T12:35:33Z",
+        "forced": false
+      }
     },
     {
       "id": "mini-projects",
       "wave": 3,
       "skill": "learn-projects",
-      "status": "pending",
+      "status": "in_progress",
       "scope": "required",
-      "started_at": null,
+      "started_at": "2026-11-18T12:28:23Z",
       "finished_at": null,
-      "attempts": 0,
-      "units": [],
+      "attempts": 1,
+      "units": [
+        {
+          "id": "mini-01",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "mini-02",
+          "status": "done",
+          "handoff": null
+        }
+      ],
       "note": ""
     },
     {
@@ -1891,6 +1940,238 @@
       "event": "done",
       "message": "gate passed",
       "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T12:28:20Z",
+      "event": "start",
+      "message": "attempt 1",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T12:28:23Z",
+      "event": "start",
+      "message": "attempt 1",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-18T12:28:25Z",
+      "event": "unit-add",
+      "message": "unit experience-framework-devtools-lab",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T12:28:28Z",
+      "event": "unit-add",
+      "message": "unit experience-a11y-checks-lab",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T12:28:30Z",
+      "event": "unit-add",
+      "message": "unit experience-security-pass-deck",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T12:28:33Z",
+      "event": "unit-add",
+      "message": "unit pages-01-03",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T12:28:35Z",
+      "event": "unit-add",
+      "message": "unit pages-04-05",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T12:28:38Z",
+      "event": "unit-add",
+      "message": "unit pages-06-07",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T12:28:40Z",
+      "event": "unit-add",
+      "message": "unit mini-01",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-18T12:28:42Z",
+      "event": "unit-add",
+      "message": "unit mini-02",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-18T12:28:45Z",
+      "event": "note",
+      "message": "SPAWN 20/36"
+    },
+    {
+      "at": "2026-11-18T12:29:30Z",
+      "event": "note",
+      "message": "WAVE 3 running: experience-framework-devtools-lab, experience-a11y-checks-lab, experience-security-pass-deck, pages-01-03; queued: pages-04-05, pages-06-07, mini-01, mini-02"
+    },
+    {
+      "at": "2026-11-18T12:29:44Z",
+      "event": "unit-start",
+      "message": "unit pages-01-03",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T12:31:14Z",
+      "event": "unit-done",
+      "message": "unit pages-01-03",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T12:31:27Z",
+      "event": "note",
+      "message": "SPAWN 21/36; FOLLOWUP page 02 re-render-of-unchanged-children claim lacks recorded source"
+    },
+    {
+      "at": "2026-11-18T12:31:33Z",
+      "event": "unit-done",
+      "message": "unit experience-security-pass-deck",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T12:31:44Z",
+      "event": "note",
+      "message": "SPAWN 22/36; BLOCKER deck check needs headless Chrome (sandbox)"
+    },
+    {
+      "at": "2026-11-18T12:31:58Z",
+      "event": "unit-start",
+      "message": "unit pages-04-05",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T12:32:08Z",
+      "event": "visual",
+      "message": "added visual framework-devtools-fallback"
+    },
+    {
+      "at": "2026-11-18T12:32:10Z",
+      "event": "unit-start",
+      "message": "unit pages-06-07",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T12:32:36Z",
+      "event": "unit-done",
+      "message": "unit experience-framework-devtools-lab",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T12:32:40Z",
+      "event": "visual",
+      "message": "added visual a11y-check-outcomes"
+    },
+    {
+      "at": "2026-11-18T12:32:50Z",
+      "event": "note",
+      "message": "SPAWN 23/36; FOLLOWUP no source for re-render rules and time-travel mechanism (page 02, lab); candidate react.dev render-and-commit + redux-devtools docs"
+    },
+    {
+      "at": "2026-11-18T12:33:05Z",
+      "event": "unit-start",
+      "message": "unit mini-01",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-18T12:33:08Z",
+      "event": "unit-done",
+      "message": "unit experience-a11y-checks-lab",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T12:33:12Z",
+      "event": "visual",
+      "message": "added visual seo-read-points"
+    },
+    {
+      "at": "2026-11-18T12:33:15Z",
+      "event": "unit-done",
+      "message": "unit pages-04-05",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T12:33:21Z",
+      "event": "note",
+      "message": "SPAWN 24/36; FOLLOWUP vision emulation unsourced (page 04)"
+    },
+    {
+      "at": "2026-11-18T12:33:38Z",
+      "event": "unit-start",
+      "message": "unit mini-02",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-18T12:33:59Z",
+      "event": "visual",
+      "message": "added visual team-extension-profile"
+    },
+    {
+      "at": "2026-11-18T12:34:06Z",
+      "event": "unit-done",
+      "message": "unit pages-06-07",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T12:34:32Z",
+      "event": "visual",
+      "message": "removed visual security-pass-deck: renamed to security-pass-slides; id collided with the experience"
+    },
+    {
+      "at": "2026-11-18T12:34:47Z",
+      "event": "note",
+      "message": "WAVE 3: lesson units 6/6 done (deck renamed security-pass-slides); running mini-01, mini-02"
+    },
+    {
+      "at": "2026-11-18T12:34:50Z",
+      "event": "visual",
+      "message": "added visual mini-01-flow"
+    },
+    {
+      "at": "2026-11-18T12:34:53Z",
+      "event": "unit-done",
+      "message": "unit mini-01",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-18T12:35:17Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "brief"
+    },
+    {
+      "at": "2026-11-18T12:35:23Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "digest"
+    },
+    {
+      "at": "2026-11-18T12:35:28Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T12:35:33Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T12:35:51Z",
+      "event": "visual",
+      "message": "added visual mini-02-flow"
+    },
+    {
+      "at": "2026-11-18T12:35:53Z",
+      "event": "unit-done",
+      "message": "unit mini-02",
+      "stage": "mini-projects"
     }
   ],
   "roadmap": {

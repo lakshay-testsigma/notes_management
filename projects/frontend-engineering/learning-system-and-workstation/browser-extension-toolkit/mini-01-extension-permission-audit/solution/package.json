@@ -1,0 +1,14 @@
+{
+  "name": "extension-permission-audit",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "vite-node src/main.ts sample/manifests",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "vite-node": "3.2.4",
+    "vitest": "3.2.4"
+  }
+}

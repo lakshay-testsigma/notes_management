@@ -1,0 +1,327 @@
+{
+  "generated_by": "tutor experience build",
+  "id": "security-pass-deck",
+  "topic": "frontend-engineering/learning-system-and-workstation/browser-extension-toolkit",
+  "title": "Choose the check for each security symptom",
+  "mode": "branching",
+  "objective": "Pick the tool that can see each security symptom of a page and order a quick security pass.",
+  "level": "intermediate",
+  "summary": "A branching deck shows three security symptoms of one page: an old library version, a missing Content-Security-Policy header, and a helper extension that asks for access to all sites. Each deep dive shows what a weak check misses and what the right check shows: Retire.js, the response headers, or the extension manifest. The deck ends with one order for a quick pass.",
+  "page": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-extension-toolkit/06-security-privacy-extensions.mdx",
+  "page_url": "/frontend-engineering/learning-system-and-workstation/browser-extension-toolkit/lesson/06-security-privacy-extensions/",
+  "tabs": [
+    "deepdive",
+    "practice"
+  ],
+  "watch": null,
+  "guided": null,
+  "summary_video": null,
+  "simulation": null,
+  "sync": [],
+  "inspect": [],
+  "deck": {
+    "deck_id": "security-pass-slides",
+    "title": "Pick the right tool for each security symptom",
+    "composition_url": "/media/frontend-engineering/learning-system-and-workstation/browser-extension-toolkit/security-pass-slides/composition/index.html",
+    "island": {
+      "slides": [
+        {
+          "sceneId": "question",
+          "notes": "State the task: three symptoms, three tools, and one short order for a security pass."
+        },
+        {
+          "sceneId": "symptoms",
+          "notes": "Each symptom is a different kind of fact: a version, a response header, and a permission in a manifest.",
+          "fragments": [
+            4.3,
+            4.6,
+            4.9
+          ]
+        },
+        {
+          "sceneId": "pick-tool",
+          "notes": "Open one deep dive per symptom. Each shows a weak choice, its result, and the right check. Back returns here.",
+          "hotspots": [
+            {
+              "id": "pick-tool-h1",
+              "label": "Old library version",
+              "target": "old-library",
+              "region": {
+                "x": 5,
+                "y": 81,
+                "w": 20,
+                "h": 12
+              }
+            },
+            {
+              "id": "pick-tool-h2",
+              "label": "Missing CSP header",
+              "target": "missing-csp",
+              "region": {
+                "x": 27,
+                "y": 81,
+                "w": 20,
+                "h": 12
+              }
+            },
+            {
+              "id": "pick-tool-h3",
+              "label": "Broad host access",
+              "target": "host-access",
+              "region": {
+                "x": 49,
+                "y": 81,
+                "w": 20,
+                "h": 12
+              }
+            }
+          ]
+        },
+        {
+          "sceneId": "order",
+          "notes": "Start with what the page loads, then what the page allows, then what your own tools can read.",
+          "fragments": [
+            12.3,
+            12.6,
+            12.9
+          ]
+        },
+        {
+          "sceneId": "takeaway",
+          "notes": "A wrong tool gives a calm answer to the wrong question. Ask what kind of fact the symptom is, then pick the tool that reads it."
+        }
+      ],
+      "slideSequences": [
+        {
+          "id": "old-library",
+          "label": "Old library version",
+          "slides": [
+            {
+              "sceneId": "library-weak",
+              "notes": "The Elements panel shows the script tag and maybe a version, but not which versions have known vulnerabilities."
+            },
+            {
+              "sceneId": "library-right",
+              "notes": "Retire.js detects JavaScript libraries and reports versions with known vulnerabilities. It runs as a command line tool and inside Burp Suite and OWASP ZAP.",
+              "fragments": [
+                24.3,
+                24.6,
+                24.9
+              ]
+            }
+          ]
+        },
+        {
+          "id": "missing-csp",
+          "label": "Missing CSP header",
+          "slides": [
+            {
+              "sceneId": "csp-weak",
+              "notes": "The server sends the policy in the Content-Security-Policy response header. A meta element can also set a policy, but it lacks some features."
+            },
+            {
+              "sceneId": "csp-strict",
+              "notes": "MDN recommends a strict policy with nonces or hashes for scripts, because an allowlist of hosts is hard to keep safe."
+            }
+          ]
+        },
+        {
+          "id": "host-access",
+          "label": "Broad host access",
+          "slides": [
+            {
+              "sceneId": "host-flow",
+              "notes": "The manifest match patterns choose the pages. A content script runs in each matching page and reads its DOM."
+            },
+            {
+              "sceneId": "host-right",
+              "notes": "Access to all sites lets the content script read every page you open. activeTab gives access only after you invoke the extension."
+            }
+          ]
+        }
+      ]
+    },
+    "scenes": [
+      {
+        "id": "question",
+        "heading": "Which tool sees this problem?",
+        "start": 0,
+        "duration": 4,
+        "sequence": null,
+        "fragments": []
+      },
+      {
+        "id": "symptoms",
+        "heading": "Three symptoms on one page",
+        "start": 4,
+        "duration": 4,
+        "sequence": null,
+        "fragments": [
+          4.3,
+          4.6,
+          4.9
+        ]
+      },
+      {
+        "id": "pick-tool",
+        "heading": "Pick a symptom, then a tool",
+        "start": 8,
+        "duration": 4,
+        "sequence": null,
+        "fragments": []
+      },
+      {
+        "id": "order",
+        "heading": "Order the quick pass",
+        "start": 12,
+        "duration": 4,
+        "sequence": null,
+        "fragments": [
+          12.3,
+          12.6,
+          12.9
+        ]
+      },
+      {
+        "id": "takeaway",
+        "heading": "Match the tool to the fact",
+        "start": 16,
+        "duration": 4,
+        "sequence": null,
+        "fragments": []
+      },
+      {
+        "id": "library-weak",
+        "heading": "Weak choice: read the version by eye",
+        "start": 20,
+        "duration": 4,
+        "sequence": "old-library",
+        "fragments": []
+      },
+      {
+        "id": "library-right",
+        "heading": "Right choice: scan with Retire.js",
+        "start": 24,
+        "duration": 4,
+        "sequence": "old-library",
+        "fragments": [
+          24.3,
+          24.6,
+          24.9
+        ]
+      },
+      {
+        "id": "csp-weak",
+        "heading": "Where the policy comes from",
+        "start": 28,
+        "duration": 4,
+        "sequence": "missing-csp",
+        "fragments": []
+      },
+      {
+        "id": "csp-strict",
+        "heading": "Allowlist or strict policy",
+        "start": 32,
+        "duration": 4,
+        "sequence": "missing-csp",
+        "fragments": []
+      },
+      {
+        "id": "host-flow",
+        "heading": "What host access gives a content script",
+        "start": 36,
+        "duration": 4,
+        "sequence": "host-access",
+        "fragments": []
+      },
+      {
+        "id": "host-right",
+        "heading": "Right choice: read the access first",
+        "start": 40,
+        "duration": 4,
+        "sequence": "host-access",
+        "fragments": []
+      }
+    ],
+    "outline": "# Pick the right tool for each security symptom\n\nA quick security pass on a page has three checks. Retire.js finds libraries with known vulnerabilities. The Content-Security-Policy response header shows which scripts the page allows. The match patterns and permissions of an extension show which pages its content scripts can read. Each deep dive shows the result of a weak choice and of the right choice.\n\n**Purpose.** Choose the right check for three security symptoms of a page (an old library, a missing CSP header, an extension that asks for every site) and put the checks in one quick order.\n\n## Main path\n\n### 1. Which tool sees this problem?\n\n**On screen.** Title card with \"A quick security pass in three checks\".\n\n**Notes.** State the task: three symptoms, three tools, and one short order for a security pass.\n\n### 2. Three symptoms on one page\n\n**On screen.** Numbered steps appear one at a time: The page loads an old library version → The response has no CSP header → A helper extension asks for all sites.\n\n**Notes.** Each symptom is a different kind of fact: a version, a response header, and a permission in a manifest.\n\n### 3. Pick a symptom, then a tool\n\n**On screen.** Two columns, \"Symptom\" and \"Tool that sees it\", fill in pairs.\n\n**Notes.** Open one deep dive per symptom. Each shows a weak choice, its result, and the right check. Back returns here.\n\n**Branches.** deep dive \"Old library version\", deep dive \"Missing CSP header\", deep dive \"Broad host access\".\n\n### 4. Order the quick pass\n\n**On screen.** Numbered steps appear one at a time: 1. Scan loaded libraries with Retire.js → 2. Read the CSP response header → 3. Check extension host access.\n\n**Notes.** Start with what the page loads, then what the page allows, then what your own tools can read.\n\n### 5. Match the tool to the fact\n\n**On screen.** Two columns, \"Wrong tool\" and \"Right tool\", fill in pairs.\n\n**Notes.** A wrong tool gives a calm answer to the wrong question. Ask what kind of fact the symptom is, then pick the tool that reads it.\n\n## Deep dive: Old library version\n\n### 1. Weak choice: read the version by eye\n\n**On screen.** Two columns, \"Elements panel\" and \"Retire.js\", fill in pairs; verdict: Use a scanner that knows the vulnerable versions..\n\n**Notes.** The Elements panel shows the script tag and maybe a version, but not which versions have known vulnerabilities.\n\n### 2. Right choice: scan with Retire.js\n\n**On screen.** Numbered steps appear one at a time: Retire.js finds the library and version → It checks its list of vulnerable versions → It reports the known vulnerability.\n\n**Notes.** Retire.js detects JavaScript libraries and reports versions with known vulnerabilities. It runs as a command line tool and inside Burp Suite and OWASP ZAP.\n\n## Deep dive: Missing CSP header\n\n### 1. Where the policy comes from\n\n**On screen.** Two columns, \"HTTP response header\" and \"meta element\", fill in pairs; verdict: Read the response headers first..\n\n**Notes.** The server sends the policy in the Content-Security-Policy response header. A meta element can also set a policy, but it lacks some features.\n\n### 2. Allowlist or strict policy\n\n**On screen.** Two columns, \"Allowlist\" and \"Strict CSP\", fill in pairs.\n\n**Notes.** MDN recommends a strict policy with nonces or hashes for scripts, because an allowlist of hosts is hard to keep safe.\n\n## Deep dive: Broad host access\n\n### 1. What host access gives a content script\n\n**On screen.** Nodes manifest.json, Content script, Page DOM. A packet moves manifest→script (match patterns pick pages), script→dom (reads and changes the page); each node lights up when the packet arrives.\n\n**Notes.** The manifest match patterns choose the pages. A content script runs in each matching page and reads its DOM.\n\n### 2. Right choice: read the access first\n\n**On screen.** Two columns, \"All sites\" and \"activeTab\", fill in pairs; verdict: Prefer the narrow access..\n\n**Notes.** Access to all sites lets the content script read every page you open. activeTab gives access only after you invoke the extension.\n\n",
+    "explanation": "Each symptom needs the tool that can see it: a version needs a vulnerability database, a policy needs the response header, and access needs the extension manifest."
+  },
+  "checkpoints": [
+    {
+      "id": "pick-library-tool",
+      "kind": "verify",
+      "at": {
+        "slide": "pick-tool"
+      },
+      "prompt": "The page loads jQuery from an old file. Which check tells you whether that version has known vulnerabilities?",
+      "choices": [
+        {
+          "text": "Scan the page with Retire.js",
+          "correct": true
+        },
+        {
+          "text": "Read the script tag in the Elements panel",
+          "misconception": "Thinks that seeing a version number also tells you whether the version is vulnerable"
+        },
+        {
+          "text": "Read the Content-Security-Policy header",
+          "misconception": "Confuses the policy that limits scripts with a check of the scripts themselves"
+        }
+      ],
+      "explanation": "Retire.js detects the library and its version and compares it with a list of versions that have known vulnerabilities. The Elements panel shows the tag but has no vulnerability data.",
+      "concept_ids": [
+        "vulnerable-library-detection"
+      ]
+    },
+    {
+      "id": "host-access-risk",
+      "kind": "verify",
+      "at": {
+        "tab": "practice"
+      },
+      "prompt": "A helper extension asks for access to all sites. What can its content scripts do?",
+      "choices": [
+        {
+          "text": "Read and change the DOM of every page you open",
+          "correct": true
+        },
+        {
+          "text": "Only change its own popup",
+          "misconception": "Thinks content scripts run only inside the extension user interface"
+        },
+        {
+          "text": "Nothing until the page allows it in its CSP",
+          "misconception": "Thinks the page's CSP decides which extensions may read the page"
+        }
+      ],
+      "explanation": "Match patterns in the manifest choose the pages a content script runs in. A content script reads and changes the DOM of each matching page, so access to all sites means every page.",
+      "concept_ids": [
+        "security-privacy-extensions"
+      ]
+    }
+  ],
+  "fallback_visual": "how-it-works",
+  "concept_ids": [
+    "security-privacy-extensions",
+    "vulnerable-library-detection",
+    "headers-cookies-and-csp"
+  ],
+  "sources": [
+    {
+      "id": "retirejs-repo",
+      "title": "RetireJS/retire.js",
+      "url": "https://github.com/RetireJS/retire.js"
+    },
+    {
+      "id": "mdn-csp-docs",
+      "title": "Content Security Policy (CSP) (MDN)",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CSP"
+    },
+    {
+      "id": "chrome-extensions-content-scripts-docs",
+      "title": "Content scripts (Chrome for Developers)",
+      "url": "https://developer.chrome.com/docs/extensions/develop/concepts/content-scripts"
+    }
+  ],
+  "input_hash": "dc544a8d97b818917fba56b282e9e037a837b8a877e108b8b110bbdaaa2c7ddb"
+}

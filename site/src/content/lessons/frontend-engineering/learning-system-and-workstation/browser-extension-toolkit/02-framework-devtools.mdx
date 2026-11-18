@@ -1,0 +1,28 @@
+---
+title: "Framework devtools: see components, state and renders"
+description: A framework devtools extension shows the component tree and the store state that the plain DOM hides.
+order: 2
+concepts: [React DevTools, Components panel, Profiler, commit, Redux DevTools, time travel]
+---
+
+The Elements panel shows a `div` inside a `div`. It does not tell you which React component made it, or which props it got. You can add `console.log` lines and reload, but each question costs an edit. A framework devtools extension answers the question directly, because it reads the framework's own data from the page.
+
+React DevTools adds two panels. The Components panel shows the component tree, which is the nesting of your components. Select one to read and edit its props and state. The Profiler panel records commits. A commit is one update that React applies to the page. For each commit, the Profiler shows which components rendered and how long each one took.
+
+Redux DevTools does the same for a Redux store, which is one object that holds the app state. It lists each action, which is a plain object that describes a change, and the state after it. Time travel means you jump back to an earlier action and see the old state again. `configureStore` connects the store to the extension by default.
+
+Before you open the lab, commit to a prediction.
+
+<PredictReveal
+  prompt="A parent component holds a counter. It passes the counter to child A only. Child B gets no props. You click the button and the Profiler records one commit. Which components render in that commit?"
+  options={["Only child A", "The parent and child A", "The parent, child A and child B"]}
+  correct={2}
+  answer="The parent, child A and child B all render."
+  reasoning="The parent's state changed, so the parent renders again. By default React also renders every child of that parent, even child B whose props did not change. The Profiler makes this visible, so you can see work that a log line would not show."
+/>
+
+In the lab, change a prop or dispatch an action. Watch which nodes of the tree change, then jump back in time and read the store.
+
+<Experience id="framework-devtools-lab" />
+
+**Note.** Use the browser extension for Chrome, Firefox and Edge. For Safari and other browsers, run the standalone `react-devtools` package and add its script to the page head. Pass `devTools: false` to `configureStore` when a build must not connect to the extension.

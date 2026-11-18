@@ -1,0 +1,8 @@
+flowchart LR
+  pages["pages.json and saved HTML"] --> main["main.ts: loop over pages"]
+  main --> seo["readHead and checkSeo"]
+  main --> axe["runAxe in jsdom and toFindings"]
+  seo --> findings["Findings: violation, pass, incomplete"]
+  axe --> findings
+  findings --> base["newViolations vs baseline.json"]
+  base --> exit["exit 0 or exit 1"]

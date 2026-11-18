@@ -1,0 +1,9 @@
+flowchart LR
+  M["Manifest review"] -- "passes" --> P["Team profile"]
+  P --> F["Framework panels"]
+  P --> C["Audit checkers"]
+  P --> D["Design helpers"]
+  P --> R["Request rules"]
+  P --> B["Built-in panels"]
+  D -. "host access or activeTab" .-> M
+  R -. "DNR permission" .-> M

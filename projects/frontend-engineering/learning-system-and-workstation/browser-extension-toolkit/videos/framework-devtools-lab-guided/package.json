@@ -1,0 +1,10 @@
+{
+  "name": "browser-extension-toolkit-framework-devtools-lab-guided",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "npx --yes hyperframes@0.9.59 preview",
+    "check": "npx --yes hyperframes@0.9.59 check",
+    "render": "npx --yes hyperframes@0.9.59 render -o renders/framework-devtools-lab-guided.mp4"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "name": "release-a11y-seo-check",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "vite-node src/main.ts sample/pages.json sample/baseline.json",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "axe-core": "4.14.1",
+    "jsdom": "26.1.0"
+  },
+  "devDependencies": {
+    "vite-node": "3.2.4",
+    "vitest": "3.2.4"
+  }
+}

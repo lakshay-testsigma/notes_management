@@ -1,0 +1,32 @@
+---
+title: "Performance extensions: wasted renders and field data"
+description: Your own page load is lab data, and only field data from real users tells you whether the page is fast for them.
+order: 3
+concepts: [wasted render, Core Web Vitals, lab data, field data, CrUX]
+---
+
+Your app feels fast on your laptop. Users still report a slow checkout. Both can be true, because you measure one load on one machine.
+
+Two kinds of slowness need two kinds of tool. A wasted render is a component render that changes nothing on the screen. The React DevTools Profiler finds them: it records each commit and shows which components rendered and how long each took. Page-level speed is a different question. Core Web Vitals are three page metrics. LCP (Largest Contentful Paint) is the time until the largest content appears. CLS (Cumulative Layout Shift) measures how much the layout jumps. INP (Interaction to Next Paint) is the delay between an interaction and the next frame.
+
+The Chrome DevTools Performance panel shows these three metrics live while you use the page. That is lab data: your device, your network, your clicks. INP appears only after you interact with the page. The same panel can also show field data from CrUX, the Chrome User Experience Report, which collects the metrics from real Chrome users. Compare the two before you decide what to fix.
+
+<CompareView
+  title="Lab data or field data"
+  question="Your live LCP is good, but users complain. Which data tells you whether they see the same speed?"
+  left={{ label: "Lab data (live metrics)", points: ["Measured on your device and network", "Updates at once while you change code", "INP appears only after you interact", "Shows one session, not your users"] }}
+  right={{ label: "Field data (CrUX)", points: ["Collected from real Chrome users", "Covers slower devices and networks", "Does not change at once after a code edit", "Needs enough real traffic to exist"] }}
+  verdict="Use lab data to test a fix fast, and field data to know whether real users have the problem. A good lab number on a fast laptop does not prove a good user experience."
+/>
+
+**Note.** CrUX shows only that real users are slow. It does not name the component. Use the Profiler for that step.
+
+<MatchPairs
+  prompt="Match each performance question to the tool that answers it."
+  pairs={[
+    { term: "React Profiler", definition: "Which components rendered in this commit, and for how long?" },
+    { term: "Components panel", definition: "Which props did this slow component receive?" },
+    { term: "Live metrics", definition: "Did my change improve LCP on my own machine?" },
+    { term: "CrUX field data", definition: "Do real users on slow phones see a poor INP?" }
+  ]}
+/>

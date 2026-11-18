@@ -1,0 +1,235 @@
+{
+  "id": "framework-devtools-lab-guided",
+  "title": "Framework devtools show components and store actions",
+  "purpose": "See what the React DevTools panels let you change and how a dispatched Redux action reaches the store and the Redux DevTools extension.",
+  "sequence_reason": "A dispatched action passes middleware, then the reducer, then reaches the extension in a fixed order, so motion shows the cause of each change.",
+  "summary": "React DevTools adds the Components and Profiler panels on websites built with React; in Components you select a component and edit its props or state. In a Redux todo app, configureStore connects the store to the Redux DevTools extension by default. A dispatched todoAdded action passes the thunk middleware, then a logger added with concat, then the reducer returns the next state, and the store sends the action and state to the extension. With devTools set to false the store still updates, but the extension receives nothing. Safari uses the standalone react-devtools package.",
+  "explanation": "Framework devtools read what the framework keeps behind the DOM: React components with their props and state, and each Redux action with the state after it. Redux sends that data to the extension only while the devTools option is on.",
+  "learning_check": {
+    "question": "You set devTools to false in configureStore and dispatch todoAdded. What changes in the app, and what does the Redux DevTools extension show?",
+    "answer": "The reducer still returns the next state with the new todo, but the extension receives no actions and no state, because the integration is off."
+  },
+  "concept_ids": [
+    "framework-devtools-extensions",
+    "react-devtools-components-profiler",
+    "redux-devtools-time-travel"
+  ],
+  "source_ids": [
+    "react-devtools-docs",
+    "redux-configure-store-docs"
+  ],
+  "used_in": [
+    "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-extension-toolkit/02-framework-devtools.mdx"
+  ],
+  "narration": {
+    "engine": "auto"
+  },
+  "scenes": [
+    {
+      "id": "intro",
+      "duration": 8,
+      "heading": "Behind the DOM: components and store",
+      "narration": "Built-in DevTools shows the DOM. Two extensions show the components and the store that React and Redux keep behind it.",
+      "source_ids": [
+        "react-devtools-docs",
+        "redux-configure-store-docs"
+      ],
+      "visual": {
+        "type": "title",
+        "subtitle": "React DevTools and Redux DevTools"
+      }
+    },
+    {
+      "id": "panels",
+      "duration": 9,
+      "heading": "Two new panels on React websites",
+      "narration": "Install the React DevTools extension. On a website built with React, the Components panel and the Profiler panel appear.",
+      "source_ids": [
+        "react-devtools-docs"
+      ],
+      "visual": {
+        "type": "steps",
+        "items": [
+          "Install the extension: Chrome, Firefox or Edge",
+          "Open a website built with React",
+          "Components panel: inspect components",
+          "Profiler panel: find performance problems"
+        ]
+      }
+    },
+    {
+      "id": "edit-props",
+      "duration": 10,
+      "heading": "Edit a prop in the Components panel",
+      "narration": "In the Components panel, select TodoList and edit its filter prop. The page then shows the list with the new filter.",
+      "source_ids": [
+        "react-devtools-docs"
+      ],
+      "visual": {
+        "type": "flow",
+        "nodes": [
+          {
+            "id": "panel",
+            "label": "Components panel",
+            "sub": "select TodoList"
+          },
+          {
+            "id": "prop",
+            "label": "filter prop",
+            "sub": "all to done"
+          },
+          {
+            "id": "page",
+            "label": "Page",
+            "sub": "shows done todos"
+          }
+        ],
+        "path": [
+          {
+            "from": "panel",
+            "to": "prop",
+            "packet": "edit",
+            "label": "change the prop value"
+          },
+          {
+            "from": "prop",
+            "to": "page",
+            "packet": "filter",
+            "label": "the page uses the new value"
+          }
+        ]
+      }
+    },
+    {
+      "id": "dispatch",
+      "duration": 12,
+      "heading": "One action reaches the store and the extension",
+      "narration": "Dispatch todoAdded. The action passes the thunk middleware, then the logger. The reducer returns the next state, and the store sends the action and state to the extension.",
+      "source_ids": [
+        "redux-configure-store-docs"
+      ],
+      "visual": {
+        "type": "flow",
+        "nodes": [
+          {
+            "id": "dispatch",
+            "label": "dispatch",
+            "sub": "todoAdded"
+          },
+          {
+            "id": "thunk",
+            "label": "thunk middleware"
+          },
+          {
+            "id": "logger",
+            "label": "logger"
+          },
+          {
+            "id": "reducer",
+            "label": "reducer",
+            "sub": "next state"
+          },
+          {
+            "id": "ext",
+            "label": "Redux DevTools",
+            "sub": "extension"
+          }
+        ],
+        "path": [
+          {
+            "from": "dispatch",
+            "to": "thunk",
+            "packet": "action"
+          },
+          {
+            "from": "thunk",
+            "to": "logger",
+            "packet": "action"
+          },
+          {
+            "from": "logger",
+            "to": "reducer",
+            "packet": "action"
+          },
+          {
+            "from": "reducer",
+            "to": "ext",
+            "packet": "state",
+            "label": "action and state sent"
+          }
+        ]
+      }
+    },
+    {
+      "id": "devtools-option",
+      "duration": 11,
+      "heading": "The devTools option connects the store",
+      "narration": "configureStore sets devTools to true by default. Set it to false, and the store still updates, but the extension receives nothing.",
+      "source_ids": [
+        "redux-configure-store-docs"
+      ],
+      "visual": {
+        "type": "compare",
+        "left": {
+          "label": "devTools: true (default)",
+          "items": [
+            "Store updates",
+            "Extension receives actions and state"
+          ]
+        },
+        "right": {
+          "label": "devTools: false",
+          "items": [
+            "Store updates",
+            "Extension receives nothing"
+          ]
+        },
+        "verdict": "An options object names the store and sanitizes data."
+      }
+    },
+    {
+      "id": "middleware-order",
+      "duration": 10,
+      "heading": "Middleware run in array order",
+      "narration": "Middleware run in array order. concat puts the logger after the defaults, so the thunk middleware resolves thunks before the logger sees the action.",
+      "source_ids": [
+        "redux-configure-store-docs"
+      ],
+      "visual": {
+        "type": "timeline",
+        "events": [
+          {
+            "label": "thunk middleware",
+            "detail": "resolves thunk functions"
+          },
+          {
+            "label": "logger (concat)",
+            "detail": "sees the plain action"
+          },
+          {
+            "label": "reducer",
+            "detail": "returns the next state"
+          }
+        ]
+      }
+    },
+    {
+      "id": "safari",
+      "duration": 10,
+      "heading": "Safari: the standalone react-devtools",
+      "narration": "Other browsers, such as Safari, use the react-devtools npm package. Run it, add its script tag to the head, and reload.",
+      "source_ids": [
+        "react-devtools-docs"
+      ],
+      "visual": {
+        "type": "steps",
+        "items": [
+          "npm install -g react-devtools",
+          "Run react-devtools in a terminal",
+          "Add script src localhost:8097 to the head",
+          "Reload the website"
+        ]
+      }
+    }
+  ]
+}

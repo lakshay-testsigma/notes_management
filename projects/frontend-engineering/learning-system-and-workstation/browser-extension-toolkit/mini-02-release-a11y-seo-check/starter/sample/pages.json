@@ -1,0 +1,6 @@
+[
+  { "name": "home", "file": "pages/home.html", "url": "https://example.com/", "status": 200 },
+  { "name": "pricing", "file": "pages/pricing.html", "url": "https://example.com/pricing", "status": 200 },
+  { "name": "app", "file": "pages/app-shell.html", "url": "https://example.com/app", "status": 200 },
+  { "name": "old-docs", "file": "", "url": "https://example.com/docs-old", "status": 301, "location": "https://example.com/docs" }
+]

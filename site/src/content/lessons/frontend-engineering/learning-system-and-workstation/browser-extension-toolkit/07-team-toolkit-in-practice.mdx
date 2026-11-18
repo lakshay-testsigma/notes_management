@@ -1,0 +1,38 @@
+---
+title: "Design, API helpers and a team extension profile in practice"
+description: A team keeps a short, vetted extension profile and judges each helper by the mechanism and permission it needs.
+order: 7
+concepts: [design-css-helper-extensions, api-data-extensions, request-modification-and-mocking, team-extension-profile]
+---
+
+Two more helper families finish the toolkit. Both are useful, and both ask for real power, so judge them by their mechanism.
+
+A design or CSS helper is an extension that inspects or changes styles on a live page. It works through a content script, the extension part that runs inside the page and shares its DOM. The extension can declare the script in the manifest, register it at run time, or inject it when you call it. To inject it, the extension needs host permission or `activeTab`. The use case: you test a spacing or colour change on the real rendered page, with no rebuild. The risk: a script that matches every site can read every page.
+
+An API or data helper changes network requests. In Chrome, the `declarativeNetRequest` API lets an extension declare rules, and the browser applies them. A rule can block, redirect, allow, upgrade the scheme, or modify headers. So you can add an auth header, or send an API call to a mock, without a change to app code or a proxy server. A limit: Chrome caps the number of rules, for example 5,000 session rules.
+
+A team profile is the short list of extensions that the whole team installs. Each one passes a manifest review first. When a built-in DevTools panel does the job, the team uses the panel instead.
+
+<Diagram id="team-extension-profile" />
+
+Read the diagram from the left. Each group joins only after the review, and the dotted lines mark the groups whose permissions need the closest look.
+
+<SortBuckets
+  prompt="Sort each candidate for the team profile."
+  buckets={["Keep", "Use a built-in panel", "Reject for permissions"]}
+  items={[
+    { text: "React DevTools for the React app", bucket: "Keep" },
+    { text: "Retire.js to scan library versions", bucket: "Keep" },
+    { text: "A mock helper built on declarativeNetRequest rules for one staging host", bucket: "Keep" },
+    { text: "An extension that only shows Core Web Vitals live", bucket: "Use a built-in panel" },
+    { text: "A header editor that wants all data on all sites, for one staging host", bucket: "Reject for permissions" },
+    { text: "A CSS helper from an unknown publisher with a content script on all URLs", bucket: "Reject for permissions" }
+  ]}
+  explanation="Keep tools that add data the browser does not show, with access that fits the job. The Performance panel already shows Core Web Vitals live, so a separate extension adds risk and no data. Reject a helper whose host access is wider than its job: a content script can read and change every page it matches."
+/>
+
+<Depth level="internals">
+A `modifyHeaders` rule has three operations. `set` replaces a header, `append` adds a value (only for an allowlisted set of request headers), and `remove` deletes every value of the header. The permission also matters. `declarativeNetRequest` shows an install warning to the user. `declarativeNetRequestWithHostAccess` shows no such warning, but the extension then needs host permission for the sites it changes. Other caps: 30,000 dynamic safe rules and 50 enabled static rulesets.
+</Depth>
+
+<Resources />

@@ -17,13 +17,14 @@ Everything you have learned, by domain. Open a topic and follow its "start here"
 
 ## Domains
 
-- [[frontend-engineering|Frontend Engineering]] — 4 topics
+- [[frontend-engineering|Frontend Engineering]] — 5 topics
 
 ## All topics
 
 - [[00-start-here-browser-devtools-mastery|Browser DevTools mastery (used in every phase)]] — deep · 9/10 steps ready
-- [[00-start-here-browser-extension-toolkit|Browser extension toolkit (install once, used across phases)]] — standard · 2/10 steps ready
+- [[00-start-here-browser-extension-toolkit|Browser extension toolkit (install once, used across phases)]] — standard · 6/10 steps ready
 - [[00-start-here-how-to-learn-frontend|How to learn frontend (and keep improving)]] — standard · 9/10 steps ready
+- [[00-start-here-internet-and-networking|Internet & networking]] — deep · 2/10 steps ready
 - [[00-start-here-workstation-and-editor|Workstation & editor]] — standard · 9/10 steps ready
 
 ## Review

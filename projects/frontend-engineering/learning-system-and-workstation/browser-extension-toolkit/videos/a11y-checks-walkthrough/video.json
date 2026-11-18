@@ -1,0 +1,111 @@
+{
+  "id": "a11y-checks-walkthrough",
+  "title": "Pass, fail or incomplete: contrast and heading checks",
+  "purpose": "See how an automated accessibility check decides pass, fail or incomplete for color contrast and heading order, and what it leaves for a person.",
+  "sequence_reason": "Each result depends on a measured value and a threshold, so the walkthrough builds the rule one part at a time and pauses for predictions.",
+  "summary": "An accessibility scan gives three answers: pass, fail or incomplete. The contrast ratio is (L1 + 0.05) / (L2 + 0.05). Normal text needs at least 4.5:1, large text at least 3:1. Gray #767676 on white scores 4.54 and passes; #777777 scores 4.47 and fails, because axe rounds down. A background image, an overlapping element, one-character text or an empty input gives incomplete. Heading order fails when a heading is more than one level deeper than the one before it. A person still judges text on images, heading meaning, and keyboard and screen reader use.",
+  "explanation": "A rule decides only what it can measure. When it cannot see the real colors or the previous heading, it answers incomplete instead of guessing, and a person reviews it.",
+  "learning_check": {
+    "question": "Gray #777777 normal-size text on white measures 4.48:1. What does the contrast check report, and why?",
+    "answer": "Fail. The ratio is rounded down to 4.47, which is below the 4.5:1 that normal text needs."
+  },
+  "concept_ids": ["accessibility-extensions", "automated-a11y-rule-limits", "contrast-and-vision-checks"],
+  "source_ids": ["dequelabs-axe-core-repo", "w3c-wai-selecting-evaluation-tools", "w3c-wcag22-understanding-contrast-minimum"],
+  "used_in": ["site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-extension-toolkit/04-accessibility-extensions.mdx"],
+  "narration": { "engine": "auto" },
+  "scenes": [
+    {
+      "id": "intro",
+      "duration": 9,
+      "heading": "One scan, three answers",
+      "narration": "One accessibility scan gives three answers: pass, fail, or incomplete. Incomplete means the tool cannot decide, so a person must review it.",
+      "visual": { "type": "title", "subtitle": "pass · fail · incomplete" },
+      "source_ids": ["dequelabs-axe-core-repo"]
+    },
+    {
+      "id": "formula",
+      "duration": 9,
+      "heading": "The contrast ratio",
+      "narration": "The contrast ratio compares two colors. L1 is the relative luminance of the lighter color, and L2 is the luminance of the darker color.",
+      "visual": {
+        "type": "equation",
+        "expression": "ratio = (L1 + 0.05) / (L2 + 0.05)",
+        "terms": [
+          { "text": "L1", "note": "relative luminance of the lighter color" },
+          { "text": "L2", "note": "relative luminance of the darker color" },
+          { "text": "0.05", "note": "a fixed constant added to both luminances" }
+        ]
+      },
+      "source_ids": ["w3c-wcag22-understanding-contrast-minimum", "dequelabs-axe-core-repo"]
+    },
+    {
+      "id": "thresholds",
+      "duration": 10,
+      "heading": "Two thresholds",
+      "narration": "Normal text needs a ratio of at least 4.5 to 1. Large text, 18 point or 14 point bold, needs at least 3 to 1.",
+      "visual": {
+        "type": "compare",
+        "left": { "label": "Normal text", "items": ["Needs at least 4.5:1", "Below 18 pt, or below 14 pt bold"] },
+        "right": { "label": "Large text", "items": ["Needs at least 3:1", "18 pt, or 14 pt bold"] },
+        "verdict": "Larger text may use lower contrast."
+      },
+      "source_ids": ["w3c-wcag22-understanding-contrast-minimum", "dequelabs-axe-core-repo"]
+    },
+    {
+      "id": "rounding",
+      "duration": 10,
+      "heading": "No rounding up",
+      "narration": "Gray 767676 on white scores 4.54 and passes. Gray 777777 scores 4.47 and fails. Axe rounds down, so 4.47 never shows as 4.5.",
+      "visual": {
+        "type": "bars",
+        "unit": ":1",
+        "items": [
+          { "label": "#767676 on white", "value": 4.54 },
+          { "label": "Threshold, normal text", "value": 4.5 },
+          { "label": "#777777 on white", "value": 4.47 }
+        ]
+      },
+      "source_ids": ["w3c-wcag22-understanding-contrast-minimum", "dequelabs-axe-core-repo"]
+    },
+    {
+      "id": "incomplete",
+      "duration": 8,
+      "heading": "When the tool cannot tell",
+      "narration": "Some cases return incomplete: text on a background image, an overlapping element, one-character text, or an empty input field.",
+      "visual": {
+        "type": "steps",
+        "items": ["Text on a background image", "Another element overlaps the text", "Text of one character", "An empty input field"]
+      },
+      "source_ids": ["dequelabs-axe-core-repo"]
+    },
+    {
+      "id": "headings",
+      "duration": 10,
+      "heading": "Heading order",
+      "narration": "Heading order checks each heading against the one before it. After h2, an h4 skips a level and fails. Change it to h3, and it passes.",
+      "visual": {
+        "type": "timeline",
+        "events": [
+          { "label": "h1", "detail": "first heading: pass" },
+          { "label": "h2", "detail": "one level deeper: pass" },
+          { "label": "h4", "detail": "skips h3: fail" },
+          { "label": "h4 changed to h3", "detail": "pass" }
+        ]
+      },
+      "source_ids": ["dequelabs-axe-core-repo"]
+    },
+    {
+      "id": "limits",
+      "duration": 10,
+      "heading": "What rules cannot judge",
+      "narration": "A rule decides plain color contrast and skipped heading levels. A person judges text on images, heading meaning, and keyboard and screen reader use.",
+      "visual": {
+        "type": "compare",
+        "left": { "label": "A rule decides", "items": ["Contrast of plain colors", "A skipped heading level"] },
+        "right": { "label": "A person judges", "items": ["Text on an image", "Heading meaning", "Keyboard and screen reader use"] },
+        "verdict": "Zero violations does not mean accessible."
+      },
+      "source_ids": ["w3c-wai-selecting-evaluation-tools", "dequelabs-axe-core-repo"]
+    }
+  ]
+}
