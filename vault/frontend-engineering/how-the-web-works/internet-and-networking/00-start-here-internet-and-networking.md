@@ -71,12 +71,12 @@ Run `npm run site:dev` in the repository root, then open `/frontend-engineering/
 
 The network a frontend developer depends on: internet packets and transport, domains and DNS, HTTP messages and versions, TLS, URLs and origins, HTTP and CDN caching, compression, cookies, realtime transports and API styles at a glance.
 - How the internet moves packets: included
-- IP addresses, IPv4/IPv6 and ports: included
+- IP addresses, IPv4/IPv6 and ports: deferred — No verified source in this run explains IP addressing and ports in depth (HPBN mentions IP only briefly); page 1 names IP addresses and ports inside the packet journey, and the coverage audit may add a source.
 - TCP versus UDP: included
 - Routing, ISPs and autonomous systems: included
 - Domain names and hosting: included
 - Registrars, TLDs and nameservers: included
-- Static, server and serverless hosting: included
+- Static, server and serverless hosting: deferred — No verified source in this run compares static, server and serverless hosting; the roadmap's deployment and hosting phase teaches it.
 - DNS resolution: included
 - DNS record types and TTL: included
 - DNS prefetch and DNS over HTTPS: included
@@ -117,9 +117,11 @@ The network a frontend developer depends on: internet packets and transport, dom
 - WebSockets: included
 - WebTransport and WebRTC: included
 - REST, GraphQL and RPC: included
-- Resource-oriented REST: included
+- Resource-oriented REST: deferred — No verified REST-style source in this run (RFC 9110 defines resources and methods, not the REST style); the roadmap deep-dives REST in Phase 13.
 - Query-based GraphQL: included
 - RPC: tRPC, gRPC-web and Connect: included
+
+Research stopped: budget-limit. Five research units (http-core, dns-tls-urls-cookies, edge-realtime-api, repos, gap-01). gap-01 replaced five single-page sources with broader documentation sets to stay within the 12-source cap. Proposed children dns-caching-and-ttl, tls-0rtt-replay-risk and samesite-lax-strict-none are taught inside dns-record-types, quic-0rtt-and-migration and set-cookie-attributes. Three children deferred with reasons.
 
 ## Projects
 

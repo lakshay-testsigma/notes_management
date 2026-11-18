@@ -1,0 +1,12 @@
+- comparison | HTTP/2 over TCP: one lost packet stalls all active transactions; HTTP/3 each request on its own QUIC stream | rfc-9114-http3 §1.1, §2 | candidate for CompareView / Video
+- dependency | each HTTP/3 request-response pair uses a single QUIC stream | rfc-9114-http3 §2 | candidate for Diagram
+- architecture | QPACK uses separate unidirectional streams to update field table state | rfc-9114-http3 §2, §4.2.1 | candidate for Diagram
+- state change | 0-RTT early data exposes requests to replay | rfc-9114-http3 §10.9 | candidate for Video
+- decision | idempotent requests can be retried automatically after connection failure | rfc-9110-http-semantics §9.2.2 | branch for a deck
+- sequence | cache hit fresh -> stale -> validation request -> 304 refreshes stored response | rfc-9111-http-caching §4.2, §4.3 | candidate for Video
+- parameter | max-age and Age decide freshness lifetime | rfc-9111-http-caching §4.2.1, §4.2.3 | experiment for interactive CacheSim
+- dependency | Vary header fields form part of the cache key | rfc-9111-http-caching §4.1 | candidate for Diagram
+- comparison | private cache vs shared cache (proxy, managed) | mdn-http-caching-docs Types of caches | candidate for CompareView
+- sequence | ETag sent; browser sends If-None-Match; server returns 304 | mdn-http-caching-docs Validation | candidate for Video
+- decision | URL with hash and long max-age (immutable) vs revalidation for main HTML | mdn-http-caching-docs Common caching patterns | branch for a deck
+- parameter | changing the hash in the URL makes a new cache entry | mdn-http-caching-docs Cache Busting | experiment for interactive lesson

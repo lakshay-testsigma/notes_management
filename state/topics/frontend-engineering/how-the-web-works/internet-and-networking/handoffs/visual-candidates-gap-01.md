@@ -1,0 +1,7 @@
+- sequence | HSTS: first HTTPS visit sets max-age, later HTTP requests upgraded to HTTPS | mdn-http-docs, Reference/Headers/Strict-Transport-Security | candidate for Video
+- number | HSTS preload needs max-age >= 31536000 and includeSubDomains | mdn-http-docs, Strict-Transport-Security | candidate for CompareView
+- parameter | DNS TTL (default 300 s, min 60 s, max 1 day): longer is faster lookups, slower changes | cloudflare-docs, DNS TTL reference | experiment for an interactive experience
+- decision | purge by URL vs tag vs hostname vs prefix vs everything | cloudflare-docs, Cache purge page | branch for a deck
+- comparison | domain sharding on HTTP/1.x vs HTTP/2 (sharding deprecated, can hurt) | mdn-http-docs, Connection management in HTTP/1.x | candidate for CompareView
+- sequence | certificate to CT log, SCT returned, SCT delivered via cert extension, TLS extension or OCSP stapling | mdn-http-docs, Certificate_Transparency | candidate for Video
+- comparison | __Secure- vs __Host- prefix rules | mdn-http-docs, Cookies guide, Cookie prefixes | candidate for CompareView

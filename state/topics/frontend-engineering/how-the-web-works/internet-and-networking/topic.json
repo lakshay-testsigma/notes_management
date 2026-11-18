@@ -7,7 +7,7 @@
   "subdomain": "how-the-web-works",
   "depth": "deep",
   "created_at": "2026-11-18T12:13:22Z",
-  "updated_at": "2026-11-18T12:16:05Z",
+  "updated_at": "2026-11-18T12:24:32Z",
   "paths": {
     "state": "state/topics/frontend-engineering/how-the-web-works/internet-and-networking",
     "vault": "vault/frontend-engineering/how-the-web-works/internet-and-networking",
@@ -84,7 +84,6 @@
           "id": "packet-journey",
           "concept_ids": [
             "internet-packets-and-routing",
-            "ip-addresses-and-ports",
             "tcp-vs-udp",
             "routing-and-isps"
           ],
@@ -118,7 +117,6 @@
           "concept_ids": [
             "domains-and-hosting",
             "registrars-tlds-nameservers",
-            "hosting-models",
             "dns-resolution",
             "dns-record-types",
             "dns-prefetch-and-doh"
@@ -437,7 +435,6 @@
           "id": "api-style-map",
           "concept_ids": [
             "api-styles",
-            "rest-resources",
             "graphql-queries",
             "rpc-trpc-grpc-web"
           ],
@@ -511,8 +508,22 @@
           "roadmap_items": [
             "how-the-internet-works"
           ],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "hpbn-book"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/how-the-web-works/internet-and-networking/01-how-the-internet-works.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": []
         },
         {
@@ -521,11 +532,12 @@
           "parent": "internet-packets-and-routing",
           "complexity": "basic",
           "importance": "core",
-          "disposition": "included",
+          "disposition": "deferred",
           "roadmap_items": [],
           "source_ids": [],
           "coverage": [],
-          "prerequisites": []
+          "prerequisites": [],
+          "reason": "No verified source in this run explains IP addressing and ports in depth (HPBN mentions IP only briefly); page 1 names IP addresses and ports inside the packet journey, and the coverage audit may add a source."
         },
         {
           "id": "tcp-vs-udp",
@@ -535,8 +547,23 @@
           "importance": "critical",
           "disposition": "included",
           "roadmap_items": [],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "rfc-9114-http3",
+            "hpbn-book"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/how-the-web-works/internet-and-networking/01-how-the-internet-works.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": []
         },
         {
@@ -547,8 +574,22 @@
           "importance": "supporting",
           "disposition": "included",
           "roadmap_items": [],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "hpbn-book"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/how-the-web-works/internet-and-networking/01-how-the-internet-works.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": []
         },
         {
@@ -561,8 +602,22 @@
           "roadmap_items": [
             "domain-names-hosting-basics"
           ],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "cloudflare-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/how-the-web-works/internet-and-networking/02-domains-dns-and-hosting.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": []
         },
         {
@@ -573,8 +628,22 @@
           "importance": "core",
           "disposition": "included",
           "roadmap_items": [],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "cloudflare-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/how-the-web-works/internet-and-networking/02-domains-dns-and-hosting.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": []
         },
         {
@@ -583,11 +652,12 @@
           "parent": "domains-and-hosting",
           "complexity": "basic",
           "importance": "core",
-          "disposition": "included",
+          "disposition": "deferred",
           "roadmap_items": [],
           "source_ids": [],
           "coverage": [],
-          "prerequisites": []
+          "prerequisites": [],
+          "reason": "No verified source in this run compares static, server and serverless hosting; the roadmap's deployment and hosting phase teaches it."
         },
         {
           "id": "dns-resolution",
@@ -599,8 +669,22 @@
           "roadmap_items": [
             "dns"
           ],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "cloudflare-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/how-the-web-works/internet-and-networking/02-domains-dns-and-hosting.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": [
             "registrars-tlds-nameservers"
           ]
@@ -613,8 +697,22 @@
           "importance": "core",
           "disposition": "included",
           "roadmap_items": [],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "cloudflare-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/how-the-web-works/internet-and-networking/02-domains-dns-and-hosting.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": []
         },
         {
@@ -625,8 +723,22 @@
           "importance": "supporting",
           "disposition": "included",
           "roadmap_items": [],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "cloudflare-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/how-the-web-works/internet-and-networking/02-domains-dns-and-hosting.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": []
         },
         {
@@ -639,8 +751,23 @@
           "roadmap_items": [
             "http-fundamentals"
           ],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "rfc-9110-http-semantics",
+            "nodejs-undici-repo"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/how-the-web-works/internet-and-networking/04-http-messages.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": [
             "tcp-vs-udp"
           ]
@@ -653,8 +780,22 @@
           "importance": "core",
           "disposition": "included",
           "roadmap_items": [],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "rfc-9110-http-semantics"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/how-the-web-works/internet-and-networking/04-http-messages.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": []
         },
         {
@@ -665,8 +806,22 @@
           "importance": "core",
           "disposition": "included",
           "roadmap_items": [],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "rfc-9110-http-semantics"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/how-the-web-works/internet-and-networking/04-http-messages.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": []
         },
         {
@@ -677,8 +832,22 @@
           "importance": "core",
           "disposition": "included",
           "roadmap_items": [],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "rfc-9110-http-semantics"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/how-the-web-works/internet-and-networking/04-http-messages.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": []
         },
         {
@@ -691,8 +860,23 @@
           "roadmap_items": [
             "http-1-1-vs-http-2-vs-http-3-quic"
           ],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "rfc-9114-http3",
+            "hpbn-book"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/how-the-web-works/internet-and-networking/05-http-versions.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": [
             "http-messages"
           ]
@@ -705,8 +889,22 @@
           "importance": "critical",
           "disposition": "included",
           "roadmap_items": [],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "rfc-9114-http3"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/how-the-web-works/internet-and-networking/05-http-versions.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": []
         },
         {
@@ -717,8 +915,22 @@
           "importance": "supporting",
           "disposition": "included",
           "roadmap_items": [],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "rfc-9114-http3"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/how-the-web-works/internet-and-networking/05-http-versions.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": []
         },
         {
@@ -729,8 +941,22 @@
           "importance": "core",
           "disposition": "included",
           "roadmap_items": [],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "rfc-9114-http3"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/how-the-web-works/internet-and-networking/05-http-versions.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": []
         },
         {
@@ -741,8 +967,23 @@
           "importance": "core",
           "disposition": "included",
           "roadmap_items": [],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "mdn-http-docs",
+            "hpbn-book"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/how-the-web-works/internet-and-networking/05-http-versions.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": []
         },
         {
@@ -755,8 +996,22 @@
           "roadmap_items": [
             "tls-https"
           ],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "rfc-9846-tls13"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/how-the-web-works/internet-and-networking/06-tls-and-https.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": [
             "tcp-vs-udp"
           ]
@@ -769,8 +1024,22 @@
           "importance": "critical",
           "disposition": "included",
           "roadmap_items": [],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "rfc-9846-tls13"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/how-the-web-works/internet-and-networking/06-tls-and-https.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": []
         },
         {
@@ -781,8 +1050,23 @@
           "importance": "core",
           "disposition": "included",
           "roadmap_items": [],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "rfc-9846-tls13",
+            "hpbn-book"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/how-the-web-works/internet-and-networking/06-tls-and-https.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": []
         },
         {
@@ -793,8 +1077,22 @@
           "importance": "core",
           "disposition": "included",
           "roadmap_items": [],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "mdn-http-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/how-the-web-works/internet-and-networking/06-tls-and-https.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": []
         },
         {
@@ -805,8 +1103,22 @@
           "importance": "supporting",
           "disposition": "included",
           "roadmap_items": [],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "mdn-http-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/how-the-web-works/internet-and-networking/06-tls-and-https.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": []
         },
         {
@@ -819,8 +1131,22 @@
           "roadmap_items": [
             "urls-origins"
           ],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "whatwg-url-standard"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/how-the-web-works/internet-and-networking/03-urls-and-origins.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": []
         },
         {
@@ -831,8 +1157,22 @@
           "importance": "core",
           "disposition": "included",
           "roadmap_items": [],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "whatwg-url-standard"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/how-the-web-works/internet-and-networking/03-urls-and-origins.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": []
         },
         {
@@ -843,8 +1183,22 @@
           "importance": "critical",
           "disposition": "included",
           "roadmap_items": [],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "whatwg-url-standard"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/how-the-web-works/internet-and-networking/03-urls-and-origins.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": []
         },
         {
@@ -857,8 +1211,24 @@
           "roadmap_items": [
             "http-caching"
           ],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "rfc-9111-http-caching",
+            "mdn-http-docs",
+            "nodejs-undici-repo"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/how-the-web-works/internet-and-networking/07-http-caching.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": [
             "http-messages"
           ]
@@ -871,8 +1241,23 @@
           "importance": "critical",
           "disposition": "included",
           "roadmap_items": [],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "rfc-9111-http-caching",
+            "mdn-http-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/how-the-web-works/internet-and-networking/07-http-caching.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": []
         },
         {
@@ -883,8 +1268,23 @@
           "importance": "core",
           "disposition": "included",
           "roadmap_items": [],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "rfc-9111-http-caching",
+            "mdn-http-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/how-the-web-works/internet-and-networking/07-http-caching.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": []
         },
         {
@@ -895,8 +1295,23 @@
           "importance": "core",
           "disposition": "included",
           "roadmap_items": [],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "rfc-9111-http-caching",
+            "mdn-http-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/how-the-web-works/internet-and-networking/07-http-caching.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": []
         },
         {
@@ -907,8 +1322,22 @@
           "importance": "core",
           "disposition": "included",
           "roadmap_items": [],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "mdn-http-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/how-the-web-works/internet-and-networking/07-http-caching.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": []
         },
         {
@@ -921,8 +1350,22 @@
           "roadmap_items": [
             "cdns-the-edge"
           ],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "cloudflare-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/how-the-web-works/internet-and-networking/08-cdns-and-the-edge.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": [
             "http-caching"
           ]
@@ -935,8 +1378,22 @@
           "importance": "core",
           "disposition": "included",
           "roadmap_items": [],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "cloudflare-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/how-the-web-works/internet-and-networking/08-cdns-and-the-edge.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": []
         },
         {
@@ -947,8 +1404,22 @@
           "importance": "supporting",
           "disposition": "included",
           "roadmap_items": [],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "cloudflare-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/how-the-web-works/internet-and-networking/08-cdns-and-the-edge.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": []
         },
         {
@@ -961,8 +1432,22 @@
           "roadmap_items": [
             "compression"
           ],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "rfc-9110-http-semantics"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/how-the-web-works/internet-and-networking/09-compression.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": [
             "content-negotiation-and-keep-alive"
           ]
@@ -975,8 +1460,23 @@
           "importance": "core",
           "disposition": "included",
           "roadmap_items": [],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "rfc-9110-http-semantics",
+            "mdn-http-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/how-the-web-works/internet-and-networking/09-compression.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": []
         },
         {
@@ -987,8 +1487,22 @@
           "importance": "supporting",
           "disposition": "included",
           "roadmap_items": [],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "mdn-http-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/how-the-web-works/internet-and-networking/09-compression.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": []
         },
         {
@@ -1001,8 +1515,23 @@
           "roadmap_items": [
             "cookies"
           ],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "mdn-http-docs",
+            "jshttp-cookie-repo"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/how-the-web-works/internet-and-networking/10-cookies.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": [
             "origin-vs-site"
           ]
@@ -1015,8 +1544,23 @@
           "importance": "critical",
           "disposition": "included",
           "roadmap_items": [],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "jshttp-cookie-repo",
+            "mdn-http-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/how-the-web-works/internet-and-networking/10-cookies.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": []
         },
         {
@@ -1027,8 +1571,22 @@
           "importance": "core",
           "disposition": "included",
           "roadmap_items": [],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "mdn-http-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/how-the-web-works/internet-and-networking/10-cookies.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": []
         },
         {
@@ -1039,8 +1597,22 @@
           "importance": "core",
           "disposition": "included",
           "roadmap_items": [],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "mdn-http-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/how-the-web-works/internet-and-networking/10-cookies.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": []
         },
         {
@@ -1053,8 +1625,22 @@
           "roadmap_items": [
             "realtime-transports-overview"
           ],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "hpbn-book"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/how-the-web-works/internet-and-networking/11-realtime-transports.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": [
             "http-versions"
           ]
@@ -1067,8 +1653,22 @@
           "importance": "core",
           "disposition": "included",
           "roadmap_items": [],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "hpbn-book"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/how-the-web-works/internet-and-networking/11-realtime-transports.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": []
         },
         {
@@ -1079,8 +1679,22 @@
           "importance": "core",
           "disposition": "included",
           "roadmap_items": [],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "hpbn-book"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/how-the-web-works/internet-and-networking/11-realtime-transports.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": []
         },
         {
@@ -1091,8 +1705,22 @@
           "importance": "supporting",
           "disposition": "included",
           "roadmap_items": [],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "hpbn-book"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/how-the-web-works/internet-and-networking/11-realtime-transports.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": []
         },
         {
@@ -1105,8 +1733,22 @@
           "roadmap_items": [
             "rest-graphql-rpc-at-a-glance"
           ],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "graphql-learn"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/how-the-web-works/internet-and-networking/12-api-styles-in-production.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": [
             "http-messages"
           ]
@@ -1117,11 +1759,12 @@
           "parent": "api-styles",
           "complexity": "basic",
           "importance": "core",
-          "disposition": "included",
+          "disposition": "deferred",
           "roadmap_items": [],
           "source_ids": [],
           "coverage": [],
-          "prerequisites": []
+          "prerequisites": [],
+          "reason": "No verified REST-style source in this run (RFC 9110 defines resources and methods, not the REST style); the roadmap deep-dives REST in Phase 13."
         },
         {
           "id": "graphql-queries",
@@ -1131,8 +1774,22 @@
           "importance": "core",
           "disposition": "included",
           "roadmap_items": [],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "graphql-learn"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/how-the-web-works/internet-and-networking/12-api-styles-in-production.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": []
         },
         {
@@ -1143,8 +1800,22 @@
           "importance": "supporting",
           "disposition": "included",
           "roadmap_items": [],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "connectrpc-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/how-the-web-works/internet-and-networking/12-api-styles-in-production.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": []
         }
       ],
@@ -1220,6 +1891,75 @@
             "rpc-trpc-grpc-web"
           ],
           "note": "Roots seeded from roadmap section 01.1; children proposed at intake, to be verified by research."
+        },
+        {
+          "round": 1,
+          "frontier": [
+            "internet-packets-and-routing",
+            "tcp-vs-udp",
+            "routing-and-isps",
+            "domains-and-hosting",
+            "registrars-tlds-nameservers",
+            "dns-resolution",
+            "dns-record-types",
+            "dns-prefetch-and-doh",
+            "http-messages",
+            "http-methods-and-idempotency",
+            "http-status-codes",
+            "content-negotiation-and-keep-alive",
+            "http-versions",
+            "head-of-line-blocking-and-multiplexing",
+            "header-compression-and-priorities",
+            "quic-0rtt-and-migration",
+            "http1-era-anti-patterns",
+            "tls-and-https",
+            "tls13-handshake",
+            "certificates-and-chain-of-trust",
+            "hsts-and-mixed-content",
+            "certificate-transparency",
+            "urls-and-origins",
+            "url-parts-and-encoding",
+            "origin-vs-site",
+            "http-caching",
+            "cache-control-directives",
+            "validation-etag-last-modified",
+            "vary-and-shared-caches",
+            "hashed-filenames-cache-busting",
+            "cdns-and-edge",
+            "pops-cache-keys-and-purge",
+            "edge-compute-and-image-cdns",
+            "http-compression",
+            "gzip-brotli-zstd",
+            "compression-dictionaries",
+            "cookies",
+            "set-cookie-attributes",
+            "cookie-prefixes-and-chips",
+            "third-party-cookies",
+            "realtime-transports",
+            "polling-and-sse",
+            "websockets",
+            "webtransport-and-webrtc",
+            "api-styles",
+            "graphql-queries",
+            "rpc-trpc-grpc-web"
+          ],
+          "source_ids": [
+            "rfc-9110-http-semantics",
+            "rfc-9111-http-caching",
+            "rfc-9114-http3",
+            "rfc-9846-tls13",
+            "whatwg-url-standard",
+            "nodejs-undici-repo",
+            "jshttp-cookie-repo",
+            "mdn-http-docs",
+            "hpbn-book",
+            "cloudflare-docs",
+            "graphql-learn",
+            "connectrpc-docs"
+          ],
+          "added": [],
+          "stop_reason": "budget-limit",
+          "note": "Five research units (http-core, dns-tls-urls-cookies, edge-realtime-api, repos, gap-01). gap-01 replaced five single-page sources with broader documentation sets to stay within the 12-source cap. Proposed children dns-caching-and-ttl, tls-0rtt-replay-risk and samesite-lax-strict-none are taught inside dns-record-types, quic-0rtt-and-migration and set-cookie-attributes. Three children deferred with reasons."
         }
       ]
     }
@@ -1232,15 +1972,15 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T12:14:53Z",
-      "finished_at": "2026-11-18T12:15:18Z",
+      "finished_at": "2026-11-18T12:22:10Z",
       "attempts": 1,
       "units": [],
       "note": "",
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "e7dd61d2bd3fef1413cac190e84d9d3716c261677922e2cd705b699ab9726eb5",
-        "at": "2026-11-18T12:15:18Z",
+        "fingerprint": "8e59196945d09fbaa6e6b0b244af4ebe6c1ea00ddb1d95fb9547071ae7d32c32",
+        "at": "2026-11-18T12:22:10Z",
         "forced": false
       }
     },
@@ -1256,22 +1996,27 @@
       "units": [
         {
           "id": "docs-http-core",
-          "status": "pending",
+          "status": "done",
           "handoff": null
         },
         {
           "id": "docs-dns-tls-urls-cookies",
-          "status": "pending",
+          "status": "done",
           "handoff": null
         },
         {
           "id": "docs-edge-realtime-api",
-          "status": "pending",
+          "status": "done",
           "handoff": null
         },
         {
           "id": "repos",
-          "status": "pending",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "gap-01",
+          "status": "done",
           "handoff": null
         }
       ],
@@ -1441,10 +2186,475 @@
       "at": "2026-11-18T12:16:05Z",
       "event": "note",
       "message": "SPAWN 4/56"
+    },
+    {
+      "at": "2026-11-18T12:17:05Z",
+      "event": "source-add",
+      "message": "added cloudflare-cache-keys-docs",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T12:17:07Z",
+      "event": "source-add",
+      "message": "added mdn-websockets-api-docs",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T12:17:10Z",
+      "event": "unit-done",
+      "message": "unit docs-edge-realtime-api",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T12:17:13Z",
+      "event": "source-add",
+      "message": "added rfc-9110-http-semantics",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T12:17:16Z",
+      "event": "source-add",
+      "message": "added rfc-9111-http-caching",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T12:17:19Z",
+      "event": "source-add",
+      "message": "added rfc-9114-http3",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T12:17:22Z",
+      "event": "source-add",
+      "message": "added mdn-http-caching-docs",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T12:17:27Z",
+      "event": "source-add",
+      "message": "added rfc-9846-tls13",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T12:17:30Z",
+      "event": "source-add",
+      "message": "added whatwg-url-standard",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T12:17:32Z",
+      "event": "source-add",
+      "message": "added mdn-cookies-guide-docs",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T12:17:35Z",
+      "event": "source-add",
+      "message": "added mdn-domain-names-docs",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T12:17:39Z",
+      "event": "unit-done",
+      "message": "unit docs-http-core",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T12:17:49Z",
+      "event": "unit-done",
+      "message": "unit docs-dns-tls-urls-cookies",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T12:17:57Z",
+      "event": "unit-done",
+      "message": "unit repos",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T12:18:07Z",
+      "event": "source-add",
+      "message": "added nodejs-undici-repo",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T12:18:10Z",
+      "event": "source-add",
+      "message": "added jshttp-cookie-repo",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T12:18:12Z",
+      "event": "unit-done",
+      "message": "unit repos",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T12:18:44Z",
+      "event": "unit-add",
+      "message": "unit gap-01",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T12:18:46Z",
+      "event": "note",
+      "message": "SPAWN 5/56; gap-01 consolidates narrow sources into doc sets (cap 12 enforced)"
+    },
+    {
+      "at": "2026-11-18T12:19:55Z",
+      "event": "note",
+      "message": "RESEARCH running: gap-01; done: docs-http-core, docs-dns-tls-urls-cookies, docs-edge-realtime-api, repos (undici, jshttp/cookie)"
+    },
+    {
+      "at": "2026-11-18T12:20:28Z",
+      "event": "source-remove",
+      "message": "removed mdn-http-caching-docs: Superseded by mdn-http-docs, which covers HTTP caching and more",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T12:20:30Z",
+      "event": "source-add",
+      "message": "added mdn-http-docs",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T12:20:33Z",
+      "event": "source-remove",
+      "message": "removed mdn-cookies-guide-docs: Superseded by mdn-http-docs (cookies guide in same set)",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T12:20:35Z",
+      "event": "source-remove",
+      "message": "removed mdn-websockets-api-docs: Superseded by hpbn-book (WebSocket, SSE, WebRTC chapters)",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T12:20:37Z",
+      "event": "source-add",
+      "message": "added hpbn-book",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T12:20:40Z",
+      "event": "source-remove",
+      "message": "removed cloudflare-cache-keys-docs: Superseded by cloudflare-docs, which includes cache keys and purge",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T12:20:44Z",
+      "event": "source-add",
+      "message": "added cloudflare-docs",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T12:20:54Z",
+      "event": "source-remove",
+      "message": "removed mdn-domain-names-docs: Domain names covered by cloudflare-docs DNS/registrar docs",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T12:20:56Z",
+      "event": "source-add",
+      "message": "added graphql-learn",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T12:20:59Z",
+      "event": "source-add",
+      "message": "added connectrpc-docs",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T12:21:17Z",
+      "event": "unit-done",
+      "message": "unit gap-01",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T12:22:01Z",
+      "event": "plan",
+      "message": "plan fields set: summary, prerequisites, outcomes, lesson_outline, mini_projects, digest_targets, repo_targets, capstone, learner, visual_policy, visual_first, multi_stage, experience_policy, curriculum",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-18T12:22:10Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-18T12:24:22Z",
+      "event": "execution-check",
+      "message": "research: failed",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T12:24:24Z",
+      "event": "note",
+      "message": "RESEARCH: 5/5 units done; curriculum merged (47 included, 3 deferred); intake re-gated; research check running"
+    },
+    {
+      "at": "2026-11-18T12:24:32Z",
+      "event": "gate-failed",
+      "message": "4 problems",
+      "stage": "research"
     }
   ],
   "roadmap": {
     "id": "frontend",
     "section": "01.1"
+  },
+  "quality": {
+    "executions": {
+      "research": {
+        "version": 2,
+        "fingerprint": "21f353bf8a80cb1944450db98daa38a0892dfa96ce708937bebf1fb65f09b975",
+        "at": "2026-11-18T12:24:22Z",
+        "ok": false,
+        "checks": [
+          {
+            "label": "rfc-9110-http-semantics: https://www.rfc-editor.org/rfc/rfc9110.json",
+            "source": "rfc-9110-http-semantics",
+            "requested_url": "https://www.rfc-editor.org/rfc/rfc9110.json",
+            "ok": true,
+            "status": 200,
+            "bytes": 1479,
+            "sha256": "368552906b5d265d745c562519756faee3a78957a58816548d98d4fba48fad08"
+          },
+          {
+            "label": "rfc-9110-http-semantics: https://www.rfc-editor.org/rfc/rfc9110",
+            "source": "rfc-9110-http-semantics",
+            "requested_url": "https://www.rfc-editor.org/rfc/rfc9110",
+            "ok": true,
+            "status": 200,
+            "bytes": 4925707,
+            "sha256": "b84c089ef35e8445ad5dd07d35fba2c2040befdf23b7ae71a6fbb3a0da95a184"
+          },
+          {
+            "label": "rfc-9111-http-caching: https://www.rfc-editor.org/rfc/rfc9111.json",
+            "source": "rfc-9111-http-caching",
+            "requested_url": "https://www.rfc-editor.org/rfc/rfc9111.json",
+            "ok": true,
+            "status": 200,
+            "bytes": 1014,
+            "sha256": "e2345948e49bf8b766c7d32c2f6b1f08d9e851e89fa945d90192c4a24a62a277"
+          },
+          {
+            "label": "rfc-9111-http-caching: https://www.rfc-editor.org/rfc/rfc9111",
+            "source": "rfc-9111-http-caching",
+            "requested_url": "https://www.rfc-editor.org/rfc/rfc9111",
+            "ok": true,
+            "status": 200,
+            "bytes": 959474,
+            "sha256": "3f67aaf2738d53fa20dcea7a4289bf7623519b1f18a125f6b2dc7a9c2a12584c"
+          },
+          {
+            "label": "rfc-9114-http3: https://www.rfc-editor.org/rfc/rfc9114.json",
+            "source": "rfc-9114-http3",
+            "requested_url": "https://www.rfc-editor.org/rfc/rfc9114.json",
+            "ok": true,
+            "status": 200,
+            "bytes": 1018,
+            "sha256": "55305a8b6c40928d433e9875a7c870903bc6a3c7d36139573947b8578658ad4a"
+          },
+          {
+            "label": "rfc-9114-http3: https://www.rfc-editor.org/rfc/rfc9114",
+            "source": "rfc-9114-http3",
+            "requested_url": "https://www.rfc-editor.org/rfc/rfc9114",
+            "ok": true,
+            "status": 200,
+            "bytes": 1694836,
+            "sha256": "fbe44cfa95f3673489f5de48f8f4d52dd8d3770334621084d5a352a47cb275de"
+          },
+          {
+            "label": "rfc-9846-tls13: https://www.rfc-editor.org/rfc/rfc9846",
+            "source": "rfc-9846-tls13",
+            "requested_url": "https://www.rfc-editor.org/rfc/rfc9846",
+            "ok": true,
+            "status": 200,
+            "bytes": 2751164,
+            "sha256": "5d3aa15daa70971f3d4ceb5b57eb24fd9861a09d44d20cdcc1c63055d9088302"
+          },
+          {
+            "label": "whatwg-url-standard: https://url.spec.whatwg.org/",
+            "source": "whatwg-url-standard",
+            "requested_url": "https://url.spec.whatwg.org/",
+            "ok": true,
+            "status": 200,
+            "bytes": 700983,
+            "sha256": "9f6e9b1d3894dc87dd33018ff680835175baf108dd1c4440b225034f5d7462a7"
+          },
+          {
+            "label": "nodejs-undici-repo: https://api.github.com/repos/nodejs/undici",
+            "source": "nodejs-undici-repo",
+            "requested_url": "https://api.github.com/repos/nodejs/undici",
+            "ok": true,
+            "status": 200,
+            "bytes": 6656,
+            "sha256": "4d804835cc3d7b345279fe523c6e0b1de0b079ff46a87b35a465f8cb2209cacb",
+            "repository": {
+              "stars": 7741,
+              "archived": false,
+              "pushed_at": "2026-11-18T08:56:44Z",
+              "license": "MIT"
+            }
+          },
+          {
+            "label": "jshttp-cookie-repo: https://api.github.com/repos/jshttp/cookie",
+            "source": "jshttp-cookie-repo",
+            "requested_url": "https://api.github.com/repos/jshttp/cookie",
+            "ok": true,
+            "status": 200,
+            "bytes": 6631,
+            "sha256": "0c986f7c62a5ba506ed6f65dc1637766e4c70b08cf88f54ef1f2af0b621ed399",
+            "repository": {
+              "stars": 1539,
+              "archived": false,
+              "pushed_at": "2026-11-05T20:33:29Z",
+              "license": "MIT"
+            }
+          },
+          {
+            "label": "mdn-http-docs: https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Connection_management_in_HTTP_1.x",
+            "source": "mdn-http-docs",
+            "requested_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Connection_management_in_HTTP_1.x",
+            "ok": true,
+            "status": 200,
+            "bytes": 219092,
+            "sha256": "56cbd62ec332c24ec7a6ce4272fbe021194b0e1ec019c6151b0d8561d1dce8fe"
+          },
+          {
+            "label": "mdn-http-docs: https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Compression_dictionary_transport",
+            "source": "mdn-http-docs",
+            "requested_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Compression_dictionary_transport",
+            "ok": true,
+            "status": 200,
+            "bytes": 236961,
+            "sha256": "5f1d17ecb0573a3157509e349b91a4b5856a5da24d94941f0f6cc95ad0b8a6f7"
+          },
+          {
+            "label": "mdn-http-docs: https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Strict-Transport-Security",
+            "source": "mdn-http-docs",
+            "requested_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Strict-Transport-Security",
+            "ok": true,
+            "status": 200,
+            "bytes": 227203,
+            "sha256": "452b6989ac9797794380d7e810e454b90c14be0ea6731174e80f6b8494fceff4"
+          },
+          {
+            "label": "mdn-http-docs: https://developer.mozilla.org/en-US/docs/Web/Security/Defenses/Mixed_content",
+            "source": "mdn-http-docs",
+            "requested_url": "https://developer.mozilla.org/en-US/docs/Web/Security/Defenses/Mixed_content",
+            "ok": true,
+            "status": 200,
+            "bytes": 167371,
+            "sha256": "1c9f4574e33a5c7cbff807f3bee7019f2f78530ef7e2d78016b52d1ede7fb03c"
+          },
+          {
+            "label": "mdn-http-docs: https://developer.mozilla.org/en-US/docs/Web/Security/Defenses/Certificate_Transparency",
+            "source": "mdn-http-docs",
+            "requested_url": "https://developer.mozilla.org/en-US/docs/Web/Security/Defenses/Certificate_Transparency",
+            "ok": true,
+            "status": 200,
+            "bytes": 152032,
+            "sha256": "6b5bafab036fb58c7276694ddb51555829c876092f85b658e109344bfd1d70ba"
+          },
+          {
+            "label": "mdn-http-docs: https://developer.mozilla.org/en-US/docs/Web/HTTP",
+            "source": "mdn-http-docs",
+            "requested_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP",
+            "ok": true,
+            "status": 200,
+            "bytes": 222083,
+            "sha256": "7416b5fa4cc268b96b27cf3e0b7f565132356c150691a2b47d4427e394cff788"
+          },
+          {
+            "label": "hpbn-book: https://hpbn.co/",
+            "source": "hpbn-book",
+            "requested_url": "https://hpbn.co/",
+            "ok": false,
+            "status": 0,
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "problem": "curl: (28) Connection timed out after 25006 milliseconds\n"
+          },
+          {
+            "label": "hpbn-book: https://hpbn.co/primer-on-latency-and-bandwidth/",
+            "source": "hpbn-book",
+            "requested_url": "https://hpbn.co/primer-on-latency-and-bandwidth/",
+            "ok": false,
+            "status": 0,
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "problem": "curl: (28) Connection timed out after 25005 milliseconds\n"
+          },
+          {
+            "label": "cloudflare-docs: https://developers.cloudflare.com/dns/manage-dns-records/reference/dns-record-types/",
+            "source": "cloudflare-docs",
+            "requested_url": "https://developers.cloudflare.com/dns/manage-dns-records/reference/dns-record-types/",
+            "ok": false,
+            "status": 0,
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "problem": "curl: (28) Connection timed out after 25005 milliseconds\n"
+          },
+          {
+            "label": "cloudflare-docs: https://developers.cloudflare.com/dns/manage-dns-records/reference/ttl/",
+            "source": "cloudflare-docs",
+            "requested_url": "https://developers.cloudflare.com/dns/manage-dns-records/reference/ttl/",
+            "ok": true,
+            "status": 200,
+            "bytes": 130785,
+            "sha256": "71dd78e4e35cd787386f89683dae7659f18f7bbd68364213597cb77627cabd96"
+          },
+          {
+            "label": "cloudflare-docs: https://developers.cloudflare.com/cache/how-to/purge-cache/",
+            "source": "cloudflare-docs",
+            "requested_url": "https://developers.cloudflare.com/cache/how-to/purge-cache/",
+            "ok": true,
+            "status": 200,
+            "bytes": 121572,
+            "sha256": "40bac00ad31f2e517ab30b80f7d564c07a35fe22c325bd0baab2ff3027e98d59"
+          },
+          {
+            "label": "cloudflare-docs: https://developers.cloudflare.com/1.1.1.1/encryption/dns-over-https/",
+            "source": "cloudflare-docs",
+            "requested_url": "https://developers.cloudflare.com/1.1.1.1/encryption/dns-over-https/",
+            "ok": true,
+            "status": 200,
+            "bytes": 98093,
+            "sha256": "7fe74e38fb4d8159eb307bc2a97ea02426a3c78ea1588f1bef3c8c2935c02a4c"
+          },
+          {
+            "label": "cloudflare-docs: https://developers.cloudflare.com/",
+            "source": "cloudflare-docs",
+            "requested_url": "https://developers.cloudflare.com/",
+            "ok": true,
+            "status": 200,
+            "bytes": 201368,
+            "sha256": "2a8f738f559e441b81b62b2f15e13b5a38eacc721a7d48946e47f2f59ef71c37"
+          },
+          {
+            "label": "graphql-learn: https://graphql.org/learn/",
+            "source": "graphql-learn",
+            "requested_url": "https://graphql.org/learn/",
+            "ok": true,
+            "status": 200,
+            "bytes": 126483,
+            "sha256": "4b4566510b4cab09bd69cb7e0deb25eb8557387fff6d68c39212f63222d73824"
+          },
+          {
+            "label": "connectrpc-docs: https://connectrpc.com/docs/introduction",
+            "source": "connectrpc-docs",
+            "requested_url": "https://connectrpc.com/docs/introduction",
+            "ok": true,
+            "status": 200,
+            "bytes": 81687,
+            "sha256": "01af1ad1d050b5956cc93300a8784c0686022fa020d9244f80ead85c62fe6446"
+          }
+        ]
+      }
+    }
   }
 }

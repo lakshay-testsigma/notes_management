@@ -1,0 +1,7 @@
+- sequence | type mozilla.org -> browser checks local DNS cache -> asks DNS server -> gets IP -> connects to web server | mdn-domain-names-docs, "How does a DNS request work?" | candidate for Video
+- number | new domain info reaches all DNS servers within a few hours; cached records persist until they expire | mdn-domain-names-docs, "DNS refreshing" | experiment for an interactive TTL simulation
+- sequence | TLS 1.3 handshake in three phases: Key Exchange, Server Parameters, Authentication | rfc-9846-tls13, §2 Protocol Overview | candidate for Video
+- comparison | 1-RTT data vs 0-RTT early data (0-RTT not forward secret, weaker replay protection) | rfc-9846-tls13, §2.3 | branch for a deck
+- parameter | SameSite value Strict / Lax / None decides whether a cookie is sent on a cross-site request; None requires Secure | mdn-cookies-guide-docs, "Controlling third-party cookies with SameSite" | experiment for an interactive cookie lab
+- comparison | __Secure- requires Secure; __Host- requires Secure, no Domain, Path=/; __Http- requires Secure and HttpOnly | mdn-cookies-guide-docs, "Cookie prefixes" | candidate for CompareView
+- dependency | a URL has parts (scheme, host, port, path, query, fragment) with percent-encoding of bytes | whatwg-url-standard, §4.1 and §1.3 | candidate for Diagram

@@ -12,12 +12,10 @@ Generated from the research curriculum. A solid arrow points from a concept to t
 ```mermaid
 flowchart TD
   internet_packets_and_routing["How the internet moves packets"]
-  ip_addresses_and_ports["IP addresses, IPv4/IPv6 and ports"]
   tcp_vs_udp["TCP versus UDP"]
   routing_and_isps["Routing, ISPs and autonomous systems"]
   domains_and_hosting["Domain names and hosting"]
   registrars_tlds_nameservers["Registrars, TLDs and nameservers"]
-  hosting_models["Static, server and serverless hosting"]
   dns_resolution["DNS resolution"]
   dns_record_types["DNS record types and TTL"]
   dns_prefetch_and_doh["DNS prefetch and DNS over HTTPS"]
@@ -58,14 +56,11 @@ flowchart TD
   websockets["WebSockets"]
   webtransport_and_webrtc["WebTransport and WebRTC"]
   api_styles["REST, GraphQL and RPC"]
-  rest_resources["Resource-oriented REST"]
   graphql_queries["Query-based GraphQL"]
   rpc_trpc_grpc_web["RPC: tRPC, gRPC-web and Connect"]
-  internet_packets_and_routing --> ip_addresses_and_ports
   internet_packets_and_routing --> tcp_vs_udp
   internet_packets_and_routing --> routing_and_isps
   domains_and_hosting --> registrars_tlds_nameservers
-  domains_and_hosting --> hosting_models
   registrars_tlds_nameservers -. needed for .-> dns_resolution
   dns_resolution --> dns_record_types
   dns_resolution --> dns_prefetch_and_doh
@@ -105,7 +100,6 @@ flowchart TD
   realtime_transports --> websockets
   realtime_transports --> webtransport_and_webrtc
   http_messages -. needed for .-> api_styles
-  api_styles --> rest_resources
   api_styles --> graphql_queries
   api_styles --> rpc_trpc_grpc_web
 ```
