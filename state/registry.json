@@ -1,4 +1,15 @@
 {
   "schema": 1,
-  "topics": []
+  "topics": [
+    {
+      "id": "frontend-engineering/learning-system-and-workstation/how-to-learn-frontend",
+      "title": "How to learn frontend (and keep improving)",
+      "slug": "how-to-learn-frontend",
+      "domain": "frontend-engineering",
+      "subdomain": "learning-system-and-workstation",
+      "depth": "standard",
+      "created_at": "2026-11-18T17:03:48Z",
+      "state": "state/topics/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend"
+    }
+  ]
 }

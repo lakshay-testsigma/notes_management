@@ -11,7 +11,9 @@ created: 2026-11-18
 Building fast, accessible user interfaces for the browser with HTML, CSS, TypeScript, and a component framework.
 
 <!-- tutor:generated:start -->
-_No topics yet._
+## learning-system-and-workstation
+
+- [[00-start-here-how-to-learn-frontend|How to learn frontend (and keep improving)]] — standard · 1/10 steps ready
 <!-- tutor:generated:end -->
 
 ## My insights

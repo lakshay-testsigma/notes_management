@@ -18,7 +18,7 @@ Interactive checklist: run `npm run site:dev` and open `/roadmaps/frontend.html`
 
 Set up how you learn and the tools you will use for every later phase. Mastery = reading primary sources + building + measuring.
 
-- [ ] **00.1** How to learn frontend (and keep improving) — Not generated yet · 8 items · `frontend-engineering/learning-system-and-workstation/how-to-learn-frontend`
+- [ ] **00.1** [[frontend-engineering/learning-system-and-workstation/how-to-learn-frontend/00-start-here-how-to-learn-frontend|How to learn frontend (and keep improving)]] — Being generated · 8 items · `frontend-engineering/learning-system-and-workstation/how-to-learn-frontend`
     - Learning loop: read → build → measure → explain (core)
     - Primary sources over tutorials (core)
     - Browser support literacy: Baseline & caniuse (core)
@@ -119,7 +119,7 @@ HTML is the accessibility, SEO and performance foundation. Write it by hand unti
 
 Modern CSS replaces a lot of JavaScript. Learn the cascade deeply before frameworks.
 
-- [ ] **03.1** [[frontend-engineering/css/css-core-mechanics/00-start-here-css-core-mechanics|CSS core mechanics]] — Being generated · 13 items · `frontend-engineering/css/css-core-mechanics`
+- [ ] **03.1** CSS core mechanics — Not generated yet · 13 items · `frontend-engineering/css/css-core-mechanics`
     - Selectors (core)
     - Cascade, specificity & inheritance (core)
     - Cascade layers (`@layer`) (core)

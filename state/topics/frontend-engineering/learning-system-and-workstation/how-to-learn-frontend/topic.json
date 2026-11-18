@@ -1,0 +1,610 @@
+{
+  "schema": 1,
+  "id": "frontend-engineering/learning-system-and-workstation/how-to-learn-frontend",
+  "title": "How to learn frontend (and keep improving)",
+  "slug": "how-to-learn-frontend",
+  "domain": "frontend-engineering",
+  "subdomain": "learning-system-and-workstation",
+  "depth": "standard",
+  "created_at": "2026-11-18T17:03:48Z",
+  "updated_at": "2026-11-18T17:04:44Z",
+  "paths": {
+    "state": "state/topics/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend",
+    "vault": "vault/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend",
+    "lessons": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend",
+    "projects": "projects/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend",
+    "cache": ".cache"
+  },
+  "profile": {
+    "lesson_pages": [
+      5,
+      7
+    ],
+    "mini_projects": 2,
+    "digests": [
+      2,
+      3
+    ],
+    "repos": [
+      1,
+      1
+    ],
+    "capstone": true,
+    "sources": [
+      5,
+      12
+    ],
+    "recall_cards": 8
+  },
+  "plan": {
+    "summary": "How to learn frontend and keep improving: a repeatable read-build-measure-explain loop built on primary sources, browser-support literacy, and continuous practice.",
+    "prerequisites": [
+      {
+        "concept": "Basic programming",
+        "known": true,
+        "bridge": ""
+      },
+      {
+        "concept": "Web browser",
+        "known": true,
+        "bridge": ""
+      }
+    ],
+    "outcomes": [
+      "Explain the read-build-measure-explain loop and why it beats passive tutorials.",
+      "Decide whether a feature is safe to ship today using Baseline and caniuse.",
+      "Build a personal learning log that records each roadmap item's four steps.",
+      "Decide when to polyfill or progressively enhance instead of dropping support.",
+      "Explain how reading source code and teaching accelerate frontend expertise."
+    ],
+    "lesson_outline": [
+      {
+        "order": 1,
+        "slug": "why-a-method",
+        "title": "Why a learning method matters",
+        "activity": "PredictReveal",
+        "complexity": "basic",
+        "importance": "supporting",
+        "spatial": false,
+        "visual": null,
+        "visual_reason": "A concrete failure story is enough for a developer to see why passive tutorials stall.",
+        "experience": {
+          "signals": {
+            "complexity": 1,
+            "concepts": 1,
+            "dependent_steps": 0,
+            "changes_over_time": false,
+            "spatial": false,
+            "parameters": 0,
+            "decision_paths": 0,
+            "benefit": "low"
+          },
+          "concept_ids": [
+            "learning-loop"
+          ]
+        }
+      },
+      {
+        "order": 2,
+        "slug": "the-learning-loop",
+        "title": "The learning loop: read, build, measure, explain",
+        "activity": "OrderSteps",
+        "complexity": "intermediate",
+        "importance": "critical",
+        "spatial": false,
+        "visual": "Diagram",
+        "visual_reason": "Four steps form one repeatable cycle; the end-to-end workflow view comes first.",
+        "interaction_goal": "Reorder the four steps and predict what breaks when a step is skipped.",
+        "experience": {
+          "signals": {
+            "complexity": 2,
+            "concepts": 4,
+            "dependent_steps": 2,
+            "changes_over_time": false,
+            "spatial": false,
+            "parameters": 0,
+            "decision_paths": 0,
+            "benefit": "medium"
+          },
+          "concept_ids": [
+            "learning-loop"
+          ]
+        }
+      },
+      {
+        "order": 3,
+        "slug": "primary-sources",
+        "title": "Primary sources over tutorials",
+        "activity": "MatchPairs",
+        "complexity": "basic",
+        "importance": "core",
+        "spatial": false,
+        "visual": "Mermaid",
+        "visual_reason": "A static map of source types and their trust level is all this idea needs.",
+        "interaction_goal": "Match each source type to the trust it deserves.",
+        "experience": {
+          "signals": {
+            "complexity": 2,
+            "concepts": 2,
+            "dependent_steps": 0,
+            "changes_over_time": false,
+            "spatial": false,
+            "parameters": 0,
+            "decision_paths": 0,
+            "benefit": "low"
+          },
+          "concept_ids": [
+            "primary-sources"
+          ]
+        }
+      },
+      {
+        "order": 4,
+        "slug": "browser-support",
+        "title": "Know what you can ship: Baseline & caniuse",
+        "activity": "Quiz",
+        "complexity": "intermediate",
+        "importance": "core",
+        "spatial": false,
+        "visual": "Diagram",
+        "visual_reason": "Baseline labels map a feature to its ship-readiness, best drawn as a decision path.",
+        "interaction_goal": "Trace a feature through the Baseline labels and predict the ship decision.",
+        "experience": {
+          "signals": {
+            "complexity": 2,
+            "concepts": 2,
+            "dependent_steps": 0,
+            "changes_over_time": false,
+            "spatial": false,
+            "parameters": 0,
+            "decision_paths": 0,
+            "benefit": "medium"
+          },
+          "concept_ids": [
+            "browser-support"
+          ]
+        }
+      },
+      {
+        "order": 5,
+        "slug": "feature-detection",
+        "title": "Feature detection, polyfills & progressive enhancement",
+        "activity": "Quiz",
+        "complexity": "intermediate",
+        "importance": "core",
+        "spatial": false,
+        "visual": "CompareView",
+        "visual_reason": "Three strategies differ by what the user gets when support is missing; a side-by-side view shows the trade-off.",
+        "interaction_goal": "Compare polyfill, progressive enhancement, and graceful degradation for one feature.",
+        "experience": {
+          "signals": {
+            "complexity": 3,
+            "concepts": 3,
+            "dependent_steps": 0,
+            "changes_over_time": false,
+            "spatial": false,
+            "parameters": 0,
+            "decision_paths": 1,
+            "benefit": "medium"
+          },
+          "concept_ids": [
+            "feature-detection"
+          ]
+        }
+      },
+      {
+        "order": 6,
+        "slug": "practice-and-read-code",
+        "title": "Practice platforms & reading other people's code",
+        "activity": "SortBuckets",
+        "complexity": "intermediate",
+        "importance": "core",
+        "spatial": false,
+        "visual": "CodeWalkthrough",
+        "visual_reason": "Reading a tiny library line by line teaches more than a summary; a walkthrough makes it concrete.",
+        "interaction_goal": "Step through a small library's source and predict what each branch returns.",
+        "experience": {
+          "signals": {
+            "complexity": 3,
+            "concepts": 2,
+            "dependent_steps": 0,
+            "changes_over_time": false,
+            "spatial": false,
+            "parameters": 0,
+            "decision_paths": 0,
+            "benefit": "medium"
+          },
+          "concept_ids": [
+            "practice-platforms",
+            "reading-source-code"
+          ]
+        }
+      },
+      {
+        "order": 7,
+        "slug": "teach-and-stay-current",
+        "title": "Teach in public & stay current",
+        "activity": "MatchPairs",
+        "complexity": "intermediate",
+        "importance": "core",
+        "spatial": false,
+        "visual": "Diagram",
+        "visual_reason": "A few recurring habits compound; a workflow diagram ties teaching, sharing, and staying current together.",
+        "interaction_goal": "Map each habit to the skill gap it closes.",
+        "experience": {
+          "signals": {
+            "complexity": 2,
+            "concepts": 2,
+            "dependent_steps": 0,
+            "changes_over_time": false,
+            "spatial": false,
+            "parameters": 0,
+            "decision_paths": 0,
+            "benefit": "low"
+          },
+          "concept_ids": [
+            "staying-current",
+            "teaching-in-public"
+          ]
+        }
+      }
+    ],
+    "mini_projects": [
+      {
+        "n": 1,
+        "slug": "ship-it-checker",
+        "use_case": "A frontend team checks a list of CSS and JavaScript features against Baseline status and prints whether each is safe to ship today or needs a fallback."
+      },
+      {
+        "n": 2,
+        "slug": "learning-log",
+        "use_case": "A learner keeps one note per roadmap item with the read, build, measure, and explain steps, scaffolded by a small generator script."
+      }
+    ],
+    "digest_targets": 2,
+    "repo_targets": 1,
+    "capstone": {
+      "name": "Learning tracker",
+      "problem": "A developer tracks their frontend learning: each roadmap item is a note with read, build, measure, and explain, and a dashboard shows progress and gaps."
+    },
+    "learner": {
+      "experience": "software developer learning frontend end to end",
+      "known": [
+        "basic programming",
+        "git and the command line"
+      ],
+      "goals": [
+        "master frontend engineering",
+        "choose tools and approaches from evidence",
+        "learn visually and by experimenting"
+      ]
+    },
+    "visual_policy": "adaptive",
+    "visual_first": true,
+    "experience_policy": "adaptive",
+    "multi_stage": false,
+    "curriculum": {
+      "schema": 1,
+      "scope": "Set up how a developer learns frontend and keeps improving: the learning loop, primary sources, browser-support literacy, and continuous practice.",
+      "max_depth": 3,
+      "max_concepts": 30,
+      "max_rounds": 6,
+      "concepts": [
+        {
+          "id": "learning-loop",
+          "title": "Learning loop",
+          "parent": null,
+          "complexity": "intermediate",
+          "importance": "critical",
+          "disposition": "included",
+          "source_ids": [],
+          "coverage": [],
+          "roadmap_items": [
+            "learning-loop-read-build-measure-explain"
+          ]
+        },
+        {
+          "id": "primary-sources",
+          "title": "Primary sources",
+          "parent": "learning-loop",
+          "complexity": "basic",
+          "importance": "core",
+          "disposition": "included",
+          "source_ids": [],
+          "coverage": [],
+          "roadmap_items": [
+            "primary-sources-over-tutorials"
+          ]
+        },
+        {
+          "id": "browser-support",
+          "title": "Browser support literacy",
+          "parent": "learning-loop",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "source_ids": [],
+          "coverage": [],
+          "roadmap_items": [
+            "browser-support-literacy-baseline-caniuse"
+          ]
+        },
+        {
+          "id": "feature-detection",
+          "title": "Feature detection and polyfills",
+          "parent": "learning-loop",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "source_ids": [],
+          "coverage": [],
+          "roadmap_items": [
+            "feature-detection-polyfills-experimental-features"
+          ]
+        },
+        {
+          "id": "staying-current",
+          "title": "Staying current",
+          "parent": "learning-loop",
+          "complexity": "basic",
+          "importance": "core",
+          "disposition": "included",
+          "source_ids": [],
+          "coverage": [],
+          "roadmap_items": [
+            "stay-current-newsletters-podcasts-surveys"
+          ]
+        },
+        {
+          "id": "practice-platforms",
+          "title": "Practice platforms",
+          "parent": "learning-loop",
+          "complexity": "basic",
+          "importance": "core",
+          "disposition": "included",
+          "source_ids": [],
+          "coverage": [],
+          "roadmap_items": [
+            "practice-platforms-interview-prep"
+          ]
+        },
+        {
+          "id": "reading-source-code",
+          "title": "Reading source code",
+          "parent": "learning-loop",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "source_ids": [],
+          "coverage": [],
+          "roadmap_items": [
+            "read-other-people-s-code"
+          ]
+        },
+        {
+          "id": "teaching-in-public",
+          "title": "Teaching in public",
+          "parent": "learning-loop",
+          "complexity": "intermediate",
+          "importance": "supporting",
+          "disposition": "included",
+          "source_ids": [],
+          "coverage": [],
+          "roadmap_items": [
+            "build-in-public-teach"
+          ]
+        }
+      ],
+      "discovery": [
+        {
+          "round": 1,
+          "frontier": [
+            "learning-loop"
+          ],
+          "source_ids": [],
+          "added": [
+            "learning-loop"
+          ]
+        },
+        {
+          "round": 2,
+          "frontier": [
+            "learning-loop"
+          ],
+          "source_ids": [],
+          "added": [
+            "primary-sources",
+            "browser-support",
+            "feature-detection",
+            "staying-current",
+            "practice-platforms",
+            "reading-source-code",
+            "teaching-in-public"
+          ]
+        },
+        {
+          "round": 3,
+          "frontier": [
+            "primary-sources",
+            "browser-support",
+            "feature-detection",
+            "staying-current",
+            "practice-platforms",
+            "reading-source-code",
+            "teaching-in-public"
+          ],
+          "source_ids": [],
+          "added": [],
+          "stop_reason": "scope-boundary",
+          "note": "Provisional intake tree; research expands each concept and verifies its sources."
+        }
+      ]
+    }
+  },
+  "stages": [
+    {
+      "id": "intake",
+      "wave": 0,
+      "skill": "learn-intake",
+      "status": "done",
+      "scope": "required",
+      "started_at": "2026-11-18T17:03:54Z",
+      "finished_at": "2026-11-18T17:04:44Z",
+      "attempts": 1,
+      "units": [],
+      "note": "",
+      "continue_after_failure": false,
+      "validation": {
+        "version": 2,
+        "fingerprint": "3a25579b7f25b85fc02477e5d7ac5d6484e6d9af42c962a2dda1ddf5856f2fb1",
+        "at": "2026-11-18T17:04:44Z",
+        "forced": false
+      }
+    },
+    {
+      "id": "research",
+      "wave": 1,
+      "skill": "learn-research",
+      "status": "pending",
+      "scope": "required",
+      "started_at": null,
+      "finished_at": null,
+      "attempts": 0,
+      "units": [],
+      "note": ""
+    },
+    {
+      "id": "brief",
+      "wave": 1,
+      "skill": "learn-brief",
+      "status": "pending",
+      "scope": "required",
+      "started_at": null,
+      "finished_at": null,
+      "attempts": 0,
+      "units": [],
+      "note": ""
+    },
+    {
+      "id": "digest",
+      "wave": 2,
+      "skill": "learn-digest",
+      "status": "pending",
+      "scope": "required",
+      "started_at": null,
+      "finished_at": null,
+      "attempts": 0,
+      "units": [],
+      "note": ""
+    },
+    {
+      "id": "repo-intel",
+      "wave": 2,
+      "skill": "learn-repo-intel",
+      "status": "pending",
+      "scope": "required",
+      "started_at": null,
+      "finished_at": null,
+      "attempts": 0,
+      "units": [],
+      "note": ""
+    },
+    {
+      "id": "lesson",
+      "wave": 3,
+      "skill": "learn-site",
+      "status": "pending",
+      "scope": "required",
+      "started_at": null,
+      "finished_at": null,
+      "attempts": 0,
+      "units": [],
+      "note": ""
+    },
+    {
+      "id": "mini-projects",
+      "wave": 3,
+      "skill": "learn-projects",
+      "status": "pending",
+      "scope": "required",
+      "started_at": null,
+      "finished_at": null,
+      "attempts": 0,
+      "units": [],
+      "note": ""
+    },
+    {
+      "id": "capstone",
+      "wave": 4,
+      "skill": "learn-capstone",
+      "status": "pending",
+      "scope": "required",
+      "started_at": null,
+      "finished_at": null,
+      "attempts": 0,
+      "units": [],
+      "note": ""
+    },
+    {
+      "id": "notes",
+      "wave": 5,
+      "skill": "learn-notes",
+      "status": "pending",
+      "scope": "required",
+      "started_at": null,
+      "finished_at": null,
+      "attempts": 0,
+      "units": [],
+      "note": ""
+    },
+    {
+      "id": "finalize",
+      "wave": 5,
+      "skill": "learn",
+      "status": "pending",
+      "scope": "required",
+      "started_at": null,
+      "finished_at": null,
+      "attempts": 0,
+      "units": [],
+      "note": ""
+    }
+  ],
+  "recall": {
+    "cards": {}
+  },
+  "log": [
+    {
+      "at": "2026-11-18T17:03:48Z",
+      "event": "init",
+      "message": "created with depth standard for roadmap frontend section 00.1"
+    },
+    {
+      "at": "2026-11-18T17:03:54Z",
+      "event": "start",
+      "message": "attempt 1",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-18T17:04:28Z",
+      "event": "plan",
+      "message": "plan fields set: summary, learner, prerequisites, outcomes, visual_policy, visual_first, experience_policy, multi_stage, lesson_outline, mini_projects, digest_targets, repo_targets, capstone, curriculum",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-18T17:04:36Z",
+      "event": "note",
+      "message": "intake: domain=frontend-engineering/learning-system-and-workstation, depth=standard. Assumptions: all 8 roadmap items become included concepts; all lesson experiences static (cost 0); 3 registered Diagram visuals; learner already knows basic programming and the browser."
+    },
+    {
+      "at": "2026-11-18T17:04:44Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "intake"
+    }
+  ],
+  "roadmap": {
+    "id": "frontend",
+    "section": "00.1"
+  }
+}
