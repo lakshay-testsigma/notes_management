@@ -1,0 +1,15 @@
+sequenceDiagram
+  participant B as Browser
+  participant R as ISP routers
+  participant S as Web server
+  Note over B,S: TCP handshake, 1 round trip
+  B->>R: SYN
+  R->>S: SYN
+  S-->>B: SYN-ACK
+  B->>S: ACK
+  Note over B,S: HTTP request as packets
+  B->>S: packet 1 (GET /)
+  S-->>B: response packet 1
+  S--xB: response packet 2 lost
+  S-->>B: packet 2 resent
+  Note over B: TCP gives bytes in order

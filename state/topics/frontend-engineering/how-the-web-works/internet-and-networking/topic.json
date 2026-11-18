@@ -7,7 +7,7 @@
   "subdomain": "how-the-web-works",
   "depth": "deep",
   "created_at": "2026-11-18T12:13:22Z",
-  "updated_at": "2026-11-18T13:38:05Z",
+  "updated_at": "2026-11-18T14:05:55Z",
   "paths": {
     "state": "state/topics/frontend-engineering/how-the-web-works/internet-and-networking",
     "vault": "vault/frontend-engineering/how-the-web-works/internet-and-networking",
@@ -392,7 +392,7 @@
       {
         "order": 11,
         "slug": "realtime-transports",
-        "title": "Realtime transports: polling, SSE, WebSockets, WebTransport and WebRTC",
+        "title": "Realtime transports: polling, SSE, WebSockets and WebRTC",
         "activity": "SortBuckets",
         "complexity": "intermediate",
         "importance": "core",
@@ -1699,7 +1699,7 @@
         },
         {
           "id": "webtransport-and-webrtc",
-          "title": "WebTransport and WebRTC",
+          "title": "WebRTC peer connections (WebTransport not covered: no verified source)",
           "parent": "realtime-transports",
           "complexity": "advanced",
           "importance": "supporting",
@@ -1794,7 +1794,7 @@
         },
         {
           "id": "rpc-trpc-grpc-web",
-          "title": "RPC: tRPC, gRPC-web and Connect",
+          "title": "RPC over HTTP: gRPC-web and Connect",
           "parent": "api-styles",
           "complexity": "intermediate",
           "importance": "supporting",
@@ -1994,7 +1994,7 @@
           ],
           "added": [],
           "stop_reason": "budget-limit",
-          "note": "Children expanded against the same sources. Proposed dns-caching-and-ttl, tls-0rtt-replay-risk and samesite-lax-strict-none are taught inside dns-record-types, quic-0rtt-and-migration and set-cookie-attributes. Three children deferred with reasons."
+          "note": "Children expanded against the same sources. Proposed dns-caching-and-ttl, tls-0rtt-replay-risk and samesite-lax-strict-none are taught inside dns-record-types, quic-0rtt-and-migration and set-cookie-attributes. Three children deferred with reasons. tRPC and WebTransport have no verified source in this run; their concepts were narrowed to gRPC-web/Connect and WebRTC."
         }
       ]
     }
@@ -2007,15 +2007,15 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T12:14:53Z",
-      "finished_at": "2026-11-18T12:25:58Z",
+      "finished_at": "2026-11-18T14:04:52Z",
       "attempts": 1,
       "units": [],
       "note": "",
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "1e5f806ce124a11e2b20b66a9ee225084a95d4ad1e003616117689f099090079",
-        "at": "2026-11-18T12:25:58Z",
+        "fingerprint": "e5ae123a81a037232f0ff16c5d66424623da155775fdfb436669fc3cbdff6d2b",
+        "at": "2026-11-18T14:04:52Z",
         "forced": false
       }
     },
@@ -2026,7 +2026,7 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T12:15:49Z",
-      "finished_at": "2026-11-18T12:26:27Z",
+      "finished_at": "2026-11-18T14:04:59Z",
       "attempts": 1,
       "units": [
         {
@@ -2059,8 +2059,8 @@
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "7f95cb3e17263746d719b42d61bf31fc8d441a1921b1690161d5f9383cf907c8",
-        "at": "2026-11-18T12:26:27Z",
+        "fingerprint": "177b0283ba6c6d28cdd5a43cb1601dc051ce9ce6d2c873c5824ed07dad0d87d8",
+        "at": "2026-11-18T14:04:59Z",
         "forced": false
       }
     },
@@ -2071,15 +2071,15 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T13:17:30Z",
-      "finished_at": "2026-11-18T13:18:10Z",
+      "finished_at": "2026-11-18T14:05:05Z",
       "attempts": 1,
       "units": [],
       "note": "",
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "416006bbbfdec34a2ae28a45b05d45251f3be620d82f5f8ee9281822113b37c3",
-        "at": "2026-11-18T13:18:10Z",
+        "fingerprint": "ad838019ac3967b9ebee20f60543efeff28b2467da305327612aaa6a8a3989c9",
+        "at": "2026-11-18T14:05:05Z",
         "forced": false
       }
     },
@@ -2090,7 +2090,7 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T13:22:24Z",
-      "finished_at": "2026-11-18T13:37:57Z",
+      "finished_at": "2026-11-18T14:05:12Z",
       "attempts": 1,
       "units": [
         {
@@ -2118,8 +2118,8 @@
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "bafe2bf6ee4295883ad2980631a6c402d060c82eaf9c11d1db723f6bcac06369",
-        "at": "2026-11-18T13:37:57Z",
+        "fingerprint": "69d0aedbc8cc68ae311e0aab73e1e734850a868ddcaec0d9bd54d7f9213e06a5",
+        "at": "2026-11-18T14:05:12Z",
         "forced": false
       }
     },
@@ -2130,7 +2130,7 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T13:22:27Z",
-      "finished_at": "2026-11-18T13:38:05Z",
+      "finished_at": "2026-11-18T14:05:18Z",
       "attempts": 1,
       "units": [
         {
@@ -2208,8 +2208,8 @@
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "ec6cca241409cf5a30e0e903bf61d994443f4346ea9211419e5b6716542540b8",
-        "at": "2026-11-18T13:38:05Z",
+        "fingerprint": "8dc4cce96fd34b8110b8e984b6d1fe6fb9076ddf1c1db75fcfd30242c43c1ec6",
+        "at": "2026-11-18T14:05:18Z",
         "forced": false
       }
     },
@@ -2217,25 +2217,101 @@
       "id": "lesson",
       "wave": 3,
       "skill": "learn-site",
-      "status": "pending",
+      "status": "done",
       "scope": "required",
-      "started_at": null,
-      "finished_at": null,
-      "attempts": 0,
-      "units": [],
-      "note": ""
+      "started_at": "2026-11-18T13:49:49Z",
+      "finished_at": "2026-11-18T14:05:25Z",
+      "attempts": 1,
+      "units": [
+        {
+          "id": "experience-http-versions-lab",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "video-tls13-handshake",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "experience-http-cache-lab",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "experience-cookie-send-lab",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "experience-realtime-transport-deck",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "pages-01-03",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "pages-04-06",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "pages-07-09",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "pages-10-12",
+          "status": "done",
+          "handoff": null
+        }
+      ],
+      "note": "",
+      "continue_after_failure": false,
+      "validation": {
+        "version": 2,
+        "fingerprint": "4ec9653f93ae88028d0e69da81ac2c90eec398566c6232756d1aa0bc09ab570e",
+        "at": "2026-11-18T14:05:25Z",
+        "forced": false
+      }
     },
     {
       "id": "mini-projects",
       "wave": 3,
       "skill": "learn-projects",
-      "status": "pending",
+      "status": "done",
       "scope": "required",
-      "started_at": null,
-      "finished_at": null,
-      "attempts": 0,
-      "units": [],
-      "note": ""
+      "started_at": "2026-11-18T13:49:53Z",
+      "finished_at": "2026-11-18T14:05:55Z",
+      "attempts": 1,
+      "units": [
+        {
+          "id": "mini-01",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "mini-02",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "mini-03",
+          "status": "done",
+          "handoff": null
+        }
+      ],
+      "note": "",
+      "continue_after_failure": false,
+      "validation": {
+        "version": 2,
+        "fingerprint": "af0d1e7853fac5e6d300f426c5bbe9ceae351d05c4b955dcc88f3765c7b8a197",
+        "at": "2026-11-18T14:05:55Z",
+        "forced": false
+      }
     },
     {
       "id": "capstone",
@@ -2278,76 +2354,6 @@
     "cards": {}
   },
   "log": [
-    {
-      "at": "2026-11-18T12:13:22Z",
-      "event": "init",
-      "message": "created with depth deep for roadmap frontend section 01.1"
-    },
-    {
-      "at": "2026-11-18T12:14:53Z",
-      "event": "start",
-      "message": "attempt 1",
-      "stage": "intake"
-    },
-    {
-      "at": "2026-11-18T12:14:55Z",
-      "event": "plan",
-      "message": "plan fields set: summary, prerequisites, outcomes, lesson_outline, mini_projects, digest_targets, repo_targets, capstone, learner, visual_policy, visual_first, multi_stage, experience_policy, curriculum",
-      "stage": "intake"
-    },
-    {
-      "at": "2026-11-18T12:15:10Z",
-      "event": "plan",
-      "message": "plan fields set: summary, prerequisites, outcomes, lesson_outline, mini_projects, digest_targets, repo_targets, capstone, learner, visual_policy, visual_first, multi_stage, experience_policy, curriculum",
-      "stage": "intake"
-    },
-    {
-      "at": "2026-11-18T12:15:18Z",
-      "event": "done",
-      "message": "gate passed",
-      "stage": "intake"
-    },
-    {
-      "at": "2026-11-18T12:15:49Z",
-      "event": "start",
-      "message": "attempt 1",
-      "stage": "research"
-    },
-    {
-      "at": "2026-11-18T12:15:52Z",
-      "event": "unit-add",
-      "message": "unit docs-http-core",
-      "stage": "research"
-    },
-    {
-      "at": "2026-11-18T12:15:55Z",
-      "event": "unit-add",
-      "message": "unit docs-dns-tls-urls-cookies",
-      "stage": "research"
-    },
-    {
-      "at": "2026-11-18T12:15:59Z",
-      "event": "unit-add",
-      "message": "unit docs-edge-realtime-api",
-      "stage": "research"
-    },
-    {
-      "at": "2026-11-18T12:16:03Z",
-      "event": "unit-add",
-      "message": "unit repos",
-      "stage": "research"
-    },
-    {
-      "at": "2026-11-18T12:16:05Z",
-      "event": "note",
-      "message": "SPAWN 4/56"
-    },
-    {
-      "at": "2026-11-18T12:17:05Z",
-      "event": "source-add",
-      "message": "added cloudflare-cache-keys-docs",
-      "stage": "research"
-    },
     {
       "at": "2026-11-18T12:17:07Z",
       "event": "source-add",
@@ -3064,6 +3070,442 @@
       "event": "done",
       "message": "gate passed",
       "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T13:49:41Z",
+      "event": "note",
+      "message": "WAVE 2 done; running: none; queued: wave 3 lesson + mini-projects"
+    },
+    {
+      "at": "2026-11-18T13:49:49Z",
+      "event": "start",
+      "message": "attempt 1",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T13:49:53Z",
+      "event": "start",
+      "message": "attempt 1",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-18T13:50:12Z",
+      "event": "unit-add",
+      "message": "unit experience-http-versions-lab",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T13:50:15Z",
+      "event": "unit-add",
+      "message": "unit video-tls13-handshake",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T13:50:18Z",
+      "event": "unit-add",
+      "message": "unit experience-http-cache-lab",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T13:50:22Z",
+      "event": "unit-add",
+      "message": "unit experience-cookie-send-lab",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T13:50:25Z",
+      "event": "unit-add",
+      "message": "unit experience-realtime-transport-deck",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T13:50:28Z",
+      "event": "unit-add",
+      "message": "unit pages-01-03",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T13:50:31Z",
+      "event": "unit-add",
+      "message": "unit pages-04-06",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T13:50:34Z",
+      "event": "unit-add",
+      "message": "unit pages-07-09",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T13:50:37Z",
+      "event": "unit-add",
+      "message": "unit pages-10-12",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T13:50:40Z",
+      "event": "unit-add",
+      "message": "unit mini-01",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-18T13:50:44Z",
+      "event": "unit-add",
+      "message": "unit mini-02",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-18T13:50:47Z",
+      "event": "unit-add",
+      "message": "unit mini-03",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-18T13:51:32Z",
+      "event": "note",
+      "message": "SPAWN 28/56; wave 3: experience http-versions-lab, video tls13-handshake, experience http-cache-lab, cookie-send-lab, realtime-transport-deck"
+    },
+    {
+      "at": "2026-11-18T13:53:27Z",
+      "event": "video",
+      "message": "video tls13-handshake not rendered: cannot render: FFmpeg is not installed and Docker is not running; install FFmpeg (for example `brew install ffmpeg`) or start Docker"
+    },
+    {
+      "at": "2026-11-18T13:53:30Z",
+      "event": "unit-done",
+      "message": "unit video-tls13-handshake",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T13:53:55Z",
+      "event": "note",
+      "message": "BLOCKER video tls13-handshake: storyboard only (no FFmpeg/Docker)"
+    },
+    {
+      "at": "2026-11-18T13:53:55Z",
+      "event": "note",
+      "message": "SPAWN 29/56; pages-01-03 started"
+    },
+    {
+      "at": "2026-11-18T13:54:23Z",
+      "event": "unit-start",
+      "message": "unit pages-01-03",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T13:54:59Z",
+      "event": "visual",
+      "message": "added visual realtime-transport-decision"
+    },
+    {
+      "at": "2026-11-18T13:55:25Z",
+      "event": "visual",
+      "message": "added visual packet-journey"
+    },
+    {
+      "at": "2026-11-18T13:55:28Z",
+      "event": "unit-done",
+      "message": "unit experience-http-versions-lab",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T13:55:48Z",
+      "event": "unit-done",
+      "message": "unit experience-realtime-transport-deck",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T13:55:51Z",
+      "event": "note",
+      "message": "SPAWN 30/56; pages-04-06 started"
+    },
+    {
+      "at": "2026-11-18T13:56:01Z",
+      "event": "visual",
+      "message": "added visual cookie-send-checks"
+    },
+    {
+      "at": "2026-11-18T13:56:03Z",
+      "event": "note",
+      "message": "TODO visual realtime-transport-decision used_in -> page 11 after pages-10-12"
+    },
+    {
+      "at": "2026-11-18T13:56:03Z",
+      "event": "note",
+      "message": "SPAWN 31/56; mini-01 started"
+    },
+    {
+      "at": "2026-11-18T13:56:12Z",
+      "event": "unit-start",
+      "message": "unit pages-04-06",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T13:56:17Z",
+      "event": "visual",
+      "message": "added visual dns-resolution-chain"
+    },
+    {
+      "at": "2026-11-18T13:56:22Z",
+      "event": "unit-start",
+      "message": "unit mini-01",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-18T13:56:59Z",
+      "event": "unit-done",
+      "message": "unit experience-http-cache-lab",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T13:57:03Z",
+      "event": "unit-done",
+      "message": "unit experience-cookie-send-lab",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T13:57:06Z",
+      "event": "visual",
+      "message": "added visual url-anatomy"
+    },
+    {
+      "at": "2026-11-18T13:57:09Z",
+      "event": "unit-done",
+      "message": "unit pages-01-03",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T13:57:23Z",
+      "event": "note",
+      "message": "TODO review: immutable claim cites MDN caching guide not in mdn-http-docs verified_via"
+    },
+    {
+      "at": "2026-11-18T13:57:23Z",
+      "event": "note",
+      "message": "SPAWN 32/56; pages-07-09 started"
+    },
+    {
+      "at": "2026-11-18T13:57:29Z",
+      "event": "note",
+      "message": "SPAWN 34/56; pages-10-12 and mini-02 started"
+    },
+    {
+      "at": "2026-11-18T13:57:39Z",
+      "event": "unit-start",
+      "message": "unit pages-07-09",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T13:57:57Z",
+      "event": "unit-start",
+      "message": "unit mini-02",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-18T13:58:05Z",
+      "event": "unit-start",
+      "message": "unit pages-10-12",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T13:58:09Z",
+      "event": "visual",
+      "message": "added visual http-message-anatomy"
+    },
+    {
+      "at": "2026-11-18T13:58:44Z",
+      "event": "visual",
+      "message": "added visual mini-01-flow"
+    },
+    {
+      "at": "2026-11-18T13:58:44Z",
+      "event": "unit-done",
+      "message": "unit mini-01",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-18T13:59:04Z",
+      "event": "note",
+      "message": "SPAWN 35/56; mini-03 started"
+    },
+    {
+      "at": "2026-11-18T13:59:05Z",
+      "event": "unit-done",
+      "message": "unit pages-04-06",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T13:59:13Z",
+      "event": "unit-start",
+      "message": "unit mini-03",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-18T14:00:30Z",
+      "event": "visual",
+      "message": "added visual cdn-request-path"
+    },
+    {
+      "at": "2026-11-18T14:00:40Z",
+      "event": "visual",
+      "message": "added visual mini-02-flow"
+    },
+    {
+      "at": "2026-11-18T14:00:45Z",
+      "event": "unit-done",
+      "message": "unit mini-02",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-18T14:01:06Z",
+      "event": "visual",
+      "message": "added visual api-style-map"
+    },
+    {
+      "at": "2026-11-18T14:01:15Z",
+      "event": "visual",
+      "message": "added visual compression-compare"
+    },
+    {
+      "at": "2026-11-18T14:01:18Z",
+      "event": "unit-done",
+      "message": "unit pages-10-12",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T14:01:22Z",
+      "event": "unit-done",
+      "message": "unit pages-07-09",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T14:01:35Z",
+      "event": "visual",
+      "message": "added visual mini-03-flow"
+    },
+    {
+      "at": "2026-11-18T14:01:39Z",
+      "event": "unit-done",
+      "message": "unit mini-03",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-18T14:01:51Z",
+      "event": "plan",
+      "message": "plan fields set: summary, prerequisites, outcomes, lesson_outline, mini_projects, digest_targets, repo_targets, capstone, learner, visual_policy, visual_first, multi_stage, experience_policy, curriculum",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-18T14:01:55Z",
+      "event": "note",
+      "message": "PLAN: narrowed webtransport-and-webrtc and rpc-trpc-grpc-web titles (no verified source for WebTransport/tRPC)"
+    },
+    {
+      "at": "2026-11-18T14:02:13Z",
+      "event": "plan",
+      "message": "plan fields set: summary, prerequisites, outcomes, lesson_outline, mini_projects, digest_targets, repo_targets, capstone, learner, visual_policy, visual_first, multi_stage, experience_policy, curriculum",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-18T14:02:55Z",
+      "event": "reader-order",
+      "message": "Imported explicit authored child-note sequence"
+    },
+    {
+      "at": "2026-11-18T14:03:01Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-18T14:03:31Z",
+      "event": "execution-check",
+      "message": "research: pass",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T14:03:37Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T14:03:45Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "brief"
+    },
+    {
+      "at": "2026-11-18T14:03:52Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "digest"
+    },
+    {
+      "at": "2026-11-18T14:03:59Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T14:04:07Z",
+      "event": "gate-failed",
+      "message": "1 problems",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T14:04:52Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-18T14:04:59Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T14:05:05Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "brief"
+    },
+    {
+      "at": "2026-11-18T14:05:12Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "digest"
+    },
+    {
+      "at": "2026-11-18T14:05:18Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T14:05:25Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T14:05:31Z",
+      "event": "gate-failed",
+      "message": "1 problems",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-18T14:05:48Z",
+      "event": "execution-check",
+      "message": "mini-projects: pass",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-18T14:05:55Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "mini-projects"
     }
   ],
   "roadmap": {
@@ -3074,8 +3516,8 @@
     "executions": {
       "research": {
         "version": 2,
-        "fingerprint": "7f95cb3e17263746d719b42d61bf31fc8d441a1921b1690161d5f9383cf907c8",
-        "at": "2026-11-18T12:26:23Z",
+        "fingerprint": "177b0283ba6c6d28cdd5a43cb1601dc051ce9ce6d2c873c5824ed07dad0d87d8",
+        "at": "2026-11-18T14:03:31Z",
         "ok": true,
         "checks": [
           {
@@ -3157,7 +3599,7 @@
             "ok": true,
             "status": 200,
             "bytes": 6656,
-            "sha256": "4d804835cc3d7b345279fe523c6e0b1de0b079ff46a87b35a465f8cb2209cacb",
+            "sha256": "143c094dcde7db3880950249ec798651c4109dad505545971d865fd59f7764ab",
             "repository": {
               "stars": 7741,
               "archived": false,
@@ -3314,6 +3756,193 @@
             "status": 200,
             "bytes": 81687,
             "sha256": "01af1ad1d050b5956cc93300a8784c0686022fa020d9244f80ead85c62fe6446"
+          }
+        ]
+      },
+      "mini-projects": {
+        "version": 2,
+        "fingerprint": "af0d1e7853fac5e6d300f426c5bbe9ceae351d05c4b955dcc88f3765c7b8a197",
+        "at": "2026-11-18T14:05:48Z",
+        "ok": true,
+        "checks": [
+          {
+            "label": "mini-01-dns-record-inspector: solution-tests",
+            "command": "npm",
+            "args": [
+              "test"
+            ],
+            "expected_exit": 0,
+            "exit": 0,
+            "ok": true,
+            "output_sha256": "b83a9fe6f0fc3fd26e32777e2fe62264e291ceb4f6efb94e8204debe193dd90d"
+          },
+          {
+            "label": "mini-01-dns-record-inspector: starter-tests",
+            "command": "npm",
+            "args": [
+              "test"
+            ],
+            "expected_exit": 1,
+            "exit": 1,
+            "ok": true,
+            "output_sha256": "6131cf39766cdedab63419aed1434539b44b81aeae583bea97ee8baff73b87fa"
+          },
+          {
+            "label": "mini-01-dns-record-inspector: starter-start",
+            "command": "npm",
+            "args": [
+              "run",
+              "demo"
+            ],
+            "expected_exit": 1,
+            "exit": 1,
+            "ok": true,
+            "output_sha256": "a923bca79094c48592360c0dc10c3a4f7ab3bb4a35628dd130bd6ce80fd29faa"
+          },
+          {
+            "label": "mini-01-dns-record-inspector: audit",
+            "command": "npm",
+            "args": [
+              "audit",
+              "--omit=dev",
+              "--audit-level=high"
+            ],
+            "expected_exit": 0,
+            "exit": 0,
+            "ok": true,
+            "output_sha256": "6d8c5c8f3d7684adb070417bd608d01ae90aa3dc26a65af03ffda4955f38d9a3"
+          },
+          {
+            "label": "mini-01-dns-record-inspector: audit",
+            "command": "npm",
+            "args": [
+              "audit",
+              "--omit=dev",
+              "--audit-level=high"
+            ],
+            "expected_exit": 0,
+            "exit": 0,
+            "ok": true,
+            "output_sha256": "6d8c5c8f3d7684adb070417bd608d01ae90aa3dc26a65af03ffda4955f38d9a3"
+          },
+          {
+            "label": "mini-02-cache-header-auditor: solution-tests",
+            "command": "npm",
+            "args": [
+              "test"
+            ],
+            "expected_exit": 0,
+            "exit": 0,
+            "ok": true,
+            "output_sha256": "516e883436fcdd566026466c44afeef5b6d402e0ccde3c3e7b431b9e89919b05"
+          },
+          {
+            "label": "mini-02-cache-header-auditor: starter-tests",
+            "command": "npm",
+            "args": [
+              "test"
+            ],
+            "expected_exit": 1,
+            "exit": 1,
+            "ok": true,
+            "output_sha256": "248c4300e19a81a9b580070433fcdfe5fbae546b184b8a41a0ba31481099a883"
+          },
+          {
+            "label": "mini-02-cache-header-auditor: starter-start",
+            "command": "npm",
+            "args": [
+              "start"
+            ],
+            "expected_exit": 1,
+            "exit": 1,
+            "ok": true,
+            "output_sha256": "77fd062703b567d9797840e0b5ae0dd63eb0f4abab7c08465ac7b9f1bf4f16ce"
+          },
+          {
+            "label": "mini-02-cache-header-auditor: audit",
+            "command": "npm",
+            "args": [
+              "audit",
+              "--omit=dev",
+              "--audit-level=high"
+            ],
+            "expected_exit": 0,
+            "exit": 0,
+            "ok": true,
+            "output_sha256": "6d8c5c8f3d7684adb070417bd608d01ae90aa3dc26a65af03ffda4955f38d9a3"
+          },
+          {
+            "label": "mini-02-cache-header-auditor: audit",
+            "command": "npm",
+            "args": [
+              "audit",
+              "--omit=dev",
+              "--audit-level=high"
+            ],
+            "expected_exit": 0,
+            "exit": 0,
+            "ok": true,
+            "output_sha256": "6d8c5c8f3d7684adb070417bd608d01ae90aa3dc26a65af03ffda4955f38d9a3"
+          },
+          {
+            "label": "mini-03-cookie-attribute-linter: solution-tests",
+            "command": "npm",
+            "args": [
+              "test"
+            ],
+            "expected_exit": 0,
+            "exit": 0,
+            "ok": true,
+            "output_sha256": "283ae7098eee6fcf58dc0d269238c79be5e16e21b460ac345d9c42a7d372f661"
+          },
+          {
+            "label": "mini-03-cookie-attribute-linter: starter-tests",
+            "command": "npm",
+            "args": [
+              "test"
+            ],
+            "expected_exit": 1,
+            "exit": 1,
+            "ok": true,
+            "output_sha256": "b31dc76f235df461d59a59bb8f20c9ae39f31c274be71ff57b1d070907b279a3"
+          },
+          {
+            "label": "mini-03-cookie-attribute-linter: starter-start",
+            "command": "npm",
+            "args": [
+              "run",
+              "demo"
+            ],
+            "expected_exit": 1,
+            "exit": 1,
+            "ok": true,
+            "output_sha256": "33218f41bf2761262e592fcfb3a301732fd540f5fba8482cd130533ac081c735"
+          },
+          {
+            "label": "mini-03-cookie-attribute-linter: audit",
+            "command": "npm",
+            "args": [
+              "audit",
+              "--omit=dev",
+              "--audit-level=high"
+            ],
+            "expected_exit": 0,
+            "exit": 0,
+            "ok": true,
+            "output_sha256": "6d8c5c8f3d7684adb070417bd608d01ae90aa3dc26a65af03ffda4955f38d9a3"
+          },
+          {
+            "label": "mini-03-cookie-attribute-linter: audit",
+            "command": "npm",
+            "args": [
+              "audit",
+              "--omit=dev",
+              "--audit-level=high"
+            ],
+            "expected_exit": 0,
+            "exit": 0,
+            "ok": true,
+            "output_sha256": "6d8c5c8f3d7684adb070417bd608d01ae90aa3dc26a65af03ffda4955f38d9a3"
           }
         ]
       }

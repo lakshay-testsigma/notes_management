@@ -1,0 +1,8 @@
+flowchart LR
+  app["Browser app"]
+  app -- "GET /users/42" --> rest["REST endpoint"]
+  app -- "POST /graphql" --> gql["GraphQL endpoint"]
+  app -- "POST /Service/Method" --> rpc["Connect RPC"]
+  rest -- "URL = cache key" --> cache["HTTP cache / CDN"]
+  gql -. "only GET queries" .-> cache
+  rpc -- "JSON or Protobuf" --> server["Server code"]

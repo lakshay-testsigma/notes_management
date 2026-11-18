@@ -1,0 +1,1300 @@
+{
+  "id": "cookie-send-lab",
+  "title": "Decide which cookies a request carries",
+  "mode": "interactive",
+  "objective": "Predict which stored cookies a request carries from Domain, Path, Secure and SameSite, and say what HttpOnly and the __Host- prefix change.",
+  "level": "intermediate",
+  "summary": "A browser holds five cookies from shop.example.com with different Domain, Path, Secure, HttpOnly and SameSite attributes. A guided walkthrough explains each check, then a stepper runs the checks for seven cases: a same-site fetch, a cross-site link, a cross-site form POST, a cross-site image, a link to a same-site subdomain, a link to plain http, and a set of __Host- and __Secure- cookies that the browser stores or rejects.",
+  "concept_ids": [
+    "cookies",
+    "set-cookie-attributes",
+    "cookie-prefixes-and-chips",
+    "third-party-cookies"
+  ],
+  "source_ids": [
+    "mdn-http-docs",
+    "whatwg-url-standard",
+    "nodejs-undici-repo"
+  ],
+  "used_in": [
+    "site/src/content/lessons/frontend-engineering/how-the-web-works/internet-and-networking/10-cookies.mdx"
+  ],
+  "guided": {
+    "video": "cookie-send-walkthrough"
+  },
+  "fallback_visual": "cookie-send-checks",
+  "sync": [
+    {
+      "scene": "jar",
+      "preset": "same-site-fetch"
+    },
+    {
+      "scene": "cross-site-link",
+      "preset": "cross-site-link"
+    },
+    {
+      "scene": "cross-site-post",
+      "preset": "cross-site-post"
+    },
+    {
+      "scene": "prefixes",
+      "preset": "prefix-check"
+    }
+  ],
+  "inspect": [
+    {
+      "id": "lax-navigation",
+      "scene": "same-site",
+      "label": "What counts as top-level?",
+      "region": {
+        "x": 6,
+        "y": 40,
+        "w": 88,
+        "h": 14
+      },
+      "concept_id": "set-cookie-attributes",
+      "text": "A top-level navigation changes the URL in the address bar: a link click, a document.location assignment or a form submission. fetch() calls, <img> and <script> requests, and navigations inside an <iframe> are not top-level, so Lax cookies stay home on cross-site requests of that kind."
+    },
+    {
+      "id": "host-prefix",
+      "scene": "prefixes",
+      "label": "Why __Host- is strongest",
+      "region": {
+        "x": 52,
+        "y": 30,
+        "w": 42,
+        "h": 40
+      },
+      "concept_id": "cookie-prefixes-and-chips",
+      "text": "With no Domain, the cookie goes only to the host that set it. With Path=/, no other path on that host can set a cookie that overrides it. Secure keeps it on https. MDN calls this the closest a cookie gets to an origin boundary."
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "post-prediction",
+      "kind": "predict",
+      "at": {
+        "scene": "cross-site-post"
+      },
+      "prompt": "A form on news.other.org sends POST to shop.example.com/account/pay. Which of the five cookies does the request carry?",
+      "choices": [
+        {
+          "text": "Only widget (SameSite=None)",
+          "correct": true
+        },
+        {
+          "text": "__Host-sid, widget and theme, like the link click",
+          "misconception": "Thinks Lax allows every cross-site top-level navigation, whatever the method"
+        },
+        {
+          "text": "All five, because the user started the request",
+          "misconception": "Thinks a user action makes a cross-site request count as same-site"
+        },
+        {
+          "text": "None, because the request is cross-site",
+          "misconception": "Thinks every cross-site request drops all cookies, ignoring SameSite=None"
+        }
+      ],
+      "explanation": "Lax allows a cross-site request only when it is a top-level navigation with a safe method. POST is not safe, so the Lax cookies stay home and Strict never goes cross-site. SameSite=None allows every request, so widget goes.",
+      "concept_ids": [
+        "set-cookie-attributes",
+        "cookies"
+      ],
+      "revisit": "same-site"
+    },
+    {
+      "id": "post-experiment",
+      "kind": "experiment",
+      "at": {
+        "tab": "practice"
+      },
+      "prompt": "Load the form POST case and step through the checks. Which check removes the Lax cookies?",
+      "goal": {
+        "preset": "cross-site-post",
+        "condition": {
+          "all": [
+            {
+              "path": "done",
+              "op": "eq",
+              "value": true
+            },
+            {
+              "path": "vars.sent",
+              "op": "eq",
+              "value": "widget"
+            }
+          ]
+        },
+        "hint": "Press Next until the SameSite line is highlighted and the sent value appears."
+      },
+      "explanation": "Domain, Path and Secure keep all five cookies, because the URL is https on shop.example.com under /account. Only the SameSite check removes cookies here: Strict and Lax both stay home on a cross-site POST.",
+      "concept_ids": [
+        "set-cookie-attributes"
+      ]
+    },
+    {
+      "id": "subdomain-prediction",
+      "kind": "predict",
+      "at": {
+        "scene": "domain-path"
+      },
+      "prompt": "A link on shop.example.com opens blog.example.com. Does the host-only __Host-sid cookie go with the request?",
+      "choices": [
+        {
+          "text": "No, a host-only cookie goes only to shop.example.com",
+          "correct": true
+        },
+        {
+          "text": "Yes, because the request is same-site",
+          "misconception": "Thinks SameSite decides which hosts receive a cookie, not Domain"
+        },
+        {
+          "text": "Yes, because blog is a subdomain of example.com",
+          "misconception": "Thinks a cookie without Domain also goes to sibling subdomains"
+        }
+      ],
+      "explanation": "Domain decides which hosts receive a cookie. Without Domain the cookie is host-only, so blog.example.com never gets __Host-sid. SameSite is a separate check that only removes cookies; it never adds a host.",
+      "concept_ids": [
+        "set-cookie-attributes",
+        "cookie-prefixes-and-chips"
+      ],
+      "revisit": "domain-path"
+    },
+    {
+      "id": "httponly-verify",
+      "kind": "verify",
+      "at": {
+        "scene": "secure-httponly"
+      },
+      "prompt": "Page JavaScript calls fetch('/account/orders') on the same site. What happens to the HttpOnly cookie __Host-sid?",
+      "choices": [
+        {
+          "text": "The request carries it, but document.cookie does not show it",
+          "correct": true
+        },
+        {
+          "text": "The request leaves it out, because JavaScript started the request",
+          "misconception": "Thinks HttpOnly blocks cookies on script-initiated requests"
+        },
+        {
+          "text": "document.cookie shows it, because the page is same-site",
+          "misconception": "Thinks HttpOnly applies only on cross-site pages"
+        }
+      ],
+      "explanation": "HttpOnly forbids JavaScript access through document.cookie. It does not change what the request carries, so fetch and XMLHttpRequest still send the cookie. This limits what an XSS script can read.",
+      "concept_ids": [
+        "set-cookie-attributes",
+        "cookies"
+      ],
+      "revisit": "secure-httponly"
+    },
+    {
+      "id": "prefix-verify",
+      "kind": "verify",
+      "at": {
+        "tab": "practice"
+      },
+      "prompt": "A server sends Set-Cookie: __Host-sid=abc; Secure; Path=/; Domain=example.com. What does the browser do?",
+      "choices": [
+        {
+          "text": "It rejects the cookie, because __Host- forbids Domain",
+          "correct": true
+        },
+        {
+          "text": "It stores the cookie for every subdomain of example.com",
+          "misconception": "Thinks the prefix is only a naming habit with no rules"
+        },
+        {
+          "text": "It stores the cookie and silently removes Domain",
+          "misconception": "Confuses browser behavior with a server library that fixes the header"
+        }
+      ],
+      "explanation": "A __Host- cookie must have Secure, Path=/ and no Domain, so a browser that supports prefixes rejects this header. Server libraries such as undici's setCookie drop Domain when they write a __Host- cookie, but the browser itself only accepts or rejects.",
+      "concept_ids": [
+        "cookie-prefixes-and-chips"
+      ]
+    }
+  ],
+  "simulation": {
+    "component": "AlgorithmStepper",
+    "props": {
+      "title": "Cookie send checks (teaching pseudo-code, not browser source)",
+      "view": "array",
+      "code": "for cookie in jar:\n  if not domain_matches(cookie, url.host): skip\n  if not path_matches(cookie, url.path): skip\n  if cookie.secure and url.scheme != \"https\": skip\n  if request_is_cross_site:\n    if cookie.same_site == \"Strict\": skip\n    if cookie.same_site == \"Lax\" and not (top_level and safe_method): skip\n  send(cookie)",
+      "lang": "python",
+      "speed": 1800,
+      "frames": [
+        {
+          "caption": "JavaScript on https://shop.example.com/account/ calls fetch(\"/account/orders\"). All five cookies are candidates.",
+          "array": [
+            "__Host-sid",
+            "cart",
+            "prefs",
+            "widget",
+            "theme"
+          ],
+          "highlight": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "pointers": {},
+          "vars": {
+            "request": "GET https://shop.example.com/account/orders",
+            "from": "https://shop.example.com/account/ (fetch)",
+            "context": "same-site",
+            "check": "start",
+            "left": "__Host-sid, cart, prefs, widget, theme"
+          },
+          "line": 1
+        },
+        {
+          "caption": "Host shop.example.com: host-only cookies match their own host, and Domain=example.com covers subdomains. All five pass.",
+          "array": [
+            "__Host-sid",
+            "cart",
+            "prefs",
+            "widget",
+            "theme"
+          ],
+          "highlight": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "pointers": {},
+          "vars": {
+            "request": "GET https://shop.example.com/account/orders",
+            "from": "https://shop.example.com/account/ (fetch)",
+            "context": "same-site",
+            "check": "Domain",
+            "left": "__Host-sid, cart, prefs, widget, theme"
+          },
+          "line": 2
+        },
+        {
+          "caption": "/account/orders is inside /account and inside /, so prefs (Path=/account) also passes.",
+          "array": [
+            "__Host-sid",
+            "cart",
+            "prefs",
+            "widget",
+            "theme"
+          ],
+          "highlight": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "pointers": {},
+          "vars": {
+            "request": "GET https://shop.example.com/account/orders",
+            "from": "https://shop.example.com/account/ (fetch)",
+            "context": "same-site",
+            "check": "Path",
+            "left": "__Host-sid, cart, prefs, widget, theme"
+          },
+          "line": 3
+        },
+        {
+          "caption": "The URL uses https, so the Secure cookies pass.",
+          "array": [
+            "__Host-sid",
+            "cart",
+            "prefs",
+            "widget",
+            "theme"
+          ],
+          "highlight": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "pointers": {},
+          "vars": {
+            "request": "GET https://shop.example.com/account/orders",
+            "from": "https://shop.example.com/account/ (fetch)",
+            "context": "same-site",
+            "check": "Secure",
+            "left": "__Host-sid, cart, prefs, widget, theme"
+          },
+          "line": 4
+        },
+        {
+          "caption": "The request is same-site, so Strict, Lax and None all allow it. The request carries all five cookies.",
+          "array": [
+            "__Host-sid",
+            "cart",
+            "prefs",
+            "widget",
+            "theme"
+          ],
+          "highlight": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "pointers": {},
+          "vars": {
+            "request": "GET https://shop.example.com/account/orders",
+            "from": "https://shop.example.com/account/ (fetch)",
+            "context": "same-site",
+            "check": "SameSite",
+            "left": "__Host-sid, cart, prefs, widget, theme",
+            "sent": "__Host-sid, cart, prefs, widget, theme"
+          },
+          "line": 8
+        },
+        {
+          "array": [
+            "__Host-sid",
+            "cart",
+            "prefs",
+            "widget",
+            "theme"
+          ],
+          "pointers": {},
+          "caption": "document.cookie on the /account/ page lists every cookie except __Host-sid, because HttpOnly hides it from JavaScript. fetch still sent it.",
+          "highlight": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "vars": {
+            "request": "document.cookie",
+            "from": "https://shop.example.com/account/",
+            "context": "JavaScript read",
+            "check": "HttpOnly",
+            "left": "cart, prefs, widget, theme"
+          },
+          "line": 8
+        }
+      ]
+    },
+    "presets": {
+      "same-site-fetch": {
+        "title": "Same-site fetch from shop.example.com/account/",
+        "frames": [
+          {
+            "caption": "JavaScript on https://shop.example.com/account/ calls fetch(\"/account/orders\"). All five cookies are candidates.",
+            "array": [
+              "__Host-sid",
+              "cart",
+              "prefs",
+              "widget",
+              "theme"
+            ],
+            "highlight": [
+              0,
+              1,
+              2,
+              3,
+              4
+            ],
+            "pointers": {},
+            "vars": {
+              "request": "GET https://shop.example.com/account/orders",
+              "from": "https://shop.example.com/account/ (fetch)",
+              "context": "same-site",
+              "check": "start",
+              "left": "__Host-sid, cart, prefs, widget, theme"
+            },
+            "line": 1
+          },
+          {
+            "caption": "Host shop.example.com: host-only cookies match their own host, and Domain=example.com covers subdomains. All five pass.",
+            "array": [
+              "__Host-sid",
+              "cart",
+              "prefs",
+              "widget",
+              "theme"
+            ],
+            "highlight": [
+              0,
+              1,
+              2,
+              3,
+              4
+            ],
+            "pointers": {},
+            "vars": {
+              "request": "GET https://shop.example.com/account/orders",
+              "from": "https://shop.example.com/account/ (fetch)",
+              "context": "same-site",
+              "check": "Domain",
+              "left": "__Host-sid, cart, prefs, widget, theme"
+            },
+            "line": 2
+          },
+          {
+            "caption": "/account/orders is inside /account and inside /, so prefs (Path=/account) also passes.",
+            "array": [
+              "__Host-sid",
+              "cart",
+              "prefs",
+              "widget",
+              "theme"
+            ],
+            "highlight": [
+              0,
+              1,
+              2,
+              3,
+              4
+            ],
+            "pointers": {},
+            "vars": {
+              "request": "GET https://shop.example.com/account/orders",
+              "from": "https://shop.example.com/account/ (fetch)",
+              "context": "same-site",
+              "check": "Path",
+              "left": "__Host-sid, cart, prefs, widget, theme"
+            },
+            "line": 3
+          },
+          {
+            "caption": "The URL uses https, so the Secure cookies pass.",
+            "array": [
+              "__Host-sid",
+              "cart",
+              "prefs",
+              "widget",
+              "theme"
+            ],
+            "highlight": [
+              0,
+              1,
+              2,
+              3,
+              4
+            ],
+            "pointers": {},
+            "vars": {
+              "request": "GET https://shop.example.com/account/orders",
+              "from": "https://shop.example.com/account/ (fetch)",
+              "context": "same-site",
+              "check": "Secure",
+              "left": "__Host-sid, cart, prefs, widget, theme"
+            },
+            "line": 4
+          },
+          {
+            "caption": "The request is same-site, so Strict, Lax and None all allow it. The request carries all five cookies.",
+            "array": [
+              "__Host-sid",
+              "cart",
+              "prefs",
+              "widget",
+              "theme"
+            ],
+            "highlight": [
+              0,
+              1,
+              2,
+              3,
+              4
+            ],
+            "pointers": {},
+            "vars": {
+              "request": "GET https://shop.example.com/account/orders",
+              "from": "https://shop.example.com/account/ (fetch)",
+              "context": "same-site",
+              "check": "SameSite",
+              "left": "__Host-sid, cart, prefs, widget, theme",
+              "sent": "__Host-sid, cart, prefs, widget, theme"
+            },
+            "line": 8
+          },
+          {
+            "array": [
+              "__Host-sid",
+              "cart",
+              "prefs",
+              "widget",
+              "theme"
+            ],
+            "pointers": {},
+            "caption": "document.cookie on the /account/ page lists every cookie except __Host-sid, because HttpOnly hides it from JavaScript. fetch still sent it.",
+            "highlight": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "vars": {
+              "request": "document.cookie",
+              "from": "https://shop.example.com/account/",
+              "context": "JavaScript read",
+              "check": "HttpOnly",
+              "left": "cart, prefs, widget, theme"
+            },
+            "line": 8
+          }
+        ]
+      },
+      "cross-site-link": {
+        "title": "Link click from news.other.org",
+        "frames": [
+          {
+            "caption": "A link on news.other.org opens https://shop.example.com/. This is a cross-site top-level navigation with GET.",
+            "array": [
+              "__Host-sid",
+              "cart",
+              "prefs",
+              "widget",
+              "theme"
+            ],
+            "highlight": [
+              0,
+              1,
+              2,
+              3,
+              4
+            ],
+            "pointers": {},
+            "vars": {
+              "request": "GET https://shop.example.com/",
+              "from": "https://news.other.org (link click)",
+              "context": "cross-site, top-level, GET",
+              "check": "start",
+              "left": "__Host-sid, cart, prefs, widget, theme"
+            },
+            "line": 1
+          },
+          {
+            "caption": "The host is shop.example.com, so all five cookies match the host.",
+            "array": [
+              "__Host-sid",
+              "cart",
+              "prefs",
+              "widget",
+              "theme"
+            ],
+            "highlight": [
+              0,
+              1,
+              2,
+              3,
+              4
+            ],
+            "pointers": {},
+            "vars": {
+              "request": "GET https://shop.example.com/",
+              "from": "https://news.other.org (link click)",
+              "context": "cross-site, top-level, GET",
+              "check": "Domain",
+              "left": "__Host-sid, cart, prefs, widget, theme"
+            },
+            "line": 2
+          },
+          {
+            "caption": "The path is /. prefs has Path=/account, and / is not inside /account, so prefs stays home.",
+            "array": [
+              "__Host-sid",
+              "cart",
+              "prefs",
+              "widget",
+              "theme"
+            ],
+            "highlight": [
+              0,
+              1,
+              3,
+              4
+            ],
+            "pointers": {},
+            "vars": {
+              "request": "GET https://shop.example.com/",
+              "from": "https://news.other.org (link click)",
+              "context": "cross-site, top-level, GET",
+              "check": "Path",
+              "left": "__Host-sid, cart, widget, theme"
+            },
+            "line": 3
+          },
+          {
+            "caption": "The URL uses https, so no cookie is dropped here.",
+            "array": [
+              "__Host-sid",
+              "cart",
+              "prefs",
+              "widget",
+              "theme"
+            ],
+            "highlight": [
+              0,
+              1,
+              3,
+              4
+            ],
+            "pointers": {},
+            "vars": {
+              "request": "GET https://shop.example.com/",
+              "from": "https://news.other.org (link click)",
+              "context": "cross-site, top-level, GET",
+              "check": "Secure",
+              "left": "__Host-sid, cart, widget, theme"
+            },
+            "line": 4
+          },
+          {
+            "caption": "Cross-site: Strict drops cart. Lax allows a top-level GET navigation, and None allows everything. Sent: __Host-sid, widget, theme.",
+            "array": [
+              "__Host-sid",
+              "cart",
+              "prefs",
+              "widget",
+              "theme"
+            ],
+            "highlight": [
+              0,
+              3,
+              4
+            ],
+            "pointers": {},
+            "vars": {
+              "request": "GET https://shop.example.com/",
+              "from": "https://news.other.org (link click)",
+              "context": "cross-site, top-level, GET",
+              "check": "SameSite",
+              "left": "__Host-sid, widget, theme",
+              "sent": "__Host-sid, widget, theme"
+            },
+            "line": 6
+          }
+        ]
+      },
+      "cross-site-post": {
+        "title": "Form POST from news.other.org",
+        "frames": [
+          {
+            "caption": "A form on news.other.org sends POST to https://shop.example.com/account/pay. This is cross-site, and POST is not a safe method.",
+            "array": [
+              "__Host-sid",
+              "cart",
+              "prefs",
+              "widget",
+              "theme"
+            ],
+            "highlight": [
+              0,
+              1,
+              2,
+              3,
+              4
+            ],
+            "pointers": {},
+            "vars": {
+              "request": "POST https://shop.example.com/account/pay",
+              "from": "https://news.other.org (form submit)",
+              "context": "cross-site, top-level, POST",
+              "check": "start",
+              "left": "__Host-sid, cart, prefs, widget, theme"
+            },
+            "line": 1
+          },
+          {
+            "caption": "The host is shop.example.com, so all five cookies match the host.",
+            "array": [
+              "__Host-sid",
+              "cart",
+              "prefs",
+              "widget",
+              "theme"
+            ],
+            "highlight": [
+              0,
+              1,
+              2,
+              3,
+              4
+            ],
+            "pointers": {},
+            "vars": {
+              "request": "POST https://shop.example.com/account/pay",
+              "from": "https://news.other.org (form submit)",
+              "context": "cross-site, top-level, POST",
+              "check": "Domain",
+              "left": "__Host-sid, cart, prefs, widget, theme"
+            },
+            "line": 2
+          },
+          {
+            "caption": "/account/pay is inside /account, so prefs passes too.",
+            "array": [
+              "__Host-sid",
+              "cart",
+              "prefs",
+              "widget",
+              "theme"
+            ],
+            "highlight": [
+              0,
+              1,
+              2,
+              3,
+              4
+            ],
+            "pointers": {},
+            "vars": {
+              "request": "POST https://shop.example.com/account/pay",
+              "from": "https://news.other.org (form submit)",
+              "context": "cross-site, top-level, POST",
+              "check": "Path",
+              "left": "__Host-sid, cart, prefs, widget, theme"
+            },
+            "line": 3
+          },
+          {
+            "caption": "The URL uses https, so no cookie is dropped here.",
+            "array": [
+              "__Host-sid",
+              "cart",
+              "prefs",
+              "widget",
+              "theme"
+            ],
+            "highlight": [
+              0,
+              1,
+              2,
+              3,
+              4
+            ],
+            "pointers": {},
+            "vars": {
+              "request": "POST https://shop.example.com/account/pay",
+              "from": "https://news.other.org (form submit)",
+              "context": "cross-site, top-level, POST",
+              "check": "Secure",
+              "left": "__Host-sid, cart, prefs, widget, theme"
+            },
+            "line": 4
+          },
+          {
+            "caption": "Cross-site with POST: Strict drops cart, and Lax drops __Host-sid, prefs and theme. Only widget (SameSite=None) goes.",
+            "array": [
+              "__Host-sid",
+              "cart",
+              "prefs",
+              "widget",
+              "theme"
+            ],
+            "highlight": [
+              3
+            ],
+            "pointers": {},
+            "vars": {
+              "request": "POST https://shop.example.com/account/pay",
+              "from": "https://news.other.org (form submit)",
+              "context": "cross-site, top-level, POST",
+              "check": "SameSite",
+              "left": "widget",
+              "sent": "widget"
+            },
+            "line": 7
+          }
+        ]
+      },
+      "cross-site-image": {
+        "title": "Image embedded on news.other.org",
+        "frames": [
+          {
+            "caption": "news.other.org shows <img src=\"https://shop.example.com/pixel.gif\">. A subresource is not a top-level navigation.",
+            "array": [
+              "__Host-sid",
+              "cart",
+              "prefs",
+              "widget",
+              "theme"
+            ],
+            "highlight": [
+              0,
+              1,
+              2,
+              3,
+              4
+            ],
+            "pointers": {},
+            "vars": {
+              "request": "GET https://shop.example.com/pixel.gif",
+              "from": "https://news.other.org (<img>)",
+              "context": "cross-site, subresource",
+              "check": "start",
+              "left": "__Host-sid, cart, prefs, widget, theme"
+            },
+            "line": 1
+          },
+          {
+            "caption": "The host is shop.example.com, so all five cookies match the host.",
+            "array": [
+              "__Host-sid",
+              "cart",
+              "prefs",
+              "widget",
+              "theme"
+            ],
+            "highlight": [
+              0,
+              1,
+              2,
+              3,
+              4
+            ],
+            "pointers": {},
+            "vars": {
+              "request": "GET https://shop.example.com/pixel.gif",
+              "from": "https://news.other.org (<img>)",
+              "context": "cross-site, subresource",
+              "check": "Domain",
+              "left": "__Host-sid, cart, prefs, widget, theme"
+            },
+            "line": 2
+          },
+          {
+            "caption": "The path /pixel.gif is not inside /account, so prefs stays home.",
+            "array": [
+              "__Host-sid",
+              "cart",
+              "prefs",
+              "widget",
+              "theme"
+            ],
+            "highlight": [
+              0,
+              1,
+              3,
+              4
+            ],
+            "pointers": {},
+            "vars": {
+              "request": "GET https://shop.example.com/pixel.gif",
+              "from": "https://news.other.org (<img>)",
+              "context": "cross-site, subresource",
+              "check": "Path",
+              "left": "__Host-sid, cart, widget, theme"
+            },
+            "line": 3
+          },
+          {
+            "caption": "The URL uses https, so no cookie is dropped here.",
+            "array": [
+              "__Host-sid",
+              "cart",
+              "prefs",
+              "widget",
+              "theme"
+            ],
+            "highlight": [
+              0,
+              1,
+              3,
+              4
+            ],
+            "pointers": {},
+            "vars": {
+              "request": "GET https://shop.example.com/pixel.gif",
+              "from": "https://news.other.org (<img>)",
+              "context": "cross-site, subresource",
+              "check": "Secure",
+              "left": "__Host-sid, cart, widget, theme"
+            },
+            "line": 4
+          },
+          {
+            "caption": "Cross-site and not top-level: Strict and Lax both stay home. Only widget goes, and only if the browser does not block third-party cookies.",
+            "array": [
+              "__Host-sid",
+              "cart",
+              "prefs",
+              "widget",
+              "theme"
+            ],
+            "highlight": [
+              3
+            ],
+            "pointers": {},
+            "vars": {
+              "request": "GET https://shop.example.com/pixel.gif",
+              "from": "https://news.other.org (<img>)",
+              "context": "cross-site, subresource",
+              "check": "SameSite",
+              "left": "widget",
+              "sent": "widget"
+            },
+            "line": 7
+          }
+        ]
+      },
+      "subdomain-link": {
+        "title": "Link to blog.example.com (same site)",
+        "frames": [
+          {
+            "caption": "A link on shop.example.com opens https://blog.example.com/. Same scheme and same registrable domain, so the request is same-site.",
+            "array": [
+              "__Host-sid",
+              "cart",
+              "prefs",
+              "widget",
+              "theme"
+            ],
+            "highlight": [
+              0,
+              1,
+              2,
+              3,
+              4
+            ],
+            "pointers": {},
+            "vars": {
+              "request": "GET https://blog.example.com/",
+              "from": "https://shop.example.com (link click)",
+              "context": "same-site, other origin",
+              "check": "start",
+              "left": "__Host-sid, cart, prefs, widget, theme"
+            },
+            "line": 1
+          },
+          {
+            "caption": "The host is blog.example.com. Host-only cookies (__Host-sid, prefs, theme) belong to shop.example.com only. cart and widget have Domain=example.com, so they pass.",
+            "array": [
+              "__Host-sid",
+              "cart",
+              "prefs",
+              "widget",
+              "theme"
+            ],
+            "highlight": [
+              1,
+              3
+            ],
+            "pointers": {},
+            "vars": {
+              "request": "GET https://blog.example.com/",
+              "from": "https://shop.example.com (link click)",
+              "context": "same-site, other origin",
+              "check": "Domain",
+              "left": "cart, widget"
+            },
+            "line": 2
+          },
+          {
+            "caption": "cart and widget have Path=/, so the path / matches.",
+            "array": [
+              "__Host-sid",
+              "cart",
+              "prefs",
+              "widget",
+              "theme"
+            ],
+            "highlight": [
+              1,
+              3
+            ],
+            "pointers": {},
+            "vars": {
+              "request": "GET https://blog.example.com/",
+              "from": "https://shop.example.com (link click)",
+              "context": "same-site, other origin",
+              "check": "Path",
+              "left": "cart, widget"
+            },
+            "line": 3
+          },
+          {
+            "caption": "The URL uses https, so the Secure cookies pass.",
+            "array": [
+              "__Host-sid",
+              "cart",
+              "prefs",
+              "widget",
+              "theme"
+            ],
+            "highlight": [
+              1,
+              3
+            ],
+            "pointers": {},
+            "vars": {
+              "request": "GET https://blog.example.com/",
+              "from": "https://shop.example.com (link click)",
+              "context": "same-site, other origin",
+              "check": "Secure",
+              "left": "cart, widget"
+            },
+            "line": 4
+          },
+          {
+            "caption": "The request is same-site, so even the Strict cart cookie goes. Sent: cart, widget.",
+            "array": [
+              "__Host-sid",
+              "cart",
+              "prefs",
+              "widget",
+              "theme"
+            ],
+            "highlight": [
+              1,
+              3
+            ],
+            "pointers": {},
+            "vars": {
+              "request": "GET https://blog.example.com/",
+              "from": "https://shop.example.com (link click)",
+              "context": "same-site, other origin",
+              "check": "SameSite",
+              "left": "cart, widget",
+              "sent": "cart, widget"
+            },
+            "line": 8
+          }
+        ]
+      },
+      "http-link": {
+        "title": "Link to plain http://shop.example.com",
+        "frames": [
+          {
+            "caption": "A link on https://shop.example.com opens http://shop.example.com/. The scheme differs, and SameSite counts the scheme as part of the site.",
+            "array": [
+              "__Host-sid",
+              "cart",
+              "prefs",
+              "widget",
+              "theme"
+            ],
+            "highlight": [
+              0,
+              1,
+              2,
+              3,
+              4
+            ],
+            "pointers": {},
+            "vars": {
+              "request": "GET http://shop.example.com/",
+              "from": "https://shop.example.com (link click)",
+              "context": "cross-site (scheme differs), top-level, GET",
+              "check": "start",
+              "left": "__Host-sid, cart, prefs, widget, theme"
+            },
+            "line": 1
+          },
+          {
+            "caption": "The host is shop.example.com, so all five cookies match the host.",
+            "array": [
+              "__Host-sid",
+              "cart",
+              "prefs",
+              "widget",
+              "theme"
+            ],
+            "highlight": [
+              0,
+              1,
+              2,
+              3,
+              4
+            ],
+            "pointers": {},
+            "vars": {
+              "request": "GET http://shop.example.com/",
+              "from": "https://shop.example.com (link click)",
+              "context": "cross-site (scheme differs), top-level, GET",
+              "check": "Domain",
+              "left": "__Host-sid, cart, prefs, widget, theme"
+            },
+            "line": 2
+          },
+          {
+            "caption": "The path is /, so prefs (Path=/account) stays home.",
+            "array": [
+              "__Host-sid",
+              "cart",
+              "prefs",
+              "widget",
+              "theme"
+            ],
+            "highlight": [
+              0,
+              1,
+              3,
+              4
+            ],
+            "pointers": {},
+            "vars": {
+              "request": "GET http://shop.example.com/",
+              "from": "https://shop.example.com (link click)",
+              "context": "cross-site (scheme differs), top-level, GET",
+              "check": "Path",
+              "left": "__Host-sid, cart, widget, theme"
+            },
+            "line": 3
+          },
+          {
+            "caption": "The URL uses http. Secure cookies go only over https, so __Host-sid, cart and widget stay home.",
+            "array": [
+              "__Host-sid",
+              "cart",
+              "prefs",
+              "widget",
+              "theme"
+            ],
+            "highlight": [
+              4
+            ],
+            "pointers": {},
+            "vars": {
+              "request": "GET http://shop.example.com/",
+              "from": "https://shop.example.com (link click)",
+              "context": "cross-site (scheme differs), top-level, GET",
+              "check": "Secure",
+              "left": "theme"
+            },
+            "line": 4
+          },
+          {
+            "caption": "theme is Lax, and this is a top-level GET navigation, so it may go. Sent: theme only, in clear text.",
+            "array": [
+              "__Host-sid",
+              "cart",
+              "prefs",
+              "widget",
+              "theme"
+            ],
+            "highlight": [
+              4
+            ],
+            "pointers": {},
+            "vars": {
+              "request": "GET http://shop.example.com/",
+              "from": "https://shop.example.com (link click)",
+              "context": "cross-site (scheme differs), top-level, GET",
+              "check": "SameSite",
+              "left": "theme",
+              "sent": "theme"
+            },
+            "line": 7
+          }
+        ]
+      },
+      "prefix-check": {
+        "title": "Which prefixed cookies does the browser store?",
+        "code": "on Set-Cookie from https://shop.example.com:\n  if name starts with \"__Secure-\" and not secure: reject\n  if name starts with \"__Host-\":\n    if not secure or domain is set or path != \"/\": reject\n  store(cookie)",
+        "frames": [
+          {
+            "caption": "https://shop.example.com sends five Set-Cookie headers whose names start with a prefix. The variables show the attributes of each.",
+            "array": [
+              "__Host-a",
+              "__Host-b",
+              "__Host-c",
+              "__Secure-d",
+              "__Secure-e"
+            ],
+            "highlight": [
+              0,
+              1,
+              2,
+              3,
+              4
+            ],
+            "pointers": {},
+            "vars": {
+              "__Host-a": "Secure; Path=/",
+              "__Host-b": "Secure; Path=/; Domain=example.com",
+              "__Host-c": "Secure; Path=/app",
+              "__Secure-d": "Secure; Domain=example.com",
+              "__Secure-e": "no Secure"
+            },
+            "line": 1
+          },
+          {
+            "caption": "__Secure-e has no Secure attribute, so the browser rejects it.",
+            "array": [
+              "__Host-a",
+              "__Host-b",
+              "__Host-c",
+              "__Secure-d",
+              "__Secure-e"
+            ],
+            "highlight": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "pointers": {},
+            "vars": {
+              "__Host-a": "Secure; Path=/",
+              "__Host-b": "Secure; Path=/; Domain=example.com",
+              "__Host-c": "Secure; Path=/app",
+              "__Secure-d": "Secure; Domain=example.com",
+              "__Secure-e": "no Secure",
+              "rejected": "__Secure-e"
+            },
+            "line": 2
+          },
+          {
+            "caption": "__Host-b sets Domain, and __Host-c uses Path=/app. A __Host- cookie needs Secure, Path=/ and no Domain, so both are rejected.",
+            "array": [
+              "__Host-a",
+              "__Host-b",
+              "__Host-c",
+              "__Secure-d",
+              "__Secure-e"
+            ],
+            "highlight": [
+              0,
+              3
+            ],
+            "pointers": {},
+            "vars": {
+              "__Host-a": "Secure; Path=/",
+              "__Host-b": "Secure; Path=/; Domain=example.com",
+              "__Host-c": "Secure; Path=/app",
+              "__Secure-d": "Secure; Domain=example.com",
+              "__Secure-e": "no Secure",
+              "rejected": "__Secure-e, __Host-b, __Host-c"
+            },
+            "line": 4
+          },
+          {
+            "caption": "Stored: __Host-a (only shop.example.com gets it) and __Secure-d (Domain=example.com is allowed with __Secure-).",
+            "array": [
+              "__Host-a",
+              "__Host-b",
+              "__Host-c",
+              "__Secure-d",
+              "__Secure-e"
+            ],
+            "highlight": [
+              0,
+              3
+            ],
+            "pointers": {},
+            "vars": {
+              "__Host-a": "Secure; Path=/",
+              "__Host-b": "Secure; Path=/; Domain=example.com",
+              "__Host-c": "Secure; Path=/app",
+              "__Secure-d": "Secure; Domain=example.com",
+              "__Secure-e": "no Secure",
+              "stored": "__Host-a, __Secure-d"
+            },
+            "line": 5
+          }
+        ]
+      }
+    }
+  }
+}

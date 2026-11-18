@@ -1,0 +1,16 @@
+sequenceDiagram
+  participant B as Browser
+  participant R as Resolver
+  participant Root as Root server
+  participant T as .org TLD server
+  participant A as mozilla.org NS
+  B->>R: developer.mozilla.org?
+  Note over R: cache miss
+  R->>Root: developer.mozilla.org?
+  Root-->>R: ask .org servers
+  R->>T: developer.mozilla.org?
+  T-->>R: ask mozilla.org NS
+  R->>A: developer.mozilla.org?
+  A-->>R: A record, TTL 300 s
+  R-->>B: IP address
+  Note over R: cached until TTL ends

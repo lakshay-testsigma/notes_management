@@ -1,0 +1,136 @@
+{
+  "id": "cookie-send-walkthrough",
+  "title": "How the browser picks the cookies for one request",
+  "purpose": "Apply the Domain, Path, Secure and SameSite checks to decide which stored cookies one request carries.",
+  "sequence_reason": "A cookie travels only when every check passes, so the learner follows one cookie jar through the checks for different requests.",
+  "summary": "A browser stores five cookies from shop.example.com. For each request it checks Domain (which hosts), Path (which URL paths), Secure (https only) and SameSite (Strict, Lax or None against same-site and cross-site requests). HttpOnly hides a cookie from page scripts but the cookie is still sent. The __Secure- and __Host- name prefixes force safe attributes.",
+  "explanation": "A request carries a stored cookie only when the host matches Domain, the path matches Path, the scheme satisfies Secure, and SameSite allows the request context. HttpOnly changes what JavaScript can read, not what the request carries.",
+  "learning_check": {
+    "question": "A form on another site sends a POST to shop.example.com. Which SameSite value lets the cookie go with it?",
+    "answer": "Only SameSite=None (with Secure). Strict never goes cross-site, and Lax goes cross-site only on a top-level navigation with a safe method such as GET, and POST is not safe."
+  },
+  "concept_ids": ["cookies", "set-cookie-attributes", "cookie-prefixes-and-chips", "third-party-cookies"],
+  "source_ids": ["mdn-http-docs", "whatwg-url-standard", "nodejs-undici-repo"],
+  "used_in": ["site/src/content/lessons/frontend-engineering/how-the-web-works/internet-and-networking/10-cookies.mdx"],
+  "narration": { "engine": "auto", "voice": null },
+  "scenes": [
+    {
+      "id": "intro",
+      "duration": 7,
+      "heading": "Which cookies go with this request?",
+      "narration": "The browser stores cookies. Before each request, it checks every stored cookie and sends only the cookies that pass.",
+      "source_ids": ["mdn-http-docs"],
+      "visual": { "type": "title", "subtitle": "Domain, Path, Secure, SameSite" }
+    },
+    {
+      "id": "jar",
+      "duration": 9,
+      "heading": "Five cookies from shop.example.com",
+      "narration": "Here are five cookies from shop.example.com. Each line shows the attributes that the Set-Cookie header gave the cookie.",
+      "source_ids": ["mdn-http-docs"],
+      "visual": {
+        "type": "steps",
+        "items": [
+          "__Host-sid: Secure, HttpOnly, Path=/, Lax",
+          "cart: Domain=example.com, Secure, Strict",
+          "prefs: Path=/account, Lax",
+          "widget: Domain=example.com, Secure, None",
+          "theme: no Secure, Lax"
+        ]
+      }
+    },
+    {
+      "id": "domain-path",
+      "duration": 10,
+      "heading": "Domain and Path pick the URL",
+      "narration": "Without Domain, a cookie goes only to the host that set it. With Domain, subdomains get it too. Path=/account matches /account and its subpaths.",
+      "source_ids": ["mdn-http-docs"],
+      "visual": {
+        "type": "compare",
+        "left": { "label": "Domain", "items": ["No Domain: host-only", "Domain=example.com: subdomains too", "Never a public suffix like com"] },
+        "right": { "label": "Path", "items": ["Path=/account matches /account/orders", "It does not match /", "It does not match /accounts"] },
+        "verdict": "Path is not a security boundary"
+      }
+    },
+    {
+      "id": "secure-httponly",
+      "duration": 10,
+      "heading": "Secure and HttpOnly do different jobs",
+      "narration": "Secure sends the cookie only over https. HttpOnly hides the cookie from page scripts, but their requests still carry it.",
+      "source_ids": ["mdn-http-docs"],
+      "visual": {
+        "type": "compare",
+        "left": { "label": "Secure", "items": ["Sent only on https requests", "Except on localhost", "http pages cannot set it"] },
+        "right": { "label": "HttpOnly", "items": ["Page scripts cannot read it", "Script requests still send it", "Limits damage from XSS"] },
+        "verdict": "HttpOnly controls JavaScript, not the request"
+      }
+    },
+    {
+      "id": "same-site",
+      "duration": 12,
+      "heading": "SameSite looks at where the request starts",
+      "narration": "A site is the scheme plus the registrable domain. Strict stays same-site. Lax also allows cross-site top-level GET navigations. None allows every request and needs Secure.",
+      "source_ids": ["mdn-http-docs", "whatwg-url-standard"],
+      "visual": {
+        "type": "steps",
+        "items": [
+          "Same site: shop.example.com and blog.example.com",
+          "Strict: same-site requests only",
+          "Lax: plus cross-site top-level navigation with GET",
+          "None: every request, Secure required"
+        ]
+      }
+    },
+    {
+      "id": "cross-site-link",
+      "duration": 11,
+      "heading": "A link from another site",
+      "narration": "A link on news.other.org opens shop.example.com. The Strict cart cookie stays home. Lax and None cookies go with the GET navigation.",
+      "source_ids": ["mdn-http-docs"],
+      "visual": {
+        "type": "flow",
+        "nodes": [
+          { "id": "news", "label": "news.other.org", "sub": "page with a link" },
+          { "id": "browser", "label": "Browser", "sub": "cookie checks" },
+          { "id": "shop", "label": "shop.example.com", "sub": "server" }
+        ],
+        "path": [
+          { "from": "news", "to": "browser", "packet": "click", "label": "Cross-site top-level navigation" },
+          { "from": "browser", "to": "shop", "packet": "GET /", "label": "Sends __Host-sid, widget, theme; cart and prefs stay" }
+        ]
+      }
+    },
+    {
+      "id": "cross-site-post",
+      "duration": 10,
+      "heading": "A cross-site form POST",
+      "narration": "Now a form on other.org sends a POST. POST is not a safe method, so Lax cookies stay home. Only the None cookie goes.",
+      "source_ids": ["mdn-http-docs"],
+      "visual": {
+        "type": "flow",
+        "nodes": [
+          { "id": "news", "label": "news.other.org", "sub": "page with a form" },
+          { "id": "browser", "label": "Browser", "sub": "cookie checks" },
+          { "id": "shop", "label": "shop.example.com", "sub": "server" }
+        ],
+        "path": [
+          { "from": "news", "to": "browser", "packet": "submit", "label": "Cross-site navigation with POST" },
+          { "from": "browser", "to": "shop", "packet": "POST", "label": "Sends only widget (SameSite=None)" }
+        ]
+      }
+    },
+    {
+      "id": "prefixes",
+      "duration": 11,
+      "heading": "Name prefixes force safe attributes",
+      "narration": "The browser rejects a __Secure- cookie without Secure. A __Host- cookie also needs Path=/ and no Domain, so only its own host gets it.",
+      "source_ids": ["mdn-http-docs", "nodejs-undici-repo"],
+      "visual": {
+        "type": "compare",
+        "left": { "label": "__Secure-", "items": ["Needs Secure", "Set from an https page", "Domain is allowed"] },
+        "right": { "label": "__Host-", "items": ["Needs Secure", "Needs Path=/", "No Domain: host-only"] },
+        "verdict": "__Host- treats the origin as the boundary"
+      }
+    }
+  ]
+}

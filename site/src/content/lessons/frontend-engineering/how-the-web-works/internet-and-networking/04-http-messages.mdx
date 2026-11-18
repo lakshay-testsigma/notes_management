@@ -1,0 +1,43 @@
+---
+title: "HTTP messages: methods, status codes and headers"
+description: Every HTTP exchange is one request message and one response message with the same parts.
+order: 4
+concepts: [HTTP messages, HTTP methods and idempotency, HTTP status codes, Content negotiation and keep-alive]
+---
+
+{/* <!-- concept: http-messages --> */}
+{/* <!-- concept: http-methods-and-idempotency --> */}
+{/* <!-- concept: http-status-codes --> */}
+{/* <!-- concept: content-negotiation-and-keep-alive --> */}
+
+Your frontend calls `fetch("/api/cart")`. The browser turns that call into a request message, and the server answers with a response message. A message is the unit that HTTP sends: a start line, header fields, an empty line and an optional body.
+
+Read the diagram from top to bottom. Compare the two start lines: they are the only parts that differ.
+
+<Diagram id="http-message-anatomy" />
+
+The request start line holds a method, a target and the version. A method is the verb: `GET` reads, `POST` submits, `PUT` replaces, `DELETE` removes. The response start line holds a status code, a three-digit result. Its first digit gives the class: 2xx success, 3xx redirect, 4xx client error, 5xx server error. Headers are name-value fields about the message. The client sends `Accept: application/json`, and the server names its choice in `Content-Type`. This exchange is content negotiation.
+
+A method is idempotent when two identical requests have the same effect as one. `GET`, `PUT` and `DELETE` are idempotent, and `POST` is not. So a client can resend a `PUT` after a broken connection, but a resent `POST` can create a second order. Correct methods give you this safety, which a "send everything as `POST`" API loses. Keep-alive lets HTTP/1.1 reuse one TCP connection for the next request and skip a new handshake.
+
+**Note.** An API that returns `200` with an error in the body looks like a success to every tool that reads only the status code. Send the real code.
+
+<MatchPairs
+  prompt="Match each situation in a shop frontend to its method and status code."
+  pairs={[
+    { term: "Load the cart", definition: "GET, then 200 OK" },
+    { term: "Place a new order", definition: "POST, then 201 Created" },
+    { term: "Replace the address", definition: "PUT, then 204 No Content" },
+    { term: "Open a deleted product", definition: "GET, then 404 Not Found" },
+    { term: "Page moved for good", definition: "GET, then 301 Moved Permanently" },
+    { term: "Database down on save", definition: "POST, then 500 Internal Server Error" }
+  ]}
+/>
+
+<Depth level="production">
+
+Node's HTTP client undici keeps HTTP/1.1 connections alive and reuses them. Its `pipelining` option defaults to 1, so one connection carries one request at a time (`lib/dispatcher/client.js:93-98 @ 011d947`). That limit is the reason HTTP/1.1 clients open several connections in parallel.
+
+</Depth>
+
+The next page shows how HTTP/1.1, HTTP/2 and HTTP/3 carry these same messages on the wire.

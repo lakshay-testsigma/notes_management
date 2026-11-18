@@ -1,0 +1,16 @@
+{
+  "name": "cookie-attribute-linter",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Lint the Set-Cookie headers of a login flow for Secure, HttpOnly, SameSite and cookie prefix mistakes.",
+  "scripts": {
+    "start": "node src/main.ts",
+    "demo": "node src/main.ts fixtures/login-flow.txt",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "@types/node": "22.15.21",
+    "vitest": "5.1.1"
+  }
+}

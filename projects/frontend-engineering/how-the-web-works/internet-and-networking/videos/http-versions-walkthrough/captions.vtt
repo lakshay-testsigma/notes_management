@@ -1,0 +1,101 @@
+WEBVTT
+
+1
+00:00:00.200 --> 00:00:03.310
+Three HTTP versions carry the same three files.
+
+2
+00:00:03.310 --> 00:00:06.800
+Watch what one lost packet does in each version.
+
+3
+00:00:07.200 --> 00:00:11.840
+Methods, status codes and headers mean the same in every version.
+
+4
+00:00:11.840 --> 00:00:14.800
+Only the framing and the transport change.
+
+5
+00:00:15.200 --> 00:00:19.270
+On one HTTP/1.1 connection, the browser sends GET A,
+
+6
+00:00:19.270 --> 00:00:23.800
+waits for response A, and only then sends GET B.
+
+7
+00:00:24.200 --> 00:00:28.930
+If response A is slow, B and C wait behind it.
+
+8
+00:00:28.930 --> 00:00:32.800
+So browsers open several TCP connections per host instead.
+
+9
+00:00:33.200 --> 00:00:36.070
+HTTP/2 splits messages into binary frames.
+
+10
+00:00:36.070 --> 00:00:41.800
+Frames of streams A, B and C interleave on one TCP connection.
+
+11
+00:00:42.200 --> 00:00:45.780
+A TCP packet with a frame of A is lost.
+
+12
+00:00:45.780 --> 00:00:47.930
+TCP delivers bytes only in order,
+
+13
+00:00:47.930 --> 00:00:50.800
+so frames of B and C wait too.
+
+14
+00:00:51.200 --> 00:00:53.440
+HTTP/3 runs over QUIC on UDP.
+
+15
+00:00:53.440 --> 00:00:56.060
+Each request gets its own QUIC stream:
+
+16
+00:00:56.060 --> 00:00:59.800
+A on stream 0, B on 4, C on 8.
+
+17
+00:01:00.200 --> 00:01:02.030
+On HTTP/3 over QUIC,
+
+18
+00:01:02.030 --> 00:01:06.600
+the same lost packet delays only stream 0, response A.
+
+19
+00:01:06.600 --> 00:01:09.800
+On HTTP/2 over TCP, all three waited.
+
+20
+00:01:10.200 --> 00:01:14.930
+During the TLS handshake, the client offers protocol names with ALPN,
+
+21
+00:01:14.930 --> 00:01:17.080
+such as h2 and http/1.1.
+
+22
+00:01:17.080 --> 00:01:18.800
+The server picks one.
+
+23
+00:01:19.200 --> 00:01:22.400
+A server advertises h3 with the Alt-Svc header.
+
+24
+00:01:22.400 --> 00:01:25.200
+The client opens QUIC with ALPN h3,
+
+25
+00:01:25.200 --> 00:01:28.800
+and falls back to TCP if UDP is blocked.

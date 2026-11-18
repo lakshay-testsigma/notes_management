@@ -30,7 +30,8 @@
       "answer": "A cache (the browser cache or a CDN) answered with a stored copy. The Cache-Control headers of the first response decided how long that copy stays fresh."
     },
     "used_in": [
-      "vault/frontend-engineering/how-the-web-works/internet-and-networking/01-brief-internet-and-networking.md"
+      "vault/frontend-engineering/how-the-web-works/internet-and-networking/01-brief-internet-and-networking.md",
+      "site/src/content/lessons/frontend-engineering/how-the-web-works/internet-and-networking/01-how-the-internet-works.mdx"
     ]
   },
   {
@@ -226,6 +227,1419 @@
     },
     "used_in": [
       "vault/frontend-engineering/how-the-web-works/internet-and-networking/05-repo-intel/nodejs-undici/undici-architecture.md"
+    ]
+  },
+  {
+    "id": "tls13-handshake",
+    "title": "How TLS 1.3 sets up HTTPS in one round trip",
+    "kind": "video",
+    "format": "hyperframes",
+    "concept_ids": [
+      "tls13-handshake",
+      "tls-and-https"
+    ],
+    "source_ids": [
+      "rfc-9846-tls13"
+    ],
+    "purpose": "See which messages a TLS 1.3 handshake sends, in what order, and why the browser can send its first request after one round trip.",
+    "explanation": "Certificate says who the server claims to be, CertificateVerify proves that the server holds the private key, and Finished proves that nobody changed the handshake. Early data (0-RTT) saves one round trip but can be replayed, so send only requests that are safe to repeat.",
+    "alt": "The browser sends ClientHello with a key share, the server name (SNI) and its application protocols (ALPN). The server replies with ServerHello and its key share, so both sides derive the same handshake keys. Everything after that is encrypted: EncryptedExtensions, Certificate, CertificateVerify and Finished. The browser checks the signature and the MAC, sends its own Finished, and sends its first HTTP request. That is one round trip. A returning browser with a pre-shared key can send early data in the first flight, but that data has no forward secrecy guarantee and can be replayed between connections.",
+    "learning_check": {
+      "question": "Which handshake message proves that the server holds the private key for its certificate, and why is the Certificate message alone not enough?",
+      "answer": "CertificateVerify. It is a signature over the handshake transcript made with the private key. Anyone can copy a certificate, but only the key holder can make that signature."
+    },
+    "used_in": [
+      "site/src/content/lessons/frontend-engineering/how-the-web-works/internet-and-networking/06-tls-and-https.mdx"
+    ],
+    "video": {
+      "project_dir": "projects/frontend-engineering/how-the-web-works/internet-and-networking/videos/tls13-handshake",
+      "status": "storyboard",
+      "blocker": "FFmpeg is not installed and Docker is not running; install FFmpeg (for example `brew install ffmpeg`) or start Docker. The storyboard, captions and transcript are ready; render later with `tutor video frontend-engineering/how-the-web-works/internet-and-networking render tls13-handshake`.",
+      "storyboard": "projects/frontend-engineering/how-the-web-works/internet-and-networking/videos/tls13-handshake/storyboard.md",
+      "transcript": "projects/frontend-engineering/how-the-web-works/internet-and-networking/videos/tls13-handshake/transcript.md",
+      "captions_source": "projects/frontend-engineering/how-the-web-works/internet-and-networking/videos/tls13-handshake/captions.vtt",
+      "duration_s": 86,
+      "scenes": 8,
+      "narration": "say",
+      "input_hash": "da3bed7fec02f3670acd2b700d8ea726f4b5a1f0586b823fb43c83857b7b8602",
+      "timeline": [
+        {
+          "id": "intro",
+          "heading": "One round trip to a secure channel",
+          "start": 0,
+          "duration": 9
+        },
+        {
+          "id": "client-hello",
+          "heading": "ClientHello: key share, SNI, ALPN",
+          "start": 9,
+          "duration": 10
+        },
+        {
+          "id": "server-hello",
+          "heading": "ServerHello: both sides now share keys",
+          "start": 19,
+          "duration": 10
+        },
+        {
+          "id": "server-flight",
+          "heading": "The encrypted server flight",
+          "start": 29,
+          "duration": 12
+        },
+        {
+          "id": "three-proofs",
+          "heading": "What each message proves",
+          "start": 41,
+          "duration": 11
+        },
+        {
+          "id": "client-finished",
+          "heading": "Client Finished, then the request",
+          "start": 52,
+          "duration": 10
+        },
+        {
+          "id": "one-rtt",
+          "heading": "Count the trips: 1-RTT",
+          "start": 62,
+          "duration": 11
+        },
+        {
+          "id": "zero-rtt",
+          "heading": "0-RTT early data and replay",
+          "start": 73,
+          "duration": 13
+        }
+      ],
+      "composition": "site/public/media/frontend-engineering/how-the-web-works/internet-and-networking/tls13-handshake/composition/index.html",
+      "composition_url": "/media/frontend-engineering/how-the-web-works/internet-and-networking/tls13-handshake/composition/index.html"
+    }
+  },
+  {
+    "id": "http-cache-intro",
+    "title": "How a browser cache reuses one response",
+    "kind": "video",
+    "format": "hyperframes",
+    "concept_ids": [
+      "http-caching",
+      "validation-etag-last-modified"
+    ],
+    "source_ids": [
+      "rfc-9111-http-caching",
+      "mdn-http-docs"
+    ],
+    "purpose": "See when a stored response is reused, revalidated with a 304, or fetched again from the origin.",
+    "explanation": "A cache reuses a stored copy while its lifetime is greater than its age. After that it asks the origin, and a 304 answer keeps the copy.",
+    "alt": "A browser asks for app.css. The first request misses and the cache stores the 200 response with max-age=60 and an ETag. At 30 seconds the copy is fresh and the cache answers alone. At 90 seconds the copy is stale, so the cache sends If-None-Match and the origin answers 304, which keeps the stored body.",
+    "learning_check": {
+      "question": "A copy has max-age=60 and is 90 seconds old. What does the cache send before it reuses the copy?",
+      "answer": "A conditional request with If-None-Match and the stored ETag. A 304 answer lets it reuse the stored body."
+    },
+    "used_in": [
+      "site/src/content/lessons/frontend-engineering/how-the-web-works/internet-and-networking/07-http-caching.mdx"
+    ],
+    "video": {
+      "project_dir": "projects/frontend-engineering/how-the-web-works/internet-and-networking/videos/http-cache-intro",
+      "status": "storyboard",
+      "blocker": "FFmpeg is not installed and Docker is not running; install FFmpeg (for example `brew install ffmpeg`) or start Docker",
+      "storyboard": "projects/frontend-engineering/how-the-web-works/internet-and-networking/videos/http-cache-intro/storyboard.md",
+      "transcript": "projects/frontend-engineering/how-the-web-works/internet-and-networking/videos/http-cache-intro/transcript.md",
+      "captions_source": "projects/frontend-engineering/how-the-web-works/internet-and-networking/videos/http-cache-intro/captions.vtt",
+      "duration_s": 57,
+      "scenes": 6,
+      "narration": "say",
+      "input_hash": "85823d2f28522adfae313109ca18f565328b56e15e7085aade1a7576b4d78b34",
+      "timeline": [
+        {
+          "id": "intro",
+          "heading": "One stylesheet, one cache",
+          "start": 0,
+          "duration": 6
+        },
+        {
+          "id": "miss",
+          "heading": "First request: a miss",
+          "start": 6,
+          "duration": 10
+        },
+        {
+          "id": "fresh-rule",
+          "heading": "Fresh means lifetime is greater than age",
+          "start": 16,
+          "duration": 10
+        },
+        {
+          "id": "hit",
+          "heading": "At 30 seconds: a fresh hit",
+          "start": 26,
+          "duration": 9
+        },
+        {
+          "id": "revalidate",
+          "heading": "At 90 seconds: stale, so ask first",
+          "start": 35,
+          "duration": 11
+        },
+        {
+          "id": "304-vs-200",
+          "heading": "304 or 200 after a revalidation",
+          "start": 46,
+          "duration": 11
+        }
+      ],
+      "composition": "site/public/media/frontend-engineering/how-the-web-works/internet-and-networking/http-cache-intro/composition/index.html",
+      "composition_url": "/media/frontend-engineering/how-the-web-works/internet-and-networking/http-cache-intro/composition/index.html",
+      "lint": {
+        "hash": "85823d2f28522adfae313109ca18f565328b56e15e7085aade1a7576b4d78b34",
+        "errors": 0,
+        "warnings": 22,
+        "findings": []
+      }
+    }
+  },
+  {
+    "id": "http-versions-walkthrough",
+    "title": "One lost packet in HTTP/1.1, HTTP/2 and HTTP/3",
+    "kind": "video",
+    "format": "hyperframes",
+    "concept_ids": [
+      "http-versions",
+      "head-of-line-blocking-and-multiplexing",
+      "http1-era-anti-patterns",
+      "header-compression-and-priorities",
+      "quic-0rtt-and-migration"
+    ],
+    "source_ids": [
+      "rfc-9110-http-semantics",
+      "rfc-9114-http3",
+      "mdn-http-docs",
+      "hpbn-book",
+      "nodejs-undici-repo"
+    ],
+    "purpose": "See at which layer head-of-line blocking happens in each HTTP version, and how ALPN picks the version.",
+    "explanation": "Head-of-line blocking moves down a layer with each version: HTTP/2 removes it from HTTP, and HTTP/3 removes it from the transport by using QUIC streams instead of one TCP byte stream.",
+    "alt": "A page needs three files: A style.css, B app.js and C logo.png. HTTP/1.1 sends one request at a time per connection, so B and C wait behind A. HTTP/2 interleaves all three as frames on one TCP connection, but when one TCP packet is lost, TCP holds back every byte after the gap, so all three stall. HTTP/3 gives each request its own QUIC stream, and QUIC recovers loss per stream, so only A waits. The version is chosen with ALPN during the TLS handshake: the client offers names, the server picks one. A server advertises h3 with Alt-Svc, and clients fall back to TCP when UDP is blocked.",
+    "learning_check": {
+      "question": "One packet that carries part of response A is lost. Which responses wait on HTTP/2 over TCP, and which on HTTP/3?",
+      "answer": "On HTTP/2 over TCP, A, B and C all wait, because TCP releases bytes only in order. On HTTP/3, only A waits, because each QUIC stream recovers its own loss."
+    },
+    "used_in": [
+      "site/src/content/lessons/frontend-engineering/how-the-web-works/internet-and-networking/05-http-versions.mdx"
+    ],
+    "video": {
+      "project_dir": "projects/frontend-engineering/how-the-web-works/internet-and-networking/videos/http-versions-walkthrough",
+      "status": "storyboard",
+      "blocker": "FFmpeg is not installed and Docker is not running; install FFmpeg (for example `brew install ffmpeg`) or start Docker",
+      "storyboard": "projects/frontend-engineering/how-the-web-works/internet-and-networking/videos/http-versions-walkthrough/storyboard.md",
+      "transcript": "projects/frontend-engineering/how-the-web-works/internet-and-networking/videos/http-versions-walkthrough/transcript.md",
+      "captions_source": "projects/frontend-engineering/how-the-web-works/internet-and-networking/videos/http-versions-walkthrough/captions.vtt",
+      "duration_s": 89,
+      "scenes": 10,
+      "narration": "say",
+      "input_hash": "6e19b614357eae4b1036472f4e6d55fcfc3120760860ca5b7ab5f05af1640d7a",
+      "timeline": [
+        {
+          "id": "intro",
+          "heading": "Three versions, one lost packet",
+          "start": 0,
+          "duration": 7
+        },
+        {
+          "id": "semantics",
+          "heading": "Same meaning, new framing",
+          "start": 7,
+          "duration": 8
+        },
+        {
+          "id": "h1",
+          "heading": "HTTP/1.1: one request at a time",
+          "start": 15,
+          "duration": 9
+        },
+        {
+          "id": "h1-hol",
+          "heading": "Head-of-line blocking in HTTP",
+          "start": 24,
+          "duration": 9
+        },
+        {
+          "id": "h2",
+          "heading": "HTTP/2: many streams, one TCP connection",
+          "start": 33,
+          "duration": 9
+        },
+        {
+          "id": "h2-loss",
+          "heading": "One lost TCP packet stalls every stream",
+          "start": 42,
+          "duration": 9
+        },
+        {
+          "id": "h3",
+          "heading": "HTTP/3: one QUIC stream per request",
+          "start": 51,
+          "duration": 9
+        },
+        {
+          "id": "h3-loss",
+          "heading": "The same loss stalls only A",
+          "start": 60,
+          "duration": 10
+        },
+        {
+          "id": "alpn",
+          "heading": "ALPN picks the version",
+          "start": 70,
+          "duration": 9
+        },
+        {
+          "id": "alpn-h3",
+          "heading": "Finding HTTP/3 with Alt-Svc",
+          "start": 79,
+          "duration": 10
+        }
+      ],
+      "composition": "site/public/media/frontend-engineering/how-the-web-works/internet-and-networking/http-versions-walkthrough/composition/index.html",
+      "composition_url": "/media/frontend-engineering/how-the-web-works/internet-and-networking/http-versions-walkthrough/composition/index.html",
+      "lint": {
+        "hash": "6e19b614357eae4b1036472f4e6d55fcfc3120760860ca5b7ab5f05af1640d7a",
+        "errors": 0,
+        "warnings": 36,
+        "findings": []
+      }
+    }
+  },
+  {
+    "id": "http-versions-lab",
+    "title": "Drop one packet in HTTP/1.1, HTTP/2 and HTTP/3",
+    "kind": "experience",
+    "format": "experience",
+    "component": "Experience",
+    "concept_ids": [
+      "http-versions",
+      "head-of-line-blocking-and-multiplexing",
+      "http1-era-anti-patterns",
+      "header-compression-and-priorities",
+      "quic-0rtt-and-migration"
+    ],
+    "source_ids": [
+      "rfc-9110-http-semantics",
+      "rfc-9114-http3",
+      "mdn-http-docs",
+      "hpbn-book",
+      "nodejs-undici-repo"
+    ],
+    "purpose": "Predict which responses stall after one lost packet in each HTTP version, and explain why.",
+    "explanation": "Step through an animated walkthrough, change the simulation and answer the checkpoints. Predict which responses stall after one lost packet in each HTTP version, and explain why.",
+    "alt": "A guided walkthrough follows three files, A style.css, B app.js and C logo.png, through HTTP/1.1, HTTP/2 and HTTP/3 and drops one packet of response A in each. On HTTP/1.1, B and C wait behind A on the connection. On HTTP/2, all three stall because TCP releases bytes only in order. On HTTP/3, only A waits because each QUIC stream recovers its own loss. The walkthrough ends with ALPN and Alt-Svc, which choose the version. A stepper lets the learner replay the loss in each version.",
+    "learning_check": {
+      "question": "On HTTP/2, one TCP packet that carries a frame of response A is lost. Which responses stall?",
+      "answer": "A, B and C. HTTP/2 streams share one TCP byte stream. TCP releases bytes only in order, so the bytes of B and C that arrived after the gap wait until the lost packet is retransmitted."
+    },
+    "used_in": [
+      "site/src/content/lessons/frontend-engineering/how-the-web-works/internet-and-networking/05-http-versions.mdx"
+    ],
+    "experience": {
+      "mode": "interactive",
+      "level": "intermediate",
+      "project_dir": "projects/frontend-engineering/how-the-web-works/internet-and-networking/experiences/http-versions-lab",
+      "built": "projects/frontend-engineering/how-the-web-works/internet-and-networking/experiences/http-versions-lab/experience.built.json",
+      "tabs": [
+        "explore",
+        "guided",
+        "practice"
+      ],
+      "parts": {
+        "watch": null,
+        "guided": "http-versions-walkthrough",
+        "deck": null,
+        "summary_video": null,
+        "simulation": "AlgorithmStepper"
+      },
+      "checkpoints": 5,
+      "fallback_visual": "rfc-9114-http3-mechanism",
+      "input_hash": "6cf8f1f2e7c95a4b1b2846a4faacaf324d7cc1c07810d0285dd1f76896f2dc20",
+      "spec_hash": "6689745d2fd6b636176bfd48d794c64a84e069d7e533f965d6ae4fd80be5fde7",
+      "built_at": "2026-11-18T13:54:58Z"
+    }
+  },
+  {
+    "id": "realtime-transport-decision",
+    "title": "Choosing a realtime transport by who sends",
+    "kind": "decision-tree",
+    "format": "mermaid",
+    "file": "vault/frontend-engineering/how-the-web-works/internet-and-networking/visuals/assets/realtime-transport-decision-internet-and-networking.mmd",
+    "concept_ids": [
+      "realtime-transports",
+      "polling-and-sse",
+      "websockets"
+    ],
+    "source_ids": [
+      "hpbn-book"
+    ],
+    "purpose": "Show how the direction of the data and the tolerated delay pick polling, long polling, Server-Sent Events or WebSocket.",
+    "explanation": "If only the server sends text updates, Server-Sent Events keep one HTTP response open and push each event at once. If both sides send at any time, WebSocket is the transport that carries messages both ways on one connection. If some delay is fine, periodic polling batches updates into fewer requests. Long polling is the fallback when EventSource is not available.",
+    "alt": "Decision flowchart. Question: who needs to send live data? Only the server with text leads to Server-Sent Events. Both sides at any time leads to WebSocket. Server with tolerated delay leads to periodic polling. From Server-Sent Events, a branch for no EventSource support leads to long polling.",
+    "learning_check": {
+      "question": "A chat app must send the user's messages and receive other people's messages. Which transport does the diagram pick, and why?",
+      "answer": "WebSocket, because both sides send at any time and WebSocket carries messages in both directions on one connection."
+    },
+    "used_in": [
+      "projects/frontend-engineering/how-the-web-works/internet-and-networking/experiences/realtime-transport-deck/experience.json",
+      "site/src/content/lessons/frontend-engineering/how-the-web-works/internet-and-networking/11-realtime-transports.mdx"
+    ]
+  },
+  {
+    "id": "http-cache-walkthrough",
+    "title": "Change the cache headers and watch the outcome",
+    "kind": "video",
+    "format": "hyperframes",
+    "concept_ids": [
+      "http-caching",
+      "cache-control-directives",
+      "validation-etag-last-modified",
+      "vary-and-shared-caches",
+      "hashed-filenames-cache-busting"
+    ],
+    "source_ids": [
+      "rfc-9111-http-caching",
+      "mdn-http-docs",
+      "cloudflare-docs",
+      "nodejs-undici-repo"
+    ],
+    "purpose": "Predict how max-age, no-cache, no-store, heuristics, s-maxage, Vary and hashed file names change hit, revalidate and miss.",
+    "explanation": "Every scene loads a matching preset in the simulation, so you can step through the same rule request by request.",
+    "alt": "The walkthrough steps through seven cache rules. max-age sets a lifetime; a stale copy revalidates with If-None-Match. no-cache stores but always revalidates, while no-store never stores. Without max-age a cache may guess about 10% of the time since Last-Modified. s-maxage gives shared caches such as a CDN their own lifetime. Vary keeps one copy per request header value. Hashed file names with a one-year max-age and immutable get a new cache key on every build.",
+    "learning_check": {
+      "question": "Why does a new hashed file name always cause a miss, even when the old file is cached for a year?",
+      "answer": "The cache key includes the URL. A new name is a new URL, so the cache has no stored copy for it."
+    },
+    "used_in": [
+      "site/src/content/lessons/frontend-engineering/how-the-web-works/internet-and-networking/07-http-caching.mdx"
+    ],
+    "video": {
+      "project_dir": "projects/frontend-engineering/how-the-web-works/internet-and-networking/videos/http-cache-walkthrough",
+      "status": "storyboard",
+      "blocker": "FFmpeg is not installed and Docker is not running; install FFmpeg (for example `brew install ffmpeg`) or start Docker",
+      "storyboard": "projects/frontend-engineering/how-the-web-works/internet-and-networking/videos/http-cache-walkthrough/storyboard.md",
+      "transcript": "projects/frontend-engineering/how-the-web-works/internet-and-networking/videos/http-cache-walkthrough/transcript.md",
+      "captions_source": "projects/frontend-engineering/how-the-web-works/internet-and-networking/videos/http-cache-walkthrough/captions.vtt",
+      "duration_s": 87,
+      "scenes": 8,
+      "narration": "say",
+      "input_hash": "0276098d8fe9e8f288ea046c09a2668068e0f86a1fad1172740d3ba3c6058385",
+      "timeline": [
+        {
+          "id": "intro",
+          "heading": "Change one header at a time",
+          "start": 0,
+          "duration": 7
+        },
+        {
+          "id": "max-age",
+          "heading": "max-age=60 over two minutes",
+          "start": 7,
+          "duration": 12
+        },
+        {
+          "id": "stale",
+          "heading": "Stale copy: If-None-Match, then 304",
+          "start": 19,
+          "duration": 11
+        },
+        {
+          "id": "no-cache-vs-no-store",
+          "heading": "no-cache is not no-store",
+          "start": 30,
+          "duration": 12
+        },
+        {
+          "id": "heuristic",
+          "heading": "No max-age: a heuristic guess",
+          "start": 42,
+          "duration": 11
+        },
+        {
+          "id": "shared",
+          "heading": "s-maxage is for shared caches",
+          "start": 53,
+          "duration": 11
+        },
+        {
+          "id": "vary",
+          "heading": "Vary: one copy per header value",
+          "start": 64,
+          "duration": 11
+        },
+        {
+          "id": "hashed",
+          "heading": "Hashed names: a new build is a new URL",
+          "start": 75,
+          "duration": 12
+        }
+      ],
+      "composition": "site/public/media/frontend-engineering/how-the-web-works/internet-and-networking/http-cache-walkthrough/composition/index.html",
+      "composition_url": "/media/frontend-engineering/how-the-web-works/internet-and-networking/http-cache-walkthrough/composition/index.html",
+      "lint": {
+        "hash": "0276098d8fe9e8f288ea046c09a2668068e0f86a1fad1172740d3ba3c6058385",
+        "errors": 0,
+        "warnings": 28,
+        "findings": []
+      }
+    }
+  },
+  {
+    "id": "http-cache-summary",
+    "title": "Three questions decide every cached response",
+    "kind": "video",
+    "format": "hyperframes",
+    "concept_ids": [
+      "http-caching",
+      "cache-control-directives",
+      "validation-etag-last-modified",
+      "hashed-filenames-cache-busting"
+    ],
+    "source_ids": [
+      "rfc-9111-http-caching",
+      "mdn-http-docs"
+    ],
+    "purpose": "Connect the cache key, the freshness check and revalidation into one decision for HTML pages and hashed assets.",
+    "explanation": "The key, the lifetime and the validator together decide hit, revalidate or miss for every request.",
+    "alt": "A cache answers three questions in order: is there a stored copy for this key, is it fresh, and if not, does the origin answer 304 or 200. The directives set the answers: no-store, no-cache, max-age and s-maxage. A common pattern gives HTML no-cache with an ETag and hashed assets a one-year max-age with immutable.",
+    "learning_check": {
+      "question": "Which header set fits an HTML page that must never show an old version but should stay cheap to check?",
+      "answer": "Cache-Control: no-cache with an ETag, so every reuse is a small conditional request that usually ends in 304."
+    },
+    "used_in": [
+      "site/src/content/lessons/frontend-engineering/how-the-web-works/internet-and-networking/07-http-caching.mdx"
+    ],
+    "video": {
+      "project_dir": "projects/frontend-engineering/how-the-web-works/internet-and-networking/videos/http-cache-summary",
+      "status": "storyboard",
+      "blocker": "FFmpeg is not installed and Docker is not running; install FFmpeg (for example `brew install ffmpeg`) or start Docker",
+      "storyboard": "projects/frontend-engineering/how-the-web-works/internet-and-networking/videos/http-cache-summary/storyboard.md",
+      "transcript": "projects/frontend-engineering/how-the-web-works/internet-and-networking/videos/http-cache-summary/transcript.md",
+      "captions_source": "projects/frontend-engineering/how-the-web-works/internet-and-networking/videos/http-cache-summary/captions.vtt",
+      "duration_s": 42,
+      "scenes": 4,
+      "narration": "say",
+      "input_hash": "df23111e2194c7aa03a4d260e66362763f7a667d92f8bef1a9c5a0cca3b984dc",
+      "timeline": [
+        {
+          "id": "intro",
+          "heading": "Three questions, every request",
+          "start": 0,
+          "duration": 6
+        },
+        {
+          "id": "questions",
+          "heading": "The cache asks in this order",
+          "start": 6,
+          "duration": 12
+        },
+        {
+          "id": "directives",
+          "heading": "Directives set the answers",
+          "start": 18,
+          "duration": 12
+        },
+        {
+          "id": "pattern",
+          "heading": "HTML page versus hashed asset",
+          "start": 30,
+          "duration": 12
+        }
+      ],
+      "composition": "site/public/media/frontend-engineering/how-the-web-works/internet-and-networking/http-cache-summary/composition/index.html",
+      "composition_url": "/media/frontend-engineering/how-the-web-works/internet-and-networking/http-cache-summary/composition/index.html",
+      "lint": {
+        "hash": "df23111e2194c7aa03a4d260e66362763f7a667d92f8bef1a9c5a0cca3b984dc",
+        "errors": 0,
+        "warnings": 16,
+        "findings": []
+      }
+    }
+  },
+  {
+    "id": "packet-journey",
+    "title": "A request crosses the internet as packets",
+    "kind": "sequence",
+    "scope": "stage",
+    "format": "mermaid",
+    "file": "vault/frontend-engineering/how-the-web-works/internet-and-networking/visuals/assets/packet-journey-internet-and-networking.mmd",
+    "concept_ids": [
+      "internet-packets-and-routing",
+      "tcp-vs-udp",
+      "routing-and-isps"
+    ],
+    "source_ids": [
+      "hpbn-book"
+    ],
+    "purpose": "Show that a request travels as packets through routers, that TCP spends one round trip on a handshake, and that TCP resends a lost packet before the browser can read later bytes.",
+    "explanation": "Before any HTTP data moves, TCP runs a three-way handshake: SYN, SYN-ACK, ACK. That costs one full round trip. The request and the response then cross the routers of several networks as separate packets. When a packet is lost, the server sends it again, and TCP holds back later bytes until the gap is filled. Reliable order costs time on a lossy network.",
+    "alt": "Sequence diagram with three participants: browser, ISP routers and web server. The browser sends SYN, the server answers SYN-ACK, the browser sends ACK, so one round trip passes before data. The browser sends the GET request; the server sends response packet 1, packet 2 is lost and sent again, and TCP delivers the bytes in order.",
+    "learning_check": {
+      "question": "The server is 100 ms away (one round trip). How long before the first HTTP request byte can leave the browser on a new TCP connection, and what happens to packet 3 if packet 2 is lost?",
+      "answer": "About 100 ms, because the TCP handshake takes one round trip first. Packet 3 waits in the receiver's buffer until packet 2 is resent, because TCP delivers bytes only in order."
+    },
+    "used_in": [
+      "site/src/content/lessons/frontend-engineering/how-the-web-works/internet-and-networking/01-how-the-internet-works.mdx"
+    ]
+  },
+  {
+    "id": "realtime-transport-paths",
+    "title": "Pick a realtime transport for each feature",
+    "kind": "presentation",
+    "format": "hyperframes-slideshow",
+    "concept_ids": [
+      "realtime-transports",
+      "polling-and-sse",
+      "websockets"
+    ],
+    "source_ids": [
+      "hpbn-book"
+    ],
+    "purpose": "Decide between periodic polling, long polling, Server-Sent Events and WebSockets for four product features: a notification feed, a stock ticker, a chat and a collaborative cursor.",
+    "explanation": "Persistent connections remove the time a message waits for the next poll, but they do not make packets travel faster. Pick the simplest transport that matches the direction of the data.",
+    "alt": "Two questions pick a realtime transport: who sends the data, and how much delay is acceptable. Polling asks on a timer, long polling holds the request open, Server-Sent Events stream text from the server, and WebSockets carry messages both ways. Four deep dives apply the questions to a notification feed, a stock ticker, a chat and a collaborative cursor.",
+    "learning_check": {
+      "question": "A notification feed only pushes short text events from the server. Which transport fits best, and why not WebSockets?",
+      "answer": "Server-Sent Events: the data goes one way and is text, and the browser reconnects automatically. WebSockets also work, but the application must then build its own reconnects and state handling."
+    },
+    "used_in": [
+      "site/src/content/lessons/frontend-engineering/how-the-web-works/internet-and-networking/11-realtime-transports.mdx"
+    ],
+    "deck": {
+      "project_dir": "projects/frontend-engineering/how-the-web-works/internet-and-networking/videos/realtime-transport-paths",
+      "status": "built",
+      "input_hash": "46afa405bfaf49f3088b3705bf15f28f0a9255fd14765b318aa1c48b7c4b381b",
+      "outline": "projects/frontend-engineering/how-the-web-works/internet-and-networking/videos/realtime-transport-paths/outline.md",
+      "island": {
+        "slides": [
+          {
+            "sceneId": "question",
+            "notes": "State the decision: four features, four transports, and two questions to choose between them."
+          },
+          {
+            "sceneId": "four-transports",
+            "notes": "Reveal one transport at a time. Ask who opens the connection and who can send on it.",
+            "fragments": [
+              4.3,
+              4.6,
+              4.9,
+              5.2
+            ]
+          },
+          {
+            "sceneId": "queuing-latency",
+            "notes": "With polling, a ready message waits for the next request. SSE and WebSockets send it at once. The packet travel time stays the same.",
+            "fragments": [
+              8.3,
+              8.6,
+              8.9
+            ]
+          },
+          {
+            "sceneId": "polling-cost",
+            "notes": "Ten thousand clients poll and get no new messages; each empty check is about 850 bytes. At 60 seconds the server receives 1.13 megabits per second; at 1 second, over 60."
+          },
+          {
+            "sceneId": "server-only",
+            "notes": "Open a deep dive for a feature where updates flow from the server to the browser only. Previous returns here.",
+            "hotspots": [
+              {
+                "id": "server-only-h1",
+                "label": "Notification feed",
+                "target": "notifications",
+                "region": {
+                  "x": 5,
+                  "y": 81,
+                  "w": 31,
+                  "h": 12
+                }
+              },
+              {
+                "id": "server-only-h2",
+                "label": "Stock ticker",
+                "target": "ticker",
+                "region": {
+                  "x": 38,
+                  "y": 81,
+                  "w": 31,
+                  "h": 12
+                }
+              }
+            ]
+          },
+          {
+            "sceneId": "both-ways",
+            "notes": "Open a deep dive for a feature where the browser also sends data at any time. Previous returns here.",
+            "hotspots": [
+              {
+                "id": "both-ways-h1",
+                "label": "Chat messages",
+                "target": "chat",
+                "region": {
+                  "x": 5,
+                  "y": 81,
+                  "w": 31,
+                  "h": 12
+                }
+              },
+              {
+                "id": "both-ways-h2",
+                "label": "Collaborative cursor",
+                "target": "cursor",
+                "region": {
+                  "x": 38,
+                  "y": 81,
+                  "w": 31,
+                  "h": 12
+                }
+              }
+            ]
+          },
+          {
+            "sceneId": "decide",
+            "notes": "Turn the deep dives into a repeatable procedure for any new feature.",
+            "fragments": [
+              24.3,
+              24.6,
+              24.9,
+              25.2
+            ]
+          }
+        ],
+        "slideSequences": [
+          {
+            "id": "notifications",
+            "label": "Notification feed",
+            "slides": [
+              {
+                "sceneId": "notifications-sse",
+                "notes": "The feed is one-way text, which is what SSE was designed for. The browser parses events and reconnects for you.",
+                "fragments": [
+                  28.3,
+                  28.6,
+                  28.9,
+                  29.2
+                ]
+              }
+            ]
+          },
+          {
+            "id": "ticker",
+            "label": "Stock ticker",
+            "slides": [
+              {
+                "sceneId": "ticker-compare",
+                "notes": "If every price must arrive at once, use SSE. If the screen may lag, periodic polling batches many updates into one response."
+              }
+            ]
+          },
+          {
+            "id": "chat",
+            "label": "Chat messages",
+            "slides": [
+              {
+                "sceneId": "chat-websocket",
+                "notes": "Both people send at any time, so the client must send after the handshake, which SSE cannot do. WebSockets can, with small frames.",
+                "fragments": [
+                  36.3,
+                  36.6,
+                  36.9,
+                  37.2
+                ]
+              }
+            ]
+          },
+          {
+            "id": "cursor",
+            "label": "Collaborative cursor",
+            "slides": [
+              {
+                "sceneId": "cursor-websocket",
+                "notes": "Many small position updates flow both ways. One large queued message delays every message behind it, so keep messages small.",
+                "fragments": [
+                  40.3,
+                  40.6,
+                  40.9,
+                  41.2
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "timeline": [
+        {
+          "id": "question",
+          "heading": "Which transport fits each feature?",
+          "start": 0,
+          "duration": 4,
+          "sequence": null,
+          "fragments": []
+        },
+        {
+          "id": "four-transports",
+          "heading": "Four ways to get live data",
+          "start": 4,
+          "duration": 4,
+          "sequence": null,
+          "fragments": [
+            4.3,
+            4.6,
+            4.9,
+            5.2
+          ]
+        },
+        {
+          "id": "queuing-latency",
+          "heading": "What a persistent connection removes",
+          "start": 8,
+          "duration": 4,
+          "sequence": null,
+          "fragments": [
+            8.3,
+            8.6,
+            8.9
+          ]
+        },
+        {
+          "id": "polling-cost",
+          "heading": "Short intervals cost bandwidth",
+          "start": 12,
+          "duration": 4,
+          "sequence": null,
+          "fragments": []
+        },
+        {
+          "id": "server-only",
+          "heading": "Only the server sends",
+          "start": 16,
+          "duration": 4,
+          "sequence": null,
+          "fragments": []
+        },
+        {
+          "id": "both-ways",
+          "heading": "Both sides send",
+          "start": 20,
+          "duration": 4,
+          "sequence": null,
+          "fragments": []
+        },
+        {
+          "id": "decide",
+          "heading": "How to decide",
+          "start": 24,
+          "duration": 4,
+          "sequence": null,
+          "fragments": [
+            24.3,
+            24.6,
+            24.9,
+            25.2
+          ]
+        },
+        {
+          "id": "notifications-sse",
+          "heading": "Feed: Server-Sent Events",
+          "start": 28,
+          "duration": 4,
+          "sequence": "notifications",
+          "fragments": [
+            28.3,
+            28.6,
+            28.9,
+            29.2
+          ]
+        },
+        {
+          "id": "ticker-compare",
+          "heading": "Ticker: push or batch?",
+          "start": 32,
+          "duration": 4,
+          "sequence": "ticker",
+          "fragments": []
+        },
+        {
+          "id": "chat-websocket",
+          "heading": "Chat: WebSockets",
+          "start": 36,
+          "duration": 4,
+          "sequence": "chat",
+          "fragments": [
+            36.3,
+            36.6,
+            36.9,
+            37.2
+          ]
+        },
+        {
+          "id": "cursor-websocket",
+          "heading": "Cursor: small messages over WebSockets",
+          "start": 40,
+          "duration": 4,
+          "sequence": "cursor",
+          "fragments": [
+            40.3,
+            40.6,
+            40.9,
+            41.2
+          ]
+        }
+      ],
+      "slides": 7,
+      "branches": [
+        {
+          "id": "notifications",
+          "label": "Notification feed",
+          "slides": 1
+        },
+        {
+          "id": "ticker",
+          "label": "Stock ticker",
+          "slides": 1
+        },
+        {
+          "id": "chat",
+          "label": "Chat messages",
+          "slides": 1
+        },
+        {
+          "id": "cursor",
+          "label": "Collaborative cursor",
+          "slides": 1
+        }
+      ],
+      "composition": "site/public/media/frontend-engineering/how-the-web-works/internet-and-networking/realtime-transport-paths/composition/index.html",
+      "composition_url": "/media/frontend-engineering/how-the-web-works/internet-and-networking/realtime-transport-paths/composition/index.html",
+      "present_command": "npx --yes hyperframes@0.9.59 present projects/frontend-engineering/how-the-web-works/internet-and-networking/videos/realtime-transport-paths/composition",
+      "check": {
+        "hash": "46afa405bfaf49f3088b3705bf15f28f0a9255fd14765b318aa1c48b7c4b381b",
+        "errors": 1,
+        "warnings": 0,
+        "findings": [
+          "check_runtime_failure: The browser is already running for /tmp/claude-501/puppeteer_dev_chrome_profile-DIb88J. Use a different `userDataDir` or stop the running browser first.\nChrome exited with code 21 when launched on its own.\nstderr:\n[1118/192542.949492:ERROR:third_party/crashpad/crashpad/util/mach/bootstrap.cc:65] bootstrap_check_in org.chromium.crashpad.child_port_handshake.99695.4338618.JBDPHCSNRWLMWZEJ: Permission denied (1100)\n[1118/192542.951167:ERROR:third_party/crashpad/crashpad/util/file/file_io.cc:103] ReadExactly: expected 4, observed 0\n[1118/192542.952161:ERROR:third_party/crashpad/crashpad/util/file/file_io_posix.cc:208] open /Users/lakshay.goyal/Library/Application Support/Google/Chrome/Crashpad/settings.dat: Operation not permitted (1)\n[1118/192542.952421:ERROR:third_party/crashpad/crashpad/util/file/file_io_posix.cc:208] open /Users/lakshay.goyal/Library/Application Support/Google/Chrome/Crashpad/settings.dat: Operation not permitted (1)\n[99693:4338613:1118/192542.971478:ERROR:chrome/browser/process_singleton_posix.cc:1046] Failed to create socket directory.\n[99693:4338613:1118/192542.971674:ERROR:chrome/app/chrome_main_delegate.cc:635] Failed to create a ProcessSingleton for your profile directory. This means that running multiple instances would start multiple browser processes rather than opening a new window in the existing process. Aborting now to avoid profile corruption."
+        ]
+      }
+    }
+  },
+  {
+    "id": "realtime-transport-deck",
+    "title": "Choose a realtime transport for each feature",
+    "kind": "experience",
+    "format": "experience",
+    "component": "Experience",
+    "concept_ids": [
+      "realtime-transports",
+      "polling-and-sse",
+      "websockets"
+    ],
+    "source_ids": [
+      "hpbn-book"
+    ],
+    "purpose": "Pick polling, long polling, Server-Sent Events or WebSocket for a product feature and justify the choice by data direction and tolerated delay.",
+    "explanation": "Choose a path through the deck and open the deep dives. Pick polling, long polling, Server-Sent Events or WebSocket for a product feature and justify the choice by data direction and tolerated delay.",
+    "alt": "A branching deck compares periodic polling, long polling, Server-Sent Events and WebSocket by who sends the data and how much delay is acceptable, shows the bandwidth cost of short polling intervals, and opens four deep dives: a notification feed, a stock ticker, a chat and a collaborative cursor.",
+    "learning_check": {
+      "question": "10,000 clients poll every 60 seconds and get no new messages. They switch to every 1 second. What happens to the traffic the server receives?",
+      "answer": "It rises about 60 times, to over 60 Mbps. Each empty check still costs about 850 bytes of HTTP overhead. Sixty times more requests give about sixty times more traffic, so short intervals are expensive."
+    },
+    "used_in": [
+      "site/src/content/lessons/frontend-engineering/how-the-web-works/internet-and-networking/11-realtime-transports.mdx"
+    ],
+    "experience": {
+      "mode": "branching",
+      "level": "intermediate",
+      "project_dir": "projects/frontend-engineering/how-the-web-works/internet-and-networking/experiences/realtime-transport-deck",
+      "built": "projects/frontend-engineering/how-the-web-works/internet-and-networking/experiences/realtime-transport-deck/experience.built.json",
+      "tabs": [
+        "deepdive",
+        "practice"
+      ],
+      "parts": {
+        "watch": null,
+        "guided": null,
+        "deck": "realtime-transport-paths",
+        "summary_video": null,
+        "simulation": null
+      },
+      "checkpoints": 3,
+      "fallback_visual": "realtime-transport-decision",
+      "input_hash": "534e83cbaa108136cb189a416e455b8bc059a5fa9f759fdd70f3d05e804c05d6",
+      "spec_hash": "c1649aed4a99c6291c5d3f68f9ad0bf2b3424d98f51189653ee2c6ebfe9bd82f",
+      "built_at": "2026-11-18T13:55:34Z"
+    }
+  },
+  {
+    "id": "cookie-send-checks",
+    "title": "Which checks a stored cookie passes before a request carries it",
+    "kind": "decision-tree",
+    "format": "mermaid",
+    "file": "vault/frontend-engineering/how-the-web-works/internet-and-networking/visuals/assets/cookie-send-checks-internet-and-networking.mmd",
+    "concept_ids": [
+      "cookies",
+      "set-cookie-attributes",
+      "third-party-cookies"
+    ],
+    "source_ids": [
+      "mdn-http-docs",
+      "whatwg-url-standard"
+    ],
+    "purpose": "Show the Domain, Path, Secure and SameSite checks that decide whether a request carries a stored cookie.",
+    "explanation": "A request carries a stored cookie only when every check passes. Domain decides the hosts: without it, only the host that set the cookie. Path must contain the URL path. A Secure cookie needs https. For a cross-site request, Strict never goes, Lax goes only on a top-level navigation with a safe method such as GET, and None always goes but needs Secure. HttpOnly does not change sending; it hides the cookie from document.cookie.",
+    "alt": "Decision tree: a stored cookie goes through a Domain check, a Path check and a Secure check. A same-site request then sends it. A cross-site request checks SameSite: Strict is not sent, Lax is sent only on a top-level GET navigation, None is sent. A final note says HttpOnly hides the cookie from document.cookie but it is still sent.",
+    "learning_check": {
+      "question": "A cross-site image request goes to shop.example.com. Which SameSite value lets the cookie travel?",
+      "answer": "Only None, because an image is not a top-level navigation, so Lax and Strict cookies stay home. Some browsers also block third-party cookies by default."
+    },
+    "used_in": [
+      "projects/frontend-engineering/how-the-web-works/internet-and-networking/experiences/cookie-send-lab/experience.json",
+      "site/src/content/lessons/frontend-engineering/how-the-web-works/internet-and-networking/10-cookies.mdx"
+    ]
+  },
+  {
+    "id": "dns-resolution-chain",
+    "title": "How a resolver finds the IP address for developer.mozilla.org",
+    "kind": "sequence",
+    "scope": "stage",
+    "format": "mermaid",
+    "file": "vault/frontend-engineering/how-the-web-works/internet-and-networking/visuals/assets/dns-resolution-chain-internet-and-networking.mmd",
+    "concept_ids": [
+      "dns-resolution",
+      "registrars-tlds-nameservers",
+      "dns-record-types"
+    ],
+    "source_ids": [
+      "cloudflare-docs",
+      "mdn-http-docs"
+    ],
+    "purpose": "Show the fixed order of a DNS lookup on a cache miss, and that the TTL of the answer decides how long the resolver reuses it.",
+    "explanation": "On a cache miss, the recursive resolver asks three kinds of server in turn. The root server points to the .org TLD servers. The TLD server points to the nameservers of mozilla.org. The authoritative nameserver returns the A record with its TTL. The resolver gives the IP address to the browser and keeps the answer until the TTL ends. TTL 300 s is the Cloudflare default and is an example value here.",
+    "alt": "Sequence diagram with five participants: browser, recursive resolver, root server, .org TLD server and mozilla.org nameserver. The resolver misses its cache, asks the root, which refers it to .org, which refers it to the mozilla.org nameserver. That server returns an A record with TTL 300 seconds. The resolver returns the IP to the browser and caches it until the TTL ends.",
+    "learning_check": {
+      "question": "A second user asks the same resolver for developer.mozilla.org 2 minutes later. Which servers does the resolver contact?",
+      "answer": "None. The cached A record still has about 180 seconds of TTL left, so the resolver answers from its cache."
+    },
+    "used_in": [
+      "site/src/content/lessons/frontend-engineering/how-the-web-works/internet-and-networking/02-domains-dns-and-hosting.mdx"
+    ]
+  },
+  {
+    "id": "cookie-send-walkthrough",
+    "title": "How the browser picks the cookies for one request",
+    "kind": "video",
+    "format": "hyperframes",
+    "concept_ids": [
+      "cookies",
+      "set-cookie-attributes",
+      "cookie-prefixes-and-chips",
+      "third-party-cookies"
+    ],
+    "source_ids": [
+      "mdn-http-docs",
+      "whatwg-url-standard",
+      "nodejs-undici-repo"
+    ],
+    "purpose": "Apply the Domain, Path, Secure and SameSite checks to decide which stored cookies one request carries.",
+    "explanation": "A request carries a stored cookie only when the host matches Domain, the path matches Path, the scheme satisfies Secure, and SameSite allows the request context. HttpOnly changes what JavaScript can read, not what the request carries.",
+    "alt": "A browser stores five cookies from shop.example.com. For each request it checks Domain (which hosts), Path (which URL paths), Secure (https only) and SameSite (Strict, Lax or None against same-site and cross-site requests). HttpOnly hides a cookie from page scripts but the cookie is still sent. The __Secure- and __Host- name prefixes force safe attributes.",
+    "learning_check": {
+      "question": "A form on another site sends a POST to shop.example.com. Which SameSite value lets the cookie go with it?",
+      "answer": "Only SameSite=None (with Secure). Strict never goes cross-site, and Lax goes cross-site only on a top-level navigation with a safe method such as GET, and POST is not safe."
+    },
+    "used_in": [
+      "site/src/content/lessons/frontend-engineering/how-the-web-works/internet-and-networking/10-cookies.mdx"
+    ],
+    "video": {
+      "project_dir": "projects/frontend-engineering/how-the-web-works/internet-and-networking/videos/cookie-send-walkthrough",
+      "status": "storyboard",
+      "blocker": "FFmpeg is not installed and Docker is not running; install FFmpeg (for example `brew install ffmpeg`) or start Docker",
+      "storyboard": "projects/frontend-engineering/how-the-web-works/internet-and-networking/videos/cookie-send-walkthrough/storyboard.md",
+      "transcript": "projects/frontend-engineering/how-the-web-works/internet-and-networking/videos/cookie-send-walkthrough/transcript.md",
+      "captions_source": "projects/frontend-engineering/how-the-web-works/internet-and-networking/videos/cookie-send-walkthrough/captions.vtt",
+      "duration_s": 80,
+      "scenes": 8,
+      "narration": "say",
+      "input_hash": "6bd78b3f8e08a869fa5bc72210b3ce15edf6380024db8eb730cb8243d00e71e0",
+      "timeline": [
+        {
+          "id": "intro",
+          "heading": "Which cookies go with this request?",
+          "start": 0,
+          "duration": 7
+        },
+        {
+          "id": "jar",
+          "heading": "Five cookies from shop.example.com",
+          "start": 7,
+          "duration": 9
+        },
+        {
+          "id": "domain-path",
+          "heading": "Domain and Path pick the URL",
+          "start": 16,
+          "duration": 10
+        },
+        {
+          "id": "secure-httponly",
+          "heading": "Secure and HttpOnly do different jobs",
+          "start": 26,
+          "duration": 10
+        },
+        {
+          "id": "same-site",
+          "heading": "SameSite looks at where the request starts",
+          "start": 36,
+          "duration": 12
+        },
+        {
+          "id": "cross-site-link",
+          "heading": "A link from another site",
+          "start": 48,
+          "duration": 11
+        },
+        {
+          "id": "cross-site-post",
+          "heading": "A cross-site form POST",
+          "start": 59,
+          "duration": 10
+        },
+        {
+          "id": "prefixes",
+          "heading": "Name prefixes force safe attributes",
+          "start": 69,
+          "duration": 11
+        }
+      ],
+      "composition": "site/public/media/frontend-engineering/how-the-web-works/internet-and-networking/cookie-send-walkthrough/composition/index.html",
+      "composition_url": "/media/frontend-engineering/how-the-web-works/internet-and-networking/cookie-send-walkthrough/composition/index.html",
+      "lint": {
+        "hash": "6bd78b3f8e08a869fa5bc72210b3ce15edf6380024db8eb730cb8243d00e71e0",
+        "errors": 0,
+        "warnings": 33,
+        "findings": []
+      }
+    }
+  },
+  {
+    "id": "http-cache-lab",
+    "title": "HTTP cache lab: hit, revalidate or miss",
+    "kind": "experience",
+    "format": "experience",
+    "component": "Experience",
+    "concept_ids": [
+      "http-caching",
+      "cache-control-directives",
+      "validation-etag-last-modified",
+      "vary-and-shared-caches",
+      "hashed-filenames-cache-busting"
+    ],
+    "source_ids": [
+      "rfc-9111-http-caching",
+      "mdn-http-docs",
+      "cloudflare-docs",
+      "nodejs-undici-repo"
+    ],
+    "purpose": "Predict whether a request hits the cache, revalidates with a 304, or goes to the origin, from its headers and its age.",
+    "explanation": "Watch, experiment with the simulation, step through the walkthrough, explore the deep dives and practice. Predict whether a request hits the cache, revalidates with a 304, or goes to the origin, from its headers and its age.",
+    "alt": "An intro video follows one stylesheet through a miss, a fresh hit and a stale revalidation with If-None-Match and 304. A simulation steps through request traces for seven header sets: max-age, no-cache, no-store, a heuristic lifetime, s-maxage at a CDN, Vary: Accept-Encoding, and hashed file names with immutable. A guided walkthrough loads each trace and pauses for predictions, and a summary video connects the cache key, the freshness check and revalidation.",
+    "learning_check": {
+      "question": "The copy has max-age=60 and ETag \"v1\" and is now 90 seconds old. The file has not changed. What happens?",
+      "answer": "The cache sends If-None-Match: \"v1\" and the origin answers 304. A stale copy needs validation before reuse. The cache sends the stored ETag in If-None-Match. The file is unchanged, so the origin answers 304 and the cache keeps the stored body."
+    },
+    "used_in": [
+      "site/src/content/lessons/frontend-engineering/how-the-web-works/internet-and-networking/07-http-caching.mdx"
+    ],
+    "experience": {
+      "mode": "hybrid",
+      "level": "intermediate",
+      "project_dir": "projects/frontend-engineering/how-the-web-works/internet-and-networking/experiences/http-cache-lab",
+      "built": "projects/frontend-engineering/how-the-web-works/internet-and-networking/experiences/http-cache-lab/experience.built.json",
+      "tabs": [
+        "watch",
+        "explore",
+        "guided",
+        "practice"
+      ],
+      "parts": {
+        "watch": "http-cache-intro",
+        "guided": "http-cache-walkthrough",
+        "deck": null,
+        "summary_video": "http-cache-summary",
+        "simulation": "AlgorithmStepper"
+      },
+      "checkpoints": 6,
+      "fallback_visual": "rfc-9111-mechanism",
+      "input_hash": "c7972ffe28f8ebb125b9447187c89c4decc7a22f45b6eb4bb57be720d34d3b79",
+      "spec_hash": "0affce3d4b83154820997f7c31201245052c156c5eff4b98f00e9b88518b14cf",
+      "built_at": "2026-11-18T13:56:33Z"
+    }
+  },
+  {
+    "id": "cookie-send-lab",
+    "title": "Decide which cookies a request carries",
+    "kind": "experience",
+    "format": "experience",
+    "component": "Experience",
+    "concept_ids": [
+      "cookies",
+      "set-cookie-attributes",
+      "cookie-prefixes-and-chips",
+      "third-party-cookies"
+    ],
+    "source_ids": [
+      "mdn-http-docs",
+      "whatwg-url-standard",
+      "nodejs-undici-repo"
+    ],
+    "purpose": "Predict which stored cookies a request carries from Domain, Path, Secure and SameSite, and say what HttpOnly and the __Host- prefix change.",
+    "explanation": "Step through an animated walkthrough, change the simulation and answer the checkpoints. Predict which stored cookies a request carries from Domain, Path, Secure and SameSite, and say what HttpOnly and the __Host- prefix change.",
+    "alt": "A browser holds five cookies from shop.example.com with different Domain, Path, Secure, HttpOnly and SameSite attributes. A guided walkthrough explains each check, then a stepper runs the checks for seven cases: a same-site fetch, a cross-site link, a cross-site form POST, a cross-site image, a link to a same-site subdomain, a link to plain http, and a set of __Host- and __Secure- cookies that the browser stores or rejects.",
+    "learning_check": {
+      "question": "A form on news.other.org sends POST to shop.example.com/account/pay. Which of the five cookies does the request carry?",
+      "answer": "Only widget (SameSite=None). Lax allows a cross-site request only when it is a top-level navigation with a safe method. POST is not safe, so the Lax cookies stay home and Strict never goes cross-site. SameSite=None allows every request, so widget goes."
+    },
+    "used_in": [
+      "site/src/content/lessons/frontend-engineering/how-the-web-works/internet-and-networking/10-cookies.mdx"
+    ],
+    "experience": {
+      "mode": "interactive",
+      "level": "intermediate",
+      "project_dir": "projects/frontend-engineering/how-the-web-works/internet-and-networking/experiences/cookie-send-lab",
+      "built": "projects/frontend-engineering/how-the-web-works/internet-and-networking/experiences/cookie-send-lab/experience.built.json",
+      "tabs": [
+        "explore",
+        "guided",
+        "practice"
+      ],
+      "parts": {
+        "watch": null,
+        "guided": "cookie-send-walkthrough",
+        "deck": null,
+        "summary_video": null,
+        "simulation": "AlgorithmStepper"
+      },
+      "checkpoints": 5,
+      "fallback_visual": "cookie-send-checks",
+      "input_hash": "a304a59a876e6363c61816224807de7ceea316dafd35855952a8b73463a3ff51",
+      "spec_hash": "5cb7750de2d0421296cd5f3cc9cf74e16db734a92b45af769d711d2a7e994c6c",
+      "built_at": "2026-11-18T13:56:36Z"
+    }
+  },
+  {
+    "id": "url-anatomy",
+    "title": "The parts of https://shop.example.com:8443/cart?id=7#top",
+    "kind": "concept-map",
+    "scope": "detail",
+    "format": "mermaid",
+    "file": "vault/frontend-engineering/how-the-web-works/internet-and-networking/visuals/assets/url-anatomy-internet-and-networking.mmd",
+    "concept_ids": [
+      "urls-and-origins",
+      "url-parts-and-encoding",
+      "origin-vs-site"
+    ],
+    "source_ids": [
+      "whatwg-url-standard",
+      "mdn-http-docs"
+    ],
+    "purpose": "Show which parts of a parsed URL form the origin, which parts do not, and how the host gives the registrable domain that a site uses.",
+    "explanation": "The URL parser splits the string into named parts. Scheme, host and port together are the origin, so a change to any one of them gives a different origin. Path, query and fragment never change the origin. The registrable domain is the public suffix plus one label, here example.com. A site is the scheme plus the registrable domain, so it is wider than an origin.",
+    "alt": "Flowchart of one URL split into six parts. A group labelled origin holds scheme https, host shop.example.com and port 8443. A second group, not in the origin, holds path /cart, query id=7 and fragment top. An arrow from the host leads to the registrable domain example.com, which the site uses, so subdomains share a site but not an origin.",
+    "learning_check": {
+      "question": "Do https://shop.example.com and https://shop.example.com:8443 have the same origin? Are they the same site?",
+      "answer": "Different origins, because the port is part of the origin (443 by default versus 8443). Same site, because the scheme and the registrable domain example.com match."
+    },
+    "used_in": [
+      "site/src/content/lessons/frontend-engineering/how-the-web-works/internet-and-networking/03-urls-and-origins.mdx"
+    ]
+  },
+  {
+    "id": "http-message-anatomy",
+    "title": "One HTTP request and its response, part by part",
+    "kind": "sequence",
+    "scope": "detail",
+    "format": "mermaid",
+    "file": "vault/frontend-engineering/how-the-web-works/internet-and-networking/visuals/assets/http-message-anatomy-internet-and-networking.mmd",
+    "concept_ids": [
+      "http-messages",
+      "http-methods-and-idempotency",
+      "http-status-codes",
+      "content-negotiation-and-keep-alive"
+    ],
+    "source_ids": [
+      "rfc-9110-http-semantics",
+      "mdn-http-docs"
+    ],
+    "purpose": "Show that a request and a response have the same parts: a start line, header fields, an empty line and an optional body. Only the start line differs.",
+    "explanation": "The browser sends a request whose start line holds the method, the target and the version. Header fields follow, then an empty line. A GET has no body. The server answers with a status line, its own header fields, an empty line and the body. Accept asks for a format, and Content-Type names the format the server chose.",
+    "alt": "Sequence diagram with two participants, browser and API server. The browser sends GET /api/cart HTTP/1.1 with Host and Accept headers and no body. The server answers HTTP/1.1 200 OK with Content-Type and Cache-Control headers and a JSON body, so both messages share one structure and differ only in the start line.",
+    "learning_check": {
+      "question": "Which part of the response tells the browser that the request worked, and which part tells it how to read the body?",
+      "answer": "The status code 200 in the start line says the request worked. The Content-Type header says the body is JSON."
+    },
+    "used_in": [
+      "site/src/content/lessons/frontend-engineering/how-the-web-works/internet-and-networking/04-http-messages.mdx"
+    ]
+  },
+  {
+    "id": "mini-01-flow",
+    "title": "DNS record inspector flow",
+    "kind": "data-flow",
+    "format": "mermaid",
+    "file": "vault/frontend-engineering/how-the-web-works/internet-and-networking/visuals/assets/mini-01-flow-internet-and-networking.mmd",
+    "concept_ids": [
+      "dns-resolution"
+    ],
+    "source_ids": [
+      "cloudflare-docs",
+      "mdn-http-docs"
+    ],
+    "purpose": "Show how the inspector turns one domain name into five record lookups, a report and a list of findings.",
+    "explanation": "main.ts calls inspectDomain, which runs queryType once for each of five record types through a Resolver interface. The real resolver uses node:dns; tests use a stub. The Report goes to analyze, which runs the TTL, CNAME and CAA checks, and formatReport prints the findings.",
+    "alt": "Flowchart with four boxes: main.ts calls lookup.ts, which queries the Resolver for each record type, passes a Report to checks.ts analyze, which passes a list of findings to report.ts formatReport for printing.",
+    "learning_check": {
+      "question": "Why can the tests run without a network?",
+      "answer": "queryType talks only to the Resolver interface, so tests pass a stub resolver instead of node:dns."
+    },
+    "used_in": [
+      "projects/frontend-engineering/how-the-web-works/internet-and-networking/mini-01-dns-record-inspector/README.md"
+    ]
+  },
+  {
+    "id": "cdn-request-path",
+    "title": "One request through a CDN",
+    "kind": "workflow",
+    "scope": "stage",
+    "format": "mermaid",
+    "file": "vault/frontend-engineering/how-the-web-works/internet-and-networking/visuals/assets/cdn-request-path-internet-and-networking.mmd",
+    "concept_ids": [
+      "cdns-and-edge",
+      "pops-cache-keys-and-purge",
+      "http-caching"
+    ],
+    "source_ids": [
+      "cloudflare-docs",
+      "rfc-9111-http-caching"
+    ],
+    "purpose": "Show which layer of a CDN answers a request, where the cache key decides hit or miss, and what a purge removes.",
+    "explanation": "The browser sends its request to a nearby point of presence (PoP), a CDN data center close to the user. The PoP builds a cache key from the URL and some headers. On a hit it answers at once. On a miss it asks the origin and stores the response as its Cache-Control allows. A purge by URL or tag removes PoP copies only, so the next request refills from the origin.",
+    "alt": "Flowchart: the browser sends a request to a nearby PoP. The PoP checks whether its cache key is stored. A hit goes straight back to the browser. A miss goes to the origin server, which returns the response with Cache-Control to the PoP. A dashed arrow shows the purge API removing PoP copies by URL or by tag.",
+    "learning_check": {
+      "question": "You purge /app.js by URL. A user who loaded it yesterday reloads normally. Which layer answers, and why?",
+      "answer": "The user's browser cache can still answer while its copy is fresh. A CDN purge removes copies at the PoPs only; it does not reach browser caches."
+    },
+    "used_in": [
+      "site/src/content/lessons/frontend-engineering/how-the-web-works/internet-and-networking/08-cdns-and-the-edge.mdx"
+    ]
+  },
+  {
+    "id": "mini-02-flow",
+    "title": "Cache header auditor: from HAR file to report",
+    "kind": "data-flow",
+    "format": "mermaid",
+    "file": "vault/frontend-engineering/how-the-web-works/internet-and-networking/visuals/assets/mini-02-flow-internet-and-networking.mmd",
+    "concept_ids": [
+      "http-caching"
+    ],
+    "source_ids": [
+      "rfc-9111-http-caching",
+      "mdn-http-docs",
+      "nodejs-undici-repo"
+    ],
+    "purpose": "Show how one HAR response becomes findings, so the learner sees which function owns each rule.",
+    "explanation": "main.ts reads the HAR file and readEntries flattens each response into an Entry. auditEntry asks classify whether the entry is a hashed asset or HTML, and runs the matching grader. Both graders read Cache-Control through parseCacheControl. gradeVaryAndEncoding runs for every entry. main.ts prints each finding that is not ok.",
+    "alt": "Flowchart: site.har goes to readEntries, then auditEntry, then classify. Hashed assets go to gradeHashedAsset and HTML goes to gradeHtml. Both call parseCacheControl. auditEntry also calls gradeVaryAndEncoding. All three graders feed the report in main.ts.",
+    "learning_check": {
+      "question": "Why does the auditor run gradeVaryAndEncoding for every entry but gradeHtml only for HTML?",
+      "answer": "Compression and Vary rules apply to any cacheable text response, while the freshness rules depend on the kind of file: hashed files may live a year, HTML must revalidate."
+    },
+    "used_in": [
+      "projects/frontend-engineering/how-the-web-works/internet-and-networking/mini-02-cache-header-auditor/README.md"
+    ]
+  },
+  {
+    "id": "api-style-map",
+    "title": "One request in REST, GraphQL and Connect RPC, and which one HTTP caches",
+    "kind": "comparison",
+    "scope": "detail",
+    "format": "mermaid",
+    "file": "vault/frontend-engineering/how-the-web-works/internet-and-networking/visuals/assets/api-style-map-internet-and-networking.mmd",
+    "concept_ids": [
+      "api-styles",
+      "graphql-queries",
+      "rpc-trpc-grpc-web"
+    ],
+    "source_ids": [
+      "graphql-learn",
+      "connectrpc-docs"
+    ],
+    "purpose": "Show where each API style puts its contract in the HTTP request, and why only URL-based requests fit HTTP caching by default.",
+    "explanation": "A REST-style endpoint names each resource by its URL, so the URL is the cache key that HTTP caches and CDNs use. GraphQL sends every operation to one endpoint, usually /graphql, with POST; only queries sent with GET can use HTTP caching. Connect RPC posts to a URL named after the service and method and carries JSON or binary Protobuf over HTTP/1.1, HTTP/2 or HTTP/3.",
+    "alt": "Flowchart from a browser app to three endpoints. GET /users/42 goes to a REST endpoint, whose URL is the cache key for an HTTP cache or CDN. POST /graphql goes to a GraphQL endpoint, which reaches the cache only for GET queries, drawn as a dotted line. POST /Service/Method goes to Connect RPC, which sends JSON or Protobuf to server code, so only the URL-based style caches by default.",
+    "learning_check": {
+      "question": "Why can a CDN cache GET /users/42 but not a GraphQL query sent as POST /graphql?",
+      "answer": "HTTP caches use the URL as the key. Every GraphQL POST goes to the same URL with the query in the body, so the URL does not identify the data. Sending the query with GET puts it in the URL and makes caching possible."
+    },
+    "used_in": [
+      "site/src/content/lessons/frontend-engineering/how-the-web-works/internet-and-networking/12-api-styles-in-production.mdx"
+    ]
+  },
+  {
+    "id": "compression-compare",
+    "title": "gzip compared with Brotli and Zstandard",
+    "kind": "comparison",
+    "format": "component",
+    "component": "CompareView",
+    "concept_ids": [
+      "http-compression",
+      "gzip-brotli-zstd",
+      "compression-dictionaries"
+    ],
+    "source_ids": [
+      "mdn-http-docs",
+      "rfc-9110-http-semantics",
+      "nodejs-undici-repo"
+    ],
+    "purpose": "Let the learner choose a content coding for a static bundle and for per-request HTML, and see the size against CPU trade-off.",
+    "explanation": "gzip works with every HTTP client, and undici asks for it even over plain HTTP. Brotli and Zstandard give smaller text bodies at high levels but cost more CPU, and undici asks for them over HTTPS only (lib/web/fetch/index.js:1586-1591 @ 011d947). So compress static files once at build time with a high level, and use a fast level for HTML built per request.",
+    "alt": "Side-by-side comparison. Left, gzip: every client decodes it, it is offered even over plain HTTP, and it gives larger text bodies. Right, Brotli or Zstandard: smaller text bodies at high levels, high CPU cost at those levels, offered over HTTPS only. The verdict: pre-compress static files at build time and use a fast level for dynamic HTML.",
+    "learning_check": {
+      "question": "Why compress a hashed app.js at build time but HTML at request time with a fast level?",
+      "answer": "The hashed file never changes, so a slow high-level compression runs once and every user gets the smallest body. HTML changes per request, so slow compression would add CPU time to every response."
+    },
+    "used_in": [
+      "site/src/content/lessons/frontend-engineering/how-the-web-works/internet-and-networking/09-compression.mdx"
+    ]
+  },
+  {
+    "id": "mini-03-flow",
+    "title": "Cookie attribute linter flow",
+    "kind": "data-flow",
+    "format": "mermaid",
+    "file": "vault/frontend-engineering/how-the-web-works/internet-and-networking/visuals/assets/mini-03-flow-internet-and-networking.mmd",
+    "concept_ids": [
+      "cookies",
+      "set-cookie-attributes",
+      "cookie-prefixes-and-chips"
+    ],
+    "source_ids": [
+      "mdn-http-docs",
+      "jshttp-cookie-repo",
+      "nodejs-undici-repo"
+    ],
+    "purpose": "Show how the linter turns raw Set-Cookie header strings into findings and an exit code.",
+    "explanation": "main.ts reads a text or HAR file with readSetCookieHeaders and passes the header strings to lintHeaders. For each header, parseSetCookie builds a cookie or returns null. lintCookie runs checkAttributes and checkPrefixes on the cookie. formatReport prints the findings and exitCode returns 1 when any finding is an error.",
+    "alt": "Flowchart with five boxes in a row: input.ts readSetCookieHeaders, lint.ts lintHeaders, parse.ts parseSetCookie, rules.ts checkAttributes and checkPrefixes, then report.ts formatReport and exitCode.",
+    "learning_check": {
+      "question": "Why does the linter report a header with Max-Age=soon even though the parser accepts it?",
+      "answer": "The parser is lenient and drops the bad value into ignored; lintHeaders turns every ignored piece into a warning, so nothing is hidden."
+    },
+    "used_in": [
+      "projects/frontend-engineering/how-the-web-works/internet-and-networking/mini-03-cookie-attribute-linter/README.md"
     ]
   }
 ]

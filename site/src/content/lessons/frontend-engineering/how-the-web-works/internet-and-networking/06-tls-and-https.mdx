@@ -1,0 +1,76 @@
+---
+title: "TLS and HTTPS: the handshake and the chain of trust"
+description: In one round trip, TLS 1.3 agrees on keys and proves the server's identity before any HTTP data moves.
+order: 6
+concepts: [TLS and HTTPS, TLS 1.3 handshake, Certificates and chain of trust, HSTS and mixed content]
+---
+
+{/* <!-- concept: tls-and-https --> */}
+{/* <!-- concept: tls13-handshake --> */}
+{/* <!-- concept: certificates-and-chain-of-trust --> */}
+{/* <!-- concept: hsts-and-mixed-content --> */}
+{/* <!-- concept: certificate-transparency --> */}
+
+On café Wi-Fi, anyone on the network can read and change plain HTTP. TLS (Transport Layer Security) gives three promises: the server is authenticated, the data is hidden, and any change is detected. HTTPS is HTTP sent inside TLS.
+
+Press Play and watch where encryption starts. Then switch off the trust store and see why the browser stops.
+
+<FlowAnimation
+  title="TLS 1.3 full handshake, one round trip"
+  nodes={[
+    { id: "client", label: "Browser", kind: "pill" },
+    { id: "server", label: "shop.example server" },
+    { id: "store", label: "Trust store", kind: "store" }
+  ]}
+  edges={[
+    { from: "client", to: "server", label: "1-RTT" },
+    { from: "client", to: "store", label: "check chain" }
+  ]}
+  steps={[
+    { from: "client", to: "server", packet: "ClientHello", caption: "The browser offers versions, ciphers and a key share. Nothing is encrypted yet." },
+    { from: "server", to: "client", packet: "ServerHello", caption: "The server sends its key share. Both sides now compute the same handshake keys." },
+    { from: "server", to: "client", packet: "EncExtensions", caption: "From here on, every handshake message is encrypted." },
+    { from: "server", to: "client", packet: "Certificate", caption: "The server sends its certificate chain, its own certificate first." },
+    { from: "server", to: "client", packet: "CertVerify", caption: "The server signs the handshake so far with its private key. This proves it owns the certificate." },
+    { from: "server", to: "client", packet: "Finished", caption: "The server sends a MAC over the whole handshake, so tampering shows." },
+    { from: "client", to: "store", packet: "chain", caption: "The browser checks that the chain ends at an authority in its local trust store." },
+    { from: "client", to: "server", packet: "Finished", caption: "All proofs hold, so the browser sends its own Finished." },
+    { from: "client", to: "server", packet: "GET /", caption: "The first HTTP request travels as encrypted application data." }
+  ]}
+  breakable={["store"]}
+  brokenCaptions={{ store: "The browser cannot link the certificate to a trusted authority, so it aborts the handshake." }}
+/>
+
+A key share is half of a key exchange. Both sides combine shares to derive the same secret without ever sending it. A certificate alone can be copied, so CertificateVerify proves possession of the private key. The chain links the server's certificate to an authority the browser already trusts. The video replays this order slowly.
+
+<Video id="tls13-handshake" />
+
+Compared with older TLS, 1.3 needs one round trip, encrypts everything after ServerHello, and always gives forward secrecy: a stolen key later cannot decrypt recorded traffic.
+
+<OrderSteps
+  prompt="Put the TLS 1.3 handshake messages in the order they are sent."
+  steps={[
+    "ClientHello with key share",
+    "ServerHello with key share",
+    "EncryptedExtensions",
+    "Certificate",
+    "CertificateVerify",
+    "Server Finished",
+    "Client Finished",
+    "Encrypted GET request"
+  ]}
+/>
+
+<Depth level="internals">
+
+Resumption uses a ticket from an earlier connection as a pre-shared key and skips the certificate messages. The client may then send 0-RTT early data. That data has no forward secrecy and can be replayed, so a server accepts one 0-RTT handshake at most once per instance, and clients send only replay-safe requests (RFC 9846, Sections 2.3 and 8). TLS does not hide message length.
+
+</Depth>
+
+<Depth level="production">
+
+HTTPS needs more than the handshake. The `Strict-Transport-Security` header tells the browser to use only HTTPS for the host, and an HTTPS page must not load scripts over plain HTTP (mixed content). Certificate Transparency logs record issued certificates; the server delivers the log's signed timestamp in the certificate, a TLS extension or OCSP stapling.
+
+</Depth>
+
+The next page follows the response back into the browser's HTTP cache.

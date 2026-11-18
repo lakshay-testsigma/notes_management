@@ -1,0 +1,12 @@
+flowchart LR
+  har[("site.har")] --> read["har.ts: readEntries"]
+  read --> audit["audit.ts: auditEntry"]
+  audit --> classify["classify.ts: classify"]
+  classify -->|hashed-asset| hashed["rules.ts: gradeHashedAsset"]
+  classify -->|html| html["rules.ts: gradeHtml"]
+  hashed --> cc["cacheControl.ts: parseCacheControl"]
+  html --> cc
+  audit --> vary["rules.ts: gradeVaryAndEncoding"]
+  hashed --> report["main.ts: report"]
+  html --> report
+  vary --> report

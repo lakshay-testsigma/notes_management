@@ -1,0 +1,184 @@
+{
+  "id": "realtime-transport-paths",
+  "title": "Pick a realtime transport for each feature",
+  "purpose": "Decide between periodic polling, long polling, Server-Sent Events and WebSockets for four product features: a notification feed, a stock ticker, a chat and a collaborative cursor.",
+  "summary": "Two questions pick a realtime transport: who sends the data, and how much delay is acceptable. Polling asks on a timer, long polling holds the request open, Server-Sent Events stream text from the server, and WebSockets carry messages both ways. Four deep dives apply the questions to a notification feed, a stock ticker, a chat and a collaborative cursor.",
+  "explanation": "Persistent connections remove the time a message waits for the next poll, but they do not make packets travel faster. Pick the simplest transport that matches the direction of the data.",
+  "learning_check": {
+    "question": "A notification feed only pushes short text events from the server. Which transport fits best, and why not WebSockets?",
+    "answer": "Server-Sent Events: the data goes one way and is text, and the browser reconnects automatically. WebSockets also work, but the application must then build its own reconnects and state handling."
+  },
+  "concept_ids": ["realtime-transports", "polling-and-sse", "websockets"],
+  "source_ids": ["hpbn-book"],
+  "used_in": ["site/src/content/lessons/frontend-engineering/how-the-web-works/internet-and-networking/11-realtime-transports.mdx"],
+  "slides": [
+    {
+      "id": "question",
+      "heading": "Which transport fits each feature?",
+      "notes": "State the decision: four features, four transports, and two questions to choose between them.",
+      "visual": { "type": "title", "subtitle": "Polling, long polling, SSE or WebSockets" }
+    },
+    {
+      "id": "four-transports",
+      "heading": "Four ways to get live data",
+      "notes": "Reveal one transport at a time. Ask who opens the connection and who can send on it.",
+      "reveal": true,
+      "visual": {
+        "type": "steps",
+        "items": [
+          "Polling: the client asks again on a timer",
+          "Long polling: the server holds the request until an update",
+          "SSE: one long HTTP response streams text from the server",
+          "WebSockets: both sides send messages at any time"
+        ]
+      }
+    },
+    {
+      "id": "queuing-latency",
+      "heading": "What a persistent connection removes",
+      "notes": "With polling, a ready message waits for the next request. SSE and WebSockets send it at once. The packet travel time stays the same.",
+      "reveal": true,
+      "visual": {
+        "type": "compare",
+        "left": { "label": "Periodic polling", "items": ["Message waits for the next poll", "Empty checks still cost a request"] },
+        "right": { "label": "SSE or WebSockets", "items": ["Server sends when data is ready", "Travel time is unchanged"] },
+        "verdict": "Low latency here means no queuing delay."
+      }
+    },
+    {
+      "id": "polling-cost",
+      "heading": "Short intervals cost bandwidth",
+      "notes": "Ten thousand clients poll and get no new messages; each empty check is about 850 bytes. At 60 seconds the server receives 1.13 megabits per second; at 1 second, over 60.",
+      "visual": {
+        "type": "bars",
+        "items": [
+          { "label": "Poll every 60 s (Mbps)", "value": 1.13 },
+          { "label": "Poll every 1 s (Mbps)", "value": 60 }
+        ]
+      }
+    },
+    {
+      "id": "server-only",
+      "heading": "Only the server sends",
+      "notes": "Open a deep dive for a feature where updates flow from the server to the browser only. Previous returns here.",
+      "visual": {
+        "type": "steps",
+        "items": ["Notification feed: short text events", "Stock ticker: many updates per second"]
+      },
+      "hotspots": [
+        { "label": "Notification feed", "target": "notifications" },
+        { "label": "Stock ticker", "target": "ticker" }
+      ]
+    },
+    {
+      "id": "both-ways",
+      "heading": "Both sides send",
+      "notes": "Open a deep dive for a feature where the browser also sends data at any time. Previous returns here.",
+      "visual": {
+        "type": "steps",
+        "items": ["Chat: users send and receive messages", "Collaborative cursor: positions flow both ways"]
+      },
+      "hotspots": [
+        { "label": "Chat messages", "target": "chat" },
+        { "label": "Collaborative cursor", "target": "cursor" }
+      ]
+    },
+    {
+      "id": "decide",
+      "heading": "How to decide",
+      "notes": "Turn the deep dives into a repeatable procedure for any new feature.",
+      "reveal": true,
+      "visual": {
+        "type": "steps",
+        "items": [
+          "Both sides send at any time: WebSockets",
+          "Server sends text only: SSE",
+          "Delay is fine and updates are many: poll",
+          "No SSE support in the client: long polling"
+        ]
+      }
+    }
+  ],
+  "sequences": [
+    {
+      "id": "notifications",
+      "label": "Notification feed",
+      "slides": [
+        {
+          "id": "notifications-sse",
+          "heading": "Feed: Server-Sent Events",
+          "notes": "The feed is one-way text, which is what SSE was designed for. The browser parses events and reconnects for you.",
+          "reveal": true,
+          "visual": {
+            "type": "steps",
+            "items": [
+              "Server streams text/event-stream on one response",
+              "Browser fires a DOM event per message",
+              "On a drop, the browser reconnects and sends the last ID",
+              "For an image, send a link; fetch it over HTTP"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "ticker",
+      "label": "Stock ticker",
+      "slides": [
+        {
+          "id": "ticker-compare",
+          "heading": "Ticker: push or batch?",
+          "notes": "If every price must arrive at once, use SSE. If the screen may lag, periodic polling batches many updates into one response.",
+          "visual": {
+            "type": "compare",
+            "left": { "label": "SSE", "items": ["Each price arrives when ready", "One long-lived connection"] },
+            "right": { "label": "Periodic polling", "items": ["One response holds many updates", "Fewer requests, saves battery"] },
+            "verdict": "At high rates, long polling sends the most requests."
+          }
+        }
+      ]
+    },
+    {
+      "id": "chat",
+      "label": "Chat messages",
+      "slides": [
+        {
+          "id": "chat-websocket",
+          "heading": "Chat: WebSockets",
+          "notes": "Both people send at any time, so the client must send after the handshake, which SSE cannot do. WebSockets can, with small frames.",
+          "reveal": true,
+          "visual": {
+            "type": "steps",
+            "items": [
+              "Messages go both ways on one connection",
+              "Each frame adds only 2 to 14 bytes",
+              "The app builds its own reconnects and state",
+              "Long polling is the older fallback"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "cursor",
+      "label": "Collaborative cursor",
+      "slides": [
+        {
+          "id": "cursor-websocket",
+          "heading": "Cursor: small messages over WebSockets",
+          "notes": "Many small position updates flow both ways. One large queued message delays every message behind it, so keep messages small.",
+          "reveal": true,
+          "visual": {
+            "type": "steps",
+            "items": [
+              "Send small position messages both ways",
+              "A large queued message blocks the ones behind it",
+              "Split large messages into chunks",
+              "Watch bufferedAmount before you send"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

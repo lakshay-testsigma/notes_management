@@ -1,0 +1,61 @@
+WEBVTT
+
+1
+00:00:00.200 --> 00:00:03.400
+A cache keeps a copy of a response.
+
+2
+00:00:03.400 --> 00:00:05.800
+Watch one browser cache reuse app.css.
+
+3
+00:00:06.200 --> 00:00:09.250
+The first request finds no stored copy.
+
+4
+00:00:09.250 --> 00:00:12.750
+The cache forwards it to the origin and
+
+5
+00:00:12.750 --> 00:00:15.800
+stores the 200 response with its headers.
+
+6
+00:00:16.200 --> 00:00:19.400
+A stored copy is fresh while its
+
+7
+00:00:19.400 --> 00:00:22.140
+lifetime is greater than its age.
+
+8
+00:00:22.140 --> 00:00:25.800
+Here max-age gives a lifetime of sixty seconds.
+
+9
+00:00:26.200 --> 00:00:30.890
+At thirty seconds the age is thirty, so the copy is fresh.
+
+10
+00:00:30.890 --> 00:00:34.800
+The cache answers alone, with no trip to the origin.
+
+11
+00:00:35.200 --> 00:00:38.730
+At ninety seconds the copy is stale.
+
+12
+00:00:38.730 --> 00:00:42.270
+The cache asks the origin with If-None-Match.
+
+13
+00:00:42.270 --> 00:00:45.800
+A 304 answer means keep your copy.
+
+14
+00:00:46.200 --> 00:00:51.980
+A 304 sends only headers, so the cache reuses the stored body.
+
+15
+00:00:51.980 --> 00:00:56.800
+A 200 sends a new body that replaces the copy.

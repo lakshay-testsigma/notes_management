@@ -1,0 +1,15 @@
+{
+  "name": "cache-header-auditor",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Grade Cache-Control, ETag, Vary and Content-Encoding headers from a HAR file.",
+  "scripts": {
+    "start": "node src/main.ts tests/fixtures/site.har",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "@types/node": "22.15.21",
+    "vitest": "5.1.1"
+  }
+}

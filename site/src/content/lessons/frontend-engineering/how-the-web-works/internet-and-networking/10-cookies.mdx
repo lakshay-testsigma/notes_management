@@ -1,0 +1,37 @@
+---
+title: "Cookies: attributes, SameSite and prefixes"
+description: The browser sends a stored cookie only when its Domain, Path, Secure and SameSite attributes all match the request.
+order: 10
+concepts: [cookies, Set-Cookie attributes, SameSite, cookie prefixes]
+---
+
+{/* <!-- concept: cookies --> */}
+{/* <!-- concept: set-cookie-attributes --> */}
+{/* <!-- concept: cookie-prefixes-and-chips --> */}
+{/* <!-- concept: third-party-cookies --> */}
+
+A user signs in to `shop.example.com`, and a payment form on another site posts to it. Does that request carry the session? The answer decides whether a forged request can spend the user's money.
+
+A cookie is a small name and value that the server stores in the browser with a `Set-Cookie` header. The browser then returns it in the `Cookie` header of later requests. HTTP itself is stateless, so cookies carry session state, preferences and tracking IDs. Each attribute on `Set-Cookie` is one check before the browser sends the cookie.
+
+In the lab, change the request type and the attributes. Predict which of five cookies each request carries, then step through the checks.
+
+<Experience id="cookie-send-lab" />
+
+Domain picks the hosts, Path picks the URL paths, and Secure requires https. SameSite handles cross-site requests, where the scheme or the registrable domain differs. `Strict` never goes cross-site. `Lax` goes only on a top-level navigation with GET. `None` always goes but needs `Secure`. HttpOnly does not change sending; it hides the cookie from `document.cookie`.
+
+**Note.** A `__Host-` prefix makes the browser reject the cookie unless it has `Secure`, no Domain and `Path=/`. That is the closest a cookie gets to an origin boundary, so use it for session cookies.
+
+<Depth level="production">
+
+Third-party cookies are cookies sent on cross-site requests, often for tracking. Firefox and Safari already isolate or block them by default, so a widget that depends on them can break. When an embed needs state only inside one top-level site, add the `Partitioned` attribute (CHIPS). The browser then keeps a separate cookie jar per top-level site. For storage that the server never needs, use `localStorage` or IndexedDB instead: those values are not sent on every request.
+
+</Depth>
+
+<Depth level="internals">
+
+The `cookie` library behind Express writes strictly and reads leniently. `stringifySetCookie` throws on a Domain such as `example.com; Path=/`, because that value would add a second attribute. The parser drops unknown SameSite values and keeps the first value of a duplicate name (`src/index.ts:292-388 @ a437ef0`, `src/index.ts:439-468 @ a437ef0`).
+
+</Depth>
+
+Cookies ride on requests the client starts; next, see how the server can push data without waiting for one.

@@ -1,0 +1,1230 @@
+{
+  "generated_by": "tutor experience build",
+  "id": "http-cache-lab",
+  "topic": "frontend-engineering/how-the-web-works/internet-and-networking",
+  "title": "HTTP cache lab: hit, revalidate or miss",
+  "mode": "hybrid",
+  "objective": "Predict whether a request hits the cache, revalidates with a 304, or goes to the origin, from its headers and its age.",
+  "level": "intermediate",
+  "summary": "An intro video follows one stylesheet through a miss, a fresh hit and a stale revalidation with If-None-Match and 304. A simulation steps through request traces for seven header sets: max-age, no-cache, no-store, a heuristic lifetime, s-maxage at a CDN, Vary: Accept-Encoding, and hashed file names with immutable. A guided walkthrough loads each trace and pauses for predictions, and a summary video connects the cache key, the freshness check and revalidation.",
+  "page": "site/src/content/lessons/frontend-engineering/how-the-web-works/internet-and-networking/07-http-caching.mdx",
+  "page_url": "/frontend-engineering/how-the-web-works/internet-and-networking/lesson/07-http-caching/",
+  "tabs": [
+    "watch",
+    "explore",
+    "guided",
+    "practice"
+  ],
+  "watch": {
+    "video_id": "http-cache-intro",
+    "title": "How a browser cache reuses one response",
+    "status": "storyboard",
+    "blocker": "FFmpeg is not installed and Docker is not running; install FFmpeg (for example `brew install ffmpeg`) or start Docker",
+    "mp4_url": null,
+    "captions_url": null,
+    "composition_url": "/media/frontend-engineering/how-the-web-works/internet-and-networking/http-cache-intro/composition/index.html",
+    "duration": 57,
+    "scenes": [
+      {
+        "id": "intro",
+        "heading": "One stylesheet, one cache",
+        "start": 0,
+        "duration": 6
+      },
+      {
+        "id": "miss",
+        "heading": "First request: a miss",
+        "start": 6,
+        "duration": 10
+      },
+      {
+        "id": "fresh-rule",
+        "heading": "Fresh means lifetime is greater than age",
+        "start": 16,
+        "duration": 10
+      },
+      {
+        "id": "hit",
+        "heading": "At 30 seconds: a fresh hit",
+        "start": 26,
+        "duration": 9
+      },
+      {
+        "id": "revalidate",
+        "heading": "At 90 seconds: stale, so ask first",
+        "start": 35,
+        "duration": 11
+      },
+      {
+        "id": "304-vs-200",
+        "heading": "304 or 200 after a revalidation",
+        "start": 46,
+        "duration": 11
+      }
+    ],
+    "transcript": "# How a browser cache reuses one response\n\nA browser asks for app.css. The first request misses and the cache stores the 200 response with max-age=60 and an ETag. At 30 seconds the copy is fresh and the cache answers alone. At 90 seconds the copy is stale, so the cache sends If-None-Match and the origin answers 304, which keeps the stored body.\n\n**00:00 One stylesheet, one cache.** A cache keeps a copy of a response. Watch one browser cache reuse app.css.\n\n**00:06 First request: a miss.** The first request finds no stored copy. The cache forwards it to the origin and stores the 200 response with its headers.\n\n**00:16 Fresh means lifetime is greater than age.** A stored copy is fresh while its lifetime is greater than its age. Here max-age gives a lifetime of sixty seconds.\n\n**00:26 At 30 seconds: a fresh hit.** At thirty seconds the age is thirty, so the copy is fresh. The cache answers alone, with no trip to the origin.\n\n**00:35 At 90 seconds: stale, so ask first.** At ninety seconds the copy is stale. The cache asks the origin with If-None-Match. A 304 answer means keep your copy.\n\n**00:46 304 or 200 after a revalidation.** A 304 sends only headers, so the cache reuses the stored body. A 200 sends a new body that replaces the copy.\n\nSources:\n\n- RFC 9111: HTTP Caching — https://www.rfc-editor.org/rfc/rfc9111\n- HTTP (MDN Web Docs documentation set) — https://developer.mozilla.org/en-US/docs/Web/HTTP\n",
+    "explanation": "A cache reuses a stored copy while its lifetime is greater than its age. After that it asks the origin, and a 304 answer keeps the copy.",
+    "alt": "A browser asks for app.css. The first request misses and the cache stores the 200 response with max-age=60 and an ETag. At 30 seconds the copy is fresh and the cache answers alone. At 90 seconds the copy is stale, so the cache sends If-None-Match and the origin answers 304, which keeps the stored body."
+  },
+  "guided": {
+    "video_id": "http-cache-walkthrough",
+    "title": "Change the cache headers and watch the outcome",
+    "status": "storyboard",
+    "blocker": "FFmpeg is not installed and Docker is not running; install FFmpeg (for example `brew install ffmpeg`) or start Docker",
+    "mp4_url": null,
+    "captions_url": null,
+    "composition_url": "/media/frontend-engineering/how-the-web-works/internet-and-networking/http-cache-walkthrough/composition/index.html",
+    "duration": 87,
+    "scenes": [
+      {
+        "id": "intro",
+        "heading": "Change one header at a time",
+        "start": 0,
+        "duration": 7
+      },
+      {
+        "id": "max-age",
+        "heading": "max-age=60 over two minutes",
+        "start": 7,
+        "duration": 12
+      },
+      {
+        "id": "stale",
+        "heading": "Stale copy: If-None-Match, then 304",
+        "start": 19,
+        "duration": 11
+      },
+      {
+        "id": "no-cache-vs-no-store",
+        "heading": "no-cache is not no-store",
+        "start": 30,
+        "duration": 12
+      },
+      {
+        "id": "heuristic",
+        "heading": "No max-age: a heuristic guess",
+        "start": 42,
+        "duration": 11
+      },
+      {
+        "id": "shared",
+        "heading": "s-maxage is for shared caches",
+        "start": 53,
+        "duration": 11
+      },
+      {
+        "id": "vary",
+        "heading": "Vary: one copy per header value",
+        "start": 64,
+        "duration": 11
+      },
+      {
+        "id": "hashed",
+        "heading": "Hashed names: a new build is a new URL",
+        "start": 75,
+        "duration": 12
+      }
+    ],
+    "transcript": "# Change the cache headers and watch the outcome\n\nThe walkthrough steps through seven cache rules. max-age sets a lifetime; a stale copy revalidates with If-None-Match. no-cache stores but always revalidates, while no-store never stores. Without max-age a cache may guess about 10% of the time since Last-Modified. s-maxage gives shared caches such as a CDN their own lifetime. Vary keeps one copy per request header value. Hashed file names with a one-year max-age and immutable get a new cache key on every build.\n\n**00:00 Change one header at a time.** Now change the headers yourself. Each scene loads a matching preset in the simulation beside the player.\n\n**00:07 max-age=60 over two minutes.** With max-age set to sixty, requests at thirty and fifty-nine seconds are a HIT. At ninety seconds the copy is stale, so the cache must revalidate.\n\n**00:19 Stale copy: If-None-Match, then 304.** The stale copy carries ETag v1. The cache sends If-None-Match v1. The origin answers 304, and the copy is fresh again.\n\n**00:30 no-cache is not no-store.** no-cache stores the response but revalidates before every reuse. no-store never stores it, so every request goes to the origin.\n\n**00:42 No max-age: a heuristic guess.** With no max-age and no Expires, a cache may guess a lifetime. A common guess is ten percent of the time since Last-Modified.\n\n**00:53 s-maxage is for shared caches.** A CDN is a shared cache. For shared caches, s-maxage overrides max-age, so the CDN keeps the copy fresh for ten minutes.\n\n**01:04 Vary: one copy per header value.** Vary Accept-Encoding makes the cache keep one copy per encoding. A gzip request cannot reuse the br copy.\n\n**01:15 Hashed names: a new build is a new URL.** app.3f9a1c.js never changes, so it gets max-age of one year and immutable. A new build gets a new name, so a new cache key.\n\nSources:\n\n- RFC 9111: HTTP Caching — https://www.rfc-editor.org/rfc/rfc9111\n- HTTP (MDN Web Docs documentation set) — https://developer.mozilla.org/en-US/docs/Web/HTTP\n- Cloudflare developer documentation (DNS, Cache, Workers, Images) — https://developers.cloudflare.com/\n- nodejs/undici: HTTP/1.1 client for Node.js (fetch, cache interceptor, cookies) — https://github.com/nodejs/undici\n",
+    "explanation": "Every scene loads a matching preset in the simulation, so you can step through the same rule request by request.",
+    "alt": "The walkthrough steps through seven cache rules. max-age sets a lifetime; a stale copy revalidates with If-None-Match. no-cache stores but always revalidates, while no-store never stores. Without max-age a cache may guess about 10% of the time since Last-Modified. s-maxage gives shared caches such as a CDN their own lifetime. Vary keeps one copy per request header value. Hashed file names with a one-year max-age and immutable get a new cache key on every build."
+  },
+  "summary_video": {
+    "video_id": "http-cache-summary",
+    "title": "Three questions decide every cached response",
+    "status": "storyboard",
+    "blocker": "FFmpeg is not installed and Docker is not running; install FFmpeg (for example `brew install ffmpeg`) or start Docker",
+    "mp4_url": null,
+    "captions_url": null,
+    "composition_url": "/media/frontend-engineering/how-the-web-works/internet-and-networking/http-cache-summary/composition/index.html",
+    "duration": 42,
+    "scenes": [
+      {
+        "id": "intro",
+        "heading": "Three questions, every request",
+        "start": 0,
+        "duration": 6
+      },
+      {
+        "id": "questions",
+        "heading": "The cache asks in this order",
+        "start": 6,
+        "duration": 12
+      },
+      {
+        "id": "directives",
+        "heading": "Directives set the answers",
+        "start": 18,
+        "duration": 12
+      },
+      {
+        "id": "pattern",
+        "heading": "HTML page versus hashed asset",
+        "start": 30,
+        "duration": 12
+      }
+    ],
+    "transcript": "# Three questions decide every cached response\n\nA cache answers three questions in order: is there a stored copy for this key, is it fresh, and if not, does the origin answer 304 or 200. The directives set the answers: no-store, no-cache, max-age and s-maxage. A common pattern gives HTML no-cache with an ETag and hashed assets a one-year max-age with immutable.\n\n**00:00 Three questions, every request.** Three questions decide every cached response. The cache asks them in the same order each time.\n\n**00:06 The cache asks in this order.** First, is there a stored copy for this key? Second, is it fresh? Third, if stale, does the origin answer 304 or 200?\n\n**00:18 Directives set the answers.** no-store means never store. no-cache means store, but check first. max-age gives seconds of freshness, and s-maxage does so for shared caches.\n\n**00:30 HTML page versus hashed asset.** Give the HTML page no-cache and an ETag, so it is never stale. Give hashed assets a one-year max-age and immutable.\n\nSources:\n\n- RFC 9111: HTTP Caching — https://www.rfc-editor.org/rfc/rfc9111\n- HTTP (MDN Web Docs documentation set) — https://developer.mozilla.org/en-US/docs/Web/HTTP\n",
+    "explanation": "The key, the lifetime and the validator together decide hit, revalidate or miss for every request.",
+    "alt": "A cache answers three questions in order: is there a stored copy for this key, is it fresh, and if not, does the origin answer 304 or 200. The directives set the answers: no-store, no-cache, max-age and s-maxage. A common pattern gives HTML no-cache with an ETag and hashed assets a one-year max-age with immutable."
+  },
+  "simulation": {
+    "component": "AlgorithmStepper",
+    "props": {
+      "title": "Cache decision per request: max-age=60",
+      "code": "key = \"GET \" + url + varyValues(request)\nentry = store.get(key)\nif (!entry) return fetchFromOrigin()    // MISS\nif (entry.noCache) return revalidate(entry)\nlifetime = shared && sMaxage ? sMaxage : maxAge ?? heuristic(entry)\nif (lifetime > entry.age) return entry   // HIT\nreturn revalidate(entry)                 // stale\n// revalidate: send If-None-Match: entry.etag\n//   304 -> keep body, update headers; 200 -> replace copy\n// store a response only if it has no no-store",
+      "lang": "javascript (pseudocode)",
+      "speed": 2200,
+      "frames": [
+        {
+          "caption": "Request at 0 s. The cache has no copy of /app.css, so it asks the origin and stores the 200 response.",
+          "array": [
+            "0 s",
+            "30 s",
+            "59 s",
+            "90 s",
+            "120 s"
+          ],
+          "highlight": [
+            0
+          ],
+          "pointers": {
+            "now": 0
+          },
+          "vars": {
+            "cache": "browser",
+            "headers": "max-age=60, ETag \"v1\"",
+            "age": "none",
+            "lifetime": 60,
+            "state": "empty",
+            "outcome": "MISS"
+          },
+          "line": 3
+        },
+        {
+          "caption": "Request at 30 s. Lifetime 60 is greater than age 30, so the copy is fresh and the cache answers alone.",
+          "array": [
+            "0 s",
+            "30 s",
+            "59 s",
+            "90 s",
+            "120 s"
+          ],
+          "highlight": [
+            1
+          ],
+          "pointers": {
+            "now": 1
+          },
+          "vars": {
+            "cache": "browser",
+            "headers": "max-age=60, ETag \"v1\"",
+            "age": 30,
+            "lifetime": 60,
+            "state": "fresh",
+            "outcome": "HIT"
+          },
+          "line": 6
+        },
+        {
+          "caption": "Request at 59 s. Lifetime 60 is still greater than age 59, so this is still a hit.",
+          "array": [
+            "0 s",
+            "30 s",
+            "59 s",
+            "90 s",
+            "120 s"
+          ],
+          "highlight": [
+            2
+          ],
+          "pointers": {
+            "now": 2
+          },
+          "vars": {
+            "cache": "browser",
+            "headers": "max-age=60, ETag \"v1\"",
+            "age": 59,
+            "lifetime": 60,
+            "state": "fresh",
+            "outcome": "HIT"
+          },
+          "line": 6
+        },
+        {
+          "caption": "Request at 90 s. Age 90 is greater than lifetime 60, so the copy is stale. The cache sends If-None-Match: \"v1\", the origin answers 304, and the stored headers are updated.",
+          "array": [
+            "0 s",
+            "30 s",
+            "59 s",
+            "90 s",
+            "120 s"
+          ],
+          "highlight": [
+            3
+          ],
+          "pointers": {
+            "now": 3
+          },
+          "vars": {
+            "cache": "browser",
+            "headers": "max-age=60, ETag \"v1\"",
+            "age": 90,
+            "lifetime": 60,
+            "state": "stale",
+            "outcome": "REVALIDATE 304"
+          },
+          "line": 7
+        },
+        {
+          "caption": "Request at 120 s. The 304 at 90 s refreshed the copy, so its age is 30 and it is fresh again.",
+          "array": [
+            "0 s",
+            "30 s",
+            "59 s",
+            "90 s",
+            "120 s"
+          ],
+          "highlight": [
+            4
+          ],
+          "pointers": {
+            "now": 4
+          },
+          "vars": {
+            "cache": "browser",
+            "headers": "max-age=60, ETag \"v1\"",
+            "age": 30,
+            "lifetime": 60,
+            "state": "fresh",
+            "outcome": "HIT"
+          },
+          "line": 6
+        }
+      ]
+    },
+    "presets": {
+      "max-age-60": {
+        "title": "Cache decision per request: max-age=60",
+        "frames": [
+          {
+            "caption": "Request at 0 s. The cache has no copy of /app.css, so it asks the origin and stores the 200 response.",
+            "array": [
+              "0 s",
+              "30 s",
+              "59 s",
+              "90 s",
+              "120 s"
+            ],
+            "highlight": [
+              0
+            ],
+            "pointers": {
+              "now": 0
+            },
+            "vars": {
+              "cache": "browser",
+              "headers": "max-age=60, ETag \"v1\"",
+              "age": "none",
+              "lifetime": 60,
+              "state": "empty",
+              "outcome": "MISS"
+            },
+            "line": 3
+          },
+          {
+            "caption": "Request at 30 s. Lifetime 60 is greater than age 30, so the copy is fresh and the cache answers alone.",
+            "array": [
+              "0 s",
+              "30 s",
+              "59 s",
+              "90 s",
+              "120 s"
+            ],
+            "highlight": [
+              1
+            ],
+            "pointers": {
+              "now": 1
+            },
+            "vars": {
+              "cache": "browser",
+              "headers": "max-age=60, ETag \"v1\"",
+              "age": 30,
+              "lifetime": 60,
+              "state": "fresh",
+              "outcome": "HIT"
+            },
+            "line": 6
+          },
+          {
+            "caption": "Request at 59 s. Lifetime 60 is still greater than age 59, so this is still a hit.",
+            "array": [
+              "0 s",
+              "30 s",
+              "59 s",
+              "90 s",
+              "120 s"
+            ],
+            "highlight": [
+              2
+            ],
+            "pointers": {
+              "now": 2
+            },
+            "vars": {
+              "cache": "browser",
+              "headers": "max-age=60, ETag \"v1\"",
+              "age": 59,
+              "lifetime": 60,
+              "state": "fresh",
+              "outcome": "HIT"
+            },
+            "line": 6
+          },
+          {
+            "caption": "Request at 90 s. Age 90 is greater than lifetime 60, so the copy is stale. The cache sends If-None-Match: \"v1\", the origin answers 304, and the stored headers are updated.",
+            "array": [
+              "0 s",
+              "30 s",
+              "59 s",
+              "90 s",
+              "120 s"
+            ],
+            "highlight": [
+              3
+            ],
+            "pointers": {
+              "now": 3
+            },
+            "vars": {
+              "cache": "browser",
+              "headers": "max-age=60, ETag \"v1\"",
+              "age": 90,
+              "lifetime": 60,
+              "state": "stale",
+              "outcome": "REVALIDATE 304"
+            },
+            "line": 7
+          },
+          {
+            "caption": "Request at 120 s. The 304 at 90 s refreshed the copy, so its age is 30 and it is fresh again.",
+            "array": [
+              "0 s",
+              "30 s",
+              "59 s",
+              "90 s",
+              "120 s"
+            ],
+            "highlight": [
+              4
+            ],
+            "pointers": {
+              "now": 4
+            },
+            "vars": {
+              "cache": "browser",
+              "headers": "max-age=60, ETag \"v1\"",
+              "age": 30,
+              "lifetime": 60,
+              "state": "fresh",
+              "outcome": "HIT"
+            },
+            "line": 6
+          }
+        ]
+      },
+      "no-cache": {
+        "title": "Cache decision per request: no-cache",
+        "frames": [
+          {
+            "caption": "Request at 0 s. no-cache still lets the cache store the response, so it stores the 200 with ETag \"v1\".",
+            "array": [
+              "0 s",
+              "10 s",
+              "20 s",
+              "30 s"
+            ],
+            "highlight": [
+              0
+            ],
+            "pointers": {
+              "now": 0
+            },
+            "vars": {
+              "cache": "browser",
+              "headers": "no-cache, ETag \"v1\"",
+              "age": "none",
+              "lifetime": 0,
+              "state": "empty",
+              "outcome": "MISS"
+            },
+            "line": 3
+          },
+          {
+            "caption": "Request at 10 s. no-cache means: validate before every reuse. The cache sends If-None-Match: \"v1\" and gets 304.",
+            "array": [
+              "0 s",
+              "10 s",
+              "20 s",
+              "30 s"
+            ],
+            "highlight": [
+              1
+            ],
+            "pointers": {
+              "now": 1
+            },
+            "vars": {
+              "cache": "browser",
+              "headers": "no-cache, ETag \"v1\"",
+              "age": 10,
+              "lifetime": 0,
+              "state": "must validate",
+              "outcome": "REVALIDATE 304"
+            },
+            "line": 4
+          },
+          {
+            "caption": "Request at 20 s. Again the cache asks first. The file is unchanged, so the origin answers 304 with headers only.",
+            "array": [
+              "0 s",
+              "10 s",
+              "20 s",
+              "30 s"
+            ],
+            "highlight": [
+              2
+            ],
+            "pointers": {
+              "now": 2
+            },
+            "vars": {
+              "cache": "browser",
+              "headers": "no-cache, ETag \"v1\"",
+              "age": 10,
+              "lifetime": 0,
+              "state": "must validate",
+              "outcome": "REVALIDATE 304"
+            },
+            "line": 4
+          },
+          {
+            "caption": "Request at 30 s. The file changed on the origin. If-None-Match: \"v1\" no longer matches, so the origin sends 200 with ETag \"v2\" and the new copy replaces the old one.",
+            "array": [
+              "0 s",
+              "10 s",
+              "20 s",
+              "30 s"
+            ],
+            "highlight": [
+              3
+            ],
+            "pointers": {
+              "now": 3
+            },
+            "vars": {
+              "cache": "browser",
+              "headers": "no-cache, ETag \"v2\"",
+              "age": 10,
+              "lifetime": 0,
+              "state": "must validate",
+              "outcome": "REVALIDATE 200"
+            },
+            "line": 4
+          }
+        ]
+      },
+      "no-store": {
+        "title": "Cache decision per request: no-store",
+        "frames": [
+          {
+            "caption": "Request at 0 s. The response says no-store, so the cache must not store it. The origin answers.",
+            "array": [
+              "0 s",
+              "10 s",
+              "20 s"
+            ],
+            "highlight": [
+              0
+            ],
+            "pointers": {
+              "now": 0
+            },
+            "vars": {
+              "cache": "browser",
+              "headers": "no-store",
+              "age": "none",
+              "lifetime": 0,
+              "state": "empty",
+              "outcome": "MISS"
+            },
+            "line": 10
+          },
+          {
+            "caption": "Request at 10 s. There is still no stored copy, so the request goes to the origin again.",
+            "array": [
+              "0 s",
+              "10 s",
+              "20 s"
+            ],
+            "highlight": [
+              1
+            ],
+            "pointers": {
+              "now": 1
+            },
+            "vars": {
+              "cache": "browser",
+              "headers": "no-store",
+              "age": "none",
+              "lifetime": 0,
+              "state": "empty",
+              "outcome": "MISS"
+            },
+            "line": 3
+          },
+          {
+            "caption": "Request at 20 s. Every request with no-store is a full trip to the origin; nothing is reused.",
+            "array": [
+              "0 s",
+              "10 s",
+              "20 s"
+            ],
+            "highlight": [
+              2
+            ],
+            "pointers": {
+              "now": 2
+            },
+            "vars": {
+              "cache": "browser",
+              "headers": "no-store",
+              "age": "none",
+              "lifetime": 0,
+              "state": "empty",
+              "outcome": "MISS"
+            },
+            "line": 3
+          }
+        ]
+      },
+      "heuristic": {
+        "title": "Cache decision per request: heuristic lifetime",
+        "frames": [
+          {
+            "caption": "Request at 0 h. No max-age and no Expires. The file was last modified 10 days ago. The cache stores the 200.",
+            "array": [
+              "0 h",
+              "1 h",
+              "23 h",
+              "25 h"
+            ],
+            "highlight": [
+              0
+            ],
+            "pointers": {
+              "now": 0
+            },
+            "vars": {
+              "cache": "browser",
+              "headers": "no max-age, Last-Modified 10 days ago, ETag \"v1\"",
+              "age": "none",
+              "lifetime": "24 h (guess)",
+              "state": "empty",
+              "outcome": "MISS"
+            },
+            "line": 3
+          },
+          {
+            "caption": "Request at 1 h. This cache uses the common heuristic: 10% of 10 days, about 24 hours. Age 1 h is less, so it is a hit.",
+            "array": [
+              "0 h",
+              "1 h",
+              "23 h",
+              "25 h"
+            ],
+            "highlight": [
+              1
+            ],
+            "pointers": {
+              "now": 1
+            },
+            "vars": {
+              "cache": "browser",
+              "headers": "no max-age, Last-Modified 10 days ago, ETag \"v1\"",
+              "age": "1 h",
+              "lifetime": "24 h (guess)",
+              "state": "fresh",
+              "outcome": "HIT"
+            },
+            "line": 5
+          },
+          {
+            "caption": "Request at 23 h. The guessed lifetime of 24 h is still greater than the age, so it is a hit.",
+            "array": [
+              "0 h",
+              "1 h",
+              "23 h",
+              "25 h"
+            ],
+            "highlight": [
+              2
+            ],
+            "pointers": {
+              "now": 2
+            },
+            "vars": {
+              "cache": "browser",
+              "headers": "no max-age, Last-Modified 10 days ago, ETag \"v1\"",
+              "age": "23 h",
+              "lifetime": "24 h (guess)",
+              "state": "fresh",
+              "outcome": "HIT"
+            },
+            "line": 6
+          },
+          {
+            "caption": "Request at 25 h. The copy is stale. The cache revalidates with If-None-Match: \"v1\" and gets 304. Another cache may guess differently.",
+            "array": [
+              "0 h",
+              "1 h",
+              "23 h",
+              "25 h"
+            ],
+            "highlight": [
+              3
+            ],
+            "pointers": {
+              "now": 3
+            },
+            "vars": {
+              "cache": "browser",
+              "headers": "no max-age, Last-Modified 10 days ago, ETag \"v1\"",
+              "age": "25 h",
+              "lifetime": "24 h (guess)",
+              "state": "stale",
+              "outcome": "REVALIDATE 304"
+            },
+            "line": 7
+          }
+        ]
+      },
+      "s-maxage": {
+        "title": "Cache decision at a CDN: s-maxage=600",
+        "frames": [
+          {
+            "caption": "Request at 0 s reaches a CDN, a shared cache. It has no copy, so it asks the origin and stores the 200.",
+            "array": [
+              "0 s",
+              "120 s",
+              "599 s",
+              "700 s"
+            ],
+            "highlight": [
+              0
+            ],
+            "pointers": {
+              "now": 0
+            },
+            "vars": {
+              "cache": "CDN (shared)",
+              "headers": "max-age=60, s-maxage=600, ETag \"v1\"",
+              "age": "none",
+              "lifetime": 600,
+              "state": "empty",
+              "outcome": "MISS"
+            },
+            "line": 3
+          },
+          {
+            "caption": "Request at 120 s. A browser cache would call this copy stale after 60 s. The CDN reads s-maxage=600, so its copy is fresh: a hit.",
+            "array": [
+              "0 s",
+              "120 s",
+              "599 s",
+              "700 s"
+            ],
+            "highlight": [
+              1
+            ],
+            "pointers": {
+              "now": 1
+            },
+            "vars": {
+              "cache": "CDN (shared)",
+              "headers": "max-age=60, s-maxage=600, ETag \"v1\"",
+              "age": 120,
+              "lifetime": 600,
+              "state": "fresh",
+              "outcome": "HIT"
+            },
+            "line": 6
+          },
+          {
+            "caption": "Request at 599 s. Age 599 is less than 600, so the CDN still answers alone.",
+            "array": [
+              "0 s",
+              "120 s",
+              "599 s",
+              "700 s"
+            ],
+            "highlight": [
+              2
+            ],
+            "pointers": {
+              "now": 2
+            },
+            "vars": {
+              "cache": "CDN (shared)",
+              "headers": "max-age=60, s-maxage=600, ETag \"v1\"",
+              "age": 599,
+              "lifetime": 600,
+              "state": "fresh",
+              "outcome": "HIT"
+            },
+            "line": 6
+          },
+          {
+            "caption": "Request at 700 s. The copy is stale. s-maxage also means the shared cache must revalidate once stale, so it sends If-None-Match: \"v1\" and gets 304.",
+            "array": [
+              "0 s",
+              "120 s",
+              "599 s",
+              "700 s"
+            ],
+            "highlight": [
+              3
+            ],
+            "pointers": {
+              "now": 3
+            },
+            "vars": {
+              "cache": "CDN (shared)",
+              "headers": "max-age=60, s-maxage=600, ETag \"v1\"",
+              "age": 700,
+              "lifetime": 600,
+              "state": "stale",
+              "outcome": "REVALIDATE 304"
+            },
+            "line": 7
+          }
+        ]
+      },
+      "vary": {
+        "title": "Cache decision per request: Vary: Accept-Encoding",
+        "frames": [
+          {
+            "caption": "Request at 0 s with Accept-Encoding: br. No copy for this key, so it is a miss. The cache stores the br copy.",
+            "array": [
+              "0 s br",
+              "10 s gzip",
+              "20 s br",
+              "30 s gzip"
+            ],
+            "highlight": [
+              0
+            ],
+            "pointers": {
+              "now": 0
+            },
+            "vars": {
+              "cache": "browser",
+              "headers": "max-age=300, Vary: Accept-Encoding",
+              "age": "none",
+              "lifetime": 300,
+              "state": "empty",
+              "stored_variants": "br",
+              "outcome": "MISS"
+            },
+            "line": 3
+          },
+          {
+            "caption": "Request at 10 s with Accept-Encoding: gzip. Vary says this header must match, and the br copy does not. Miss: the cache stores a gzip copy.",
+            "array": [
+              "0 s br",
+              "10 s gzip",
+              "20 s br",
+              "30 s gzip"
+            ],
+            "highlight": [
+              1
+            ],
+            "pointers": {
+              "now": 1
+            },
+            "vars": {
+              "cache": "browser",
+              "headers": "max-age=300, Vary: Accept-Encoding",
+              "age": "none",
+              "lifetime": 300,
+              "state": "no match",
+              "stored_variants": "br, gzip",
+              "outcome": "MISS"
+            },
+            "line": 3
+          },
+          {
+            "caption": "Request at 20 s with Accept-Encoding: br. It matches the br copy, which is 20 s old and fresh: a hit.",
+            "array": [
+              "0 s br",
+              "10 s gzip",
+              "20 s br",
+              "30 s gzip"
+            ],
+            "highlight": [
+              2
+            ],
+            "pointers": {
+              "now": 2
+            },
+            "vars": {
+              "cache": "browser",
+              "headers": "max-age=300, Vary: Accept-Encoding",
+              "age": 20,
+              "lifetime": 300,
+              "state": "fresh",
+              "stored_variants": "br, gzip",
+              "outcome": "HIT"
+            },
+            "line": 6
+          },
+          {
+            "caption": "Request at 30 s with Accept-Encoding: gzip. It matches the gzip copy, which is 20 s old: a hit.",
+            "array": [
+              "0 s br",
+              "10 s gzip",
+              "20 s br",
+              "30 s gzip"
+            ],
+            "highlight": [
+              3
+            ],
+            "pointers": {
+              "now": 3
+            },
+            "vars": {
+              "cache": "browser",
+              "headers": "max-age=300, Vary: Accept-Encoding",
+              "age": 20,
+              "lifetime": 300,
+              "state": "fresh",
+              "stored_variants": "br, gzip",
+              "outcome": "HIT"
+            },
+            "line": 6
+          }
+        ]
+      },
+      "hashed": {
+        "title": "Cache decision per request: hashed file names",
+        "frames": [
+          {
+            "caption": "Day 0. The page asks for app.3f9a1c.js. No copy for this URL: a miss. The cache stores it with a one-year lifetime.",
+            "array": [
+              "day 0",
+              "day 1",
+              "day 30",
+              "day 31"
+            ],
+            "highlight": [
+              0
+            ],
+            "pointers": {
+              "now": 0
+            },
+            "vars": {
+              "cache": "browser",
+              "url": "app.3f9a1c.js",
+              "headers": "max-age=31536000, immutable",
+              "age": "none",
+              "lifetime": "1 year",
+              "state": "empty",
+              "outcome": "MISS"
+            },
+            "line": 3
+          },
+          {
+            "caption": "Day 1. Same URL, age 1 day, lifetime 1 year: a hit with no trip to the origin.",
+            "array": [
+              "day 0",
+              "day 1",
+              "day 30",
+              "day 31"
+            ],
+            "highlight": [
+              1
+            ],
+            "pointers": {
+              "now": 1
+            },
+            "vars": {
+              "cache": "browser",
+              "url": "app.3f9a1c.js",
+              "headers": "max-age=31536000, immutable",
+              "age": "1 day",
+              "lifetime": "1 year",
+              "state": "fresh",
+              "outcome": "HIT"
+            },
+            "line": 6
+          },
+          {
+            "caption": "Day 30. Still a hit. The file at this URL never changes, so a long lifetime is safe.",
+            "array": [
+              "day 0",
+              "day 1",
+              "day 30",
+              "day 31"
+            ],
+            "highlight": [
+              2
+            ],
+            "pointers": {
+              "now": 2
+            },
+            "vars": {
+              "cache": "browser",
+              "url": "app.3f9a1c.js",
+              "headers": "max-age=31536000, immutable",
+              "age": "30 days",
+              "lifetime": "1 year",
+              "state": "fresh",
+              "outcome": "HIT"
+            },
+            "line": 6
+          },
+          {
+            "caption": "Day 31, after a deploy. The HTML now names app.8b2e7d.js. A new URL is a new cache key, so there is no stored copy: a miss, then one fetch.",
+            "array": [
+              "day 0",
+              "day 1",
+              "day 30",
+              "day 31"
+            ],
+            "highlight": [
+              3
+            ],
+            "pointers": {
+              "now": 3
+            },
+            "vars": {
+              "cache": "browser",
+              "url": "app.8b2e7d.js",
+              "headers": "max-age=31536000, immutable",
+              "age": "none",
+              "lifetime": "1 year",
+              "state": "empty",
+              "outcome": "MISS"
+            },
+            "line": 1
+          }
+        ]
+      }
+    }
+  },
+  "sync": [
+    {
+      "scene": "max-age",
+      "preset": "max-age-60"
+    },
+    {
+      "scene": "no-cache-vs-no-store",
+      "preset": "no-cache"
+    },
+    {
+      "scene": "heuristic",
+      "preset": "heuristic"
+    },
+    {
+      "scene": "shared",
+      "preset": "s-maxage"
+    },
+    {
+      "scene": "vary",
+      "preset": "vary"
+    },
+    {
+      "scene": "hashed",
+      "preset": "hashed"
+    }
+  ],
+  "inspect": [],
+  "deck": null,
+  "checkpoints": [
+    {
+      "id": "why-no-trip",
+      "kind": "explain",
+      "at": {
+        "after": "watch"
+      },
+      "prompt": "In one sentence: why could the cache answer at 30 seconds without asking the origin?",
+      "explanation": "The copy was fresh: its lifetime from max-age=60 was greater than its age of 30 seconds. A fresh copy may be reused with no request to the origin.",
+      "concept_ids": [
+        "http-caching"
+      ]
+    },
+    {
+      "id": "stale-copy",
+      "kind": "predict",
+      "at": {
+        "scene": "stale"
+      },
+      "prompt": "The copy has max-age=60 and ETag \"v1\" and is now 90 seconds old. The file has not changed. What happens?",
+      "choices": [
+        {
+          "text": "The cache sends If-None-Match: \"v1\" and the origin answers 304",
+          "correct": true
+        },
+        {
+          "text": "The cache serves the copy, because it still has one",
+          "misconception": "Thinks a stored copy can be reused at any age"
+        },
+        {
+          "text": "The cache deletes the copy and downloads the whole file again",
+          "misconception": "Thinks stale means unusable, ignoring validation with the ETag"
+        }
+      ],
+      "explanation": "A stale copy needs validation before reuse. The cache sends the stored ETag in If-None-Match. The file is unchanged, so the origin answers 304 and the cache keeps the stored body.",
+      "concept_ids": [
+        "validation-etag-last-modified"
+      ],
+      "revisit": "max-age"
+    },
+    {
+      "id": "no-cache-meaning",
+      "kind": "predict",
+      "at": {
+        "scene": "no-cache-vs-no-store"
+      },
+      "prompt": "An HTML page says Cache-Control: no-cache and has an ETag. What does the browser do on the next visit?",
+      "choices": [
+        {
+          "text": "It uses its stored copy only after the origin answers 304",
+          "correct": true
+        },
+        {
+          "text": "It never stores the page, so it downloads the full page",
+          "misconception": "Confuses no-cache with no-store"
+        },
+        {
+          "text": "It serves the stored page without asking",
+          "misconception": "Thinks no-cache is ignored when a copy exists"
+        }
+      ],
+      "explanation": "no-cache lets a cache store the response but forbids reuse without validation. The browser sends If-None-Match, and a 304 lets it reuse the stored page. Only no-store forbids storing.",
+      "concept_ids": [
+        "cache-control-directives"
+      ]
+    },
+    {
+      "id": "deploy-miss",
+      "kind": "experiment",
+      "at": {
+        "scene": "hashed"
+      },
+      "prompt": "In the simulation, step to the request that misses even though the old file is cached for a year. Which URL does it ask for?",
+      "goal": {
+        "preset": "hashed",
+        "condition": {
+          "all": [
+            {
+              "path": "vars.url",
+              "op": "eq",
+              "value": "app.8b2e7d.js"
+            },
+            {
+              "path": "vars.outcome",
+              "op": "eq",
+              "value": "MISS"
+            }
+          ]
+        },
+        "hint": "Press Forward until the day 31 request after the deploy."
+      },
+      "explanation": "The cache key includes the URL. A new build gets a new hashed name, so the cache has no stored copy for it and must fetch it once. The year-long lifetime of the old URL does not matter.",
+      "concept_ids": [
+        "hashed-filenames-cache-busting"
+      ]
+    },
+    {
+      "id": "two-variants",
+      "kind": "experiment",
+      "at": {
+        "tab": "practice"
+      },
+      "prompt": "Load the Vary preset and step until the cache holds two copies of the same URL. Which request header made the second copy?",
+      "goal": {
+        "preset": "vary",
+        "condition": {
+          "path": "vars.stored_variants",
+          "op": "eq",
+          "value": "br, gzip"
+        },
+        "hint": "Press Forward once, to the gzip request at 10 seconds."
+      },
+      "explanation": "Vary: Accept-Encoding says the stored response fits only requests with the same Accept-Encoding. The gzip request does not match the br copy, so the cache misses and stores a second copy.",
+      "concept_ids": [
+        "vary-and-shared-caches"
+      ]
+    },
+    {
+      "id": "cdn-lifetime",
+      "kind": "verify",
+      "at": {
+        "tab": "practice"
+      },
+      "prompt": "A response says max-age=60, s-maxage=600. At 120 seconds, which cache still serves it as fresh?",
+      "choices": [
+        {
+          "text": "The CDN, a shared cache",
+          "correct": true
+        },
+        {
+          "text": "The browser cache",
+          "misconception": "Thinks private caches read s-maxage"
+        },
+        {
+          "text": "Both caches",
+          "misconception": "Thinks s-maxage replaces max-age for every cache"
+        }
+      ],
+      "explanation": "Only shared caches read s-maxage, and for them it overrides max-age. The browser cache uses max-age=60, so its copy is stale at 120 seconds. The CDN copy is fresh until 600 seconds.",
+      "concept_ids": [
+        "vary-and-shared-caches",
+        "cache-control-directives"
+      ]
+    }
+  ],
+  "fallback_visual": "rfc-9111-mechanism",
+  "concept_ids": [
+    "http-caching",
+    "cache-control-directives",
+    "validation-etag-last-modified",
+    "vary-and-shared-caches",
+    "hashed-filenames-cache-busting"
+  ],
+  "sources": [
+    {
+      "id": "rfc-9111-http-caching",
+      "title": "RFC 9111: HTTP Caching",
+      "url": "https://www.rfc-editor.org/rfc/rfc9111"
+    },
+    {
+      "id": "mdn-http-docs",
+      "title": "HTTP (MDN Web Docs documentation set)",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP"
+    },
+    {
+      "id": "cloudflare-docs",
+      "title": "Cloudflare developer documentation (DNS, Cache, Workers, Images)",
+      "url": "https://developers.cloudflare.com/"
+    },
+    {
+      "id": "nodejs-undici-repo",
+      "title": "nodejs/undici: HTTP/1.1 client for Node.js (fetch, cache interceptor, cookies)",
+      "url": "https://github.com/nodejs/undici"
+    }
+  ],
+  "input_hash": "c7972ffe28f8ebb125b9447187c89c4decc7a22f45b6eb4bb57be720d34d3b79"
+}

@@ -1,0 +1,36 @@
+---
+title: "HTTP/1.1, HTTP/2 and HTTP/3: head-of-line blocking"
+description: Each HTTP version moves head-of-line blocking to a lower layer, and HTTP/3 removes it between requests.
+order: 5
+concepts: [HTTP versions, Head-of-line blocking and multiplexing, Header compression and priorities, QUIC 0-RTT and migration]
+---
+
+{/* <!-- concept: http-versions --> */}
+{/* <!-- concept: head-of-line-blocking-and-multiplexing --> */}
+{/* <!-- concept: header-compression-and-priorities --> */}
+{/* <!-- concept: quic-0rtt-and-migration --> */}
+{/* <!-- concept: http1-era-anti-patterns --> */}
+
+A page loads 30 files over a phone network that loses some packets. The HTTP messages stay the same in every version. What changes is how the version carries them, and that decides how much one lost packet costs.
+
+Head-of-line blocking means a stuck first item holds up every item behind it. HTTP/1.1 sends one request at a time per connection, so browsers open several TCP connections. HTTP/2 adds multiplexing: it splits messages into binary frames on many streams inside one TCP connection. But TCP delivers bytes only in order and cannot see the streams. One lost packet stalls all of them. HTTP/3 runs over QUIC, a transport on UDP. Each request gets its own QUIC stream, and a loss delays only that stream.
+
+In the lab, drop one packet and predict which responses stall in each version. Then check your prediction.
+
+<Experience id="http-versions-lab" />
+
+The benefit is real on lossy networks, but HTTP/3 has costs. Firewalls that block UDP force a fallback to HTTP/2 over TCP. 0-RTT early data lets a returning client send a request in its first flight, but an attacker can replay it. HTTP/1.1 workarounds, such as domain sharding across extra hostnames, now hurt: they split the one shared connection.
+
+<Depth level="internals">
+
+A client picks HTTP/2 or HTTP/3 with ALPN, a TLS extension that lists protocol names such as `h2` and `h3`. A server can advertise HTTP/3 with the `Alt-Svc` header. HTTP/2 compresses headers with HPACK, which assumes in-order data. HTTP/3 uses QPACK instead: table updates travel on separate unidirectional streams. HTTP/3 has no priority signal, and a QUIC client address can change during a connection (RFC 9114, Sections 3.1, 4.2, 10.10).
+
+</Depth>
+
+<Depth level="production">
+
+Node's undici offers `http/1.1` first in its ALPN list by default, so HTTP/2 is opt-in (`lib/core/connect.js:98 @ 011d947`). Its HTTP/2 stream cap is the smaller of 100 and the server limit. A silent stream gets a PING; without an answer, undici drops the session and moves requests to a new connection (`lib/dispatcher/client-h2.js:521-540 @ 011d947`).
+
+</Depth>
+
+The next page opens the encrypted layer under all three versions: TLS.

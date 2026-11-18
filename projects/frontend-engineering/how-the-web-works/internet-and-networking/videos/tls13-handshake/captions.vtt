@@ -1,0 +1,109 @@
+WEBVTT
+
+1
+00:00:00.200 --> 00:00:02.070
+Before the first HTTPS request,
+
+2
+00:00:02.070 --> 00:00:05.810
+the browser and the server must agree on secret keys.
+
+3
+00:00:05.810 --> 00:00:08.800
+TLS 1.3 does this in one round trip.
+
+4
+00:00:09.200 --> 00:00:11.030
+The browser sends ClientHello.
+
+5
+00:00:11.030 --> 00:00:14.690
+It carries a key share, the server name,
+
+6
+00:00:14.690 --> 00:00:18.800
+called SNI, and the protocols it speaks, called ALPN.
+
+7
+00:00:19.200 --> 00:00:23.370
+The server answers with ServerHello and its own key share.
+
+8
+00:00:23.370 --> 00:00:26.710
+Now both sides compute the same handshake keys.
+
+9
+00:00:26.710 --> 00:00:28.800
+Neither side sends the keys.
+
+10
+00:00:29.200 --> 00:00:32.100
+Everything after ServerHello is encrypted.
+
+11
+00:00:32.100 --> 00:00:37.900
+The server sends EncryptedExtensions, which carries the chosen ALPN protocol,
+
+12
+00:00:37.900 --> 00:00:40.800
+then Certificate, CertificateVerify and Finished.
+
+13
+00:00:41.200 --> 00:00:42.900
+Certificate names the server.
+
+14
+00:00:42.900 --> 00:00:45.020
+Anyone can copy a certificate,
+
+15
+00:00:45.020 --> 00:00:48.830
+so CertificateVerify signs the transcript with the private key.
+
+16
+00:00:48.830 --> 00:00:51.800
+Finished proves that nobody changed the handshake.
+
+17
+00:00:52.200 --> 00:00:55.400
+The browser checks the signature and the MAC,
+
+18
+00:00:55.400 --> 00:00:57.400
+then sends its own Finished.
+
+19
+00:00:57.400 --> 00:01:01.800
+Its first HTTP request follows at once as encrypted application data.
+
+20
+00:01:02.200 --> 00:01:03.340
+Count the trips.
+
+21
+00:01:03.340 --> 00:01:07.880
+One flight goes out, one flight comes back, then the request leaves.
+
+22
+00:01:07.880 --> 00:01:09.770
+That is one round trip.
+
+23
+00:01:09.770 --> 00:01:12.800
+A key share mismatch adds a second trip.
+
+24
+00:01:13.200 --> 00:01:15.790
+A returning browser can skip the wait.
+
+25
+00:01:15.790 --> 00:01:18.760
+With a pre-shared key from an earlier visit,
+
+26
+00:01:18.760 --> 00:01:21.720
+it sends early data in the first flight.
+
+27
+00:01:21.720 --> 00:01:25.800
+An attacker can replay that data, so send only safe requests.

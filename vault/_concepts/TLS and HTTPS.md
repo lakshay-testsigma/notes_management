@@ -15,5 +15,6 @@ TLS is the protocol that gives a connection an authenticated server, hidden data
 - [[visual-how-it-works-internet-and-networking]]
 - [[rfc-9846-tls13-internet-and-networking]]
 - [[visual-rfc-9846-tls13-mechanism-internet-and-networking]]
+- [[visual-tls13-handshake-internet-and-networking]]
 
 ## My insights

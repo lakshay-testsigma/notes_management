@@ -1,0 +1,9 @@
+{
+  "checks": [
+    { "kind": "solution-tests", "cwd": "solution", "command": "npm", "args": ["test"] },
+    { "kind": "starter-tests", "cwd": "starter", "command": "npm", "args": ["test"], "expected_exit": 1, "expect_output": "not implemented yet" },
+    { "kind": "starter-start", "cwd": "starter", "command": "npm", "args": ["start"], "expected_exit": 1, "expect_output": "not implemented yet" },
+    { "kind": "audit", "cwd": "solution", "command": "npm", "args": ["audit", "--omit=dev", "--audit-level=high"] },
+    { "kind": "audit", "cwd": "starter", "command": "npm", "args": ["audit", "--omit=dev", "--audit-level=high"] }
+  ]
+}

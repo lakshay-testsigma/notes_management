@@ -48,6 +48,7 @@ Answer: A cache (the browser cache or a CDN) answered with a stored copy. The Ca
 ## Used in
 
 - [[01-brief-internet-and-networking]]
+- lesson page `/frontend-engineering/how-the-web-works/internet-and-networking/lesson/01-how-the-internet-works/` (file `site/src/content/lessons/frontend-engineering/how-the-web-works/internet-and-networking/01-how-the-internet-works.mdx`)
 
 Back to [[visuals-internet-and-networking|all visuals]].
 

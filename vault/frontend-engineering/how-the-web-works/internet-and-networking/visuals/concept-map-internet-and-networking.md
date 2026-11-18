@@ -54,10 +54,10 @@ flowchart TD
   realtime_transports["Realtime transports"]
   polling_and_sse["Polling, long polling and Server-Sent Events"]
   websockets["WebSockets"]
-  webtransport_and_webrtc["WebTransport and WebRTC"]
+  webtransport_and_webrtc["WebRTC peer connections (WebTransport not covered: no verified source)"]
   api_styles["REST, GraphQL and RPC"]
   graphql_queries["Query-based GraphQL"]
-  rpc_trpc_grpc_web["RPC: tRPC, gRPC-web and Connect"]
+  rpc_trpc_grpc_web["RPC over HTTP: gRPC-web and Connect"]
   internet_packets_and_routing --> tcp_vs_udp
   internet_packets_and_routing --> routing_and_isps
   domains_and_hosting --> registrars_tlds_nameservers

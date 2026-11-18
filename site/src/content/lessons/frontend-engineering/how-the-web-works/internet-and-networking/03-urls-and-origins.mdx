@@ -1,0 +1,45 @@
+---
+title: URLs, origins and sites
+description: The browser parses a URL into parts, and only scheme, host and port make the origin that security checks compare.
+order: 3
+concepts: [URL record, percent-encoding, origin, site]
+---
+
+{/* <!-- concept: urls-and-origins --> */}
+{/* <!-- concept: url-parts-and-encoding --> */}
+{/* <!-- concept: origin-vs-site --> */}
+
+Your app on `https://shop.example.com` calls an API on `https://shop.example.com:8443`, and the browser blocks the response. The cause is in the URL itself.
+
+The browser runs every URL string through one parser, defined in the WHATWG URL Standard. The parser gives a **URL record**: named parts such as scheme, host, port, path, query and fragment. Special schemes have a default port, such as 443 for `https` and 80 for `http`. Each part has its own **percent-encoding** set, the rule that writes an unsafe byte as `%` plus two hex digits. So a space is `%20` in a path, but a form body writes it as `+`.
+
+In the diagram, find the three parts inside the origin box.
+
+<Diagram id="url-anatomy" />
+
+The **origin** is the tuple of scheme, host and port. Change one of them and you have a new origin, so port 8443 above is a different origin. The browser lets a page read responses only from its own origin, unless the server allows more. That keeps one tab from reading your bank's data.
+
+A **site** is wider: the scheme plus the **registrable domain**, which is the public suffix plus one label. So `shop.example.com` and `blog.example.com` are one site. Cookies use the site, which lets your subdomains share a login. But the public suffix list differs between browsers, so the standard says to prefer the origin for security decisions.
+
+<SortBuckets
+  prompt="Sort each pair of URLs by how closely they match."
+  buckets={["Same origin", "Same site only", "Cross-site"]}
+  items={[
+    { text: "https://shop.example.com/cart and https://shop.example.com/pay?id=7", bucket: "Same origin" },
+    { text: "https://shop.example.com and https://shop.example.com/#top", bucket: "Same origin" },
+    { text: "https://shop.example.com and https://blog.example.com", bucket: "Same site only" },
+    { text: "https://shop.example.com and https://shop.example.com:8443", bucket: "Same site only" },
+    { text: "https://shop.example.com and http://shop.example.com", bucket: "Cross-site" },
+    { text: "https://alice.github.io and https://bob.github.io", bucket: "Cross-site" },
+    { text: "https://example.com and https://example.org", bucket: "Cross-site" }
+  ]}
+  explanation="Path, query and fragment never change the origin. A different subdomain or port changes the origin but keeps the scheme and registrable domain, so the site stays the same. A different scheme or registrable domain makes it cross-site. github.io is a public suffix, so alice.github.io and bob.github.io are separate sites."
+/>
+
+<Depth level="internals">
+
+Parse with `new URL(input, base)`: it throws a TypeError when parsing fails. `URL.canParse()` returns a boolean, and `URL.parse()` returns null instead of throwing. The standard leaves the origin of a `file:` URL to the browser and says to use a new opaque origin when in doubt.
+
+</Depth>
+
+Next: what the browser sends to that origin, the HTTP request.

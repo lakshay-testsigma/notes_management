@@ -11,15 +11,15 @@ created: 2026-11-18
 This is the map of the topic. Read the steps from top to bottom. Each step links to the next thing to open, so you never have to search.
 
 <!-- tutor:generated:start -->
-**Depth:** deep · **Progress:** 5 of 10 steps ready
+**Depth:** deep · **Progress:** 7 of 10 steps ready
 
 The network layers under every web page: packets, DNS, HTTP and its versions, TLS, URLs and origins, caching, CDNs, compression, cookies, realtime transports and API styles.
 
 ## Read in this order
 
 1. [[01-brief-internet-and-networking|Brief]] — what it is, why it exists, where it is used · *ready*
-2. [[02-lesson-internet-and-networking|Interactive lesson]] — the animated lesson pages on the local site · *not started*
-3. [[03-mini-projects-internet-and-networking|Mini projects]] — small builds with a real use case · *not started*
+2. [[02-lesson-internet-and-networking|Interactive lesson]] — the animated lesson pages on the local site · *ready*
+3. [[03-mini-projects-internet-and-networking|Mini projects]] — small builds with a real use case · *ready*
 4. [[00-digests-internet-and-networking|Digests]] — short summaries of the key papers and docs · *ready*
 5. [[00-repo-intel-internet-and-networking|Repository deep dive]] — how a production open-source project does it · *ready*
 6. [[06-capstone-internet-and-networking|Capstone]] — the production-style project · *not started*
@@ -64,7 +64,7 @@ Run `npm run site:dev` in the repository root, then open `/frontend-engineering/
 8. CDNs and the edge — `/frontend-engineering/how-the-web-works/internet-and-networking/lesson/08-cdns-and-the-edge/`
 9. Compression: gzip, Brotli, Zstandard and dictionaries — `/frontend-engineering/how-the-web-works/internet-and-networking/lesson/09-compression/`
 10. Cookies: attributes, SameSite and prefixes — `/frontend-engineering/how-the-web-works/internet-and-networking/lesson/10-cookies/`
-11. Realtime transports: polling, SSE, WebSockets, WebTransport and WebRTC — `/frontend-engineering/how-the-web-works/internet-and-networking/lesson/11-realtime-transports/`
+11. Realtime transports: polling, SSE, WebSockets and WebRTC — `/frontend-engineering/how-the-web-works/internet-and-networking/lesson/11-realtime-transports/`
 12. REST, GraphQL and RPC in production — `/frontend-engineering/how-the-web-works/internet-and-networking/lesson/12-api-styles-in-production/`
 
 ## Research scope and concept notes
@@ -115,19 +115,19 @@ The network a frontend developer depends on: internet packets and transport, dom
 - Realtime transports: included
 - Polling, long polling and Server-Sent Events: included
 - WebSockets: included
-- WebTransport and WebRTC: included
+- WebRTC peer connections (WebTransport not covered: no verified source): included
 - REST, GraphQL and RPC: included
 - Resource-oriented REST: deferred — No verified REST-style source in this run (RFC 9110 defines resources and methods, not the REST style); the roadmap deep-dives REST in Phase 13.
 - Query-based GraphQL: included
-- RPC: tRPC, gRPC-web and Connect: included
+- RPC over HTTP: gRPC-web and Connect: included
 
-Research stopped: budget-limit. Children expanded against the same sources. Proposed dns-caching-and-ttl, tls-0rtt-replay-risk and samesite-lax-strict-none are taught inside dns-record-types, quic-0rtt-and-migration and set-cookie-attributes. Three children deferred with reasons.
+Research stopped: budget-limit. Children expanded against the same sources. Proposed dns-caching-and-ttl, tls-0rtt-replay-risk and samesite-lax-strict-none are taught inside dns-record-types, quic-0rtt-and-migration and set-cookie-attributes. Three children deferred with reasons. tRPC and WebTransport have no verified source in this run; their concepts were narrowed to gRPC-web/Connect and WebRTC.
 
 ## Projects
 
-- Mini project (planned): `projects/frontend-engineering/how-the-web-works/internet-and-networking/mini-01-dns-record-inspector/` — A developer moving a site to a new host checks that A, AAAA, CNAME, CAA and HTTPS records and their TTLs are right before switching nameservers.
-- Mini project (planned): `projects/frontend-engineering/how-the-web-works/internet-and-networking/mini-02-cache-header-auditor/` — A frontend team checks that hashed assets are immutable and HTML revalidates, by grading Cache-Control, ETag, Vary and Content-Encoding headers from a HAR file.
-- Mini project (planned): `projects/frontend-engineering/how-the-web-works/internet-and-networking/mini-03-cookie-attribute-linter/` — A security reviewer reads the Set-Cookie headers of a login flow and flags missing Secure, HttpOnly or SameSite and broken __Host- prefixes.
+- Mini project: `projects/frontend-engineering/how-the-web-works/internet-and-networking/mini-01-dns-record-inspector/`
+- Mini project: `projects/frontend-engineering/how-the-web-works/internet-and-networking/mini-02-cache-header-auditor/`
+- Mini project: `projects/frontend-engineering/how-the-web-works/internet-and-networking/mini-03-cookie-attribute-linter/`
 - Capstone: `projects/frontend-engineering/how-the-web-works/internet-and-networking/capstone/` — site network report CLI
 
 ## Build status
@@ -139,13 +139,13 @@ Research stopped: budget-limit. Children expanded against the same sources. Prop
 | 1 | brief | ready |
 | 2 | digest | ready |
 | 2 | repo-intel | ready |
-| 3 | lesson | not started |
-| 3 | mini-projects | not started |
+| 3 | lesson | ready |
+| 3 | mini-projects | ready |
 | 4 | capstone | not started |
 | 5 | notes | not started |
 | 5 | finalize | not started |
 
-Next to generate: `lesson`, `mini-projects`. Ask Claude to continue this topic, or run `node harness/bin/tutor.mjs next frontend-engineering/how-the-web-works/internet-and-networking`.
+Next to generate: `capstone`. Ask Claude to continue this topic, or run `node harness/bin/tutor.mjs next frontend-engineering/how-the-web-works/internet-and-networking`.
 <!-- tutor:generated:end -->
 
 ## My insights

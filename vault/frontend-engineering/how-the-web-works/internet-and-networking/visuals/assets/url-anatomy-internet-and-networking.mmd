@@ -1,0 +1,12 @@
+flowchart LR
+  subgraph O["Origin = scheme + host + port"]
+    S["scheme: https"]
+    H["host: shop.example.com"]
+    P["port: 8443"]
+  end
+  subgraph N["Not in the origin"]
+    PA["path: /cart"]
+    Q["query: id=7"]
+    F["fragment: top"]
+  end
+  H -->|public suffix + 1 label| RD["registrable domain: example.com"]

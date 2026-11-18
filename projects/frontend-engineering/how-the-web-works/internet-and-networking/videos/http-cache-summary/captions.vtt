@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.200 --> 00:00:02.300
+Three questions decide every cached response.
+
+2
+00:00:02.300 --> 00:00:05.800
+The cache asks them in the same order each time.
+
+3
+00:00:06.200 --> 00:00:10.740
+First, is there a stored copy for this key?
+
+4
+00:00:10.740 --> 00:00:12.760
+Second, is it fresh?
+
+5
+00:00:12.760 --> 00:00:17.800
+Third, if stale, does the origin answer 304 or 200?
+
+6
+00:00:18.200 --> 00:00:20.310
+no-store means never store.
+
+7
+00:00:20.310 --> 00:00:23.470
+no-cache means store, but check first.
+
+8
+00:00:23.470 --> 00:00:29.800
+max-age gives seconds of freshness, and s-maxage does so for shared caches.
+
+9
+00:00:30.200 --> 00:00:34.620
+Give the HTML page no-cache and an ETag,
+
+10
+00:00:34.620 --> 00:00:37.380
+so it is never stale.
+
+11
+00:00:37.380 --> 00:00:41.800
+Give hashed assets a one-year max-age and immutable.
