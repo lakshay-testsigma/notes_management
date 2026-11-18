@@ -7,7 +7,7 @@
   "subdomain": "learning-system-and-workstation",
   "depth": "standard",
   "created_at": "2026-11-18T10:19:12Z",
-  "updated_at": "2026-11-18T11:48:07Z",
+  "updated_at": "2026-11-18T12:27:54Z",
   "paths": {
     "state": "state/topics/frontend-engineering/learning-system-and-workstation/browser-extension-toolkit",
     "vault": "vault/frontend-engineering/learning-system-and-workstation/browser-extension-toolkit",
@@ -1156,25 +1156,91 @@
       "id": "digest",
       "wave": 2,
       "skill": "learn-digest",
-      "status": "pending",
+      "status": "done",
       "scope": "required",
-      "started_at": null,
-      "finished_at": null,
-      "attempts": 0,
-      "units": [],
-      "note": ""
+      "started_at": "2026-11-18T12:12:30Z",
+      "finished_at": "2026-11-18T12:27:48Z",
+      "attempts": 1,
+      "units": [
+        {
+          "id": "google-js-seo-basics-docs",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "mdn-webextensions-anatomy-docs",
+          "status": "done",
+          "handoff": null
+        }
+      ],
+      "note": "",
+      "continue_after_failure": false,
+      "validation": {
+        "version": 2,
+        "fingerprint": "b243d3b84924c8a9a58f81f76819062444b91dc2fa850dfb9c0996ae13374409",
+        "at": "2026-11-18T12:27:48Z",
+        "forced": false
+      }
     },
     {
       "id": "repo-intel",
       "wave": 2,
       "skill": "learn-repo-intel",
-      "status": "pending",
+      "status": "done",
       "scope": "required",
-      "started_at": null,
-      "finished_at": null,
-      "attempts": 0,
-      "units": [],
-      "note": ""
+      "started_at": "2026-11-18T12:12:33Z",
+      "finished_at": "2026-11-18T12:27:54Z",
+      "attempts": 1,
+      "units": [
+        {
+          "id": "dequelabs-axe-core-scout",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "dequelabs-axe-core-module-engine-run",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "dequelabs-axe-core-module-frame-messaging",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "dequelabs-axe-core-module-headings-landmarks-rules",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "dequelabs-axe-core-module-color-contrast",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "dequelabs-axe-core-module-a11y-tests",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "dequelabs-axe-core-module-build-and-infra",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "dequelabs-axe-core-synthesis",
+          "status": "done",
+          "handoff": null
+        }
+      ],
+      "note": "",
+      "continue_after_failure": false,
+      "validation": {
+        "version": 2,
+        "fingerprint": "1c5d657d0487c20ba71c16ab49b518a5854cbc406b037f0e7a1c275c69b3d2c7",
+        "at": "2026-11-18T12:27:54Z",
+        "forced": false
+      }
     },
     {
       "id": "lesson",
@@ -1556,6 +1622,275 @@
       "event": "done",
       "message": "gate passed",
       "stage": "brief"
+    },
+    {
+      "at": "2026-11-18T12:12:30Z",
+      "event": "start",
+      "message": "attempt 1",
+      "stage": "digest"
+    },
+    {
+      "at": "2026-11-18T12:12:33Z",
+      "event": "start",
+      "message": "attempt 1",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T12:12:35Z",
+      "event": "unit-add",
+      "message": "unit google-js-seo-basics-docs",
+      "stage": "digest"
+    },
+    {
+      "at": "2026-11-18T12:12:38Z",
+      "event": "unit-add",
+      "message": "unit mdn-webextensions-anatomy-docs",
+      "stage": "digest"
+    },
+    {
+      "at": "2026-11-18T12:12:41Z",
+      "event": "unit-add",
+      "message": "unit dequelabs-axe-core-scout",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T12:12:43Z",
+      "event": "note",
+      "message": "SPAWN 9/36"
+    },
+    {
+      "at": "2026-11-18T12:13:01Z",
+      "event": "unit-start",
+      "message": "unit google-js-seo-basics-docs",
+      "stage": "digest"
+    },
+    {
+      "at": "2026-11-18T12:13:10Z",
+      "event": "unit-start",
+      "message": "unit mdn-webextensions-anatomy-docs",
+      "stage": "digest"
+    },
+    {
+      "at": "2026-11-18T12:13:57Z",
+      "event": "visual",
+      "message": "added visual mdn-webextensions-anatomy-docs-mechanism"
+    },
+    {
+      "at": "2026-11-18T12:14:01Z",
+      "event": "unit-done",
+      "message": "unit mdn-webextensions-anatomy-docs",
+      "stage": "digest"
+    },
+    {
+      "at": "2026-11-18T12:14:08Z",
+      "event": "unit-done",
+      "message": "unit google-js-seo-basics-docs",
+      "stage": "digest"
+    },
+    {
+      "at": "2026-11-18T12:14:14Z",
+      "event": "visual",
+      "message": "added visual google-js-seo-basics-docs-mechanism"
+    },
+    {
+      "at": "2026-11-18T12:15:57Z",
+      "event": "unit-start",
+      "message": "unit dequelabs-axe-core-scout",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T12:16:57Z",
+      "event": "note",
+      "message": "WAVE 2 running: axe-core scout; digests done, index written; lookahead 01.1 research x4 running"
+    },
+    {
+      "at": "2026-11-18T12:18:38Z",
+      "event": "unit-done",
+      "message": "unit dequelabs-axe-core-scout",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T12:19:06Z",
+      "event": "unit-add",
+      "message": "unit dequelabs-axe-core-module-engine-run",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T12:19:08Z",
+      "event": "unit-add",
+      "message": "unit dequelabs-axe-core-module-frame-messaging",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T12:19:10Z",
+      "event": "unit-add",
+      "message": "unit dequelabs-axe-core-module-headings-landmarks-rules",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T12:19:14Z",
+      "event": "unit-add",
+      "message": "unit dequelabs-axe-core-module-color-contrast",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T12:19:17Z",
+      "event": "unit-add",
+      "message": "unit dequelabs-axe-core-module-a11y-tests",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T12:19:20Z",
+      "event": "unit-add",
+      "message": "unit dequelabs-axe-core-module-build-and-infra",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T12:19:23Z",
+      "event": "note",
+      "message": "SPAWN 13/36"
+    },
+    {
+      "at": "2026-11-18T12:19:38Z",
+      "event": "unit-start",
+      "message": "unit dequelabs-axe-core-module-engine-run",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T12:19:45Z",
+      "event": "unit-start",
+      "message": "unit dequelabs-axe-core-module-frame-messaging",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T12:19:51Z",
+      "event": "unit-start",
+      "message": "unit dequelabs-axe-core-module-headings-landmarks-rules",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T12:19:55Z",
+      "event": "note",
+      "message": "WAVE 2 running: axe modules engine-run, frame-messaging, headings-landmarks-rules, color-contrast; queued: a11y-tests, build-and-infra, then synthesis"
+    },
+    {
+      "at": "2026-11-18T12:19:58Z",
+      "event": "unit-start",
+      "message": "unit dequelabs-axe-core-module-color-contrast",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T12:20:42Z",
+      "event": "unit-done",
+      "message": "unit dequelabs-axe-core-module-engine-run",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T12:20:47Z",
+      "event": "unit-done",
+      "message": "unit dequelabs-axe-core-module-headings-landmarks-rules",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T12:20:49Z",
+      "event": "unit-done",
+      "message": "unit dequelabs-axe-core-module-color-contrast",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T12:20:52Z",
+      "event": "unit-done",
+      "message": "unit dequelabs-axe-core-module-frame-messaging",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T12:20:56Z",
+      "event": "note",
+      "message": "SPAWN 14/36"
+    },
+    {
+      "at": "2026-11-18T12:21:01Z",
+      "event": "note",
+      "message": "SPAWN 15/36"
+    },
+    {
+      "at": "2026-11-18T12:21:04Z",
+      "event": "unit-start",
+      "message": "unit dequelabs-axe-core-module-a11y-tests",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T12:21:15Z",
+      "event": "unit-start",
+      "message": "unit dequelabs-axe-core-module-build-and-infra",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T12:21:43Z",
+      "event": "unit-done",
+      "message": "unit dequelabs-axe-core-module-a11y-tests",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T12:22:13Z",
+      "event": "unit-done",
+      "message": "unit dequelabs-axe-core-module-build-and-infra",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T12:24:11Z",
+      "event": "unit-add",
+      "message": "unit dequelabs-axe-core-synthesis",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T12:24:14Z",
+      "event": "note",
+      "message": "SPAWN 16/36"
+    },
+    {
+      "at": "2026-11-18T12:24:24Z",
+      "event": "note",
+      "message": "WAVE 2: 6/6 axe modules done; synthesis running; then 00-repo-intel index + order import-indexes + done digest, repo-intel"
+    },
+    {
+      "at": "2026-11-18T12:24:27Z",
+      "event": "unit-start",
+      "message": "unit dequelabs-axe-core-synthesis",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T12:26:09Z",
+      "event": "visual",
+      "message": "added visual axe-core-module-map"
+    },
+    {
+      "at": "2026-11-18T12:26:09Z",
+      "event": "visual",
+      "message": "added visual axe-core-request-flow"
+    },
+    {
+      "at": "2026-11-18T12:27:25Z",
+      "event": "unit-done",
+      "message": "unit dequelabs-axe-core-synthesis",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T12:27:44Z",
+      "event": "reader-order",
+      "message": "Imported explicit authored child-note sequence"
+    },
+    {
+      "at": "2026-11-18T12:27:48Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "digest"
+    },
+    {
+      "at": "2026-11-18T12:27:54Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "repo-intel"
     }
   ],
   "roadmap": {
@@ -1693,5 +2028,28 @@
         ]
       }
     }
+  },
+  "reader_order": {
+    "digest": [
+      "04-digests/mdn-webextensions-anatomy-docs-browser-extension-toolkit.md",
+      "04-digests/google-js-seo-basics-docs-browser-extension-toolkit.md"
+    ],
+    "repo-intel": [
+      "05-repo-intel/dequelabs-axe-core/axe-core-overview.md",
+      "05-repo-intel/dequelabs-axe-core/axe-core-architecture.md",
+      "05-repo-intel/dequelabs-axe-core/axe-core-findings.md",
+      "05-repo-intel/dequelabs-axe-core/axe-core-tech-and-services.md",
+      "05-repo-intel/dequelabs-axe-core/axe-core-takeaways.md",
+      "05-repo-intel/dequelabs-axe-core/axe-core-module-engine-run.md",
+      "05-repo-intel/dequelabs-axe-core/axe-core-module-frame-messaging.md",
+      "05-repo-intel/dequelabs-axe-core/axe-core-module-headings-landmarks-rules.md",
+      "05-repo-intel/dequelabs-axe-core/axe-core-module-color-contrast.md",
+      "05-repo-intel/dequelabs-axe-core/axe-core-module-a11y-tests.md",
+      "05-repo-intel/dequelabs-axe-core/axe-core-module-build-and-infra.md",
+      "05-repo-intel/dequelabs-axe-core/axe-core-pattern-three-valued-results.md",
+      "05-repo-intel/dequelabs-axe-core/axe-core-pattern-rules-as-data.md",
+      "05-repo-intel/dequelabs-axe-core/axe-core-pattern-cleanup-on-every-exit.md",
+      "05-repo-intel/dequelabs-axe-core/axe-core-pattern-compute-once-and-cache.md"
+    ]
   }
 }

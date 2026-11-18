@@ -1,0 +1,16 @@
+sequenceDiagram
+  participant U as Caller
+  participant R as run.js
+  participant RR as runRules
+  participant F as collectResultsFromFrames
+  participant RU as Rule
+  participant C as Check
+  U->>R: axe.run(context, options)
+  R->>RR: set running, build context and tree
+  RR->>F: queue frame job
+  RR->>RU: queue audit.run on this page
+  RU->>C: any, all, none checks per node
+  C-->>RU: true, false or undefined
+  F-->>RR: frame results
+  RR-->>R: merge, after, finalize
+  R-->>U: reporter result, teardown

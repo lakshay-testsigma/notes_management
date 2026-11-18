@@ -18,5 +18,6 @@ An exit code is the number a program returns when it ends. Zero means success. A
 - [[lighthouse-pattern-fail-soft-pipeline]]
 - [[devtools-frontend-pattern-fail-soft-parsing]]
 - [[06-capstone-browser-devtools-mastery]]
+- [[axe-core-pattern-cleanup-on-every-exit]]
 
 ## My insights

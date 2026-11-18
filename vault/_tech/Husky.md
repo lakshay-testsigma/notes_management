@@ -13,5 +13,6 @@ Husky installs Git hooks from a folder inside the repository, so every contribut
 ## Where it shows up
 
 - [[commitlint-tech-and-services]]
+- [[axe-core-tech-and-services]]
 
 ## My insights

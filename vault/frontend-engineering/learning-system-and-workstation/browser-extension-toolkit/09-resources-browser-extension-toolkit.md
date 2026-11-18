@@ -19,6 +19,7 @@ Every source below was checked against a live page before it was recommended.
   - Why it is trusted: MDN's WebExtensions reference, maintained by Mozilla, defines manifest.json, background scripts, content scripts, popups and web accessible resources for the cross-browser API.
   - Used for: brief, digest, lesson
   - Verified: 2026-11-18
+  - Digest: [[mdn-webextensions-anatomy-docs-browser-extension-toolkit|read the digest]]
 - **[chrome.declarativeNetRequest API reference](https://developer.chrome.com/docs/extensions/reference/api/declarativeNetRequest)** — Chrome for Developers, Google, 2026 · tier A
   - Why it is trusted: The official Chrome extensions API reference for the API that block, redirect and header-modifying extensions use; it defines the rule action types block, redirect, allow, upgradeScheme, modifyHeaders and allowAllRequests, plus rule limits and the Header modification section.
   - Used for: lesson
@@ -51,6 +52,7 @@ Every source below was checked against a live page before it was recommended.
   - Why it is trusted: Google's own Search Central documentation of how Googlebot crawls, renders and indexes JavaScript pages; sections cover rendered HTML, status codes, soft 404, and JSON-LD.
   - Used for: digest, lesson
   - Verified: 2026-11-18
+  - Digest: [[google-js-seo-basics-docs-browser-extension-toolkit|read the digest]]
 
 ## Repositories
 

@@ -13,5 +13,6 @@ Sinon is a JavaScript library for test spies, stubs and fakes. A test uses it to
 ## Where it shows up
 
 - [[devtools-frontend-tech-and-services]]
+- [[axe-core-tech-and-services]]
 
 ## My insights

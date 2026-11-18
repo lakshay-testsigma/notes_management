@@ -13,5 +13,6 @@ pnpm is a package manager for Node.js projects that links one shared store of pa
 ## Where it shows up
 
 - [[commitlint-tech-and-services]]
+- [[axe-core-tech-and-services]]
 
 ## My insights
