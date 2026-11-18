@@ -7,7 +7,7 @@
   "subdomain": "learning-system-and-workstation",
   "depth": "standard",
   "created_at": "2026-11-18T10:19:12Z",
-  "updated_at": "2026-11-18T10:23:24Z",
+  "updated_at": "2026-11-18T10:46:44Z",
   "paths": {
     "state": "state/topics/frontend-engineering/learning-system-and-workstation/browser-extension-toolkit",
     "vault": "vault/frontend-engineering/learning-system-and-workstation/browser-extension-toolkit",
@@ -114,8 +114,7 @@
           "concept_ids": [
             "framework-devtools-extensions",
             "react-devtools-components-profiler",
-            "redux-devtools-time-travel",
-            "other-framework-devtools"
+            "redux-devtools-time-travel"
           ],
           "signals": {
             "complexity": 3,
@@ -144,7 +143,6 @@
           "id": "perf-extensions-compare",
           "concept_ids": [
             "performance-extensions",
-            "react-scan-wasted-renders",
             "crux-field-data-viewers"
           ],
           "signals": {
@@ -175,8 +173,7 @@
           "concept_ids": [
             "accessibility-extensions",
             "automated-a11y-rule-limits",
-            "contrast-and-vision-checks",
-            "headings-and-landmarks"
+            "contrast-and-vision-checks"
           ],
           "signals": {
             "complexity": 3,
@@ -236,8 +233,7 @@
           "concept_ids": [
             "security-privacy-extensions",
             "vulnerable-library-detection",
-            "headers-cookies-and-csp",
-            "ad-block-and-proxy-testing"
+            "headers-cookies-and-csp"
           ],
           "signals": {
             "complexity": 3,
@@ -333,8 +329,23 @@
           "importance": "critical",
           "disposition": "included",
           "roadmap_items": [],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "mdn-webextensions-anatomy-docs",
+            "chrome-extensions-content-scripts-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-extension-toolkit/01-why-an-extension-toolkit.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": []
         },
         {
@@ -345,8 +356,23 @@
           "importance": "core",
           "disposition": "included",
           "roadmap_items": [],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "chrome-extensions-content-scripts-docs",
+            "mdn-webextensions-anatomy-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-extension-toolkit/01-why-an-extension-toolkit.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": []
         },
         {
@@ -357,8 +383,23 @@
           "importance": "core",
           "disposition": "included",
           "roadmap_items": [],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "chrome-extensions-content-scripts-docs",
+            "mdn-webextensions-anatomy-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-extension-toolkit/01-why-an-extension-toolkit.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": [
             "extension-architecture-and-permissions"
           ]
@@ -373,8 +414,23 @@
           "roadmap_items": [
             "framework-devtools-extensions"
           ],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "react-devtools-docs",
+            "redux-configure-store-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-extension-toolkit/02-framework-devtools.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": [
             "content-scripts-and-devtools-pages"
           ]
@@ -387,8 +443,22 @@
           "importance": "core",
           "disposition": "included",
           "roadmap_items": [],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "react-devtools-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-extension-toolkit/02-framework-devtools.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": []
         },
         {
@@ -399,8 +469,22 @@
           "importance": "core",
           "disposition": "included",
           "roadmap_items": [],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "redux-configure-store-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-extension-toolkit/02-framework-devtools.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": []
         },
         {
@@ -409,11 +493,12 @@
           "parent": "framework-devtools-extensions",
           "complexity": "basic",
           "importance": "supporting",
-          "disposition": "included",
+          "disposition": "deferred",
           "roadmap_items": [],
           "source_ids": [],
           "coverage": [],
-          "prerequisites": []
+          "prerequisites": [],
+          "reason": "Vue, Angular, Svelte, Solid, Apollo, Preact and Module Federation devtools had no verified official page in this run; the lesson names them only as equivalents of React DevTools, and each framework section of the roadmap covers its own devtools."
         },
         {
           "id": "performance-extensions",
@@ -425,8 +510,23 @@
           "roadmap_items": [
             "performance-extensions"
           ],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "chrome-devtools-perf-overview-docs",
+            "react-devtools-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-extension-toolkit/03-performance-extensions.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": []
         },
         {
@@ -435,13 +535,14 @@
           "parent": "performance-extensions",
           "complexity": "intermediate",
           "importance": "core",
-          "disposition": "included",
+          "disposition": "deferred",
           "roadmap_items": [],
           "source_ids": [],
           "coverage": [],
           "prerequisites": [
             "react-devtools-components-profiler"
-          ]
+          ],
+          "reason": "No verified React Scan source in this run; wasted renders are taught with the React DevTools Profiler here and in the React performance section of the roadmap."
         },
         {
           "id": "crux-field-data-viewers",
@@ -451,8 +552,22 @@
           "importance": "core",
           "disposition": "included",
           "roadmap_items": [],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "chrome-devtools-perf-overview-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-extension-toolkit/03-performance-extensions.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": []
         },
         {
@@ -465,8 +580,23 @@
           "roadmap_items": [
             "accessibility-extensions"
           ],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "dequelabs-axe-core-repo",
+            "w3c-wai-selecting-evaluation-tools"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-extension-toolkit/04-accessibility-extensions.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": []
         },
         {
@@ -477,8 +607,23 @@
           "importance": "critical",
           "disposition": "included",
           "roadmap_items": [],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "w3c-wai-selecting-evaluation-tools",
+            "dequelabs-axe-core-repo"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-extension-toolkit/04-accessibility-extensions.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": []
         },
         {
@@ -489,8 +634,22 @@
           "importance": "core",
           "disposition": "included",
           "roadmap_items": [],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "w3c-wcag22-understanding-contrast-minimum"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-extension-toolkit/04-accessibility-extensions.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": []
         },
         {
@@ -499,11 +658,12 @@
           "parent": "accessibility-extensions",
           "complexity": "basic",
           "importance": "core",
-          "disposition": "included",
+          "disposition": "deferred",
           "roadmap_items": [],
           "source_ids": [],
           "coverage": [],
-          "prerequisites": []
+          "prerequisites": [],
+          "reason": "No verified source in this run; headings and landmarks are taught in roadmap section 08.2 Building accessible UI."
         },
         {
           "id": "seo-extensions",
@@ -515,8 +675,22 @@
           "roadmap_items": [
             "seo-extensions"
           ],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "google-js-seo-basics-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-extension-toolkit/05-seo-extensions.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": []
         },
         {
@@ -527,8 +701,22 @@
           "importance": "core",
           "disposition": "included",
           "roadmap_items": [],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "google-js-seo-basics-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-extension-toolkit/05-seo-extensions.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": []
         },
         {
@@ -539,8 +727,22 @@
           "importance": "supporting",
           "disposition": "included",
           "roadmap_items": [],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "google-js-seo-basics-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-extension-toolkit/05-seo-extensions.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": []
         },
         {
@@ -553,8 +755,23 @@
           "roadmap_items": [
             "security-privacy-extensions"
           ],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "retirejs-repo",
+            "mdn-csp-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-extension-toolkit/06-security-privacy-extensions.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": [
             "extension-risk-and-vetting"
           ]
@@ -567,8 +784,22 @@
           "importance": "core",
           "disposition": "included",
           "roadmap_items": [],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "retirejs-repo"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-extension-toolkit/06-security-privacy-extensions.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": []
         },
         {
@@ -579,8 +810,22 @@
           "importance": "core",
           "disposition": "included",
           "roadmap_items": [],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "mdn-csp-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-extension-toolkit/06-security-privacy-extensions.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": []
         },
         {
@@ -589,11 +834,12 @@
           "parent": "security-privacy-extensions",
           "complexity": "basic",
           "importance": "supporting",
-          "disposition": "included",
+          "disposition": "deferred",
           "roadmap_items": [],
           "source_ids": [],
           "coverage": [],
-          "prerequisites": []
+          "prerequisites": [],
+          "reason": "No verified source in this run; ad-block resilience and proxy tools (Burp/ZAP) belong to the later security phase of the roadmap."
         },
         {
           "id": "design-css-helper-extensions",
@@ -605,8 +851,23 @@
           "roadmap_items": [
             "design-css-helper-extensions"
           ],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "chrome-extensions-content-scripts-docs",
+            "mdn-webextensions-anatomy-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-extension-toolkit/07-team-toolkit-in-practice.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": []
         },
         {
@@ -619,8 +880,22 @@
           "roadmap_items": [
             "api-data-extensions"
           ],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "chrome-declarativenetrequest-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-extension-toolkit/07-team-toolkit-in-practice.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": []
         },
         {
@@ -631,8 +906,22 @@
           "importance": "supporting",
           "disposition": "included",
           "roadmap_items": [],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "chrome-declarativenetrequest-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-extension-toolkit/07-team-toolkit-in-practice.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": []
         },
         {
@@ -643,8 +932,23 @@
           "importance": "core",
           "disposition": "included",
           "roadmap_items": [],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "mdn-webextensions-anatomy-docs",
+            "chrome-extensions-content-scripts-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-extension-toolkit/07-team-toolkit-in-practice.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": [
             "extension-risk-and-vetting"
           ]
@@ -652,7 +956,7 @@
       ],
       "discovery": [
         {
-          "round": 0,
+          "round": 1,
           "frontier": [
             "extension-architecture-and-permissions",
             "framework-devtools-extensions",
@@ -663,7 +967,20 @@
             "design-css-helper-extensions",
             "api-data-extensions"
           ],
-          "source_ids": [],
+          "source_ids": [
+            "mdn-webextensions-anatomy-docs",
+            "chrome-extensions-content-scripts-docs",
+            "react-devtools-docs",
+            "redux-configure-store-docs",
+            "chrome-devtools-perf-overview-docs",
+            "dequelabs-axe-core-repo",
+            "w3c-wai-selecting-evaluation-tools",
+            "w3c-wcag22-understanding-contrast-minimum",
+            "google-js-seo-basics-docs",
+            "retirejs-repo",
+            "mdn-csp-docs",
+            "chrome-declarativenetrequest-docs"
+          ],
           "added": [
             "extension-architecture-and-permissions",
             "content-scripts-and-devtools-pages",
@@ -688,10 +1005,65 @@
             "ad-block-and-proxy-testing",
             "design-css-helper-extensions",
             "api-data-extensions",
-            "request-modification-and-mocking",
+            "request-modification-and-mocking"
+          ],
+          "note": "Roots seeded from roadmap section 00.4; children proposed by research units framework-perf, a11y-seo, security-helpers and repos."
+        },
+        {
+          "round": 2,
+          "frontier": [
+            "extension-architecture-and-permissions",
+            "content-scripts-and-devtools-pages",
+            "extension-risk-and-vetting",
+            "framework-devtools-extensions",
+            "react-devtools-components-profiler",
+            "redux-devtools-time-travel",
+            "performance-extensions",
+            "crux-field-data-viewers",
+            "accessibility-extensions",
+            "automated-a11y-rule-limits",
+            "contrast-and-vision-checks",
+            "seo-extensions",
+            "rendered-vs-source-html",
+            "redirects-and-structured-data",
+            "security-privacy-extensions",
+            "vulnerable-library-detection",
+            "headers-cookies-and-csp",
+            "design-css-helper-extensions",
+            "api-data-extensions",
+            "request-modification-and-mocking"
+          ],
+          "source_ids": [
+            "mdn-webextensions-anatomy-docs",
+            "chrome-extensions-content-scripts-docs",
+            "react-devtools-docs",
+            "redux-configure-store-docs",
+            "chrome-devtools-perf-overview-docs",
+            "dequelabs-axe-core-repo",
+            "w3c-wai-selecting-evaluation-tools",
+            "w3c-wcag22-understanding-contrast-minimum",
+            "google-js-seo-basics-docs",
+            "retirejs-repo",
+            "mdn-csp-docs",
+            "chrome-declarativenetrequest-docs"
+          ],
+          "added": [
             "team-extension-profile"
           ],
-          "note": "Roots seeded from roadmap section 00.4; children proposed at intake, to be verified by research."
+          "note": "Expanded every included concept from round 1; added team-extension-profile under extension-risk-and-vetting."
+        },
+        {
+          "round": 3,
+          "frontier": [
+            "team-extension-profile"
+          ],
+          "source_ids": [
+            "mdn-webextensions-anatomy-docs",
+            "chrome-extensions-content-scripts-docs"
+          ],
+          "added": [],
+          "stop_reason": "budget-limit",
+          "note": "Five research units (framework-perf, a11y-seo, security-helpers, repos, gap-01) verified 12 sources, the cap. Every included concept has vetted evidence. Four children deferred with reasons (no verified source this run; later roadmap sections teach them). Design-helper tools are supported only through the content-script mechanism; tool-specific pages (VisBug archived) were not added."
         }
       ]
     }
@@ -704,15 +1076,15 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T10:19:15Z",
-      "finished_at": "2026-11-18T10:20:45Z",
+      "finished_at": "2026-11-18T10:46:03Z",
       "attempts": 1,
       "units": [],
       "note": "",
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "2eae3bf4efcda289ecce7d36b2df119b92dbdae38373deb8bdef31cef4ab9653",
-        "at": "2026-11-18T10:20:45Z",
+        "fingerprint": "c1460645ec7895b9eff936c5dc2725a208b6a50f75acfc9ba1a2401658f9c545",
+        "at": "2026-11-18T10:46:03Z",
         "forced": false
       }
     },
@@ -720,10 +1092,10 @@
       "id": "research",
       "wave": 1,
       "skill": "learn-research",
-      "status": "in_progress",
+      "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T10:21:07Z",
-      "finished_at": null,
+      "finished_at": "2026-11-18T10:46:17Z",
       "attempts": 1,
       "units": [
         {
@@ -733,21 +1105,33 @@
         },
         {
           "id": "docs-a11y-seo",
-          "status": "pending",
+          "status": "done",
           "handoff": null
         },
         {
           "id": "docs-security-helpers",
-          "status": "pending",
+          "status": "done",
           "handoff": null
         },
         {
           "id": "repos",
           "status": "done",
           "handoff": null
+        },
+        {
+          "id": "gap-01",
+          "status": "done",
+          "handoff": null
         }
       ],
-      "note": ""
+      "note": "",
+      "continue_after_failure": false,
+      "validation": {
+        "version": 2,
+        "fingerprint": "853b4d1b3bf2b1796d4de7054ba95254ae72d2af65dfbd673212d2a000f36446",
+        "at": "2026-11-18T10:46:17Z",
+        "forced": false
+      }
     },
     {
       "id": "brief",
@@ -953,10 +1337,337 @@
       "at": "2026-11-18T10:23:24Z",
       "event": "note",
       "message": "LOOKAHEAD intake done; running research docs-framework-perf, repos; queued docs-a11y-seo, docs-security-helpers"
+    },
+    {
+      "at": "2026-11-18T10:26:26Z",
+      "event": "source-add",
+      "message": "added google-js-seo-basics-docs",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T10:26:28Z",
+      "event": "source-add",
+      "message": "added google-redirects-docs",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T10:26:31Z",
+      "event": "source-add",
+      "message": "added w3c-wai-selecting-evaluation-tools",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T10:26:32Z",
+      "event": "source-add",
+      "message": "added w3c-wcag22-understanding-contrast-minimum",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T10:26:34Z",
+      "event": "note",
+      "message": "SPAWN 4/36"
+    },
+    {
+      "at": "2026-11-18T10:26:48Z",
+      "event": "unit-done",
+      "message": "unit docs-a11y-seo",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T10:26:58Z",
+      "event": "source-add",
+      "message": "added mdn-webextensions-anatomy-docs",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T10:27:01Z",
+      "event": "source-add",
+      "message": "added chrome-extensions-content-scripts-docs",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T10:27:03Z",
+      "event": "source-add",
+      "message": "added mdn-csp-docs",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T10:27:05Z",
+      "event": "source-add",
+      "message": "added retirejs-repo",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T10:27:16Z",
+      "event": "unit-done",
+      "message": "unit docs-security-helpers",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T10:30:02Z",
+      "event": "source-remove",
+      "message": "removed google-redirects-docs: Source cap 12: redirect facts folded into google-js-seo-basics-docs (status codes, JS redirects); slot freed for request-modification and design-helper evidence",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T10:30:03Z",
+      "event": "unit-add",
+      "message": "unit gap-01",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T10:30:20Z",
+      "event": "note",
+      "message": "SPAWN 5/36"
+    },
+    {
+      "at": "2026-11-18T10:30:55Z",
+      "event": "source-add",
+      "message": "added chrome-declarativenetrequest-docs",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T10:30:57Z",
+      "event": "unit-done",
+      "message": "unit gap-01",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T10:33:52Z",
+      "event": "plan",
+      "message": "plan fields set: summary, prerequisites, outcomes, lesson_outline, mini_projects, digest_targets, repo_targets, capstone, learner, visual_policy, visual_first, multi_stage, experience_policy, curriculum",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-18T10:34:01Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-18T10:34:20Z",
+      "event": "execution-check",
+      "message": "research: pass",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T10:44:50Z",
+      "event": "gate-failed",
+      "message": "4 problems",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T10:45:01Z",
+      "event": "plan",
+      "message": "plan fields set: summary, prerequisites, outcomes, lesson_outline, mini_projects, digest_targets, repo_targets, capstone, learner, visual_policy, visual_first, multi_stage, experience_policy, curriculum",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-18T10:45:04Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-18T10:45:15Z",
+      "event": "execution-check",
+      "message": "research: pass",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T10:45:19Z",
+      "event": "gate-failed",
+      "message": "1 problems",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T10:45:35Z",
+      "event": "plan",
+      "message": "plan fields set: summary, prerequisites, outcomes, lesson_outline, mini_projects, digest_targets, repo_targets, capstone, learner, visual_policy, visual_first, multi_stage, experience_policy, curriculum",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-18T10:45:39Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-18T10:45:48Z",
+      "event": "execution-check",
+      "message": "research: pass",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T10:45:52Z",
+      "event": "gate-failed",
+      "message": "1 problems",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T10:46:00Z",
+      "event": "plan",
+      "message": "plan fields set: summary, prerequisites, outcomes, lesson_outline, mini_projects, digest_targets, repo_targets, capstone, learner, visual_policy, visual_first, multi_stage, experience_policy, curriculum",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-18T10:46:03Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-18T10:46:14Z",
+      "event": "execution-check",
+      "message": "research: pass",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T10:46:17Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T10:46:44Z",
+      "event": "note",
+      "message": "LOOKAHEAD research done (12 sources, 4 deferred children); stopped until 00.3 finalizes; spawns 6/36"
     }
   ],
   "roadmap": {
     "id": "frontend",
     "section": "00.4"
+  },
+  "quality": {
+    "executions": {
+      "research": {
+        "version": 2,
+        "fingerprint": "853b4d1b3bf2b1796d4de7054ba95254ae72d2af65dfbd673212d2a000f36446",
+        "at": "2026-11-18T10:46:14Z",
+        "ok": true,
+        "checks": [
+          {
+            "label": "react-devtools-docs: https://react.dev/learn/react-developer-tools",
+            "source": "react-devtools-docs",
+            "requested_url": "https://react.dev/learn/react-developer-tools",
+            "ok": true,
+            "status": 200,
+            "bytes": 110108,
+            "sha256": "63db178d027a463f3a3e43127bbec50849ff7b9ac40fc4c301007d0e3dc8a0fe"
+          },
+          {
+            "label": "chrome-devtools-perf-overview-docs: https://developer.chrome.com/docs/devtools/performance/overview",
+            "source": "chrome-devtools-perf-overview-docs",
+            "requested_url": "https://developer.chrome.com/docs/devtools/performance/overview",
+            "ok": true,
+            "status": 200,
+            "bytes": 210941,
+            "sha256": "8cd4d037f00f5d84eb2e0cffc7f4f90e78b269d5a33d95fad6f5d35f5cdabb46"
+          },
+          {
+            "label": "dequelabs-axe-core-repo: https://api.github.com/repos/dequelabs/axe-core",
+            "source": "dequelabs-axe-core-repo",
+            "requested_url": "https://api.github.com/repos/dequelabs/axe-core",
+            "ok": true,
+            "status": 200,
+            "bytes": 6970,
+            "sha256": "7cd8489a8093888c4604cd293f0e9e44aaa5fc99964376e2bd98293b53af9cf8",
+            "repository": {
+              "stars": 7849,
+              "archived": false,
+              "pushed_at": "2026-11-17T16:24:54Z",
+              "license": "MPL-2.0"
+            }
+          },
+          {
+            "label": "redux-configure-store-docs: https://redux.js.org/usage/configuring-your-store",
+            "source": "redux-configure-store-docs",
+            "requested_url": "https://redux.js.org/usage/configuring-your-store",
+            "ok": true,
+            "status": 200,
+            "bytes": 83520,
+            "sha256": "18bc0ce6c647bedc5fe1a6af50cb1ec3795bf8034df1c58389de75cbc3623461"
+          },
+          {
+            "label": "google-js-seo-basics-docs: https://developers.google.com/search/docs/crawling-indexing/javascript/javascript-seo-basics",
+            "source": "google-js-seo-basics-docs",
+            "requested_url": "https://developers.google.com/search/docs/crawling-indexing/javascript/javascript-seo-basics",
+            "ok": true,
+            "status": 200,
+            "bytes": 223951,
+            "sha256": "15795847f1d7f48f05a79e5cab4e19fbe95a0481ca164e2548d5a66d9ea7d030"
+          },
+          {
+            "label": "w3c-wai-selecting-evaluation-tools: https://www.w3.org/WAI/test-evaluate/tools/selecting/",
+            "source": "w3c-wai-selecting-evaluation-tools",
+            "requested_url": "https://www.w3.org/WAI/test-evaluate/tools/selecting/",
+            "ok": true,
+            "status": 200,
+            "bytes": 50749,
+            "sha256": "4ef53f350e4ba8a9f2d4c37bfad14adfa76f444e060a9a911b13a021893d8594"
+          },
+          {
+            "label": "w3c-wcag22-understanding-contrast-minimum: https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html",
+            "source": "w3c-wcag22-understanding-contrast-minimum",
+            "requested_url": "https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html",
+            "ok": true,
+            "status": 200,
+            "bytes": 80501,
+            "sha256": "80ecbe547e7e963560df5e62ed92305ce1af6f8965a7e48457fe38b0d76f8d1b"
+          },
+          {
+            "label": "mdn-webextensions-anatomy-docs: https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Anatomy_of_a_WebExtension",
+            "source": "mdn-webextensions-anatomy-docs",
+            "requested_url": "https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Anatomy_of_a_WebExtension",
+            "ok": true,
+            "status": 200,
+            "bytes": 170018,
+            "sha256": "8b804a926dc46daf6f2d2274d05c0289c2d6f6cac47ba192a87b6c45dc8f9d5e"
+          },
+          {
+            "label": "chrome-extensions-content-scripts-docs: https://developer.chrome.com/docs/extensions/develop/concepts/content-scripts",
+            "source": "chrome-extensions-content-scripts-docs",
+            "requested_url": "https://developer.chrome.com/docs/extensions/develop/concepts/content-scripts",
+            "ok": true,
+            "status": 200,
+            "bytes": 205471,
+            "sha256": "8d7bdf246a0a4f31f45eb66a62da3f93bfd4eb3f0c91e4e9073f1ede1d4d8138"
+          },
+          {
+            "label": "mdn-csp-docs: https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CSP",
+            "source": "mdn-csp-docs",
+            "requested_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CSP",
+            "ok": true,
+            "status": 200,
+            "bytes": 256081,
+            "sha256": "a1e3b84169301080d1e842ffeb212877bca6387e5ca39f37b4b5844909d166e0"
+          },
+          {
+            "label": "retirejs-repo: https://api.github.com/repos/RetireJS/retire.js",
+            "source": "retirejs-repo",
+            "requested_url": "https://api.github.com/repos/RetireJS/retire.js",
+            "ok": true,
+            "status": 200,
+            "bytes": 7302,
+            "sha256": "b388645ff9eb415a4575844bf38c4a07b4898f67ecd67af5d61c1ac73fac661b",
+            "repository": {
+              "stars": 4216,
+              "archived": false,
+              "pushed_at": "2026-11-17T11:26:17Z",
+              "license": "Apache-2.0"
+            }
+          },
+          {
+            "label": "chrome-declarativenetrequest-docs: https://developer.chrome.com/docs/extensions/reference/api/declarativeNetRequest",
+            "source": "chrome-declarativenetrequest-docs",
+            "requested_url": "https://developer.chrome.com/docs/extensions/reference/api/declarativeNetRequest",
+            "ok": true,
+            "status": 200,
+            "bytes": 369455,
+            "sha256": "bf9f904725571cbb27399b9d21565605f03303e9ce6cbfa1f6d6d456df6661fc"
+          }
+        ]
+      }
+    }
   }
 }

@@ -11,7 +11,7 @@ created: 2026-11-18
 This is the map of the topic. Read the steps from top to bottom. Each step links to the next thing to open, so you never have to search.
 
 <!-- tutor:generated:start -->
-**Depth:** standard · **Progress:** 1 of 10 steps ready
+**Depth:** standard · **Progress:** 2 of 10 steps ready
 
 A browser extension toolkit adds framework, performance, accessibility, SEO and security views that built-in DevTools does not give.
 
@@ -25,7 +25,7 @@ A browser extension toolkit adds framework, performance, accessibility, SEO and 
 6. [[06-capstone-browser-extension-toolkit|Capstone]] — the production-style project · *not started*
 7. [[07-final-notes-browser-extension-toolkit|Final notes]] — the one-page refresher · *not started*
 8. [[08-recall-browser-extension-toolkit|Recall cards]] — flashcards for spaced review · *not started*
-9. [[09-resources-browser-extension-toolkit|Resources]] — the vetted sources behind everything above · *in progress*
+9. [[09-resources-browser-extension-toolkit|Resources]] — the vetted sources behind everything above · *ready*
 
 Your own additions live in [[my-insights-browser-extension-toolkit|My insights]].
 
@@ -69,25 +69,27 @@ Browser extensions a frontend developer installs once and uses across the roadma
 - Framework devtools extensions: included
 - React DevTools Components and Profiler: included
 - Redux DevTools actions and time travel: included
-- Vue, Angular, Svelte and Apollo devtools: included
+- Vue, Angular, Svelte and Apollo devtools: deferred — Vue, Angular, Svelte, Solid, Apollo, Preact and Module Federation devtools had no verified official page in this run; the lesson names them only as equivalents of React DevTools, and each framework section of the roadmap covers its own devtools.
 - Performance extensions: included
-- Detecting wasted renders with React Scan: included
+- Detecting wasted renders with React Scan: deferred — No verified React Scan source in this run; wasted renders are taught with the React DevTools Profiler here and in the React performance section of the roadmap.
 - CrUX field data and lab data: included
 - Accessibility extensions: included
 - What automated accessibility rules can and cannot catch: included
 - Contrast and vision emulation checks: included
-- Headings and landmarks structure: included
+- Headings and landmarks structure: deferred — No verified source in this run; headings and landmarks are taught in roadmap section 08.2 Building accessible UI.
 - SEO extensions: included
 - Rendered HTML versus source HTML: included
 - Redirect chains and structured data: included
 - Security and privacy extensions: included
 - Vulnerable library and tech fingerprint detection: included
 - Security headers, cookies and CSP inspection: included
-- Ad-block resilience and proxy testing: included
+- Ad-block resilience and proxy testing: deferred — No verified source in this run; ad-block resilience and proxy tools (Burp/ZAP) belong to the later security phase of the roadmap.
 - Design and CSS helper extensions: included
 - API and data extensions: included
 - Request header modification and mocking: included
 - A team extension profile: included
+
+Research stopped: budget-limit. Five research units (framework-perf, a11y-seo, security-helpers, repos, gap-01) verified 12 sources, the cap. Every included concept has vetted evidence. Four children deferred with reasons (no verified source this run; later roadmap sections teach them). Design-helper tools are supported only through the content-script mechanism; tool-specific pages (VisBug archived) were not added.
 
 ## Projects
 
@@ -100,7 +102,7 @@ Browser extensions a frontend developer installs once and uses across the roadma
 | Wave | Stage | Status |
 |------|-------|--------|
 | 0 | intake | ready |
-| 1 | research | in progress |
+| 1 | research | ready |
 | 1 | brief | not started |
 | 2 | digest | not started |
 | 2 | repo-intel | not started |
@@ -110,7 +112,7 @@ Browser extensions a frontend developer installs once and uses across the roadma
 | 5 | notes | not started |
 | 5 | finalize | not started |
 
-Next to generate: `research`. Ask Claude to continue this topic, or run `node harness/bin/tutor.mjs next frontend-engineering/learning-system-and-workstation/browser-extension-toolkit`.
+Next to generate: `brief`. Ask Claude to continue this topic, or run `node harness/bin/tutor.mjs next frontend-engineering/learning-system-and-workstation/browser-extension-toolkit`.
 <!-- tutor:generated:end -->
 
 ## My insights

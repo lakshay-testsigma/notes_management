@@ -1,0 +1,7 @@
+- sequence | crawl -> render -> index (Google processes JavaScript) | google-js-seo-basics-docs "How Google processes JavaScript" | candidate for Video
+- comparison | permanent redirect shows target; temporary redirect shows source page in results | google-redirects-docs "Overview of redirect types" | candidate for CompareView
+- decision | server-side redirect vs meta refresh vs JavaScript redirect (preference order) | google-redirects-docs "Server-side redirects", "meta refresh", "JavaScript location redirects" | branch for a deck
+- parameter | meta refresh delay 0 s = permanent, delayed = temporary | google-redirects-docs "meta refresh" | experiment for an interactive experience
+- number | normal text 4.5:1, large text 3:1 (18pt or 14pt bold), AA | w3c-wcag22-understanding-contrast-minimum "Success Criterion" | candidate for contrast slider
+- parameter | foreground/background colours change the ratio; 4.499:1 fails, no rounding | w3c-wcag22-understanding-contrast-minimum "Notes on formula" | experiment for an interactive experience
+- comparison | automated checks vs manual evaluation coverage | w3c-wai-selecting-evaluation-tools "What Evaluation Tools Can Do and Can Not Do" | candidate for CompareView
