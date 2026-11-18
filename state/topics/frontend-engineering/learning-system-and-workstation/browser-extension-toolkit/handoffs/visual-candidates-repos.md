@@ -1,0 +1,5 @@
+- architecture | axe-core lib split: core, checks, rules, commons, standards, gather-internals, misc | dequelabs-axe-core-repo, lib/ directory listing | candidate for Diagram
+- dependency | page under test and each iframe must include axe; results flow between frames by window.postMessage | dequelabs-axe-core-repo, doc/API.md (iframe section) | candidate for Diagram
+- parameter | allowedOrigins decides whether cross-origin frames share results (default same-origin only) | dequelabs-axe-core-repo, doc/API.md | experiment for interactive
+- number | frameWaitTime default 60000 ms | dequelabs-axe-core-repo, doc/API.md | key number
+- comparison | rule results: violations vs incomplete (needs manual review) | dequelabs-axe-core-repo, doc/API.md results | candidate for CompareView

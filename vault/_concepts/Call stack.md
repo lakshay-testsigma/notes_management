@@ -13,5 +13,6 @@ The call stack is the list of functions that are running now. The newest call is
 ## Where it shows up
 
 - [[01-brief-browser-devtools-mastery]]
+- [[ecma-426-source-map-browser-devtools-mastery]]
 
 ## My insights

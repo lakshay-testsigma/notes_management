@@ -44,7 +44,7 @@ Set up how you learn and the tools you will use for every later phase. Mastery =
     - Lighthouse panel & other panels (core)
     - Firefox & Safari DevTools (adv)
     - Remote device debugging (adv)
-- [ ] **00.4** Browser extension toolkit (install once, used across phases) — Not generated yet · 7 items · `frontend-engineering/learning-system-and-workstation/browser-extension-toolkit`
+- [ ] **00.4** [[frontend-engineering/learning-system-and-workstation/browser-extension-toolkit/00-start-here-browser-extension-toolkit|Browser extension toolkit (install once, used across phases)]] — Being generated · 7 items · `frontend-engineering/learning-system-and-workstation/browser-extension-toolkit`
     - Framework devtools extensions (core)
     - Performance extensions (core)
     - Accessibility extensions (core)

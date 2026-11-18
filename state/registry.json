@@ -12,6 +12,16 @@
       "state": "state/topics/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery"
     },
     {
+      "id": "frontend-engineering/learning-system-and-workstation/browser-extension-toolkit",
+      "title": "Browser extension toolkit (install once, used across phases)",
+      "slug": "browser-extension-toolkit",
+      "domain": "frontend-engineering",
+      "subdomain": "learning-system-and-workstation",
+      "depth": "standard",
+      "created_at": "2026-11-18T10:19:12Z",
+      "state": "state/topics/frontend-engineering/learning-system-and-workstation/browser-extension-toolkit"
+    },
+    {
       "id": "frontend-engineering/learning-system-and-workstation/how-to-learn-frontend",
       "title": "How to learn frontend (and keep improving)",
       "slug": "how-to-learn-frontend",

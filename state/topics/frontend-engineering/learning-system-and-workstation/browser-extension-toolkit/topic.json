@@ -1,0 +1,962 @@
+{
+  "schema": 1,
+  "id": "frontend-engineering/learning-system-and-workstation/browser-extension-toolkit",
+  "title": "Browser extension toolkit (install once, used across phases)",
+  "slug": "browser-extension-toolkit",
+  "domain": "frontend-engineering",
+  "subdomain": "learning-system-and-workstation",
+  "depth": "standard",
+  "created_at": "2026-11-18T10:19:12Z",
+  "updated_at": "2026-11-18T10:23:24Z",
+  "paths": {
+    "state": "state/topics/frontend-engineering/learning-system-and-workstation/browser-extension-toolkit",
+    "vault": "vault/frontend-engineering/learning-system-and-workstation/browser-extension-toolkit",
+    "lessons": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-extension-toolkit",
+    "projects": "projects/frontend-engineering/learning-system-and-workstation/browser-extension-toolkit",
+    "cache": ".cache"
+  },
+  "profile": {
+    "lesson_pages": [
+      5,
+      7
+    ],
+    "mini_projects": 2,
+    "digests": [
+      2,
+      3
+    ],
+    "repos": [
+      1,
+      1
+    ],
+    "capstone": true,
+    "sources": [
+      5,
+      12
+    ],
+    "recall_cards": 8
+  },
+  "plan": {
+    "summary": "A browser extension toolkit adds framework, performance, accessibility, SEO and security views that built-in DevTools does not give.",
+    "prerequisites": [
+      {
+        "concept": "Browser developer tools",
+        "known": false,
+        "bridge": "Built-in browser panels that inspect and debug a live page."
+      },
+      {
+        "concept": "Browser extension",
+        "known": false,
+        "bridge": "A small add-on program that adds features to the browser."
+      },
+      {
+        "concept": "Document Object Model",
+        "known": false,
+        "bridge": "The DOM is the tree of objects the browser builds from HTML."
+      },
+      {
+        "concept": "HTTP request and response",
+        "known": false,
+        "bridge": "The browser sends a request; the server returns status, headers and body."
+      }
+    ],
+    "outcomes": [
+      "Explain how a framework devtools extension reads component state from a page.",
+      "Explain what automated accessibility and SEO checks catch and what they miss.",
+      "Build a script that audits extension manifests for risky permissions.",
+      "Build an accessibility and SEO check that runs on every release page.",
+      "Decide when to use an extension instead of a built-in DevTools panel."
+    ],
+    "lesson_outline": [
+      {
+        "order": 1,
+        "slug": "why-an-extension-toolkit",
+        "title": "Why an extension toolkit: what built-in DevTools does not show",
+        "activity": "SortBuckets",
+        "complexity": "intermediate",
+        "importance": "critical",
+        "spatial": false,
+        "visual": "Diagram",
+        "visual_reason": "An extension runs in separate parts (content script, service worker, DevTools page) with permissions; a diagram shows which part can see the page and which can see the network.",
+        "interaction_goal": "Sort extension capabilities into the part that owns them and the permission they need.",
+        "experience": {
+          "id": "extension-anatomy",
+          "concept_ids": [
+            "extension-architecture-and-permissions",
+            "content-scripts-and-devtools-pages",
+            "extension-risk-and-vetting"
+          ],
+          "signals": {
+            "complexity": 2,
+            "concepts": 3,
+            "dependent_steps": 2,
+            "changes_over_time": false,
+            "spatial": false,
+            "parameters": 0,
+            "decision_paths": 1,
+            "benefit": "medium"
+          }
+        }
+      },
+      {
+        "order": 2,
+        "slug": "framework-devtools",
+        "title": "Framework devtools: see components, state and renders",
+        "activity": "PredictReveal",
+        "complexity": "intermediate",
+        "importance": "core",
+        "spatial": false,
+        "visual": "Experience",
+        "visual_reason": "A framework devtools extension reads the component tree and records commits; the learner changes state and watches the tree, props and Profiler commits change.",
+        "interaction_goal": "Change a prop or dispatch an action and predict which components re-render and what the store holds after time travel.",
+        "experience": {
+          "id": "framework-devtools-lab",
+          "concept_ids": [
+            "framework-devtools-extensions",
+            "react-devtools-components-profiler",
+            "redux-devtools-time-travel",
+            "other-framework-devtools"
+          ],
+          "signals": {
+            "complexity": 3,
+            "concepts": 4,
+            "dependent_steps": 3,
+            "changes_over_time": false,
+            "spatial": false,
+            "parameters": 2,
+            "decision_paths": 1,
+            "benefit": "high"
+          }
+        }
+      },
+      {
+        "order": 3,
+        "slug": "performance-extensions",
+        "title": "Performance extensions: wasted renders and field data",
+        "activity": "MatchPairs",
+        "complexity": "intermediate",
+        "importance": "core",
+        "spatial": false,
+        "visual": "CompareView",
+        "visual_reason": "Lab data from one load and field data from real users give different numbers; a side-by-side view shows why both are needed.",
+        "interaction_goal": "Match each performance question to the tool that answers it: React Scan, Web Vitals overlay, Lighthouse or a CrUX viewer.",
+        "experience": {
+          "id": "perf-extensions-compare",
+          "concept_ids": [
+            "performance-extensions",
+            "react-scan-wasted-renders",
+            "crux-field-data-viewers"
+          ],
+          "signals": {
+            "complexity": 2,
+            "concepts": 3,
+            "dependent_steps": 2,
+            "changes_over_time": false,
+            "spatial": false,
+            "parameters": 0,
+            "decision_paths": 1,
+            "benefit": "medium"
+          }
+        }
+      },
+      {
+        "order": 4,
+        "slug": "accessibility-extensions",
+        "title": "Accessibility extensions: automated checks and their limits",
+        "activity": "PredictReveal",
+        "complexity": "intermediate",
+        "importance": "critical",
+        "spatial": false,
+        "visual": "Experience",
+        "visual_reason": "Contrast ratio and rule results change with color and markup; the learner adjusts colors and structure and watches which checks pass and which still need a human.",
+        "interaction_goal": "Change text and background colors and heading levels, and predict which axe or WAVE rules fail.",
+        "experience": {
+          "id": "a11y-checks-lab",
+          "concept_ids": [
+            "accessibility-extensions",
+            "automated-a11y-rule-limits",
+            "contrast-and-vision-checks",
+            "headings-and-landmarks"
+          ],
+          "signals": {
+            "complexity": 3,
+            "concepts": 4,
+            "dependent_steps": 2,
+            "changes_over_time": false,
+            "spatial": false,
+            "parameters": 2,
+            "decision_paths": 2,
+            "benefit": "high"
+          }
+        }
+      },
+      {
+        "order": 5,
+        "slug": "seo-extensions",
+        "title": "SEO extensions: rendered source, redirects and structured data",
+        "activity": "Quiz",
+        "complexity": "basic",
+        "importance": "core",
+        "spatial": false,
+        "visual": "Diagram",
+        "visual_reason": "A crawler sees the source HTML, the rendered DOM and the redirect chain at different times; a diagram shows where each SEO extension reads.",
+        "interaction_goal": "Name which extension reveals a missing title that exists only after JavaScript runs.",
+        "experience": {
+          "id": "seo-read-points",
+          "concept_ids": [
+            "seo-extensions",
+            "rendered-vs-source-html",
+            "redirects-and-structured-data"
+          ],
+          "signals": {
+            "complexity": 2,
+            "concepts": 3,
+            "dependent_steps": 2,
+            "changes_over_time": false,
+            "spatial": false,
+            "parameters": 0,
+            "decision_paths": 1,
+            "benefit": "medium"
+          }
+        }
+      },
+      {
+        "order": 6,
+        "slug": "security-privacy-extensions",
+        "title": "Security and privacy extensions: libraries, headers and cookies",
+        "activity": "OrderSteps",
+        "complexity": "intermediate",
+        "importance": "core",
+        "spatial": false,
+        "visual": "Experience",
+        "visual_reason": "A security check is a sequence of decisions (fingerprint, check libraries, read headers, test with a blocker); a branching deck lets the learner pick the next check for a symptom.",
+        "interaction_goal": "Choose the right extension for each security symptom and order a quick security pass.",
+        "experience": {
+          "id": "security-pass-deck",
+          "concept_ids": [
+            "security-privacy-extensions",
+            "vulnerable-library-detection",
+            "headers-cookies-and-csp",
+            "ad-block-and-proxy-testing"
+          ],
+          "signals": {
+            "complexity": 3,
+            "concepts": 4,
+            "dependent_steps": 2,
+            "changes_over_time": false,
+            "spatial": false,
+            "parameters": 0,
+            "decision_paths": 2,
+            "benefit": "high"
+          }
+        }
+      },
+      {
+        "order": 7,
+        "slug": "team-toolkit-in-practice",
+        "title": "Design, API helpers and a team extension profile in practice",
+        "activity": "SortBuckets",
+        "complexity": "basic",
+        "importance": "core",
+        "spatial": false,
+        "visual": "Diagram",
+        "visual_reason": "A team profile groups vetted extensions by phase and permission level; a diagram shows the profile and where design and API helpers fit.",
+        "interaction_goal": "Sort candidate extensions into keep, replace with a built-in panel, or reject for permissions.",
+        "experience": {
+          "id": "team-profile-map",
+          "concept_ids": [
+            "design-css-helper-extensions",
+            "api-data-extensions",
+            "request-modification-and-mocking",
+            "team-extension-profile"
+          ],
+          "signals": {
+            "complexity": 2,
+            "concepts": 3,
+            "dependent_steps": 2,
+            "changes_over_time": false,
+            "spatial": false,
+            "parameters": 0,
+            "decision_paths": 1,
+            "benefit": "medium"
+          }
+        }
+      }
+    ],
+    "mini_projects": [
+      {
+        "n": 1,
+        "slug": "extension-permission-audit",
+        "use_case": "A team lead must approve extensions for the company browser profile; a Node.js script reads each extension manifest and flags broad host permissions and risky APIs."
+      },
+      {
+        "n": 2,
+        "slug": "release-a11y-seo-check",
+        "use_case": "A content site checks every release page; a script runs axe-core and reads title, meta and structured data, and fails CI on new problems."
+      }
+    ],
+    "digest_targets": 2,
+    "repo_targets": 1,
+    "capstone": {
+      "name": "toolkit-profile CLI",
+      "problem": "A frontend team keeps one vetted browser extension profile; a Node.js CLI validates the list against a permission policy, prints a setup checklist, and runs accessibility, SEO and security-header checks on a URL."
+    },
+    "learner": {
+      "experience": "software developer",
+      "known": [
+        "basic programming",
+        "How to learn frontend (roadmap 00.1)",
+        "Workstation and editor (roadmap 00.2)",
+        "Browser DevTools mastery plan (roadmap 00.3)"
+      ],
+      "goals": [
+        "master frontend engineering end to end from the N1 roadmap",
+        "learn visually and by experimenting with simulations",
+        "install one extension toolkit used across later phases"
+      ]
+    },
+    "visual_policy": "adaptive",
+    "visual_first": true,
+    "multi_stage": false,
+    "experience_policy": "adaptive",
+    "curriculum": {
+      "schema": 1,
+      "scope": "Browser extensions a frontend developer installs once and uses across the roadmap: framework devtools, performance, accessibility, SEO, security and privacy, design and CSS, and API and data helpers, plus how extensions work and how to vet them.",
+      "max_depth": 3,
+      "max_concepts": 30,
+      "concepts": [
+        {
+          "id": "extension-architecture-and-permissions",
+          "title": "Extension architecture and permissions",
+          "parent": null,
+          "complexity": "intermediate",
+          "importance": "critical",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [],
+          "coverage": [],
+          "prerequisites": []
+        },
+        {
+          "id": "content-scripts-and-devtools-pages",
+          "title": "Content scripts and DevTools pages",
+          "parent": "extension-architecture-and-permissions",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [],
+          "coverage": [],
+          "prerequisites": []
+        },
+        {
+          "id": "extension-risk-and-vetting",
+          "title": "Extension risk and vetting",
+          "parent": "extension-architecture-and-permissions",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [],
+          "coverage": [],
+          "prerequisites": [
+            "extension-architecture-and-permissions"
+          ]
+        },
+        {
+          "id": "framework-devtools-extensions",
+          "title": "Framework devtools extensions",
+          "parent": null,
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [
+            "framework-devtools-extensions"
+          ],
+          "source_ids": [],
+          "coverage": [],
+          "prerequisites": [
+            "content-scripts-and-devtools-pages"
+          ]
+        },
+        {
+          "id": "react-devtools-components-profiler",
+          "title": "React DevTools Components and Profiler",
+          "parent": "framework-devtools-extensions",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [],
+          "coverage": [],
+          "prerequisites": []
+        },
+        {
+          "id": "redux-devtools-time-travel",
+          "title": "Redux DevTools actions and time travel",
+          "parent": "framework-devtools-extensions",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [],
+          "coverage": [],
+          "prerequisites": []
+        },
+        {
+          "id": "other-framework-devtools",
+          "title": "Vue, Angular, Svelte and Apollo devtools",
+          "parent": "framework-devtools-extensions",
+          "complexity": "basic",
+          "importance": "supporting",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [],
+          "coverage": [],
+          "prerequisites": []
+        },
+        {
+          "id": "performance-extensions",
+          "title": "Performance extensions",
+          "parent": null,
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [
+            "performance-extensions"
+          ],
+          "source_ids": [],
+          "coverage": [],
+          "prerequisites": []
+        },
+        {
+          "id": "react-scan-wasted-renders",
+          "title": "Detecting wasted renders with React Scan",
+          "parent": "performance-extensions",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [],
+          "coverage": [],
+          "prerequisites": [
+            "react-devtools-components-profiler"
+          ]
+        },
+        {
+          "id": "crux-field-data-viewers",
+          "title": "CrUX field data and lab data",
+          "parent": "performance-extensions",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [],
+          "coverage": [],
+          "prerequisites": []
+        },
+        {
+          "id": "accessibility-extensions",
+          "title": "Accessibility extensions",
+          "parent": null,
+          "complexity": "intermediate",
+          "importance": "critical",
+          "disposition": "included",
+          "roadmap_items": [
+            "accessibility-extensions"
+          ],
+          "source_ids": [],
+          "coverage": [],
+          "prerequisites": []
+        },
+        {
+          "id": "automated-a11y-rule-limits",
+          "title": "What automated accessibility rules can and cannot catch",
+          "parent": "accessibility-extensions",
+          "complexity": "intermediate",
+          "importance": "critical",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [],
+          "coverage": [],
+          "prerequisites": []
+        },
+        {
+          "id": "contrast-and-vision-checks",
+          "title": "Contrast and vision emulation checks",
+          "parent": "accessibility-extensions",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [],
+          "coverage": [],
+          "prerequisites": []
+        },
+        {
+          "id": "headings-and-landmarks",
+          "title": "Headings and landmarks structure",
+          "parent": "accessibility-extensions",
+          "complexity": "basic",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [],
+          "coverage": [],
+          "prerequisites": []
+        },
+        {
+          "id": "seo-extensions",
+          "title": "SEO extensions",
+          "parent": null,
+          "complexity": "basic",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [
+            "seo-extensions"
+          ],
+          "source_ids": [],
+          "coverage": [],
+          "prerequisites": []
+        },
+        {
+          "id": "rendered-vs-source-html",
+          "title": "Rendered HTML versus source HTML",
+          "parent": "seo-extensions",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [],
+          "coverage": [],
+          "prerequisites": []
+        },
+        {
+          "id": "redirects-and-structured-data",
+          "title": "Redirect chains and structured data",
+          "parent": "seo-extensions",
+          "complexity": "basic",
+          "importance": "supporting",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [],
+          "coverage": [],
+          "prerequisites": []
+        },
+        {
+          "id": "security-privacy-extensions",
+          "title": "Security and privacy extensions",
+          "parent": null,
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [
+            "security-privacy-extensions"
+          ],
+          "source_ids": [],
+          "coverage": [],
+          "prerequisites": [
+            "extension-risk-and-vetting"
+          ]
+        },
+        {
+          "id": "vulnerable-library-detection",
+          "title": "Vulnerable library and tech fingerprint detection",
+          "parent": "security-privacy-extensions",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [],
+          "coverage": [],
+          "prerequisites": []
+        },
+        {
+          "id": "headers-cookies-and-csp",
+          "title": "Security headers, cookies and CSP inspection",
+          "parent": "security-privacy-extensions",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [],
+          "coverage": [],
+          "prerequisites": []
+        },
+        {
+          "id": "ad-block-and-proxy-testing",
+          "title": "Ad-block resilience and proxy testing",
+          "parent": "security-privacy-extensions",
+          "complexity": "basic",
+          "importance": "supporting",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [],
+          "coverage": [],
+          "prerequisites": []
+        },
+        {
+          "id": "design-css-helper-extensions",
+          "title": "Design and CSS helper extensions",
+          "parent": null,
+          "complexity": "basic",
+          "importance": "supporting",
+          "disposition": "included",
+          "roadmap_items": [
+            "design-css-helper-extensions"
+          ],
+          "source_ids": [],
+          "coverage": [],
+          "prerequisites": []
+        },
+        {
+          "id": "api-data-extensions",
+          "title": "API and data extensions",
+          "parent": null,
+          "complexity": "intermediate",
+          "importance": "supporting",
+          "disposition": "included",
+          "roadmap_items": [
+            "api-data-extensions"
+          ],
+          "source_ids": [],
+          "coverage": [],
+          "prerequisites": []
+        },
+        {
+          "id": "request-modification-and-mocking",
+          "title": "Request header modification and mocking",
+          "parent": "api-data-extensions",
+          "complexity": "intermediate",
+          "importance": "supporting",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [],
+          "coverage": [],
+          "prerequisites": []
+        },
+        {
+          "id": "team-extension-profile",
+          "title": "A team extension profile",
+          "parent": "extension-risk-and-vetting",
+          "complexity": "basic",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [],
+          "coverage": [],
+          "prerequisites": [
+            "extension-risk-and-vetting"
+          ]
+        }
+      ],
+      "discovery": [
+        {
+          "round": 0,
+          "frontier": [
+            "extension-architecture-and-permissions",
+            "framework-devtools-extensions",
+            "performance-extensions",
+            "accessibility-extensions",
+            "seo-extensions",
+            "security-privacy-extensions",
+            "design-css-helper-extensions",
+            "api-data-extensions"
+          ],
+          "source_ids": [],
+          "added": [
+            "extension-architecture-and-permissions",
+            "content-scripts-and-devtools-pages",
+            "extension-risk-and-vetting",
+            "framework-devtools-extensions",
+            "react-devtools-components-profiler",
+            "redux-devtools-time-travel",
+            "other-framework-devtools",
+            "performance-extensions",
+            "react-scan-wasted-renders",
+            "crux-field-data-viewers",
+            "accessibility-extensions",
+            "automated-a11y-rule-limits",
+            "contrast-and-vision-checks",
+            "headings-and-landmarks",
+            "seo-extensions",
+            "rendered-vs-source-html",
+            "redirects-and-structured-data",
+            "security-privacy-extensions",
+            "vulnerable-library-detection",
+            "headers-cookies-and-csp",
+            "ad-block-and-proxy-testing",
+            "design-css-helper-extensions",
+            "api-data-extensions",
+            "request-modification-and-mocking",
+            "team-extension-profile"
+          ],
+          "note": "Roots seeded from roadmap section 00.4; children proposed at intake, to be verified by research."
+        }
+      ]
+    }
+  },
+  "stages": [
+    {
+      "id": "intake",
+      "wave": 0,
+      "skill": "learn-intake",
+      "status": "done",
+      "scope": "required",
+      "started_at": "2026-11-18T10:19:15Z",
+      "finished_at": "2026-11-18T10:20:45Z",
+      "attempts": 1,
+      "units": [],
+      "note": "",
+      "continue_after_failure": false,
+      "validation": {
+        "version": 2,
+        "fingerprint": "2eae3bf4efcda289ecce7d36b2df119b92dbdae38373deb8bdef31cef4ab9653",
+        "at": "2026-11-18T10:20:45Z",
+        "forced": false
+      }
+    },
+    {
+      "id": "research",
+      "wave": 1,
+      "skill": "learn-research",
+      "status": "in_progress",
+      "scope": "required",
+      "started_at": "2026-11-18T10:21:07Z",
+      "finished_at": null,
+      "attempts": 1,
+      "units": [
+        {
+          "id": "docs-framework-perf",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "docs-a11y-seo",
+          "status": "pending",
+          "handoff": null
+        },
+        {
+          "id": "docs-security-helpers",
+          "status": "pending",
+          "handoff": null
+        },
+        {
+          "id": "repos",
+          "status": "done",
+          "handoff": null
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "brief",
+      "wave": 1,
+      "skill": "learn-brief",
+      "status": "pending",
+      "scope": "required",
+      "started_at": null,
+      "finished_at": null,
+      "attempts": 0,
+      "units": [],
+      "note": ""
+    },
+    {
+      "id": "digest",
+      "wave": 2,
+      "skill": "learn-digest",
+      "status": "pending",
+      "scope": "required",
+      "started_at": null,
+      "finished_at": null,
+      "attempts": 0,
+      "units": [],
+      "note": ""
+    },
+    {
+      "id": "repo-intel",
+      "wave": 2,
+      "skill": "learn-repo-intel",
+      "status": "pending",
+      "scope": "required",
+      "started_at": null,
+      "finished_at": null,
+      "attempts": 0,
+      "units": [],
+      "note": ""
+    },
+    {
+      "id": "lesson",
+      "wave": 3,
+      "skill": "learn-site",
+      "status": "pending",
+      "scope": "required",
+      "started_at": null,
+      "finished_at": null,
+      "attempts": 0,
+      "units": [],
+      "note": ""
+    },
+    {
+      "id": "mini-projects",
+      "wave": 3,
+      "skill": "learn-projects",
+      "status": "pending",
+      "scope": "required",
+      "started_at": null,
+      "finished_at": null,
+      "attempts": 0,
+      "units": [],
+      "note": ""
+    },
+    {
+      "id": "capstone",
+      "wave": 4,
+      "skill": "learn-capstone",
+      "status": "pending",
+      "scope": "required",
+      "started_at": null,
+      "finished_at": null,
+      "attempts": 0,
+      "units": [],
+      "note": ""
+    },
+    {
+      "id": "notes",
+      "wave": 5,
+      "skill": "learn-notes",
+      "status": "pending",
+      "scope": "required",
+      "started_at": null,
+      "finished_at": null,
+      "attempts": 0,
+      "units": [],
+      "note": ""
+    },
+    {
+      "id": "finalize",
+      "wave": 5,
+      "skill": "learn",
+      "status": "pending",
+      "scope": "required",
+      "started_at": null,
+      "finished_at": null,
+      "attempts": 0,
+      "units": [],
+      "note": ""
+    }
+  ],
+  "recall": {
+    "cards": {}
+  },
+  "log": [
+    {
+      "at": "2026-11-18T10:19:12Z",
+      "event": "init",
+      "message": "created with depth standard for roadmap frontend section 00.4"
+    },
+    {
+      "at": "2026-11-18T10:19:15Z",
+      "event": "start",
+      "message": "attempt 1",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-18T10:20:26Z",
+      "event": "plan",
+      "message": "plan fields set: summary, prerequisites, outcomes, lesson_outline, mini_projects, digest_targets, repo_targets, capstone, learner, visual_policy, visual_first, multi_stage, experience_policy, curriculum",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-18T10:20:41Z",
+      "event": "note",
+      "message": "intake: domain=frontend-engineering/learning-system-and-workstation, depth=standard (roadmap). Assumptions: 7 pages; opt items design-css and api-data merged into page 7 with team profile; experience cost 9/10; Browser developer tools known:false until 00.3 finalizes."
+    },
+    {
+      "at": "2026-11-18T10:20:45Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-18T10:21:07Z",
+      "event": "start",
+      "message": "attempt 1",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T10:21:09Z",
+      "event": "unit-add",
+      "message": "unit docs-framework-perf",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T10:21:11Z",
+      "event": "unit-add",
+      "message": "unit docs-a11y-seo",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T10:21:12Z",
+      "event": "unit-add",
+      "message": "unit docs-security-helpers",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T10:21:14Z",
+      "event": "unit-add",
+      "message": "unit repos",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T10:22:14Z",
+      "event": "source-add",
+      "message": "added react-devtools-docs",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T10:22:15Z",
+      "event": "source-add",
+      "message": "added chrome-devtools-perf-overview-docs",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T10:22:24Z",
+      "event": "unit-done",
+      "message": "unit repos",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T10:22:36Z",
+      "event": "source-add",
+      "message": "added dequelabs-axe-core-repo",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T10:22:39Z",
+      "event": "source-add",
+      "message": "added redux-configure-store-docs",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T10:22:41Z",
+      "event": "unit-done",
+      "message": "unit docs-framework-perf",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T10:23:24Z",
+      "event": "note",
+      "message": "SPAWN 2/36"
+    },
+    {
+      "at": "2026-11-18T10:23:24Z",
+      "event": "note",
+      "message": "LOOKAHEAD intake done; running research docs-framework-perf, repos; queued docs-a11y-seo, docs-security-helpers"
+    }
+  ],
+  "roadmap": {
+    "id": "frontend",
+    "section": "00.4"
+  }
+}

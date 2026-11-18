@@ -13,5 +13,6 @@ The Document Object Model (DOM) is the tree of objects that the browser builds f
 ## Where it shows up
 
 - [[01-brief-browser-devtools-mastery]]
+- [[firefox-devtools-user-docs-browser-devtools-mastery]]
 
 ## My insights
