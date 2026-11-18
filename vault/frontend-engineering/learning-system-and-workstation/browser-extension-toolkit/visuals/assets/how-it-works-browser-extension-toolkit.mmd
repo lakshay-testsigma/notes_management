@@ -1,0 +1,8 @@
+flowchart LR
+  M[manifest.json: permissions and host access] --> B[Background script]
+  M --> C[Content script]
+  M --> D[DevTools page and panel]
+  C -- reads and changes --> P[Page DOM]
+  C -- messages --> B
+  D -- messages --> B
+  B --> U[Popup or panel shows results]

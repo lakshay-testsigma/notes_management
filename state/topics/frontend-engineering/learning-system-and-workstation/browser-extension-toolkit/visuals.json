@@ -1,0 +1,29 @@
+[
+  {
+    "id": "how-it-works",
+    "title": "How a browser extension reaches the page",
+    "kind": "architecture",
+    "scope": "end-to-end",
+    "format": "mermaid",
+    "file": "vault/frontend-engineering/learning-system-and-workstation/browser-extension-toolkit/visuals/assets/how-it-works-browser-extension-toolkit.mmd",
+    "concept_ids": [
+      "extension-architecture-and-permissions",
+      "content-scripts-and-devtools-pages",
+      "extension-risk-and-vetting"
+    ],
+    "source_ids": [
+      "mdn-webextensions-anatomy-docs",
+      "chrome-extensions-content-scripts-docs"
+    ],
+    "purpose": "Show which part of an extension touches the page and why the manifest permissions decide what it can see.",
+    "explanation": "The manifest declares the extension parts and the permissions they get. A content script runs in the page and reads or changes the DOM. A DevTools page adds a panel to DevTools. Both send messages to the background script, which holds shared state, and a popup or panel shows the result. Every tool in your toolkit uses this same structure, so its permissions tell you what data it can read.",
+    "alt": "Flowchart: manifest.json with permissions and host access points to the background script, the content script and the DevTools page. The content script reads and changes the page DOM and sends messages to the background script. The DevTools page also sends messages to the background script, which feeds a popup or panel that shows results.",
+    "learning_check": {
+      "question": "An accessibility extension must read the headings on every page you open. Which part of the extension does that, and what in the manifest allows it?",
+      "answer": "A content script reads the page DOM. Host permissions (or matches for the content script) in manifest.json decide on which sites it may run."
+    },
+    "used_in": [
+      "vault/frontend-engineering/learning-system-and-workstation/browser-extension-toolkit/01-brief-browser-extension-toolkit.md"
+    ]
+  }
+]

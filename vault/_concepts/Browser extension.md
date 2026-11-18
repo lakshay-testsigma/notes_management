@@ -12,4 +12,6 @@ A browser extension is a small add-on program that adds features to the browser.
 
 ## Where it shows up
 
+- [[01-brief-browser-extension-toolkit]]
+
 ## My insights

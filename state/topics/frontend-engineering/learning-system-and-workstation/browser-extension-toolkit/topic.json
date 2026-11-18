@@ -7,7 +7,7 @@
   "subdomain": "learning-system-and-workstation",
   "depth": "standard",
   "created_at": "2026-11-18T10:19:12Z",
-  "updated_at": "2026-11-18T10:46:44Z",
+  "updated_at": "2026-11-18T11:48:07Z",
   "paths": {
     "state": "state/topics/frontend-engineering/learning-system-and-workstation/browser-extension-toolkit",
     "vault": "vault/frontend-engineering/learning-system-and-workstation/browser-extension-toolkit",
@@ -1137,13 +1137,20 @@
       "id": "brief",
       "wave": 1,
       "skill": "learn-brief",
-      "status": "pending",
+      "status": "done",
       "scope": "required",
-      "started_at": null,
-      "finished_at": null,
-      "attempts": 0,
+      "started_at": "2026-11-18T11:47:13Z",
+      "finished_at": "2026-11-18T11:48:07Z",
+      "attempts": 1,
       "units": [],
-      "note": ""
+      "note": "",
+      "continue_after_failure": false,
+      "validation": {
+        "version": 2,
+        "fingerprint": "e64428a5bd4b3320a30844f7ad91b1b66ecf2489de295133ce8aef66c9445b3e",
+        "at": "2026-11-18T11:48:07Z",
+        "forced": false
+      }
     },
     {
       "id": "digest",
@@ -1532,6 +1539,23 @@
       "at": "2026-11-18T10:46:44Z",
       "event": "note",
       "message": "LOOKAHEAD research done (12 sources, 4 deferred children); stopped until 00.3 finalizes; spawns 6/36"
+    },
+    {
+      "at": "2026-11-18T11:47:13Z",
+      "event": "start",
+      "message": "attempt 1",
+      "stage": "brief"
+    },
+    {
+      "at": "2026-11-18T11:47:42Z",
+      "event": "visual",
+      "message": "added visual how-it-works"
+    },
+    {
+      "at": "2026-11-18T11:48:07Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "brief"
     }
   ],
   "roadmap": {
