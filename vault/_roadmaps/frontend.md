@@ -71,7 +71,7 @@ Networking and browser internals. Every performance, security and SEO decision l
     - Cookies (core)
     - Realtime transports overview (core)
     - REST, GraphQL & RPC at a glance (core)
-- [ ] **01.2** How browsers work — Not generated yet · 8 items · `frontend-engineering/how-the-web-works/how-browsers-work`
+- [ ] **01.2** [[frontend-engineering/how-the-web-works/how-browsers-work/00-start-here-how-browsers-work|How browsers work]] — Being generated · 8 items · `frontend-engineering/how-the-web-works/how-browsers-work`
     - Browser architecture (core)
     - Navigation & page lifecycle (core)
     - Critical rendering path (core)

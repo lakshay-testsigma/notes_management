@@ -2,6 +2,16 @@
   "schema": 1,
   "topics": [
     {
+      "id": "frontend-engineering/how-the-web-works/how-browsers-work",
+      "title": "How browsers work",
+      "slug": "how-browsers-work",
+      "domain": "frontend-engineering",
+      "subdomain": "how-the-web-works",
+      "depth": "standard",
+      "created_at": "2026-11-18T13:23:38Z",
+      "state": "state/topics/frontend-engineering/how-the-web-works/how-browsers-work"
+    },
+    {
       "id": "frontend-engineering/how-the-web-works/internet-and-networking",
       "title": "Internet & networking",
       "slug": "internet-and-networking",
