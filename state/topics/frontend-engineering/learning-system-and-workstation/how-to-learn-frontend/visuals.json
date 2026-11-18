@@ -70,5 +70,53 @@
     "used_in": [
       "vault/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend/04-digests/mdn-feature-detection-how-to-learn-frontend.md"
     ]
+  },
+  {
+    "id": "zustand-module-map",
+    "title": "The four modules of the zustand library",
+    "kind": "architecture",
+    "scope": "detail",
+    "format": "mermaid",
+    "file": "vault/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend/visuals/assets/zustand-module-map-how-to-learn-frontend.mmd",
+    "concept_ids": [
+      "reading-source-code"
+    ],
+    "source_ids": [
+      "pmndrs-zustand-repo"
+    ],
+    "purpose": "See that the React binding, the middlewares and the build machinery all depend on one small core store.",
+    "explanation": "The core store holds the state and the listeners. The React binding subscribes to that store and reads a snapshot. Every middleware reaches the store by replacing one method on the store object, and the build machinery bundles and tests both layers.",
+    "alt": "A module map with four boxes: the React binding points at the core store with 'subscribe and read', the middleware points at the core store with 'replace setState', and the build machinery points at both the core store and the middleware with 'bundle and test'.",
+    "learning_check": {
+      "question": "Which module does the React binding write to?",
+      "answer": "None. The binding subscribes and reads a snapshot, so a write always goes through the store api, which a middleware can replace."
+    },
+    "used_in": [
+      "vault/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend/05-repo-intel/pmndrs-zustand/zustand-architecture.md"
+    ]
+  },
+  {
+    "id": "zustand-main-flow",
+    "title": "One write through the zustand store",
+    "kind": "sequence",
+    "scope": "detail",
+    "format": "mermaid",
+    "file": "vault/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend/visuals/assets/zustand-main-flow-how-to-learn-frontend.mmd",
+    "concept_ids": [
+      "reading-source-code"
+    ],
+    "source_ids": [
+      "pmndrs-zustand-repo"
+    ],
+    "purpose": "Follow one state change from a component, through the store and the persist middleware, back to the component.",
+    "explanation": "A component writes a patch, the persist middleware takes it first, and the store compares the next value with the current one before it merges the patch. The listeners run with the new and the previous state, the middleware saves the part of the state it was told to keep, and the component re-renders only when its own slice changed.",
+    "alt": "A sequence of four participants: the component asks the React binding for a slice, the binding subscribes and reads a snapshot, the component writes a patch that the persist middleware passes on, the store compares and merges the patch and notifies its listeners, the middleware saves the state, and the binding returns the slice to the component.",
+    "learning_check": {
+      "question": "Why does the component not always re-render after a write?",
+      "answer": "The React binding runs the selector again and compares the slice, so only a component whose own slice changed re-renders."
+    },
+    "used_in": [
+      "vault/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend/05-repo-intel/pmndrs-zustand/zustand-architecture.md"
+    ]
   }
 ]

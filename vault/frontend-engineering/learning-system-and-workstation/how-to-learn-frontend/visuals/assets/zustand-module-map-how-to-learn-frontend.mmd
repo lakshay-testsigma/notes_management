@@ -1,0 +1,9 @@
+flowchart LR
+  REACT["react binding: useSyncExternalStore"]
+  CORE["core-store: state and listeners"]
+  MW["middleware: immer, redux, persist, devtools"]
+  BUILD["build-and-infra: rollup, vitest, CI"]
+  REACT -->|"subscribe and read"| CORE
+  MW -->|"replace setState"| CORE
+  BUILD -->|"bundle and test"| CORE
+  BUILD -->|"bundle and test"| MW

@@ -7,7 +7,7 @@
   "subdomain": "learning-system-and-workstation",
   "depth": "standard",
   "created_at": "2026-11-18T17:03:48Z",
-  "updated_at": "2026-11-18T17:44:40Z",
+  "updated_at": "2026-11-18T18:18:05Z",
   "paths": {
     "state": "state/topics/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend",
     "vault": "vault/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend",
@@ -579,19 +579,51 @@
       "id": "repo-intel",
       "wave": 2,
       "skill": "learn-repo-intel",
-      "status": "in_progress",
+      "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T17:35:10Z",
-      "finished_at": null,
+      "finished_at": "2026-11-18T18:18:05Z",
       "attempts": 1,
       "units": [
         {
           "id": "pmndrs-zustand-scout",
-          "status": "in_progress",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "pmndrs-zustand-module-core-store",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "pmndrs-zustand-module-middleware",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "pmndrs-zustand-module-persist-and-devtools",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "pmndrs-zustand-module-build-and-infra",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "pmndrs-zustand-synthesis",
+          "status": "done",
           "handoff": null
         }
       ],
-      "note": ""
+      "note": "",
+      "continue_after_failure": false,
+      "validation": {
+        "version": 2,
+        "fingerprint": "449ff11e724ffffb61c305d2cff78de8f8bf62ef281944b06352c8485e02a45e",
+        "at": "2026-11-18T18:18:05Z",
+        "forced": false
+      }
     },
     {
       "id": "lesson",
@@ -909,6 +941,129 @@
       "event": "done",
       "message": "gate passed",
       "stage": "digest"
+    },
+    {
+      "at": "2026-11-18T17:47:56Z",
+      "event": "unit-done",
+      "message": "unit pmndrs-zustand-scout",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T17:48:16Z",
+      "event": "unit-add",
+      "message": "unit pmndrs-zustand-module-core-store",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T17:48:16Z",
+      "event": "unit-add",
+      "message": "unit pmndrs-zustand-module-middleware",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T17:48:17Z",
+      "event": "unit-add",
+      "message": "unit pmndrs-zustand-module-persist-and-devtools",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T17:48:17Z",
+      "event": "unit-add",
+      "message": "unit pmndrs-zustand-module-build-and-infra",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T17:49:08Z",
+      "event": "unit-start",
+      "message": "unit pmndrs-zustand-module-middleware",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T17:49:19Z",
+      "event": "unit-start",
+      "message": "unit pmndrs-zustand-module-persist-and-devtools",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T17:49:21Z",
+      "event": "unit-start",
+      "message": "unit pmndrs-zustand-module-core-store",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T17:49:32Z",
+      "event": "unit-start",
+      "message": "unit pmndrs-zustand-module-build-and-infra",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T17:51:56Z",
+      "event": "unit-done",
+      "message": "unit pmndrs-zustand-module-persist-and-devtools",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T17:52:06Z",
+      "event": "unit-done",
+      "message": "unit pmndrs-zustand-module-middleware",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T17:54:15Z",
+      "event": "unit-done",
+      "message": "unit pmndrs-zustand-module-core-store",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T17:56:27Z",
+      "event": "unit-done",
+      "message": "unit pmndrs-zustand-module-build-and-infra",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T17:57:19Z",
+      "event": "unit-add",
+      "message": "unit pmndrs-zustand-synthesis",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T17:57:43Z",
+      "event": "unit-start",
+      "message": "unit pmndrs-zustand-synthesis",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T18:01:00Z",
+      "event": "visual",
+      "message": "added visual zustand-module-map"
+    },
+    {
+      "at": "2026-11-18T18:01:00Z",
+      "event": "visual",
+      "message": "added visual zustand-main-flow"
+    },
+    {
+      "at": "2026-11-18T18:16:46Z",
+      "event": "unit-done",
+      "message": "unit pmndrs-zustand-synthesis",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T18:17:45Z",
+      "event": "gate-failed",
+      "message": "15 problems",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T18:18:04Z",
+      "event": "reader-order",
+      "message": "Imported explicit authored child-note sequence"
+    },
+    {
+      "at": "2026-11-18T18:18:05Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "repo-intel"
     }
   ],
   "roadmap": {
@@ -1025,6 +1180,21 @@
       "04-digests/web-dev-baseline-how-to-learn-frontend.md",
       "04-digests/mdn-feature-detection-how-to-learn-frontend.md"
     ],
-    "repo-intel": []
+    "repo-intel": [
+      "05-repo-intel/pmndrs-zustand/zustand-overview.md",
+      "05-repo-intel/pmndrs-zustand/zustand-architecture.md",
+      "05-repo-intel/pmndrs-zustand/zustand-findings.md",
+      "05-repo-intel/pmndrs-zustand/zustand-tech-and-services.md",
+      "05-repo-intel/pmndrs-zustand/zustand-takeaways.md",
+      "05-repo-intel/pmndrs-zustand/zustand-module-core-store.md",
+      "05-repo-intel/pmndrs-zustand/zustand-module-middleware.md",
+      "05-repo-intel/pmndrs-zustand/zustand-module-persist-and-devtools.md",
+      "05-repo-intel/pmndrs-zustand/zustand-module-build-and-infra.md",
+      "05-repo-intel/pmndrs-zustand/zustand-pattern-write-as-patch.md",
+      "05-repo-intel/pmndrs-zustand/zustand-pattern-middleware-as-decorator.md",
+      "05-repo-intel/pmndrs-zustand/zustand-pattern-versioned-persistence.md",
+      "05-repo-intel/pmndrs-zustand/zustand-pattern-type-level-contract.md",
+      "05-repo-intel/pmndrs-zustand/zustand-pattern-test-the-built-artefact.md"
+    ]
   }
 }

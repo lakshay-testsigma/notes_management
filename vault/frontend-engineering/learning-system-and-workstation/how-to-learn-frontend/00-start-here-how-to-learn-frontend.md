@@ -11,7 +11,7 @@ created: 2026-11-18
 This is the map of the topic. Read the steps from top to bottom. Each step links to the next thing to open, so you never have to search.
 
 <!-- tutor:generated:start -->
-**Depth:** standard · **Progress:** 4 of 10 steps ready
+**Depth:** standard · **Progress:** 5 of 10 steps ready
 
 How to learn frontend and keep improving: a repeatable read-build-measure-explain loop built on primary sources, browser-support literacy, and continuous practice.
 
@@ -21,7 +21,7 @@ How to learn frontend and keep improving: a repeatable read-build-measure-explai
 2. [[02-lesson-how-to-learn-frontend|Interactive lesson]] — the animated lesson pages on the local site · *not started*
 3. [[03-mini-projects-how-to-learn-frontend|Mini projects]] — small builds with a real use case · *not started*
 4. [[00-digests-how-to-learn-frontend|Digests]] — short summaries of the key papers and docs · *ready*
-5. [[00-repo-intel-how-to-learn-frontend|Repository deep dive]] — how a production open-source project does it · *in progress*
+5. [[00-repo-intel-how-to-learn-frontend|Repository deep dive]] — how a production open-source project does it · *ready*
 6. [[06-capstone-how-to-learn-frontend|Capstone]] — the production-style project · *not started*
 7. [[07-final-notes-how-to-learn-frontend|Final notes]] — the one-page refresher · *not started*
 8. [[08-recall-how-to-learn-frontend|Recall cards]] — flashcards for spaced review · *not started*
@@ -86,14 +86,14 @@ Research stopped: scope-boundary. Research proposed sub-concepts (release-notes-
 | 1 | research | ready |
 | 1 | brief | ready |
 | 2 | digest | ready |
-| 2 | repo-intel | in progress |
+| 2 | repo-intel | ready |
 | 3 | lesson | not started |
 | 3 | mini-projects | not started |
 | 4 | capstone | not started |
 | 5 | notes | not started |
 | 5 | finalize | not started |
 
-Next to generate: `repo-intel`. Ask Claude to continue this topic, or run `node harness/bin/tutor.mjs next frontend-engineering/learning-system-and-workstation/how-to-learn-frontend`.
+Next to generate: `lesson`, `mini-projects`. Ask Claude to continue this topic, or run `node harness/bin/tutor.mjs next frontend-engineering/learning-system-and-workstation/how-to-learn-frontend`.
 <!-- tutor:generated:end -->
 
 ## My insights

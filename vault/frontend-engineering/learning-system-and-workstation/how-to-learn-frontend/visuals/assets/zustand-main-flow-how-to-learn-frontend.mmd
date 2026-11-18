@@ -1,0 +1,14 @@
+sequenceDiagram
+  participant C as Component
+  participant R as React binding
+  participant P as Persist middleware
+  participant S as Store
+  C->>R: useBoundStore(selector)
+  R->>S: subscribe(listener) and getSnapshot()
+  C->>P: setState({ count: 1 })
+  P->>S: original setState with the patch
+  S->>S: compare with Object.is, then merge
+  S-->>R: listeners run with new and previous state
+  P->>P: partialize(state), then write to storage
+  R->>S: getSnapshot() runs the selector again
+  R-->>C: re-render only if the slice changed
