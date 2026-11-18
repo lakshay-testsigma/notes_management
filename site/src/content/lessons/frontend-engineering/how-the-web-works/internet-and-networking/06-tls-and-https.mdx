@@ -45,7 +45,7 @@ A key share is half of a key exchange. Both sides combine shares to derive the s
 
 <Video id="tls13-handshake" />
 
-Compared with older TLS, 1.3 needs one round trip and encrypts everything after ServerHello. Every full handshake gives forward secrecy: a stolen key later cannot decrypt recorded traffic. Resumption with only a pre-shared key (PSK) does not (RFC 9846, Sections 1.3 and 2.2).
+Compared with older TLS, 1.3 needs one round trip and encrypts everything after ServerHello. Every full handshake gives forward secrecy: a stolen key later cannot decrypt recorded traffic. Resumption with only a pre-shared key (PSK) does not (RFC 9846, Sections 1.3 and 2.2). Resumption uses a ticket from an earlier connection and skips the certificate messages. An attacker can replay its 0-RTT early data, so clients send only replay-safe requests (RFC 9846, Sections 2.3 and 8). TLS also does not hide message length.
 
 <OrderSteps
   prompt="Put the TLS 1.3 handshake messages in the order they are sent."
@@ -61,15 +61,15 @@ Compared with older TLS, 1.3 needs one round trip and encrypts everything after 
   ]}
 />
 
-<Depth level="internals">
+<Depth level="production" title="HSTS and mixed content">
 
-Resumption uses a ticket from an earlier connection as a pre-shared key and skips the certificate messages. The client may then send 0-RTT early data. That data has no forward secrecy and can be replayed, so a server accepts one 0-RTT handshake at most once per instance, and clients send only replay-safe requests (RFC 9846, Sections 2.3 and 8). TLS does not hide message length.
+A shop redirects `http://` to `https://` with a 301. The first plain-HTTP request still travels open, so an attacker on café Wi-Fi can catch it before the redirect. The `Strict-Transport-Security` header (HSTS) closes this gap: after one HTTPS visit, the browser uses only HTTPS for the host. `max-age` sets how many seconds the rule lasts. `includeSubDomains` extends it to every subdomain. `preload` asks browsers to ship the rule before the first visit. Failure mode: lock-in. A long `max-age` or a preload entry keeps forcing HTTPS, so a subdomain without a valid certificate stops working. An HTTPS page that loads files over plain HTTP has mixed content. The browser upgrades images, audio and video to HTTPS, and it blocks scripts, stylesheets, iframes and `fetch` requests (MDN HTTP docs).
 
 </Depth>
 
-<Depth level="production">
+<Depth level="production" title="Certificate transparency">
 
-HTTPS needs more than the handshake. The `Strict-Transport-Security` header tells the browser to use only HTTPS for the host, and an HTTPS page must not load scripts over plain HTTP (mixed content). Certificate Transparency logs record issued certificates; the server delivers the log's signed timestamp in the certificate, a TLS extension or OCSP stapling.
+A CA can issue a certificate for your domain by mistake or after an attack. With no public record, nobody would see it. Certificate Transparency (CT) puts every issued certificate in public, append-only logs, so domain owners can watch the logs and detect a mis-issued certificate. A log returns a signed certificate timestamp (SCT) as proof of submission. The server delivers the SCT in the certificate, in a TLS extension or by OCSP stapling. Failure mode: CT does not stop a bad certificate. It only makes it visible, so you gain nothing when nobody watches the logs (MDN HTTP docs).
 
 </Depth>
 

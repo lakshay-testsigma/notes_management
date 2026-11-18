@@ -120,6 +120,16 @@ A game needs many independent message streams and can drop late position updates
 ?
 WebTransport runs over HTTP/3, so it offers several independent streams and unreliable datagrams; a lost packet does not stall the other streams. It needs HTTP/3 support on both the browser and the server.
 
+<!-- card: ian-23 -->
+A cookie has neither Expires nor Max-Age. How long does it live, and how do you delete a cookie from the server?
+?
+It is a session cookie: it ends when the browser session ends. To delete a cookie, send it again with `Max-Age=0`. When both attributes are set, Max-Age wins over Expires.
+
+<!-- card: ian-24 -->
+Your site redirects `http://` to `https://` with a 301. Which risk is still open, and which header closes it?
+?
+The very first request still goes out over plain HTTP, so an attacker on the network can intercept it. `Strict-Transport-Security` tells the browser to use HTTPS directly for `max-age` seconds. A long max-age or preload locks the site into HTTPS.
+
 ## Reopen map
 
 | Card | Outcome it covers | Reopen when missed |
@@ -146,5 +156,7 @@ WebTransport runs over HTTP/3, so it offers several independent streams and unre
 | ian-20 | outcome 1: range requests | lesson page `04-http-messages` |
 | ian-21 | outcome 1: rate limits | lesson page `04-http-messages` |
 | ian-22 | outcome 7: WebTransport | lesson page `11-realtime-transports` |
+| ian-23 | outcome 6: cookie lifetime | lesson page `10-cookies` |
+| ian-24 | outcome 4: HSTS | lesson page `06-tls-and-https` |
 
 ## My insights

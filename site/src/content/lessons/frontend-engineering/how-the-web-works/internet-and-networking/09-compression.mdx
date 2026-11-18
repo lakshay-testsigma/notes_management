@@ -27,6 +27,12 @@ A compression dictionary goes one step further. The browser keeps the old `app.j
 
 **Note.** A response that varies by coding needs `Vary: Accept-Encoding`. Without it, a shared cache can serve a Brotli body to a client that cannot read Brotli. Do not compress JPEG or MP4 files, because they are already compressed.
 
+<Depth level="production" title="Compression dictionaries">
+
+The server marks a response as a dictionary with the `Use-As-Dictionary` header. Its `match` value names the URLs the dictionary is for, and an optional `id` names the dictionary. On a later matching request, the browser sends `Available-Dictionary` with the SHA-256 hash of the stored dictionary, and `Dictionary-ID` when the server gave an id. MDN lists limits: the dictionary must be same-origin with the request, it is partitioned like the HTTP cache, it is used only while fresh, and CSP `connect-src` rules apply to it. The feature is experimental and not yet Baseline, so keep a normal Brotli or gzip response as the fallback.
+
+</Depth>
+
 <Depth level="internals">
 
 undici decodes stacked codings, last coding first. It refuses more than five codings, can cap the decoded size, and limits the Zstandard window to 8 MiB. These limits stop a decompression bomb, a tiny body that expands into a huge one (`lib/interceptor/decompress.js:291-296 @ 011d947`).

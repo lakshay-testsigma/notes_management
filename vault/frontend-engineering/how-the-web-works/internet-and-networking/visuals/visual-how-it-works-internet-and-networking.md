@@ -14,25 +14,27 @@ sources: [mdn-http-docs, hpbn-book, cloudflare-docs, rfc-9111-http-caching]
 
 ```mermaid
 flowchart LR
-  D[DNS: name to IP address] --> C[Connect and TLS: TCP + TLS, or QUIC with TLS built in]
+  B{Browser cache has a fresh copy?} -- yes, no network --> P[Response: page renders]
+  B -- no --> D[DNS: name to IP address]
+  D --> C[Connect and TLS: TCP + TLS, or QUIC with TLS built in]
   C --> R[HTTP request with headers and cookies]
-  R --> K{Browser cache or CDN has a fresh copy?}
-  K -- yes --> P[Response: page renders]
+  R --> K{CDN edge server PoP has a fresh copy?}
+  K -- yes --> P
   K -- no --> S[Origin server builds a compressed response]
   S --> P
 ```
 
 ## What it shows
 
-The browser first asks DNS for the server's IP address. It then connects and encrypts: TCP followed by a TLS handshake, or QUIC for HTTP/3, which includes TLS in its own handshake. TLS also checks the certificate. The browser sends an HTTP request with headers and cookies. A browser cache or a CDN can answer from a fresh stored copy; otherwise the origin server builds the response, usually compressed and with cache headers. Either way, the response arrives and the browser renders the page.
+The browser first checks its own cache. A fresh stored copy answers at once, with no network. On a miss, DNS gives the server IP address. The browser connects and encrypts: TCP plus a TLS handshake, or QUIC for HTTP/3, which includes TLS. It sends an HTTP request with headers and cookies. A CDN edge server near the user can answer from a fresh copy; otherwise the origin builds a compressed response. Every path ends at the response.
 
-Text alternative: Flowchart with six steps: DNS turns the name into an IP address; the browser connects and encrypts with TCP plus TLS, or QUIC with TLS built in; it sends an HTTP request with headers and cookies. A decision asks whether the browser cache or a CDN has a fresh copy. If yes, the response comes from the cache; if no, the origin server builds a compressed response. Both paths end at the response, where the page renders.
+Text alternative: Flowchart with seven nodes. A first decision asks whether the browser cache has a fresh copy; if yes, the response comes straight from it with no network. If no, DNS turns the name into an IP address; the browser connects and encrypts with TCP plus TLS, or QUIC with TLS built in; it sends an HTTP request with headers and cookies. A second decision asks whether the CDN edge server has a fresh copy. If yes, the CDN sends the response; if no, the origin server builds a compressed response. All paths end at the response, where the page renders.
 
 ## Check yourself
 
-A second visit to a page is much faster although the server is slow. Which step most likely answered, and what decided it?
+A second visit to a page sends no network request at all, and the page still shows. Which step answered, and what would make the browser go on to DNS and the CDN instead?
 
-Answer: A cache (the browser cache or a CDN) answered with a stored copy. The Cache-Control headers of the first response decided how long that copy stays fresh.
+Answer: The browser cache answered with a fresh stored copy, so the trip stopped at the first decision. When that copy is missing or stale (its Cache-Control lifetime has passed), the browser goes on to DNS, connects, and sends the request, and then a fresh CDN copy or the origin answers.
 
 ## Sources
 

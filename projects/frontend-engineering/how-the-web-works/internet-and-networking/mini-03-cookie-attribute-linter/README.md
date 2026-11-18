@@ -15,9 +15,10 @@ A cookie is safe only when its attributes say so, and the prefixes `__Secure-` a
 ```mermaid
 flowchart LR
   input["input.ts: readSetCookieHeaders"] --> lint["lint.ts: lintHeaders"]
+  main["main.ts"] --> input
   lint --> parse["parse.ts: parseSetCookie"]
-  parse --> rules["rules.ts: checkAttributes + checkPrefixes"]
-  rules --> report["report.ts: formatReport, exitCode"]
+  lint --> rules["rules.ts: checkAttributes + checkPrefixes"]
+  main --> report["report.ts: formatReport, exitCode"]
 ```
 
 `main.ts` reads a text file or a HAR file and passes the `Set-Cookie` header strings to `lintHeaders`. For each header, `parseSetCookie` builds a cookie object, or returns `null` when the header is unreadable. `lintCookie` then runs `checkAttributes` and `checkPrefixes` on it. `formatReport` prints the findings, and `exitCode` returns 1 when any finding is an error.
@@ -26,7 +27,7 @@ The parser is lenient and the rules are strict, as in the `jshttp/cookie` librar
 
 ## Prerequisites
 
-- Node.js 24 or newer (`node --version`). Node runs the `.ts` files directly, so there is no build step.
+- Node.js 22.18+, 24 or 26 (`node --version`); vitest 5 does not support Node 25. Node runs the `.ts` files directly, so there is no build step. Written with Node 26.
 - You know what `Set-Cookie`, `Secure`, `HttpOnly` and `SameSite` mean from lesson 9 (cookies).
 - No account, no network and no service. All input comes from files in `fixtures/`.
 
@@ -41,6 +42,8 @@ npm run demo      # fails with "TODO(4)" until lintHeaders exists
 
 The demo lints `fixtures/login-flow.txt`. To lint your own capture, run `node src/main.ts path/to/capture.har`. A file that starts with `{` is read as a HAR file. Any other file is read as one `Set-Cookie` header per line.
 
+
+**Note.** `npm audit` reports high-severity advisories in the test toolchain (picomatch through vitest). They are dev-only: `npm audit --omit=dev --audit-level=high` finds 0 vulnerabilities, and nothing from the test toolchain runs in the tool itself.
 ## Your tasks
 
 This project gives you goals and checks, not steps. The tests in `tests/` define the exact behavior. Keep the exported names that the tests import.

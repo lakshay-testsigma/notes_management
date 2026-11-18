@@ -16,8 +16,9 @@ sources: [cloudflare-docs, mdn-http-docs]
 flowchart LR
   main["main.ts"] -->|"inspectDomain(name)"| lookup["lookup.ts: queryType x5"]
   lookup -->|"resolve4, resolve6, resolveCname, resolveCaa"| resolver["resolver.ts: Resolver"]
-  lookup -->|"Report"| checks["checks.ts: analyze"]
-  checks -->|"Finding[]"| report["report.ts: formatReport"]
+  lookup -->|"Report"| main
+  main -->|"analyze(report)"| checks["checks.ts: analyze"]
+  main -->|"formatReport(findings)"| report["report.ts: formatReport"]
 ```
 
 ## What it shows

@@ -7,7 +7,7 @@
   "subdomain": "how-the-web-works",
   "depth": "deep",
   "created_at": "2026-11-18T12:13:22Z",
-  "updated_at": "2026-11-18T15:19:40Z",
+  "updated_at": "2026-11-18T15:34:48Z",
   "paths": {
     "state": "state/topics/frontend-engineering/how-the-web-works/internet-and-networking",
     "vault": "vault/frontend-engineering/how-the-web-works/internet-and-networking",
@@ -541,7 +541,7 @@
           "source_ids": [],
           "coverage": [],
           "prerequisites": [],
-          "reason": "No verified source in this run explains IP addressing and ports in depth (HPBN mentions IP only briefly); page 1 names IP addresses and ports inside the packet journey, and the coverage audit may add a source."
+          "reason": "Final state after both audit rounds: page 1 names IP addresses and ports inside the packet journey (hpbn-book); no recorded source explains addressing and port ranges in depth, so subnetting and port details stay out of this topic."
         },
         {
           "id": "tcp-vs-udp",
@@ -661,7 +661,7 @@
           "source_ids": [],
           "coverage": [],
           "prerequisites": [],
-          "reason": "Taught in roadmap section 27.1 (CI/CD & hosting: hosting platforms, domains and DNS for deploys). No verified hosting-models source fits this topic within the 12-source cap; page 2 names the term only."
+          "reason": "Scope decision: roadmap section 27.1 (CI/CD & hosting: hosting platforms, domains and DNS for deploys) teaches hosting models with its own sources; this topic keeps its 12 sources for the network path, and page 2 points to 27.1."
         },
         {
           "id": "dns-resolution",
@@ -1959,7 +1959,7 @@
           "complexity": "intermediate",
           "importance": "supporting",
           "disposition": "deferred",
-          "reason": "The canonical source (trpc.io) was confirmed live, but the topic is at its 12-source cap and no recorded source covers tRPC. The roadmap sub-item stays open here; the TypeScript and backend-for-frontend sections (06.x, 13.x) are the natural place to teach it.",
+          "reason": "Scope decision: trpc.io is the canonical source (confirmed live), but this topic keeps its 12 source slots for HTTP-level API styles; tRPC is a TypeScript framework choice better taught with the TypeScript and backend-for-frontend sections (06.x, 13.x). Page 12 says tRPC is not covered here.",
           "roadmap_items": [],
           "source_ids": [],
           "coverage": [],
@@ -2191,15 +2191,15 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T12:14:53Z",
-      "finished_at": "2026-11-18T15:17:29Z",
+      "finished_at": "2026-11-18T15:32:58Z",
       "attempts": 1,
       "units": [],
       "note": "",
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "83048d6b4ba91e0bf055c8675dce655a20553894a9ba05a8920b92c517cd7de8",
-        "at": "2026-11-18T15:17:29Z",
+        "fingerprint": "abfb214e6980a2b35be2accaf22f4bdbc5ba8eaf290c9c28b9d26ce9c38ba64f",
+        "at": "2026-11-18T15:32:58Z",
         "forced": false
       }
     },
@@ -2210,7 +2210,7 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T12:15:49Z",
-      "finished_at": "2026-11-18T15:17:36Z",
+      "finished_at": "2026-11-18T15:33:06Z",
       "attempts": 1,
       "units": [
         {
@@ -2243,8 +2243,8 @@
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "e22bad6e76c76333173d6dec02e10f317b5de41343ae06bd3d20b8812946bfe8",
-        "at": "2026-11-18T15:17:36Z",
+        "fingerprint": "63bd158b1e11f31b0df7b5ee379e6c033eaac06450a1aadaae73485160601d99",
+        "at": "2026-11-18T15:33:06Z",
         "forced": false
       }
     },
@@ -2255,15 +2255,15 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T13:17:30Z",
-      "finished_at": "2026-11-18T15:17:44Z",
+      "finished_at": "2026-11-18T15:33:13Z",
       "attempts": 1,
       "units": [],
       "note": "",
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "082194a5ad4c6e63bfa9d3190e766257863946eb71068ea5acf78cb031d3f87e",
-        "at": "2026-11-18T15:17:44Z",
+        "fingerprint": "f881c2676bcc29b3925b95cce1ee7d87fa9e787204b0eb5f4704b9159e974d0e",
+        "at": "2026-11-18T15:33:13Z",
         "forced": false
       }
     },
@@ -2274,7 +2274,7 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T13:22:24Z",
-      "finished_at": "2026-11-18T15:17:51Z",
+      "finished_at": "2026-11-18T15:33:20Z",
       "attempts": 1,
       "units": [
         {
@@ -2302,8 +2302,8 @@
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "1549d46cb771069e5820fbbb0c7701af3e8d9df6b7c732f343f5f50fef842be6",
-        "at": "2026-11-18T15:17:51Z",
+        "fingerprint": "07492f9c545f5dee1b140bc6532a5ea84551fe1276e95a3596edd4cfcb0ed3e5",
+        "at": "2026-11-18T15:33:20Z",
         "forced": false
       }
     },
@@ -2314,7 +2314,7 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T13:22:27Z",
-      "finished_at": "2026-11-18T15:17:59Z",
+      "finished_at": "2026-11-18T15:33:27Z",
       "attempts": 1,
       "units": [
         {
@@ -2392,8 +2392,8 @@
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "4d12a721371942bdd051115e81ed0ce2afe206db2ddbe9067f4ae6c80fb9c827",
-        "at": "2026-11-18T15:17:59Z",
+        "fingerprint": "0cd37cdf1a75ada8ed4ee4c57f53c18d970f3f31f092bf6b58976b4b01495100",
+        "at": "2026-11-18T15:33:27Z",
         "forced": false
       }
     },
@@ -2403,17 +2403,17 @@
       "skill": "learn-site",
       "status": "done",
       "scope": "required",
-      "started_at": "2026-11-18T15:13:22Z",
-      "finished_at": "2026-11-18T15:18:06Z",
-      "attempts": 3,
+      "started_at": "2026-11-18T15:29:20Z",
+      "finished_at": "2026-11-18T15:33:35Z",
+      "attempts": 4,
       "units": [
         {
-          "id": "review-fix-pages-01-04-05-06",
+          "id": "review2-fix-pages-01-05-06",
           "status": "done",
           "handoff": null
         },
         {
-          "id": "review-fix-pages-02-08-10-11-12",
+          "id": "review2-fix-pages-03-09-10-11",
           "status": "done",
           "handoff": null
         }
@@ -2508,12 +2508,35 @@
           "status": "pending",
           "units": [],
           "note": ""
+        },
+        {
+          "at": "2026-11-18T15:29:16Z",
+          "status": "done",
+          "validation": {
+            "version": 2,
+            "fingerprint": "a41325ac7a39c83113e65dec0b6edf02f81936e90dd97d5061463934e5632fb8",
+            "at": "2026-11-18T15:18:06Z",
+            "forced": false
+          },
+          "units": [
+            {
+              "id": "review-fix-pages-01-04-05-06",
+              "status": "done",
+              "handoff": null
+            },
+            {
+              "id": "review-fix-pages-02-08-10-11-12",
+              "status": "done",
+              "handoff": null
+            }
+          ],
+          "note": ""
         }
       ],
       "validation": {
         "version": 2,
-        "fingerprint": "a41325ac7a39c83113e65dec0b6edf02f81936e90dd97d5061463934e5632fb8",
-        "at": "2026-11-18T15:18:06Z",
+        "fingerprint": "f434ec2a46221c5c4947ab155057762cecf7b48bda28ce02721a389323100f88",
+        "at": "2026-11-18T15:33:35Z",
         "forced": false
       }
     },
@@ -2524,7 +2547,7 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T13:49:53Z",
-      "finished_at": "2026-11-18T15:18:30Z",
+      "finished_at": "2026-11-18T15:33:56Z",
       "attempts": 1,
       "units": [
         {
@@ -2547,8 +2570,8 @@
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "66cd384bc4cde48c37c3c7340299282cdb52e29fc681ae311bc0ad23277f778d",
-        "at": "2026-11-18T15:18:30Z",
+        "fingerprint": "1c7e41aa5f21513bde452e983d10f838003ef7fb34e2369068a7be9f9fd6aff4",
+        "at": "2026-11-18T15:33:56Z",
         "forced": false
       }
     },
@@ -2559,7 +2582,7 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T14:07:48Z",
-      "finished_at": "2026-11-18T15:19:13Z",
+      "finished_at": "2026-11-18T15:34:13Z",
       "attempts": 1,
       "units": [
         {
@@ -2572,8 +2595,8 @@
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "7df765842b34be9c8836163dc8a93d14ecc7a67e93d564a2fde796ec4b365aff",
-        "at": "2026-11-18T15:19:13Z",
+        "fingerprint": "1230f073196129ddcd9dd605ba5bd18d8aab2a4a55d42137e8621e55b0b82bcb",
+        "at": "2026-11-18T15:34:13Z",
         "forced": false
       }
     },
@@ -2583,9 +2606,9 @@
       "skill": "learn-notes",
       "status": "done",
       "scope": "required",
-      "started_at": "2026-11-18T15:19:29Z",
-      "finished_at": "2026-11-18T15:19:40Z",
-      "attempts": 3,
+      "started_at": "2026-11-18T15:34:22Z",
+      "finished_at": "2026-11-18T15:34:30Z",
+      "attempts": 4,
       "units": [],
       "note": "",
       "continue_after_failure": false,
@@ -2613,12 +2636,24 @@
           },
           "units": [],
           "note": ""
+        },
+        {
+          "at": "2026-11-18T15:34:18Z",
+          "status": "done",
+          "validation": {
+            "version": 2,
+            "fingerprint": "8e6771bc1a557b8e0353732488674e9b539850e5fe2da40f3f35771c359696c8",
+            "at": "2026-11-18T15:19:40Z",
+            "forced": false
+          },
+          "units": [],
+          "note": ""
         }
       ],
       "validation": {
         "version": 2,
-        "fingerprint": "8e6771bc1a557b8e0353732488674e9b539850e5fe2da40f3f35771c359696c8",
-        "at": "2026-11-18T15:19:40Z",
+        "fingerprint": "96b72af1e5e082e0fec5b3e1d6efeeb480de6e75cd0b57bd587e1b79994314cd",
+        "at": "2026-11-18T15:34:30Z",
         "forced": false
       }
     },
@@ -2628,9 +2663,9 @@
       "skill": "learn",
       "status": "in_progress",
       "scope": "required",
-      "started_at": "2026-11-18T15:01:55Z",
+      "started_at": "2026-11-18T15:34:35Z",
       "finished_at": null,
-      "attempts": 2,
+      "attempts": 4,
       "units": [],
       "note": ""
     }
@@ -2812,238 +2847,26 @@
         "last_reviewed": null,
         "reviews": 0,
         "history": []
+      },
+      "ian-23": {
+        "box": 1,
+        "due": "2026-11-18",
+        "added": "2026-11-18",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      },
+      "ian-24": {
+        "box": 1,
+        "due": "2026-11-18",
+        "added": "2026-11-18",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
       }
     }
   },
   "log": [
-    {
-      "at": "2026-11-18T13:32:03Z",
-      "event": "note",
-      "message": "SPAWN 22/56; undici build-and-infra module started"
-    },
-    {
-      "at": "2026-11-18T13:32:09Z",
-      "event": "unit-done",
-      "message": "unit nodejs-undici-module-http-versions-dispatcher",
-      "stage": "repo-intel"
-    },
-    {
-      "at": "2026-11-18T13:32:12Z",
-      "event": "unit-done",
-      "message": "unit nodejs-undici-module-cache-semantics",
-      "stage": "repo-intel"
-    },
-    {
-      "at": "2026-11-18T13:32:15Z",
-      "event": "unit-start",
-      "message": "unit nodejs-undici-module-build-and-infra",
-      "stage": "repo-intel"
-    },
-    {
-      "at": "2026-11-18T13:32:38Z",
-      "event": "unit-done",
-      "message": "unit jshttp-cookie-synthesis",
-      "stage": "repo-intel"
-    },
-    {
-      "at": "2026-11-18T13:32:54Z",
-      "event": "unit-done",
-      "message": "unit nodejs-undici-module-cookies",
-      "stage": "repo-intel"
-    },
-    {
-      "at": "2026-11-18T13:33:20Z",
-      "event": "unit-done",
-      "message": "unit nodejs-undici-module-build-and-infra",
-      "stage": "repo-intel"
-    },
-    {
-      "at": "2026-11-18T13:34:11Z",
-      "event": "unit-add",
-      "message": "unit nodejs-undici-synthesis",
-      "stage": "repo-intel"
-    },
-    {
-      "at": "2026-11-18T13:34:14Z",
-      "event": "note",
-      "message": "SPAWN 23/56; undici synthesis started"
-    },
-    {
-      "at": "2026-11-18T13:34:24Z",
-      "event": "unit-start",
-      "message": "unit nodejs-undici-synthesis",
-      "stage": "repo-intel"
-    },
-    {
-      "at": "2026-11-18T13:35:55Z",
-      "event": "visual",
-      "message": "added visual undici-module-map"
-    },
-    {
-      "at": "2026-11-18T13:35:58Z",
-      "event": "visual",
-      "message": "added visual undici-request-flow"
-    },
-    {
-      "at": "2026-11-18T13:37:25Z",
-      "event": "unit-done",
-      "message": "unit nodejs-undici-synthesis",
-      "stage": "repo-intel"
-    },
-    {
-      "at": "2026-11-18T13:37:47Z",
-      "event": "reader-order",
-      "message": "Imported explicit authored child-note sequence"
-    },
-    {
-      "at": "2026-11-18T13:37:57Z",
-      "event": "done",
-      "message": "gate passed",
-      "stage": "digest"
-    },
-    {
-      "at": "2026-11-18T13:38:05Z",
-      "event": "done",
-      "message": "gate passed",
-      "stage": "repo-intel"
-    },
-    {
-      "at": "2026-11-18T13:49:41Z",
-      "event": "note",
-      "message": "WAVE 2 done; running: none; queued: wave 3 lesson + mini-projects"
-    },
-    {
-      "at": "2026-11-18T13:49:49Z",
-      "event": "start",
-      "message": "attempt 1",
-      "stage": "lesson"
-    },
-    {
-      "at": "2026-11-18T13:49:53Z",
-      "event": "start",
-      "message": "attempt 1",
-      "stage": "mini-projects"
-    },
-    {
-      "at": "2026-11-18T13:50:12Z",
-      "event": "unit-add",
-      "message": "unit experience-http-versions-lab",
-      "stage": "lesson"
-    },
-    {
-      "at": "2026-11-18T13:50:15Z",
-      "event": "unit-add",
-      "message": "unit video-tls13-handshake",
-      "stage": "lesson"
-    },
-    {
-      "at": "2026-11-18T13:50:18Z",
-      "event": "unit-add",
-      "message": "unit experience-http-cache-lab",
-      "stage": "lesson"
-    },
-    {
-      "at": "2026-11-18T13:50:22Z",
-      "event": "unit-add",
-      "message": "unit experience-cookie-send-lab",
-      "stage": "lesson"
-    },
-    {
-      "at": "2026-11-18T13:50:25Z",
-      "event": "unit-add",
-      "message": "unit experience-realtime-transport-deck",
-      "stage": "lesson"
-    },
-    {
-      "at": "2026-11-18T13:50:28Z",
-      "event": "unit-add",
-      "message": "unit pages-01-03",
-      "stage": "lesson"
-    },
-    {
-      "at": "2026-11-18T13:50:31Z",
-      "event": "unit-add",
-      "message": "unit pages-04-06",
-      "stage": "lesson"
-    },
-    {
-      "at": "2026-11-18T13:50:34Z",
-      "event": "unit-add",
-      "message": "unit pages-07-09",
-      "stage": "lesson"
-    },
-    {
-      "at": "2026-11-18T13:50:37Z",
-      "event": "unit-add",
-      "message": "unit pages-10-12",
-      "stage": "lesson"
-    },
-    {
-      "at": "2026-11-18T13:50:40Z",
-      "event": "unit-add",
-      "message": "unit mini-01",
-      "stage": "mini-projects"
-    },
-    {
-      "at": "2026-11-18T13:50:44Z",
-      "event": "unit-add",
-      "message": "unit mini-02",
-      "stage": "mini-projects"
-    },
-    {
-      "at": "2026-11-18T13:50:47Z",
-      "event": "unit-add",
-      "message": "unit mini-03",
-      "stage": "mini-projects"
-    },
-    {
-      "at": "2026-11-18T13:51:32Z",
-      "event": "note",
-      "message": "SPAWN 28/56; wave 3: experience http-versions-lab, video tls13-handshake, experience http-cache-lab, cookie-send-lab, realtime-transport-deck"
-    },
-    {
-      "at": "2026-11-18T13:53:27Z",
-      "event": "video",
-      "message": "video tls13-handshake not rendered: cannot render: FFmpeg is not installed and Docker is not running; install FFmpeg (for example `brew install ffmpeg`) or start Docker"
-    },
-    {
-      "at": "2026-11-18T13:53:30Z",
-      "event": "unit-done",
-      "message": "unit video-tls13-handshake",
-      "stage": "lesson"
-    },
-    {
-      "at": "2026-11-18T13:53:55Z",
-      "event": "note",
-      "message": "BLOCKER video tls13-handshake: storyboard only (no FFmpeg/Docker)"
-    },
-    {
-      "at": "2026-11-18T13:53:55Z",
-      "event": "note",
-      "message": "SPAWN 29/56; pages-01-03 started"
-    },
-    {
-      "at": "2026-11-18T13:54:23Z",
-      "event": "unit-start",
-      "message": "unit pages-01-03",
-      "stage": "lesson"
-    },
-    {
-      "at": "2026-11-18T13:54:59Z",
-      "event": "visual",
-      "message": "added visual realtime-transport-decision"
-    },
-    {
-      "at": "2026-11-18T13:55:25Z",
-      "event": "visual",
-      "message": "added visual packet-journey"
-    },
-    {
-      "at": "2026-11-18T13:55:28Z",
-      "event": "unit-done",
-      "message": "unit experience-http-versions-lab",
-      "stage": "lesson"
-    },
     {
       "at": "2026-11-18T13:55:48Z",
       "event": "unit-done",
@@ -3964,6 +3787,241 @@
       "event": "done",
       "message": "gate passed",
       "stage": "notes"
+    },
+    {
+      "at": "2026-11-18T15:19:56Z",
+      "event": "start",
+      "message": "attempt 3",
+      "stage": "finalize"
+    },
+    {
+      "at": "2026-11-18T15:20:07Z",
+      "event": "execution-check",
+      "message": "finalize: failed",
+      "stage": "finalize"
+    },
+    {
+      "at": "2026-11-18T15:20:33Z",
+      "event": "note",
+      "message": "SPAWN 47/56; fresh reviewers round 2 (fingerprint de73293)"
+    },
+    {
+      "at": "2026-11-18T15:24:21Z",
+      "event": "quality-review",
+      "message": "projects: pass",
+      "stage": "finalize"
+    },
+    {
+      "at": "2026-11-18T15:26:27Z",
+      "event": "note",
+      "message": "REVIEW r2: projects pass (recorded); content fix-needed 4 errors 7 warnings. SPAWN 48/56; review2 sources"
+    },
+    {
+      "at": "2026-11-18T15:27:26Z",
+      "event": "source-update",
+      "message": "updated mdn-http-docs: why_trusted",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T15:27:31Z",
+      "event": "source-update",
+      "message": "updated cloudflare-docs: why_trusted, verified_via",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T15:27:35Z",
+      "event": "source-update",
+      "message": "updated hpbn-book: why_trusted, verified_via",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T15:28:00Z",
+      "event": "plan",
+      "message": "plan fields set: summary, prerequisites, outcomes, lesson_outline, mini_projects, digest_targets, repo_targets, capstone, learner, visual_policy, visual_first, multi_stage, experience_policy, curriculum",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-18T15:28:34Z",
+      "event": "execution-check",
+      "message": "research: pass",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T15:28:41Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-18T15:28:49Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T15:28:57Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "brief"
+    },
+    {
+      "at": "2026-11-18T15:29:04Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "digest"
+    },
+    {
+      "at": "2026-11-18T15:29:12Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T15:29:16Z",
+      "event": "reset",
+      "message": "was done",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T15:29:20Z",
+      "event": "start",
+      "message": "attempt 4",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T15:29:24Z",
+      "event": "unit-add",
+      "message": "unit review2-fix-pages-01-05-06",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T15:29:28Z",
+      "event": "unit-add",
+      "message": "unit review2-fix-pages-03-09-10-11",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T15:29:31Z",
+      "event": "note",
+      "message": "SPAWN 50/56; review2 lesson fixers x2"
+    },
+    {
+      "at": "2026-11-18T15:31:49Z",
+      "event": "unit-done",
+      "message": "unit review2-fix-pages-01-05-06",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T15:31:52Z",
+      "event": "unit-done",
+      "message": "unit review2-fix-pages-03-09-10-11",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T15:32:22Z",
+      "event": "reader-order",
+      "message": "Imported explicit authored child-note sequence"
+    },
+    {
+      "at": "2026-11-18T15:32:26Z",
+      "event": "recall-sync",
+      "message": "2 added, 0 removed, 24 total"
+    },
+    {
+      "at": "2026-11-18T15:32:51Z",
+      "event": "execution-check",
+      "message": "research: pass",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T15:32:58Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-18T15:33:06Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T15:33:13Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "brief"
+    },
+    {
+      "at": "2026-11-18T15:33:20Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "digest"
+    },
+    {
+      "at": "2026-11-18T15:33:27Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T15:33:35Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T15:33:47Z",
+      "event": "execution-check",
+      "message": "mini-projects: pass",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-18T15:33:56Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-18T15:34:05Z",
+      "event": "execution-check",
+      "message": "capstone: pass",
+      "stage": "capstone"
+    },
+    {
+      "at": "2026-11-18T15:34:13Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "capstone"
+    },
+    {
+      "at": "2026-11-18T15:34:18Z",
+      "event": "reset",
+      "message": "was done",
+      "stage": "notes"
+    },
+    {
+      "at": "2026-11-18T15:34:22Z",
+      "event": "start",
+      "message": "attempt 4",
+      "stage": "notes"
+    },
+    {
+      "at": "2026-11-18T15:34:30Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "notes"
+    },
+    {
+      "at": "2026-11-18T15:34:35Z",
+      "event": "start",
+      "message": "attempt 4",
+      "stage": "finalize"
+    },
+    {
+      "at": "2026-11-18T15:34:48Z",
+      "event": "execution-check",
+      "message": "finalize: failed",
+      "stage": "finalize"
     }
   ],
   "roadmap": {
@@ -3974,8 +4032,8 @@
     "executions": {
       "research": {
         "version": 2,
-        "fingerprint": "e22bad6e76c76333173d6dec02e10f317b5de41343ae06bd3d20b8812946bfe8",
-        "at": "2026-11-18T15:17:22Z",
+        "fingerprint": "63bd158b1e11f31b0df7b5ee379e6c033eaac06450a1aadaae73485160601d99",
+        "at": "2026-11-18T15:32:51Z",
         "ok": true,
         "checks": [
           {
@@ -4057,7 +4115,7 @@
             "ok": true,
             "status": 200,
             "bytes": 6656,
-            "sha256": "a8950742fc83f2c09a4ef4e840ec4444190364efdf4977fc429a13f5803abee1",
+            "sha256": "954e484f14cde3858f2f6af6124b218ec13de1aacfee3b69300d71e8903fc463",
             "repository": {
               "stars": 7741,
               "archived": false,
@@ -4297,6 +4355,24 @@
             "sha256": "c442498d203ac350d4afbb07d8844d81d4a2a9892f1ce961251fa20f5213ce24"
           },
           {
+            "label": "hpbn-book: https://hpbn.co/optimizing-application-delivery/",
+            "source": "hpbn-book",
+            "requested_url": "https://hpbn.co/optimizing-application-delivery/",
+            "ok": true,
+            "status": 200,
+            "bytes": 48271,
+            "sha256": "9072087456fd8aada483fecf8dc8e2c65e0431c9f1d70cca61831a4a065949a8"
+          },
+          {
+            "label": "hpbn-book: https://hpbn.co/http2/",
+            "source": "hpbn-book",
+            "requested_url": "https://hpbn.co/http2/",
+            "ok": true,
+            "status": 200,
+            "bytes": 72972,
+            "sha256": "7772d9d1ed3367f4d9d6bc9bd0f16988a3145369bd7167151382fb78e0061c1a"
+          },
+          {
             "label": "cloudflare-docs: https://developers.cloudflare.com/dns/manage-dns-records/reference/dns-record-types/",
             "source": "cloudflare-docs",
             "requested_url": "https://developers.cloudflare.com/dns/manage-dns-records/reference/dns-record-types/",
@@ -4360,6 +4436,15 @@
             "sha256": "6ddb6ed1a34012ed39c006b0ba72fec0f42ac8554bc57e107711a5fc7214b876"
           },
           {
+            "label": "cloudflare-docs: https://developers.cloudflare.com/1.1.1.1/faq/",
+            "source": "cloudflare-docs",
+            "requested_url": "https://developers.cloudflare.com/1.1.1.1/faq/",
+            "ok": true,
+            "status": 200,
+            "bytes": 116291,
+            "sha256": "447b049f3479202cfb2afe2bc41d691bf79f0f7d835763802bc6b22c3011fb47"
+          },
+          {
             "label": "cloudflare-docs: https://developers.cloudflare.com/",
             "source": "cloudflare-docs",
             "requested_url": "https://developers.cloudflare.com/",
@@ -4390,8 +4475,8 @@
       },
       "mini-projects": {
         "version": 2,
-        "fingerprint": "66cd384bc4cde48c37c3c7340299282cdb52e29fc681ae311bc0ad23277f778d",
-        "at": "2026-11-18T15:18:19Z",
+        "fingerprint": "1c7e41aa5f21513bde452e983d10f838003ef7fb34e2369068a7be9f9fd6aff4",
+        "at": "2026-11-18T15:33:47Z",
         "ok": true,
         "checks": [
           {
@@ -4403,7 +4488,7 @@
             "expected_exit": 0,
             "exit": 0,
             "ok": true,
-            "output_sha256": "c13b8e2f14d13688bd142549dde1b3acc1c2636ff30863da494ff476520d3b36"
+            "output_sha256": "37ea87d90233e55baf7b662e7f466a0fdac47d00c8abec8c965d8c45c6aea289"
           },
           {
             "label": "mini-01-dns-record-inspector: starter-tests",
@@ -4414,7 +4499,7 @@
             "expected_exit": 1,
             "exit": 1,
             "ok": true,
-            "output_sha256": "8c2e62aa02b336ebaeb0f0d5bf91b50413b14dd2277f456b30febf0a1bbc8766"
+            "output_sha256": "8f2d2d2685afd718126ba0d838e44599c41d268d719da173e0a0520534380c19"
           },
           {
             "label": "mini-01-dns-record-inspector: starter-start",
@@ -4463,7 +4548,7 @@
             "expected_exit": 0,
             "exit": 0,
             "ok": true,
-            "output_sha256": "899db7047308d08aaf309b800b0d4c2bbf576645824e6c83766cbfb19f8d9071"
+            "output_sha256": "4e9250753500ee41f20b69c58b9caaf00bc4f4ba2ddb52f52b78dff781e3c38c"
           },
           {
             "label": "mini-02-cache-header-auditor: starter-tests",
@@ -4474,7 +4559,7 @@
             "expected_exit": 1,
             "exit": 1,
             "ok": true,
-            "output_sha256": "23758de720cbfd5d55568ac91c8cd221a5a497b9e0bd00b81bd4c07c57b0461a"
+            "output_sha256": "c6b6d5060193c7f813e6b14b5f84ed5677166461a9d84a80af4bf13be3280ca1"
           },
           {
             "label": "mini-02-cache-header-auditor: starter-start",
@@ -4522,7 +4607,7 @@
             "expected_exit": 0,
             "exit": 0,
             "ok": true,
-            "output_sha256": "77ead0ce833ff43fe5620ca63af51a876ab98d43292b23b9e2ceb59f42f604a5"
+            "output_sha256": "d0fbf493b47046445ae742cb2d72aed64fdcb24331ac1f30454086eff9037029"
           },
           {
             "label": "mini-03-cookie-attribute-linter: starter-tests",
@@ -4533,7 +4618,7 @@
             "expected_exit": 1,
             "exit": 1,
             "ok": true,
-            "output_sha256": "1d970351df12e11345c52e03debb622b49b2437d1f73a276b694b6c2810b323b"
+            "output_sha256": "adc1f6a286366a1711b6239590ac701fd3b8052297463fd61178be4044a1bbf9"
           },
           {
             "label": "mini-03-cookie-attribute-linter: starter-start",
@@ -4577,8 +4662,8 @@
       },
       "capstone": {
         "version": 2,
-        "fingerprint": "7df765842b34be9c8836163dc8a93d14ecc7a67e93d564a2fde796ec4b365aff",
-        "at": "2026-11-18T15:18:59Z",
+        "fingerprint": "1230f073196129ddcd9dd605ba5bd18d8aab2a4a55d42137e8621e55b0b82bcb",
+        "at": "2026-11-18T15:34:05Z",
         "ok": true,
         "checks": [
           {
@@ -4590,7 +4675,7 @@
             "expected_exit": 0,
             "exit": 0,
             "ok": true,
-            "output_sha256": "37189ac732a2a88fa78c74248603965a2b908dbd80ac11639ee1166cdd733464"
+            "output_sha256": "d0517335d209497a01c2d64c04eaeca4eb83e1f67cc890d4ceb08893a3dc5cd4"
           },
           {
             "label": "capstone: typecheck",
@@ -4632,8 +4717,8 @@
       },
       "finalize": {
         "version": 2,
-        "fingerprint": "ef74928620486f2e30bbe1e76986118e774756a17328142f7f0d47f387621c40",
-        "at": "2026-11-18T15:02:05Z",
+        "fingerprint": "96b451a952734817cc366cbe3625e9b4e54cd381d90181df5660ddefb2ccd2a9",
+        "at": "2026-11-18T15:34:48Z",
         "ok": false,
         "checks": [
           {
@@ -4648,7 +4733,7 @@
             "expected_exit": 0,
             "exit": 0,
             "ok": true,
-            "output_sha256": "bffd6878bd18de11fc6ffa785710f949f59d6907927ec2d36914d604b1867710"
+            "output_sha256": "327c4c3a6e666ca8d917c136a187cc140635e5866918d0c45864426f886beab5"
           },
           {
             "label": "site smoke",
@@ -4680,6 +4765,70 @@
             "output_sha256": "9cf80b4d6837916eb7b42c75c5478750c54297762700cff81b192e0cd083e529"
           }
         ]
+      }
+    },
+    "reviews": {
+      "projects": {
+        "scope": "projects",
+        "reviewer": "tutor-verifier",
+        "verdict": "pass",
+        "checks": [
+          "solution-tests",
+          "starter-behavior",
+          "dependency-health",
+          "architecture",
+          "documented-commands",
+          "project-diagrams"
+        ],
+        "findings": [
+          {
+            "severity": "warning",
+            "path": "projects/frontend-engineering/how-the-web-works/internet-and-networking/capstone/README.md",
+            "problem": "README says `npm run start:bad` 'ends with an npm error message'. With npm 11.19.0 / Node 26.8.1 the run exits 1 correctly but prints no npm error line (stdout+stderr captured; no 'npm error'/'npm ERR' present). A learner may think something is wrong.",
+            "fix": "Reword to: the command exits with code 1 on purpose (check with `echo $?`); some npm versions also print an npm error line."
+          },
+          {
+            "severity": "warning",
+            "path": "projects/frontend-engineering/how-the-web-works/internet-and-networking/capstone/ARCHITECTURE.md",
+            "problem": "Layer diagram (also registered visual capstone-layers) shows Interface -> Application -> Domain and Main -> Interface/Infrastructure only. The code also has direct Interface -> Domain imports (src/interface/cli.ts imports domain/errors.ts; interface imports domain/ports.ts and domain/report.ts) and Main -> Domain imports (src/main.ts imports the six domain/checks/* and domain/errors.ts) and Main -> Application (runReport.ts). The prose rule 'dependencies point inward' holds; the diagram just omits real edges.",
+            "fix": "Add Interface --> Domain and Main --> Application/Domain edges (or a note that outer layers may also import domain types directly) in ARCHITECTURE.md and re-register capstone-layers."
+          },
+          {
+            "severity": "warning",
+            "path": "projects/frontend-engineering/how-the-web-works/internet-and-networking/mini-03-cookie-attribute-linter/README.md",
+            "problem": "Node prerequisites differ across the four projects: mini-01 says Node 26, mini-02 'Node.js 22.18 or newer', mini-03 'Node.js 24 or newer', capstone 'Node.js 26 or newer'. All lockfiles pin vitest 5.1.1 whose engines are '^22.12.0 || ^24.0.0 || >=26.0.0', so Node 25 (covered by 'Node 24 or newer' / '22.18 or newer') is outside the supported range. Claims are otherwise accurate for type stripping.",
+            "fix": "Use one statement in all READMEs, e.g. 'Node.js 22.18+, 24 or 26 (vitest 5 does not support Node 25); written with Node 26'."
+          },
+          {
+            "severity": "warning",
+            "path": "projects/frontend-engineering/how-the-web-works/internet-and-networking/mini-01-dns-record-inspector/README.md",
+            "problem": "Full `npm audit` reports 5 high advisories (picomatch GHSA-fc5q-39xc-vjpf via fdir/tinyglobby/vite/vitest) in all seven package trees (3 solutions, 3 starters, capstone). `--omit=dev` is clean everywhere. Only the capstone README discloses this; the mini READMEs (mini-01, mini-02, mini-03) do not, so a learner who runs `npm install` sees an unexplained high-severity warning.",
+            "fix": "Add the same one-line dev-only audit note to the three mini READMEs, or bump vitest when a fixed release exists."
+          },
+          {
+            "severity": "warning",
+            "path": "projects/frontend-engineering/how-the-web-works/internet-and-networking/mini-01-dns-record-inspector/README.md",
+            "problem": "mini-01-flow edge `lookup -->|Report| checks` reads as lookup.ts handing off to analyze, but lookup.ts imports nothing from checks.ts; main.ts calls inspectDomain then analyze then formatReport. Similarly mini-03-flow draws parse --> rules, while lint.ts (not parse.ts) calls lintCookie, and main.ts is absent. Data-flow reading is defensible, call-flow reading is not.",
+            "fix": "Route the edges through main.ts (mini-01) and lint.ts (mini-03), or label the diagrams explicitly as data flow."
+          }
+        ],
+        "not_checked": [
+          "Docker build/run of the capstone Dockerfile (no Docker in this sandbox; README honestly says it was not built)",
+          "mini-01 `npm start -- example.com ...` live DNS query (network lookup of a real name not performed)"
+        ],
+        "independent": true,
+        "reviewer_run_id": "verify-projects-01.1-r2",
+        "input_fingerprint": "de732934ce8308203a9a41f46cb7a92d9316804ebede48cc8909e53427c47b3b",
+        "assessments": {
+          "solution-tests": "Ran `npm ci` from lockfiles then `npm test` on Node 26.8.1: mini-01 solution 2 files / 18 passed; mini-02 solution 4 files / 24 passed; mini-03 solution 3 files / 24 passed; capstone 4 files / 52 passed. Counts match README claims (18, 24, 24, 52). vitest list per-describe counts for mini-01 (queryType 7, inspectDomain 2, checkTtl 2, checkCnameConflict 2, checkCaa 3, analyze 2) match README task 'done when' counts.",
+          "starter-behavior": "Starters: mini-01 npm test exit 1, 18/18 fail, only Errors are TODO(1),(2),(3),(5) (TODO(4) test is reached via inspectDomain so TODO(2) masks it until done, consistent with task order); npm run demo exit 1 printing 'TODO(2): inspectDomain is not implemented yet'. mini-02 npm test exit 1, 23 fail/1 pass, only TODO(1)-(5) errors; npm start exit 1 with a TODO(2) stack trace, which the README states. mini-03 npm test exit 1, 24/24 fail, only TODO(1) and TODO(4) errors (rules tests call parseSetCookie first); npm run demo exit 1 with 'TODO(4)'. `diff -rq` solution vs starter (excluding node_modules) differs only in TODO files: mini-01 lookup.ts, checks.ts; mini-02 cacheControl.ts, classify.ts, rules.ts; mini-03 parse.ts, rules.ts, lint.ts. verification.json expect_output strings all appear.",
+          "dependency-health": "`npm audit --omit=dev --audit-level=high` exit 0 in all 7 trees (no runtime dependencies). Full `npm audit` (info): 5 high in each tree, picomatch GHSA-fc5q-39xc-vjpf through fdir/tinyglobby/vite/vitest 5.1.1, dev-only; disclosed only in capstone README (warning finding). vitest engines '^22.12.0 || ^24.0.0 || >=26.0.0' satisfied by Node 26.8.1.",
+          "architecture": "Capstone: grep of relative imports per layer shows domain imports only domain files; application imports only domain (finding, ports, report, types); infrastructure imports only domain (errors, ports, report, types); interface imports application/runReport.ts and domain (errors, ports, report); main.ts is the composition root importing all layers. Matches ARCHITECTURE.md line 7 'dependencies point inward'. RunReport (src/application/runReport.ts:22-40) loads inputs once and turns a crashing check into an unknown finding as ADR/diagram state; cli.ts maps InputError/PolicyError/ConfigError to exit 2. Six Check classes implement Check. Typecheck `npm run typecheck` exit 0. Dockerfile (node:26-slim, npm ci --omit=dev, ENTRYPOINT node src/main.ts, CMD fixtures/good) is consistent but not built (no Docker).",
+          "documented-commands": "Executed README commands: mini-01 npm install/test/demo (solution demo prints WARN 3600s TTL, ERROR CAA letsencrypt.org, INFO missing AAAA, exit 1 as stated); mini-02 npm start prints '19 checks: 7 problems, 1 unknown.' exit 1 as stated; mini-03 npm run demo ends '7 error(s), 5 warning(s).' exit 1, and `node src/main.ts fixtures/login-flow.har` shows exactly 2 errors for __Secure-auth as stated; capstone npm start (with and without REPORT_NOW) prints 'No problems found.' exit 0, start:bad exit 1 with '10 errors, 18 warnings (2 could not be read).', FAIL_ON=never exit 0, FAIL_ON=bogus exit 2, REPORT_FORMAT=json prints JSON. Vault 06 note commands/52 tests match. Inaccuracies: start:bad 'npm error message' claim not reproduced on npm 11.19.0; Node version prerequisites inconsistent (warnings). Docker line and live mini-01 query not run.",
+          "project-diagrams": "Compared registered visuals mini-01-flow, mini-02-flow, mini-03-flow, capstone-layers, capstone-request-flow, capstone-deployment (vault visuals/assets/*.mmd, identical to README/ARCHITECTURE mermaid) with imports and code. All named files/functions/classes exist (inspectDomain/queryType/Resolver/analyze/formatReport; readEntries/auditEntry/classify/gradeHashedAsset/gradeHtml/gradeVaryAndEncoding/parseCacheControl; readSetCookieHeaders/lintHeaders/parseSetCookie/checkAttributes/checkPrefixes/formatReport/exitCode; Cli/TextRenderer/JsonRenderer/RunReport/FileSiteDataSource/HarReader/JsonPolicyRepository/JsonLogger). Request-flow sequence matches runReport.ts execute() and cli.ts error mapping; deployment diagram matches env vars in README table, stderr JSON logger, exit codes 0/1/2 (verified) and Dockerfile base image. Imprecisions: capstone-layers omits real Interface->Domain and Main->Application/Domain edges; mini-01 and mini-03 flows draw data flow as if module-to-module calls (warnings, no wrong relationships invented)."
+        },
+        "at": "2026-11-18T15:24:21Z",
+        "fingerprint": "de732934ce8308203a9a41f46cb7a92d9316804ebede48cc8909e53427c47b3b"
       }
     }
   },

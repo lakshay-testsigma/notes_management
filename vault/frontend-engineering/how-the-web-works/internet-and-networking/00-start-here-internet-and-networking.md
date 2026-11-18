@@ -71,12 +71,12 @@ Run `npm run site:dev` in the repository root, then open `/frontend-engineering/
 
 The network a frontend developer depends on: internet packets and transport, domains and DNS, HTTP messages and versions, TLS, URLs and origins, HTTP and CDN caching, compression, cookies, realtime transports and API styles at a glance.
 - How the internet moves packets: included
-- IP addresses, IPv4/IPv6 and ports: deferred — No verified source in this run explains IP addressing and ports in depth (HPBN mentions IP only briefly); page 1 names IP addresses and ports inside the packet journey, and the coverage audit may add a source.
+- IP addresses, IPv4/IPv6 and ports: deferred — Final state after both audit rounds: page 1 names IP addresses and ports inside the packet journey (hpbn-book); no recorded source explains addressing and port ranges in depth, so subnetting and port details stay out of this topic.
 - TCP versus UDP: included
 - Routing and ISPs: included
 - Domain names and hosting: included
 - Registrars, TLDs and nameservers: included
-- Static, server and serverless hosting: deferred — Taught in roadmap section 27.1 (CI/CD & hosting: hosting platforms, domains and DNS for deploys). No verified hosting-models source fits this topic within the 12-source cap; page 2 names the term only.
+- Static, server and serverless hosting: deferred — Scope decision: roadmap section 27.1 (CI/CD & hosting: hosting platforms, domains and DNS for deploys) teaches hosting models with its own sources; this topic keeps its 12 sources for the network path, and page 2 points to 27.1.
 - DNS resolution: included
 - DNS record types and TTL: included
 - DNS prefetch and DNS over HTTPS: included
@@ -125,7 +125,7 @@ The network a frontend developer depends on: internet packets and transport, dom
 - Range requests and 206 Partial Content: included
 - 429 Too Many Requests and Retry-After: included
 - CORS: cross-origin requests and preflight: deferred — Taught in roadmap section 01.2 (How browsers work), page 7, concept cors-coop-coep, with its own verified MDN source; this topic links origin to it.
-- tRPC: type-safe RPC for TypeScript apps: deferred — The canonical source (trpc.io) was confirmed live, but the topic is at its 12-source cap and no recorded source covers tRPC. The roadmap sub-item stays open here; the TypeScript and backend-for-frontend sections (06.x, 13.x) are the natural place to teach it.
+- tRPC: type-safe RPC for TypeScript apps: deferred — Scope decision: trpc.io is the canonical source (confirmed live), but this topic keeps its 12 source slots for HTTP-level API styles; tRPC is a TypeScript framework choice better taught with the TypeScript and backend-for-frontend sections (06.x, 13.x). Page 12 says tRPC is not covered here.
 
 Research stopped: budget-limit. Audit round 1 concepts expanded against the re-verified MDN pages; Bearer token usage and resource-hint syntax have no direct verified page, so they stay out. Review fix: WebTransport re-verified on MDN and taught on page 11; tRPC deferred (no slot); hosting deferred to section 27.1.
 

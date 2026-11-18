@@ -8,7 +8,7 @@ created: 2026-11-18
 
 # Internet & networking — resources
 
-Every source below was checked against a live page before it was recommended.
+We read every source below on a live page before we recommended it.
 
 <!-- tutor:generated:start -->
 **12 vetted sources.** Tier A is canonical (official docs, the defining paper, the standard book, the reference implementation). Tier B is strong and widely used.
@@ -20,11 +20,11 @@ Every source below was checked against a live page before it was recommended.
   - Used for: lesson
   - Verified: 2026-11-18
 - **[MDN Web Docs: HTTP and web networking](https://developer.mozilla.org/en-US/docs/Web/HTTP)** — MDN contributors (Mozilla), 2026 · tier A
-  - Why it is trusted: MDN is the browser-vendor reference for the web platform; its HTTP set has guides on caching, redirections (301/302/303/307/308), authentication, range requests, cookies (prefixes), compression, Compression Dictionary Transport, HTTP/1.x connection management (domain sharding), content negotiation, HSTS and mixed content, plus status 429 and Cache-Control references; it also covers the WebTransport, WebSocket and server-sent events (EventSource) APIs, the Priority header (RFC 9218), 100 Continue and 103 Early Hints, the Set-Cookie __Secure- prefix, and the 4KB-per-cookie limit in the cookies guide (pages read Nov 2026).
+  - Why it is trusted: MDN is the browser-vendor reference for the web platform; its HTTP set has guides on caching, redirections (301/302/303/307/308), authentication, range requests, cookies (prefixes), compression, Compression Dictionary Transport, HTTP/1.x connection management (domain sharding), content negotiation, HSTS and mixed content, plus status 429 and Cache-Control references; it also covers the WebTransport, WebSocket and server-sent events (EventSource) APIs, the Priority header (RFC 9218), 100 Continue and 103 Early Hints, the Set-Cookie __Secure- prefix, and the 4KB-per-cookie limit in the cookies guide; the Set-Cookie page defines Expires, Max-Age (Max-Age wins; zero or negative expires at once), session cookies and the SameSite=None plus Secure rule; the HSTS page explains the first plain-HTTP request weakness, max-age, includeSubDomains, preload and lock-in; the mixed-content page lists upgraded and blocked requests; the Certificate Transparency page explains mis-issuance detection and SCTs; the Compression Dictionary Transport page lists Use-As-Dictionary, Available-Dictionary and same-origin limits; the WebTransport page notes the QUIC connection ID persists across networks (Wi-Fi to mobile) (pages read Nov 2026).
   - Used for: brief, lesson
   - Verified: 2026-11-18
 - **[Cloudflare developer documentation (DNS, Cache, Workers, Images)](https://developers.cloudflare.com/)** — Cloudflare, 2026 · tier B
-  - Why it is trusted: Official documentation of a major CDN and DNS provider; its DNS docs list A, AAAA, CNAME, MX, TXT, CAA, HTTPS, SVCB and NS records and TTL rules, and its Cache docs define cache keys and purge methods. Its Cache docs also give the default cache key (full URL, Origin header, method-override and forwarding headers) and Tiered Cache (lower and upper tier data centers); its SSL concepts page defines a certificate authority.
+  - Why it is trusted: Official documentation of a major CDN and DNS provider; its DNS docs list A, AAAA, CNAME, MX, TXT, CAA, HTTPS, SVCB and NS records and TTL rules, and its Cache docs define cache keys and purge methods. Its Cache docs also give the default cache key (full URL, Origin header, method-override and forwarding headers) and Tiered Cache (lower and upper tier data centers); its SSL concepts page defines a certificate authority. Its 1.1.1.1 FAQ (What do DNS resolvers do?) describes the resolver asking a root server, then the TLD server, then the authoritative nameserver.
   - Used for: lesson
   - Verified: 2026-11-18
 - **[Connect RPC documentation](https://connectrpc.com/docs/introduction)** — The Connect Authors (created by Buf), 2026 · tier B
@@ -35,7 +35,7 @@ Every source below was checked against a live page before it was recommended.
 ## Books
 
 - **[High Performance Browser Networking](https://hpbn.co/)** — Ilya Grigorik, 2013 · tier A
-  - Why it is trusted: O'Reilly Media book by Ilya Grigorik (Google web performance engineer, W3C Web Performance WG co-chair), with the full text online under CC BY-NC-ND 4.0; chapters cover TCP, UDP, TLS, HTTP/1.X, HTTP/2, SSE, WebSocket and WebRTC.
+  - Why it is trusted: O'Reilly Media book by Ilya Grigorik (Google web performance engineer, W3C Web Performance WG co-chair), with the full text online under CC BY-NC-ND 4.0; chapters cover TCP, UDP, TLS, HTTP/1.X, HTTP/2, SSE, WebSocket and WebRTC. Its Optimizing Application Delivery chapter (Optimizing for HTTP/2, Minimize Concatenation and Image Spriting) states the per-request overhead and bundle cache-invalidation trade-offs.
   - Used for: lesson
   - Verified: 2026-11-18
 

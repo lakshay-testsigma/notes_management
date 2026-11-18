@@ -10,17 +10,26 @@ concepts: [cookies, Set-Cookie attributes, SameSite, cookie prefixes]
 {/* <!-- concept: cookie-prefixes-and-chips --> */}
 {/* <!-- concept: third-party-cookies --> */}
 
-A user signs in to `shop.example.com`, and a payment form on another site posts to it. Does that request carry the session? The answer decides whether a forged request can spend the user's money.
+A user signs in to `shop.example.com`, and a form on another site posts to it. Does that request carry the session? If it does, a forged request can spend the user's money.
 
-A cookie is a small name and value, usually at most about 4 KB, that the server stores in the browser with a `Set-Cookie` header. The browser then returns it in the `Cookie` header of later requests. HTTP itself is stateless, so cookies carry session state, preferences and tracking IDs. Each attribute on `Set-Cookie` is one check before the browser sends the cookie.
+A cookie is a small name and value, usually at most 4 KB. The server stores it in the browser with a `Set-Cookie` header, and the browser returns it in the `Cookie` header of later requests. Cookies carry session state, preferences and tracking IDs. Each attribute is one check before the browser sends the cookie.
 
-In the lab, change the request type and the attributes. Predict which of five cookies each request carries, then step through the checks.
+In the lab, change the request and the attributes, and predict which cookies it carries.
 
 <Experience id="cookie-send-lab" />
 
-Domain picks the hosts, Path picks the URL paths, and Secure requires https. SameSite handles cross-site requests, where the scheme or the registrable domain differs. `Strict` never goes cross-site. `Lax` goes only on a top-level navigation with GET. `None` always goes but needs `Secure`. HttpOnly does not change sending; it hides the cookie from `document.cookie`.
+Domain picks hosts, Path picks URL paths, and Secure requires https. SameSite handles cross-site requests, where the scheme or the registrable domain differs. `Strict` never goes cross-site. `Lax` goes only on a top-level GET navigation. `None` allows cross-site sending and requires `Secure`; the browser's third-party cookie policy can still block it. HttpOnly only hides the cookie from `document.cookie`.
 
-**Note.** Name prefixes add checks. A `__Secure-` cookie is rejected unless it has `Secure` and comes from an https page. A `__Host-` cookie also needs no Domain and `Path=/`. That is the closest a cookie gets to an origin boundary, so use it for session cookies.
+A cookie without `Expires` or `Max-Age` is a session cookie: the browser removes it at shutdown, although session restore can bring it back. `Max-Age` counts seconds and wins over `Expires`. `Max-Age=0` or less deletes it at once. A long lifetime saves sign-ins but gives a thief more time to use a stolen cookie.
+
+<Quiz
+  question="The server sends Set-Cookie: sid=abc; Expires=Wed, 01 Jan 2031 00:00:00 GMT; Max-Age=0. What does the browser do?"
+  options={["Keeps sid until 2031", "Deletes sid at once", "Keeps sid as a session cookie until shutdown"]}
+  answer={1}
+  explanation="Max-Age wins over Expires, and Max-Age=0 expires the cookie at once. This is how a server deletes a cookie, for example at sign-out."
+/>
+
+**Note.** Name prefixes add checks. A `__Secure-` cookie needs `Secure` and an https page. A `__Host-` cookie also needs no Domain and `Path=/`, so it stays with one host. Use it for session cookies.
 
 <Depth level="production">
 
@@ -34,4 +43,4 @@ The `cookie` library behind Express writes strictly and reads leniently. `string
 
 </Depth>
 
-Cookies ride on requests the client starts; next, see how the server can push data without waiting for one.
+Next: how the server pushes data without waiting for a request.

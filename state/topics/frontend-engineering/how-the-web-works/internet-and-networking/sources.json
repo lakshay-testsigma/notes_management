@@ -184,7 +184,7 @@
     "authors": "MDN contributors (Mozilla)",
     "year": 2026,
     "tier": "A",
-    "why_trusted": "MDN is the browser-vendor reference for the web platform; its HTTP set has guides on caching, redirections (301/302/303/307/308), authentication, range requests, cookies (prefixes), compression, Compression Dictionary Transport, HTTP/1.x connection management (domain sharding), content negotiation, HSTS and mixed content, plus status 429 and Cache-Control references; it also covers the WebTransport, WebSocket and server-sent events (EventSource) APIs, the Priority header (RFC 9218), 100 Continue and 103 Early Hints, the Set-Cookie __Secure- prefix, and the 4KB-per-cookie limit in the cookies guide (pages read Nov 2026).",
+    "why_trusted": "MDN is the browser-vendor reference for the web platform; its HTTP set has guides on caching, redirections (301/302/303/307/308), authentication, range requests, cookies (prefixes), compression, Compression Dictionary Transport, HTTP/1.x connection management (domain sharding), content negotiation, HSTS and mixed content, plus status 429 and Cache-Control references; it also covers the WebTransport, WebSocket and server-sent events (EventSource) APIs, the Priority header (RFC 9218), 100 Continue and 103 Early Hints, the Set-Cookie __Secure- prefix, and the 4KB-per-cookie limit in the cookies guide; the Set-Cookie page defines Expires, Max-Age (Max-Age wins; zero or negative expires at once), session cookies and the SameSite=None plus Secure rule; the HSTS page explains the first plain-HTTP request weakness, max-age, includeSubDomains, preload and lock-in; the mixed-content page lists upgraded and blocked requests; the Certificate Transparency page explains mis-issuance detection and SCTs; the Compression Dictionary Transport page lists Use-As-Dictionary, Available-Dictionary and same-origin limits; the WebTransport page notes the QUIC connection ID persists across networks (Wi-Fi to mobile) (pages read Nov 2026).",
     "evidence": {
       "stars": null,
       "last_commit": null,
@@ -208,7 +208,7 @@
     "authors": "Ilya Grigorik",
     "year": 2013,
     "tier": "A",
-    "why_trusted": "O'Reilly Media book by Ilya Grigorik (Google web performance engineer, W3C Web Performance WG co-chair), with the full text online under CC BY-NC-ND 4.0; chapters cover TCP, UDP, TLS, HTTP/1.X, HTTP/2, SSE, WebSocket and WebRTC.",
+    "why_trusted": "O'Reilly Media book by Ilya Grigorik (Google web performance engineer, W3C Web Performance WG co-chair), with the full text online under CC BY-NC-ND 4.0; chapters cover TCP, UDP, TLS, HTTP/1.X, HTTP/2, SSE, WebSocket and WebRTC. Its Optimizing Application Delivery chapter (Optimizing for HTTP/2, Minimize Concatenation and Image Spriting) states the per-request overhead and bundle cache-invalidation trade-offs.",
     "evidence": {
       "stars": null,
       "last_commit": null,
@@ -218,7 +218,7 @@
       "used_by": []
     },
     "verified_at": "2026-11-18",
-    "verified_via": "https://hpbn.co/ ; https://hpbn.co/primer-on-latency-and-bandwidth/ ; https://hpbn.co/primer-on-web-performance/ (section Browser Optimization: TCP pre-connect, dns-prefetch link hint, Table 10-2 speculative optimization hints) ; https://hpbn.co/transport-layer-security-tls/ (sections Chain of Trust and Certificate Authorities; Let’s Encrypt, ACME)",
+    "verified_via": "https://hpbn.co/ ; https://hpbn.co/primer-on-latency-and-bandwidth/ ; https://hpbn.co/primer-on-web-performance/ (section Browser Optimization: TCP pre-connect, dns-prefetch link hint, Table 10-2 speculative optimization hints) ; https://hpbn.co/transport-layer-security-tls/ (sections Chain of Trust and Certificate Authorities; Let’s Encrypt, ACME) ; https://hpbn.co/optimizing-application-delivery/ (Optimizing for HTTP/1.x; Minimize Concatenation and Image Spriting) ; https://hpbn.co/http2/ (Request and Response Multiplexing; Header Compression)",
     "use_for": [
       "lesson"
     ]
@@ -231,7 +231,7 @@
     "authors": "Cloudflare",
     "year": 2026,
     "tier": "B",
-    "why_trusted": "Official documentation of a major CDN and DNS provider; its DNS docs list A, AAAA, CNAME, MX, TXT, CAA, HTTPS, SVCB and NS records and TTL rules, and its Cache docs define cache keys and purge methods. Its Cache docs also give the default cache key (full URL, Origin header, method-override and forwarding headers) and Tiered Cache (lower and upper tier data centers); its SSL concepts page defines a certificate authority.",
+    "why_trusted": "Official documentation of a major CDN and DNS provider; its DNS docs list A, AAAA, CNAME, MX, TXT, CAA, HTTPS, SVCB and NS records and TTL rules, and its Cache docs define cache keys and purge methods. Its Cache docs also give the default cache key (full URL, Origin header, method-override and forwarding headers) and Tiered Cache (lower and upper tier data centers); its SSL concepts page defines a certificate authority. Its 1.1.1.1 FAQ (What do DNS resolvers do?) describes the resolver asking a root server, then the TLD server, then the authoritative nameserver.",
     "evidence": {
       "stars": null,
       "last_commit": null,
@@ -241,7 +241,7 @@
       "used_by": []
     },
     "verified_at": "2026-11-18",
-    "verified_via": "https://developers.cloudflare.com/dns/manage-dns-records/reference/dns-record-types/; https://developers.cloudflare.com/dns/manage-dns-records/reference/ttl/; https://developers.cloudflare.com/cache/how-to/purge-cache/; https://developers.cloudflare.com/1.1.1.1/encryption/dns-over-https/; https://developers.cloudflare.com/cache/how-to/cache-keys/; https://developers.cloudflare.com/cache/how-to/tiered-cache/; https://developers.cloudflare.com/ssl/concepts/",
+    "verified_via": "https://developers.cloudflare.com/dns/manage-dns-records/reference/dns-record-types/; https://developers.cloudflare.com/dns/manage-dns-records/reference/ttl/; https://developers.cloudflare.com/cache/how-to/purge-cache/; https://developers.cloudflare.com/1.1.1.1/encryption/dns-over-https/; https://developers.cloudflare.com/cache/how-to/cache-keys/; https://developers.cloudflare.com/cache/how-to/tiered-cache/; https://developers.cloudflare.com/ssl/concepts/; https://developers.cloudflare.com/1.1.1.1/faq/ (What do DNS resolvers do?)",
     "use_for": [
       "lesson"
     ]

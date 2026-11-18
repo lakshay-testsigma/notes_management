@@ -21,19 +21,17 @@ A slow or broken page often has a network cause: a long DNS lookup, a missing ca
 
 ```mermaid
 flowchart LR
-  U[You type a URL] --> D[DNS: name to IP address]
-  D --> C[Connect: TCP or QUIC]
-  C --> T[TLS: encrypt and check the certificate]
-  T --> R[HTTP request with headers and cookies]
-  R --> K{Cache or CDN has a fresh copy?}
-  K -- yes --> P[Response from the cache]
-  K -- no --> S[Origin server builds the response]
-  S --> P2[Compressed response with cache headers]
-  P --> B[Browser renders the page]
-  P2 --> B
+  B{Browser cache has a fresh copy?} -- yes, no network --> P[Response: page renders]
+  B -- no --> D[DNS: name to IP address]
+  D --> C[Connect and TLS: TCP + TLS, or QUIC with TLS built in]
+  C --> R[HTTP request with headers and cookies]
+  R --> K{CDN edge server PoP has a fresh copy?}
+  K -- yes --> P
+  K -- no --> S[Origin server builds a compressed response]
+  S --> P
 ```
 
-DNS finds the server, TLS secures the connection, and HTTP carries the request. A fresh cached copy skips the trip to the origin. [[visual-how-it-works-internet-and-networking|explanation and sources]]
+A fresh copy in the browser cache needs no network at all. On a miss, DNS finds the server, TLS secures the connection, and HTTP carries the request; a fresh CDN copy skips the trip to the origin. [[visual-how-it-works-internet-and-networking|explanation and sources]]
 
 ## Where it is used in the real world
 

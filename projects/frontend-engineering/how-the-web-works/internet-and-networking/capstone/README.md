@@ -14,7 +14,7 @@ It builds on the three mini projects: the DNS inspector (record and TTL rules), 
 
 ## How to run
 
-You need Node.js 26 or newer. Node runs the `.ts` files directly.
+You need Node.js 22.18+, 24 or 26 (`node --version`); vitest 5 does not support Node 25. Node runs the `.ts` files directly, so there is no build step. Written with Node 26.
 
 ```bash
 cd projects/frontend-engineering/how-the-web-works/internet-and-networking/capstone
@@ -23,7 +23,7 @@ npm start               # good sample: prints "No problems found." and exits 0
 npm run start:bad       # bad sample: lists problems and exits 1 on purpose
 ```
 
-`npm run start:bad` ends with an npm error message. That is expected: it shows the exit code 1 that a CI job would see.
+`npm run start:bad` exits with code 1 on purpose (check with `echo $?`); some npm versions also print an npm error line. That exit code is what a CI job would see.
 
 The sample uses `REPORT_NOW` so the certificate dates give the same result on any day. Set `REPORT_NOW=2026-11-18T00:00:00Z` for the samples (`.env.example` has it). Other examples:
 

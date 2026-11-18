@@ -12,7 +12,7 @@ concepts: [polling, Server-Sent Events, WebSocket, WebTransport, WebRTC]
 
 A notification badge, a stock ticker and a chat all show live data. HTTP lets only the client start a request, so each feature needs a way for new data to reach the browser. The right choice depends on two questions: who sends the data, and how old may it be?
 
-Periodic polling asks the server again every few seconds. It is simple, but each empty check still costs about 850 bytes of headers and cookies. Long polling holds the request open until an update arrives. Server-Sent Events (SSE) keep one HTTP response of type `text/event-stream` open, and the server writes each event into it. The browser reads it with `EventSource`, which reconnects by itself. A WebSocket opens a two-way session: it starts as an HTTP request, upgrades the connection, and then carries messages in both directions without polling.
+Periodic polling asks the server again every few seconds. It is simple, but each empty check still sends its headers and cookies, about 850 bytes per request in HPBN's estimate for HTTP/1.x. Long polling holds the request open until an update arrives. Server-Sent Events (SSE) keep one HTTP response of type `text/event-stream` open, and the server writes each event into it. The browser reads it with `EventSource`, which reconnects by itself. A WebSocket opens a two-way session: it starts as an HTTP request, upgrades the connection, and then carries messages in both directions without polling.
 
 In the deck, choose a path for each feature and open the deep dives. Watch which question removes each option.
 
@@ -30,7 +30,7 @@ WebTransport is a browser API that sends data between client and server over HTT
 
 <Depth level="production">
 
-Do the polling math before you ship. Take 10,000 clients that poll and usually get no new data. Each empty request still carries about 850 bytes of HTTP headers and cookies. At one poll a minute the cost is small. At one poll a second the server receives about 60 times more traffic, over 60 Mbps, for no new data. That number is why teams move a busy feed to SSE or WebSocket.
+Do the polling math before you ship. Take 10,000 clients that poll and usually get no new data. Each empty request still carries its HTTP headers and cookies; HPBN estimates this HTTP/1.x overhead at about 850 bytes per request. At one poll a minute the cost is small. At one poll a second the server receives about 60 times more traffic, over 60 Mbps, for no new data. That number is why teams move a busy feed to SSE or WebSocket.
 
 </Depth>
 

@@ -12,7 +12,10 @@ The design has four layers. Dependencies point inward: the interface and infrast
 flowchart TD
   Main["main.ts: wires every object"] --> Interface
   Main --> Infrastructure
+  Main --> Application
+  Main --> Domain
   Interface["interface: Cli, TextRenderer, JsonRenderer"] --> Application
+  Interface --> Domain
   Application["application: RunReport"] --> Domain
   Infrastructure["infrastructure: FileSiteDataSource, HarReader, JsonPolicyRepository, JsonLogger"] --> Domain
   Domain["domain: six Check classes, CacheControl, SetCookie, Report, ports"]

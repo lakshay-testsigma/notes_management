@@ -33,11 +33,13 @@ Each finding has one of three results: `ok`, `problem` or `unknown`. The lesson 
 
 ## Prerequisites
 
-- Node.js 22.18 or newer (`node --version`); older versions cannot run `.ts` files without a flag. The project runs `.ts` files directly; Node.js 26 was used to write it.
+- Node.js 22.18+, 24 or 26 (`node --version`); vitest 5 does not support Node 25. Node runs the `.ts` files directly, so there is no build step. Written with Node 26.
 - npm (comes with Node.js).
 - You have read the lesson pages on HTTP messages and HTTP caching.
 - No account, network access or running service is needed after `npm install`.
 
+
+**Note.** `npm audit` reports high-severity advisories in the test toolchain (picomatch through vitest). They are dev-only: `npm audit --omit=dev --audit-level=high` finds 0 vulnerabilities, and nothing from the test toolchain runs in the tool itself.
 ## How to run
 
 ```bash

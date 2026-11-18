@@ -15,9 +15,10 @@ sources: [mdn-http-docs, jshttp-cookie-repo, nodejs-undici-repo]
 ```mermaid
 flowchart LR
   input["input.ts: readSetCookieHeaders"] --> lint["lint.ts: lintHeaders"]
+  main["main.ts"] --> input
   lint --> parse["parse.ts: parseSetCookie"]
-  parse --> rules["rules.ts: checkAttributes + checkPrefixes"]
-  rules --> report["report.ts: formatReport, exitCode"]
+  lint --> rules["rules.ts: checkAttributes + checkPrefixes"]
+  main --> report["report.ts: formatReport, exitCode"]
 ```
 
 ## What it shows

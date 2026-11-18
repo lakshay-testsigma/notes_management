@@ -11,7 +11,7 @@ concepts: [URL record, percent-encoding, origin, site]
 
 Your app on `https://shop.example.com` calls an API on `https://shop.example.com:8443`, and the browser blocks the response. The cause is in the URL itself.
 
-The browser runs every URL string through one parser, defined in the WHATWG URL Standard. The parser gives a **URL record**: named parts such as scheme, host, port, path, query and fragment. Special schemes have a default port, such as 443 for `https` and 80 for `http`. Each part has its own **percent-encoding** set, the rule that writes an unsafe byte as `%` plus two hex digits. So a space is `%20` in a path, but a form body writes it as `+`.
+The browser runs every URL string through one parser, defined in the WHATWG URL Standard. The parser gives a **URL record**: named parts such as scheme, host, port, path, query and fragment. Special schemes have a default port, such as 443 for `https` and 80 for `http`. Each part has its own **percent-encoding** set, the rule that writes an unsafe byte as `%` plus two hex digits. So a space is `%20` in a path, but a form body writes it as `+`. So build URLs with the `URL` and `URLSearchParams` APIs: they apply the right set to each part.
 
 In the diagram, find the three parts inside the origin box.
 

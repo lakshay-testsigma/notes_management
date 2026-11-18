@@ -16,15 +16,16 @@ DNS records have types, and each type answers a different question. A TTL (time 
 flowchart LR
   main["main.ts"] -->|"inspectDomain(name)"| lookup["lookup.ts: queryType x5"]
   lookup -->|"resolve4, resolve6, resolveCname, resolveCaa"| resolver["resolver.ts: Resolver"]
-  lookup -->|"Report"| checks["checks.ts: analyze"]
-  checks -->|"Finding[]"| report["report.ts: formatReport"]
+  lookup -->|"Report"| main
+  main -->|"analyze(report)"| checks["checks.ts: analyze"]
+  main -->|"formatReport(findings)"| report["report.ts: formatReport"]
 ```
 
 `main.ts` asks `inspectDomain` for the five record types. `queryType` calls one method of the `Resolver` interface per type. The real resolver uses `node:dns/promises`; tests and `npm run demo` use a stub, so they need no network. `analyze` runs `checkTtl`, `checkCnameConflict` and `checkCaa` on the report, and `formatReport` prints the result. The command exits with 1 when it finds an error.
 
 ## Prerequisites
 
-- Node.js 26 (`node --version`). Node runs the `.ts` files directly, so there is no build step.
+- Node.js 22.18+, 24 or 26 (`node --version`); vitest 5 does not support Node 25. Node runs the `.ts` files directly, so there is no build step. Written with Node 26.
 - Lesson page "Domains, DNS resolution and hosting". You know what A, AAAA, CNAME and TTL mean.
 - No account and no service. Tests and `npm run demo` run offline.
 
@@ -43,6 +44,8 @@ When the tasks are done, query a real name (this needs network access):
 npm start -- example.com --ca letsencrypt.org --max-ttl 300
 ```
 
+
+**Note.** `npm audit` reports high-severity advisories in the test toolchain (picomatch through vitest). They are dev-only: `npm audit --omit=dev --audit-level=high` finds 0 vulnerabilities, and nothing from the test toolchain runs in the tool itself.
 ## Your tasks
 
 1. **Query one record type.** In `src/lookup.ts`, implement `queryType` at `TODO(1)`. Call the right `Resolver` method, map the answers to `DnsRecord` values, and treat `ENODATA` and `ENOTFOUND` as "empty". Done when the seven `queryType` tests pass.
