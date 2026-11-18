@@ -1,0 +1,46 @@
+---
+title: Firefox and Safari developer tools
+description: Pick a second browser by the task, because Firefox draws layout and fonts on the page and Safari is the only place to inspect a Safari-only bug.
+order: 10
+concepts: [Firefox DevTools, Firefox Layout and Fonts tabs, Safari Web Inspector]
+---
+
+{/* <!-- concept: firefox-safari-devtools --> */}
+{/* <!-- concept: firefox-layout-and-font-tools --> */}
+{/* <!-- concept: safari-web-inspector --> */}
+
+A card grid looks right in Chrome. In Safari one column collapses. Chrome DevTools cannot show that bug, because Chrome does not have it. Each browser ships its own tools for its own engine. Firefox DevTools and Safari Web Inspector are the two you add to Chrome.
+
+Before you look at the diagram, sort the tasks below. Ask which browser shows each problem on screen.
+
+<SortBuckets
+  prompt="Sort each debugging task by the browser whose tool you open first."
+  buckets={["Firefox", "Safari", "Chrome"]}
+  items={[
+    { text: "A flex item ends up 40px narrower than expected", bucket: "Firefox" },
+    { text: "Show grid line numbers and area names on the page", bucket: "Firefox" },
+    { text: "Try weights 100 to 900 on a variable font live", bucket: "Firefox" },
+    { text: "A layout breaks only in Safari on a Mac", bucket: "Safari" },
+    { text: "Compare two heap snapshots to find a leak", bucket: "Chrome" },
+    { text: "Find a long task in a performance trace", bucket: "Chrome" }
+  ]}
+  explanation="Firefox draws grid and flex overlays and gives each font axis a control, so you see layout instead of guessing. Only Safari Web Inspector inspects Safari's own engine. Heap snapshots and traces are the Chrome workflows of earlier pages, so Chrome stays the default."
+/>
+
+Read each arrow from a task to the tool that shows it best.
+
+<Diagram id="browser-tool-choice" />
+
+In Firefox, an element with `display: grid` gets a grid icon. Click it, and Firefox paints the grid lines over the page. The flexbox inspector lists each flex item with its Content Size, Flexibility and Final Size. That tells you why an item shrank. Without these views, you read numbers in a Styles pane and guess.
+
+Safari Web Inspector is hidden by default. On a Mac, open Safari Settings, then Advanced, and turn on "Show features for web developers". A Develop menu appears. Web Inspector then gives you Elements, Network, Sources and Timelines for WebKit, the engine of Safari.
+
+The cost is three toolsets to learn. Each tool also shows its own engine only. The Firefox accessibility inspector shows the Gecko tree, not the view of the operating system.
+
+<Depth level="internals">
+
+The Fonts tab lists the fonts the selected element uses, an editor, and every font on the page. A static font gets size, line height, weight and italic controls. A variable font gets one control per axis and a dropdown of named instances. Note one trap: `font-variation-settings` overrides `font-weight`, whatever the cascade order says.
+
+</Depth>
+
+**Note.** Firefox overlay colors and settings stay in place per page across reloads, so you can edit CSS and watch the grid update.

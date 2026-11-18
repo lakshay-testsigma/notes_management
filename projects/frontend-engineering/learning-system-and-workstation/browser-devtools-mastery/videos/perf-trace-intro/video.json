@@ -1,0 +1,136 @@
+{
+  "id": "perf-trace-intro",
+  "title": "Why a click can feel slow",
+  "purpose": "See how a busy main thread delays the next paint after a click, and how the Performance panel records it.",
+  "sequence_reason": "A click, the work it starts and the next paint happen in a fixed order, so motion shows the delay better than one picture.",
+  "summary": "An intro to the Performance panel: Live metrics show LCP, CLS and INP for the open page, a recorded trace shows every task on the main thread, and a long task between a click and the next paint makes the interaction slow.",
+  "explanation": "The main thread runs one task at a time, so a long task holds back the paint that answers a click.",
+  "learning_check": {
+    "question": "What does the Performance panel show before you record anything?",
+    "answer": "Live metrics: your local LCP and CLS at once, and INP after you interact with the page."
+  },
+  "concept_ids": [
+    "performance-panel",
+    "core-web-vitals-live",
+    "flame-chart-and-long-tasks"
+  ],
+  "source_ids": [
+    "chrome-devtools-measure-docs",
+    "web-dev-vitals-docs"
+  ],
+  "used_in": [
+    "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/06-performance-traces.mdx"
+  ],
+  "narration": {
+    "engine": "auto"
+  },
+  "scenes": [
+    {
+      "id": "intro",
+      "duration": 6,
+      "heading": "Why a click can feel slow",
+      "narration": "A click feels slow when the main thread is busy. The Performance panel shows why.",
+      "visual": {
+        "type": "title",
+        "subtitle": "Live metrics, traces and long tasks"
+      },
+      "source_ids": [
+        "chrome-devtools-measure-docs"
+      ]
+    },
+    {
+      "id": "live",
+      "duration": 12,
+      "heading": "Live metrics first",
+      "narration": "Open the Performance panel. Live metrics show your local LCP and CLS at once. Click on the page, and INP appears too.",
+      "visual": {
+        "type": "steps",
+        "items": [
+          "Open the Performance panel",
+          "LCP and CLS show at once",
+          "Interact with the page",
+          "INP shows after the interaction"
+        ]
+      },
+      "source_ids": [
+        "chrome-devtools-measure-docs"
+      ]
+    },
+    {
+      "id": "path",
+      "duration": 14,
+      "heading": "From click to paint",
+      "narration": "A click starts a task on the main thread. The handler runs. Only after it ends can the browser paint the next frame.",
+      "visual": {
+        "type": "flow",
+        "nodes": [
+          {
+            "id": "click",
+            "label": "Click"
+          },
+          {
+            "id": "task",
+            "label": "Main thread task",
+            "sub": "handler runs"
+          },
+          {
+            "id": "paint",
+            "label": "Next paint"
+          }
+        ],
+        "path": [
+          {
+            "from": "click",
+            "to": "task",
+            "packet": "input"
+          },
+          {
+            "from": "task",
+            "to": "paint",
+            "packet": "frame",
+            "label": "waits for the task"
+          }
+        ]
+      },
+      "source_ids": [
+        "chrome-devtools-measure-docs",
+        "web-dev-vitals-docs"
+      ]
+    },
+    {
+      "id": "record",
+      "duration": 14,
+      "heading": "Record a trace",
+      "narration": "To see the cause, record a trace. Set a CPU slowdown in Capture settings, click Record, click the page, then click Stop.",
+      "visual": {
+        "type": "steps",
+        "items": [
+          "Capture settings: CPU slowdown",
+          "Click Record",
+          "Click the button on the page",
+          "Click Stop and read the Main track"
+        ]
+      },
+      "source_ids": [
+        "chrome-devtools-measure-docs"
+      ]
+    },
+    {
+      "id": "good",
+      "duration": 12,
+      "heading": "What good looks like",
+      "narration": "Good values: LCP 2.5 seconds or less, INP 200 milliseconds or less, and CLS 0.1 or less.",
+      "visual": {
+        "type": "steps",
+        "items": [
+          "LCP: 2.5 s or less",
+          "INP: 200 ms or less",
+          "CLS: 0.1 or less"
+        ]
+      },
+      "source_ids": [
+        "web-dev-vitals-docs"
+      ]
+    }
+  ]
+}

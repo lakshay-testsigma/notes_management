@@ -1,0 +1,9 @@
+flowchart LR
+  P[Page] -->|"request"| S[Service worker]
+  S -->|"request"| N[Network]
+  P -->|"saves state"| ST
+  subgraph ST["Application > Storage"]
+    C[Cookies]
+    I[IndexedDB]
+    K[Cache storage]
+  end

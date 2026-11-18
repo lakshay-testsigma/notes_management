@@ -1,0 +1,7 @@
+TypeError: Cannot read properties of undefined (reading 'price')
+    at total (https://shop.example.com/assets/app.min.js:1:125)
+    at checkout (https://shop.example.com/assets/app.min.js:1:200)
+    at Object.invokeGuardedCallback (https://shop.example.com/assets/app.min.js:2:40)
+    at HTMLButtonElement.dispatch (https://shop.example.com/assets/app.min.js:2:10)
+    at render (https://shop.example.com/assets/app.min.js:2:99)
+    at https://cdn.example.com/other.js:1:1

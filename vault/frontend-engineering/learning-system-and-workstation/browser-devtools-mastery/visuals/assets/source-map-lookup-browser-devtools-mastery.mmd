@@ -1,0 +1,6 @@
+flowchart LR
+  A["Paused in app.min.js<br/>2nd line, column 0"] -->|sourceMappingURL| B["Fetch app.min.js.map"]
+  B -->|split on ;| C["2nd line: AACD"]
+  C -->|decode VLQ| D["Deltas 0, 0, +1, -1"]
+  D -->|add to previous| E["sources 0, line 1, column 0<br/>(counted from 0)"]
+  E --> F["Authored file in Sources"]

@@ -1,0 +1,6 @@
+flowchart LR
+  Q[Reported problem] -->|"low page score"| LH[Lighthouse]
+  Q -->|"unused bytes"| CV[Coverage]
+  Q -->|"dark mode bug"| R[Rendering]
+  Q -->|"flow regressed"| RC[Recorder]
+  LH -->|"gather, audit"| J[JSON report]

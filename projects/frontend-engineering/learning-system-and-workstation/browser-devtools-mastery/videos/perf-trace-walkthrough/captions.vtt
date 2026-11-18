@@ -1,0 +1,81 @@
+WEBVTT
+
+1
+00:00:00.200 --> 00:00:04.800
+Here is one example trace of a single click.
+
+2
+00:00:05.200 --> 00:00:08.580
+The Main track is a flame chart.
+
+3
+00:00:08.580 --> 00:00:10.520
+The x-axis is time.
+
+4
+00:00:10.520 --> 00:00:13.420
+The y-axis is the call stack.
+
+5
+00:00:13.420 --> 00:00:16.800
+Events on top cause the events below.
+
+6
+00:00:17.200 --> 00:00:21.950
+At 20x slowdown the click handler takes 300 milliseconds.
+
+7
+00:00:21.950 --> 00:00:24.580
+A red triangle marks it,
+
+8
+00:00:24.580 --> 00:00:28.800
+and the part over 50 milliseconds is red.
+
+9
+00:00:29.200 --> 00:00:35.030
+The Interactions track splits the click into input delay,
+
+10
+00:00:35.030 --> 00:00:38.270
+processing time and presentation delay.
+
+11
+00:00:38.270 --> 00:00:42.800
+Here they add up to 360 milliseconds.
+
+12
+00:00:43.200 --> 00:00:50.970
+Without throttling, the same handler takes 15 milliseconds and INP is 18.
+
+13
+00:00:50.970 --> 00:00:56.800
+The 20x slowdown shows what a slower device feels.
+
+14
+00:00:57.200 --> 00:00:59.630
+Before: one 300 millisecond task.
+
+15
+00:00:59.630 --> 00:01:04.000
+After: update the page in 40 milliseconds, then yield.
+
+16
+00:01:04.000 --> 00:01:08.370
+The browser paints, the rest runs in short tasks,
+
+17
+00:01:08.370 --> 00:01:10.800
+and INP drops to 100.
+
+18
+00:01:11.200 --> 00:01:15.260
+The Layout shifts track shows each shift
+
+19
+00:01:15.260 --> 00:01:19.320
+as a purple diamond, grouped in clusters.
+
+20
+00:01:19.320 --> 00:01:22.800
+Keep CLS at 0.1 or less.

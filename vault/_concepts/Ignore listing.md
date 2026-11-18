@@ -14,5 +14,6 @@ Ignore listing tells a debugger to hide chosen files, such as framework or bundl
 
 - [[ecma-426-source-map-browser-devtools-mastery]]
 - [[devtools-frontend-module-source-map]]
+- [[03-mini-projects-browser-devtools-mastery]]
 
 ## My insights

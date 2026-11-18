@@ -1,0 +1,697 @@
+{
+  "generated_by": "tutor experience build",
+  "id": "perf-trace-lab",
+  "topic": "frontend-engineering/learning-system-and-workstation/browser-devtools-mastery",
+  "title": "Performance trace lab: find the long task",
+  "mode": "hybrid",
+  "objective": "Record a throttled trace, find the long task in the Main track, and show that splitting it brings INP under 200 ms.",
+  "level": "beginner",
+  "summary": "An intro video shows Live metrics and how a busy main thread delays the paint after a click. A trace simulation lets the learner switch between no throttling, 20x CPU slowdown and a split handler, and step through the tasks, the long task and the INP breakdown. A guided walkthrough pauses at the long task, the throttling comparison and the fix, and a summary video gives the routine and the good values for LCP, INP and CLS. The numbers are one example trace.",
+  "page": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/06-performance-traces.mdx",
+  "page_url": "/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/lesson/06-performance-traces/",
+  "tabs": [
+    "watch",
+    "explore",
+    "guided",
+    "practice"
+  ],
+  "watch": {
+    "video_id": "perf-trace-intro",
+    "title": "Why a click can feel slow",
+    "status": "storyboard",
+    "blocker": "FFmpeg is not installed and Docker is not running; install FFmpeg (for example `brew install ffmpeg`) or start Docker",
+    "mp4_url": null,
+    "captions_url": null,
+    "composition_url": "/media/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/perf-trace-intro/composition/index.html",
+    "duration": 58,
+    "scenes": [
+      {
+        "id": "intro",
+        "heading": "Why a click can feel slow",
+        "start": 0,
+        "duration": 6
+      },
+      {
+        "id": "live",
+        "heading": "Live metrics first",
+        "start": 6,
+        "duration": 12
+      },
+      {
+        "id": "path",
+        "heading": "From click to paint",
+        "start": 18,
+        "duration": 14
+      },
+      {
+        "id": "record",
+        "heading": "Record a trace",
+        "start": 32,
+        "duration": 14
+      },
+      {
+        "id": "good",
+        "heading": "What good looks like",
+        "start": 46,
+        "duration": 12
+      }
+    ],
+    "transcript": "# Why a click can feel slow\n\nAn intro to the Performance panel: Live metrics show LCP, CLS and INP for the open page, a recorded trace shows every task on the main thread, and a long task between a click and the next paint makes the interaction slow.\n\n**00:00 Why a click can feel slow.** A click feels slow when the main thread is busy. The Performance panel shows why.\n\n**00:06 Live metrics first.** Open the Performance panel. Live metrics show your local LCP and CLS at once. Click on the page, and INP appears too.\n\n**00:18 From click to paint.** A click starts a task on the main thread. The handler runs. Only after it ends can the browser paint the next frame.\n\n**00:32 Record a trace.** To see the cause, record a trace. Set a CPU slowdown in Capture settings, click Record, click the page, then click Stop.\n\n**00:46 What good looks like.** Good values: LCP 2.5 seconds or less, INP 200 milliseconds or less, and CLS 0.1 or less.\n\nSources:\n\n- Chrome DevTools: Performance, Application, Coverage, Rendering and Recorder docs — https://developer.chrome.com/docs/devtools/performance/reference\n- web.dev: Core Web Vitals, long tasks and bfcache — https://web.dev/articles/vitals\n",
+    "explanation": "The main thread runs one task at a time, so a long task holds back the paint that answers a click.",
+    "alt": "An intro to the Performance panel: Live metrics show LCP, CLS and INP for the open page, a recorded trace shows every task on the main thread, and a long task between a click and the next paint makes the interaction slow."
+  },
+  "guided": {
+    "video_id": "perf-trace-walkthrough",
+    "title": "Find the long task in a trace",
+    "status": "storyboard",
+    "blocker": "FFmpeg is not installed and Docker is not running; install FFmpeg (for example `brew install ffmpeg`) or start Docker",
+    "mp4_url": null,
+    "captions_url": null,
+    "composition_url": "/media/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/perf-trace-walkthrough/composition/index.html",
+    "duration": 83,
+    "scenes": [
+      {
+        "id": "start",
+        "heading": "Find the long task",
+        "start": 0,
+        "duration": 5
+      },
+      {
+        "id": "main-track",
+        "heading": "Read the flame chart",
+        "start": 5,
+        "duration": 12
+      },
+      {
+        "id": "long-task",
+        "heading": "One long task",
+        "start": 17,
+        "duration": 12
+      },
+      {
+        "id": "interaction",
+        "heading": "The interaction's time",
+        "start": 29,
+        "duration": 14
+      },
+      {
+        "id": "throttle",
+        "heading": "Why throttle the CPU",
+        "start": 43,
+        "duration": 14
+      },
+      {
+        "id": "fix",
+        "heading": "Split the work",
+        "start": 57,
+        "duration": 14
+      },
+      {
+        "id": "layout-shifts",
+        "heading": "Layout shifts track",
+        "start": 71,
+        "duration": 12
+      }
+    ],
+    "transcript": "# Find the long task in a trace\n\nA guided walkthrough of one example trace: at 20x CPU slowdown a 15 ms click handler becomes a 300 ms long task, the interaction takes 360 ms, and splitting the work so the page paints first brings it down to 100 ms. The numbers are an example.\n\n**00:00 Find the long task.** Here is one example trace of a single click.\n\n**00:05 Read the flame chart.** The Main track is a flame chart. The x-axis is time. The y-axis is the call stack. Events on top cause the events below.\n\n**00:17 One long task.** At 20x slowdown the click handler takes 300 milliseconds. A red triangle marks it, and the part over 50 milliseconds is red.\n\n**00:29 The interaction's time.** The Interactions track splits the click into input delay, processing time and presentation delay. Here they add up to 360 milliseconds.\n\n**00:43 Why throttle the CPU.** Without throttling, the same handler takes 15 milliseconds and INP is 18. The 20x slowdown shows what a slower device feels.\n\n**00:57 Split the work.** Before: one 300 millisecond task. After: update the page in 40 milliseconds, then yield. The browser paints, the rest runs in short tasks, and INP drops to 100.\n\n**01:11 Layout shifts track.** The Layout shifts track shows each shift as a purple diamond, grouped in clusters. Keep CLS at 0.1 or less.\n\nSources:\n\n- Chrome DevTools: Performance, Application, Coverage, Rendering and Recorder docs — https://developer.chrome.com/docs/devtools/performance/reference\n- web.dev: Core Web Vitals, long tasks and bfcache — https://web.dev/articles/vitals\n",
+    "explanation": "CPU throttling makes main-thread work longer, so a handler that is short on a fast laptop can become a long task that delays the next paint.",
+    "alt": "A guided walkthrough of one example trace: at 20x CPU slowdown a 15 ms click handler becomes a 300 ms long task, the interaction takes 360 ms, and splitting the work so the page paints first brings it down to 100 ms. The numbers are an example."
+  },
+  "summary_video": {
+    "video_id": "perf-trace-summary",
+    "title": "Traces and Web Vitals in four rules",
+    "status": "storyboard",
+    "blocker": "FFmpeg is not installed and Docker is not running; install FFmpeg (for example `brew install ffmpeg`) or start Docker",
+    "mp4_url": null,
+    "captions_url": null,
+    "composition_url": "/media/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/perf-trace-summary/composition/index.html",
+    "duration": 33,
+    "scenes": [
+      {
+        "id": "intro",
+        "heading": "Four rules",
+        "start": 0,
+        "duration": 5
+      },
+      {
+        "id": "rules",
+        "heading": "The routine",
+        "start": 5,
+        "duration": 16
+      },
+      {
+        "id": "targets",
+        "heading": "The good values",
+        "start": 21,
+        "duration": 12
+      }
+    ],
+    "transcript": "# Traces and Web Vitals in four rules\n\nA recap: throttle the CPU before you record, find tasks over 50 ms in the Main track, read the interaction's input delay, processing time and presentation delay, fix it by splitting the work, and check LCP, INP and CLS against their good values.\n\n**00:00 Four rules.** Four rules for every performance check.\n\n**00:05 The routine.** Throttle the CPU. Record and click. Find tasks over 50 milliseconds. Split the work so the page paints first, then record again.\n\n**00:21 The good values.** Then compare with the good values: LCP 2.5 seconds, INP 200 milliseconds, CLS 0.1.\n\nSources:\n\n- Chrome DevTools: Performance, Application, Coverage, Rendering and Recorder docs — https://developer.chrome.com/docs/devtools/performance/reference\n- web.dev: Core Web Vitals, long tasks and bfcache — https://web.dev/articles/vitals\n",
+    "explanation": "A recording is evidence: measure, change one thing, and record again to see the number move.",
+    "alt": "A recap: throttle the CPU before you record, find tasks over 50 ms in the Main track, read the interaction's input delay, processing time and presentation delay, fix it by splitting the work, and check LCP, INP and CLS against their good values."
+  },
+  "simulation": {
+    "component": "AlgorithmStepper",
+    "props": {
+      "title": "Main-thread tasks around one click (example trace)",
+      "view": "bars",
+      "frames": [
+        {
+          "caption": "Recording at 1x CPU. Each bar is one task on the main thread, in order, in milliseconds.",
+          "array": [
+            1,
+            15,
+            2
+          ],
+          "pointers": {
+            "click": 1
+          },
+          "vars": {
+            "cpu": "1x",
+            "tasks": 3
+          },
+          "line": 1
+        },
+        {
+          "caption": "No task is over 50 ms, so the trace has no long task and no red triangle.",
+          "array": [
+            1,
+            15,
+            2
+          ],
+          "pointers": {
+            "click": 1
+          },
+          "vars": {
+            "cpu": "1x",
+            "long_tasks": 0
+          },
+          "line": 3
+        },
+        {
+          "caption": "The Interactions track splits the click: 1 ms input delay, 15 ms processing, 2 ms presentation delay.",
+          "array": [
+            1,
+            15,
+            2
+          ],
+          "highlight": [
+            1
+          ],
+          "pointers": {
+            "click": 1
+          },
+          "vars": {
+            "cpu": "1x",
+            "input_delay_ms": 1,
+            "processing_ms": 15,
+            "presentation_ms": 2
+          },
+          "line": 2
+        },
+        {
+          "caption": "INP for this click is 1 + 15 + 2 = 18 ms, good: 200 ms or less.",
+          "array": [
+            1,
+            15,
+            2
+          ],
+          "highlight": [
+            1
+          ],
+          "pointers": {
+            "click": 1
+          },
+          "vars": {
+            "cpu": "1x",
+            "inp_ms": 18,
+            "verdict": "good: 200 ms or less"
+          },
+          "line": 2
+        }
+      ],
+      "code": "button.addEventListener('click', () => {\n  showAddedBadge();   // the update the user sees\n  rebuildCartTotals(); // the heavy work\n});",
+      "lang": "javascript",
+      "speed": 1800
+    },
+    "presets": {
+      "laptop-1x": {
+        "frames": [
+          {
+            "caption": "Recording at 1x CPU. Each bar is one task on the main thread, in order, in milliseconds.",
+            "array": [
+              1,
+              15,
+              2
+            ],
+            "pointers": {
+              "click": 1
+            },
+            "vars": {
+              "cpu": "1x",
+              "tasks": 3
+            },
+            "line": 1
+          },
+          {
+            "caption": "No task is over 50 ms, so the trace has no long task and no red triangle.",
+            "array": [
+              1,
+              15,
+              2
+            ],
+            "pointers": {
+              "click": 1
+            },
+            "vars": {
+              "cpu": "1x",
+              "long_tasks": 0
+            },
+            "line": 3
+          },
+          {
+            "caption": "The Interactions track splits the click: 1 ms input delay, 15 ms processing, 2 ms presentation delay.",
+            "array": [
+              1,
+              15,
+              2
+            ],
+            "highlight": [
+              1
+            ],
+            "pointers": {
+              "click": 1
+            },
+            "vars": {
+              "cpu": "1x",
+              "input_delay_ms": 1,
+              "processing_ms": 15,
+              "presentation_ms": 2
+            },
+            "line": 2
+          },
+          {
+            "caption": "INP for this click is 1 + 15 + 2 = 18 ms, good: 200 ms or less.",
+            "array": [
+              1,
+              15,
+              2
+            ],
+            "highlight": [
+              1
+            ],
+            "pointers": {
+              "click": 1
+            },
+            "vars": {
+              "cpu": "1x",
+              "inp_ms": 18,
+              "verdict": "good: 200 ms or less"
+            },
+            "line": 2
+          }
+        ],
+        "code": "button.addEventListener('click', () => {\n  showAddedBadge();   // the update the user sees\n  rebuildCartTotals(); // the heavy work\n});"
+      },
+      "phone-20x": {
+        "frames": [
+          {
+            "caption": "Recording at 20x CPU. Each bar is one task on the main thread, in order, in milliseconds.",
+            "array": [
+              20,
+              300,
+              40
+            ],
+            "pointers": {
+              "click": 1
+            },
+            "vars": {
+              "cpu": "20x",
+              "tasks": 3
+            },
+            "line": 1
+          },
+          {
+            "caption": "The 300 ms task is over 50 ms, so it is a long task: a red triangle marks it and its last 250 ms are shaded red.",
+            "array": [
+              20,
+              300,
+              40
+            ],
+            "highlight": [
+              1
+            ],
+            "pointers": {
+              "click": 1
+            },
+            "vars": {
+              "cpu": "20x",
+              "long_tasks": 1,
+              "red_part_ms": 250
+            },
+            "line": 3
+          },
+          {
+            "caption": "The Interactions track splits the click: 20 ms input delay, 300 ms processing, 40 ms presentation delay.",
+            "array": [
+              20,
+              300,
+              40
+            ],
+            "highlight": [
+              1
+            ],
+            "pointers": {
+              "click": 1
+            },
+            "vars": {
+              "cpu": "20x",
+              "input_delay_ms": 20,
+              "processing_ms": 300,
+              "presentation_ms": 40
+            },
+            "line": 2
+          },
+          {
+            "caption": "INP for this click is 20 + 300 + 40 = 360 ms, over 200 ms: flagged with a red triangle.",
+            "array": [
+              20,
+              300,
+              40
+            ],
+            "highlight": [
+              1
+            ],
+            "pointers": {
+              "click": 1
+            },
+            "vars": {
+              "cpu": "20x",
+              "inp_ms": 360,
+              "verdict": "over 200 ms: flagged with a red triangle"
+            },
+            "line": 2
+          }
+        ],
+        "code": "button.addEventListener('click', () => {\n  showAddedBadge();   // the update the user sees\n  rebuildCartTotals(); // the heavy work\n});"
+      },
+      "phone-20x-split": {
+        "frames": [
+          {
+            "caption": "Recording at 20x CPU. Each bar is one task on the main thread, in order, in milliseconds.",
+            "array": [
+              20,
+              40,
+              40,
+              40,
+              40,
+              40,
+              40,
+              40,
+              40,
+              20
+            ],
+            "pointers": {
+              "click": 1
+            },
+            "vars": {
+              "cpu": "20x",
+              "tasks": 10
+            },
+            "line": 1
+          },
+          {
+            "caption": "No task is over 50 ms, so the trace has no long task and no red triangle.",
+            "array": [
+              20,
+              40,
+              40,
+              40,
+              40,
+              40,
+              40,
+              40,
+              40,
+              20
+            ],
+            "pointers": {
+              "click": 1
+            },
+            "vars": {
+              "cpu": "20x",
+              "long_tasks": 0
+            },
+            "line": 3
+          },
+          {
+            "caption": "The Interactions track splits the click: 20 ms input delay, 40 ms processing, 40 ms presentation delay.",
+            "array": [
+              20,
+              40,
+              40,
+              40,
+              40,
+              40,
+              40,
+              40,
+              40,
+              20
+            ],
+            "highlight": [
+              1
+            ],
+            "pointers": {
+              "click": 1
+            },
+            "vars": {
+              "cpu": "20x",
+              "input_delay_ms": 20,
+              "processing_ms": 40,
+              "presentation_ms": 40
+            },
+            "line": 2
+          },
+          {
+            "caption": "INP for this click is 20 + 40 + 40 = 100 ms, good: 200 ms or less.",
+            "array": [
+              20,
+              40,
+              40,
+              40,
+              40,
+              40,
+              40,
+              40,
+              40,
+              20
+            ],
+            "highlight": [
+              1
+            ],
+            "pointers": {
+              "click": 1
+            },
+            "vars": {
+              "cpu": "20x",
+              "inp_ms": 100,
+              "verdict": "good: 200 ms or less"
+            },
+            "line": 2
+          }
+        ],
+        "code": "button.addEventListener('click', async () => {\n  showAddedBadge();                  // update first\n  await scheduler.yield();           // let the browser paint\n  for (const part of cartParts) {    // rest in short tasks\n    rebuildTotalsFor(part);\n    await scheduler.yield();\n  }\n});"
+      }
+    }
+  },
+  "sync": [
+    {
+      "scene": "long-task",
+      "preset": "phone-20x"
+    },
+    {
+      "scene": "throttle",
+      "preset": "laptop-1x"
+    },
+    {
+      "scene": "fix",
+      "preset": "phone-20x-split"
+    }
+  ],
+  "inspect": [
+    {
+      "id": "red-part",
+      "scene": "long-task",
+      "label": "Why only part is red",
+      "region": {
+        "x": 30,
+        "y": 30,
+        "w": 40,
+        "h": 50
+      },
+      "concept_id": "flame-chart-and-long-tasks",
+      "text": "A task is long when it runs over 50 ms. DevTools marks it with a red triangle and shades only the part after the first 50 ms in red, so you see how far over the limit it is."
+    },
+    {
+      "id": "whiskers",
+      "scene": "interaction",
+      "label": "Three parts of INP",
+      "region": {
+        "x": 5,
+        "y": 30,
+        "w": 90,
+        "h": 30
+      },
+      "concept_id": "core-web-vitals-live",
+      "text": "On the Interactions track, whiskers show input delay and presentation delay at both ends of the processing time. Hover the interaction to read all three numbers."
+    }
+  ],
+  "deck": null,
+  "checkpoints": [
+    {
+      "id": "why-slow",
+      "kind": "explain",
+      "at": {
+        "after": "watch"
+      },
+      "prompt": "In one sentence: why does a long task make a click feel slow?",
+      "explanation": "The main thread runs one task at a time, so the browser cannot paint the answer to the click until the long task ends.",
+      "concept_ids": [
+        "flame-chart-and-long-tasks"
+      ]
+    },
+    {
+      "id": "red-part",
+      "kind": "predict",
+      "at": {
+        "scene": "long-task"
+      },
+      "prompt": "The click handler task lasts 300 ms. Which part does the Performance panel shade red?",
+      "choices": [
+        {
+          "text": "The last 250 ms, the part over 50 ms",
+          "correct": true
+        },
+        {
+          "text": "The whole 300 ms task",
+          "misconception": "Thinks the whole task is over the limit, not only the part after 50 ms"
+        },
+        {
+          "text": "Only the first 50 ms",
+          "misconception": "Thinks the red part is the allowed budget instead of the excess"
+        }
+      ],
+      "explanation": "A long task is any task over 50 ms. DevTools shades only the time after the first 50 ms in red, so the red length shows how much the task went over.",
+      "concept_ids": [
+        "flame-chart-and-long-tasks"
+      ],
+      "revisit": "main-track"
+    },
+    {
+      "id": "slower-cpu",
+      "kind": "predict",
+      "at": {
+        "scene": "throttle"
+      },
+      "prompt": "On your laptop the handler takes 15 ms. What happens to it at 20x CPU slowdown?",
+      "choices": [
+        {
+          "text": "It runs much longer and can become a long task",
+          "correct": true
+        },
+        {
+          "text": "It stays at 15 ms because the code did not change",
+          "misconception": "Thinks task time depends only on the code, not on CPU speed"
+        },
+        {
+          "text": "Only network requests get slower",
+          "misconception": "Confuses CPU throttling with network throttling"
+        }
+      ],
+      "explanation": "CPU throttling makes the CPU slower than its usual ability, so every task on the main thread takes longer. A short handler on a fast laptop can become a long task on a slow device.",
+      "concept_ids": [
+        "cpu-throttling"
+      ],
+      "revisit": "long-task"
+    },
+    {
+      "id": "bring-inp-down",
+      "kind": "experiment",
+      "at": {
+        "scene": "fix"
+      },
+      "prompt": "In the simulation, keep 20x CPU and find the version of the handler whose INP is 200 ms or less. Step to its INP frame.",
+      "goal": {
+        "preset": "phone-20x",
+        "condition": {
+          "all": [
+            {
+              "path": "vars.cpu",
+              "op": "eq",
+              "value": "20x"
+            },
+            {
+              "path": "vars.inp_ms",
+              "op": "lte",
+              "value": 200
+            }
+          ]
+        },
+        "hint": "Choose the split preset, then press Forward until INP shows."
+      },
+      "explanation": "Splitting the work lets the handler update the page in 40 ms and yield. The browser paints before the rest runs, so processing time drops from 300 ms to 40 ms and INP from 360 ms to 100 ms.",
+      "concept_ids": [
+        "flame-chart-and-long-tasks",
+        "core-web-vitals-live",
+        "cpu-throttling"
+      ]
+    },
+    {
+      "id": "good-cls",
+      "kind": "verify",
+      "at": {
+        "tab": "practice"
+      },
+      "prompt": "The Layout shifts track shows a cluster of purple diamonds. What CLS value counts as good?",
+      "choices": [
+        {
+          "text": "0.1 or less",
+          "correct": true
+        },
+        {
+          "text": "2.5 or less",
+          "misconception": "Mixes up CLS with the LCP limit of 2.5 seconds"
+        },
+        {
+          "text": "200 or less",
+          "misconception": "Mixes up CLS with the INP limit of 200 milliseconds"
+        }
+      ],
+      "explanation": "CLS is a score without a unit, built from the layout shifts on the Layout shifts track. A good page keeps it at 0.1 or less; 2.5 s is the LCP limit and 200 ms is the INP limit.",
+      "concept_ids": [
+        "layout-shifts-track",
+        "core-web-vitals-live"
+      ]
+    }
+  ],
+  "fallback_visual": "perf-trace-flow",
+  "concept_ids": [
+    "performance-panel",
+    "flame-chart-and-long-tasks",
+    "core-web-vitals-live",
+    "cpu-throttling",
+    "layout-shifts-track"
+  ],
+  "sources": [
+    {
+      "id": "chrome-devtools-measure-docs",
+      "title": "Chrome DevTools: Performance, Application, Coverage, Rendering and Recorder docs",
+      "url": "https://developer.chrome.com/docs/devtools/performance/reference"
+    },
+    {
+      "id": "web-dev-vitals-docs",
+      "title": "web.dev: Core Web Vitals, long tasks and bfcache",
+      "url": "https://web.dev/articles/vitals"
+    }
+  ],
+  "input_hash": "6cac2f5cf1effaaa9d83874fc7d71d1a668cbd959522aac69e1226bc943c5bbd"
+}

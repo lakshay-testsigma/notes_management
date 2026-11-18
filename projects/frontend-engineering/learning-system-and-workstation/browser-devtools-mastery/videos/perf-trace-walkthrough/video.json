@@ -1,0 +1,193 @@
+{
+  "id": "perf-trace-walkthrough",
+  "title": "Find the long task in a trace",
+  "purpose": "Find the long task in the Main track, read the interaction's INP, and see how CPU throttling and a split task change it.",
+  "sequence_reason": "Each step depends on the one before: the throttled recording shows the long task, the long task explains the slow interaction, and the fix changes the next recording.",
+  "summary": "A guided walkthrough of one example trace: at 20x CPU slowdown a 15 ms click handler becomes a 300 ms long task, the interaction takes 360 ms, and splitting the work so the page paints first brings it down to 100 ms. The numbers are an example.",
+  "explanation": "CPU throttling makes main-thread work longer, so a handler that is short on a fast laptop can become a long task that delays the next paint.",
+  "learning_check": {
+    "question": "Why can a click handler that takes 15 ms on your laptop still give a poor INP for real users?",
+    "answer": "On a slower CPU the same work takes longer; at 20x slowdown it becomes a 300 ms long task that delays the next paint."
+  },
+  "concept_ids": [
+    "performance-panel",
+    "flame-chart-and-long-tasks",
+    "core-web-vitals-live",
+    "cpu-throttling",
+    "layout-shifts-track"
+  ],
+  "source_ids": [
+    "chrome-devtools-measure-docs",
+    "web-dev-vitals-docs"
+  ],
+  "used_in": [
+    "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/06-performance-traces.mdx"
+  ],
+  "narration": {
+    "engine": "auto"
+  },
+  "scenes": [
+    {
+      "id": "start",
+      "duration": 5,
+      "heading": "Find the long task",
+      "narration": "Here is one example trace of a single click.",
+      "visual": {
+        "type": "title",
+        "subtitle": "An example trace, recorded at 20x CPU slowdown"
+      },
+      "source_ids": [
+        "chrome-devtools-measure-docs"
+      ]
+    },
+    {
+      "id": "main-track",
+      "duration": 12,
+      "heading": "Read the flame chart",
+      "narration": "The Main track is a flame chart. The x-axis is time. The y-axis is the call stack. Events on top cause the events below.",
+      "visual": {
+        "type": "steps",
+        "items": [
+          "x-axis: time",
+          "y-axis: call stack",
+          "Events on top cause the events below"
+        ]
+      },
+      "source_ids": [
+        "chrome-devtools-measure-docs"
+      ]
+    },
+    {
+      "id": "long-task",
+      "duration": 12,
+      "heading": "One long task",
+      "narration": "At 20x slowdown the click handler takes 300 milliseconds. A red triangle marks it, and the part over 50 milliseconds is red.",
+      "visual": {
+        "type": "bars",
+        "items": [
+          {
+            "label": "Timer",
+            "value": 20
+          },
+          {
+            "label": "Click handler",
+            "value": 300
+          },
+          {
+            "label": "Paint",
+            "value": 40
+          }
+        ],
+        "unit": "ms"
+      },
+      "source_ids": [
+        "chrome-devtools-measure-docs",
+        "web-dev-vitals-docs"
+      ]
+    },
+    {
+      "id": "interaction",
+      "duration": 14,
+      "heading": "The interaction's time",
+      "narration": "The Interactions track splits the click into input delay, processing time and presentation delay. Here they add up to 360 milliseconds.",
+      "visual": {
+        "type": "equation",
+        "expression": "360 ms = 20 ms input delay + 300 ms processing + 40 ms presentation delay",
+        "terms": [
+          {
+            "text": "20 ms input delay",
+            "note": "a timer task was still running"
+          },
+          {
+            "text": "300 ms processing",
+            "note": "the click handler, a long task"
+          },
+          {
+            "text": "40 ms presentation delay",
+            "note": "style, layout and paint"
+          }
+        ]
+      },
+      "source_ids": [
+        "chrome-devtools-measure-docs"
+      ]
+    },
+    {
+      "id": "throttle",
+      "duration": 14,
+      "heading": "Why throttle the CPU",
+      "narration": "Without throttling, the same handler takes 15 milliseconds and INP is 18. The 20x slowdown shows what a slower device feels.",
+      "visual": {
+        "type": "compare",
+        "left": {
+          "label": "No throttling",
+          "items": [
+            "Handler 15 ms",
+            "Not a long task",
+            "INP 18 ms"
+          ]
+        },
+        "right": {
+          "label": "20x slowdown",
+          "items": [
+            "Handler 300 ms",
+            "Long task",
+            "INP 360 ms, flagged"
+          ]
+        },
+        "verdict": "Same code, slower CPU, longer tasks."
+      },
+      "source_ids": [
+        "chrome-devtools-measure-docs"
+      ]
+    },
+    {
+      "id": "fix",
+      "duration": 14,
+      "heading": "Split the work",
+      "narration": "Before: one 300 millisecond task. After: update the page in 40 milliseconds, then yield. The browser paints, the rest runs in short tasks, and INP drops to 100.",
+      "visual": {
+        "type": "compare",
+        "left": {
+          "label": "Before",
+          "items": [
+            "One 300 ms task",
+            "Paint waits",
+            "INP 360 ms"
+          ]
+        },
+        "right": {
+          "label": "After",
+          "items": [
+            "40 ms update, then yield",
+            "Paint, then short tasks",
+            "INP 100 ms"
+          ]
+        },
+        "verdict": "No task over 50 ms; INP under 200 ms."
+      },
+      "source_ids": [
+        "chrome-devtools-measure-docs",
+        "web-dev-vitals-docs"
+      ]
+    },
+    {
+      "id": "layout-shifts",
+      "duration": 12,
+      "heading": "Layout shifts track",
+      "narration": "The Layout shifts track shows each shift as a purple diamond, grouped in clusters. Keep CLS at 0.1 or less.",
+      "visual": {
+        "type": "steps",
+        "items": [
+          "Each shift: a purple diamond",
+          "Nearby shifts: one cluster",
+          "Good CLS: 0.1 or less"
+        ]
+      },
+      "source_ids": [
+        "chrome-devtools-measure-docs",
+        "web-dev-vitals-docs"
+      ]
+    }
+  ]
+}

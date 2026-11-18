@@ -1,0 +1,7 @@
+flowchart LR
+  main["main.ts: read stack.txt and app.min.js.map"] --> decode["mappings.ts: decodeMappings"]
+  decode --> vlq["vlq.ts: decodeVlq"]
+  main --> resolve["stack.ts: resolveStack and resolveFrame"]
+  decode --> resolve
+  resolve --> lookup["lookup.ts: originalPositionFor"]
+  lookup --> format["stack.ts: formatStack"]

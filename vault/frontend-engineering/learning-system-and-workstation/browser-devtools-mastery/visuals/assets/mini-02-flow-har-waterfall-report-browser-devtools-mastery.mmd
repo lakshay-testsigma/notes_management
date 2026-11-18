@@ -1,0 +1,9 @@
+flowchart LR
+  file["checkout.har"] --> parse["parseHar (parse.ts)"]
+  parse --> req["toRequests + computePhases"]
+  req --> slow["slowestPhases"]
+  req --> cache["isUncached"]
+  req --> block["isRenderBlocking"]
+  slow --> report["buildReport (report.ts)"]
+  cache --> report
+  block --> report

@@ -1,0 +1,40 @@
+---
+title: "Performance panel: traces, long tasks and Web Vitals"
+description: A long task on the main thread delays the next paint after a click, and a recorded trace shows you which task it is.
+order: 6
+concepts: [Performance panel, trace, flame chart, long task, INP, LCP, CLS, CPU throttling, layout shifts]
+---
+
+{/* <!-- concept: performance-panel --> */}
+
+{/* <!-- concept: flame-chart-and-long-tasks --> */}
+
+A user clicks Add to cart and nothing happens for half a second. The **main thread** is the one thread that runs your JavaScript and paints the page, so while one task runs, the click cannot show its result. The **Performance panel** records a **trace**: a timeline of every task during the recording. Its Main track is a **flame chart**, with time from left to right and the call stack from top to bottom. A **long task** is any task over 50 ms. DevTools marks it with a red triangle and shades the part after 50 ms red.
+
+{/* <!-- concept: cpu-throttling --> */}
+
+Your laptop is fast, so a slow handler can look fine there. Set **CPU throttling** in the capture settings before you record, so the trace shows what a slower device sees.
+
+<PredictReveal
+  prompt="On your laptop the click handler takes 30 ms and the trace shows no long task. Users on slower phones still report slow clicks. What do you change before you record again?"
+  options={["Turn on network throttling", "Turn on CPU throttling", "Record a longer trace"]}
+  correct={1}
+  answer="Turn on CPU throttling. At a 20x slowdown the same handler takes far longer than 50 ms and shows up as a long task."
+  reasoning="The handler does no network work, so a slower network changes nothing. CPU throttling slows every task the main thread runs, which exposes work that a fast laptop hides."
+/>
+
+{/* <!-- concept: core-web-vitals-live --> */}
+
+{/* <!-- concept: layout-shifts-track --> */}
+
+In the lab, switch between no throttling, 20x and the split handler. Find the long task and watch **INP** (Interaction to Next Paint: the time from a click to the next paint) change.
+
+<Experience id="perf-trace-lab" />
+
+The fix is to split the work: update the page first, then yield and run the rest. The Live metrics screen shows your local INP, LCP (Largest Contentful Paint) and CLS (Cumulative Layout Shift). Good values are INP at or under 200 ms, LCP at or under 2.5 s and CLS at or under 0.1. The Layout shifts track draws each shift as a purple diamond. Throttling is only a model of a slow device, so compare with real-user field data when DevTools offers it.
+
+<Depth level="production">
+
+Lighthouse, the audit engine behind the DevTools Lighthouse panel, records a trace and a network log first and audits them later. A team can save those files and audit one run again with no browser (`-G` saves, `-A` audits), and it keeps the trace of a failed load for inspection.
+
+</Depth>

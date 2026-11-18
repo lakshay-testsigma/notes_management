@@ -1,0 +1,39 @@
+---
+title: Console power use
+description: Console utilities are shortcuts that read one part of the live page state, so you ask the page a question instead of adding a log line and rebuilding.
+order: 2
+concepts: [Console utilities, $0 and $$(), getEventListeners(), live expressions]
+---
+
+{/* <!-- concept: console-power-use --> */}
+{/* <!-- concept: console-utilities --> */}
+{/* <!-- concept: live-expressions --> */}
+
+A click handler runs twice. The usual fix is to add `console.log` to your code, rebuild and click again. The Console is faster: it runs JavaScript against the live page, so you ask the page directly. Console utilities are extra functions that DevTools adds to the Console, such as `$0` and `getEventListeners()`.
+
+Read the diagram as a map. Each arrow starts at the prompt and ends at the part of the page that one utility reads.
+
+<Diagram id="console-utilities-map" />
+
+`$0` is the element you selected in the Elements panel, and `$1` to `$4` are the ones before it. `$$()` returns a real array of elements that match a CSS selector, so `.length` and `.map()` work at once. `getEventListeners($0)` lists the listeners on the selected element. That answers the double-click question: you see two `click` entries. `copy()` puts any value, such as a JSON response, on your clipboard.
+
+A live expression is an expression pinned to the top of the Console. DevTools re-runs it almost continuously, so you watch `document.activeElement` change while you press Tab.
+
+The trade-off: these utilities exist only in the Console. Your page code cannot call them, so a fix you find still goes into your source file.
+
+**Note.** The Console runs in one context, chosen in its context menu. If the button is inside an iframe and the top frame is selected, `$$()` returns an empty array.
+
+<Quiz
+  question="A Save button sends two requests per click. You selected it in Elements. Which Console call shows the cause fastest?"
+  options={["$$('button')", "getEventListeners($0)", "copy($0)", "Add console.log to the handler and rebuild"]}
+  answer={1}
+  explanation="getEventListeners($0) lists the listeners on the selected button. Two click listeners explain two requests. $$('button') only lists buttons, copy($0) copies the element, and a rebuild is the slow path the Console replaces."
+/>
+
+<Depth level="production">
+
+Turn on Preserve log in the Console settings when a bug happens during navigation. Without it, the Console clears its messages on each page load. Eager evaluation shows the result of an expression while you type it. Keep live expressions cheap: DevTools runs each one again and again, so a heavy query can slow the page you are measuring.
+
+</Depth>
+
+When a question needs the code paused at one exact line, the Console is not enough; the Sources panel is next.

@@ -1,0 +1,155 @@
+{
+  "id": "debugger-lab-guided",
+  "title": "Catching the search race with breakpoints",
+  "purpose": "Use a line breakpoint, a conditional breakpoint, a logpoint and the ignore list on line 6 of the search code, and read the async call stack at the pause.",
+  "sequence_reason": "Each step depends on the one before: the line breakpoint shows two pauses, the condition keeps only the stale one, the Call Stack explains it, and the ignore list cleans the stack.",
+  "summary": "Line 6 calls render(items) after await search(q). A line breakpoint there pauses twice: first with q react, then with q re, which leaves the wrong list. A conditional breakpoint with q !== input.value pauses only on the stale re response. At that pause the Call Stack shows onInput line 6, an await separator, and onInput line 5 with two vendor frames below. A logpoint prints the same values in the Console without pausing. Adding vendor/events.js to the ignore list hides the two vendor frames.",
+  "explanation": "The async part of the Call Stack, below the await separator, shows the call that started the wait. Its Scope still holds the old q, so you see that a stale response reached render.",
+  "learning_check": {
+    "question": "At the conditional pause, q is re and input.value is react. What does that tell you?",
+    "answer": "This response belongs to an older request. render is about to replace the newer react results with stale re results."
+  },
+  "concept_ids": [
+    "breakpoint-types",
+    "async-call-stack",
+    "logpoints",
+    "ignore-listing-frames"
+  ],
+  "source_ids": [
+    "chrome-devtools-docs",
+    "ecma-426-source-map"
+  ],
+  "used_in": [
+    "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/03-sources-and-breakpoints.mdx"
+  ],
+  "narration": {
+    "engine": "auto"
+  },
+  "scenes": [
+    {
+      "id": "setup",
+      "duration": 8,
+      "heading": "Line 6 calls render(items)",
+      "narration": "Line 5 waits for search(q). Line 6 calls render(items). We set breakpoints on line 6.",
+      "source_ids": [
+        "chrome-devtools-docs"
+      ],
+      "visual": {
+        "type": "title",
+        "subtitle": "app.js: await search(q), then render(items)"
+      }
+    },
+    {
+      "id": "race",
+      "duration": 11,
+      "heading": "A line breakpoint pauses twice",
+      "narration": "A line breakpoint on line 6 pauses twice. Pause 1: q is react. Pause 2: q is re, so the list shows re results.",
+      "source_ids": [
+        "chrome-devtools-docs"
+      ],
+      "visual": {
+        "type": "steps",
+        "items": [
+          "Pause 1: q is react",
+          "Pause 2: q is re",
+          "The list shows re results"
+        ]
+      }
+    },
+    {
+      "id": "pause-stale",
+      "duration": 12,
+      "heading": "A conditional breakpoint pauses only on the stale response",
+      "narration": "Now add a condition to line 6: q !== input.value. Condition false means no pause. Condition true pauses on the stale re response.",
+      "source_ids": [
+        "chrome-devtools-docs"
+      ],
+      "visual": {
+        "type": "compare",
+        "left": {
+          "label": "Condition false",
+          "items": [
+            "q react, input react",
+            "No pause"
+          ]
+        },
+        "right": {
+          "label": "Condition true",
+          "items": [
+            "q re, input react",
+            "Pause on line 6"
+          ]
+        },
+        "verdict": "Condition: q !== input.value"
+      }
+    },
+    {
+      "id": "async-stack",
+      "duration": 12,
+      "heading": "Read the async call stack",
+      "narration": "The Call Stack shows onInput app.js:6, then await, then onInput app.js:5. The frames below await show the call that started the wait.",
+      "source_ids": [
+        "chrome-devtools-docs"
+      ],
+      "visual": {
+        "type": "steps",
+        "items": [
+          "onInput app.js:6",
+          "await",
+          "onInput app.js:5",
+          "handle vendor.js:41",
+          "dispatch vendor.js:88"
+        ]
+      }
+    },
+    {
+      "id": "logpoint",
+      "duration": 11,
+      "heading": "A logpoint watches without pausing",
+      "narration": "A logpoint on line 6 prints q and input.value. The Console shows render react react, then render re react. The page never pauses.",
+      "source_ids": [
+        "chrome-devtools-docs"
+      ],
+      "visual": {
+        "type": "steps",
+        "items": [
+          "Console: render react react",
+          "Console: render re react",
+          "The page never pauses"
+        ]
+      }
+    },
+    {
+      "id": "ignore",
+      "duration": 11,
+      "heading": "The ignore list hides library frames",
+      "narration": "Add vendor/events.js to the ignore list. Ignore list off: five frames. Ignore list on: only your own frames stay in the Call Stack.",
+      "source_ids": [
+        "chrome-devtools-docs",
+        "ecma-426-source-map"
+      ],
+      "visual": {
+        "type": "compare",
+        "left": {
+          "label": "Ignore list off",
+          "items": [
+            "onInput app.js:6",
+            "await",
+            "onInput app.js:5",
+            "handle vendor.js:41",
+            "dispatch vendor.js:88"
+          ]
+        },
+        "right": {
+          "label": "Ignore list on",
+          "items": [
+            "onInput app.js:6",
+            "await",
+            "onInput app.js:5"
+          ]
+        },
+        "verdict": "Library frames are hidden; your frames stay."
+      }
+    }
+  ]
+}

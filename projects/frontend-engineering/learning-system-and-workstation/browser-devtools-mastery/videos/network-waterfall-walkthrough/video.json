@@ -1,0 +1,140 @@
+{
+  "id": "network-waterfall-walkthrough",
+  "title": "Read one request in the network waterfall",
+  "purpose": "Name each timing phase of a request and say which phase grows when the network, the server or the queue is slow.",
+  "sequence_reason": "A request passes its phases in a fixed order, and a change in one condition makes one part of the bar longer, so motion shows the cause better than one static picture.",
+  "summary": "The Network panel draws each request as a bar in the Waterfall column. The Timing tab splits the bar into Queueing, Stalled, DNS Lookup, Initial connection, Request sent, Waiting (TTFB) and Content Download. Waiting is one round trip plus server time. With Slow 4G throttling, Waiting and Content Download grow. When six connections to one HTTP/1.1 origin are open, a seventh request grows its Queueing bar. The Initiator and Priority columns say why and how urgently a request ran. A HAR export saves the session and leaves out Cookie, Set-Cookie and Authorization headers by default. The bar lengths in this walkthrough are example values, not measurements.",
+  "explanation": "A long part of a waterfall bar points to the step that lost time: Waiting points at the server or the round trip, Content Download at payload size or network speed, Queueing at competing requests.",
+  "learning_check": {
+    "question": "A request has a long Waiting (TTFB) bar and a short Content Download bar. Which part of the exchange is most likely slow?",
+    "answer": "The server or the round trip, because Waiting is one round trip of latency plus the time the server needs to prepare the response."
+  },
+  "concept_ids": ["network-panel", "waterfall-timing-phases", "network-throttling-and-blocking", "initiator-and-priority", "har-export"],
+  "source_ids": ["chrome-devtools-network-docs", "chromedevtools-devtools-frontend-repo"],
+  "used_in": ["site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/05-network-waterfall.mdx"],
+  "narration": { "engine": "auto" },
+  "scenes": [
+    {
+      "id": "intro",
+      "duration": 7,
+      "heading": "One request, one bar",
+      "narration": "Open the Network panel, then load the page. Each request becomes one bar in the Waterfall column.",
+      "source_ids": ["chrome-devtools-network-docs"],
+      "visual": { "type": "title", "subtitle": "Network panel, Waterfall column, Timing tab" }
+    },
+    {
+      "id": "phases",
+      "duration": 11,
+      "heading": "The Timing tab names each phase",
+      "narration": "The Timing tab splits one bar into phases: Queueing, Stalled, DNS Lookup, Initial connection, Request sent, Waiting, and Content Download.",
+      "source_ids": ["chrome-devtools-network-docs"],
+      "visual": {
+        "type": "timeline",
+        "events": [
+          { "label": "Queueing", "detail": "browser delays it" },
+          { "label": "Stalled", "detail": "waits after start" },
+          { "label": "DNS Lookup", "detail": "find the IP" },
+          { "label": "Initial connection", "detail": "TCP and SSL" },
+          { "label": "Request sent", "detail": "request goes out" },
+          { "label": "Waiting (TTFB)", "detail": "first byte" },
+          { "label": "Content Download", "detail": "read the body" }
+        ]
+      }
+    },
+    {
+      "id": "ttfb",
+      "duration": 11,
+      "heading": "What Waiting (TTFB) measures",
+      "narration": "Waiting, the time to first byte, is one round trip of latency plus the time the server needs to prepare the response.",
+      "source_ids": ["chrome-devtools-network-docs"],
+      "visual": {
+        "type": "equation",
+        "expression": "Waiting (TTFB) = round trip + server time",
+        "terms": [
+          { "text": "round trip", "note": "network latency, there and back" },
+          { "text": "server time", "note": "the server prepares the response" }
+        ]
+      }
+    },
+    {
+      "id": "baseline",
+      "duration": 9,
+      "heading": "Example request, no throttling",
+      "narration": "Here is an example request with no throttling. Waiting is the longest bar, and Content Download is short.",
+      "source_ids": ["chrome-devtools-network-docs"],
+      "visual": {
+        "type": "bars",
+        "unit": " ms",
+        "items": [
+          { "label": "Queueing + Stalled", "value": 5 },
+          { "label": "DNS Lookup", "value": 20 },
+          { "label": "Initial connection", "value": 40 },
+          { "label": "Waiting (TTFB)", "value": 80 },
+          { "label": "Content Download", "value": 20 }
+        ]
+      }
+    },
+    {
+      "id": "throttled",
+      "duration": 10,
+      "heading": "Same request on Slow 4G",
+      "narration": "Now choose Slow 4G in the Throttling menu and reload. Waiting and Content Download grow, because both depend on network speed.",
+      "source_ids": ["chrome-devtools-network-docs"],
+      "visual": {
+        "type": "bars",
+        "unit": " ms",
+        "items": [
+          { "label": "Queueing + Stalled", "value": 5 },
+          { "label": "DNS Lookup", "value": 20 },
+          { "label": "Initial connection", "value": 40 },
+          { "label": "Waiting (TTFB)", "value": 560 },
+          { "label": "Content Download", "value": 900 }
+        ]
+      }
+    },
+    {
+      "id": "queueing",
+      "duration": 11,
+      "heading": "Too many requests to one origin",
+      "narration": "On HTTP 1.1, when six connections to one origin are already open, the seventh request waits, so its Queueing bar grows.",
+      "source_ids": ["chrome-devtools-network-docs"],
+      "visual": {
+        "type": "compare",
+        "left": { "label": "Requests 1 to 6", "items": ["Each has an open connection", "Short Queueing"] },
+        "right": { "label": "Request 7", "items": ["Six connections already open", "Long Queueing"] },
+        "verdict": "HTTP/1.0 and 1.1 only: six connections per origin."
+      }
+    },
+    {
+      "id": "initiator",
+      "duration": 11,
+      "heading": "Why the request ran, and how urgently",
+      "narration": "The Initiator column says what started each request. Priority says how urgent it is. Hold Shift and hover: initiators turn green, dependencies red.",
+      "source_ids": ["chrome-devtools-network-docs"],
+      "visual": {
+        "type": "steps",
+        "items": [
+          "Initiator: Parser, Redirect, Script, Early Hints or Other",
+          "Hover the initiator: the stack trace",
+          "Priority: how urgent the request is",
+          "Shift + hover: initiators green, dependencies red"
+        ]
+      }
+    },
+    {
+      "id": "har",
+      "duration": 12,
+      "heading": "Save the session as a HAR file",
+      "narration": "Export the session as a HAR file, a JSON record. By default, it leaves out Cookie, Set-Cookie and Authorization headers, so it is safer to share.",
+      "source_ids": ["chrome-devtools-network-docs", "chromedevtools-devtools-frontend-repo"],
+      "visual": {
+        "type": "steps",
+        "items": [
+          "Export HAR: the session as JSON",
+          "Default: no Cookie, Set-Cookie or Authorization",
+          "Import: drag the HAR file into the table"
+        ]
+      }
+    }
+  ]
+}

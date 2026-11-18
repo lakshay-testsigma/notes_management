@@ -44,6 +44,7 @@ Answer: A measuring panel: Performance for slow scripts or rendering, Network fo
 ## Used in
 
 - [[01-brief-browser-devtools-mastery]]
+- lesson page `/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/lesson/01-elements-and-styles/` (file `site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/01-elements-and-styles.mdx`)
 
 Back to [[visuals-browser-devtools-mastery|all visuals]].
 

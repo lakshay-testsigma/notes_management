@@ -1,0 +1,29 @@
+{
+  "id": "debugger-lab-deck",
+  "title": "Which breakpoint type fits this bug",
+  "purpose": "Choose a breakpoint type from the symptom of a bug: known line, only some calls, no pause allowed, or an unknown line.",
+  "summary": "A short deck about choosing a breakpoint type. The main path splits bugs into those where you know the line and those where you do not, then shows what to read at the pause. Two deep dives compare a logpoint with a conditional breakpoint and list the three DOM change breakpoint types.",
+  "explanation": "A breakpoint type is a question you ask the browser: pause on this line, pause only when this is true, log without pausing, or pause when this event, request or DOM change happens.",
+  "learning_check": {
+    "question": "You need the value of q on every call but the bug disappears when the page pauses. Which type do you use?",
+    "answer": "A logpoint. It prints q in the Console on every call and never pauses, so the timing of the race stays the same."
+  },
+  "concept_ids": ["breakpoint-types", "logpoints", "sources-panel-debugging"],
+  "source_ids": ["chrome-devtools-docs"],
+  "used_in": ["site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/03-sources-and-breakpoints.mdx"],
+  "slides": [
+    { "id": "question", "heading": "Which breakpoint finds this bug?", "notes": "Ask the learner what they know about the bug before they choose a breakpoint type.", "visual": { "type": "title", "subtitle": "Start from what you know" } },
+    { "id": "known-line", "heading": "You know the line", "notes": "Reveal each case. The three types all sit on one line of code and differ in when they stop.", "reveal": true, "source_ids": ["chrome-devtools-docs"], "visual": { "type": "steps", "items": [ "Every call: line-of-code breakpoint", "Only some calls: conditional breakpoint", "No pause allowed: logpoint" ] }, "hotspots": [ { "label": "Logpoint or conditional breakpoint", "target": "log-vs-condition" } ] },
+    { "id": "unknown-line", "heading": "You do not know the line", "notes": "When the line is unknown, pause on the cause: a request, a DOM change, an event or an exception.", "reveal": true, "source_ids": ["chrome-devtools-docs"], "visual": { "type": "steps", "items": [ "A request: XHR/fetch breakpoint", "A changed node: DOM change breakpoint", "A click or key: event listener breakpoint", "A thrown error: exception breakpoint" ] }, "hotspots": [ { "label": "DOM change breakpoint types", "target": "dom-types" } ] },
+    { "id": "read-pause", "heading": "Then read the pause", "notes": "At every pause, read Scope for the values and the Call Stack, including the async frames, for the callers.", "reveal": true, "source_ids": ["chrome-devtools-docs"], "visual": { "type": "steps", "items": [ "Scope: the values now", "Call Stack: who called", "Async frames: who started the wait" ] } },
+    { "id": "takeaway", "heading": "Choose the closest pause", "notes": "The best breakpoint stops closest to the cause, so you read the state before it changes again.", "visual": { "type": "compare", "left": { "label": "Line known", "items": [ "Line-of-code", "Conditional", "Logpoint" ] }, "right": { "label": "Line unknown", "items": [ "XHR/fetch", "DOM change", "Event listener", "Exception" ] }, "verdict": "Pause where the cause happens." } }
+  ],
+  "sequences": [
+    { "id": "log-vs-condition", "label": "Logpoint or conditional breakpoint", "slides": [
+      { "id": "log-vs-cond", "heading": "Log or pause on a condition", "notes": "A conditional breakpoint pauses only when its expression is true; a logpoint never pauses and prints its message in the Console.", "source_ids": ["chrome-devtools-docs"], "visual": { "type": "compare", "left": { "label": "Conditional breakpoint", "items": [ "Pauses when the condition is true", "You read Scope and Call Stack" ] }, "right": { "label": "Logpoint", "items": [ "Never pauses", "Prints to the Console on every call" ] }, "verdict": "Log when pausing changes the timing." } }
+    ] },
+    { "id": "dom-types", "label": "DOM change breakpoint types", "slides": [
+      { "id": "dom-kinds", "heading": "Three DOM change breakpoints", "notes": "In the Elements panel you choose which change pauses: a child changes, an attribute changes, or the node is removed.", "source_ids": ["chrome-devtools-docs"], "visual": { "type": "steps", "items": [ "Subtree modifications: a child changes", "Attribute modifications: an attribute changes", "Node removal: the node is removed" ] } }
+    ] }
+  ]
+}

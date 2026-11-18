@@ -1,0 +1,51 @@
+---
+title: Debugging on real phones and device clouds
+description: Remote debugging attaches your desktop DevTools to a tab on a real phone, so you inspect the bug where it happens instead of guessing from desktop emulation.
+order: 11
+concepts: [remote debugging, chrome://inspect, iOS Safari remote inspection, about:debugging]
+---
+
+{/* <!-- concept: remote-device-debugging --> */}
+{/* <!-- concept: android-chrome-inspect --> */}
+{/* <!-- concept: ios-safari-remote-inspection --> */}
+
+A checkout button works in desktop Chrome and in its phone emulation. On a real phone, a tap does nothing. Emulation changes the screen size of a desktop browser. It cannot show a bug of the real phone browser. Remote debugging is the fix: desktop DevTools attach to a tab that runs on a phone connected to your computer.
+
+Each phone browser pairs with one desktop entry point. Read each row of the diagram from the desktop tool to the phone tab.
+
+<Diagram id="remote-debug-paths" />
+
+The phone must allow debugging first. On Android, turn on Developer options and USB debugging. On an iPhone, open Settings, then Safari, then Advanced, and turn on Web Inspector. On the Mac, turn on "Show features for web developers" in Safari. After the cable is in, the phone shows its tabs on the desktop, and you inspect the real page with the panels of earlier pages.
+
+Now put the Android Chrome path in order.
+
+<OrderSteps
+  prompt="Put the steps to inspect a page in Chrome on a USB-connected Android phone in order."
+  steps={[
+    "Turn on Developer options and USB debugging on the phone",
+    "Open chrome://inspect#devices in desktop Chrome",
+    "Tick Discover USB devices",
+    "Connect the phone with a USB cable",
+    "Accept the debugging prompt on the phone",
+    "Find the phone and its open tab in the list",
+    "Click Inspect under that tab"
+  ]}
+/>
+
+The trade-off is setup time and hardware. You need the phone, a cable and the right desktop browser. iOS Safari needs Safari on a Mac. A common failure is a device that never appears: debugging is off on the phone, or you did not accept the prompt.
+
+Device clouds are services that rent real phones over the internet. They are an option when you do not own the phone. This topic has no vetted source for them, so start with a phone you own.
+
+<Depth level="internals">
+
+The DevTools window talks to the browser through one transport. When DevTools opens with a `ws` or `wss` parameter, it connects over a WebSocket to a browser on another machine, such as a phone (`front_end/core/sdk/Connections.ts:229-248 @ 572bfc0`). The same interface also serves the built-in Chrome window and the trace viewer.
+
+</Depth>
+
+<Depth level="production">
+
+Teams inspect real phones with Safari Web Inspector or Chrome remote debugging, because desktop emulation cannot show real device bugs. Firefox for Android connects through about:debugging; it needs adb, not the full Android SDK. On Android 11 or later, Firefox can also connect over Wi-Fi with a pairing code.
+
+</Depth>
+
+<Resources />

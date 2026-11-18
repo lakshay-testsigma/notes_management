@@ -7,7 +7,7 @@
   "subdomain": "learning-system-and-workstation",
   "depth": "deep",
   "created_at": "2026-11-18T09:43:20Z",
-  "updated_at": "2026-11-18T10:30:44Z",
+  "updated_at": "2026-11-18T10:52:10Z",
   "paths": {
     "state": "state/topics/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery",
     "vault": "vault/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery",
@@ -2029,15 +2029,15 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T09:52:18Z",
-      "finished_at": "2026-11-18T10:17:04Z",
+      "finished_at": "2026-11-18T10:49:48Z",
       "attempts": 1,
       "units": [],
       "note": "",
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "fd83815fb941753ee2887fafa1e282b346c005485359614d86dbfd2c047e47b9",
-        "at": "2026-11-18T10:17:04Z",
+        "fingerprint": "7c340151aa62fe8dd7a4f7cf4d894d4a21af9da5531a0e4ed20888f24c18d973",
+        "at": "2026-11-18T10:49:48Z",
         "forced": false
       }
     },
@@ -2165,25 +2165,96 @@
       "id": "lesson",
       "wave": 3,
       "skill": "learn-site",
-      "status": "pending",
+      "status": "done",
       "scope": "required",
-      "started_at": null,
-      "finished_at": null,
-      "attempts": 0,
-      "units": [],
-      "note": ""
+      "started_at": "2026-11-18T10:31:55Z",
+      "finished_at": "2026-11-18T10:49:55Z",
+      "attempts": 1,
+      "units": [
+        {
+          "id": "experience-debugger-lab",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "experience-network-waterfall-lab",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "experience-perf-trace-lab",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "video-heap-snapshot-compare",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "pages-01-03",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "pages-04-06",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "pages-07-09",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "pages-10-11",
+          "status": "done",
+          "handoff": null
+        }
+      ],
+      "note": "",
+      "continue_after_failure": false,
+      "validation": {
+        "version": 2,
+        "fingerprint": "d3620125c2686895dff3a53b10e2f270981429377578110491189e14b98f1cc9",
+        "at": "2026-11-18T10:49:55Z",
+        "forced": false
+      }
     },
     {
       "id": "mini-projects",
       "wave": 3,
       "skill": "learn-projects",
-      "status": "pending",
+      "status": "done",
       "scope": "required",
-      "started_at": null,
-      "finished_at": null,
-      "attempts": 0,
-      "units": [],
-      "note": ""
+      "started_at": "2026-11-18T10:31:56Z",
+      "finished_at": "2026-11-18T10:52:10Z",
+      "attempts": 1,
+      "units": [
+        {
+          "id": "mini-01",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "mini-02",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "mini-03",
+          "status": "done",
+          "handoff": null
+        }
+      ],
+      "note": "",
+      "continue_after_failure": false,
+      "validation": {
+        "version": 2,
+        "fingerprint": "7ef2f0fb172f68427ecdf1df91e17f3baa94f9aca4c301876775e87f7f50ee0c",
+        "at": "2026-11-18T10:52:10Z",
+        "forced": false
+      }
     },
     {
       "id": "capstone",
@@ -2864,6 +2935,360 @@
       "event": "done",
       "message": "gate passed",
       "stage": "digest"
+    },
+    {
+      "at": "2026-11-18T10:31:30Z",
+      "event": "note",
+      "message": "WAVE 2 done; running: lookahead gap-01; queued: wave 3 lesson + mini-projects"
+    },
+    {
+      "at": "2026-11-18T10:31:55Z",
+      "event": "start",
+      "message": "attempt 1",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T10:31:56Z",
+      "event": "start",
+      "message": "attempt 1",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-18T10:31:58Z",
+      "event": "unit-add",
+      "message": "unit experience-debugger-lab",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T10:32:00Z",
+      "event": "unit-add",
+      "message": "unit experience-network-waterfall-lab",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T10:32:01Z",
+      "event": "unit-add",
+      "message": "unit experience-perf-trace-lab",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T10:32:03Z",
+      "event": "unit-add",
+      "message": "unit video-heap-snapshot-compare",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T10:32:05Z",
+      "event": "unit-add",
+      "message": "unit pages-01-03",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T10:32:07Z",
+      "event": "unit-add",
+      "message": "unit pages-04-06",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T10:32:09Z",
+      "event": "unit-add",
+      "message": "unit pages-07-09",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T10:32:11Z",
+      "event": "unit-add",
+      "message": "unit pages-10-11",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T10:32:13Z",
+      "event": "unit-add",
+      "message": "unit mini-01",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-18T10:32:15Z",
+      "event": "unit-add",
+      "message": "unit mini-02",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-18T10:32:16Z",
+      "event": "unit-add",
+      "message": "unit mini-03",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-18T10:33:30Z",
+      "event": "note",
+      "message": "SPAWN 25/56; running exp debugger, network, perf, video heap, pages-01-03; queued pages-04-06,07-09,10-11, mini-01..03"
+    },
+    {
+      "at": "2026-11-18T10:33:41Z",
+      "event": "unit-start",
+      "message": "unit pages-01-03",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T10:34:14Z",
+      "event": "video",
+      "message": "video heap-snapshot-compare not rendered: cannot render: FFmpeg is not installed and Docker is not running; install FFmpeg (for example `brew install ffmpeg`) or start Docker"
+    },
+    {
+      "at": "2026-11-18T10:34:19Z",
+      "event": "unit-done",
+      "message": "unit video-heap-snapshot-compare",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T10:35:10Z",
+      "event": "visual",
+      "message": "added visual styles-to-computed"
+    },
+    {
+      "at": "2026-11-18T10:36:19Z",
+      "event": "unit-done",
+      "message": "unit experience-network-waterfall-lab",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T10:36:55Z",
+      "event": "visual",
+      "message": "added visual perf-trace-flow"
+    },
+    {
+      "at": "2026-11-18T10:37:03Z",
+      "event": "visual",
+      "message": "added visual debugger-lab-fallback"
+    },
+    {
+      "at": "2026-11-18T10:37:43Z",
+      "event": "video",
+      "message": "video debugger-lab-intro not rendered: cannot render: FFmpeg is not installed and Docker is not running; install FFmpeg (for example `brew install ffmpeg`) or start Docker"
+    },
+    {
+      "at": "2026-11-18T10:37:44Z",
+      "event": "video",
+      "message": "video debugger-lab-summary not rendered: cannot render: FFmpeg is not installed and Docker is not running; install FFmpeg (for example `brew install ffmpeg`) or start Docker"
+    },
+    {
+      "at": "2026-11-18T10:38:11Z",
+      "event": "unit-done",
+      "message": "unit experience-debugger-lab",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T10:38:26Z",
+      "event": "video",
+      "message": "video perf-trace-intro not rendered: cannot render: FFmpeg is not installed and Docker is not running; install FFmpeg (for example `brew install ffmpeg`) or start Docker"
+    },
+    {
+      "at": "2026-11-18T10:38:27Z",
+      "event": "video",
+      "message": "video perf-trace-summary not rendered: cannot render: FFmpeg is not installed and Docker is not running; install FFmpeg (for example `brew install ffmpeg`) or start Docker"
+    },
+    {
+      "at": "2026-11-18T10:38:39Z",
+      "event": "unit-done",
+      "message": "unit experience-perf-trace-lab",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T10:44:14Z",
+      "event": "visual",
+      "message": "added visual console-utilities-map"
+    },
+    {
+      "at": "2026-11-18T10:44:44Z",
+      "event": "note",
+      "message": "SPAWN 29/56; video heap-snapshot-compare blocked: storyboard only (no FFmpeg/Docker); deck check blocked by sandbox Chrome"
+    },
+    {
+      "at": "2026-11-18T10:44:45Z",
+      "event": "unit-done",
+      "message": "unit pages-01-03",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T10:44:51Z",
+      "event": "unit-start",
+      "message": "unit mini-01",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-18T10:44:53Z",
+      "event": "unit-start",
+      "message": "unit pages-10-11",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T10:45:46Z",
+      "event": "unit-start",
+      "message": "unit pages-04-06",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T10:45:54Z",
+      "event": "unit-start",
+      "message": "unit pages-07-09",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T10:46:29Z",
+      "event": "visual",
+      "message": "added visual browser-tool-choice"
+    },
+    {
+      "at": "2026-11-18T10:46:34Z",
+      "event": "visual",
+      "message": "added visual detached-node-retainer-path"
+    },
+    {
+      "at": "2026-11-18T10:46:44Z",
+      "event": "note",
+      "message": "SPAWN 30/56; done: 3 exp, video(blocked), pages-01-03; running pages-04-06, 07-09, 10-11, mini-01, mini-02; queued mini-03"
+    },
+    {
+      "at": "2026-11-18T10:46:45Z",
+      "event": "visual",
+      "message": "added visual remote-debug-paths"
+    },
+    {
+      "at": "2026-11-18T10:46:49Z",
+      "event": "unit-done",
+      "message": "unit pages-10-11",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T10:46:58Z",
+      "event": "visual",
+      "message": "added visual source-map-lookup"
+    },
+    {
+      "at": "2026-11-18T10:47:09Z",
+      "event": "note",
+      "message": "SPAWN 31/56; queue empty for wave 3"
+    },
+    {
+      "at": "2026-11-18T10:47:15Z",
+      "event": "unit-start",
+      "message": "unit mini-03",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-18T10:47:30Z",
+      "event": "visual",
+      "message": "added visual application-storage-map"
+    },
+    {
+      "at": "2026-11-18T10:47:55Z",
+      "event": "visual",
+      "message": "added visual mini-01-flow-source-map-stack-resolver"
+    },
+    {
+      "at": "2026-11-18T10:47:56Z",
+      "event": "unit-done",
+      "message": "unit mini-01",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-18T10:48:02Z",
+      "event": "visual",
+      "message": "added visual symptom-to-panel-map"
+    },
+    {
+      "at": "2026-11-18T10:48:15Z",
+      "event": "visual",
+      "message": "added visual mini-02-flow"
+    },
+    {
+      "at": "2026-11-18T10:48:23Z",
+      "event": "unit-done",
+      "message": "unit pages-07-09",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T10:48:28Z",
+      "event": "unit-done",
+      "message": "unit pages-04-06",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T10:48:35Z",
+      "event": "note",
+      "message": "lesson follow-up: p08 unsourced 'service worker answers from Cache storage' claim; p09 Issues panel unsourced (recorder-and-issues covers Recorder only); bfcache web.dev article not in sources"
+    },
+    {
+      "at": "2026-11-18T10:48:46Z",
+      "event": "unit-done",
+      "message": "unit mini-02",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-18T10:49:06Z",
+      "event": "gate-failed",
+      "message": "1 problems",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T10:49:34Z",
+      "event": "gate-failed",
+      "message": "2 problems",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T10:49:48Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "brief"
+    },
+    {
+      "at": "2026-11-18T10:49:50Z",
+      "event": "visual",
+      "message": "added visual mini-03-flow-trace-long-task-finder"
+    },
+    {
+      "at": "2026-11-18T10:49:51Z",
+      "event": "unit-done",
+      "message": "unit mini-03",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-18T10:49:55Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T10:50:20Z",
+      "event": "gate-failed",
+      "message": "1 problems",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-18T10:51:31Z",
+      "event": "execution-check",
+      "message": "mini-projects: failed",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-18T10:51:45Z",
+      "event": "execution-check",
+      "message": "mini-projects: failed",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-18T10:52:05Z",
+      "event": "execution-check",
+      "message": "mini-projects: pass",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-18T10:52:10Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "mini-projects"
     }
   ],
   "roadmap": {
@@ -3159,6 +3584,195 @@
               "pushed_at": "2026-11-18T09:46:29Z",
               "license": "BSD-3-Clause"
             }
+          }
+        ]
+      },
+      "mini-projects": {
+        "version": 2,
+        "fingerprint": "7ef2f0fb172f68427ecdf1df91e17f3baa94f9aca4c301876775e87f7f50ee0c",
+        "at": "2026-11-18T10:52:05Z",
+        "ok": true,
+        "checks": [
+          {
+            "label": "mini-01-source-map-stack-resolver: solution-tests",
+            "command": "npm",
+            "args": [
+              "test"
+            ],
+            "expected_exit": 0,
+            "exit": 0,
+            "ok": true,
+            "output_sha256": "99567af1d1c1fadb2a35a200af71fb73dcd2cebd479578200fb798d39f1306d3"
+          },
+          {
+            "label": "mini-01-source-map-stack-resolver: starter-tests",
+            "command": "npm",
+            "args": [
+              "test"
+            ],
+            "expected_exit": 1,
+            "exit": 1,
+            "ok": true,
+            "output_sha256": "c9e675ecdd4b8f9201e606d554201010166a5596618419cb8d3609560515d286"
+          },
+          {
+            "label": "mini-01-source-map-stack-resolver: starter-start",
+            "command": "node",
+            "args": [
+              "src/main.ts"
+            ],
+            "expected_exit": 1,
+            "exit": 1,
+            "ok": true,
+            "output_sha256": "c53bf7209c57bf8aa8eb911e334e2863049a094c44f7ddd3353aeeffa55b68de"
+          },
+          {
+            "label": "mini-01-source-map-stack-resolver: audit",
+            "command": "npm",
+            "args": [
+              "audit",
+              "--omit=dev",
+              "--audit-level=high"
+            ],
+            "expected_exit": 0,
+            "exit": 0,
+            "ok": true,
+            "output_sha256": "6d8c5c8f3d7684adb070417bd608d01ae90aa3dc26a65af03ffda4955f38d9a3"
+          },
+          {
+            "label": "mini-01-source-map-stack-resolver: audit",
+            "command": "npm",
+            "args": [
+              "audit",
+              "--omit=dev",
+              "--audit-level=high"
+            ],
+            "expected_exit": 0,
+            "exit": 0,
+            "ok": true,
+            "output_sha256": "6d8c5c8f3d7684adb070417bd608d01ae90aa3dc26a65af03ffda4955f38d9a3"
+          },
+          {
+            "label": "mini-02-har-waterfall-report: solution-tests",
+            "command": "npm",
+            "args": [
+              "test"
+            ],
+            "expected_exit": 0,
+            "exit": 0,
+            "ok": true,
+            "output_sha256": "81e89b4757b650d02da814d160ac1e69afdab08b6b9d1ddc0d4343c3c697fd79"
+          },
+          {
+            "label": "mini-02-har-waterfall-report: starter-tests",
+            "command": "npm",
+            "args": [
+              "test"
+            ],
+            "expected_exit": 1,
+            "exit": 1,
+            "ok": true,
+            "output_sha256": "955f9762b635379f8ca0215566c37a9ad8cf167882c0db1ac6df8016e8c57b0a"
+          },
+          {
+            "label": "mini-02-har-waterfall-report: starter-start",
+            "command": "npx",
+            "args": [
+              "vite-node",
+              "src/main.ts",
+              "sample/checkout.har"
+            ],
+            "expected_exit": 1,
+            "exit": 1,
+            "ok": true,
+            "output_sha256": "2aa644ae1c921092b35d8e0a8bc9a236a026feb7b849e6079ec7fe2c61b8208e"
+          },
+          {
+            "label": "mini-02-har-waterfall-report: audit",
+            "command": "npm",
+            "args": [
+              "audit",
+              "--omit=dev",
+              "--audit-level=high"
+            ],
+            "expected_exit": 0,
+            "exit": 0,
+            "ok": true,
+            "output_sha256": "6d8c5c8f3d7684adb070417bd608d01ae90aa3dc26a65af03ffda4955f38d9a3"
+          },
+          {
+            "label": "mini-02-har-waterfall-report: audit",
+            "command": "npm",
+            "args": [
+              "audit",
+              "--omit=dev",
+              "--audit-level=high"
+            ],
+            "expected_exit": 0,
+            "exit": 0,
+            "ok": true,
+            "output_sha256": "6d8c5c8f3d7684adb070417bd608d01ae90aa3dc26a65af03ffda4955f38d9a3"
+          },
+          {
+            "label": "mini-03-trace-long-task-finder: solution-tests",
+            "command": "npm",
+            "args": [
+              "test"
+            ],
+            "expected_exit": 0,
+            "exit": 0,
+            "ok": true,
+            "output_sha256": "16052a1cfb2e167848111400326bb0b08e2788fb4abb5a40a9a26c81a337bdb4"
+          },
+          {
+            "label": "mini-03-trace-long-task-finder: starter-tests",
+            "command": "npm",
+            "args": [
+              "test"
+            ],
+            "expected_exit": 1,
+            "exit": 1,
+            "ok": true,
+            "output_sha256": "9a951dd1e4bd94d59961ded53356c3b3f61ea1f5e7a5eb58131be55bc9fbc1dc"
+          },
+          {
+            "label": "mini-03-trace-long-task-finder: starter-start",
+            "command": "npx",
+            "args": [
+              "vite-node",
+              "src/main.ts",
+              "sample/checkout-trace.json"
+            ],
+            "expected_exit": 1,
+            "exit": 1,
+            "ok": true,
+            "output_sha256": "9b1a12328cda7e113502b0ca80561f26560a2ec033e54a3d6fecd7e91857de06"
+          },
+          {
+            "label": "mini-03-trace-long-task-finder: audit",
+            "command": "npm",
+            "args": [
+              "audit",
+              "--omit=dev",
+              "--audit-level=high"
+            ],
+            "expected_exit": 0,
+            "exit": 0,
+            "ok": true,
+            "output_sha256": "6d8c5c8f3d7684adb070417bd608d01ae90aa3dc26a65af03ffda4955f38d9a3"
+          },
+          {
+            "label": "mini-03-trace-long-task-finder: audit",
+            "command": "npm",
+            "args": [
+              "audit",
+              "--omit=dev",
+              "--audit-level=high"
+            ],
+            "expected_exit": 0,
+            "exit": 0,
+            "ok": true,
+            "output_sha256": "6d8c5c8f3d7684adb070417bd608d01ae90aa3dc26a65af03ffda4955f38d9a3"
           }
         ]
       }

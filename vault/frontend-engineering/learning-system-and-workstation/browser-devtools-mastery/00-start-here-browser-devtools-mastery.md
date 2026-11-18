@@ -11,15 +11,15 @@ created: 2026-11-18
 This is the map of the topic. Read the steps from top to bottom. Each step links to the next thing to open, so you never have to search.
 
 <!-- tutor:generated:start -->
-**Depth:** deep · **Progress:** 5 of 10 steps ready
+**Depth:** deep · **Progress:** 7 of 10 steps ready
 
 Browser developer tools let a frontend developer inspect, debug, measure and fix a live page in the browser.
 
 ## Read in this order
 
 1. [[01-brief-browser-devtools-mastery|Brief]] — what it is, why it exists, where it is used · *ready*
-2. [[02-lesson-browser-devtools-mastery|Interactive lesson]] — the animated lesson pages on the local site · *not started*
-3. [[03-mini-projects-browser-devtools-mastery|Mini projects]] — small builds with a real use case · *not started*
+2. [[02-lesson-browser-devtools-mastery|Interactive lesson]] — the animated lesson pages on the local site · *ready*
+3. [[03-mini-projects-browser-devtools-mastery|Mini projects]] — small builds with a real use case · *ready*
 4. [[00-digests-browser-devtools-mastery|Digests]] — short summaries of the key papers and docs · *ready*
 5. [[00-repo-intel-browser-devtools-mastery|Repository deep dive]] — how a production open-source project does it · *ready*
 6. [[06-capstone-browser-devtools-mastery|Capstone]] — the production-style project · *not started*
@@ -121,9 +121,9 @@ Research stopped: scope-boundary. Leaves taught on pages 01-11; deeper trace int
 
 ## Projects
 
-- Mini project (planned): `projects/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/mini-01-source-map-stack-resolver/` — A support engineer gets a minified production stack trace and maps each frame back to the original file and line with the source map.
-- Mini project (planned): `projects/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/mini-02-har-waterfall-report/` — A frontend team exports a HAR file from the Network panel and needs a report of the slowest timing phases, uncached requests and render-blocking resources.
-- Mini project (planned): `projects/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/mini-03-trace-long-task-finder/` — A developer saves a Performance panel trace and needs the long tasks over 50 ms and the layout shifts listed with their times, to choose what to fix first.
+- Mini project: `projects/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/mini-01-source-map-stack-resolver/`
+- Mini project: `projects/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/mini-02-har-waterfall-report/`
+- Mini project: `projects/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/mini-03-trace-long-task-finder/`
 - Capstone: `projects/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/capstone/` — perf-triage CLI
 
 ## Build status
@@ -135,13 +135,13 @@ Research stopped: scope-boundary. Leaves taught on pages 01-11; deeper trace int
 | 1 | brief | ready |
 | 2 | digest | ready |
 | 2 | repo-intel | ready |
-| 3 | lesson | not started |
-| 3 | mini-projects | not started |
+| 3 | lesson | ready |
+| 3 | mini-projects | ready |
 | 4 | capstone | not started |
 | 5 | notes | not started |
 | 5 | finalize | not started |
 
-Next to generate: `lesson`, `mini-projects`. Ask Claude to continue this topic, or run `node harness/bin/tutor.mjs next frontend-engineering/learning-system-and-workstation/browser-devtools-mastery`.
+Next to generate: `capstone`. Ask Claude to continue this topic, or run `node harness/bin/tutor.mjs next frontend-engineering/learning-system-and-workstation/browser-devtools-mastery`.
 <!-- tutor:generated:end -->
 
 ## My insights

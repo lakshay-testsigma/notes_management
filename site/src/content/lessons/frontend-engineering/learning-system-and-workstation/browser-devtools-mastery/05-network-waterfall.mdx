@@ -1,0 +1,56 @@
+---
+title: "Network panel: reading the waterfall"
+description: Each request bar in the waterfall splits into timing phases, and the longest phase tells you where the load lost time.
+order: 5
+concepts: [Network panel, waterfall, timing phases, throttling, initiator, priority, HAR]
+---
+
+{/* <!-- concept: network-panel --> */}
+
+A slow page looks the same whether DNS, the server or a large file caused it. The **Network panel** records every request while DevTools is open, so open it before you reload.
+
+{/* <!-- concept: waterfall-timing-phases --> */}
+
+The **waterfall** column draws each request as a bar in time order. The Timing tab of one request splits that bar into **phases**: Queueing, Stalled, DNS Lookup, Initial connection, Request sent, Waiting (TTFB, time to first byte) and Content Download. The longest phase names the step that lost time, as a number instead of a guess.
+
+{/* <!-- concept: network-throttling-and-blocking --> */}
+
+In the lab, load Slow 4G or a slow server. Predict which bar grows, then step through.
+
+<Experience id="network-waterfall-lab" />
+
+A long Waiting bar points at the server or the round trip. A long Content Download bar points at payload size or network speed. A long Queueing bar points at too many competing requests. The **Throttling** menu (Fast 4G, Slow 4G, 3G, Offline) shows a warning icon while it is on, so you do not forget it. Blocked requests show in red.
+
+The lab leaves out cache state. Queueing can also include the time the browser spends allocating disk cache space. A Chrome HAR export records, per request, whether the response came from the cache.
+
+{/* <!-- concept: initiator-and-priority --> */}
+
+{/* <!-- concept: har-export --> */}
+
+The **Initiator** column names what started a request: Parser, Redirect, Script, Early Hints or Other. Hold Shift and hover a row: initiators turn green, dependencies red. **HAR** (HTTP Archive) is a JSON file of the session that a teammate can drag into their own Network panel. By default it leaves out `Cookie`, `Set-Cookie` and `Authorization` headers.
+
+<SortBuckets
+  prompt="Sort each situation by the timing phase that grows the most."
+  buckets={["Queueing", "DNS Lookup or Initial connection", "Waiting (TTFB)", "Content Download"]}
+  items={[
+    { text: "A seventh request to one HTTP/1.1 origin with six open connections", bucket: "Queueing" },
+    { text: "The browser briefly allocates disk cache space for the response", bucket: "Queueing" },
+    { text: "The first request to a domain the browser has never resolved", bucket: "DNS Lookup or Initial connection" },
+    { text: "A new connection that needs TCP handshakes and SSL negotiation", bucket: "DNS Lookup or Initial connection" },
+    { text: "The server spends 900 ms building a report before it replies", bucket: "Waiting (TTFB)" },
+    { text: "A 2 MB image on Slow 4G throttling", bucket: "Content Download" }
+  ]}
+  explanation="Queueing grows when the browser holds a request back: higher-priority requests, the six-connection limit of HTTP/1.x, or disk cache allocation. DNS Lookup finds the IP address, and Initial connection covers the handshakes and SSL. Waiting is one round trip plus server work. Content Download grows with body size and slow networks."
+/>
+
+<Depth level="internals">
+
+DevTools computes HAR phases instead of copying timestamps. Each phase starts at `-1` (not applicable) or `0`. SSL sits inside connect, so the total counts it once, and a request with no response puts all time in blocked (`front_end/models/har/Log.ts:265-353 @ 572bfc0`). Chrome-only data rides in underscore fields such as `_initiator`, `_priority` and `_fromCache` (`front_end/models/har/Log.ts:150-199 @ 572bfc0`).
+
+</Depth>
+
+<Depth level="production">
+
+Teams attach HAR files to bug reports, so the defaults matter. Settings > Preferences > Network > "Allow to generate HAR with sensitive data" adds the secret headers back; share such a file only with people you trust. DevTools also treats an imported HAR as untrusted input and rejects malformed fields (`front_end/models/har/Importer.ts:185-195 @ 572bfc0`).
+
+</Depth>

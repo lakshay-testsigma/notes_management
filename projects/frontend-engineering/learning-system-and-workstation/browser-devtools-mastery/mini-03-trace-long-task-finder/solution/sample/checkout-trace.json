@@ -1,0 +1,14 @@
+{
+  "traceEvents": [
+    { "name": "process_name", "ph": "M", "ts": 0, "args": { "name": "Renderer" } },
+    { "name": "RunTask", "ph": "X", "ts": 1000000, "dur": 12000 },
+    { "name": "RunTask", "ph": "X", "ts": 1100000, "dur": 50000 },
+    { "name": "FunctionCall", "ph": "X", "ts": 1150000, "dur": 300000 },
+    { "name": "RunTask", "ph": "X", "ts": 1300000, "dur": 75500 },
+    { "name": "LayoutShift", "ph": "I", "ts": 1450000, "args": { "data": { "score": 0.05, "had_recent_input": false } } },
+    { "name": "RunTask", "ph": "X", "ts": 2000000, "dur": 180000 },
+    { "name": "LayoutShift", "ph": "I", "ts": 2400000, "args": { "data": { "score": 0.12, "had_recent_input": true } } },
+    { "name": "LayoutShift", "ph": "I", "ts": 2800000, "args": { "data": { "score": 0.2, "had_recent_input": false } } },
+    { "name": "RunTask", "ph": "X", "ts": 3000000, "dur": 4000 }
+  ]
+}

@@ -17,5 +17,8 @@ A source map is a JSON file that links positions in generated code (for example 
 - [[devtools-frontend-module-source-map]]
 - [[visual-devtools-frontend-module-map-browser-devtools-mastery]]
 - [[devtools-frontend-tech-and-services]]
+- [[visual-source-map-lookup-browser-devtools-mastery]]
+- [[visual-mini-01-flow-source-map-stack-resolver-browser-devtools-mastery]]
+- [[03-mini-projects-browser-devtools-mastery]]
 
 ## My insights
