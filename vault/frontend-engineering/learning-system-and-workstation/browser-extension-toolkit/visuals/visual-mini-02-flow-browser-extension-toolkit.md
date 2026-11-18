@@ -8,7 +8,7 @@ sources: [dequelabs-axe-core-repo, w3c-wcag22-understanding-contrast-minimum, go
 ---
 # Release a11y and SEO check flow
 
-**Data flow** · teaches What automated accessibility rules can and cannot catch, Contrast and vision emulation checks, Rendered HTML versus source HTML, Redirect chains and structured data
+**Data flow** · teaches What automated accessibility rules can and cannot catch, Contrast checks, Rendered HTML versus source HTML, Redirect chains and structured data
 
 **Why this visual.** Show how saved pages become findings with three outcomes and a CI exit code.
 

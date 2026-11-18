@@ -8,7 +8,7 @@ sources: [retirejs-repo, mdn-csp-docs, chrome-extensions-content-scripts-docs]
 ---
 # Choose the check for each security symptom
 
-**Interactive experiences** · teaches Security and privacy extensions, Vulnerable library and tech fingerprint detection, Security headers, cookies and CSP inspection
+**Interactive experiences** · teaches Security and privacy extensions, Vulnerable library detection, Security headers and CSP inspection
 
 **Why this visual.** Pick the tool that can see each security symptom of a page and order a quick security pass.
 

@@ -14,21 +14,22 @@ sources: [mdn-webextensions-anatomy-docs, chrome-extensions-content-scripts-docs
 
 ```mermaid
 flowchart LR
-  M["Manifest review"] -- "passes" --> P["Team profile"]
+  N["Need a tool"] -- "a built-in panel does the job" --> B["Built-in panels"]
+  N -- "an extension adds data" --> M["Manifest review"]
+  M -- "passes" --> P["Team profile"]
   P --> F["Framework panels"]
   P --> C["Audit checkers"]
   P --> D["Design helpers"]
   P --> R["Request rules"]
-  P --> B["Built-in panels"]
   D -. "host access or activeTab" .-> M
   R -. "DNR permission" .-> M
 ```
 
 ## What it shows
 
-Every candidate passes a manifest review before it joins the team profile. The profile has five groups: framework panels such as React DevTools, audit checkers such as axe-core and Retire.js, design helpers, request rules, and the built-in DevTools panels. Design helpers run content scripts, so they need host access or activeTab. Request rules use declarativeNetRequest, which needs its own permission. Built-in panels need no extension at all.
+When a built-in DevTools panel does the job, the team uses the panel and installs no extension. Otherwise the extension passes a manifest review before it joins the team profile. The profile has four groups: framework panels, audit checkers such as axe-core and Retire.js, design helpers, and request rules. Design helpers need host access or activeTab. Request rules need the declarativeNetRequest permission.
 
-Text alternative: Flowchart: a manifest review leads to the team profile, which branches into five groups: framework panels, audit checkers, design helpers, request rules and built-in panels. Dotted lines send design helpers back to the review for host access or activeTab, and request rules back for the declarativeNetRequest permission, so the permission-heavy groups get the closest check.
+Text alternative: Flowchart: a need for a tool splits two ways. If a built-in panel does the job, it leads to the built-in panels. If an extension adds data, it leads to a manifest review, then to the team profile, which branches into four groups: framework panels, audit checkers, design helpers and request rules. Dotted lines send design helpers back to the review for host access or activeTab, and request rules back for the declarativeNetRequest permission.
 
 ## Check yourself
 

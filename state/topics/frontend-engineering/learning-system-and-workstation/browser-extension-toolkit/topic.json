@@ -7,7 +7,7 @@
   "subdomain": "learning-system-and-workstation",
   "depth": "standard",
   "created_at": "2026-11-18T10:19:12Z",
-  "updated_at": "2026-11-18T13:00:48Z",
+  "updated_at": "2026-11-18T13:17:13Z",
   "paths": {
     "state": "state/topics/frontend-engineering/learning-system-and-workstation/browser-extension-toolkit",
     "vault": "vault/frontend-engineering/learning-system-and-workstation/browser-extension-toolkit",
@@ -61,7 +61,7 @@
       }
     ],
     "outcomes": [
-      "Explain how a framework devtools extension reads component state from a page.",
+      "Explain what framework devtools extensions show (component tree, renders, store actions) and use them to trace a bug.",
       "Explain what automated accessibility and SEO checks catch and what they miss.",
       "Build a script that audits extension manifests for risky permissions.",
       "Build an accessibility and SEO check that runs on every release page.",
@@ -221,7 +221,7 @@
       {
         "order": 6,
         "slug": "security-privacy-extensions",
-        "title": "Security and privacy extensions: libraries, headers and cookies",
+        "title": "Security and privacy extensions: libraries, headers and request blocking",
         "activity": "OrderSteps",
         "complexity": "intermediate",
         "importance": "core",
@@ -630,7 +630,7 @@
         },
         {
           "id": "contrast-and-vision-checks",
-          "title": "Contrast and vision emulation checks",
+          "title": "Contrast checks",
           "parent": "accessibility-extensions",
           "complexity": "intermediate",
           "importance": "core",
@@ -793,7 +793,7 @@
         },
         {
           "id": "vulnerable-library-detection",
-          "title": "Vulnerable library and tech fingerprint detection",
+          "title": "Vulnerable library detection",
           "parent": "security-privacy-extensions",
           "complexity": "intermediate",
           "importance": "core",
@@ -819,7 +819,7 @@
         },
         {
           "id": "headers-cookies-and-csp",
-          "title": "Security headers, cookies and CSP inspection",
+          "title": "Security headers and CSP inspection",
           "parent": "security-privacy-extensions",
           "complexity": "intermediate",
           "importance": "core",
@@ -1117,15 +1117,15 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T10:19:15Z",
-      "finished_at": "2026-11-18T12:59:31Z",
+      "finished_at": "2026-11-18T13:14:00Z",
       "attempts": 1,
       "units": [],
       "note": "",
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "c5c8fc27510d6346b38ae248a5f0428ba47ae1075f5fb687db3d7b0170a52534",
-        "at": "2026-11-18T12:59:31Z",
+        "fingerprint": "647dc08c7ce11e2244b16cb000f6e6eef92b76cb375fc2adeb5a18cd97108799",
+        "at": "2026-11-18T13:14:00Z",
         "forced": false
       }
     },
@@ -1136,7 +1136,7 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T10:21:07Z",
-      "finished_at": "2026-11-18T12:59:50Z",
+      "finished_at": "2026-11-18T13:14:20Z",
       "attempts": 1,
       "units": [
         {
@@ -1169,8 +1169,8 @@
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "108ab1b46f80e718f64a116762acdf21f716955be0002bdcd8ab5262ce20b683",
-        "at": "2026-11-18T12:59:50Z",
+        "fingerprint": "672ec756e815fd85a80286181dcedcbf60ffa8f674935db9dff35bf239ba1538",
+        "at": "2026-11-18T13:14:20Z",
         "forced": false
       }
     },
@@ -1181,15 +1181,15 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T11:47:13Z",
-      "finished_at": "2026-11-18T12:59:56Z",
+      "finished_at": "2026-11-18T13:14:26Z",
       "attempts": 1,
       "units": [],
       "note": "",
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "f457897a121cabb790a1f56a33d920d52663a6751508e0f2075c7ddd7fe200ee",
-        "at": "2026-11-18T12:59:56Z",
+        "fingerprint": "540531c73f09e687504bceeb7a666c3cb52a7410ba89d51fb5f39be9e911a9f5",
+        "at": "2026-11-18T13:14:26Z",
         "forced": false
       }
     },
@@ -1200,7 +1200,7 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T12:12:30Z",
-      "finished_at": "2026-11-18T13:00:01Z",
+      "finished_at": "2026-11-18T13:14:32Z",
       "attempts": 1,
       "units": [
         {
@@ -1218,8 +1218,8 @@
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "0cd590cc2c2db3d3ff4f6b6a8c239a6a5705b893ab39936e0607af51f4439bc0",
-        "at": "2026-11-18T13:00:01Z",
+        "fingerprint": "9c1c996fd1eca250a4451235a6ae6fa2788ea2910f7db806b203bb5e67c17bfe",
+        "at": "2026-11-18T13:14:32Z",
         "forced": false
       }
     },
@@ -1230,7 +1230,7 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T12:12:33Z",
-      "finished_at": "2026-11-18T13:00:07Z",
+      "finished_at": "2026-11-18T13:14:37Z",
       "attempts": 1,
       "units": [
         {
@@ -1278,8 +1278,8 @@
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "6e96ec108289cd49d6ce06ce01595f300a72515daa81fbf8f31b7e5554aab4ba",
-        "at": "2026-11-18T13:00:07Z",
+        "fingerprint": "911341267521d0eb1a568bad8d00b4aaf8b2986d96e7569b0da0102810540ee1",
+        "at": "2026-11-18T13:14:37Z",
         "forced": false
       }
     },
@@ -1290,7 +1290,7 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T12:55:43Z",
-      "finished_at": "2026-11-18T13:00:13Z",
+      "finished_at": "2026-11-18T13:14:43Z",
       "attempts": 2,
       "units": [
         {
@@ -1338,8 +1338,8 @@
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "6d66fe8de4b779c1f4719f363653e6f39b3cd3139cd4081f6002168a46a6564d",
-        "at": "2026-11-18T13:00:13Z",
+        "fingerprint": "e64eb401665d2f4b985072e51252463cc53438af3456d9ac5e32b8ddcc54ebad",
+        "at": "2026-11-18T13:14:43Z",
         "forced": false
       }
     },
@@ -1350,7 +1350,7 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T12:28:23Z",
-      "finished_at": "2026-11-18T13:00:30Z",
+      "finished_at": "2026-11-18T13:14:58Z",
       "attempts": 1,
       "units": [
         {
@@ -1368,8 +1368,8 @@
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "6148337c61de34c505d0c7ad83fe33e1cecd74bffe012bd153eff8b891312056",
-        "at": "2026-11-18T13:00:30Z",
+        "fingerprint": "4dd6c7d06c3b4427721d6857cc1d47be341ffb71dc8f56e129e7559c7de1a0b0",
+        "at": "2026-11-18T13:14:58Z",
         "forced": false
       }
     },
@@ -1380,7 +1380,7 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T12:37:04Z",
-      "finished_at": "2026-11-18T13:00:42Z",
+      "finished_at": "2026-11-18T13:15:11Z",
       "attempts": 1,
       "units": [
         {
@@ -1393,8 +1393,8 @@
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "537d081d73d0ff7bcc0b87c706d142815ce41250718ead36b3a98aff01a936ce",
-        "at": "2026-11-18T13:00:42Z",
+        "fingerprint": "9c7aedc1ae05421337ff575cad67ebb702073f30f68f2fce65e73a50363ce773",
+        "at": "2026-11-18T13:15:11Z",
         "forced": false
       }
     },
@@ -1405,15 +1405,15 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T12:48:36Z",
-      "finished_at": "2026-11-18T13:00:48Z",
+      "finished_at": "2026-11-18T13:15:16Z",
       "attempts": 1,
       "units": [],
       "note": "",
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "f84ad02665ab323db509e6becb3c01a3a10695ba8a0741d9b89fd749bf0412f9",
-        "at": "2026-11-18T13:00:48Z",
+        "fingerprint": "3e76633c4b1f003adc8fdf7f622401d2beb4568e81ff8d582f3c23d3580e64ea",
+        "at": "2026-11-18T13:15:16Z",
         "forced": false
       }
     },
@@ -1421,13 +1421,14 @@
       "id": "finalize",
       "wave": 5,
       "skill": "learn",
-      "status": "in_progress",
+      "status": "failed",
       "scope": "required",
       "started_at": "2026-11-18T12:58:39Z",
       "finished_at": null,
       "attempts": 1,
       "units": [],
-      "note": ""
+      "note": "Host browser limit: smoke needs Playwright Chromium (npx playwright install chromium) and the sandbox blocks the download and headless Chrome. Build passes; all stages intake-notes pass; projects review passed; content review fix-needed was fixed (pages 02/04/06/07, diagram, videos, outcome 1 narrowed) but fresh content+projects reviews must re-run on the new fingerprint. Residual: picomatch <=4.0.7 dev-only high advisory unpatched upstream.",
+      "continue_after_failure": true
     }
   ],
   "recall": {
@@ -1547,123 +1548,6 @@
     }
   },
   "log": [
-    {
-      "at": "2026-11-18T10:21:07Z",
-      "event": "start",
-      "message": "attempt 1",
-      "stage": "research"
-    },
-    {
-      "at": "2026-11-18T10:21:09Z",
-      "event": "unit-add",
-      "message": "unit docs-framework-perf",
-      "stage": "research"
-    },
-    {
-      "at": "2026-11-18T10:21:11Z",
-      "event": "unit-add",
-      "message": "unit docs-a11y-seo",
-      "stage": "research"
-    },
-    {
-      "at": "2026-11-18T10:21:12Z",
-      "event": "unit-add",
-      "message": "unit docs-security-helpers",
-      "stage": "research"
-    },
-    {
-      "at": "2026-11-18T10:21:14Z",
-      "event": "unit-add",
-      "message": "unit repos",
-      "stage": "research"
-    },
-    {
-      "at": "2026-11-18T10:22:14Z",
-      "event": "source-add",
-      "message": "added react-devtools-docs",
-      "stage": "research"
-    },
-    {
-      "at": "2026-11-18T10:22:15Z",
-      "event": "source-add",
-      "message": "added chrome-devtools-perf-overview-docs",
-      "stage": "research"
-    },
-    {
-      "at": "2026-11-18T10:22:24Z",
-      "event": "unit-done",
-      "message": "unit repos",
-      "stage": "research"
-    },
-    {
-      "at": "2026-11-18T10:22:36Z",
-      "event": "source-add",
-      "message": "added dequelabs-axe-core-repo",
-      "stage": "research"
-    },
-    {
-      "at": "2026-11-18T10:22:39Z",
-      "event": "source-add",
-      "message": "added redux-configure-store-docs",
-      "stage": "research"
-    },
-    {
-      "at": "2026-11-18T10:22:41Z",
-      "event": "unit-done",
-      "message": "unit docs-framework-perf",
-      "stage": "research"
-    },
-    {
-      "at": "2026-11-18T10:23:24Z",
-      "event": "note",
-      "message": "SPAWN 2/36"
-    },
-    {
-      "at": "2026-11-18T10:23:24Z",
-      "event": "note",
-      "message": "LOOKAHEAD intake done; running research docs-framework-perf, repos; queued docs-a11y-seo, docs-security-helpers"
-    },
-    {
-      "at": "2026-11-18T10:26:26Z",
-      "event": "source-add",
-      "message": "added google-js-seo-basics-docs",
-      "stage": "research"
-    },
-    {
-      "at": "2026-11-18T10:26:28Z",
-      "event": "source-add",
-      "message": "added google-redirects-docs",
-      "stage": "research"
-    },
-    {
-      "at": "2026-11-18T10:26:31Z",
-      "event": "source-add",
-      "message": "added w3c-wai-selecting-evaluation-tools",
-      "stage": "research"
-    },
-    {
-      "at": "2026-11-18T10:26:32Z",
-      "event": "source-add",
-      "message": "added w3c-wcag22-understanding-contrast-minimum",
-      "stage": "research"
-    },
-    {
-      "at": "2026-11-18T10:26:34Z",
-      "event": "note",
-      "message": "SPAWN 4/36"
-    },
-    {
-      "at": "2026-11-18T10:26:48Z",
-      "event": "unit-done",
-      "message": "unit docs-a11y-seo",
-      "stage": "research"
-    },
-    {
-      "at": "2026-11-18T10:26:58Z",
-      "event": "source-add",
-      "message": "added mdn-webextensions-anatomy-docs",
-      "stage": "research"
-    },
     {
       "at": "2026-11-18T10:27:01Z",
       "event": "source-add",
@@ -2703,6 +2587,121 @@
       "event": "done",
       "message": "gate passed",
       "stage": "notes"
+    },
+    {
+      "at": "2026-11-18T13:04:33Z",
+      "event": "note",
+      "message": "SPAWN 32/36; verify-content + verify-projects (fingerprint 54158af1)"
+    },
+    {
+      "at": "2026-11-18T13:08:57Z",
+      "event": "quality-review",
+      "message": "projects: pass",
+      "stage": "finalize"
+    },
+    {
+      "at": "2026-11-18T13:10:21Z",
+      "event": "note",
+      "message": "REVIEW projects pass recorded; content fix-needed (4 errors, 7 warnings) not recordable after video rebuild changed fingerprint"
+    },
+    {
+      "at": "2026-11-18T13:10:21Z",
+      "event": "plan",
+      "message": "plan fields set: summary, prerequisites, outcomes, lesson_outline, mini_projects, digest_targets, repo_targets, capstone, learner, visual_policy, visual_first, multi_stage, experience_policy, curriculum",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-18T13:11:02Z",
+      "event": "note",
+      "message": "SPAWN 34/36; review fix units: review-pages, review-projects"
+    },
+    {
+      "at": "2026-11-18T13:12:47Z",
+      "event": "note",
+      "message": "review-projects done: vitest 5.1.1 / vite-node 6.0.0; criticals gone; 6 high dev-only from picomatch <=4.0.7 (GHSA-fc5q-39xc-vjpf) unpatched upstream; tests 14/16/51 pass"
+    },
+    {
+      "at": "2026-11-18T13:14:00Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-18T13:14:14Z",
+      "event": "execution-check",
+      "message": "research: pass",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T13:14:20Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T13:14:26Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "brief"
+    },
+    {
+      "at": "2026-11-18T13:14:32Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "digest"
+    },
+    {
+      "at": "2026-11-18T13:14:37Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T13:14:43Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T13:14:52Z",
+      "event": "execution-check",
+      "message": "mini-projects: pass",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-18T13:14:58Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-18T13:15:05Z",
+      "event": "execution-check",
+      "message": "capstone: pass",
+      "stage": "capstone"
+    },
+    {
+      "at": "2026-11-18T13:15:11Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "capstone"
+    },
+    {
+      "at": "2026-11-18T13:15:16Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "notes"
+    },
+    {
+      "at": "2026-11-18T13:17:10Z",
+      "event": "fail",
+      "message": "Host browser limit: smoke needs Playwright Chromium (npx playwright install chromium) and the sandbox blocks the download and headless Chrome. Build passes; all stages intake-notes pass; projects review passed; content review fix-needed was fixed (pages 02/04/06/07, diagram, videos, outcome 1 narrowed) but fresh content+projects reviews must re-run on the new fingerprint. Residual: picomatch <=4.0.7 dev-only high advisory unpatched upstream.",
+      "stage": "finalize"
+    },
+    {
+      "at": "2026-11-18T13:17:13Z",
+      "event": "note",
+      "message": "ROADMAP frontend: section 00.4 done (degraded: finalize); next 01.1"
     }
   ],
   "roadmap": {
@@ -2713,8 +2712,8 @@
     "executions": {
       "research": {
         "version": 2,
-        "fingerprint": "108ab1b46f80e718f64a116762acdf21f716955be0002bdcd8ab5262ce20b683",
-        "at": "2026-11-18T12:59:44Z",
+        "fingerprint": "672ec756e815fd85a80286181dcedcbf60ffa8f674935db9dff35bf239ba1538",
+        "at": "2026-11-18T13:14:14Z",
         "ok": true,
         "checks": [
           {
@@ -2742,7 +2741,7 @@
             "ok": true,
             "status": 200,
             "bytes": 210941,
-            "sha256": "01a35c1e2d347749675a7c63908b9deade27e569298aedb013794f2295434901"
+            "sha256": "43f208cb26014f13e95f0ab3b5a7b4bb64a7f1d037e13aebd5ce65d416066c52"
           },
           {
             "label": "dequelabs-axe-core-repo: https://api.github.com/repos/dequelabs/axe-core",
@@ -2783,8 +2782,8 @@
             "requested_url": "https://developers.google.com/search/docs/crawling-indexing/site-move-with-url-changes",
             "ok": true,
             "status": 200,
-            "bytes": 205580,
-            "sha256": "b43090256997f3bc8fcd5fbccc06aecfe31535f370e82be58d678773cdae9d1b"
+            "bytes": 205576,
+            "sha256": "e9074c1d01392a98ad8be32d9791eac4c7f9f94dae0c24243e1be0f55622804b"
           },
           {
             "label": "google-js-seo-basics-docs: https://developers.google.com/search/docs/crawling-indexing/javascript/javascript-seo-basics",
@@ -2792,8 +2791,8 @@
             "requested_url": "https://developers.google.com/search/docs/crawling-indexing/javascript/javascript-seo-basics",
             "ok": true,
             "status": 200,
-            "bytes": 223947,
-            "sha256": "f11c7f137895d1bf53df5993bb59068bc888eb7c48fbb732e9fc28b64fc7220f"
+            "bytes": 223951,
+            "sha256": "e667e88b69aeaaa73a3941fd1cdf198a4483b2205e30808c75ecd0ce4066ea62"
           },
           {
             "label": "w3c-wai-selecting-evaluation-tools: https://www.w3.org/WAI/test-evaluate/tools/selecting/",
@@ -2829,7 +2828,7 @@
             "ok": true,
             "status": 200,
             "bytes": 205471,
-            "sha256": "28a1dda7a2d85f5cfa3fddc0254cf827447b434bbed3b9e1747234d34aa4db3b"
+            "sha256": "8e8419b4ff0e0f038f659a46594176eeecce9de64b985713d0063fd3844f4f54"
           },
           {
             "label": "mdn-csp-docs: https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CSP",
@@ -2862,14 +2861,14 @@
             "ok": true,
             "status": 200,
             "bytes": 369455,
-            "sha256": "bafeb26c0e741d38ca52b1fa614ee850962250c314428227d29a8994faa9214e"
+            "sha256": "c8d6c2ca5dbcd520aba12b04a2fee8a337b88020db102b9e70093058add35979"
           }
         ]
       },
       "mini-projects": {
         "version": 2,
-        "fingerprint": "6148337c61de34c505d0c7ad83fe33e1cecd74bffe012bd153eff8b891312056",
-        "at": "2026-11-18T13:00:24Z",
+        "fingerprint": "4dd6c7d06c3b4427721d6857cc1d47be341ffb71dc8f56e129e7559c7de1a0b0",
+        "at": "2026-11-18T13:14:52Z",
         "ok": true,
         "checks": [
           {
@@ -2881,7 +2880,7 @@
             "expected_exit": 0,
             "exit": 0,
             "ok": true,
-            "output_sha256": "42dec0f77fd25128e07488e01561351c4925aab2d6ed1a685f8308173c1c29f4"
+            "output_sha256": "d46afb8d20af443ce81af476b3a9adc7ff9af11bf4ae245a66c9e507031b34a5"
           },
           {
             "label": "mini-01-extension-permission-audit: starter-tests",
@@ -2892,7 +2891,7 @@
             "expected_exit": 1,
             "exit": 1,
             "ok": true,
-            "output_sha256": "271078aac2428fa636e2ebc25bff28adc000affa3bff5a8cbd1ba886501c6dba"
+            "output_sha256": "f57d5494ba3fc863a998b5701510131ea7c51c20ce6ba48c8617c27e0afbe416"
           },
           {
             "label": "mini-01-extension-permission-audit: starter-start",
@@ -2905,7 +2904,7 @@
             "expected_exit": 1,
             "exit": 1,
             "ok": true,
-            "output_sha256": "1af7ff58801864188d46171baa1281148ea1683d24acd61cc0f59521fe003c33"
+            "output_sha256": "b56fea0d0f4e68c1c17362c71df0e71b68cf4902bd2033e33e76b413619dc418"
           },
           {
             "label": "mini-01-extension-permission-audit: audit",
@@ -2942,7 +2941,7 @@
             "expected_exit": 0,
             "exit": 0,
             "ok": true,
-            "output_sha256": "32056039a5c5cce6ccc63eda307e87befd7535e5feef7a083755280ea21d72f0"
+            "output_sha256": "80f724cc81242cdfa039c7a0b63a70c11c23a77c7a144ed7a01cf9beeb5e557c"
           },
           {
             "label": "mini-02-release-a11y-seo-check: starter-tests",
@@ -2953,7 +2952,7 @@
             "expected_exit": 1,
             "exit": 1,
             "ok": true,
-            "output_sha256": "0fdb27556425aeb2b0e819f69eefb2ca09a9cf53a6402d0cfbebfab6264f78fe"
+            "output_sha256": "1311862e2bd3fab26ac09803952440c64677cae4d7f1e129eb6f369dd555b5dc"
           },
           {
             "label": "mini-02-release-a11y-seo-check: starter-start",
@@ -2967,7 +2966,7 @@
             "expected_exit": 1,
             "exit": 1,
             "ok": true,
-            "output_sha256": "ab5804d534b6338585c843179497c5122e27e15b80fc9037e476435f4e584c40"
+            "output_sha256": "024919f6474396c60bd3ea32ad1803937e4d381b02284c626618fc9565a65019"
           },
           {
             "label": "mini-02-release-a11y-seo-check: audit",
@@ -2999,8 +2998,8 @@
       },
       "capstone": {
         "version": 2,
-        "fingerprint": "537d081d73d0ff7bcc0b87c706d142815ce41250718ead36b3a98aff01a936ce",
-        "at": "2026-11-18T13:00:37Z",
+        "fingerprint": "9c7aedc1ae05421337ff575cad67ebb702073f30f68f2fce65e73a50363ce773",
+        "at": "2026-11-18T13:15:05Z",
         "ok": true,
         "checks": [
           {
@@ -3012,7 +3011,7 @@
             "expected_exit": 0,
             "exit": 0,
             "ok": true,
-            "output_sha256": "4fcd8e35549a741555676351ad35964b0710de1751b8f7310ecf4499f6f6b770"
+            "output_sha256": "e20dd124e039ee9aae085e30281b37ac4cebf21c95a63891e2cdb141865912d4"
           },
           {
             "label": "capstone: typecheck",
@@ -3044,7 +3043,7 @@
             "expected_exit": 0,
             "exit": 0,
             "ok": true,
-            "output_sha256": "7963429a0b159f70a9d34dfe039d9f09ee982ca1f82c5554079ee3226cace201"
+            "output_sha256": "1d555881e9e1ffadc5a89a796038e24b6902e62a478610b523f13f4c24b40f3d"
           },
           {
             "label": "capstone: audit",
@@ -3060,6 +3059,64 @@
             "output_sha256": "6d8c5c8f3d7684adb070417bd608d01ae90aa3dc26a65af03ffda4955f38d9a3"
           }
         ]
+      }
+    },
+    "reviews": {
+      "projects": {
+        "scope": "projects",
+        "reviewer": "tutor-verifier",
+        "verdict": "pass",
+        "checks": [
+          "solution-tests",
+          "starter-behavior",
+          "dependency-health",
+          "architecture",
+          "documented-commands",
+          "project-diagrams"
+        ],
+        "findings": [
+          {
+            "severity": "warning",
+            "path": "projects/frontend-engineering/learning-system-and-workstation/browser-extension-toolkit/{mini-01-extension-permission-audit/starter,mini-01-extension-permission-audit/solution,mini-02-release-a11y-seo-check/starter,mini-02-release-a11y-seo-check/solution,capstone}/package.json",
+            "problem": "The declared audit (`npm audit --omit=dev --audit-level=high`) passes with 0 vulnerabilities in all five folders. A full `npm audit` that includes dev dependencies reports 7 advisories in each folder (1 moderate, 4 high, 2 critical). They come from the pinned test toolchain vitest/vite-node 3.2.4 (tinypool <=2.1.1 prototype-pollution-to-RCE GHSA-5gmw-xhrv-c9v3 and GHSA-85c8-ppgw-ccpr, plus picomatch, tinyglobby and @vitest/mocker). The learner runs this toolchain on their own machine.",
+            "fix": "Bump vitest and vite-node to a patched release in every package.json and lockfile. Then rerun the tests and the starter checks, and confirm that `npm audit` with dev dependencies has no high or critical advisories. If a bump is not possible, note the dev-only exposure in each README."
+          },
+          {
+            "severity": "warning",
+            "path": "projects/frontend-engineering/learning-system-and-workstation/browser-extension-toolkit/capstone/README.md",
+            "problem": "The README presents `npm start` as the first command but does not say that it exits with code 1. It exits 1 on purpose: sample/page.html has 2 failing checks ('4 pass, 2 fail, 5 need review'), so npm prints an error footer. A learner may read this as a broken setup.",
+            "fix": "Add one line under 'How to run': npm start ends with '4 pass, 2 fail, 5 need review' and exit code 1 on purpose, because the sample page is missing nosniff and other items."
+          },
+          {
+            "severity": "warning",
+            "path": "projects/frontend-engineering/learning-system-and-workstation/browser-extension-toolkit/mini-01-extension-permission-audit/{starter,solution}/tsconfig.json",
+            "problem": "tsconfig sets \"types\": [\"node\"] but neither package installs @types/node. An editor or a `tsc` run reports 'Cannot find type definition file for node'. The tests are not affected.",
+            "fix": "Add @types/node as a pinned devDependency in both starter and solution, or remove the \"types\" entry."
+          },
+          {
+            "severity": "warning",
+            "path": "projects/frontend-engineering/learning-system-and-workstation/browser-extension-toolkit/capstone/src/interface/Cli.ts:84-90",
+            "problem": "The `run` command calls loader.load twice: once inside validateProfile at line 100 and again at line 89. The request-flow diagram in ARCHITECTURE.md shows one load, and the 'compute once' practice the capstone claims to borrow says the same. Behaviour is correct.",
+            "fix": "Have validateProfile return the LoadedProfile with its results and reuse it in `run`, or note the second load in the sequence diagram."
+          }
+        ],
+        "not_checked": [
+          "Capstone Docker build and run: there is no Docker in the sandbox. This is a sub-item of documented-commands. The README states honestly that the Docker recipe was not run. By reading only: the Dockerfile uses node:22.18-alpine with `npm ci --omit=dev` and ENTRYPOINT `node src/main.ts`.",
+          "Vault notes 03/06 were sampled by grep for commands and counts only. Their prose was not reviewed (out of scope for projects)."
+        ],
+        "independent": true,
+        "reviewer_run_id": "verify-projects-00.4",
+        "input_fingerprint": "54158af1b240c73fdbf933c9553e6eb1fbf13686ba633206b3a425065ba53593",
+        "assessments": {
+          "solution-tests": "Ran every verification.json solution-tests check. mini-01 solution npm test: Tests 14 passed (14), matching README. mini-02 solution npm test: 3 files, Tests 16 passed (16), matching README. capstone npm test: 4 files, Tests 51 passed (51), matching README. capstone npm run typecheck exits 0. Capstone integration check prints '7 pass, 0 fail, 3 need review', contains '0 fail', exits 0 on Node 26 native TypeScript.",
+          "starter-behavior": "mini-01 starter npm test: exit 1, 'Tests 13 failed | 1 passed (14)', every failure a TODO(1..5) throw from src/audit.ts, matching README. mini-01 starter start: exit 1 with 'TODO(2): findBroadHostFindings is not implemented yet', as declared. mini-02 starter npm test: exit 1, 'Tests 16 failed (16)', failures are TODO(1), TODO(3) and TODO(5) throws, matching README. mini-02 starter start: exit 1 with 'TODO(1): readHead is not implemented yet', as declared. diff -r of starter and solution shows they differ only in the TODO files.",
+          "dependency-health": "npm install from the pinned lockfiles succeeded in all five folders. The declared `npm audit --omit=dev --audit-level=high` returns 'found 0 vulnerabilities' and exit 0 in all five. Runtime dependencies axe-core 4.14.1 and jsdom 26.1.0 are pinned exactly. The full audit including dev dependencies shows 7 advisories (2 critical, 4 high) in the vitest 3.2.4 toolchain in every folder; reported as a warning. mini-01 tsconfig references missing @types/node (warning).",
+          "architecture": "Capstone import graph checked with grep: domain imports only domain; application imports domain and siblings; infrastructure imports domain, jsdom and axe-core; interface imports application and domain; main.ts wires all layers. Matches ARCHITECTURE.md 'Dependencies point inward'; every class in the responsibilities table exists at its stated file. Confirmed by running: a risky profile stops the run (exit 1); an unknown command exits 2; TOOLKIT_STRICT=true turns review into exit 1; logs go to stderr as JSON lines while the report goes to stdout. A thrown check becomes a review row as claimed. One minor duplicate profile load in Cli.run reported as a warning.",
+          "documented-commands": "Every README command in all three projects was run except Docker. mini-01: install, test, start and the manual check behave as documented. mini-02: solution start ends with 'OK: no new problems' and exit 0; the manual baseline check gives 'FAIL: 1 new problem(s)'. capstone: npm start, validate, checklist, audit, run with profile-risky, npm test and npm run typecheck behave as described; .env.example matches the configuration table. Gaps: npm start exiting 1 is undocumented (warning); Docker not runnable here (not_checked; README discloses this).",
+          "project-diagrams": "Registered visuals mini-01-flow, mini-02-flow, capstone-layers, capstone-request-flow and capstone-deployment are identical to the mermaid blocks in the matching README or ARCHITECTURE.md, and each matches the code: mini-01-flow matches solution/src/audit.ts; mini-02-flow matches solution/src/main.ts:17-38; capstone-layers matches the import graph; capstone-request-flow matches Cli.ts:82-92 and 99-110 except the second load call; capstone-deployment matches Config env vars, logger, renderer, exit codes and the Dockerfile ENTRYPOINT."
+        },
+        "at": "2026-11-18T13:08:57Z",
+        "fingerprint": "54158af1b240c73fdbf933c9553e6eb1fbf13686ba633206b3a425065ba53593"
       }
     }
   },

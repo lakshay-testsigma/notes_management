@@ -1,7 +1,7 @@
 import { parseArgs } from "node:util";
 import { ChecklistBuilder } from "../application/ChecklistBuilder.ts";
 import type { AuditPageUseCase } from "../application/AuditPageUseCase.ts";
-import type { ProfileLoader } from "../application/ProfileLoader.ts";
+import type { LoadedProfile, ProfileLoader } from "../application/ProfileLoader.ts";
 import type { ValidateProfileUseCase } from "../application/ValidateProfileUseCase.ts";
 import { InputError, PolicyError, ProfileError, UsageError } from "../domain/errors.ts";
 import type { CheckResult } from "../domain/Outcome.ts";
@@ -69,7 +69,7 @@ export class Cli {
 
     switch (command) {
       case "validate": {
-        const results = await this.validateProfile(need("profile"), policyPath);
+        const { results } = await this.validateProfile(need("profile"), policyPath);
         return this.finish(results);
       }
       case "checklist": {
@@ -81,12 +81,11 @@ export class Cli {
         return this.finish(await this.auditPage(values, need("page")));
       case "run": {
         // The profile is validated first. A failing extension stops the run.
-        const profileResults = await this.validateProfile(need("profile"), policyPath);
+        const { loaded, results: profileResults } = await this.validateProfile(need("profile"), policyPath);
         if (new Summary(profileResults).hasFailure()) {
           this.deps.out("Profile rejected: page checks were not run.");
           return 1;
         }
-        const loaded = await this.deps.loader.load(need("profile"), policyPath);
         this.deps.out(this.deps.renderer.checklist(loaded.profile.name, this.deps.checklist.build(loaded.profile, loaded.policy)));
         const pageResults = await this.auditPage(values, need("page"));
         return new Summary([...profileResults, ...pageResults]).exitCode(this.deps.strict);
@@ -96,11 +95,11 @@ export class Cli {
     }
   }
 
-  private async validateProfile(profilePath: string, policyPath: string): Promise<CheckResult[]> {
+  private async validateProfile(profilePath: string, policyPath: string): Promise<{ loaded: LoadedProfile; results: CheckResult[] }> {
     const loaded = await this.deps.loader.load(profilePath, policyPath);
     const results = await this.deps.validate.run(loaded);
     this.deps.out(this.deps.renderer.results("Profile validation", results));
-    return results;
+    return { loaded, results };
   }
 
   private async auditPage(values: Record<string, string | undefined>, pagePath: string): Promise<CheckResult[]> {

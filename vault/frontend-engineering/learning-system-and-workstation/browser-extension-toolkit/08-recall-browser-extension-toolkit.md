@@ -85,7 +85,7 @@ Some checks cannot decide, as in axe-core's "incomplete" result. A third outcome
 | Card | Outcome it covers | Reopen when missed |
 |------|-------------------|--------------------|
 | bet-01 | outcome 3: audit manifests for risky permissions | [[visual-how-it-works-browser-extension-toolkit]], then lesson page `01-why-an-extension-toolkit`, listed in [[02-lesson-browser-extension-toolkit]] |
-| bet-02 | outcome 1: how a framework devtools extension reads component state | [[visual-framework-devtools-lab-browser-extension-toolkit]], then lesson page `02-framework-devtools` |
+| bet-02 | outcome 1: what framework devtools extensions show | [[visual-framework-devtools-lab-browser-extension-toolkit]], then lesson page `02-framework-devtools` |
 | bet-03 | outcome 1: store state and actions | lesson page `02-framework-devtools` |
 | bet-04 | outcome 5: extension or built-in panel, lab or field data | lesson page `03-performance-extensions` |
 | bet-05 | outcome 2: what automated accessibility checks miss | [[visual-a11y-check-outcomes-browser-extension-toolkit]], then lesson page `04-accessibility-extensions` |

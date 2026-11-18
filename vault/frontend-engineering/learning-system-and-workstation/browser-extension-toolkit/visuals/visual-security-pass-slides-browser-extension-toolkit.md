@@ -8,7 +8,7 @@ sources: [retirejs-repo, mdn-csp-docs, chrome-extensions-content-scripts-docs]
 ---
 # Pick the right tool for each security symptom
 
-**Branching presentations** · teaches Security and privacy extensions, Vulnerable library and tech fingerprint detection, Security headers, cookies and CSP inspection
+**Branching presentations** · teaches Security and privacy extensions, Vulnerable library detection, Security headers and CSP inspection
 
 **Why this visual.** Choose the right check for three security symptoms of a page (an old library, a missing CSP header, an extension that asks for every site) and put the checks in one quick order.
 

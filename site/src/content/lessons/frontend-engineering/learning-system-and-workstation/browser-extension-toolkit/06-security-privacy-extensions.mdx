@@ -1,33 +1,33 @@
 ---
-title: "Security and privacy extensions: libraries, headers and cookies"
+title: "Security and privacy extensions: libraries, headers and request blocking"
 description: A quick security pass picks the tool that can actually see each symptom of a page.
 order: 6
-concepts: [security-privacy-extensions, vulnerable-library-detection, headers-cookies-and-csp]
+concepts: [security and privacy extensions, Retire.js, Content Security Policy, request blocking]
 ---
 
 {/* <!-- concept: security-privacy-extensions --> */}
 {/* <!-- concept: vulnerable-library-detection --> */}
 {/* <!-- concept: headers-cookies-and-csp --> */}
 
-A page can look fine and still be weak. Three symptoms hide well: an old library version, a missing security header, and a helper extension with too much access. Each needs a different tool, because each tool sees a different layer.
+Three security symptoms hide well: an old library version, a missing security header, and a helper extension with too much access. Each needs a different tool, because each tool sees one layer.
 
 The first layer is the code the page loads. Retire.js is a scanner that finds JavaScript libraries and their versions on a page. It compares each version with a list of versions that have known vulnerabilities. The Elements panel shows the script tag, but no vulnerability data.
 
-The second layer is the response. A Content Security Policy (CSP) is a rule set that tells the browser which scripts and other resources the page may load. The server sends it in an HTTP header, or the page puts it in a `meta` element. The `meta` form lacks some features, and a report-only policy cannot use it. So read the response headers first.
+The second layer is the response. A Content Security Policy (CSP) is a rule set that tells the browser which scripts and other resources the page may load. The server sends it in an HTTP header, or the page puts it in a `meta` element. The `meta` form lacks some features, so read the response headers first.
 
 The third layer is your own browser. A content script, the extension part that runs inside a page, can read and change the DOM of every site its manifest matches. Check the manifest of each helper before you trust it.
 
-Open the deck. Pick a symptom, choose the check, and see what a weak check misses.
+Open the deck. Pick a symptom, choose a check, and see what a weak check misses.
 
 <Experience id="security-pass-deck" />
 
 {/* <!-- concept: ad-block-and-proxy-testing --> */}
-Your users run extensions too. An ad blocker or a privacy extension blocks requests with rules. Test your page with a blocker on: see which scripts fail, and check that the page still works.
+Your users run extensions too. An ad blocker blocks requests with rules. Test your page with a blocker on, and see which scripts fail. So you find a checkout that breaks for users with a blocker before the release, not from support tickets after it.
 
 **Note.** A scan finds known problems only. A library with no listed vulnerability is not proven safe.
 
 <Depth level="production">
-MDN describes two ways to write a CSP. An allowlist names the hosts that may serve scripts. A strict CSP instead marks each allowed script with a nonce, a random value sent with the page, or with a hash of the script text. MDN recommends the strict form, because an allowlisted host can still serve a script that an attacker controls. When you read a header in your pass, look for `nonce-` or `sha256-` values in the `script-src` directive.
+A report-only policy cannot use the `meta` form. MDN describes two ways to write a CSP. An allowlist names the hosts that may serve scripts. A strict CSP instead marks each allowed script with a nonce, a random value sent with the page, or with a hash of the script text. MDN recommends the strict form, because an allowlisted host can still serve a script that an attacker controls. When you read a header in your pass, look for `nonce-` or `sha256-` values in the `script-src` directive.
 </Depth>
 
 <Depth level="internals" title="How a blocker blocks">

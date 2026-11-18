@@ -47,7 +47,7 @@ The manifest declares the parts and their permissions. A content script reads th
 
 ## What you will be able to do
 
-- Explain how a framework devtools extension reads component state from a page.
+- Explain what framework devtools extensions show (component tree, renders, store actions) and use them to trace a bug.
 - Explain what automated accessibility and SEO checks catch and what they miss.
 - Build a script that audits extension manifests for risky permissions.
 - Build an accessibility and SEO check that runs on every release page.

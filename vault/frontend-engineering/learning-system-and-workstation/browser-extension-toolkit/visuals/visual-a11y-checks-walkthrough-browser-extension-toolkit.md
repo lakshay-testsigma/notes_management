@@ -8,7 +8,7 @@ sources: [dequelabs-axe-core-repo, w3c-wai-selecting-evaluation-tools, w3c-wcag2
 ---
 # Pass, fail or incomplete: contrast and heading checks
 
-**Video** · teaches Accessibility extensions, What automated accessibility rules can and cannot catch, Contrast and vision emulation checks
+**Video** · teaches Accessibility extensions, What automated accessibility rules can and cannot catch, Contrast checks
 
 **Why this visual.** See how an automated accessibility check decides pass, fail or incomplete for color contrast and heading order, and what it leaves for a person.
 
@@ -39,7 +39,7 @@ An accessibility scan gives three answers: pass, fail or incomplete. The contras
 Sources:
 
 - dequelabs/axe-core — https://github.com/dequelabs/axe-core
-- Selecting Web Accessibility Evaluation Tools — https://www.w3.org/WAI/test-evaluate/tools/selecting/
+- W3C WAI: Selecting evaluation tools, Evaluation Tools List, and page-structure tutorials (headings, regions) — https://www.w3.org/WAI/test-evaluate/tools/selecting/
 - Understanding SC 1.4.3: Contrast (Minimum) (WCAG 2.2) — https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html
 
 ## What it shows

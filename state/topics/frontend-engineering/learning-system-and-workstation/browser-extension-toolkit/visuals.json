@@ -188,7 +188,7 @@
       "duration_s": 70,
       "scenes": 7,
       "narration": "say",
-      "input_hash": "67437bb0910264d621fc744e2a8af1a7890add0e44bada0bcb4d9ee736d1919b",
+      "input_hash": "3f2323fec93ccc1853dd55c7e8e19e6dbf28143082ac8b2fa92e1787fd5684b8",
       "timeline": [
         {
           "id": "intro",
@@ -354,7 +354,7 @@
       "duration_s": 66,
       "scenes": 7,
       "narration": "say",
-      "input_hash": "e4ee05737269a2ed2a2ee35bd09d929cee110346bb3663d35130ee5b81f8a794",
+      "input_hash": "5ffd5d624c578f74418fa0b4c9e033c00eeab7f166e4c85db636979b1f6ca8d5",
       "timeline": [
         {
           "id": "intro",
@@ -508,8 +508,8 @@
       "chrome-devtools-perf-overview-docs"
     ],
     "purpose": "Show how a team profile groups vetted extensions and which manifest permission each group asks for.",
-    "explanation": "Every candidate passes a manifest review before it joins the team profile. The profile has five groups: framework panels such as React DevTools, audit checkers such as axe-core and Retire.js, design helpers, request rules, and the built-in DevTools panels. Design helpers run content scripts, so they need host access or activeTab. Request rules use declarativeNetRequest, which needs its own permission. Built-in panels need no extension at all.",
-    "alt": "Flowchart: a manifest review leads to the team profile, which branches into five groups: framework panels, audit checkers, design helpers, request rules and built-in panels. Dotted lines send design helpers back to the review for host access or activeTab, and request rules back for the declarativeNetRequest permission, so the permission-heavy groups get the closest check.",
+    "explanation": "When a built-in DevTools panel does the job, the team uses the panel and installs no extension. Otherwise the extension passes a manifest review before it joins the team profile. The profile has four groups: framework panels, audit checkers such as axe-core and Retire.js, design helpers, and request rules. Design helpers need host access or activeTab. Request rules need the declarativeNetRequest permission.",
+    "alt": "Flowchart: a need for a tool splits two ways. If a built-in panel does the job, it leads to the built-in panels. If an extension adds data, it leads to a manifest review, then to the team profile, which branches into four groups: framework panels, audit checkers, design helpers and request rules. Dotted lines send design helpers back to the review for host access or activeTab, and request rules back for the declarativeNetRequest permission.",
     "learning_check": {
       "question": "A CSS helper wants to change styles on every site you open. Which permission do you check before it joins the profile?",
       "answer": "Its host access: a content script can read and change the DOM of every page its manifest matches. Narrow host access, or activeTab for injection on demand, fits the job better."

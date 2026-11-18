@@ -8,7 +8,7 @@ sources: [dequelabs-axe-core-repo, w3c-wai-selecting-evaluation-tools, w3c-wcag2
 ---
 # Pass, fail or incomplete for contrast and heading checks
 
-**Flowchart** · teaches Accessibility extensions, What automated accessibility rules can and cannot catch, Contrast and vision emulation checks
+**Flowchart** · teaches Accessibility extensions, What automated accessibility rules can and cannot catch, Contrast checks
 
 **Why this visual.** Show how an automated contrast or heading check reaches pass, fail or incomplete, and what stays for a person.
 

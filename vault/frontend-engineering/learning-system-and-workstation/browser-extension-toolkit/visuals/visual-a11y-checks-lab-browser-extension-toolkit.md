@@ -8,7 +8,7 @@ sources: [dequelabs-axe-core-repo, w3c-wai-selecting-evaluation-tools, w3c-wcag2
 ---
 # Change colors and headings, predict the accessibility check
 
-**Interactive experiences** · teaches Accessibility extensions, What automated accessibility rules can and cannot catch, Contrast and vision emulation checks
+**Interactive experiences** · teaches Accessibility extensions, What automated accessibility rules can and cannot catch, Contrast checks
 
 **Why this visual.** Predict whether an automated contrast or heading-order check passes, fails or returns incomplete, and name what a person must still review.
 

@@ -38,8 +38,8 @@ React DevTools adds the Components and Profiler panels on websites built with Re
 
 Sources:
 
-- React Developer Tools — https://react.dev/learn/react-developer-tools
-- Configuring Your Store (Redux, Redux DevTools Extension integration) — https://redux.js.org/usage/configuring-your-store
+- React docs set: React Developer Tools, and Render and Commit — https://react.dev/learn/react-developer-tools
+- Redux docs set: Configuring Your Store and Essentials Part 1 (Redux DevTools Extension) — https://redux.js.org/usage/configuring-your-store
 
 ## What it shows
 

@@ -1,9 +1,10 @@
 flowchart LR
-  M["Manifest review"] -- "passes" --> P["Team profile"]
+  N["Need a tool"] -- "a built-in panel does the job" --> B["Built-in panels"]
+  N -- "an extension adds data" --> M["Manifest review"]
+  M -- "passes" --> P["Team profile"]
   P --> F["Framework panels"]
   P --> C["Audit checkers"]
   P --> D["Design helpers"]
   P --> R["Request rules"]
-  P --> B["Built-in panels"]
   D -. "host access or activeTab" .-> M
   R -. "DNR permission" .-> M

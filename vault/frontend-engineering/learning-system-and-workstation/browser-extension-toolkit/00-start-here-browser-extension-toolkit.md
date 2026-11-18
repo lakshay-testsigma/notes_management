@@ -44,7 +44,7 @@ Run `npm run site:dev` in the repository root, then open `/frontend-engineering/
 
 ## What you will be able to do
 
-- Explain how a framework devtools extension reads component state from a page.
+- Explain what framework devtools extensions show (component tree, renders, store actions) and use them to trace a bug.
 - Explain what automated accessibility and SEO checks catch and what they miss.
 - Build a script that audits extension manifests for risky permissions.
 - Build an accessibility and SEO check that runs on every release page.
@@ -57,7 +57,7 @@ Run `npm run site:dev` in the repository root, then open `/frontend-engineering/
 3. Performance extensions: wasted renders and field data — `/frontend-engineering/learning-system-and-workstation/browser-extension-toolkit/lesson/03-performance-extensions/`
 4. Accessibility extensions: automated checks and their limits — `/frontend-engineering/learning-system-and-workstation/browser-extension-toolkit/lesson/04-accessibility-extensions/`
 5. SEO extensions: rendered source, redirects and structured data — `/frontend-engineering/learning-system-and-workstation/browser-extension-toolkit/lesson/05-seo-extensions/`
-6. Security and privacy extensions: libraries, headers and cookies — `/frontend-engineering/learning-system-and-workstation/browser-extension-toolkit/lesson/06-security-privacy-extensions/`
+6. Security and privacy extensions: libraries, headers and request blocking — `/frontend-engineering/learning-system-and-workstation/browser-extension-toolkit/lesson/06-security-privacy-extensions/`
 7. Design, API helpers and a team extension profile in practice — `/frontend-engineering/learning-system-and-workstation/browser-extension-toolkit/lesson/07-team-toolkit-in-practice/`
 
 ## Research scope and concept notes
@@ -75,14 +75,14 @@ Browser extensions a frontend developer installs once and uses across the roadma
 - CrUX field data and lab data: included
 - Accessibility extensions: included
 - What automated accessibility rules can and cannot catch: included
-- Contrast and vision emulation checks: included
+- Contrast checks: included
 - Headings and landmarks structure: included
 - SEO extensions: included
 - Rendered HTML versus source HTML: included
 - Redirect chains and structured data: included
 - Security and privacy extensions: included
-- Vulnerable library and tech fingerprint detection: included
-- Security headers, cookies and CSP inspection: included
+- Vulnerable library detection: included
+- Security headers and CSP inspection: included
 - Ad-block resilience and proxy testing: included
 - Design and CSS helper extensions: included
 - API and data extensions: included
@@ -110,9 +110,9 @@ Research stopped: budget-limit. Coverage audit round 1: widened W3C WAI, react.d
 | 3 | mini-projects | ready |
 | 4 | capstone | ready |
 | 5 | notes | ready |
-| 5 | finalize | in progress |
+| 5 | finalize | needs another try |
 
-Next to generate: `finalize`. Ask Claude to continue this topic, or run `node harness/bin/tutor.mjs next frontend-engineering/learning-system-and-workstation/browser-extension-toolkit`.
+Everything is generated. Review due cards with `node harness/bin/tutor.mjs recall due browser-extension-toolkit`.
 <!-- tutor:generated:end -->
 
 ## My insights

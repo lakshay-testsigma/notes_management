@@ -27,6 +27,8 @@ node src/main.ts audit --page sample/page.html --headers sample/headers.txt --ur
 node src/main.ts run --profile sample/profile-risky.json --page sample/page.html   # stops: super-helper fails
 ```
 
+`npm start` ends with "4 pass, 2 fail, 5 need review" and exit code 1. This is on purpose: the sample page misses the `nosniff` header and more, so the tool has something to report.
+
 With Docker:
 
 ```bash
