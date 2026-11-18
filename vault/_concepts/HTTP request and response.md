@@ -16,5 +16,6 @@ A browser sends an HTTP request to a server for each resource it needs. The serv
 - [[chrome-devtools-network-docs-browser-devtools-mastery]]
 - [[01-brief-browser-extension-toolkit]]
 - [[google-js-seo-basics-docs-browser-extension-toolkit]]
+- [[01-brief-internet-and-networking]]
 
 ## My insights

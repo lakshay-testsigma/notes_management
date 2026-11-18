@@ -11,13 +11,13 @@ created: 2026-11-18
 This is the map of the topic. Read the steps from top to bottom. Each step links to the next thing to open, so you never have to search.
 
 <!-- tutor:generated:start -->
-**Depth:** deep · **Progress:** 2 of 10 steps ready
+**Depth:** deep · **Progress:** 3 of 10 steps ready
 
 The network layers under every web page: packets, DNS, HTTP and its versions, TLS, URLs and origins, caching, CDNs, compression, cookies, realtime transports and API styles.
 
 ## Read in this order
 
-1. [[01-brief-internet-and-networking|Brief]] — what it is, why it exists, where it is used · *not started*
+1. [[01-brief-internet-and-networking|Brief]] — what it is, why it exists, where it is used · *ready*
 2. [[02-lesson-internet-and-networking|Interactive lesson]] — the animated lesson pages on the local site · *not started*
 3. [[03-mini-projects-internet-and-networking|Mini projects]] — small builds with a real use case · *not started*
 4. [[00-digests-internet-and-networking|Digests]] — short summaries of the key papers and docs · *not started*
@@ -136,7 +136,7 @@ Research stopped: budget-limit. Children expanded against the same sources. Prop
 |------|-------|--------|
 | 0 | intake | ready |
 | 1 | research | ready |
-| 1 | brief | not started |
+| 1 | brief | ready |
 | 2 | digest | not started |
 | 2 | repo-intel | not started |
 | 3 | lesson | not started |
@@ -145,7 +145,7 @@ Research stopped: budget-limit. Children expanded against the same sources. Prop
 | 5 | notes | not started |
 | 5 | finalize | not started |
 
-Next to generate: `brief`. Ask Claude to continue this topic, or run `node harness/bin/tutor.mjs next frontend-engineering/how-the-web-works/internet-and-networking`.
+Next to generate: `digest`, `repo-intel`. Ask Claude to continue this topic, or run `node harness/bin/tutor.mjs next frontend-engineering/how-the-web-works/internet-and-networking`.
 <!-- tutor:generated:end -->
 
 ## My insights

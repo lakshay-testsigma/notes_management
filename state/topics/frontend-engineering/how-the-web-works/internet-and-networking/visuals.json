@@ -1,0 +1,36 @@
+[
+  {
+    "id": "how-it-works",
+    "title": "The journey of one web request",
+    "kind": "workflow",
+    "scope": "end-to-end",
+    "format": "mermaid",
+    "file": "vault/frontend-engineering/how-the-web-works/internet-and-networking/visuals/assets/how-it-works-internet-and-networking.mmd",
+    "concept_ids": [
+      "dns-resolution",
+      "tcp-vs-udp",
+      "tls-and-https",
+      "http-messages",
+      "http-caching",
+      "cdns-and-edge",
+      "http-compression",
+      "cookies"
+    ],
+    "source_ids": [
+      "mdn-http-docs",
+      "hpbn-book",
+      "cloudflare-docs",
+      "rfc-9111-http-caching"
+    ],
+    "purpose": "Show the order of the network steps behind every page load, so each later page has a place in one picture.",
+    "explanation": "The browser first asks DNS for the server's IP address. It opens a connection (TCP, or QUIC for HTTP/3) and runs a TLS handshake to encrypt it and check the certificate. It sends an HTTP request with headers and cookies. A browser cache or a CDN can answer from a fresh stored copy; otherwise the origin server builds the response, usually compressed and with cache headers. The browser then renders the page.",
+    "alt": "Flowchart: you type a URL, DNS turns the name into an IP address, the browser connects with TCP or QUIC, TLS encrypts and checks the certificate, the browser sends an HTTP request with headers and cookies. If a cache or CDN has a fresh copy it answers; otherwise the origin server builds a compressed response with cache headers. Both paths end with the browser rendering the page.",
+    "learning_check": {
+      "question": "A second visit to a page is much faster although the server is slow. Which step most likely answered, and what decided it?",
+      "answer": "A cache (the browser cache or a CDN) answered with a stored copy. The Cache-Control headers of the first response decided how long that copy stays fresh."
+    },
+    "used_in": [
+      "vault/frontend-engineering/how-the-web-works/internet-and-networking/01-brief-internet-and-networking.md"
+    ]
+  }
+]

@@ -7,7 +7,7 @@
   "subdomain": "how-the-web-works",
   "depth": "deep",
   "created_at": "2026-11-18T12:13:22Z",
-  "updated_at": "2026-11-18T12:26:27Z",
+  "updated_at": "2026-11-18T13:18:10Z",
   "paths": {
     "state": "state/topics/frontend-engineering/how-the-web-works/internet-and-networking",
     "vault": "vault/frontend-engineering/how-the-web-works/internet-and-networking",
@@ -2068,13 +2068,20 @@
       "id": "brief",
       "wave": 1,
       "skill": "learn-brief",
-      "status": "pending",
+      "status": "done",
       "scope": "required",
-      "started_at": null,
-      "finished_at": null,
-      "attempts": 0,
+      "started_at": "2026-11-18T13:17:30Z",
+      "finished_at": "2026-11-18T13:18:10Z",
+      "attempts": 1,
       "units": [],
-      "note": ""
+      "note": "",
+      "continue_after_failure": false,
+      "validation": {
+        "version": 2,
+        "fingerprint": "416006bbbfdec34a2ae28a45b05d45251f3be620d82f5f8ee9281822113b37c3",
+        "at": "2026-11-18T13:18:10Z",
+        "forced": false
+      }
     },
     {
       "id": "digest",
@@ -2489,6 +2496,34 @@
       "event": "done",
       "message": "gate passed",
       "stage": "research"
+    },
+    {
+      "at": "2026-11-18T12:26:39Z",
+      "event": "note",
+      "message": "LOOKAHEAD stopped after research; brief waits for 00.4 finalize"
+    },
+    {
+      "at": "2026-11-18T13:17:30Z",
+      "event": "start",
+      "message": "attempt 1",
+      "stage": "brief"
+    },
+    {
+      "at": "2026-11-18T13:17:33Z",
+      "event": "visual",
+      "message": "added visual how-it-works"
+    },
+    {
+      "at": "2026-11-18T13:17:52Z",
+      "event": "gate-failed",
+      "message": "2 problems",
+      "stage": "brief"
+    },
+    {
+      "at": "2026-11-18T13:18:10Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "brief"
     }
   ],
   "roadmap": {

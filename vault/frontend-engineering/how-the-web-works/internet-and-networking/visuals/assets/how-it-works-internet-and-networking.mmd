@@ -1,0 +1,11 @@
+flowchart LR
+  U[You type a URL] --> D[DNS: name to IP address]
+  D --> C[Connect: TCP or QUIC]
+  C --> T[TLS: encrypt and check the certificate]
+  T --> R[HTTP request with headers and cookies]
+  R --> K{Cache or CDN has a fresh copy?}
+  K -- yes --> P[Response from the cache]
+  K -- no --> S[Origin server builds the response]
+  S --> P2[Compressed response with cache headers]
+  P --> B[Browser renders the page]
+  P2 --> B
