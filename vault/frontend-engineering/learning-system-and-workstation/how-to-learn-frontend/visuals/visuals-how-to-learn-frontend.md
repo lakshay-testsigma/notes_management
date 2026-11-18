@@ -11,6 +11,8 @@ Every diagram, simulation and video of this topic, with the concepts it teaches 
 
 - [[concept-map-how-to-learn-frontend|Concept map]] — how the concepts of this topic depend on each other
 
-No visual is registered yet.
+## Workflow
+
+- [[visual-how-it-works-how-to-learn-frontend|The learning loop]] — See the four steps of the learning loop as one repeatable cycle.
 
 ## My insights

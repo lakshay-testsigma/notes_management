@@ -1,0 +1,26 @@
+[
+  {
+    "id": "how-it-works",
+    "title": "The learning loop",
+    "kind": "workflow",
+    "scope": "end-to-end",
+    "format": "mermaid",
+    "file": "vault/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend/visuals/assets/how-it-works-how-to-learn-frontend.mmd",
+    "concept_ids": [
+      "learning-loop"
+    ],
+    "source_ids": [
+      "mdn-learn-web-development"
+    ],
+    "purpose": "See the four steps of the learning loop as one repeatable cycle.",
+    "explanation": "Read, build, measure, and explain form one loop: each step feeds the next, and explaining leads back to reading the next topic. This is the method the whole roadmap follows.",
+    "alt": "Four steps in a circle: read the primary doc, build a small demo, measure in DevTools, then explain or teach it, which leads back to reading.",
+    "learning_check": {
+      "question": "Which step starts the next loop?",
+      "answer": "Explain, because teaching a topic shows the next gap to read about."
+    },
+    "used_in": [
+      "vault/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend/01-brief-how-to-learn-frontend.md"
+    ]
+  }
+]
