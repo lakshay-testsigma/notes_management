@@ -5,8 +5,8 @@
   "type": "module",
   "description": "Check a site's saved DNS, TLS and HAR data against a network policy before launch.",
   "scripts": {
-    "start": "node src/main.ts fixtures/good",
-    "start:bad": "node src/main.ts fixtures/bad",
+    "start": "node --env-file=.env.example src/main.ts fixtures/good",
+    "start:bad": "node --env-file=.env.example src/main.ts fixtures/bad",
     "test": "vitest run",
     "typecheck": "tsc --noEmit"
   },

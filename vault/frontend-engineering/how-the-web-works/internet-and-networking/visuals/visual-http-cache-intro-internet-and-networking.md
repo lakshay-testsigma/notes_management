@@ -37,7 +37,7 @@ A browser asks for app.css. The first request misses and the cache stores the 20
 Sources:
 
 - RFC 9111: HTTP Caching — https://www.rfc-editor.org/rfc/rfc9111
-- HTTP (MDN Web Docs documentation set) — https://developer.mozilla.org/en-US/docs/Web/HTTP
+- MDN Web Docs: HTTP and web networking — https://developer.mozilla.org/en-US/docs/Web/HTTP
 
 ## What it shows
 

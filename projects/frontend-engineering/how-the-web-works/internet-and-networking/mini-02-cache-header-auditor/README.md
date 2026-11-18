@@ -55,7 +55,7 @@ To audit your own site, open DevTools, go to the Network tab, choose "Save all a
 
 ## Your tasks
 
-1. **Parse `Cache-Control` strictly.** In `src/cacheControl.ts`, implement `parseCacheControl`. Done when `tests/cacheControl.test.ts` passes. A repeated `max-age` keeps the smallest value, because a cache that sees two values must not use the larger one.
+1. **Parse `Cache-Control` strictly.** In `src/cacheControl.ts`, implement `parseCacheControl`. Done when `tests/cacheControl.test.ts` passes. A repeated `max-age` keeps the smallest value. This is an auditor choice, the most cautious reading: RFC 9111 (Section 4.2.1) lets a cache use the first value or treat the response as stale, so a repeated directive is itself worth flagging.
 2. **Classify an entry.** In `src/classify.ts`, implement `classify`. Done when `tests/classify.test.ts` passes. HTML is found by its type, not by its path.
 3. **Grade hashed assets.** In `src/rules.ts`, implement `gradeHashedAsset`. Done when the `gradeHashedAsset` tests pass.
 4. **Grade HTML.** In `src/rules.ts`, implement `gradeHtml`. Done when the `gradeHtml` tests pass.
@@ -111,4 +111,4 @@ Read this only after you finish, or when you are stuck after the hints.
 
 ## Compare with the solution
 
-The finished project is in `../solution/`. When you compare, look at how `readCacheControl` stops early and turns an unreadable header into `unknown`, why `parseCacheControl` takes the minimum of repeated values, and which rules this auditor does not check (`Expires`, `s-maxage`, `Age`, `Authorization` traffic). A written skip list like this one is part of a trustworthy audit.
+The finished project is in `../solution/`. When you compare, look at how `readCacheControl` stops early and turns an unreadable header into `unknown`, why `parseCacheControl` takes the minimum of repeated values (a cautious auditor choice; RFC 9111 allows the first value or stale), and which rules this auditor does not check (`Expires`, `s-maxage`, `Age`, `Authorization` traffic). A written skip list like this one is part of a trustworthy audit.

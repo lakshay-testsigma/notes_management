@@ -41,7 +41,7 @@ The walkthrough steps through seven cache rules. max-age sets a lifetime; a stal
 Sources:
 
 - RFC 9111: HTTP Caching — https://www.rfc-editor.org/rfc/rfc9111
-- HTTP (MDN Web Docs documentation set) — https://developer.mozilla.org/en-US/docs/Web/HTTP
+- MDN Web Docs: HTTP and web networking — https://developer.mozilla.org/en-US/docs/Web/HTTP
 - Cloudflare developer documentation (DNS, Cache, Workers, Images) — https://developers.cloudflare.com/
 - nodejs/undici: HTTP/1.1 client for Node.js (fetch, cache interceptor, cookies) — https://github.com/nodejs/undici
 

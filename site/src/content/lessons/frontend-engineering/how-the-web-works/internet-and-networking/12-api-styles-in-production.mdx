@@ -2,7 +2,7 @@
 title: "REST, GraphQL and RPC in production"
 description: Each API style puts its contract in a different place, and that place decides what HTTP caching can do for you.
 order: 12
-concepts: [API styles, GraphQL queries, Connect RPC, HTTP caching]
+concepts: [API styles, GraphQL queries, Connect RPC]
 ---
 
 {/* <!-- concept: api-styles --> */}
@@ -17,7 +17,7 @@ Follow each arrow and see which one reaches the cache.
 
 <Diagram id="api-style-map" />
 
-Only GET requests reach the cache. GraphQL servers must accept POST and may accept GET for queries; GET puts the query in the URL, but long queries can pass URL length limits. Connect can also send a method marked side-effect free as a GET request, so browsers and CDNs can cache it. Connect works over HTTP/1.1, HTTP/2 and HTTP/3, and it also speaks gRPC and gRPC-Web, so browsers and services share one typed contract.
+In practice, only GET responses are cached. GraphQL servers must accept POST and may accept GET for queries; GET puts the query in the URL, but long queries can pass URL length limits. Connect can also send a method marked side-effect free as a GET request, so browsers and CDNs can cache it. Connect works over HTTP/1.1, HTTP/2 and HTTP/3, and it also speaks gRPC and gRPC-Web, so browsers and services share one typed contract.
 
 <SortBuckets
   prompt="Sort each API need into the style that fits it best."
@@ -29,7 +29,7 @@ Only GET requests reach the cache. GraphQL servers must accept POST and may acce
     { text: "Several clients that each pick different fields of the same data", bucket: "GraphQL" },
     { text: "Browser and Go services that share one typed Protobuf contract", bucket: "RPC" },
     { text: "Backend that already serves gRPC and now needs browser calls", bucket: "RPC" },
-    { text: "Typed read-only lookup that a CDN may cache through GET", bucket: "RPC" }
+    { text: "Read-only call on a shared Protobuf contract, sent as GET so a CDN may cache it", bucket: "RPC" }
   ]}
   explanation="REST gives each resource a URL, which HTTP caches use as the key. GraphQL lets each client choose its fields at one endpoint, which removes extra round trips but needs GET for HTTP caching. Connect RPC shares typed Protobuf methods and supports gRPC and gRPC-Web, so one contract serves browsers and services; its side-effect-free methods can use GET, so caches work for RPC too."
 />

@@ -7,7 +7,7 @@
   "subdomain": "how-the-web-works",
   "depth": "deep",
   "created_at": "2026-11-18T12:13:22Z",
-  "updated_at": "2026-11-18T15:34:48Z",
+  "updated_at": "2026-11-18T15:51:26Z",
   "paths": {
     "state": "state/topics/frontend-engineering/how-the-web-works/internet-and-networking",
     "vault": "vault/frontend-engineering/how-the-web-works/internet-and-networking",
@@ -541,7 +541,7 @@
           "source_ids": [],
           "coverage": [],
           "prerequisites": [],
-          "reason": "Final state after both audit rounds: page 1 names IP addresses and ports inside the packet journey (hpbn-book); no recorded source explains addressing and port ranges in depth, so subnetting and port details stay out of this topic."
+          "reason": "Where it is taught: page 1 of this topic (01-how-the-internet-works) explains what an IP address and a port are, which is what roadmap item how-the-internet-works asks. Deeper addressing (IPv4/IPv6 formats, subnets, port ranges) is outside the frontend roadmap: no later section teaches it, and no recorded source here covers it."
         },
         {
           "id": "tcp-vs-udp",
@@ -2191,15 +2191,15 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T12:14:53Z",
-      "finished_at": "2026-11-18T15:32:58Z",
+      "finished_at": "2026-11-18T15:46:18Z",
       "attempts": 1,
       "units": [],
       "note": "",
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "abfb214e6980a2b35be2accaf22f4bdbc5ba8eaf290c9c28b9d26ce9c38ba64f",
-        "at": "2026-11-18T15:32:58Z",
+        "fingerprint": "332bd9d4958d85d92fef442989046d96c3f1101eb2479d9ace0097f2501e0cea",
+        "at": "2026-11-18T15:46:18Z",
         "forced": false
       }
     },
@@ -2210,7 +2210,7 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T12:15:49Z",
-      "finished_at": "2026-11-18T15:33:06Z",
+      "finished_at": "2026-11-18T15:46:26Z",
       "attempts": 1,
       "units": [
         {
@@ -2243,8 +2243,8 @@
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "63bd158b1e11f31b0df7b5ee379e6c033eaac06450a1aadaae73485160601d99",
-        "at": "2026-11-18T15:33:06Z",
+        "fingerprint": "3f1173ddfb580c357208620f228651cfc89c4f74308cbcb43a15074da7971731",
+        "at": "2026-11-18T15:46:26Z",
         "forced": false
       }
     },
@@ -2255,15 +2255,15 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T13:17:30Z",
-      "finished_at": "2026-11-18T15:33:13Z",
+      "finished_at": "2026-11-18T15:46:34Z",
       "attempts": 1,
       "units": [],
       "note": "",
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "f881c2676bcc29b3925b95cce1ee7d87fa9e787204b0eb5f4704b9159e974d0e",
-        "at": "2026-11-18T15:33:13Z",
+        "fingerprint": "0d69af4f177e1ad839ffd0b511cd0d45d6494413053ec12a92eec60177f3bfe7",
+        "at": "2026-11-18T15:46:34Z",
         "forced": false
       }
     },
@@ -2274,7 +2274,7 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T13:22:24Z",
-      "finished_at": "2026-11-18T15:33:20Z",
+      "finished_at": "2026-11-18T15:46:41Z",
       "attempts": 1,
       "units": [
         {
@@ -2302,8 +2302,8 @@
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "07492f9c545f5dee1b140bc6532a5ea84551fe1276e95a3596edd4cfcb0ed3e5",
-        "at": "2026-11-18T15:33:20Z",
+        "fingerprint": "6b18ebd8465c48252b93921e5851c06b449c34b488f07c8114a2f2cb1715adc0",
+        "at": "2026-11-18T15:46:41Z",
         "forced": false
       }
     },
@@ -2314,7 +2314,7 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T13:22:27Z",
-      "finished_at": "2026-11-18T15:33:27Z",
+      "finished_at": "2026-11-18T15:46:49Z",
       "attempts": 1,
       "units": [
         {
@@ -2392,8 +2392,8 @@
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "0cd37cdf1a75ada8ed4ee4c57f53c18d970f3f31f092bf6b58976b4b01495100",
-        "at": "2026-11-18T15:33:27Z",
+        "fingerprint": "82bee4f84af3ce2e0742ff173906ce63a86680a6176e145f9dacbc19c5004522",
+        "at": "2026-11-18T15:46:49Z",
         "forced": false
       }
     },
@@ -2403,21 +2403,10 @@
       "skill": "learn-site",
       "status": "done",
       "scope": "required",
-      "started_at": "2026-11-18T15:29:20Z",
-      "finished_at": "2026-11-18T15:33:35Z",
-      "attempts": 4,
-      "units": [
-        {
-          "id": "review2-fix-pages-01-05-06",
-          "status": "done",
-          "handoff": null
-        },
-        {
-          "id": "review2-fix-pages-03-09-10-11",
-          "status": "done",
-          "handoff": null
-        }
-      ],
+      "started_at": "2026-11-18T15:46:57Z",
+      "finished_at": "2026-11-18T15:48:32Z",
+      "attempts": 5,
+      "units": [],
       "note": "",
       "continue_after_failure": false,
       "history": [
@@ -2531,12 +2520,35 @@
             }
           ],
           "note": ""
+        },
+        {
+          "at": "2026-11-18T15:46:53Z",
+          "status": "done",
+          "validation": {
+            "version": 2,
+            "fingerprint": "f434ec2a46221c5c4947ab155057762cecf7b48bda28ce02721a389323100f88",
+            "at": "2026-11-18T15:33:35Z",
+            "forced": false
+          },
+          "units": [
+            {
+              "id": "review2-fix-pages-01-05-06",
+              "status": "done",
+              "handoff": null
+            },
+            {
+              "id": "review2-fix-pages-03-09-10-11",
+              "status": "done",
+              "handoff": null
+            }
+          ],
+          "note": ""
         }
       ],
       "validation": {
         "version": 2,
-        "fingerprint": "f434ec2a46221c5c4947ab155057762cecf7b48bda28ce02721a389323100f88",
-        "at": "2026-11-18T15:33:35Z",
+        "fingerprint": "09703a4995eb3bc096e43b73e8d1aff098b4b3c562f66ff200e8a7a517c1ab18",
+        "at": "2026-11-18T15:48:32Z",
         "forced": false
       }
     },
@@ -2547,7 +2559,7 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T13:49:53Z",
-      "finished_at": "2026-11-18T15:33:56Z",
+      "finished_at": "2026-11-18T15:49:03Z",
       "attempts": 1,
       "units": [
         {
@@ -2570,8 +2582,8 @@
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "1c7e41aa5f21513bde452e983d10f838003ef7fb34e2369068a7be9f9fd6aff4",
-        "at": "2026-11-18T15:33:56Z",
+        "fingerprint": "e182cc25d79a5fcede0afde76e47db599db3c81e9c0c169ac0d8528f9afe2f2f",
+        "at": "2026-11-18T15:49:03Z",
         "forced": false
       }
     },
@@ -2582,7 +2594,7 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T14:07:48Z",
-      "finished_at": "2026-11-18T15:34:13Z",
+      "finished_at": "2026-11-18T15:49:26Z",
       "attempts": 1,
       "units": [
         {
@@ -2595,8 +2607,8 @@
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "1230f073196129ddcd9dd605ba5bd18d8aab2a4a55d42137e8621e55b0b82bcb",
-        "at": "2026-11-18T15:34:13Z",
+        "fingerprint": "1568bdc77a0d53f371eee1e491220498977f9835a2c7cb772a8ac3c2e62814b5",
+        "at": "2026-11-18T15:49:26Z",
         "forced": false
       }
     },
@@ -2606,9 +2618,9 @@
       "skill": "learn-notes",
       "status": "done",
       "scope": "required",
-      "started_at": "2026-11-18T15:34:22Z",
-      "finished_at": "2026-11-18T15:34:30Z",
-      "attempts": 4,
+      "started_at": "2026-11-18T15:49:39Z",
+      "finished_at": "2026-11-18T15:49:50Z",
+      "attempts": 5,
       "units": [],
       "note": "",
       "continue_after_failure": false,
@@ -2648,12 +2660,30 @@
           },
           "units": [],
           "note": ""
+        },
+        {
+          "at": "2026-11-18T15:47:37Z",
+          "status": "done",
+          "validation": {
+            "version": 2,
+            "fingerprint": "96b72af1e5e082e0fec5b3e1d6efeeb480de6e75cd0b57bd587e1b79994314cd",
+            "at": "2026-11-18T15:34:30Z",
+            "forced": false
+          },
+          "units": [],
+          "note": ""
+        },
+        {
+          "at": "2026-11-18T15:49:34Z",
+          "status": "pending",
+          "units": [],
+          "note": ""
         }
       ],
       "validation": {
         "version": 2,
-        "fingerprint": "96b72af1e5e082e0fec5b3e1d6efeeb480de6e75cd0b57bd587e1b79994314cd",
-        "at": "2026-11-18T15:34:30Z",
+        "fingerprint": "c7ba235b28d24b2f862595ac96d7a823fd8ff1ab4582c1766116c8bb8fc74bb5",
+        "at": "2026-11-18T15:49:50Z",
         "forced": false
       }
     },
@@ -2661,13 +2691,14 @@
       "id": "finalize",
       "wave": 5,
       "skill": "learn",
-      "status": "in_progress",
+      "status": "failed",
       "scope": "required",
-      "started_at": "2026-11-18T15:34:35Z",
+      "started_at": "2026-11-18T15:49:56Z",
       "finished_at": null,
-      "attempts": 4,
+      "attempts": 5,
       "units": [],
-      "note": ""
+      "note": "Host browser limit: site smoke needs Playwright Chromium, which the sandbox cannot download or start. Site build and manifest check pass; every stage intake..notes passes. Projects review passed (fresh, recorded). Content review round 3 fixes applied (videos rebuilt, page 4/5/10/3/12 fixes, ip-addresses reason); a fresh content review on fingerprint 0401427 is still pending. Residuals: TLS video storyboard only (no FFmpeg/Docker); 00-start-here/09-resources generated text below style target; mini-01 lookup-failure wording and CAA parent-domain check (warnings).",
+      "continue_after_failure": false
     }
   ],
   "recall": {
@@ -2867,176 +2898,6 @@
     }
   },
   "log": [
-    {
-      "at": "2026-11-18T13:55:48Z",
-      "event": "unit-done",
-      "message": "unit experience-realtime-transport-deck",
-      "stage": "lesson"
-    },
-    {
-      "at": "2026-11-18T13:55:51Z",
-      "event": "note",
-      "message": "SPAWN 30/56; pages-04-06 started"
-    },
-    {
-      "at": "2026-11-18T13:56:01Z",
-      "event": "visual",
-      "message": "added visual cookie-send-checks"
-    },
-    {
-      "at": "2026-11-18T13:56:03Z",
-      "event": "note",
-      "message": "TODO visual realtime-transport-decision used_in -> page 11 after pages-10-12"
-    },
-    {
-      "at": "2026-11-18T13:56:03Z",
-      "event": "note",
-      "message": "SPAWN 31/56; mini-01 started"
-    },
-    {
-      "at": "2026-11-18T13:56:12Z",
-      "event": "unit-start",
-      "message": "unit pages-04-06",
-      "stage": "lesson"
-    },
-    {
-      "at": "2026-11-18T13:56:17Z",
-      "event": "visual",
-      "message": "added visual dns-resolution-chain"
-    },
-    {
-      "at": "2026-11-18T13:56:22Z",
-      "event": "unit-start",
-      "message": "unit mini-01",
-      "stage": "mini-projects"
-    },
-    {
-      "at": "2026-11-18T13:56:59Z",
-      "event": "unit-done",
-      "message": "unit experience-http-cache-lab",
-      "stage": "lesson"
-    },
-    {
-      "at": "2026-11-18T13:57:03Z",
-      "event": "unit-done",
-      "message": "unit experience-cookie-send-lab",
-      "stage": "lesson"
-    },
-    {
-      "at": "2026-11-18T13:57:06Z",
-      "event": "visual",
-      "message": "added visual url-anatomy"
-    },
-    {
-      "at": "2026-11-18T13:57:09Z",
-      "event": "unit-done",
-      "message": "unit pages-01-03",
-      "stage": "lesson"
-    },
-    {
-      "at": "2026-11-18T13:57:23Z",
-      "event": "note",
-      "message": "TODO review: immutable claim cites MDN caching guide not in mdn-http-docs verified_via"
-    },
-    {
-      "at": "2026-11-18T13:57:23Z",
-      "event": "note",
-      "message": "SPAWN 32/56; pages-07-09 started"
-    },
-    {
-      "at": "2026-11-18T13:57:29Z",
-      "event": "note",
-      "message": "SPAWN 34/56; pages-10-12 and mini-02 started"
-    },
-    {
-      "at": "2026-11-18T13:57:39Z",
-      "event": "unit-start",
-      "message": "unit pages-07-09",
-      "stage": "lesson"
-    },
-    {
-      "at": "2026-11-18T13:57:57Z",
-      "event": "unit-start",
-      "message": "unit mini-02",
-      "stage": "mini-projects"
-    },
-    {
-      "at": "2026-11-18T13:58:05Z",
-      "event": "unit-start",
-      "message": "unit pages-10-12",
-      "stage": "lesson"
-    },
-    {
-      "at": "2026-11-18T13:58:09Z",
-      "event": "visual",
-      "message": "added visual http-message-anatomy"
-    },
-    {
-      "at": "2026-11-18T13:58:44Z",
-      "event": "visual",
-      "message": "added visual mini-01-flow"
-    },
-    {
-      "at": "2026-11-18T13:58:44Z",
-      "event": "unit-done",
-      "message": "unit mini-01",
-      "stage": "mini-projects"
-    },
-    {
-      "at": "2026-11-18T13:59:04Z",
-      "event": "note",
-      "message": "SPAWN 35/56; mini-03 started"
-    },
-    {
-      "at": "2026-11-18T13:59:05Z",
-      "event": "unit-done",
-      "message": "unit pages-04-06",
-      "stage": "lesson"
-    },
-    {
-      "at": "2026-11-18T13:59:13Z",
-      "event": "unit-start",
-      "message": "unit mini-03",
-      "stage": "mini-projects"
-    },
-    {
-      "at": "2026-11-18T14:00:30Z",
-      "event": "visual",
-      "message": "added visual cdn-request-path"
-    },
-    {
-      "at": "2026-11-18T14:00:40Z",
-      "event": "visual",
-      "message": "added visual mini-02-flow"
-    },
-    {
-      "at": "2026-11-18T14:00:45Z",
-      "event": "unit-done",
-      "message": "unit mini-02",
-      "stage": "mini-projects"
-    },
-    {
-      "at": "2026-11-18T14:01:06Z",
-      "event": "visual",
-      "message": "added visual api-style-map"
-    },
-    {
-      "at": "2026-11-18T14:01:15Z",
-      "event": "visual",
-      "message": "added visual compression-compare"
-    },
-    {
-      "at": "2026-11-18T14:01:18Z",
-      "event": "unit-done",
-      "message": "unit pages-10-12",
-      "stage": "lesson"
-    },
-    {
-      "at": "2026-11-18T14:01:22Z",
-      "event": "unit-done",
-      "message": "unit pages-07-09",
-      "stage": "lesson"
-    },
     {
       "at": "2026-11-18T14:01:35Z",
       "event": "visual",
@@ -4022,6 +3883,189 @@
       "event": "execution-check",
       "message": "finalize: failed",
       "stage": "finalize"
+    },
+    {
+      "at": "2026-11-18T15:36:26Z",
+      "event": "note",
+      "message": "SPAWN 52/56; fresh reviewers round 3 (fingerprint 96b451a)"
+    },
+    {
+      "at": "2026-11-18T15:41:01Z",
+      "event": "quality-review",
+      "message": "projects: pass",
+      "stage": "finalize"
+    },
+    {
+      "at": "2026-11-18T15:43:25Z",
+      "event": "source-update",
+      "message": "updated connectrpc-docs: verified_via",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T15:45:21Z",
+      "event": "plan",
+      "message": "plan fields set: summary, prerequisites, outcomes, lesson_outline, mini_projects, digest_targets, repo_targets, capstone, learner, visual_policy, visual_first, multi_stage, experience_policy, curriculum",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-18T15:45:34Z",
+      "event": "reader-order",
+      "message": "Imported explicit authored child-note sequence"
+    },
+    {
+      "at": "2026-11-18T15:46:09Z",
+      "event": "execution-check",
+      "message": "research: pass",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T15:46:18Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-18T15:46:26Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T15:46:34Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "brief"
+    },
+    {
+      "at": "2026-11-18T15:46:41Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "digest"
+    },
+    {
+      "at": "2026-11-18T15:46:49Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T15:46:53Z",
+      "event": "reset",
+      "message": "was done",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T15:46:57Z",
+      "event": "start",
+      "message": "attempt 5",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T15:47:04Z",
+      "event": "gate-failed",
+      "message": "1 problems",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T15:47:16Z",
+      "event": "execution-check",
+      "message": "mini-projects: pass",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-18T15:47:23Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-18T15:47:33Z",
+      "event": "execution-check",
+      "message": "capstone: pass",
+      "stage": "capstone"
+    },
+    {
+      "at": "2026-11-18T15:47:37Z",
+      "event": "reset",
+      "message": "was done",
+      "stage": "notes"
+    },
+    {
+      "at": "2026-11-18T15:47:50Z",
+      "event": "execution-check",
+      "message": "finalize: failed",
+      "stage": "finalize"
+    },
+    {
+      "at": "2026-11-18T15:48:32Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T15:48:52Z",
+      "event": "execution-check",
+      "message": "mini-projects: pass",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-18T15:49:03Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-18T15:49:12Z",
+      "event": "execution-check",
+      "message": "capstone: pass",
+      "stage": "capstone"
+    },
+    {
+      "at": "2026-11-18T15:49:26Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "capstone"
+    },
+    {
+      "at": "2026-11-18T15:49:34Z",
+      "event": "reset",
+      "message": "was pending",
+      "stage": "notes"
+    },
+    {
+      "at": "2026-11-18T15:49:39Z",
+      "event": "start",
+      "message": "attempt 5",
+      "stage": "notes"
+    },
+    {
+      "at": "2026-11-18T15:49:50Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "notes"
+    },
+    {
+      "at": "2026-11-18T15:49:56Z",
+      "event": "start",
+      "message": "attempt 5",
+      "stage": "finalize"
+    },
+    {
+      "at": "2026-11-18T15:50:13Z",
+      "event": "execution-check",
+      "message": "finalize: failed",
+      "stage": "finalize"
+    },
+    {
+      "at": "2026-11-18T15:51:19Z",
+      "event": "fail",
+      "message": "Host browser limit: site smoke needs Playwright Chromium, which the sandbox cannot download or start. Site build and manifest check pass; every stage intake..notes passes. Projects review passed (fresh, recorded). Content review round 3 fixes applied (videos rebuilt, page 4/5/10/3/12 fixes, ip-addresses reason); a fresh content review on fingerprint 0401427 is still pending. Residuals: TLS video storyboard only (no FFmpeg/Docker); 00-start-here/09-resources generated text below style target; mini-01 lookup-failure wording and CAA parent-domain check (warnings).",
+      "stage": "finalize"
+    },
+    {
+      "at": "2026-11-18T15:51:26Z",
+      "event": "note",
+      "message": "ROADMAP frontend: section 01.1 done (degraded: browser limit). Learner redirected: start from phase 03, run phases in parallel."
     }
   ],
   "roadmap": {
@@ -4032,8 +4076,8 @@
     "executions": {
       "research": {
         "version": 2,
-        "fingerprint": "63bd158b1e11f31b0df7b5ee379e6c033eaac06450a1aadaae73485160601d99",
-        "at": "2026-11-18T15:32:51Z",
+        "fingerprint": "3f1173ddfb580c357208620f228651cfc89c4f74308cbcb43a15074da7971731",
+        "at": "2026-11-18T15:46:09Z",
         "ok": true,
         "checks": [
           {
@@ -4470,13 +4514,22 @@
             "status": 200,
             "bytes": 81687,
             "sha256": "01af1ad1d050b5956cc93300a8784c0686022fa020d9244f80ead85c62fe6446"
+          },
+          {
+            "label": "connectrpc-docs: https://connectrpc.com/docs/web/get-requests-and-caching",
+            "source": "connectrpc-docs",
+            "requested_url": "https://connectrpc.com/docs/web/get-requests-and-caching",
+            "ok": true,
+            "status": 200,
+            "bytes": 68017,
+            "sha256": "4757184cdeda82a958bf8133e663076c657ec762c031155ed3bd79d04eda9244"
           }
         ]
       },
       "mini-projects": {
         "version": 2,
-        "fingerprint": "1c7e41aa5f21513bde452e983d10f838003ef7fb34e2369068a7be9f9fd6aff4",
-        "at": "2026-11-18T15:33:47Z",
+        "fingerprint": "e182cc25d79a5fcede0afde76e47db599db3c81e9c0c169ac0d8528f9afe2f2f",
+        "at": "2026-11-18T15:48:52Z",
         "ok": true,
         "checks": [
           {
@@ -4488,7 +4541,7 @@
             "expected_exit": 0,
             "exit": 0,
             "ok": true,
-            "output_sha256": "37ea87d90233e55baf7b662e7f466a0fdac47d00c8abec8c965d8c45c6aea289"
+            "output_sha256": "54cf43609f6dbad2b8920cddab90ea0ac18aec141c02a276ce8245107f27200d"
           },
           {
             "label": "mini-01-dns-record-inspector: starter-tests",
@@ -4499,7 +4552,7 @@
             "expected_exit": 1,
             "exit": 1,
             "ok": true,
-            "output_sha256": "8f2d2d2685afd718126ba0d838e44599c41d268d719da173e0a0520534380c19"
+            "output_sha256": "2543acc864fdb45b66fc67c03d3d3b369e0db1a5b27c8e9272bd266670cfdebd"
           },
           {
             "label": "mini-01-dns-record-inspector: starter-start",
@@ -4548,7 +4601,7 @@
             "expected_exit": 0,
             "exit": 0,
             "ok": true,
-            "output_sha256": "4e9250753500ee41f20b69c58b9caaf00bc4f4ba2ddb52f52b78dff781e3c38c"
+            "output_sha256": "1bfde3dda25353d42c83993bc2f84532b1e1e90055cc9f1e1bc521408a305836"
           },
           {
             "label": "mini-02-cache-header-auditor: starter-tests",
@@ -4559,7 +4612,7 @@
             "expected_exit": 1,
             "exit": 1,
             "ok": true,
-            "output_sha256": "c6b6d5060193c7f813e6b14b5f84ed5677166461a9d84a80af4bf13be3280ca1"
+            "output_sha256": "cdb517cfa7bd17450d249a089cdd2a43828caeb644ff078924bf45e52e1e09aa"
           },
           {
             "label": "mini-02-cache-header-auditor: starter-start",
@@ -4607,7 +4660,7 @@
             "expected_exit": 0,
             "exit": 0,
             "ok": true,
-            "output_sha256": "d0fbf493b47046445ae742cb2d72aed64fdcb24331ac1f30454086eff9037029"
+            "output_sha256": "2b4c14d5a542b601456b630a995514531b816c8b1cd695c5a53e856bcd043440"
           },
           {
             "label": "mini-03-cookie-attribute-linter: starter-tests",
@@ -4618,7 +4671,7 @@
             "expected_exit": 1,
             "exit": 1,
             "ok": true,
-            "output_sha256": "adc1f6a286366a1711b6239590ac701fd3b8052297463fd61178be4044a1bbf9"
+            "output_sha256": "2d11b7f9b048b281a01edc507407573787fc594f1c67809f4f9c94a1ab0968b3"
           },
           {
             "label": "mini-03-cookie-attribute-linter: starter-start",
@@ -4662,8 +4715,8 @@
       },
       "capstone": {
         "version": 2,
-        "fingerprint": "1230f073196129ddcd9dd605ba5bd18d8aab2a4a55d42137e8621e55b0b82bcb",
-        "at": "2026-11-18T15:34:05Z",
+        "fingerprint": "1568bdc77a0d53f371eee1e491220498977f9835a2c7cb772a8ac3c2e62814b5",
+        "at": "2026-11-18T15:49:12Z",
         "ok": true,
         "checks": [
           {
@@ -4675,7 +4728,7 @@
             "expected_exit": 0,
             "exit": 0,
             "ok": true,
-            "output_sha256": "d0517335d209497a01c2d64c04eaeca4eb83e1f67cc890d4ceb08893a3dc5cd4"
+            "output_sha256": "d20d5a0c94c94b82b523ba9e75b0acf5b66f916ae5bfe5d821293ec743ca76e9"
           },
           {
             "label": "capstone: typecheck",
@@ -4698,7 +4751,7 @@
             "expected_exit": 0,
             "exit": 0,
             "ok": true,
-            "output_sha256": "39359cf01949784dbdc0d978e0c2fb22797f8853400033af152a23df963258cf"
+            "output_sha256": "103892e3fa27a8278e7a1dc69daef26afdcae092ba4075cdd0539cf92cb4edf2"
           },
           {
             "label": "capstone: audit",
@@ -4717,8 +4770,8 @@
       },
       "finalize": {
         "version": 2,
-        "fingerprint": "96b451a952734817cc366cbe3625e9b4e54cd381d90181df5660ddefb2ccd2a9",
-        "at": "2026-11-18T15:34:48Z",
+        "fingerprint": "0401427202094375f1f8f826be9a66737320992c8681f0174411e5f2f27f6909",
+        "at": "2026-11-18T15:50:13Z",
         "ok": false,
         "checks": [
           {
@@ -4733,7 +4786,7 @@
             "expected_exit": 0,
             "exit": 0,
             "ok": true,
-            "output_sha256": "327c4c3a6e666ca8d917c136a187cc140635e5866918d0c45864426f886beab5"
+            "output_sha256": "e458c8cc0fe94aa0b30b4329ce5373220087aeb953cd36bb4df77b58896daded"
           },
           {
             "label": "site smoke",
@@ -4784,51 +4837,51 @@
           {
             "severity": "warning",
             "path": "projects/frontend-engineering/how-the-web-works/internet-and-networking/capstone/README.md",
-            "problem": "README says `npm run start:bad` 'ends with an npm error message'. With npm 11.19.0 / Node 26.8.1 the run exits 1 correctly but prints no npm error line (stdout+stderr captured; no 'npm error'/'npm ERR' present). A learner may think something is wrong.",
-            "fix": "Reword to: the command exits with code 1 on purpose (check with `echo $?`); some npm versions also print an npm error line."
+            "problem": "`npm start` (package.json start script) and the Dockerfile CMD do not set REPORT_NOW, yet the README says `npm start` prints \"No problems found.\" and exits 0. fixtures/good/tls.json has notAfter 2027-01-15 and policy minDaysToExpiry 21, so from about 2026-12-25 the good sample shows tls.expires-soon, and after 2027-01-15 it reports tls expired (error, exit 1). Verified: REPORT_NOW=2027-03-01T00:00:00Z node src/main.ts fixtures/good gives \"Certificate expired\", 1 error. verification.json passes only because it injects REPORT_NOW.",
+            "fix": "Put REPORT_NOW into the start/start:bad scripts and the Dockerfile (ENV) or move the fixture certificate dates far into the future; keep the README claim in step."
           },
           {
             "severity": "warning",
-            "path": "projects/frontend-engineering/how-the-web-works/internet-and-networking/capstone/ARCHITECTURE.md",
-            "problem": "Layer diagram (also registered visual capstone-layers) shows Interface -> Application -> Domain and Main -> Interface/Infrastructure only. The code also has direct Interface -> Domain imports (src/interface/cli.ts imports domain/errors.ts; interface imports domain/ports.ts and domain/report.ts) and Main -> Domain imports (src/main.ts imports the six domain/checks/* and domain/errors.ts) and Main -> Application (runReport.ts). The prose rule 'dependencies point inward' holds; the diagram just omits real edges.",
-            "fix": "Add Interface --> Domain and Main --> Application/Domain edges (or a note that outer layers may also import domain types directly) in ARCHITECTURE.md and re-register capstone-layers."
+            "path": "projects/frontend-engineering/how-the-web-works/internet-and-networking/mini-02-cache-header-auditor/README.md",
+            "problem": "Task 1 says a repeated max-age keeps the smallest value \"because a cache that sees two values must not use the larger one\". RFC 9111 section 4.2.1 (checked live) says: either the first occurrence should be used or the response should be considered stale. Taking the minimum is a conservative tool choice, not an RFC rule.",
+            "fix": "Reword: RFC 9111 4.2.1 allows using the first value or treating the response as stale; this auditor takes the minimum as a conservative choice."
+          },
+          {
+            "severity": "warning",
+            "path": "projects/frontend-engineering/how-the-web-works/internet-and-networking/mini-01-dns-record-inspector/solution/src/checks.ts",
+            "problem": "analyze() adds \"ERROR ALL: The name has no A, AAAA or CNAME record, so browsers cannot reach it\" even when every lookup failed with a network error (observed: npm start -- example.com in a sandbox without DNS gave ECONNREFUSED on all types plus this claim). A lookup failure is reported as a confirmed missing record. The same file starter is identical (wiring is not a TODO).",
+            "fix": "Emit the ALL finding only when A, AAAA and CNAME have status \"empty\", not \"error\"; mirror in starter."
+          },
+          {
+            "severity": "warning",
+            "path": "projects/frontend-engineering/how-the-web-works/internet-and-networking/mini-01-dns-record-inspector/solution/src/checks.ts",
+            "problem": "checkCaa says \"No CAA records: any CA may issue certificates\" from a lookup at the exact name only. CAA processing (RFC 8659) climbs to parent domains, so a CAA record on example.com still restricts www.example.com. The capstone dns.no-caa message repeats the claim. This could mislead the migration use case the README describes.",
+            "fix": "Change the message to \"No CAA record at this name; check parent domains\" or walk up the labels in queryType/DnsCheck; mention tree climbing in a hint."
           },
           {
             "severity": "warning",
             "path": "projects/frontend-engineering/how-the-web-works/internet-and-networking/mini-03-cookie-attribute-linter/README.md",
-            "problem": "Node prerequisites differ across the four projects: mini-01 says Node 26, mini-02 'Node.js 22.18 or newer', mini-03 'Node.js 24 or newer', capstone 'Node.js 26 or newer'. All lockfiles pin vitest 5.1.1 whose engines are '^22.12.0 || ^24.0.0 || >=26.0.0', so Node 25 (covered by 'Node 24 or newer' / '22.18 or newer') is outside the supported range. Claims are otherwise accurate for type stripping.",
-            "fix": "Use one statement in all READMEs, e.g. 'Node.js 22.18+, 24 or 26 (vitest 5 does not support Node 25); written with Node 26'."
-          },
-          {
-            "severity": "warning",
-            "path": "projects/frontend-engineering/how-the-web-works/internet-and-networking/mini-01-dns-record-inspector/README.md",
-            "problem": "Full `npm audit` reports 5 high advisories (picomatch GHSA-fc5q-39xc-vjpf via fdir/tinyglobby/vite/vitest) in all seven package trees (3 solutions, 3 starters, capstone). `--omit=dev` is clean everywhere. Only the capstone README discloses this; the mini READMEs (mini-01, mini-02, mini-03) do not, so a learner who runs `npm install` sees an unexplained high-severity warning.",
-            "fix": "Add the same one-line dev-only audit note to the three mini READMEs, or bump vitest when a fixed release exists."
-          },
-          {
-            "severity": "warning",
-            "path": "projects/frontend-engineering/how-the-web-works/internet-and-networking/mini-01-dns-record-inspector/README.md",
-            "problem": "mini-01-flow edge `lookup -->|Report| checks` reads as lookup.ts handing off to analyze, but lookup.ts imports nothing from checks.ts; main.ts calls inspectDomain then analyze then formatReport. Similarly mini-03-flow draws parse --> rules, while lint.ts (not parse.ts) calls lintCookie, and main.ts is absent. Data-flow reading is defensible, call-flow reading is not.",
-            "fix": "Route the edges through main.ts (mini-01) and lint.ts (mini-03), or label the diagrams explicitly as data flow."
+            "problem": "Prerequisites point to \"lesson 9 (cookies)\" but the cookies lesson file is 10-cookies.mdx.",
+            "fix": "Refer to the lesson by its title (\"Cookies\") or correct the number."
           }
         ],
         "not_checked": [
-          "Docker build/run of the capstone Dockerfile (no Docker in this sandbox; README honestly says it was not built)",
-          "mini-01 `npm start -- example.com ...` live DNS query (network lookup of a real name not performed)"
+          "Capstone docker build/run (no Docker in this sandbox); Dockerfile reviewed by reading only.",
+          "Live DNS run of mini-01 `npm start -- example.com` could not resolve (sandbox DNS ECONNREFUSED); the code path ran and printed errors."
         ],
         "independent": true,
-        "reviewer_run_id": "verify-projects-01.1-r2",
-        "input_fingerprint": "de732934ce8308203a9a41f46cb7a92d9316804ebede48cc8909e53427c47b3b",
+        "reviewer_run_id": "verify-projects-01.1-r3",
+        "input_fingerprint": "96b451a952734817cc366cbe3625e9b4e54cd381d90181df5660ddefb2ccd2a9",
         "assessments": {
-          "solution-tests": "Ran `npm ci` from lockfiles then `npm test` on Node 26.8.1: mini-01 solution 2 files / 18 passed; mini-02 solution 4 files / 24 passed; mini-03 solution 3 files / 24 passed; capstone 4 files / 52 passed. Counts match README claims (18, 24, 24, 52). vitest list per-describe counts for mini-01 (queryType 7, inspectDomain 2, checkTtl 2, checkCnameConflict 2, checkCaa 3, analyze 2) match README task 'done when' counts.",
-          "starter-behavior": "Starters: mini-01 npm test exit 1, 18/18 fail, only Errors are TODO(1),(2),(3),(5) (TODO(4) test is reached via inspectDomain so TODO(2) masks it until done, consistent with task order); npm run demo exit 1 printing 'TODO(2): inspectDomain is not implemented yet'. mini-02 npm test exit 1, 23 fail/1 pass, only TODO(1)-(5) errors; npm start exit 1 with a TODO(2) stack trace, which the README states. mini-03 npm test exit 1, 24/24 fail, only TODO(1) and TODO(4) errors (rules tests call parseSetCookie first); npm run demo exit 1 with 'TODO(4)'. `diff -rq` solution vs starter (excluding node_modules) differs only in TODO files: mini-01 lookup.ts, checks.ts; mini-02 cacheControl.ts, classify.ts, rules.ts; mini-03 parse.ts, rules.ts, lint.ts. verification.json expect_output strings all appear.",
-          "dependency-health": "`npm audit --omit=dev --audit-level=high` exit 0 in all 7 trees (no runtime dependencies). Full `npm audit` (info): 5 high in each tree, picomatch GHSA-fc5q-39xc-vjpf through fdir/tinyglobby/vite/vitest 5.1.1, dev-only; disclosed only in capstone README (warning finding). vitest engines '^22.12.0 || ^24.0.0 || >=26.0.0' satisfied by Node 26.8.1.",
-          "architecture": "Capstone: grep of relative imports per layer shows domain imports only domain files; application imports only domain (finding, ports, report, types); infrastructure imports only domain (errors, ports, report, types); interface imports application/runReport.ts and domain (errors, ports, report); main.ts is the composition root importing all layers. Matches ARCHITECTURE.md line 7 'dependencies point inward'. RunReport (src/application/runReport.ts:22-40) loads inputs once and turns a crashing check into an unknown finding as ADR/diagram state; cli.ts maps InputError/PolicyError/ConfigError to exit 2. Six Check classes implement Check. Typecheck `npm run typecheck` exit 0. Dockerfile (node:26-slim, npm ci --omit=dev, ENTRYPOINT node src/main.ts, CMD fixtures/good) is consistent but not built (no Docker).",
-          "documented-commands": "Executed README commands: mini-01 npm install/test/demo (solution demo prints WARN 3600s TTL, ERROR CAA letsencrypt.org, INFO missing AAAA, exit 1 as stated); mini-02 npm start prints '19 checks: 7 problems, 1 unknown.' exit 1 as stated; mini-03 npm run demo ends '7 error(s), 5 warning(s).' exit 1, and `node src/main.ts fixtures/login-flow.har` shows exactly 2 errors for __Secure-auth as stated; capstone npm start (with and without REPORT_NOW) prints 'No problems found.' exit 0, start:bad exit 1 with '10 errors, 18 warnings (2 could not be read).', FAIL_ON=never exit 0, FAIL_ON=bogus exit 2, REPORT_FORMAT=json prints JSON. Vault 06 note commands/52 tests match. Inaccuracies: start:bad 'npm error message' claim not reproduced on npm 11.19.0; Node version prerequisites inconsistent (warnings). Docker line and live mini-01 query not run.",
-          "project-diagrams": "Compared registered visuals mini-01-flow, mini-02-flow, mini-03-flow, capstone-layers, capstone-request-flow, capstone-deployment (vault visuals/assets/*.mmd, identical to README/ARCHITECTURE mermaid) with imports and code. All named files/functions/classes exist (inspectDomain/queryType/Resolver/analyze/formatReport; readEntries/auditEntry/classify/gradeHashedAsset/gradeHtml/gradeVaryAndEncoding/parseCacheControl; readSetCookieHeaders/lintHeaders/parseSetCookie/checkAttributes/checkPrefixes/formatReport/exitCode; Cli/TextRenderer/JsonRenderer/RunReport/FileSiteDataSource/HarReader/JsonPolicyRepository/JsonLogger). Request-flow sequence matches runReport.ts execute() and cli.ts error mapping; deployment diagram matches env vars in README table, stderr JSON logger, exit codes 0/1/2 (verified) and Dockerfile base image. Imprecisions: capstone-layers omits real Interface->Domain and Main->Application/Domain edges; mini-01 and mini-03 flows draw data flow as if module-to-module calls (warnings, no wrong relationships invented)."
+          "solution-tests": "Ran every verification.json check on Node v26.8.1 after npm install from lockfiles (git status showed no lockfile changes). mini-01 solution: 2 files, 18/18 passed; mini-02 solution: 4 files, 24/24 passed; mini-03 solution: 3 files, 24/24 passed; capstone npm test: 4 files, 52/52 passed. All counts match the READMEs (18, 24, 24, 52).",
+          "starter-behavior": "Starters exit 1 as expected: mini-01 18/18 fail, demo exits 1 with TODO(2); mini-02 23 fail/1 pass (README says 23 of 24), npm start exits 1 with TODO(2) classify; mini-03 24/24 fail, demo exits 1 with TODO(4). Grepped every failing test error: all are TODO(n) not-implemented errors, zero other causes. diff -rq (excluding node_modules) shows starter and solution differ only in TODO files: mini-01 lookup.ts, checks.ts; mini-02 cacheControl.ts, classify.ts, rules.ts; mini-03 parse.ts, rules.ts, lint.ts.",
+          "dependency-health": "npm audit --omit=dev --audit-level=high: 0 vulnerabilities in all 6 mini folders and the capstone (no runtime dependencies). Full npm audit (info): capstone reports 5 high advisories in the vitest dev chain; mini solutions also report dev-only advisories needing audit fix --force. READMEs disclose this accurately. Pinned devDependencies: vitest 5.1.1, @types/node 22.15.21, typescript 5.9.3 (capstone).",
+          "architecture": "Checked capstone imports against ARCHITECTURE.md: src/domain imports nothing from application/infrastructure/interface or node:; application/runReport.ts imports only domain; infrastructure imports only domain and its own files; interface imports application and domain; main.ts is the only file importing adapters and checks. Every class in the class table exists in the named file; only InputError/PolicyError/ConfigError extend Error; six Check classes implement Check. RunReport.execute loads source then policy once and turns a thrown check into an unknown finding, as documented. Error paths verified: REPORT_FORMAT=xml exit 2 ConfigError; missing folder exit 2 InputError. Three ADRs present with Status/Context/Decision.",
+          "documented-commands": "Ran README commands: mini-01 solution demo (WARN TTL 3600, ERROR CAA letsencrypt.org, INFO AAAA, exit 1) matches; mini-02 solution npm start prints \"19 checks: 7 problems, 1 unknown.\" exit 1, and editing vendor.9b8c7d6e.js Cache-Control in a temp copy removes both hashed- problems (5 problems), as claimed; mini-03 demo ends \"7 error(s), 5 warning(s).\" exit 1 and login-flow.har shows the two __Secure-auth errors. Capstone: npm start exits 0 \"No problems found.\"; start:bad 10 errors/18 warnings/2 unknown exit 1; FAIL_ON=never exit 0; REPORT_FORMAT=json valid JSON exit 1; typecheck tsc --noEmit exit 0. Warnings: npm start relies on today’s date (no REPORT_NOW) and will break after about 2026-12-25; mini-02 RFC rationale overstated; mini-03 lesson number. Vault 06 note counts (52 tests, exit codes) match.",
+          "project-diagrams": "Registered visuals mini-01/02/03-flow and capstone-layers/request-flow/deployment are identical (whitespace-normalised) to the mermaid blocks in the READMEs and ARCHITECTURE.md. Against code: mini-01 main->inspectDomain->queryType->Resolver (resolve4/6/Cname/Caa; resolveHttps optional, absent in the real resolver as README states), analyze, formatReport match imports; mini-02 readEntries->auditEntry->classify->gradeHashedAsset/gradeHtml->parseCacheControl (via readCacheControl in rules.ts) and gradeVaryAndEncoding for every entry match audit.ts/rules.ts; mini-03 main->readSetCookieHeaders, lintHeaders->parseSetCookie and lintCookie (rules.ts), report.ts formatReport/exitCode match (input->lint arrow is data flow, acceptable). Capstone layer arrows match the import graph; sequence matches RunReport.execute and Cli; deployment matches Dockerfile (node:26-slim, node src/main.ts), env vars in config.ts, stdout report/stderr JSON logs, exit 0/1/2 (observed)."
         },
-        "at": "2026-11-18T15:24:21Z",
-        "fingerprint": "de732934ce8308203a9a41f46cb7a92d9316804ebede48cc8909e53427c47b3b"
+        "at": "2026-11-18T15:41:01Z",
+        "fingerprint": "96b451a952734817cc366cbe3625e9b4e54cd381d90181df5660ddefb2ccd2a9"
       }
     }
   },

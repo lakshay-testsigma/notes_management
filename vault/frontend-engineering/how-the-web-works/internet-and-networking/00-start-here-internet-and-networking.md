@@ -71,7 +71,7 @@ Run `npm run site:dev` in the repository root, then open `/frontend-engineering/
 
 The network a frontend developer depends on: internet packets and transport, domains and DNS, HTTP messages and versions, TLS, URLs and origins, HTTP and CDN caching, compression, cookies, realtime transports and API styles at a glance.
 - How the internet moves packets: included
-- IP addresses, IPv4/IPv6 and ports: deferred — Final state after both audit rounds: page 1 names IP addresses and ports inside the packet journey (hpbn-book); no recorded source explains addressing and port ranges in depth, so subnetting and port details stay out of this topic.
+- IP addresses, IPv4/IPv6 and ports: deferred — Where it is taught: page 1 of this topic (01-how-the-internet-works) explains what an IP address and a port are, which is what roadmap item how-the-internet-works asks. Deeper addressing (IPv4/IPv6 formats, subnets, port ranges) is outside the frontend roadmap: no later section teaches it, and no recorded source here covers it.
 - TCP versus UDP: included
 - Routing and ISPs: included
 - Domain names and hosting: included
@@ -149,7 +149,7 @@ Research stopped: budget-limit. Audit round 1 concepts expanded against the re-v
 | 3 | mini-projects | ready |
 | 4 | capstone | ready |
 | 5 | notes | ready |
-| 5 | finalize | in progress |
+| 5 | finalize | needs another try |
 
 Next to generate: `finalize`. Ask Claude to continue this topic, or run `node harness/bin/tutor.mjs next frontend-engineering/how-the-web-works/internet-and-networking`.
 <!-- tutor:generated:end -->

@@ -349,7 +349,7 @@
       "duration_s": 57,
       "scenes": 6,
       "narration": "say",
-      "input_hash": "85823d2f28522adfae313109ca18f565328b56e15e7085aade1a7576b4d78b34",
+      "input_hash": "4b8f59495968d1f8653f64456721bde4c821eab356b7baec96b4205621bf7d3e",
       "timeline": [
         {
           "id": "intro",
@@ -391,7 +391,7 @@
       "composition": "site/public/media/frontend-engineering/how-the-web-works/internet-and-networking/http-cache-intro/composition/index.html",
       "composition_url": "/media/frontend-engineering/how-the-web-works/internet-and-networking/http-cache-intro/composition/index.html",
       "lint": {
-        "hash": "85823d2f28522adfae313109ca18f565328b56e15e7085aade1a7576b4d78b34",
+        "hash": "4b8f59495968d1f8653f64456721bde4c821eab356b7baec96b4205621bf7d3e",
         "errors": 0,
         "warnings": 22,
         "findings": []
@@ -437,7 +437,7 @@
       "duration_s": 89,
       "scenes": 10,
       "narration": "say",
-      "input_hash": "6e19b614357eae4b1036472f4e6d55fcfc3120760860ca5b7ab5f05af1640d7a",
+      "input_hash": "d791f6b4fb61c11109e6a0e9c333c76e31d53ded4c13067e44fc7b271b1e9366",
       "timeline": [
         {
           "id": "intro",
@@ -503,7 +503,7 @@
       "composition": "site/public/media/frontend-engineering/how-the-web-works/internet-and-networking/http-versions-walkthrough/composition/index.html",
       "composition_url": "/media/frontend-engineering/how-the-web-works/internet-and-networking/http-versions-walkthrough/composition/index.html",
       "lint": {
-        "hash": "6e19b614357eae4b1036472f4e6d55fcfc3120760860ca5b7ab5f05af1640d7a",
+        "hash": "d791f6b4fb61c11109e6a0e9c333c76e31d53ded4c13067e44fc7b271b1e9366",
         "errors": 0,
         "warnings": 36,
         "findings": []
@@ -559,9 +559,9 @@
       },
       "checkpoints": 5,
       "fallback_visual": "rfc-9114-http3-mechanism",
-      "input_hash": "6cf8f1f2e7c95a4b1b2846a4faacaf324d7cc1c07810d0285dd1f76896f2dc20",
+      "input_hash": "a4a5dd23bd0cd9c0eb2cb70ae154cf86035fb71fe91495eb74c9b6670fda3505",
       "spec_hash": "6689745d2fd6b636176bfd48d794c64a84e069d7e533f965d6ae4fd80be5fde7",
-      "built_at": "2026-11-18T13:54:58Z"
+      "built_at": "2026-11-18T15:42:36Z"
     }
   },
   {
@@ -628,7 +628,7 @@
       "duration_s": 87,
       "scenes": 8,
       "narration": "say",
-      "input_hash": "0276098d8fe9e8f288ea046c09a2668068e0f86a1fad1172740d3ba3c6058385",
+      "input_hash": "bf035173d93e672fd6c502fbec5357ccd1b85ff051f0062d43960ea262ecf3e0",
       "timeline": [
         {
           "id": "intro",
@@ -682,7 +682,7 @@
       "composition": "site/public/media/frontend-engineering/how-the-web-works/internet-and-networking/http-cache-walkthrough/composition/index.html",
       "composition_url": "/media/frontend-engineering/how-the-web-works/internet-and-networking/http-cache-walkthrough/composition/index.html",
       "lint": {
-        "hash": "0276098d8fe9e8f288ea046c09a2668068e0f86a1fad1172740d3ba3c6058385",
+        "hash": "bf035173d93e672fd6c502fbec5357ccd1b85ff051f0062d43960ea262ecf3e0",
         "errors": 0,
         "warnings": 28,
         "findings": []
@@ -724,7 +724,7 @@
       "duration_s": 42,
       "scenes": 4,
       "narration": "say",
-      "input_hash": "df23111e2194c7aa03a4d260e66362763f7a667d92f8bef1a9c5a0cca3b984dc",
+      "input_hash": "4a9de6ad2af6d7739f546c03411ce3a0bd22b798e9e23afd146c3e800ac750bc",
       "timeline": [
         {
           "id": "intro",
@@ -754,7 +754,7 @@
       "composition": "site/public/media/frontend-engineering/how-the-web-works/internet-and-networking/http-cache-summary/composition/index.html",
       "composition_url": "/media/frontend-engineering/how-the-web-works/internet-and-networking/http-cache-summary/composition/index.html",
       "lint": {
-        "hash": "df23111e2194c7aa03a4d260e66362763f7a667d92f8bef1a9c5a0cca3b984dc",
+        "hash": "4a9de6ad2af6d7739f546c03411ce3a0bd22b798e9e23afd146c3e800ac750bc",
         "errors": 0,
         "warnings": 16,
         "findings": []
@@ -1264,7 +1264,7 @@
       "duration_s": 80,
       "scenes": 8,
       "narration": "say",
-      "input_hash": "6bd78b3f8e08a869fa5bc72210b3ce15edf6380024db8eb730cb8243d00e71e0",
+      "input_hash": "034e7d5126faa299b9b6408b5dc480d14dc1b3265eb39dfc017c50a98d8a4fcb",
       "timeline": [
         {
           "id": "intro",
@@ -1318,7 +1318,7 @@
       "composition": "site/public/media/frontend-engineering/how-the-web-works/internet-and-networking/cookie-send-walkthrough/composition/index.html",
       "composition_url": "/media/frontend-engineering/how-the-web-works/internet-and-networking/cookie-send-walkthrough/composition/index.html",
       "lint": {
-        "hash": "6bd78b3f8e08a869fa5bc72210b3ce15edf6380024db8eb730cb8243d00e71e0",
+        "hash": "034e7d5126faa299b9b6408b5dc480d14dc1b3265eb39dfc017c50a98d8a4fcb",
         "errors": 0,
         "warnings": 33,
         "findings": []
@@ -1374,9 +1374,9 @@
       },
       "checkpoints": 6,
       "fallback_visual": "rfc-9111-mechanism",
-      "input_hash": "c7972ffe28f8ebb125b9447187c89c4decc7a22f45b6eb4bb57be720d34d3b79",
+      "input_hash": "c5167f287a7d867d240d229ea1ad8d37e3d716dead339b53e343b6981caf9591",
       "spec_hash": "0affce3d4b83154820997f7c31201245052c156c5eff4b98f00e9b88518b14cf",
-      "built_at": "2026-11-18T13:56:33Z"
+      "built_at": "2026-11-18T15:42:44Z"
     }
   },
   {
@@ -1425,9 +1425,9 @@
       },
       "checkpoints": 5,
       "fallback_visual": "cookie-send-checks",
-      "input_hash": "a304a59a876e6363c61816224807de7ceea316dafd35855952a8b73463a3ff51",
+      "input_hash": "fe276947628baaabe554a349d67028037bb5a23acf22609d70b20a777e3c68d7",
       "spec_hash": "5cb7750de2d0421296cd5f3cc9cf74e16db734a92b45af769d711d2a7e994c6c",
-      "built_at": "2026-11-18T13:56:36Z"
+      "built_at": "2026-11-18T15:42:48Z"
     }
   },
   {

@@ -39,7 +39,7 @@ Third-party cookies are cookies sent on cross-site requests, often for tracking.
 
 <Depth level="internals">
 
-The `cookie` library behind Express writes strictly and reads leniently. `stringifySetCookie` throws on a Domain such as `example.com; Path=/`, because that value would add a second attribute. The parser drops unknown SameSite values and keeps the first value of a duplicate name (`src/index.ts:292-388 @ a437ef0`, `src/index.ts:439-468 @ a437ef0`).
+The `cookie` library behind Express writes strictly and reads leniently. `stringifySetCookie` throws on a Domain such as `example.com; Path=/`, because that value would add a second attribute. The parser drops unknown SameSite values and keeps the first value of a duplicate name (`src/index.ts:135-137 @ a437ef0`, `src/index.ts:292-388 @ a437ef0`, `src/index.ts:439-468 @ a437ef0`).
 
 </Depth>
 

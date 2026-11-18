@@ -46,9 +46,9 @@ A 1xx code is an interim answer before the final one: `100 Continue` tells a cli
 
 <Depth level="production">
 
-Use 308 when an API endpoint moves for good: a 301 can turn a `POST` into a `GET`. Use 303 after a form `POST`, so a reload does not submit the form again. Basic authentication only base64-encodes the password, so use it only over HTTPS. Send `If-Range` with the ETag on a resumed download, so a changed file comes back whole. On a 429, wait the `Retry-After` time.
+Use 308 when an API endpoint moves for good: a 301 can turn a `POST` into a `GET`. Use 303 after a form `POST`, so a reload does not submit the form again. Basic authentication only base64-encodes the password, so use it only over HTTPS. Send `If-Range` with the ETag on a resumed download, so a changed file comes back whole. On a 429, wait the `Retry-After` time. Why: a 401 tells clients how to log in, `Retry-After` stops instant retries, and a range resumes instead of downloading again.
 
-Content negotiation has a cost. A response that depends on `Accept` or `Accept-Encoding` needs a `Vary` header that names it. Without `Vary`, a shared cache can give one client the variant made for another. Keep-alive saves handshakes, but a server closes an idle connection after its own timeout. A request sent on that closing connection fails, and a client may resend it automatically only when the method is idempotent (RFC 9110, Section 9.2.2). Node's undici sends one request at a time per connection and expects an idle connection to stay open 4 seconds by default (`lib/dispatcher/client.js:74-76,307,309 @ 011d947`).
+Content negotiation has a cost: a response that depends on `Accept` or `Accept-Encoding` needs `Vary`, or a shared cache can serve one client the variant made for another. Keep-alive saves handshakes, but a server closes an idle connection after its own timeout. A request sent on that closing connection fails, and a client may resend it automatically only when the method is idempotent (RFC 9110, Section 9.2.2). Node's undici sends one request at a time per connection and expects an idle connection to stay open 4 seconds by default (`lib/dispatcher/client.js:74-76,307,309 @ 011d947`).
 
 </Depth>
 

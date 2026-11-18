@@ -13,4 +13,4 @@ A cache answers three questions in order: is there a stored copy for this key, i
 Sources:
 
 - RFC 9111: HTTP Caching — https://www.rfc-editor.org/rfc/rfc9111
-- HTTP (MDN Web Docs documentation set) — https://developer.mozilla.org/en-US/docs/Web/HTTP
+- MDN Web Docs: HTTP and web networking — https://developer.mozilla.org/en-US/docs/Web/HTTP

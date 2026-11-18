@@ -46,7 +46,7 @@ Sources:
 
 - RFC 9110: HTTP Semantics — https://www.rfc-editor.org/rfc/rfc9110
 - RFC 9114: HTTP/3 — https://www.rfc-editor.org/rfc/rfc9114
-- HTTP (MDN Web Docs documentation set) — https://developer.mozilla.org/en-US/docs/Web/HTTP
+- MDN Web Docs: HTTP and web networking — https://developer.mozilla.org/en-US/docs/Web/HTTP
 - High Performance Browser Networking — https://hpbn.co/
 - nodejs/undici: HTTP/1.1 client for Node.js (fetch, cache interceptor, cookies) — https://github.com/nodejs/undici
 

@@ -287,7 +287,7 @@
       "used_by": []
     },
     "verified_at": "2026-11-18",
-    "verified_via": "https://connectrpc.com/docs/introduction",
+    "verified_via": "https://connectrpc.com/docs/introduction; https://connectrpc.com/docs/web/get-requests-and-caching",
     "use_for": [
       "lesson"
     ]

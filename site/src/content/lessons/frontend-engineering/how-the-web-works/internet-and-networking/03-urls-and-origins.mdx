@@ -19,7 +19,7 @@ In the diagram, find the three parts inside the origin box.
 
 The **origin** is the tuple of scheme, host and port. Change one of them and you have a new origin, so port 8443 above is a different origin. The browser lets a page read responses only from its own origin, unless the server allows more. That keeps one tab from reading your bank's data.
 
-A **site** is wider: the scheme plus the **registrable domain**, which is the public suffix plus one label. So `shop.example.com` and `blog.example.com` are one site. Cookies use the site, which lets your subdomains share a login. But the public suffix list differs between browsers, so the standard says to prefer the origin for security decisions.
+A **site** is wider: the scheme plus the **registrable domain**, which is the public suffix plus one label. So `shop.example.com` and `blog.example.com` are one site. SameSite cookie rules compare sites; the cookie `Domain` attribute is what lets subdomains share a cookie (page 10). But the public suffix list differs between browsers, so the standard says to prefer the origin for security decisions.
 
 <SortBuckets
   prompt="Sort each pair of URLs by how closely they match."

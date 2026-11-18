@@ -25,7 +25,7 @@ npm run start:bad       # bad sample: lists problems and exits 1 on purpose
 
 `npm run start:bad` exits with code 1 on purpose (check with `echo $?`); some npm versions also print an npm error line. That exit code is what a CI job would see.
 
-The sample uses `REPORT_NOW` so the certificate dates give the same result on any day. Set `REPORT_NOW=2026-11-18T00:00:00Z` for the samples (`.env.example` has it). Other examples:
+The sample uses `REPORT_NOW` so the certificate dates give the same result on any day. `npm start` and `npm run start:bad` load `.env.example`, which sets `REPORT_NOW=2026-11-18T00:00:00Z`; set it yourself when you run `node src/main.ts` directly. Other examples:
 
 ```bash
 REPORT_NOW=2026-11-18T00:00:00Z REPORT_FORMAT=json node src/main.ts fixtures/bad

@@ -40,7 +40,7 @@ A browser stores five cookies from shop.example.com. For each request it checks 
 
 Sources:
 
-- HTTP (MDN Web Docs documentation set) — https://developer.mozilla.org/en-US/docs/Web/HTTP
+- MDN Web Docs: HTTP and web networking — https://developer.mozilla.org/en-US/docs/Web/HTTP
 - URL Standard (WHATWG Living Standard) — https://url.spec.whatwg.org/
 - nodejs/undici: HTTP/1.1 client for Node.js (fetch, cache interceptor, cookies) — https://github.com/nodejs/undici
 

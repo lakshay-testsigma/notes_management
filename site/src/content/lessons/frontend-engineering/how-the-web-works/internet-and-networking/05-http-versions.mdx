@@ -23,7 +23,7 @@ The benefit is real on lossy networks, but HTTP/3 has costs. Firewalls that bloc
 
 <Depth level="internals">
 
-A client picks HTTP/2 or HTTP/3 with ALPN, a TLS extension that lists protocol names such as `h2` and `h3`. A server can advertise HTTP/3 with the `Alt-Svc` header. Header compression matters because every request repeats the same headers and cookies. HTTP/2 compresses them with HPACK, which assumes in-order data. HTTP/3 uses QPACK instead: table updates travel on separate unidirectional streams. RFC 9114 itself defines no priority signal (Appendix A.2.1). Priorities come from a separate extension: the `Priority` request header of RFC 9218, with an urgency from `u=0` to `u=7` and an incremental flag `i`. A server may treat it only as a hint. A QUIC client address can change during a connection (RFC 9114, Sections 3.1, 4.2, 10.10).
+A client picks HTTP/2 or HTTP/3 with ALPN, a TLS extension that lists protocol names such as `h2` and `h3`. A server can advertise HTTP/3 with the `Alt-Svc` header. Header compression matters because every request repeats the same headers and cookies. HTTP/2 compresses them with HPACK, which assumes in-order data. HTTP/3 uses QPACK instead: table updates travel on separate unidirectional streams. RFC 9114 itself defines no priority signal (Appendix A.2.1). Priorities come from a separate extension, the `Priority` request header. A QUIC client address can change during a connection (RFC 9114, Section 10.10).
 
 </Depth>
 
