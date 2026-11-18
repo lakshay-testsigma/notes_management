@@ -19,15 +19,17 @@ In the lab, load Slow 4G or a slow server. Predict which bar grows, then step th
 
 <Experience id="network-waterfall-lab" />
 
-A long Waiting bar points at the server or the round trip. A long Content Download bar points at payload size or network speed. A long Queueing bar points at too many competing requests. The **Throttling** menu (Fast 4G, Slow 4G, 3G, Offline) shows a warning icon while it is on. A failed request names its cause in the **Status** column: `CORS error` (a cross-origin refusal), `(blocked:origin)` or `(failed)` with a message. Hover the status for a hint.
+A long Waiting bar points at the server or the round trip. A long Content Download bar points at payload size or network speed. A long Queueing bar points at too many competing requests. The **Throttling** menu shows a warning icon while it is on. A failed request names its cause in the **Status** column: `CORS error` (a cross-origin refusal), `(blocked:origin)` or `(failed)`.
 
-The lab leaves out cache state. Repeat visits load files from the browser cache, so tick **Disable cache** to reproduce a first visit.
+Repeat visits load files from the browser cache, so tick **Disable cache** to reproduce a first visit.
 
 {/* <!-- concept: initiator-and-priority --> */}
 
 {/* <!-- concept: har-export --> */}
 
-The **Initiator** column names what started a request: Parser, Redirect, Script, Early Hints or Other. Hold Shift and hover a row: initiators turn green, dependencies red. **HAR** (HTTP Archive) is a JSON file of the session that a teammate can drag into their own Network panel. By default it leaves out `Cookie`, `Set-Cookie` and `Authorization` headers.
+The **Initiator** column names what started a request: Parser, Redirect, Script, Early Hints or Other. Hold Shift and hover a row: initiators turn green, dependencies red.
+
+A **HAR** (HTTP Archive) file is a JSON copy of the recording. The Export HAR button saves it for a bug report: a teammate drops the file on their Network panel and sees your exact waterfall. The default export is sanitized: it leaves out `Cookie`, `Set-Cookie` and `Authorization` headers. An unsanitized HAR holds cookies and tokens.
 
 <SortBuckets
   prompt="Sort each situation by the timing phase that grows the most."
@@ -51,7 +53,7 @@ DevTools computes HAR phases instead of copying timestamps. Each phase starts at
 
 <Depth level="production">
 
-Teams attach HAR files to bug reports, so the defaults matter. Settings > Preferences > Network > "Allow to generate HAR with sensitive data" adds the secret headers back; share such a file only with people you trust. DevTools also treats an imported HAR as untrusted input and rejects malformed fields (`front_end/models/har/Importer.ts:185-195 @ 572bfc0`).
+You can also save with right-click > Copy > Save all as HAR. Settings > Preferences > Network > "Allow to generate HAR with sensitive data" adds the secret headers back; share such a file only with people you trust. DevTools also treats an imported HAR as untrusted input and rejects malformed fields (`front_end/models/har/Importer.ts:185-195 @ 572bfc0`).
 
 To reproduce a bug outside the page, right-click the request and pick Copy > Copy as cURL or Copy as fetch. The command carries the same URL and headers, so you can run it in a terminal, or edit the `fetch()` call in the Console and press Enter to resend it. More filters > Blocked requests then shows only the requests that the page blocked.
 

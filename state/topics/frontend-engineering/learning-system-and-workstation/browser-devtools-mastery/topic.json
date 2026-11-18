@@ -7,7 +7,7 @@
   "subdomain": "learning-system-and-workstation",
   "depth": "deep",
   "created_at": "2026-11-18T09:43:20Z",
-  "updated_at": "2026-11-18T11:34:37Z",
+  "updated_at": "2026-11-18T11:38:07Z",
   "paths": {
     "state": "state/topics/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery",
     "vault": "vault/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery",
@@ -2217,27 +2217,32 @@
       "skill": "learn-site",
       "status": "done",
       "scope": "required",
-      "started_at": "2026-11-18T11:30:24Z",
-      "finished_at": "2026-11-18T11:32:52Z",
-      "attempts": 2,
+      "started_at": "2026-11-18T11:35:20Z",
+      "finished_at": "2026-11-18T11:37:27Z",
+      "attempts": 3,
       "units": [
         {
-          "id": "fix-page-01",
+          "id": "fix2-page-02",
           "status": "done",
           "handoff": null
         },
         {
-          "id": "fix-page-03",
+          "id": "fix2-page-04",
           "status": "done",
           "handoff": null
         },
         {
-          "id": "fix-page-05",
+          "id": "fix2-page-05",
           "status": "done",
           "handoff": null
         },
         {
-          "id": "fix-page-09",
+          "id": "fix2-page-09",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "fix2-page-10",
           "status": "done",
           "handoff": null
         }
@@ -2297,12 +2302,45 @@
             }
           ],
           "note": ""
+        },
+        {
+          "at": "2026-11-18T11:35:17Z",
+          "status": "done",
+          "validation": {
+            "version": 2,
+            "fingerprint": "fac811fddf1c4f921974ec7b787787e59e5478433d24fa5cc4a356ccb3d84455",
+            "at": "2026-11-18T11:32:52Z",
+            "forced": false
+          },
+          "units": [
+            {
+              "id": "fix-page-01",
+              "status": "done",
+              "handoff": null
+            },
+            {
+              "id": "fix-page-03",
+              "status": "done",
+              "handoff": null
+            },
+            {
+              "id": "fix-page-05",
+              "status": "done",
+              "handoff": null
+            },
+            {
+              "id": "fix-page-09",
+              "status": "done",
+              "handoff": null
+            }
+          ],
+          "note": ""
         }
       ],
       "validation": {
         "version": 2,
-        "fingerprint": "fac811fddf1c4f921974ec7b787787e59e5478433d24fa5cc4a356ccb3d84455",
-        "at": "2026-11-18T11:32:52Z",
+        "fingerprint": "61b0078926b3d894fb3ddd6233d7e5e2a54aa6d5d1b5b2e3b0f68bbfba134042",
+        "at": "2026-11-18T11:37:27Z",
         "forced": false
       }
     },
@@ -2313,7 +2351,7 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T10:31:56Z",
-      "finished_at": "2026-11-18T11:33:15Z",
+      "finished_at": "2026-11-18T11:37:50Z",
       "attempts": 1,
       "units": [
         {
@@ -2337,7 +2375,7 @@
       "validation": {
         "version": 2,
         "fingerprint": "5bafd3ecd1f71243db4a2ceaf36f5b432465c43c2b07c3237831972ebfa0994b",
-        "at": "2026-11-18T11:33:15Z",
+        "at": "2026-11-18T11:37:50Z",
         "forced": false
       }
     },
@@ -2348,7 +2386,7 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T11:16:44Z",
-      "finished_at": "2026-11-18T11:33:27Z",
+      "finished_at": "2026-11-18T11:38:02Z",
       "attempts": 2,
       "units": [
         {
@@ -2362,7 +2400,7 @@
       "validation": {
         "version": 2,
         "fingerprint": "92c34df2931bba986c7ab01fc707efe1a121a5f7065b02a48491768f130f6299",
-        "at": "2026-11-18T11:33:27Z",
+        "at": "2026-11-18T11:38:02Z",
         "forced": false
       }
     },
@@ -2373,7 +2411,7 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T11:23:27Z",
-      "finished_at": "2026-11-18T11:34:37Z",
+      "finished_at": "2026-11-18T11:38:07Z",
       "attempts": 1,
       "units": [],
       "note": "",
@@ -2381,7 +2419,7 @@
       "validation": {
         "version": 2,
         "fingerprint": "13c611c9283a3831ef144aaec5623b37ab8b6a448f03eb3ca6657cd45933f060",
-        "at": "2026-11-18T11:34:37Z",
+        "at": "2026-11-18T11:38:07Z",
         "forced": false
       }
     },
@@ -2531,131 +2569,6 @@
     }
   },
   "log": [
-    {
-      "at": "2026-11-18T09:47:28Z",
-      "event": "source-add",
-      "message": "added webkit-web-inspector-docs",
-      "stage": "research"
-    },
-    {
-      "at": "2026-11-18T09:47:30Z",
-      "event": "source-add",
-      "message": "added chrome-devtools-remote-debugging-docs",
-      "stage": "research"
-    },
-    {
-      "at": "2026-11-18T09:47:37Z",
-      "event": "unit-done",
-      "message": "unit docs-inspect-debug",
-      "stage": "research"
-    },
-    {
-      "at": "2026-11-18T09:47:38Z",
-      "event": "unit-done",
-      "message": "unit docs-measure",
-      "stage": "research"
-    },
-    {
-      "at": "2026-11-18T09:47:43Z",
-      "event": "unit-done",
-      "message": "unit repos",
-      "stage": "research"
-    },
-    {
-      "at": "2026-11-18T09:47:44Z",
-      "event": "unit-done",
-      "message": "unit docs-cross-browser",
-      "stage": "research"
-    },
-    {
-      "at": "2026-11-18T09:47:55Z",
-      "event": "source-add",
-      "message": "added googlechrome-lighthouse-repo",
-      "stage": "research"
-    },
-    {
-      "at": "2026-11-18T09:47:57Z",
-      "event": "source-add",
-      "message": "added chromedevtools-devtools-frontend-repo",
-      "stage": "research"
-    },
-    {
-      "at": "2026-11-18T09:48:58Z",
-      "event": "plan",
-      "message": "plan fields set: summary, prerequisites, outcomes, lesson_outline, mini_projects, digest_targets, repo_targets, capstone, learner, visual_policy, visual_first, multi_stage, experience_policy, curriculum",
-      "stage": "intake"
-    },
-    {
-      "at": "2026-11-18T09:49:10Z",
-      "event": "done",
-      "message": "gate passed",
-      "stage": "intake"
-    },
-    {
-      "at": "2026-11-18T09:49:52Z",
-      "event": "execution-check",
-      "message": "research: pass",
-      "stage": "research"
-    },
-    {
-      "at": "2026-11-18T09:49:55Z",
-      "event": "gate-failed",
-      "message": "4 problems",
-      "stage": "research"
-    },
-    {
-      "at": "2026-11-18T09:50:04Z",
-      "event": "plan",
-      "message": "plan fields set: summary, prerequisites, outcomes, lesson_outline, mini_projects, digest_targets, repo_targets, capstone, learner, visual_policy, visual_first, multi_stage, experience_policy, curriculum",
-      "stage": "intake"
-    },
-    {
-      "at": "2026-11-18T09:50:07Z",
-      "event": "done",
-      "message": "gate passed",
-      "stage": "intake"
-    },
-    {
-      "at": "2026-11-18T09:50:09Z",
-      "event": "gate-failed",
-      "message": "1 problems",
-      "stage": "research"
-    },
-    {
-      "at": "2026-11-18T09:50:55Z",
-      "event": "execution-check",
-      "message": "research: pass",
-      "stage": "research"
-    },
-    {
-      "at": "2026-11-18T09:50:58Z",
-      "event": "done",
-      "message": "gate passed",
-      "stage": "research"
-    },
-    {
-      "at": "2026-11-18T09:52:18Z",
-      "event": "start",
-      "message": "attempt 1",
-      "stage": "brief"
-    },
-    {
-      "at": "2026-11-18T10:16:54Z",
-      "event": "gate-failed",
-      "message": "1 problems",
-      "stage": "brief"
-    },
-    {
-      "at": "2026-11-18T10:17:01Z",
-      "event": "visual",
-      "message": "added visual how-it-works"
-    },
-    {
-      "at": "2026-11-18T10:17:04Z",
-      "event": "done",
-      "message": "gate passed",
-      "stage": "brief"
-    },
     {
       "at": "2026-11-18T10:17:43Z",
       "event": "start",
@@ -3677,6 +3590,129 @@
       "event": "done",
       "message": "gate passed",
       "stage": "notes"
+    },
+    {
+      "at": "2026-11-18T11:34:52Z",
+      "event": "note",
+      "message": "SPAWN 38/56; all stages re-gated after audit 1; AUDIT round 2 running; next finalize"
+    },
+    {
+      "at": "2026-11-18T11:35:16Z",
+      "event": "note",
+      "message": "AUDIT round 2: 5 gaps, 0 concepts added (all inside existing concepts); fix units for pages 02,04,05,09,10"
+    },
+    {
+      "at": "2026-11-18T11:35:17Z",
+      "event": "reset",
+      "message": "was done",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T11:35:20Z",
+      "event": "start",
+      "message": "attempt 3",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T11:35:23Z",
+      "event": "unit-add",
+      "message": "unit fix2-page-02",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T11:35:26Z",
+      "event": "unit-add",
+      "message": "unit fix2-page-04",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T11:35:30Z",
+      "event": "unit-add",
+      "message": "unit fix2-page-05",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T11:35:33Z",
+      "event": "unit-add",
+      "message": "unit fix2-page-09",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T11:35:36Z",
+      "event": "unit-add",
+      "message": "unit fix2-page-10",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T11:36:25Z",
+      "event": "note",
+      "message": "SPAWN 43/56; audit round 2 fixes running (fix2-page-02,04,05,09,10); then re-gate lesson, mini, capstone, notes; then finalize with 2 verifiers (cap leaves 13)"
+    },
+    {
+      "at": "2026-11-18T11:36:31Z",
+      "event": "unit-done",
+      "message": "unit fix2-page-02",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T11:36:35Z",
+      "event": "unit-done",
+      "message": "unit fix2-page-04",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T11:36:45Z",
+      "event": "unit-done",
+      "message": "unit fix2-page-05",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T11:37:02Z",
+      "event": "unit-done",
+      "message": "unit fix2-page-09",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T11:37:04Z",
+      "event": "unit-done",
+      "message": "unit fix2-page-10",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T11:37:27Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T11:37:44Z",
+      "event": "execution-check",
+      "message": "mini-projects: pass",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-18T11:37:50Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-18T11:37:56Z",
+      "event": "execution-check",
+      "message": "capstone: pass",
+      "stage": "capstone"
+    },
+    {
+      "at": "2026-11-18T11:38:02Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "capstone"
+    },
+    {
+      "at": "2026-11-18T11:38:07Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "notes"
     }
   ],
   "roadmap": {
@@ -3978,7 +4014,7 @@
       "mini-projects": {
         "version": 2,
         "fingerprint": "5bafd3ecd1f71243db4a2ceaf36f5b432465c43c2b07c3237831972ebfa0994b",
-        "at": "2026-11-18T11:33:10Z",
+        "at": "2026-11-18T11:37:44Z",
         "ok": true,
         "checks": [
           {
@@ -3990,7 +4026,7 @@
             "expected_exit": 0,
             "exit": 0,
             "ok": true,
-            "output_sha256": "d7991e62b7c78565935471dc907ba91ea9ed5430af59f45fe610f1fdfe7d91d4"
+            "output_sha256": "cc6997bf01bb5c71db61f8d152e83df0bb3f52ef0695f6998820804d0ebc2600"
           },
           {
             "label": "mini-01-source-map-stack-resolver: starter-tests",
@@ -4001,7 +4037,7 @@
             "expected_exit": 1,
             "exit": 1,
             "ok": true,
-            "output_sha256": "6331d9b1bd2062feb1a5f5d892f27aa8f4cbb38d7b3873913c7d0403f6ecc0cd"
+            "output_sha256": "5ad8e3f22d19db559a7e7dd0be515b6fc7b48b91a8271356f75ff6e6701c2271"
           },
           {
             "label": "mini-01-source-map-stack-resolver: starter-start",
@@ -4049,7 +4085,7 @@
             "expected_exit": 0,
             "exit": 0,
             "ok": true,
-            "output_sha256": "7224b78c85369c7da149c7a18dd81aeb6c74c627baf42c71531928d08b7a128b"
+            "output_sha256": "decd617b9073c286193da4ba5be7c97473627a9cc863ca6bee3fa04c25f499c5"
           },
           {
             "label": "mini-02-har-waterfall-report: starter-tests",
@@ -4060,7 +4096,7 @@
             "expected_exit": 1,
             "exit": 1,
             "ok": true,
-            "output_sha256": "c49cc3e174fd426c287e9fae13d0769ee4a277d2eb91be8f36edc3a562e4a19e"
+            "output_sha256": "915382cb4f6a9caab04ee961f37694f12405dfd6396c83fdeb2c5979f04314d3"
           },
           {
             "label": "mini-02-har-waterfall-report: starter-start",
@@ -4110,7 +4146,7 @@
             "expected_exit": 0,
             "exit": 0,
             "ok": true,
-            "output_sha256": "5c1d75d1865b93d62dd0c71fa3d08b9b1ed467c67f378fb079ded70edf7ea181"
+            "output_sha256": "6d8c5edbe22c29304e63a4dce09fc137a1bc71d83e0651cc2a8094af6b367e74"
           },
           {
             "label": "mini-03-trace-long-task-finder: starter-tests",
@@ -4121,7 +4157,7 @@
             "expected_exit": 1,
             "exit": 1,
             "ok": true,
-            "output_sha256": "81e8f8fbc3cf79a20f07e04b2a57033efc770f54ef434069bbfc7258bc8e3be5"
+            "output_sha256": "89d778643871db309c658b2ee923fb9dbe2335d577d42bc9189e8b0ae90ff28a"
           },
           {
             "label": "mini-03-trace-long-task-finder: starter-start",
@@ -4167,7 +4203,7 @@
       "capstone": {
         "version": 2,
         "fingerprint": "92c34df2931bba986c7ab01fc707efe1a121a5f7065b02a48491768f130f6299",
-        "at": "2026-11-18T11:33:22Z",
+        "at": "2026-11-18T11:37:56Z",
         "ok": true,
         "checks": [
           {
@@ -4179,7 +4215,7 @@
             "expected_exit": 0,
             "exit": 0,
             "ok": true,
-            "output_sha256": "da670e651de958adf7d6228a44ee7c5c75e418955a202e365dd3b8da4a30e271"
+            "output_sha256": "a7ec0957397c6efdbdcef582453d5d37663c3fa7475f5c92c8ce5db2fc7107c6"
           },
           {
             "label": "capstone: typecheck",
@@ -4202,7 +4238,7 @@
             "expected_exit": 0,
             "exit": 0,
             "ok": true,
-            "output_sha256": "d9b5b7a20320eb07e0fc183798f19684701a16147df0bbe2bda5f2378779bb9d"
+            "output_sha256": "8a39d8b3367b93b41585757abc1363dc7b1b45bdb084b771de6288aa7eee0d0b"
           },
           {
             "label": "capstone: audit",

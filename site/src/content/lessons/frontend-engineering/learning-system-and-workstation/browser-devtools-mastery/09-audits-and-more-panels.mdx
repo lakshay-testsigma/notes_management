@@ -12,13 +12,15 @@ concepts: [Lighthouse audits, Coverage panel, Rendering emulation, Recorder, Com
 {/* <!-- concept: recorder-and-issues --> */}
 {/* <!-- concept: command-menu-snippets-sensors --> */}
 
-A bug report says "the site feels heavy, and dark mode looks broken". You have four more panels to choose from. Each one measures one kind of problem. Find the reported problem on the left of the map, follow its arrow, and name the panel.
+A bug report says "the site feels heavy, and dark mode looks broken". Each remaining panel measures one kind of problem. Find the problem on the left of the map, follow its arrow, and name the panel.
 
 <Diagram id="symptom-to-panel-map" />
 
-Lighthouse is an automated auditor, built into the DevTools Lighthouse panel. It works in two phases. First it gathers: it loads the page and records a trace and a DevTools log. Then audits read those records and score the page. Because the records are files, you can audit the same load again without a browser. Teams run Lighthouse in continuous integration, so a regression shows before release.
+Lighthouse is an automated auditor in the Lighthouse panel. First it gathers: it loads the page and records a trace and a log. Then audits read those records and score the page. Teams run it in continuous integration, so a regression shows before release.
 
-Coverage records which bytes of each CSS and JavaScript file ran. Unused bytes are code to split or remove, so you skip reading the bundle by hand. Rendering emulates user settings such as `prefers-color-scheme`, `prefers-reduced-motion`, `forced-colors` and `prefers-contrast`. You test dark mode without a change to your operating system. Recorder records a user flow, then replays it, measures it, and lets you edit its steps. You stop clicking the same flow by hand after each fix.
+Coverage records which bytes of each CSS and JavaScript file ran. Unused bytes are code to split or remove. Rendering emulates user settings such as `prefers-color-scheme`, `prefers-reduced-motion`, `forced-colors` and `prefers-contrast`. You test dark mode without a change to your operating system. Recorder records a user flow, then replays it, measures it, and lets you edit its steps. You stop clicking it by hand after each fix.
+
+Device mode simulates a phone from your laptop. The device toolbar sets a responsive viewport or a device preset, a device pixel ratio (DPR, the number of screen pixels per CSS pixel), and CPU and network throttling. It is only a first-order approximation: your code does not run on the phone, and a mobile CPU has a different architecture. Confirm the result on a real device (page 11).
 
 <Quiz
   question="Users who turned on reduced motion say the carousel still slides. How do you reproduce this on your laptop fastest?"
@@ -49,7 +51,7 @@ The gather phase saves artifacts; the audit phase reads them. The CLI flag `-G` 
 
 </Depth>
 
-To reach any of these panels fast, open the Command Menu. It is a search box for DevTools commands: press `Ctrl+Shift+P`, or `Cmd+Shift+P` on a Mac, and type a panel or setting by name.
+To reach a panel fast, open the Command Menu, a search box for DevTools commands: press `Ctrl+Shift+P` (`Cmd+Shift+P` on a Mac) and type its name.
 
 <Depth level="production" title="Command Menu, Snippets and Sensors">
 
@@ -61,4 +63,4 @@ The Sensors panel overrides geolocation and simulates device orientation, so you
 
 </Depth>
 
-These panels audit the page on your machine. The next page looks at what changes in other browsers and on real devices.
+The next page looks at other browsers and real devices.

@@ -7,11 +7,11 @@ concepts: [source map, base64 VLQ, sourceMappingURL, local overrides, fetch and 
 
 {/* <!-- concept: source-maps --> */}
 
-Your build tool minifies `src` files into one bundle, `app.min.js`. The browser runs that bundle, so breakpoints and errors point at unreadable code. A **source map** is a JSON file that links each position in the generated code back to a position in an original file. With it, DevTools shows your own files in Sources and the call stack.
+Your build tool minifies `src` files into one bundle, `app.min.js`. The browser runs that bundle, so breakpoints and errors point at unreadable code. A **source map** is a JSON file that links each position in the generated code back to a position in an original file. With it, DevTools shows your own files.
 
 {/* <!-- concept: source-map-vlq-mappings --> */}
 
-The generated file names its map in a `//# sourceMappingURL=` comment. The map lists the original files in `sources` and stores positions in `mappings`. A `;` ends a generated line, and a `,` separates segments. Each segment holds small numbers in **base64 VLQ** (variable-length quantity): every letter carries 5 bits of value and one bit that says "more letters follow".
+The generated file names its map in a `//# sourceMappingURL=` comment. The map lists the original files in `sources` and positions in `mappings`. A `;` ends a generated line, a `,` separates segments, and each segment holds numbers in **base64 VLQ** (variable-length quantity), a compact number code.
 
 <PredictReveal
   prompt="DevTools pauses on the second line of app.min.js. The map file returns 404, or JavaScript source maps are off in Settings. What does the Sources panel show?"
@@ -21,17 +21,19 @@ The generated file names its map in a `//# sourceMappingURL=` comment. The map l
   reasoning="DevTools finds the original file only through the map. Without the map, nothing links the generated position to an original file, so DevTools shows the code the browser runs. The map is for tools; the page runs the same without it."
 />
 
-Follow one lookup from left to right. Each letter becomes a change from the previous segment.
+Follow one lookup from left to right.
 
 <Diagram id="source-map-lookup" />
 
-`A` is 0, `C` is +1 and `D` is −1. DevTools adds each change to the previous segment, so the position lands on line index 1 of `sources[0]`. You pay with an extra file per bundle. A map with `sourcesContent` embeds your original text, so treat it like source code.
+`A` is 0, `C` is +1 and `D` is −1. DevTools adds each change to the previous segment, so the position lands on line index 1 of `sources[0]`. You pay with an extra file per bundle.
 
 {/* <!-- concept: local-overrides --> */}
 
 {/* <!-- concept: override-xhr-fetch --> */}
 
-**Local overrides** save your edit of a response to a folder on your disk. Choose the folder, edit the file, and reload: DevTools serves the saved copy instead of the network response. You can also override the response of a fetch or XHR request. You test a fix or a new API shape in seconds, without a deploy. Overrides do not save DOM edits or CSS that the HTML defines, and you cannot override a source-mapped file.
+**Local overrides** save your edit of a served response to a folder on your disk, for any site. On reload, DevTools serves the saved copy instead of the network response. You can also override a fetch or XHR response. You test a fix or a new API shape without a deploy. You cannot override a source-mapped file.
+
+A **workspace** connects your own project folder to DevTools instead. Edit a CSS, HTML or JavaScript file in Sources, save, and DevTools writes the change to the source file on your disk. Use it to keep a fix in your real code. DevTools does not save DOM edits from the Elements panel.
 
 <Depth level="internals">
 
@@ -41,6 +43,6 @@ VLQ letters `A` to `Z` and `a` to `f` end a number; `g` to `z`, digits, `+` and 
 
 <Depth level="production">
 
-When both a comment and a `sourcemap` header exist, the header wins. Build tools can set `ignoreList` to mark framework and bundler files, and DevTools can hide those frames from stepping and the call stack. Chrome still reads the older `x_google_ignoreList` when `ignoreList` is absent (`front_end/core/sdk/SourceMap.ts:551 @ 572bfc0`).
+When both a comment and a `sourcemap` header exist, the header wins. A map with `sourcesContent` embeds your original text, so treat it like source code. Build tools can set `ignoreList` to mark framework and bundler files, and DevTools can hide those frames from stepping and the call stack. Chrome still reads the older `x_google_ignoreList` when `ignoreList` is absent (`front_end/core/sdk/SourceMap.ts:551 @ 572bfc0`).
 
 </Depth>
