@@ -14,5 +14,6 @@ Vitest is a test runner that works with Vite and TypeScript. It runs the journal
 
 - [[06-capstone-how-to-learn-frontend]]
 - [[commitlint-tech-and-services]]
+- [[cookie-tech-and-services]]
 
 ## My insights

@@ -7,7 +7,7 @@
   "subdomain": "how-the-web-works",
   "depth": "deep",
   "created_at": "2026-11-18T12:13:22Z",
-  "updated_at": "2026-11-18T13:18:10Z",
+  "updated_at": "2026-11-18T13:38:05Z",
   "paths": {
     "state": "state/topics/frontend-engineering/how-the-web-works/internet-and-networking",
     "vault": "vault/frontend-engineering/how-the-web-works/internet-and-networking",
@@ -2087,25 +2087,131 @@
       "id": "digest",
       "wave": 2,
       "skill": "learn-digest",
-      "status": "pending",
+      "status": "done",
       "scope": "required",
-      "started_at": null,
-      "finished_at": null,
-      "attempts": 0,
-      "units": [],
-      "note": ""
+      "started_at": "2026-11-18T13:22:24Z",
+      "finished_at": "2026-11-18T13:37:57Z",
+      "attempts": 1,
+      "units": [
+        {
+          "id": "rfc-9111-http-caching",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "rfc-9114-http3",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "rfc-9846-tls13",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "whatwg-url-standard",
+          "status": "done",
+          "handoff": null
+        }
+      ],
+      "note": "",
+      "continue_after_failure": false,
+      "validation": {
+        "version": 2,
+        "fingerprint": "bafe2bf6ee4295883ad2980631a6c402d060c82eaf9c11d1db723f6bcac06369",
+        "at": "2026-11-18T13:37:57Z",
+        "forced": false
+      }
     },
     {
       "id": "repo-intel",
       "wave": 2,
       "skill": "learn-repo-intel",
-      "status": "pending",
+      "status": "done",
       "scope": "required",
-      "started_at": null,
-      "finished_at": null,
-      "attempts": 0,
-      "units": [],
-      "note": ""
+      "started_at": "2026-11-18T13:22:27Z",
+      "finished_at": "2026-11-18T13:38:05Z",
+      "attempts": 1,
+      "units": [
+        {
+          "id": "nodejs-undici-scout",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "jshttp-cookie-scout",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "jshttp-cookie-module-cookie-header",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "jshttp-cookie-module-set-cookie-serialize",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "jshttp-cookie-module-set-cookie-parse",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "jshttp-cookie-module-build-and-infra",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "jshttp-cookie-synthesis",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "nodejs-undici-module-cache-semantics",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "nodejs-undici-module-cache-tests",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "nodejs-undici-module-http-versions-dispatcher",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "nodejs-undici-module-fetch-and-compression",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "nodejs-undici-module-cookies",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "nodejs-undici-module-build-and-infra",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "nodejs-undici-synthesis",
+          "status": "done",
+          "handoff": null
+        }
+      ],
+      "note": "",
+      "continue_after_failure": false,
+      "validation": {
+        "version": 2,
+        "fingerprint": "ec6cca241409cf5a30e0e903bf61d994443f4346ea9211419e5b6716542540b8",
+        "at": "2026-11-18T13:38:05Z",
+        "forced": false
+      }
     },
     {
       "id": "lesson",
@@ -2524,6 +2630,440 @@
       "event": "done",
       "message": "gate passed",
       "stage": "brief"
+    },
+    {
+      "at": "2026-11-18T13:22:24Z",
+      "event": "start",
+      "message": "attempt 1",
+      "stage": "digest"
+    },
+    {
+      "at": "2026-11-18T13:22:27Z",
+      "event": "start",
+      "message": "attempt 1",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T13:22:30Z",
+      "event": "unit-add",
+      "message": "unit rfc-9111-http-caching",
+      "stage": "digest"
+    },
+    {
+      "at": "2026-11-18T13:22:33Z",
+      "event": "unit-add",
+      "message": "unit rfc-9114-http3",
+      "stage": "digest"
+    },
+    {
+      "at": "2026-11-18T13:22:36Z",
+      "event": "unit-add",
+      "message": "unit rfc-9846-tls13",
+      "stage": "digest"
+    },
+    {
+      "at": "2026-11-18T13:22:39Z",
+      "event": "unit-add",
+      "message": "unit whatwg-url-standard",
+      "stage": "digest"
+    },
+    {
+      "at": "2026-11-18T13:22:42Z",
+      "event": "unit-add",
+      "message": "unit nodejs-undici-scout",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T13:22:45Z",
+      "event": "unit-add",
+      "message": "unit jshttp-cookie-scout",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T13:22:47Z",
+      "event": "note",
+      "message": "SPAWN 10/56; WAVE 2: scouts undici, cookie; digests rfc-9111, rfc-9114, rfc-9846 running; queued whatwg-url"
+    },
+    {
+      "at": "2026-11-18T13:23:43Z",
+      "event": "unit-start",
+      "message": "unit rfc-9111-http-caching",
+      "stage": "digest"
+    },
+    {
+      "at": "2026-11-18T13:23:46Z",
+      "event": "unit-start",
+      "message": "unit rfc-9114-http3",
+      "stage": "digest"
+    },
+    {
+      "at": "2026-11-18T13:23:49Z",
+      "event": "unit-start",
+      "message": "unit rfc-9846-tls13",
+      "stage": "digest"
+    },
+    {
+      "at": "2026-11-18T13:24:00Z",
+      "event": "unit-start",
+      "message": "unit jshttp-cookie-scout",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T13:24:45Z",
+      "event": "visual",
+      "message": "added visual rfc-9111-mechanism"
+    },
+    {
+      "at": "2026-11-18T13:24:50Z",
+      "event": "unit-done",
+      "message": "unit rfc-9111-http-caching",
+      "stage": "digest"
+    },
+    {
+      "at": "2026-11-18T13:25:03Z",
+      "event": "visual",
+      "message": "added visual rfc-9846-tls13-mechanism"
+    },
+    {
+      "at": "2026-11-18T13:25:08Z",
+      "event": "unit-done",
+      "message": "unit rfc-9846-tls13",
+      "stage": "digest"
+    },
+    {
+      "at": "2026-11-18T13:25:11Z",
+      "event": "visual",
+      "message": "added visual rfc-9114-http3-mechanism"
+    },
+    {
+      "at": "2026-11-18T13:25:16Z",
+      "event": "unit-done",
+      "message": "unit rfc-9114-http3",
+      "stage": "digest"
+    },
+    {
+      "at": "2026-11-18T13:25:26Z",
+      "event": "unit-done",
+      "message": "unit jshttp-cookie-scout",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T13:26:34Z",
+      "event": "unit-add",
+      "message": "unit jshttp-cookie-module-cookie-header",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T13:26:38Z",
+      "event": "unit-add",
+      "message": "unit jshttp-cookie-module-set-cookie-serialize",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T13:26:40Z",
+      "event": "unit-add",
+      "message": "unit jshttp-cookie-module-set-cookie-parse",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T13:26:43Z",
+      "event": "unit-add",
+      "message": "unit jshttp-cookie-module-build-and-infra",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T13:26:46Z",
+      "event": "note",
+      "message": "SPAWN 14/56; running undici-scout, cookie modules cookie-header/set-cookie-serialize/set-cookie-parse, digest whatwg-url; queued cookie build-and-infra"
+    },
+    {
+      "at": "2026-11-18T13:26:57Z",
+      "event": "unit-start",
+      "message": "unit jshttp-cookie-module-set-cookie-parse",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T13:27:00Z",
+      "event": "unit-start",
+      "message": "unit jshttp-cookie-module-cookie-header",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T13:27:03Z",
+      "event": "unit-start",
+      "message": "unit whatwg-url-standard",
+      "stage": "digest"
+    },
+    {
+      "at": "2026-11-18T13:27:06Z",
+      "event": "unit-start",
+      "message": "unit jshttp-cookie-module-set-cookie-serialize",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T13:27:49Z",
+      "event": "unit-done",
+      "message": "unit jshttp-cookie-module-cookie-header",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T13:27:53Z",
+      "event": "unit-done",
+      "message": "unit jshttp-cookie-module-set-cookie-parse",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T13:27:58Z",
+      "event": "unit-done",
+      "message": "unit jshttp-cookie-module-set-cookie-serialize",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T13:28:01Z",
+      "event": "unit-done",
+      "message": "unit nodejs-undici-scout",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T13:28:08Z",
+      "event": "note",
+      "message": "SPAWN 15/56; cookie build-and-infra started"
+    },
+    {
+      "at": "2026-11-18T13:28:15Z",
+      "event": "unit-start",
+      "message": "unit jshttp-cookie-module-build-and-infra",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T13:28:18Z",
+      "event": "visual",
+      "message": "added visual whatwg-url-standard-mechanism"
+    },
+    {
+      "at": "2026-11-18T13:28:23Z",
+      "event": "unit-done",
+      "message": "unit whatwg-url-standard",
+      "stage": "digest"
+    },
+    {
+      "at": "2026-11-18T13:29:04Z",
+      "event": "unit-done",
+      "message": "unit jshttp-cookie-module-build-and-infra",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T13:29:20Z",
+      "event": "unit-add",
+      "message": "unit jshttp-cookie-synthesis",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T13:29:23Z",
+      "event": "unit-add",
+      "message": "unit nodejs-undici-module-cache-semantics",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T13:29:26Z",
+      "event": "unit-add",
+      "message": "unit nodejs-undici-module-cache-tests",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T13:29:29Z",
+      "event": "unit-add",
+      "message": "unit nodejs-undici-module-http-versions-dispatcher",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T13:29:32Z",
+      "event": "unit-add",
+      "message": "unit nodejs-undici-module-fetch-and-compression",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T13:29:35Z",
+      "event": "unit-add",
+      "message": "unit nodejs-undici-module-cookies",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T13:29:38Z",
+      "event": "unit-add",
+      "message": "unit nodejs-undici-module-build-and-infra",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T13:29:41Z",
+      "event": "note",
+      "message": "SPAWN 20/56; cookie synthesis + undici cache-semantics, cache-tests, http-versions, fetch-compression started"
+    },
+    {
+      "at": "2026-11-18T13:30:25Z",
+      "event": "unit-start",
+      "message": "unit jshttp-cookie-synthesis",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T13:30:28Z",
+      "event": "unit-start",
+      "message": "unit nodejs-undici-module-http-versions-dispatcher",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T13:30:31Z",
+      "event": "unit-start",
+      "message": "unit nodejs-undici-module-cache-tests",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T13:30:34Z",
+      "event": "unit-start",
+      "message": "unit nodejs-undici-module-fetch-and-compression",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T13:30:37Z",
+      "event": "unit-start",
+      "message": "unit nodejs-undici-module-cache-semantics",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T13:30:46Z",
+      "event": "gate-failed",
+      "message": "1 problems",
+      "stage": "digest"
+    },
+    {
+      "at": "2026-11-18T13:30:56Z",
+      "event": "gate-failed",
+      "message": "1 problems",
+      "stage": "digest"
+    },
+    {
+      "at": "2026-11-18T13:31:33Z",
+      "event": "unit-done",
+      "message": "unit nodejs-undici-module-fetch-and-compression",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T13:31:36Z",
+      "event": "unit-done",
+      "message": "unit nodejs-undici-module-cache-tests",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T13:31:44Z",
+      "event": "visual",
+      "message": "added visual cookie-module-map"
+    },
+    {
+      "at": "2026-11-18T13:31:44Z",
+      "event": "visual",
+      "message": "added visual cookie-request-flow"
+    },
+    {
+      "at": "2026-11-18T13:31:52Z",
+      "event": "note",
+      "message": "SPAWN 21/56; undici cookies module started"
+    },
+    {
+      "at": "2026-11-18T13:32:00Z",
+      "event": "unit-start",
+      "message": "unit nodejs-undici-module-cookies",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T13:32:03Z",
+      "event": "note",
+      "message": "SPAWN 22/56; undici build-and-infra module started"
+    },
+    {
+      "at": "2026-11-18T13:32:09Z",
+      "event": "unit-done",
+      "message": "unit nodejs-undici-module-http-versions-dispatcher",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T13:32:12Z",
+      "event": "unit-done",
+      "message": "unit nodejs-undici-module-cache-semantics",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T13:32:15Z",
+      "event": "unit-start",
+      "message": "unit nodejs-undici-module-build-and-infra",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T13:32:38Z",
+      "event": "unit-done",
+      "message": "unit jshttp-cookie-synthesis",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T13:32:54Z",
+      "event": "unit-done",
+      "message": "unit nodejs-undici-module-cookies",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T13:33:20Z",
+      "event": "unit-done",
+      "message": "unit nodejs-undici-module-build-and-infra",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T13:34:11Z",
+      "event": "unit-add",
+      "message": "unit nodejs-undici-synthesis",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T13:34:14Z",
+      "event": "note",
+      "message": "SPAWN 23/56; undici synthesis started"
+    },
+    {
+      "at": "2026-11-18T13:34:24Z",
+      "event": "unit-start",
+      "message": "unit nodejs-undici-synthesis",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T13:35:55Z",
+      "event": "visual",
+      "message": "added visual undici-module-map"
+    },
+    {
+      "at": "2026-11-18T13:35:58Z",
+      "event": "visual",
+      "message": "added visual undici-request-flow"
+    },
+    {
+      "at": "2026-11-18T13:37:25Z",
+      "event": "unit-done",
+      "message": "unit nodejs-undici-synthesis",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T13:37:47Z",
+      "event": "reader-order",
+      "message": "Imported explicit authored child-note sequence"
+    },
+    {
+      "at": "2026-11-18T13:37:57Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "digest"
+    },
+    {
+      "at": "2026-11-18T13:38:05Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "repo-intel"
     }
   ],
   "roadmap": {
@@ -2778,5 +3318,41 @@
         ]
       }
     }
+  },
+  "reader_order": {
+    "digest": [
+      "04-digests/whatwg-url-standard-internet-and-networking.md",
+      "04-digests/rfc-9846-tls13-internet-and-networking.md",
+      "04-digests/rfc-9114-http3-internet-and-networking.md",
+      "04-digests/rfc-9111-http-caching-internet-and-networking.md"
+    ],
+    "repo-intel": [
+      "05-repo-intel/jshttp-cookie/cookie-overview.md",
+      "05-repo-intel/jshttp-cookie/cookie-architecture.md",
+      "05-repo-intel/jshttp-cookie/cookie-findings.md",
+      "05-repo-intel/jshttp-cookie/cookie-tech-and-services.md",
+      "05-repo-intel/jshttp-cookie/cookie-takeaways.md",
+      "05-repo-intel/jshttp-cookie/cookie-module-cookie-header.md",
+      "05-repo-intel/jshttp-cookie/cookie-module-set-cookie-serialize.md",
+      "05-repo-intel/jshttp-cookie/cookie-module-set-cookie-parse.md",
+      "05-repo-intel/jshttp-cookie/cookie-module-build-and-infra.md",
+      "05-repo-intel/jshttp-cookie/cookie-pattern-strict-write-lenient-read.md",
+      "05-repo-intel/jshttp-cookie/cookie-pattern-single-pass-scan.md",
+      "05-repo-intel/jshttp-cookie/cookie-pattern-measured-performance.md",
+      "05-repo-intel/nodejs-undici/undici-overview.md",
+      "05-repo-intel/nodejs-undici/undici-architecture.md",
+      "05-repo-intel/nodejs-undici/undici-findings.md",
+      "05-repo-intel/nodejs-undici/undici-tech-and-services.md",
+      "05-repo-intel/nodejs-undici/undici-takeaways.md",
+      "05-repo-intel/nodejs-undici/undici-module-http-versions-dispatcher.md",
+      "05-repo-intel/nodejs-undici/undici-module-fetch-and-compression.md",
+      "05-repo-intel/nodejs-undici/undici-module-cache-semantics.md",
+      "05-repo-intel/nodejs-undici/undici-module-cache-tests.md",
+      "05-repo-intel/nodejs-undici/undici-module-cookies.md",
+      "05-repo-intel/nodejs-undici/undici-module-build-and-infra.md",
+      "05-repo-intel/nodejs-undici/undici-pattern-fail-closed-parsing.md",
+      "05-repo-intel/nodejs-undici/undici-pattern-bounded-resources.md",
+      "05-repo-intel/nodejs-undici/undici-pattern-best-effort-cache.md"
+    ]
   }
 }

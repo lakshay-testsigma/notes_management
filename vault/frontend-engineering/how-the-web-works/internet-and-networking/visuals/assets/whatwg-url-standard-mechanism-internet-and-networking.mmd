@@ -1,0 +1,8 @@
+flowchart LR
+  I[Input string and optional base] --> P[Basic URL parser: state machine]
+  P -->|failure| F[Failure: new URL throws]
+  P --> R[URL record: scheme, username, password, host, port, path, query, fragment]
+  R --> S[Serializer: href]
+  R --> O{URL origin}
+  O -->|http, https, ws, wss, ftp| T[Tuple origin: scheme, host, port]
+  O -->|other schemes| Q[Opaque origin]

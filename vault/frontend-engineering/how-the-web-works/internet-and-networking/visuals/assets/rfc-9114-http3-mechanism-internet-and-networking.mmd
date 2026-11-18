@@ -1,0 +1,6 @@
+flowchart LR
+  L[One packet is lost] --> A{Transport}
+  A -->|HTTP/2 over TCP| B[TCP cannot see stream borders]
+  B --> C[All active requests stall]
+  A -->|HTTP/3 over QUIC| D[Loss is tracked per stream]
+  D --> E[Only the affected request waits]

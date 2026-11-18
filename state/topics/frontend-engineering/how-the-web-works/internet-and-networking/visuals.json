@@ -32,5 +32,200 @@
     "used_in": [
       "vault/frontend-engineering/how-the-web-works/internet-and-networking/01-brief-internet-and-networking.md"
     ]
+  },
+  {
+    "id": "rfc-9111-mechanism",
+    "title": "How a cache answers one request",
+    "kind": "workflow",
+    "scope": "stage",
+    "format": "mermaid",
+    "file": "vault/frontend-engineering/how-the-web-works/internet-and-networking/visuals/assets/rfc-9111-mechanism-internet-and-networking.mmd",
+    "concept_ids": [
+      "http-caching"
+    ],
+    "source_ids": [
+      "rfc-9111-http-caching"
+    ],
+    "purpose": "See the three outcomes of a cache lookup: fresh hit, validated reuse, or full fetch.",
+    "explanation": "A cache first matches the URI and Vary fields. A fresh match is served at once. A stale match is checked with the origin: a 304 reuses the stored body, a 200 replaces it.",
+    "alt": "Flowchart: a request is matched against stored responses by URI and Vary. No match goes to the origin. A fresh match is served with an Age header. A stale match sends a conditional request; a 304 updates the stored headers and reuses the body, a 200 brings a new response.",
+    "learning_check": {
+      "question": "What does a cache do with a stale response that has an ETag?",
+      "answer": "It sends If-None-Match; a 304 lets it reuse the stored body, a 200 replaces it."
+    },
+    "used_in": [
+      "vault/frontend-engineering/how-the-web-works/internet-and-networking/04-digests/rfc-9111-http-caching-internet-and-networking.md"
+    ]
+  },
+  {
+    "id": "rfc-9846-tls13-mechanism",
+    "title": "The full TLS 1.3 handshake in three phases",
+    "kind": "workflow",
+    "scope": "detail",
+    "format": "mermaid",
+    "file": "vault/frontend-engineering/how-the-web-works/internet-and-networking/visuals/assets/rfc-9846-tls13-mechanism-internet-and-networking.mmd",
+    "concept_ids": [
+      "tls-and-https"
+    ],
+    "source_ids": [
+      "rfc-9846-tls13"
+    ],
+    "purpose": "Show which message belongs to which handshake phase and where encryption starts.",
+    "explanation": "The client sends a ClientHello with a key share. The server answers with a ServerHello and its own key share, and both sides can now derive keys. From this point every handshake message is encrypted. The server sends EncryptedExtensions, then its Certificate, a CertificateVerify signature and a Finished MAC. The client answers with its Finished message, and application data can flow. Optional messages such as client certificates are left out.",
+    "alt": "Sequence diagram between client and server: ClientHello with key share, ServerHello with key share, a note that everything after is encrypted, then EncryptedExtensions, Certificate with CertificateVerify and Finished from the server, Finished from the client, and finally application data.",
+    "learning_check": {
+      "question": "In the Network or Security view, the handshake takes one round trip before the first request. Which messages carry the key exchange, and which prove the server owns its certificate?",
+      "answer": "ClientHello and ServerHello carry the key shares. The server's CertificateVerify signature proves it holds the private key for its certificate, and Finished confirms the handshake was not altered."
+    },
+    "used_in": [
+      "vault/frontend-engineering/how-the-web-works/internet-and-networking/04-digests/rfc-9846-tls13-internet-and-networking.md"
+    ]
+  },
+  {
+    "id": "rfc-9114-http3-mechanism",
+    "title": "Why HTTP/3 avoids transport head-of-line blocking",
+    "kind": "comparison",
+    "format": "mermaid",
+    "file": "vault/frontend-engineering/how-the-web-works/internet-and-networking/visuals/assets/rfc-9114-http3-mechanism-internet-and-networking.mmd",
+    "concept_ids": [
+      "http-versions",
+      "head-of-line-blocking-and-multiplexing",
+      "tcp-vs-udp"
+    ],
+    "source_ids": [
+      "rfc-9114-http3"
+    ],
+    "purpose": "Show why one lost packet hurts every request on HTTP/2 over TCP but only one request on HTTP/3 over QUIC.",
+    "explanation": "When one packet is lost, TCP holds back all data behind it, because it does not know which HTTP/2 streams are independent. In HTTP/3, each request uses its own QUIC stream and QUIC recovers loss per stream. Only the request that lost data waits.",
+    "alt": "Flowchart: one lost packet leads to a transport choice. On HTTP/2 over TCP, TCP cannot see stream borders, so all active requests stall. On HTTP/3 over QUIC, loss is tracked per stream, so only the affected request waits.",
+    "learning_check": {
+      "question": "A page loads ten files over one connection and one packet is lost. Which files wait on HTTP/2 over TCP and which on HTTP/3?",
+      "answer": "On HTTP/2 over TCP, all ten can stall. On HTTP/3, only the file whose stream lost the packet waits."
+    },
+    "used_in": [
+      "vault/frontend-engineering/how-the-web-works/internet-and-networking/04-digests/rfc-9114-http3-internet-and-networking.md"
+    ]
+  },
+  {
+    "id": "whatwg-url-standard-mechanism",
+    "title": "From a URL string to a URL record, a serialization and an origin",
+    "kind": "workflow",
+    "scope": "detail",
+    "format": "mermaid",
+    "file": "vault/frontend-engineering/how-the-web-works/internet-and-networking/visuals/assets/whatwg-url-standard-mechanism-internet-and-networking.mmd",
+    "concept_ids": [
+      "urls-and-origins",
+      "url-parts-and-encoding",
+      "origin-vs-site"
+    ],
+    "source_ids": [
+      "whatwg-url-standard"
+    ],
+    "purpose": "Show that every URL string goes through one parser into a record of parts, and that the origin comes from that record, not from the raw text.",
+    "explanation": "The basic URL parser reads the input string, with an optional base URL, and either fails or builds a URL record with eight fields. The serializer turns the record back into a string. The origin algorithm reads the same record: for http, https, ws, wss and ftp it returns a tuple of scheme, host and port, and for most other schemes it returns an opaque origin.",
+    "alt": "Flowchart: an input string and optional base go into the basic URL parser. On failure, new URL throws. Otherwise the parser builds a URL record with scheme, username, password, host, port, path, query and fragment. The record feeds a serializer that produces href, and an origin step that gives a tuple origin for http, https, ws, wss and ftp, or an opaque origin for other schemes.",
+    "learning_check": {
+      "question": "Two URLs differ only in port: https://a.example/ and https://a.example:8443/. Are they the same origin, and which record field decides it?",
+      "answer": "No. The tuple origin contains scheme, host and port, and the port field differs (443 by default versus 8443)."
+    },
+    "used_in": [
+      "vault/frontend-engineering/how-the-web-works/internet-and-networking/04-digests/whatwg-url-standard-internet-and-networking.md"
+    ]
+  },
+  {
+    "id": "cookie-module-map",
+    "title": "jshttp/cookie: module map",
+    "kind": "architecture",
+    "format": "mermaid",
+    "file": "vault/frontend-engineering/how-the-web-works/internet-and-networking/visuals/assets/cookie-module-map-internet-and-networking.mmd",
+    "concept_ids": [
+      "cookies"
+    ],
+    "source_ids": [
+      "jshttp-cookie-repo"
+    ],
+    "purpose": "Show how the four parts of the cookie library relate, so the learner knows where each rule lives.",
+    "explanation": "The library has three code modules and one support slice. The header module reads and writes the Cookie header. The parse module reads Set-Cookie leniently. The serialize module writes Set-Cookie strictly. All three use shared rules and helpers in one file. The build slice guards them with a size limit, CI and benchmarks.",
+    "alt": "Flowchart: three modules, cookie-header, set-cookie-parse and set-cookie-serialize, all point to a box of shared regular expressions and helper functions. A fourth box, build and infrastructure, points with dotted arrows at the three modules to show that it guards them.",
+    "learning_check": {
+      "question": "Which part decides how a bad Domain value is handled when you write a Set-Cookie header?",
+      "answer": "The set-cookie-serialize module checks the Domain against a regular expression and throws a TypeError."
+    },
+    "used_in": [
+      "vault/frontend-engineering/how-the-web-works/internet-and-networking/05-repo-intel/jshttp-cookie/cookie-architecture.md"
+    ]
+  },
+  {
+    "id": "cookie-request-flow",
+    "title": "jshttp/cookie: read a Cookie header, write a Set-Cookie header",
+    "kind": "sequence",
+    "format": "mermaid",
+    "file": "vault/frontend-engineering/how-the-web-works/internet-and-networking/visuals/assets/cookie-request-flow-internet-and-networking.mmd",
+    "concept_ids": [
+      "cookies"
+    ],
+    "source_ids": [
+      "jshttp-cookie-repo"
+    ],
+    "purpose": "Show the order of calls when a server reads the cookies of a request and sets one in the response.",
+    "explanation": "Server code calls parseCookie with the Cookie header. Each value goes through defaultDecode, which returns the raw text if the percent escape is bad. The result keeps the first value of each name. Later, the server calls stringifySetCookie. It encodes the value, checks each attribute, and returns the header string. A bad attribute throws a TypeError.",
+    "alt": "Sequence diagram: server code calls parseCookie, which calls defaultDecode for each value and returns an object. Server code then calls stringifySetCookie, which calls defaultEncode and returns the header string or throws a TypeError for a bad attribute.",
+    "learning_check": {
+      "question": "What happens when the Cookie header holds the value %1?",
+      "answer": "defaultDecode catches the error and returns the raw text, so parsing goes on and no exception reaches the server code."
+    },
+    "used_in": [
+      "vault/frontend-engineering/how-the-web-works/internet-and-networking/05-repo-intel/jshttp-cookie/cookie-architecture.md"
+    ]
+  },
+  {
+    "id": "undici-module-map",
+    "title": "nodejs/undici: module map",
+    "kind": "architecture",
+    "format": "mermaid",
+    "file": "vault/frontend-engineering/how-the-web-works/internet-and-networking/visuals/assets/undici-module-map-internet-and-networking.mmd",
+    "concept_ids": [
+      "http-caching",
+      "http-versions",
+      "cookies",
+      "http-compression"
+    ],
+    "source_ids": [
+      "nodejs-undici-repo"
+    ],
+    "purpose": "Show which part of undici does which job in the HTTP message path, so the learner knows where cache, version and cookie rules live.",
+    "explanation": "Fetch handles headers, redirects and decoding. The cache interceptor sits between the caller and the network client and decides to reuse, revalidate or store. The dispatcher layer opens the connection and chooses HTTP/1.1 or HTTP/2 through ALPN. The cookie helpers work on Headers objects on their own. Tests guard the cache. Build and infra guard everything with CI and a release flow.",
+    "alt": "Flowchart: fetch-and-compression points to cache-semantics and to http-versions-dispatcher; cache-semantics points to http-versions-dispatcher. Dotted arrows: cookies to fetch, cache-tests to cache-semantics, build-and-infra to the dispatcher.",
+    "learning_check": {
+      "question": "Which module decides whether the connection speaks HTTP/2?",
+      "answer": "http-versions-dispatcher: the connector offers ALPN protocols and Client picks connectH2 or connectH1 from the answer."
+    },
+    "used_in": [
+      "vault/frontend-engineering/how-the-web-works/internet-and-networking/05-repo-intel/nodejs-undici/undici-architecture.md"
+    ]
+  },
+  {
+    "id": "undici-request-flow",
+    "title": "nodejs/undici: a cached GET that needs revalidation",
+    "kind": "sequence",
+    "format": "mermaid",
+    "file": "vault/frontend-engineering/how-the-web-works/internet-and-networking/visuals/assets/undici-request-flow-internet-and-networking.mmd",
+    "concept_ids": [
+      "http-caching",
+      "http-versions"
+    ],
+    "source_ids": [
+      "nodejs-undici-repo"
+    ],
+    "purpose": "Show the order of calls for one GET through the cache interceptor, the connector and the origin.",
+    "explanation": "The cache interceptor builds a key and asks the store. A fresh entry is served at once with an Age header. A stale entry triggers a conditional request. The client connects, offers ALPN protocols, and the server picks h2 or http/1.1. A 304 keeps the stored body. A 200 replaces it.",
+    "alt": "Sequence diagram: caller dispatches GET to the cache interceptor, which asks the store. On a fresh hit it answers directly. Otherwise it sends a conditional request through Agent and Client, the connector does TLS with ALPN, the origin answers 304 or 200, and the store is updated.",
+    "learning_check": {
+      "question": "What does the interceptor do when the origin answers 304?",
+      "answer": "It checks the 304 (ETag, URL, Vary) and then serves the stored body; a mismatch makes it refetch."
+    },
+    "used_in": [
+      "vault/frontend-engineering/how-the-web-works/internet-and-networking/05-repo-intel/nodejs-undici/undici-architecture.md"
+    ]
   }
 ]

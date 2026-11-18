@@ -1,0 +1,7 @@
+flowchart LR
+  F["fetch-and-compression: headers, redirects, decoding"] --> C["cache-semantics: store, freshness, revalidate"]
+  C --> D["http-versions-dispatcher: Agent, Client, ALPN, h1 or h2"]
+  F --> D
+  K["cookies: parse and write Set-Cookie on Headers"] -.-> F
+  T["cache-tests: conformance and store tests"] -.-> C
+  B["build-and-infra: CI, release, security policy"] -.-> D

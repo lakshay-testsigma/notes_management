@@ -60,18 +60,22 @@ Every source below was checked against a live page before it was recommended.
   - Why it is trusted: The IETF Internet Standard that defines HTTP caches, freshness, validation, Vary and Cache-Control; it obsoletes RFC 7234 and is itself not obsoleted.
   - Used for: digest, lesson
   - Verified: 2026-11-18
+  - Digest: [[rfc-9111-http-caching-internet-and-networking|read the digest]]
 - **[RFC 9114: HTTP/3](https://www.rfc-editor.org/rfc/rfc9114)** — M. Bishop (IETF), 2022 · tier A
   - Why it is trusted: The IETF standard that maps HTTP semantics onto QUIC streams and defines QPACK use, early data and migration notes; not obsoleted per rfc-editor.org.
   - Used for: digest, lesson
   - Verified: 2026-11-18
+  - Digest: [[rfc-9114-http3-internet-and-networking|read the digest]]
 - **[RFC 9846: The Transport Layer Security (TLS) Protocol Version 1.3](https://www.rfc-editor.org/rfc/rfc9846)** — E. Rescorla (IETF), 2026 · tier A
   - Why it is trusted: The IETF Standards Track specification of TLS 1.3 that obsoletes RFC 8446; every browser and server TLS stack follows it.
   - Used for: digest, lesson
   - Verified: 2026-11-18
+  - Digest: [[rfc-9846-tls13-internet-and-networking|read the digest]]
 - **[URL Standard (WHATWG Living Standard)](https://url.spec.whatwg.org/)** — WHATWG, 2026 · tier A
   - Why it is trusted: The living standard that defines URL parsing, percent-encoding, host parsing and the origin concept, which browsers implement.
   - Used for: digest, lesson
   - Verified: 2026-11-18
+  - Digest: [[whatwg-url-standard-internet-and-networking|read the digest]]
 <!-- tutor:generated:end -->
 
 ## My insights

@@ -13,5 +13,6 @@ Dependabot is a GitHub service that opens pull requests to update a project's de
 ## Where it shows up
 
 - [[browser-compat-data-tech-and-services]]
+- [[undici-tech-and-services]]
 
 ## My insights

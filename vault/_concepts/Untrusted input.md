@@ -15,5 +15,6 @@ Untrusted input is data that came from outside your program, such as a file a us
 - [[devtools-frontend-pattern-untrusted-input]]
 - [[06-capstone-browser-devtools-mastery]]
 - [[axe-core-pattern-rules-as-data]]
+- [[undici-pattern-fail-closed-parsing]]
 
 ## My insights

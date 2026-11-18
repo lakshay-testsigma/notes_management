@@ -15,5 +15,6 @@ A fail-soft pipeline keeps going when one step fails. It records the failure as 
 - [[lighthouse-pattern-fail-soft-pipeline]]
 - [[devtools-frontend-pattern-fail-soft-parsing]]
 - [[06-capstone-browser-devtools-mastery]]
+- [[undici-pattern-best-effort-cache]]
 
 ## My insights

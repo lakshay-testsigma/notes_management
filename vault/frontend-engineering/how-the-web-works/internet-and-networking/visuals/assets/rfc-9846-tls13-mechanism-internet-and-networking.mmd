@@ -1,0 +1,10 @@
+sequenceDiagram
+  participant C as Client
+  participant S as Server
+  C->>S: ClientHello + key_share (Key Exchange)
+  S->>C: ServerHello + key_share (Key Exchange)
+  Note over C,S: Everything below is encrypted
+  S->>C: EncryptedExtensions (Server Parameters)
+  S->>C: Certificate, CertificateVerify, Finished (Authentication)
+  C->>S: Finished (Authentication)
+  C->>S: Application Data

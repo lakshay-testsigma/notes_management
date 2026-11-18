@@ -17,5 +17,6 @@ Browser developer tools (DevTools) are panels built into the browser. You use th
 - [[firefox-devtools-user-docs-browser-devtools-mastery]]
 - [[01-brief-browser-extension-toolkit]]
 - [[01-brief-internet-and-networking]]
+- [[rfc-9846-tls13-internet-and-networking]]
 
 ## My insights

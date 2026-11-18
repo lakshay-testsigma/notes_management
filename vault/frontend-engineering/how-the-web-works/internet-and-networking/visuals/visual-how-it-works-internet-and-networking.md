@@ -8,7 +8,7 @@ sources: [mdn-http-docs, hpbn-book, cloudflare-docs, rfc-9111-http-caching]
 ---
 # The journey of one web request
 
-**Workflow** · teaches DNS resolution, TCP versus UDP, TLS and HTTPS, HTTP request and response messages, HTTP caching, CDNs and the edge, HTTP compression, Cookies
+**Workflow** · teaches DNS resolution, TCP versus UDP, [[TLS and HTTPS]], HTTP request and response messages, [[HTTP caching]], CDNs and the edge, HTTP compression, Cookies
 
 **Why this visual.** Show the order of the network steps behind every page load, so each later page has a place in one picture.
 
