@@ -11,7 +11,7 @@ created: 2026-11-18
 This is the map of the topic. Read the steps from top to bottom. Each step links to the next thing to open, so you never have to search.
 
 <!-- tutor:generated:start -->
-**Depth:** deep · **Progress:** 8 of 10 steps ready
+**Depth:** deep · **Progress:** 9 of 10 steps ready
 
 Browser developer tools let a frontend developer inspect, debug, measure and fix a live page in the browser.
 
@@ -23,8 +23,8 @@ Browser developer tools let a frontend developer inspect, debug, measure and fix
 4. [[00-digests-browser-devtools-mastery|Digests]] — short summaries of the key papers and docs · *ready*
 5. [[00-repo-intel-browser-devtools-mastery|Repository deep dive]] — how a production open-source project does it · *ready*
 6. [[06-capstone-browser-devtools-mastery|Capstone]] — the production-style project · *ready*
-7. [[07-final-notes-browser-devtools-mastery|Final notes]] — the one-page refresher · *not started*
-8. [[08-recall-browser-devtools-mastery|Recall cards]] — flashcards for spaced review · *not started*
+7. [[07-final-notes-browser-devtools-mastery|Final notes]] — the one-page refresher · *ready*
+8. [[08-recall-browser-devtools-mastery|Recall cards]] — flashcards for spaced review · *ready*
 9. [[09-resources-browser-devtools-mastery|Resources]] — the vetted sources behind everything above · *ready*
 
 Your own additions live in [[my-insights-browser-devtools-mastery|My insights]].
@@ -138,10 +138,10 @@ Research stopped: scope-boundary. Leaves taught on pages 01-11; deeper trace int
 | 3 | lesson | ready |
 | 3 | mini-projects | ready |
 | 4 | capstone | ready |
-| 5 | notes | not started |
+| 5 | notes | ready |
 | 5 | finalize | not started |
 
-Next to generate: `notes`. Ask Claude to continue this topic, or run `node harness/bin/tutor.mjs next frontend-engineering/learning-system-and-workstation/browser-devtools-mastery`.
+Next to generate: `finalize`. Ask Claude to continue this topic, or run `node harness/bin/tutor.mjs next frontend-engineering/learning-system-and-workstation/browser-devtools-mastery`.
 <!-- tutor:generated:end -->
 
 ## My insights

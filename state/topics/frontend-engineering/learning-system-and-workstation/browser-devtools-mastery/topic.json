@@ -7,7 +7,7 @@
   "subdomain": "learning-system-and-workstation",
   "depth": "deep",
   "created_at": "2026-11-18T09:43:20Z",
-  "updated_at": "2026-11-18T11:22:05Z",
+  "updated_at": "2026-11-18T11:25:56Z",
   "paths": {
     "state": "state/topics/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery",
     "vault": "vault/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery",
@@ -2285,13 +2285,20 @@
       "id": "notes",
       "wave": 5,
       "skill": "learn-notes",
-      "status": "pending",
+      "status": "done",
       "scope": "required",
-      "started_at": null,
-      "finished_at": null,
-      "attempts": 0,
+      "started_at": "2026-11-18T11:23:27Z",
+      "finished_at": "2026-11-18T11:25:56Z",
+      "attempts": 1,
       "units": [],
-      "note": ""
+      "note": "",
+      "continue_after_failure": false,
+      "validation": {
+        "version": 2,
+        "fingerprint": "8f04d14d04e9ac91a4eeb869c21966d844670cf5238a631ae1a80105af177480",
+        "at": "2026-11-18T11:25:56Z",
+        "forced": false
+      }
     },
     {
       "id": "finalize",
@@ -2307,7 +2314,128 @@
     }
   ],
   "recall": {
-    "cards": {}
+    "cards": {
+      "bdm-01": {
+        "box": 1,
+        "due": "2026-11-18",
+        "added": "2026-11-18",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      },
+      "bdm-02": {
+        "box": 1,
+        "due": "2026-11-18",
+        "added": "2026-11-18",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      },
+      "bdm-03": {
+        "box": 1,
+        "due": "2026-11-18",
+        "added": "2026-11-18",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      },
+      "bdm-04": {
+        "box": 1,
+        "due": "2026-11-18",
+        "added": "2026-11-18",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      },
+      "bdm-05": {
+        "box": 1,
+        "due": "2026-11-18",
+        "added": "2026-11-18",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      },
+      "bdm-06": {
+        "box": 1,
+        "due": "2026-11-18",
+        "added": "2026-11-18",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      },
+      "bdm-07": {
+        "box": 1,
+        "due": "2026-11-18",
+        "added": "2026-11-18",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      },
+      "bdm-08": {
+        "box": 1,
+        "due": "2026-11-18",
+        "added": "2026-11-18",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      },
+      "bdm-09": {
+        "box": 1,
+        "due": "2026-11-18",
+        "added": "2026-11-18",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      },
+      "bdm-10": {
+        "box": 1,
+        "due": "2026-11-18",
+        "added": "2026-11-18",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      },
+      "bdm-11": {
+        "box": 1,
+        "due": "2026-11-18",
+        "added": "2026-11-18",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      },
+      "bdm-12": {
+        "box": 1,
+        "due": "2026-11-18",
+        "added": "2026-11-18",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      },
+      "bdm-13": {
+        "box": 1,
+        "due": "2026-11-18",
+        "added": "2026-11-18",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      },
+      "bdm-14": {
+        "box": 1,
+        "due": "2026-11-18",
+        "added": "2026-11-18",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      },
+      "bdm-15": {
+        "box": 1,
+        "due": "2026-11-18",
+        "added": "2026-11-18",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      }
+    }
   },
   "log": [
     {
@@ -3375,6 +3503,28 @@
       "event": "done",
       "message": "gate passed",
       "stage": "capstone"
+    },
+    {
+      "at": "2026-11-18T11:23:18Z",
+      "event": "note",
+      "message": "WAVE 4 done; next notes inline"
+    },
+    {
+      "at": "2026-11-18T11:23:27Z",
+      "event": "start",
+      "message": "attempt 1",
+      "stage": "notes"
+    },
+    {
+      "at": "2026-11-18T11:24:28Z",
+      "event": "recall-sync",
+      "message": "15 added, 0 removed, 15 total"
+    },
+    {
+      "at": "2026-11-18T11:25:56Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "notes"
     }
   ],
   "roadmap": {
