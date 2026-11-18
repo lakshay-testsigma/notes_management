@@ -47,6 +47,8 @@ When a stylesheet uses `@layer`, the Styles pane shows the cascade layer of each
 
 The grid overlay has viewing options: line labels, track sizes, area names and extended lines. Firefox has a similar grid overlay and a flexbox inspector that explains each item's final size, so use it when a flex item has a size you cannot explain. Forced states also fail silently in one way: if you forget to clear `:hover`, the page keeps the forced style while you test other things.
 
+The Accessibility tab of the Elements panel shows what a screen reader gets. The accessibility tree is a subset of the DOM that keeps only the nodes a screen reader needs. Turn on **Show accessibility tree** to put it in place of the DOM tree, then read the computed name, role and ARIA attributes under **Computed properties**. Check a button's accessible name there before you start a screen reader test. For contrast, DevTools finds low-contrast text and suggests better colors, and the Lighthouse accessibility audit checks text contrast ratios. These automated checks find markup errors only. Test keyboard and screen reader use yourself.
+
 </Depth>
 
 The Console reads the same live page, and it is next.

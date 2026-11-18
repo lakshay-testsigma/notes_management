@@ -58,6 +58,7 @@ flowchart TD
   ignore_listing_frames["Ignore-listed frames in the call stack"]
   source_map_vlq_mappings["How a source map encodes positions"]
   override_xhr_fetch["Override a fetch or XHR response"]
+  command_menu_snippets_sensors["Command Menu, Snippets and the Sensors panel"]
   elements_styles_panel --> box_model_and_computed_styles
   elements_styles_panel -. needed for .-> box_model_and_computed_styles
   elements_styles_panel --> flex_grid_overlays
@@ -132,6 +133,7 @@ flowchart TD
   source_maps -. needed for .-> source_map_vlq_mappings
   local_overrides --> override_xhr_fetch
   local_overrides -. needed for .-> override_xhr_fetch
+  lighthouse_panel_other_panels --> command_menu_snippets_sensors
 ```
 
 Back to [[visuals-browser-devtools-mastery|all visuals]].

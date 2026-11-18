@@ -11,7 +11,7 @@ A slow page looks the same whether DNS, the server or a large file caused it. Th
 
 {/* <!-- concept: waterfall-timing-phases --> */}
 
-The **waterfall** column draws each request as a bar in time order. The Timing tab of one request splits that bar into **phases**: Queueing, Stalled, DNS Lookup, Initial connection, Request sent, Waiting (TTFB, time to first byte) and Content Download. The longest phase names the step that lost time, as a number instead of a guess.
+The **waterfall** column draws each request as a bar in time order. The Timing tab of one request splits that bar into **phases**: Queueing, Stalled, DNS Lookup, Initial connection, Request sent, Waiting (TTFB, time to first byte) and Content Download. The longest phase names the step that lost time.
 
 {/* <!-- concept: network-throttling-and-blocking --> */}
 
@@ -19,9 +19,9 @@ In the lab, load Slow 4G or a slow server. Predict which bar grows, then step th
 
 <Experience id="network-waterfall-lab" />
 
-A long Waiting bar points at the server or the round trip. A long Content Download bar points at payload size or network speed. A long Queueing bar points at too many competing requests. The **Throttling** menu (Fast 4G, Slow 4G, 3G, Offline) shows a warning icon while it is on, so you do not forget it. Blocked requests show in red.
+A long Waiting bar points at the server or the round trip. A long Content Download bar points at payload size or network speed. A long Queueing bar points at too many competing requests. The **Throttling** menu (Fast 4G, Slow 4G, 3G, Offline) shows a warning icon while it is on. A failed request names its cause in the **Status** column: `CORS error` (a cross-origin refusal), `(blocked:origin)` or `(failed)` with a message. Hover the status for a hint.
 
-The lab leaves out cache state. Queueing can also include the time the browser spends allocating disk cache space. A Chrome HAR export records, per request, whether the response came from the cache.
+The lab leaves out cache state. Repeat visits load files from the browser cache, so tick **Disable cache** to reproduce a first visit.
 
 {/* <!-- concept: initiator-and-priority --> */}
 
@@ -52,5 +52,7 @@ DevTools computes HAR phases instead of copying timestamps. Each phase starts at
 <Depth level="production">
 
 Teams attach HAR files to bug reports, so the defaults matter. Settings > Preferences > Network > "Allow to generate HAR with sensitive data" adds the secret headers back; share such a file only with people you trust. DevTools also treats an imported HAR as untrusted input and rejects malformed fields (`front_end/models/har/Importer.ts:185-195 @ 572bfc0`).
+
+To reproduce a bug outside the page, right-click the request and pick Copy > Copy as cURL or Copy as fetch. The command carries the same URL and headers, so you can run it in a terminal, or edit the `fetch()` call in the Console and press Enter to resend it. More filters > Blocked requests then shows only the requests that the page blocked.
 
 </Depth>

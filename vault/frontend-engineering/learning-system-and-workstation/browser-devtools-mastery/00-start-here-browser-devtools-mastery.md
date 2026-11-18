@@ -116,6 +116,7 @@ Browser developer tools for a frontend developer: Chrome DevTools panels (Elemen
 - Ignore-listed frames in the call stack: included
 - How a source map encodes positions: included
 - Override a fetch or XHR response: included
+- Command Menu, Snippets and the Sensors panel: included
 
 Research stopped: scope-boundary. Leaves taught on pages 01-11; deeper trace internals belong to the later performance phase.
 

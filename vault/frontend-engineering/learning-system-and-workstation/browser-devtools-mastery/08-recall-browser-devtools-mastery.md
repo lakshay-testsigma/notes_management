@@ -85,6 +85,11 @@ Local overrides fixed your CSS, but you edited a DOM node in Elements and the ch
 ?
 Local overrides save edited files (served responses), not DOM edits. Change the file through Sources with overrides enabled, so the saved copy is served on reload.
 
+<!-- card: bdm-16 -->
+You must test a store-finder page as if you were in another city, and you cannot remember where the setting is. Which two DevTools features get you there fastest, and what must you undo afterwards?
+?
+Open the Command Menu (Cmd/Ctrl+Shift+P), type "sensors" and open the Sensors panel, then set a custom location. Clear the location override afterwards, or every later test runs with the fake position.
+
 ## Reopen map
 
 | Card | Outcome it covers | Reopen when missed |
@@ -104,5 +109,6 @@ Local overrides save edited files (served responses), not DOM edits. Change the 
 | bdm-13 | outcome 3: HAR export | lesson page `05-network-waterfall` and [[devtools-frontend-findings]] |
 | bdm-14 | Console utilities | [[visual-console-utilities-map-browser-devtools-mastery]], then lesson page `02-console-power-use` |
 | bdm-15 | outcome 2: local overrides | lesson page `04-source-maps-and-overrides`, listed in [[02-lesson-browser-devtools-mastery]] |
+| bdm-16 | Command Menu, Snippets and Sensors | lesson page `09-audits-and-more-panels`, listed in [[02-lesson-browser-devtools-mastery]] |
 
 ## My insights
