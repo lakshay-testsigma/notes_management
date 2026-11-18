@@ -1,0 +1,2668 @@
+{
+  "schema": 1,
+  "id": "frontend-engineering/learning-system-and-workstation/browser-devtools-mastery",
+  "title": "Browser DevTools mastery (used in every phase)",
+  "slug": "browser-devtools-mastery",
+  "domain": "frontend-engineering",
+  "subdomain": "learning-system-and-workstation",
+  "depth": "deep",
+  "created_at": "2026-11-18T09:43:20Z",
+  "updated_at": "2026-11-18T10:17:04Z",
+  "paths": {
+    "state": "state/topics/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery",
+    "vault": "vault/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery",
+    "lessons": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery",
+    "projects": "projects/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery",
+    "cache": ".cache"
+  },
+  "profile": {
+    "lesson_pages": [
+      8,
+      12
+    ],
+    "mini_projects": 3,
+    "digests": [
+      4,
+      6
+    ],
+    "repos": [
+      2,
+      3
+    ],
+    "capstone": true,
+    "sources": [
+      5,
+      12
+    ],
+    "recall_cards": 8
+  },
+  "plan": {
+    "summary": "Browser developer tools let a frontend developer inspect, debug, measure and fix a live page in the browser.",
+    "prerequisites": [
+      {
+        "concept": "Browser developer tools",
+        "known": true,
+        "bridge": ""
+      },
+      {
+        "concept": "Document Object Model",
+        "known": false,
+        "bridge": "The DOM is the tree of objects the browser builds from HTML."
+      },
+      {
+        "concept": "HTTP request and response",
+        "known": false,
+        "bridge": "The browser sends a request; the server returns status, headers and body."
+      },
+      {
+        "concept": "Call stack",
+        "known": false,
+        "bridge": "The call stack lists the functions running now, newest on top."
+      }
+    ],
+    "outcomes": [
+      "Explain how the cascade produces an element's computed styles.",
+      "Debug async code with breakpoints, the async call stack and source maps.",
+      "Explain each timing phase of a request in the network waterfall.",
+      "Find a long task and a memory leak from traces and heap snapshots.",
+      "Build a CLI that triages HAR, trace and Lighthouse files against budgets.",
+      "Decide when to use Firefox, Safari or a real device instead of desktop Chrome."
+    ],
+    "lesson_outline": [
+      {
+        "order": 1,
+        "slug": "elements-and-styles",
+        "title": "Elements and Styles: from the DOM to computed styles",
+        "activity": "PredictReveal",
+        "complexity": "intermediate",
+        "importance": "core",
+        "spatial": false,
+        "visual": "Diagram",
+        "visual_reason": "The cascade turns several matching rules into one computed value; a diagram traces one property from rules to the box model.",
+        "interaction_goal": "Predict which rule wins for one property, then check the Computed pane.",
+        "experience": {
+          "id": "elements-and-styles",
+          "concept_ids": [
+            "elements-styles-panel",
+            "box-model-and-computed-styles",
+            "flex-grid-overlays",
+            "force-element-state",
+            "cascade-layers-view"
+          ],
+          "signals": {
+            "complexity": 2,
+            "concepts": 3,
+            "dependent_steps": 2,
+            "changes_over_time": false,
+            "spatial": false,
+            "parameters": 1,
+            "decision_paths": 1,
+            "benefit": "medium"
+          }
+        }
+      },
+      {
+        "order": 2,
+        "slug": "console-power-use",
+        "title": "Console power use",
+        "activity": "Quiz",
+        "complexity": "intermediate",
+        "importance": "core",
+        "spatial": false,
+        "visual": "Diagram",
+        "visual_reason": "The Console reads and changes the live page; a diagram shows which utility reads which part of page state.",
+        "interaction_goal": "Pick the console utility that answers a given question about the page.",
+        "experience": {
+          "id": "console-power-use",
+          "concept_ids": [
+            "console-power-use",
+            "console-utilities",
+            "live-expressions"
+          ],
+          "signals": {
+            "complexity": 2,
+            "concepts": 3,
+            "dependent_steps": 2,
+            "changes_over_time": false,
+            "spatial": false,
+            "parameters": 1,
+            "decision_paths": 1,
+            "benefit": "medium"
+          }
+        }
+      },
+      {
+        "order": 3,
+        "slug": "sources-and-breakpoints",
+        "title": "Sources panel: breakpoints and async call stacks",
+        "activity": "OrderSteps",
+        "complexity": "advanced",
+        "importance": "critical",
+        "spatial": false,
+        "visual": "Experience",
+        "visual_reason": "A race condition shows only when execution pauses at the right place; the learner sets breakpoint types and watches the async call stack and scope change.",
+        "interaction_goal": "Choose a breakpoint type, run the race, and read the async call stack to find the bug.",
+        "experience": {
+          "id": "debugger-lab",
+          "concept_ids": [
+            "sources-panel-debugging",
+            "breakpoint-types",
+            "async-call-stack",
+            "logpoints",
+            "ignore-listing-frames"
+          ],
+          "signals": {
+            "complexity": 4,
+            "concepts": 4,
+            "dependent_steps": 4,
+            "changes_over_time": true,
+            "spatial": false,
+            "parameters": 2,
+            "decision_paths": 2,
+            "benefit": "high"
+          }
+        }
+      },
+      {
+        "order": 4,
+        "slug": "source-maps-and-overrides",
+        "title": "Source maps and local overrides",
+        "activity": "PredictReveal",
+        "complexity": "intermediate",
+        "importance": "core",
+        "spatial": false,
+        "visual": "Diagram",
+        "visual_reason": "A source map links each position in the shipped bundle to a position in an original file; a diagram traces one minified position back to its source line.",
+        "interaction_goal": "Map one bundle position back to the original file and line, then predict what DevTools shows without the map.",
+        "experience": {
+          "id": "source-maps-and-overrides",
+          "concept_ids": [
+            "source-maps",
+            "source-map-vlq-mappings",
+            "local-overrides",
+            "override-xhr-fetch"
+          ],
+          "signals": {
+            "complexity": 2,
+            "concepts": 3,
+            "dependent_steps": 2,
+            "changes_over_time": false,
+            "spatial": false,
+            "parameters": 1,
+            "decision_paths": 1,
+            "benefit": "medium"
+          }
+        }
+      },
+      {
+        "order": 5,
+        "slug": "network-waterfall",
+        "title": "Network panel: reading the waterfall",
+        "activity": "SortBuckets",
+        "complexity": "intermediate",
+        "importance": "critical",
+        "spatial": false,
+        "visual": "Experience",
+        "visual_reason": "Each request moves through queueing, DNS, connection, TLS, waiting and download; throttling changes the bar lengths the learner watches.",
+        "interaction_goal": "Change throttling and cache state, then predict which timing phase grows.",
+        "experience": {
+          "id": "network-waterfall-lab",
+          "concept_ids": [
+            "network-panel",
+            "waterfall-timing-phases",
+            "network-throttling-and-blocking",
+            "har-export",
+            "initiator-and-priority"
+          ],
+          "signals": {
+            "complexity": 3,
+            "concepts": 3,
+            "dependent_steps": 4,
+            "changes_over_time": true,
+            "spatial": false,
+            "parameters": 3,
+            "decision_paths": 1,
+            "benefit": "high"
+          }
+        }
+      },
+      {
+        "order": 6,
+        "slug": "performance-traces",
+        "title": "Performance panel: traces, long tasks and Web Vitals",
+        "activity": "PredictReveal",
+        "complexity": "advanced",
+        "importance": "critical",
+        "spatial": false,
+        "visual": "Experience",
+        "visual_reason": "A long task on the main thread delays the next input and paint; the learner records traces with different CPU throttling and finds the task in the flame chart.",
+        "interaction_goal": "Record a trace, find the long task in the flame chart and see INP change after a fix.",
+        "experience": {
+          "id": "perf-trace-lab",
+          "concept_ids": [
+            "performance-panel",
+            "flame-chart-and-long-tasks",
+            "core-web-vitals-live",
+            "cpu-throttling",
+            "layout-shifts-track"
+          ],
+          "signals": {
+            "complexity": 4,
+            "concepts": 4,
+            "dependent_steps": 3,
+            "changes_over_time": true,
+            "spatial": false,
+            "parameters": 3,
+            "decision_paths": 2,
+            "benefit": "high"
+          }
+        }
+      },
+      {
+        "order": 7,
+        "slug": "memory-leaks",
+        "title": "Memory panel: finding a leak with heap snapshots",
+        "activity": "OrderSteps",
+        "complexity": "intermediate",
+        "importance": "core",
+        "spatial": false,
+        "visual": "Diagram",
+        "visual_reason": "A leak is an object still reachable from a root; a diagram shows the retainer path that keeps a detached DOM node alive.",
+        "interaction_goal": "Follow the retainer path from a GC root to a detached node and name the reference to remove.",
+        "experience": {
+          "id": "memory-leaks",
+          "concept_ids": [
+            "memory-panel",
+            "heap-snapshots",
+            "retainers-and-detached-dom",
+            "allocation-timeline"
+          ],
+          "signals": {
+            "complexity": 3,
+            "concepts": 3,
+            "dependent_steps": 3,
+            "changes_over_time": false,
+            "spatial": false,
+            "parameters": 0,
+            "decision_paths": 1,
+            "benefit": "medium"
+          }
+        },
+        "video": {
+          "id": "heap-snapshot-compare",
+          "reason": "Finding a leak is a sequence: take a snapshot, repeat the action, take a second snapshot, compare, follow the retainer path."
+        }
+      },
+      {
+        "order": 8,
+        "slug": "application-storage",
+        "title": "Application panel: storage, service workers and bfcache",
+        "activity": "SortBuckets",
+        "complexity": "intermediate",
+        "importance": "core",
+        "spatial": false,
+        "visual": "Diagram",
+        "visual_reason": "Several storage areas hold page state with different lifetimes; a diagram places each one and the service worker between page and network.",
+        "interaction_goal": "Sort each piece of state into the storage area that holds it.",
+        "experience": {
+          "id": "application-storage",
+          "concept_ids": [
+            "application-panel",
+            "storage-inspection",
+            "service-worker-and-cache-storage",
+            "bfcache-test",
+            "speculative-loads"
+          ],
+          "signals": {
+            "complexity": 2,
+            "concepts": 3,
+            "dependent_steps": 2,
+            "changes_over_time": false,
+            "spatial": false,
+            "parameters": 1,
+            "decision_paths": 1,
+            "benefit": "medium"
+          }
+        }
+      },
+      {
+        "order": 9,
+        "slug": "audits-and-more-panels",
+        "title": "Lighthouse, Coverage, Rendering and the other panels",
+        "activity": "Quiz",
+        "complexity": "intermediate",
+        "importance": "core",
+        "spatial": false,
+        "visual": "Diagram",
+        "visual_reason": "Each panel answers one kind of question; a diagram maps a symptom to the panel that measures it.",
+        "interaction_goal": "Match a reported problem to the panel or audit that measures it.",
+        "experience": {
+          "id": "audits-and-more-panels",
+          "concept_ids": [
+            "lighthouse-panel-other-panels",
+            "lighthouse-audits",
+            "coverage-panel",
+            "rendering-emulation",
+            "recorder-and-issues"
+          ],
+          "signals": {
+            "complexity": 2,
+            "concepts": 3,
+            "dependent_steps": 2,
+            "changes_over_time": false,
+            "spatial": false,
+            "parameters": 1,
+            "decision_paths": 1,
+            "benefit": "medium"
+          }
+        }
+      },
+      {
+        "order": 10,
+        "slug": "firefox-and-safari-devtools",
+        "title": "Firefox and Safari developer tools",
+        "activity": "SortBuckets",
+        "complexity": "intermediate",
+        "importance": "core",
+        "spatial": false,
+        "visual": "Diagram",
+        "visual_reason": "The browsers differ in what their tools do best; a diagram compares the strongest tool per browser.",
+        "interaction_goal": "Choose the browser whose tools fit a given debugging task.",
+        "experience": {
+          "id": "firefox-and-safari-devtools",
+          "concept_ids": [
+            "firefox-safari-devtools",
+            "firefox-layout-and-font-tools",
+            "safari-web-inspector"
+          ],
+          "signals": {
+            "complexity": 2,
+            "concepts": 3,
+            "dependent_steps": 2,
+            "changes_over_time": false,
+            "spatial": false,
+            "parameters": 1,
+            "decision_paths": 1,
+            "benefit": "medium"
+          }
+        }
+      },
+      {
+        "order": 11,
+        "slug": "remote-device-debugging",
+        "title": "Debugging on real phones and device clouds",
+        "activity": "OrderSteps",
+        "complexity": "intermediate",
+        "importance": "core",
+        "spatial": false,
+        "visual": "Diagram",
+        "visual_reason": "Remote debugging connects desktop DevTools to a browser on a phone; a diagram shows the connection path for Android and iOS.",
+        "interaction_goal": "Order the steps to inspect a page on a USB-connected phone.",
+        "experience": {
+          "id": "remote-device-debugging",
+          "concept_ids": [
+            "remote-device-debugging",
+            "android-chrome-inspect",
+            "ios-safari-remote-inspection"
+          ],
+          "signals": {
+            "complexity": 2,
+            "concepts": 3,
+            "dependent_steps": 2,
+            "changes_over_time": false,
+            "spatial": false,
+            "parameters": 1,
+            "decision_paths": 1,
+            "benefit": "medium"
+          }
+        }
+      }
+    ],
+    "mini_projects": [
+      {
+        "n": 1,
+        "slug": "source-map-stack-resolver",
+        "use_case": "A support engineer gets a minified production stack trace and maps each frame back to the original file and line with the source map."
+      },
+      {
+        "n": 2,
+        "slug": "har-waterfall-report",
+        "use_case": "A frontend team exports a HAR file from the Network panel and needs a report of the slowest timing phases, uncached requests and render-blocking resources."
+      },
+      {
+        "n": 3,
+        "slug": "trace-long-task-finder",
+        "use_case": "A developer saves a Performance panel trace and needs the long tasks over 50 ms and the layout shifts listed with their times, to choose what to fix first."
+      }
+    ],
+    "digest_targets": 4,
+    "repo_targets": 2,
+    "capstone": {
+      "name": "perf-triage CLI",
+      "problem": "A frontend team receives performance bug reports with a HAR file, a Performance trace and a Lighthouse JSON report; one Node.js CLI reads all three, checks them against performance budgets and writes a ranked triage report."
+    },
+    "learner": {
+      "experience": "software developer",
+      "known": [
+        "basic programming",
+        "How to learn frontend (roadmap 00.1)",
+        "Workstation and editor, including editor breakpoint debugging (roadmap 00.2)"
+      ],
+      "goals": [
+        "master frontend engineering end to end from the N1 roadmap",
+        "learn visually and by experimenting with simulations",
+        "use DevTools in every later phase of the roadmap"
+      ]
+    },
+    "visual_policy": "adaptive",
+    "visual_first": true,
+    "multi_stage": false,
+    "experience_policy": "adaptive",
+    "curriculum": {
+      "schema": 1,
+      "scope": "Browser developer tools for a frontend developer: Chrome DevTools panels (Elements, Console, Sources, Network, Performance, Memory, Application, Lighthouse and the other panels), Firefox and Safari tools, and remote debugging on real devices.",
+      "max_depth": 4,
+      "max_concepts": 60,
+      "concepts": [
+        {
+          "id": "elements-styles-panel",
+          "title": "Elements styles panel",
+          "parent": null,
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [
+            "elements-styles-panel"
+          ],
+          "source_ids": [
+            "chrome-devtools-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/01-elements-and-styles.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": []
+        },
+        {
+          "id": "box-model-and-computed-styles",
+          "title": "Box model and computed styles",
+          "parent": "elements-styles-panel",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [
+            "chrome-devtools-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/01-elements-and-styles.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": [
+            "elements-styles-panel"
+          ]
+        },
+        {
+          "id": "flex-grid-overlays",
+          "title": "Flex and grid overlays",
+          "parent": "elements-styles-panel",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [
+            "chrome-devtools-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/01-elements-and-styles.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": [
+            "elements-styles-panel"
+          ]
+        },
+        {
+          "id": "force-element-state",
+          "title": "Force element state",
+          "parent": "elements-styles-panel",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [
+            "chrome-devtools-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/01-elements-and-styles.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": [
+            "elements-styles-panel"
+          ]
+        },
+        {
+          "id": "console-power-use",
+          "title": "Console power use",
+          "parent": null,
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [
+            "console-power-use"
+          ],
+          "source_ids": [
+            "chrome-devtools-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/02-console-power-use.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": []
+        },
+        {
+          "id": "console-utilities",
+          "title": "Console utilities",
+          "parent": "console-power-use",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [
+            "chrome-devtools-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/02-console-power-use.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": [
+            "console-power-use"
+          ]
+        },
+        {
+          "id": "live-expressions",
+          "title": "Live expressions",
+          "parent": "console-power-use",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [
+            "chrome-devtools-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/02-console-power-use.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": [
+            "console-power-use"
+          ]
+        },
+        {
+          "id": "sources-panel-debugging",
+          "title": "Sources panel debugging",
+          "parent": null,
+          "complexity": "advanced",
+          "importance": "critical",
+          "disposition": "included",
+          "roadmap_items": [
+            "sources-panel-debugging"
+          ],
+          "source_ids": [
+            "chrome-devtools-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/03-sources-and-breakpoints.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": []
+        },
+        {
+          "id": "breakpoint-types",
+          "title": "Breakpoint types",
+          "parent": "sources-panel-debugging",
+          "complexity": "advanced",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [
+            "chrome-devtools-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/03-sources-and-breakpoints.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": [
+            "sources-panel-debugging"
+          ]
+        },
+        {
+          "id": "async-call-stack",
+          "title": "Async call stack",
+          "parent": "sources-panel-debugging",
+          "complexity": "advanced",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [
+            "chrome-devtools-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/03-sources-and-breakpoints.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": [
+            "sources-panel-debugging"
+          ]
+        },
+        {
+          "id": "source-maps",
+          "title": "Source maps",
+          "parent": "sources-panel-debugging",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [
+            "chrome-devtools-docs",
+            "ecma-426-source-map"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/04-source-maps-and-overrides.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": [
+            "sources-panel-debugging"
+          ]
+        },
+        {
+          "id": "local-overrides",
+          "title": "Local overrides",
+          "parent": "sources-panel-debugging",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [
+            "chrome-devtools-docs",
+            "ecma-426-source-map"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/04-source-maps-and-overrides.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": [
+            "sources-panel-debugging"
+          ]
+        },
+        {
+          "id": "network-panel",
+          "title": "Network panel",
+          "parent": null,
+          "complexity": "intermediate",
+          "importance": "critical",
+          "disposition": "included",
+          "roadmap_items": [
+            "network-panel"
+          ],
+          "source_ids": [
+            "chrome-devtools-network-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/05-network-waterfall.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": []
+        },
+        {
+          "id": "waterfall-timing-phases",
+          "title": "Waterfall timing phases",
+          "parent": "network-panel",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [
+            "chrome-devtools-network-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/05-network-waterfall.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": [
+            "network-panel"
+          ]
+        },
+        {
+          "id": "network-throttling-and-blocking",
+          "title": "Network throttling and blocking",
+          "parent": "network-panel",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [
+            "chrome-devtools-network-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/05-network-waterfall.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": [
+            "network-panel"
+          ]
+        },
+        {
+          "id": "har-export",
+          "title": "HAR export",
+          "parent": "network-panel",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [
+            "chrome-devtools-network-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/05-network-waterfall.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": [
+            "network-panel"
+          ]
+        },
+        {
+          "id": "initiator-and-priority",
+          "title": "Initiator and priority",
+          "parent": "network-panel",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [
+            "chrome-devtools-network-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/05-network-waterfall.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": [
+            "network-panel"
+          ]
+        },
+        {
+          "id": "performance-panel",
+          "title": "Performance panel",
+          "parent": null,
+          "complexity": "advanced",
+          "importance": "critical",
+          "disposition": "included",
+          "roadmap_items": [
+            "performance-panel"
+          ],
+          "source_ids": [
+            "chrome-devtools-measure-docs",
+            "web-dev-vitals-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/06-performance-traces.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": []
+        },
+        {
+          "id": "flame-chart-and-long-tasks",
+          "title": "Flame chart and long tasks",
+          "parent": "performance-panel",
+          "complexity": "advanced",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [
+            "chrome-devtools-measure-docs",
+            "web-dev-vitals-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/06-performance-traces.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": [
+            "performance-panel"
+          ]
+        },
+        {
+          "id": "core-web-vitals-live",
+          "title": "Live Core Web Vitals",
+          "parent": "performance-panel",
+          "complexity": "advanced",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [
+            "chrome-devtools-measure-docs",
+            "web-dev-vitals-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/06-performance-traces.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": [
+            "performance-panel"
+          ]
+        },
+        {
+          "id": "cpu-throttling",
+          "title": "CPU throttling",
+          "parent": "performance-panel",
+          "complexity": "advanced",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [
+            "chrome-devtools-measure-docs",
+            "web-dev-vitals-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/06-performance-traces.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": [
+            "performance-panel"
+          ]
+        },
+        {
+          "id": "memory-panel",
+          "title": "Memory panel",
+          "parent": null,
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [
+            "memory-panel"
+          ],
+          "source_ids": [
+            "chrome-devtools-memory-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/07-memory-leaks.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": []
+        },
+        {
+          "id": "heap-snapshots",
+          "title": "Heap snapshots",
+          "parent": "memory-panel",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [
+            "chrome-devtools-memory-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/07-memory-leaks.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": [
+            "memory-panel"
+          ]
+        },
+        {
+          "id": "retainers-and-detached-dom",
+          "title": "Retainers and detached dom",
+          "parent": "memory-panel",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [
+            "chrome-devtools-memory-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/07-memory-leaks.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": [
+            "memory-panel"
+          ]
+        },
+        {
+          "id": "allocation-timeline",
+          "title": "Allocation timeline",
+          "parent": "memory-panel",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [
+            "chrome-devtools-memory-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/07-memory-leaks.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": [
+            "memory-panel"
+          ]
+        },
+        {
+          "id": "application-panel",
+          "title": "Application panel",
+          "parent": null,
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [
+            "application-panel"
+          ],
+          "source_ids": [
+            "chrome-devtools-measure-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/08-application-storage.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": []
+        },
+        {
+          "id": "storage-inspection",
+          "title": "Storage inspection",
+          "parent": "application-panel",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [
+            "chrome-devtools-measure-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/08-application-storage.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": [
+            "application-panel"
+          ]
+        },
+        {
+          "id": "service-worker-and-cache-storage",
+          "title": "Service worker and cache storage",
+          "parent": "application-panel",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [
+            "chrome-devtools-measure-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/08-application-storage.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": [
+            "application-panel"
+          ]
+        },
+        {
+          "id": "bfcache-test",
+          "title": "Back/forward cache test",
+          "parent": "application-panel",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [
+            "chrome-devtools-measure-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/08-application-storage.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": [
+            "application-panel"
+          ]
+        },
+        {
+          "id": "lighthouse-panel-other-panels",
+          "title": "Lighthouse panel and other panels",
+          "parent": null,
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [
+            "lighthouse-panel-other-panels"
+          ],
+          "source_ids": [
+            "chrome-devtools-measure-docs",
+            "googlechrome-lighthouse-repo"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/09-audits-and-more-panels.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": []
+        },
+        {
+          "id": "lighthouse-audits",
+          "title": "Lighthouse audits",
+          "parent": "lighthouse-panel-other-panels",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [
+            "chrome-devtools-measure-docs",
+            "googlechrome-lighthouse-repo"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/09-audits-and-more-panels.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": [
+            "lighthouse-panel-other-panels"
+          ]
+        },
+        {
+          "id": "coverage-panel",
+          "title": "Coverage panel",
+          "parent": "lighthouse-panel-other-panels",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [
+            "chrome-devtools-measure-docs",
+            "googlechrome-lighthouse-repo"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/09-audits-and-more-panels.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": [
+            "lighthouse-panel-other-panels"
+          ]
+        },
+        {
+          "id": "rendering-emulation",
+          "title": "Rendering emulation",
+          "parent": "lighthouse-panel-other-panels",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [
+            "chrome-devtools-measure-docs",
+            "googlechrome-lighthouse-repo"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/09-audits-and-more-panels.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": [
+            "lighthouse-panel-other-panels"
+          ]
+        },
+        {
+          "id": "recorder-and-issues",
+          "title": "Recorder and issues",
+          "parent": "lighthouse-panel-other-panels",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [
+            "chrome-devtools-measure-docs",
+            "googlechrome-lighthouse-repo"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/09-audits-and-more-panels.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": [
+            "lighthouse-panel-other-panels"
+          ]
+        },
+        {
+          "id": "firefox-safari-devtools",
+          "title": "Firefox and Safari DevTools",
+          "parent": null,
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [
+            "firefox-safari-devtools"
+          ],
+          "source_ids": [
+            "firefox-devtools-user-docs",
+            "webkit-web-inspector-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/10-firefox-and-safari-devtools.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": []
+        },
+        {
+          "id": "firefox-layout-and-font-tools",
+          "title": "Firefox layout and font tools",
+          "parent": "firefox-safari-devtools",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [
+            "firefox-devtools-user-docs",
+            "webkit-web-inspector-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/10-firefox-and-safari-devtools.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": [
+            "firefox-safari-devtools"
+          ]
+        },
+        {
+          "id": "safari-web-inspector",
+          "title": "Safari Web Inspector",
+          "parent": "firefox-safari-devtools",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [
+            "firefox-devtools-user-docs",
+            "webkit-web-inspector-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/10-firefox-and-safari-devtools.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": [
+            "firefox-safari-devtools"
+          ]
+        },
+        {
+          "id": "remote-device-debugging",
+          "title": "Remote device debugging",
+          "parent": null,
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [
+            "remote-device-debugging"
+          ],
+          "source_ids": [
+            "chrome-devtools-remote-debugging-docs",
+            "webkit-web-inspector-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/11-remote-device-debugging.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": []
+        },
+        {
+          "id": "android-chrome-inspect",
+          "title": "Android Chrome remote inspection",
+          "parent": "remote-device-debugging",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [
+            "chrome-devtools-remote-debugging-docs",
+            "webkit-web-inspector-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/11-remote-device-debugging.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": [
+            "remote-device-debugging"
+          ]
+        },
+        {
+          "id": "ios-safari-remote-inspection",
+          "title": "iOS Safari remote inspection",
+          "parent": "remote-device-debugging",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [
+            "chrome-devtools-remote-debugging-docs",
+            "webkit-web-inspector-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/11-remote-device-debugging.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": [
+            "remote-device-debugging"
+          ]
+        },
+        {
+          "id": "device-clouds-and-low-end-devices",
+          "title": "Device clouds and low-end devices",
+          "parent": "remote-device-debugging",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "deferred",
+          "roadmap_items": [],
+          "source_ids": [],
+          "coverage": [],
+          "prerequisites": [
+            "remote-device-debugging"
+          ],
+          "reason": "Research 2026-11-18: no tier A/B source verified for device clouds or low-end device testing; page 11 names them only as options without claims."
+        },
+        {
+          "id": "cascade-layers-view",
+          "title": "Cascade layers in the Styles pane",
+          "parent": "elements-styles-panel",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [
+            "chrome-devtools-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/01-elements-and-styles.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": [
+            "elements-styles-panel"
+          ]
+        },
+        {
+          "id": "layout-shifts-track",
+          "title": "Layout shifts track",
+          "parent": "performance-panel",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [
+            "chrome-devtools-measure-docs",
+            "web-dev-vitals-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/06-performance-traces.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": [
+            "performance-panel"
+          ]
+        },
+        {
+          "id": "speculative-loads",
+          "title": "Speculative loads",
+          "parent": "application-panel",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [
+            "chrome-devtools-measure-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/08-application-storage.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": [
+            "application-panel"
+          ]
+        },
+        {
+          "id": "logpoints",
+          "title": "Logpoints",
+          "parent": "breakpoint-types",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [
+            "chrome-devtools-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/03-sources-and-breakpoints.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": [
+            "breakpoint-types"
+          ]
+        },
+        {
+          "id": "ignore-listing-frames",
+          "title": "Ignore-listed frames in the call stack",
+          "parent": "sources-panel-debugging",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [
+            "chrome-devtools-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/03-sources-and-breakpoints.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": [
+            "async-call-stack"
+          ]
+        },
+        {
+          "id": "source-map-vlq-mappings",
+          "title": "How a source map encodes positions",
+          "parent": "source-maps",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [
+            "chrome-devtools-docs",
+            "ecma-426-source-map"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/04-source-maps-and-overrides.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": [
+            "source-maps"
+          ]
+        },
+        {
+          "id": "override-xhr-fetch",
+          "title": "Override a fetch or XHR response",
+          "parent": "local-overrides",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [
+            "chrome-devtools-docs",
+            "ecma-426-source-map"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/04-source-maps-and-overrides.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": [
+            "local-overrides"
+          ]
+        }
+      ],
+      "discovery": [
+        {
+          "round": 1,
+          "frontier": [
+            "elements-styles-panel",
+            "console-power-use",
+            "sources-panel-debugging",
+            "network-panel",
+            "performance-panel",
+            "memory-panel",
+            "application-panel",
+            "lighthouse-panel-other-panels",
+            "firefox-safari-devtools",
+            "remote-device-debugging"
+          ],
+          "source_ids": [
+            "chrome-devtools-docs",
+            "chrome-devtools-network-docs",
+            "chrome-devtools-measure-docs",
+            "chrome-devtools-memory-docs",
+            "web-dev-vitals-docs",
+            "firefox-devtools-user-docs",
+            "webkit-web-inspector-docs",
+            "chrome-devtools-remote-debugging-docs",
+            "ecma-426-source-map",
+            "googlechrome-lighthouse-repo",
+            "chromedevtools-devtools-frontend-repo"
+          ],
+          "added": [
+            "elements-styles-panel",
+            "box-model-and-computed-styles",
+            "flex-grid-overlays",
+            "force-element-state",
+            "console-power-use",
+            "console-utilities",
+            "live-expressions",
+            "sources-panel-debugging",
+            "breakpoint-types",
+            "async-call-stack",
+            "source-maps",
+            "local-overrides",
+            "network-panel",
+            "waterfall-timing-phases",
+            "network-throttling-and-blocking",
+            "har-export",
+            "initiator-and-priority",
+            "performance-panel",
+            "flame-chart-and-long-tasks",
+            "core-web-vitals-live",
+            "cpu-throttling",
+            "memory-panel",
+            "heap-snapshots",
+            "retainers-and-detached-dom",
+            "allocation-timeline",
+            "application-panel",
+            "storage-inspection",
+            "service-worker-and-cache-storage",
+            "bfcache-test",
+            "lighthouse-panel-other-panels",
+            "lighthouse-audits",
+            "coverage-panel",
+            "rendering-emulation",
+            "recorder-and-issues",
+            "firefox-safari-devtools",
+            "firefox-layout-and-font-tools",
+            "safari-web-inspector",
+            "remote-device-debugging",
+            "android-chrome-inspect",
+            "ios-safari-remote-inspection",
+            "device-clouds-and-low-end-devices",
+            "cascade-layers-view",
+            "layout-shifts-track",
+            "speculative-loads",
+            "ignore-listing-frames"
+          ],
+          "note": "Roots seeded from roadmap section 00.3; children from the item descriptions, to be verified by research."
+        },
+        {
+          "round": 2,
+          "frontier": [
+            "box-model-and-computed-styles",
+            "flex-grid-overlays",
+            "force-element-state",
+            "console-utilities",
+            "live-expressions",
+            "breakpoint-types",
+            "async-call-stack",
+            "source-maps",
+            "local-overrides",
+            "waterfall-timing-phases",
+            "network-throttling-and-blocking",
+            "har-export",
+            "initiator-and-priority",
+            "flame-chart-and-long-tasks",
+            "core-web-vitals-live",
+            "cpu-throttling",
+            "heap-snapshots",
+            "retainers-and-detached-dom",
+            "allocation-timeline",
+            "storage-inspection",
+            "service-worker-and-cache-storage",
+            "bfcache-test",
+            "lighthouse-audits",
+            "coverage-panel",
+            "rendering-emulation",
+            "recorder-and-issues",
+            "firefox-layout-and-font-tools",
+            "safari-web-inspector",
+            "android-chrome-inspect",
+            "ios-safari-remote-inspection",
+            "device-clouds-and-low-end-devices",
+            "cascade-layers-view",
+            "layout-shifts-track",
+            "speculative-loads",
+            "ignore-listing-frames"
+          ],
+          "source_ids": [
+            "chrome-devtools-docs",
+            "ecma-426-source-map",
+            "chrome-devtools-measure-docs"
+          ],
+          "added": [
+            "logpoints",
+            "source-map-vlq-mappings",
+            "override-xhr-fetch"
+          ],
+          "note": "Four research units verified section URLs per child; proposed children with verified sections added. Device clouds deferred (no verified source). css-at-rules view and Trace Event Format not added (no page room / no verified source)."
+        },
+        {
+          "round": 3,
+          "frontier": [
+            "logpoints",
+            "source-map-vlq-mappings",
+            "override-xhr-fetch"
+          ],
+          "source_ids": [
+            "chrome-devtools-docs",
+            "ecma-426-source-map"
+          ],
+          "added": [],
+          "stop_reason": "scope-boundary",
+          "note": "Leaves taught on pages 01-11; deeper trace internals belong to the later performance phase."
+        }
+      ]
+    }
+  },
+  "stages": [
+    {
+      "id": "intake",
+      "wave": 0,
+      "skill": "learn-intake",
+      "status": "done",
+      "scope": "required",
+      "started_at": "2026-11-18T09:45:10Z",
+      "finished_at": "2026-11-18T09:50:07Z",
+      "attempts": 1,
+      "units": [],
+      "note": "",
+      "continue_after_failure": false,
+      "validation": {
+        "version": 2,
+        "fingerprint": "1103ebd531e1b8156c705dff6e54306739445feba8df45ff9bb64eb12dbc40c1",
+        "at": "2026-11-18T09:50:07Z",
+        "forced": false
+      }
+    },
+    {
+      "id": "research",
+      "wave": 1,
+      "skill": "learn-research",
+      "status": "done",
+      "scope": "required",
+      "started_at": "2026-11-18T09:45:54Z",
+      "finished_at": "2026-11-18T09:50:58Z",
+      "attempts": 1,
+      "units": [
+        {
+          "id": "docs-inspect-debug",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "docs-measure",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "docs-cross-browser",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "repos",
+          "status": "done",
+          "handoff": null
+        }
+      ],
+      "note": "",
+      "continue_after_failure": false,
+      "validation": {
+        "version": 2,
+        "fingerprint": "f8171bfbe825f4eb3e5d876400d8ba14bfcfa8ced2928f8a73fcd0d0767d55a5",
+        "at": "2026-11-18T09:50:58Z",
+        "forced": false
+      }
+    },
+    {
+      "id": "brief",
+      "wave": 1,
+      "skill": "learn-brief",
+      "status": "done",
+      "scope": "required",
+      "started_at": "2026-11-18T09:52:18Z",
+      "finished_at": "2026-11-18T10:17:04Z",
+      "attempts": 1,
+      "units": [],
+      "note": "",
+      "continue_after_failure": false,
+      "validation": {
+        "version": 2,
+        "fingerprint": "fd83815fb941753ee2887fafa1e282b346c005485359614d86dbfd2c047e47b9",
+        "at": "2026-11-18T10:17:04Z",
+        "forced": false
+      }
+    },
+    {
+      "id": "digest",
+      "wave": 2,
+      "skill": "learn-digest",
+      "status": "pending",
+      "scope": "required",
+      "started_at": null,
+      "finished_at": null,
+      "attempts": 0,
+      "units": [],
+      "note": ""
+    },
+    {
+      "id": "repo-intel",
+      "wave": 2,
+      "skill": "learn-repo-intel",
+      "status": "pending",
+      "scope": "required",
+      "started_at": null,
+      "finished_at": null,
+      "attempts": 0,
+      "units": [],
+      "note": ""
+    },
+    {
+      "id": "lesson",
+      "wave": 3,
+      "skill": "learn-site",
+      "status": "pending",
+      "scope": "required",
+      "started_at": null,
+      "finished_at": null,
+      "attempts": 0,
+      "units": [],
+      "note": ""
+    },
+    {
+      "id": "mini-projects",
+      "wave": 3,
+      "skill": "learn-projects",
+      "status": "pending",
+      "scope": "required",
+      "started_at": null,
+      "finished_at": null,
+      "attempts": 0,
+      "units": [],
+      "note": ""
+    },
+    {
+      "id": "capstone",
+      "wave": 4,
+      "skill": "learn-capstone",
+      "status": "pending",
+      "scope": "required",
+      "started_at": null,
+      "finished_at": null,
+      "attempts": 0,
+      "units": [],
+      "note": ""
+    },
+    {
+      "id": "notes",
+      "wave": 5,
+      "skill": "learn-notes",
+      "status": "pending",
+      "scope": "required",
+      "started_at": null,
+      "finished_at": null,
+      "attempts": 0,
+      "units": [],
+      "note": ""
+    },
+    {
+      "id": "finalize",
+      "wave": 5,
+      "skill": "learn",
+      "status": "pending",
+      "scope": "required",
+      "started_at": null,
+      "finished_at": null,
+      "attempts": 0,
+      "units": [],
+      "note": ""
+    }
+  ],
+  "recall": {
+    "cards": {}
+  },
+  "log": [
+    {
+      "at": "2026-11-18T09:43:20Z",
+      "event": "init",
+      "message": "created with depth deep for roadmap frontend section 00.3"
+    },
+    {
+      "at": "2026-11-18T09:45:10Z",
+      "event": "start",
+      "message": "attempt 1",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-18T09:45:11Z",
+      "event": "plan",
+      "message": "plan fields set: summary, prerequisites, outcomes, lesson_outline, mini_projects, digest_targets, repo_targets, capstone, learner, visual_policy, visual_first, multi_stage, experience_policy, curriculum",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-18T09:45:23Z",
+      "event": "plan",
+      "message": "plan fields set: summary, prerequisites, outcomes, lesson_outline, mini_projects, digest_targets, repo_targets, capstone, learner, visual_policy, visual_first, multi_stage, experience_policy, curriculum",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-18T09:45:26Z",
+      "event": "note",
+      "message": "intake: domain=frontend-engineering/learning-system-and-workstation, depth=deep (roadmap). Assumptions: 10 pages one per roadmap item; labs debugger(hybrid), network(interactive), perf(hybrid); memory explainer video; projects are Node CLIs over exported DevTools artifacts (source map, HAR, trace) since panels are interactive; repo targets devtools-frontend + lighthouse."
+    },
+    {
+      "at": "2026-11-18T09:45:28Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-18T09:45:54Z",
+      "event": "start",
+      "message": "attempt 1",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T09:45:55Z",
+      "event": "unit-add",
+      "message": "unit docs-inspect-debug",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T09:45:57Z",
+      "event": "unit-add",
+      "message": "unit docs-measure",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T09:45:58Z",
+      "event": "unit-add",
+      "message": "unit docs-cross-browser",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T09:46:00Z",
+      "event": "unit-add",
+      "message": "unit repos",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T09:46:01Z",
+      "event": "note",
+      "message": "SPAWN 4/56 research"
+    },
+    {
+      "at": "2026-11-18T09:47:17Z",
+      "event": "source-add",
+      "message": "added chrome-devtools-docs",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T09:47:19Z",
+      "event": "source-add",
+      "message": "added ecma-426-source-map",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T09:47:20Z",
+      "event": "source-add",
+      "message": "added chrome-devtools-network-docs",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T09:47:22Z",
+      "event": "source-add",
+      "message": "added chrome-devtools-memory-docs",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T09:47:23Z",
+      "event": "source-add",
+      "message": "added chrome-devtools-measure-docs",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T09:47:25Z",
+      "event": "source-add",
+      "message": "added web-dev-vitals-docs",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T09:47:26Z",
+      "event": "source-add",
+      "message": "added firefox-devtools-user-docs",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T09:47:28Z",
+      "event": "source-add",
+      "message": "added webkit-web-inspector-docs",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T09:47:30Z",
+      "event": "source-add",
+      "message": "added chrome-devtools-remote-debugging-docs",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T09:47:37Z",
+      "event": "unit-done",
+      "message": "unit docs-inspect-debug",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T09:47:38Z",
+      "event": "unit-done",
+      "message": "unit docs-measure",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T09:47:43Z",
+      "event": "unit-done",
+      "message": "unit repos",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T09:47:44Z",
+      "event": "unit-done",
+      "message": "unit docs-cross-browser",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T09:47:55Z",
+      "event": "source-add",
+      "message": "added googlechrome-lighthouse-repo",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T09:47:57Z",
+      "event": "source-add",
+      "message": "added chromedevtools-devtools-frontend-repo",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T09:48:58Z",
+      "event": "plan",
+      "message": "plan fields set: summary, prerequisites, outcomes, lesson_outline, mini_projects, digest_targets, repo_targets, capstone, learner, visual_policy, visual_first, multi_stage, experience_policy, curriculum",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-18T09:49:10Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-18T09:49:52Z",
+      "event": "execution-check",
+      "message": "research: pass",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T09:49:55Z",
+      "event": "gate-failed",
+      "message": "4 problems",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T09:50:04Z",
+      "event": "plan",
+      "message": "plan fields set: summary, prerequisites, outcomes, lesson_outline, mini_projects, digest_targets, repo_targets, capstone, learner, visual_policy, visual_first, multi_stage, experience_policy, curriculum",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-18T09:50:07Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-18T09:50:09Z",
+      "event": "gate-failed",
+      "message": "1 problems",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T09:50:55Z",
+      "event": "execution-check",
+      "message": "research: pass",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T09:50:58Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T09:52:18Z",
+      "event": "start",
+      "message": "attempt 1",
+      "stage": "brief"
+    },
+    {
+      "at": "2026-11-18T10:16:54Z",
+      "event": "gate-failed",
+      "message": "1 problems",
+      "stage": "brief"
+    },
+    {
+      "at": "2026-11-18T10:17:01Z",
+      "event": "visual",
+      "message": "added visual how-it-works"
+    },
+    {
+      "at": "2026-11-18T10:17:04Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "brief"
+    }
+  ],
+  "roadmap": {
+    "id": "frontend",
+    "section": "00.3"
+  },
+  "quality": {
+    "executions": {
+      "research": {
+        "version": 2,
+        "fingerprint": "f8171bfbe825f4eb3e5d876400d8ba14bfcfa8ced2928f8a73fcd0d0767d55a5",
+        "at": "2026-11-18T09:50:55Z",
+        "ok": true,
+        "checks": [
+          {
+            "label": "chrome-devtools-docs: https://developer.chrome.com/docs/devtools/javascript/breakpoints",
+            "source": "chrome-devtools-docs",
+            "requested_url": "https://developer.chrome.com/docs/devtools/javascript/breakpoints",
+            "ok": true,
+            "status": 200,
+            "bytes": 242864,
+            "sha256": "ea69e60b8baaf8c98ea4d4ad52ff6cb3064e52fae7a5caa6641f5fa2c3dfd2c3"
+          },
+          {
+            "label": "chrome-devtools-docs: https://developer.chrome.com/docs/devtools/css/reference",
+            "source": "chrome-devtools-docs",
+            "requested_url": "https://developer.chrome.com/docs/devtools/css/reference",
+            "ok": true,
+            "status": 200,
+            "bytes": 312664,
+            "sha256": "e3741bc54bd790f421b6fe6517f51f96c07fadc0f3651e9d617bfa0c222e5926"
+          },
+          {
+            "label": "chrome-devtools-docs: https://developer.chrome.com/docs/devtools/css/grid",
+            "source": "chrome-devtools-docs",
+            "requested_url": "https://developer.chrome.com/docs/devtools/css/grid",
+            "ok": true,
+            "status": 200,
+            "bytes": 216426,
+            "sha256": "a07314220d188653e5b43d3c0c51884a6fc38f076237bb10f9213f48cf0cc6c3"
+          },
+          {
+            "label": "chrome-devtools-docs: https://developer.chrome.com/docs/devtools/css/flexbox",
+            "source": "chrome-devtools-docs",
+            "requested_url": "https://developer.chrome.com/docs/devtools/css/flexbox",
+            "ok": true,
+            "status": 200,
+            "bytes": 204513,
+            "sha256": "c264e78a8c1b975707215a12b3bf12077ffd5ec9ee9e79ffec9d44dc2292222d"
+          },
+          {
+            "label": "chrome-devtools-docs: https://developer.chrome.com/docs/devtools/console/reference",
+            "source": "chrome-devtools-docs",
+            "requested_url": "https://developer.chrome.com/docs/devtools/console/reference",
+            "ok": true,
+            "status": 200,
+            "bytes": 301101,
+            "sha256": "5c130b0e8a412ef5fe5af3d13a9547f23feb14f2706ca632c329b871e460cdfc"
+          },
+          {
+            "label": "chrome-devtools-docs: https://developer.chrome.com/docs/devtools/console/utilities",
+            "source": "chrome-devtools-docs",
+            "requested_url": "https://developer.chrome.com/docs/devtools/console/utilities",
+            "ok": true,
+            "status": 200,
+            "bytes": 263156,
+            "sha256": "d62a4bdd7c59329b8655fd07a1daf6fc5100430e2651decd7e02a68008542095"
+          },
+          {
+            "label": "chrome-devtools-docs: https://developer.chrome.com/docs/devtools/console/live-expressions",
+            "source": "chrome-devtools-docs",
+            "requested_url": "https://developer.chrome.com/docs/devtools/console/live-expressions",
+            "ok": true,
+            "status": 200,
+            "bytes": 191982,
+            "sha256": "2e99fdfcac4e93cc4868c16244b51a8bb629b3abdbcbb3bef0eb631d70c0a91e"
+          },
+          {
+            "label": "chrome-devtools-docs: https://developer.chrome.com/docs/devtools/javascript/reference",
+            "source": "chrome-devtools-docs",
+            "requested_url": "https://developer.chrome.com/docs/devtools/javascript/reference",
+            "ok": true,
+            "status": 200,
+            "bytes": 262764,
+            "sha256": "03cd08e360422017c48f3269f7f96a97d7aeda636d2065eab0c1dad702c861fc"
+          },
+          {
+            "label": "chrome-devtools-docs: https://developer.chrome.com/docs/devtools/javascript/source-maps",
+            "source": "chrome-devtools-docs",
+            "requested_url": "https://developer.chrome.com/docs/devtools/javascript/source-maps",
+            "ok": true,
+            "status": 200,
+            "bytes": 207034,
+            "sha256": "0acd732d534b04a7e11bf679490cabf7a8253371c876e7edd12d54faeb734894"
+          },
+          {
+            "label": "chrome-devtools-docs: https://developer.chrome.com/docs/devtools/overrides",
+            "source": "chrome-devtools-docs",
+            "requested_url": "https://developer.chrome.com/docs/devtools/overrides",
+            "ok": true,
+            "status": 200,
+            "bytes": 213658,
+            "sha256": "7cf9b78e56b4144a30beac1f415a49946623b4ce09025a17017120180e8c5d5b"
+          },
+          {
+            "label": "chrome-devtools-docs: https://developer.chrome.com/docs/devtools",
+            "source": "chrome-devtools-docs",
+            "requested_url": "https://developer.chrome.com/docs/devtools",
+            "ok": true,
+            "status": 200,
+            "bytes": 204808,
+            "sha256": "ec84a319dd98bce2a00f93abb6dbf24f8016d514f8a6c0fa05cc1809f592b737"
+          },
+          {
+            "label": "ecma-426-source-map: https://tc39.es/ecma426/",
+            "source": "ecma-426-source-map",
+            "requested_url": "https://tc39.es/ecma426/",
+            "ok": true,
+            "status": 200,
+            "bytes": 568765,
+            "sha256": "5eef326c548c567976e1bf139e88b8fe71ac55516bd1a7225178ef9a008502e5"
+          },
+          {
+            "label": "chrome-devtools-network-docs: https://developer.chrome.com/docs/devtools/network/reference",
+            "source": "chrome-devtools-network-docs",
+            "requested_url": "https://developer.chrome.com/docs/devtools/network/reference",
+            "ok": true,
+            "status": 200,
+            "bytes": 327505,
+            "sha256": "4a720c0fdcb596cfdbdbfd3ca52718f89e84e089a8d22d68f3938eb8c24ddbb4"
+          },
+          {
+            "label": "chrome-devtools-memory-docs: https://developer.chrome.com/docs/devtools/memory-problems",
+            "source": "chrome-devtools-memory-docs",
+            "requested_url": "https://developer.chrome.com/docs/devtools/memory-problems",
+            "ok": true,
+            "status": 200,
+            "bytes": 227434,
+            "sha256": "2fa0c4a879280da24959399bf25984ad83b7474cc69c2d2162c041f2bcb1a4a5"
+          },
+          {
+            "label": "chrome-devtools-memory-docs: https://developer.chrome.com/docs/devtools/memory-problems/heap-snapshots",
+            "source": "chrome-devtools-memory-docs",
+            "requested_url": "https://developer.chrome.com/docs/devtools/memory-problems/heap-snapshots",
+            "ok": true,
+            "status": 200,
+            "bytes": 234504,
+            "sha256": "8dc94e5dcee6223c58191524287bc804fc6b5a946924714b132e9c0dbc7a3ba5"
+          },
+          {
+            "label": "chrome-devtools-measure-docs: https://developer.chrome.com/docs/devtools/performance/reference",
+            "source": "chrome-devtools-measure-docs",
+            "requested_url": "https://developer.chrome.com/docs/devtools/performance/reference",
+            "ok": true,
+            "status": 200,
+            "bytes": 328835,
+            "sha256": "f8fd79e664b6c6be833c9db00a69f88cc605d72a50f2b7600aaddc42f3d18e2d"
+          },
+          {
+            "label": "chrome-devtools-measure-docs: https://developer.chrome.com/docs/devtools/application",
+            "source": "chrome-devtools-measure-docs",
+            "requested_url": "https://developer.chrome.com/docs/devtools/application",
+            "ok": true,
+            "status": 200,
+            "bytes": 193128,
+            "sha256": "a6ff56b42203ea91be319f5bf5de25fc5375ec0f4c5abe6b109183747fa52ed2"
+          },
+          {
+            "label": "chrome-devtools-measure-docs: https://developer.chrome.com/docs/devtools/coverage",
+            "source": "chrome-devtools-measure-docs",
+            "requested_url": "https://developer.chrome.com/docs/devtools/coverage",
+            "ok": true,
+            "status": 200,
+            "bytes": 196025,
+            "sha256": "927bb471a3eada78e5e3689dd5c5dd3ef9d31b044113554edec4ba8b3f8c31ac"
+          },
+          {
+            "label": "chrome-devtools-measure-docs: https://developer.chrome.com/docs/devtools/rendering/emulate-css",
+            "source": "chrome-devtools-measure-docs",
+            "requested_url": "https://developer.chrome.com/docs/devtools/rendering/emulate-css",
+            "ok": true,
+            "status": 200,
+            "bytes": 198422,
+            "sha256": "50c400d3b422c60e792a0e47b05567bba32d8f0d5b4bd673702e9f4cc6ba2fea"
+          },
+          {
+            "label": "chrome-devtools-measure-docs: https://developer.chrome.com/docs/devtools/recorder",
+            "source": "chrome-devtools-measure-docs",
+            "requested_url": "https://developer.chrome.com/docs/devtools/recorder",
+            "ok": true,
+            "status": 200,
+            "bytes": 223008,
+            "sha256": "666751f4283a8f258d0ac075ea1ef6e1104fdb8b9ef9a001f18d29c2c8ddacd1"
+          },
+          {
+            "label": "web-dev-vitals-docs: https://web.dev/articles/vitals",
+            "source": "web-dev-vitals-docs",
+            "requested_url": "https://web.dev/articles/vitals",
+            "ok": true,
+            "status": 200,
+            "bytes": 146042,
+            "sha256": "bfa10c2ba4cc9d7c2ec0d51aded349b47313e647f39ef4c3f426c906f368bbed"
+          },
+          {
+            "label": "web-dev-vitals-docs: https://web.dev/articles/optimize-long-tasks",
+            "source": "web-dev-vitals-docs",
+            "requested_url": "https://web.dev/articles/optimize-long-tasks",
+            "ok": true,
+            "status": 200,
+            "bytes": 198463,
+            "sha256": "4c45bd648187aca335f77e260c936c2c19af7db2695d3f51cba4034ebadefd32"
+          },
+          {
+            "label": "web-dev-vitals-docs: https://web.dev/articles/bfcache",
+            "source": "web-dev-vitals-docs",
+            "requested_url": "https://web.dev/articles/bfcache",
+            "ok": true,
+            "status": 200,
+            "bytes": 158444,
+            "sha256": "008789e233e7c251d22bc61d58d9f2707e5cabef8225d62f80a02be7e60dca67"
+          },
+          {
+            "label": "firefox-devtools-user-docs: https://firefox-source-docs.mozilla.org/devtools-user/page_inspector/how_to/examine_grid_layouts/index.html",
+            "source": "firefox-devtools-user-docs",
+            "requested_url": "https://firefox-source-docs.mozilla.org/devtools-user/page_inspector/how_to/examine_grid_layouts/index.html",
+            "ok": true,
+            "status": 200,
+            "bytes": 38164,
+            "sha256": "68693741f5b7825f76e92e92ba7d84d78bb6a1a6ab7893d45d6e327f988fcff5"
+          },
+          {
+            "label": "firefox-devtools-user-docs: https://firefox-source-docs.mozilla.org/devtools-user/",
+            "source": "firefox-devtools-user-docs",
+            "requested_url": "https://firefox-source-docs.mozilla.org/devtools-user/",
+            "ok": true,
+            "status": 200,
+            "bytes": 41668,
+            "sha256": "217cb487bd6bb2d81a25d3ed59bcf33b55326482fa074cd0fd77c0092d2845d8"
+          },
+          {
+            "label": "webkit-web-inspector-docs: https://webkit.org/web-inspector/enabling-web-inspector/",
+            "source": "webkit-web-inspector-docs",
+            "requested_url": "https://webkit.org/web-inspector/enabling-web-inspector/",
+            "ok": true,
+            "status": 200,
+            "bytes": 40318,
+            "sha256": "16d181f8da46fc0cae218123c1fb1243d485e80795468f432ceb147f3817e233"
+          },
+          {
+            "label": "webkit-web-inspector-docs: https://webkit.org/web-inspector/",
+            "source": "webkit-web-inspector-docs",
+            "requested_url": "https://webkit.org/web-inspector/",
+            "ok": true,
+            "status": 200,
+            "bytes": 52989,
+            "sha256": "6b1f5fd1a7028886e08b6b4ea104bd481a86051691c703c6a437750b2d4b9976"
+          },
+          {
+            "label": "chrome-devtools-remote-debugging-docs: https://developer.chrome.com/docs/devtools/remote-debugging",
+            "source": "chrome-devtools-remote-debugging-docs",
+            "requested_url": "https://developer.chrome.com/docs/devtools/remote-debugging",
+            "ok": true,
+            "status": 200,
+            "bytes": 212954,
+            "sha256": "e57a660a8acf7df86dd53fa7b3d4f64ea81a0083b53d694c7f272959caf11f1f"
+          },
+          {
+            "label": "googlechrome-lighthouse-repo: https://api.github.com/repos/GoogleChrome/lighthouse",
+            "source": "googlechrome-lighthouse-repo",
+            "requested_url": "https://api.github.com/repos/GoogleChrome/lighthouse",
+            "ok": true,
+            "status": 200,
+            "bytes": 7698,
+            "sha256": "cb99384485edc5e028e67c5ba1187fa353c2eef437fe21617a8a76e1020a4697",
+            "repository": {
+              "stars": 31153,
+              "archived": false,
+              "pushed_at": "2026-11-18T00:52:41Z",
+              "license": "Apache-2.0"
+            }
+          },
+          {
+            "label": "chromedevtools-devtools-frontend-repo: https://api.github.com/repos/ChromeDevTools/devtools-frontend",
+            "source": "chromedevtools-devtools-frontend-repo",
+            "requested_url": "https://api.github.com/repos/ChromeDevTools/devtools-frontend",
+            "ok": true,
+            "status": 200,
+            "bytes": 8041,
+            "sha256": "7f9734cd4801500acd6ca5e9d2dfb1fac669d400b352dcf550ef7831ccdb4784",
+            "repository": {
+              "stars": 4103,
+              "archived": false,
+              "pushed_at": "2026-11-18T09:46:29Z",
+              "license": "BSD-3-Clause"
+            }
+          }
+        ]
+      }
+    }
+  }
+}

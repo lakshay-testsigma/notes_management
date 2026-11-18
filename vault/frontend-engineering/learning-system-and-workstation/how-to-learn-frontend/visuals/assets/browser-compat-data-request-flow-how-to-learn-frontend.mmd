@@ -1,0 +1,15 @@
+sequenceDiagram
+  participant D as Contributor
+  participant L as lint.js
+  participant B as build/index.js
+  participant M as mirror.js
+  participant R as release.yml
+  participant A as App
+  D->>L: edit JSON, run lint
+  L-->>D: error with fix hint
+  B->>B: createDataBundle
+  B->>M: mirrorSupport
+  M-->>B: resolved versions
+  B->>B: validate, write data.json
+  R->>R: npm publish build
+  A->>A: import data.json, query

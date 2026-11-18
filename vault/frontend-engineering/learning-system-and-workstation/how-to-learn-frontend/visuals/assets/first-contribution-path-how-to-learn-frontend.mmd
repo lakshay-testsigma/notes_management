@@ -1,0 +1,7 @@
+flowchart LR
+  readme["Read README"] --> contrib["Read CONTRIBUTING"]
+  contrib --> issues["Search issue tracker"]
+  issues -->|"small fix"| pr["Open pull request"]
+  issues -->|"bigger change"| comment["Comment or open issue"]
+  comment -->|"agreed"| pr
+  pr --> review["Maintainer review"]

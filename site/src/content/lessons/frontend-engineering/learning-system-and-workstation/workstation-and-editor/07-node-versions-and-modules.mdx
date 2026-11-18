@@ -1,0 +1,56 @@
+---
+title: Node.js versions, npx and ESM versus CommonJS
+description: Pin one LTS Node.js version per project, and predict how Node.js loads each file.
+order: 7
+concepts: [Node.js version management, LTS release lines, per-project Node.js versions, Corepack, ESM versus CommonJS]
+---
+
+{/* <!-- concept: node-js-runtime-version-management --> */}
+
+Node.js is the program that runs JavaScript outside the browser, and your build tools run on it. Two projects can need two Node.js versions. A version manager installs several versions and switches between them. Common options are nvm, fnm, Volta and mise.
+
+{/* <!-- concept: node-lts-and-release-lines --> */}
+
+Which version do you choose? A new major version is in Current status for six months. Up to v26, only even-numbered majors then move to LTS (long-term support), which typically means fixes for critical bugs for 30 months. The Node.js releases page says that production apps should use only Active LTS or Maintenance LTS. In November 2026, v26, v24 and v22 are LTS, and v27 is Alpha.
+
+{/* <!-- concept: per-project-node-versions --> */}
+
+Pin the version in the project, not in your memory. The `engines` field of `package.json` states the Node.js range that works. `npx` runs a command from an npm package, installed locally or fetched, so you need no global install.
+
+{/* <!-- concept: esm-vs-cjs --> */}
+
+Node.js also picks a module system for each file. CommonJS (CJS) uses `require()`. ES modules (ESM) use `import` and `export`. Trace a file through the diagram and predict its loader.
+
+<Diagram id="nodejs-packages-docs-mechanism" />
+
+The extension decides first: `.mjs` is always ESM and `.cjs` is always CommonJS. A `.js` file follows the `type` field of the nearest `package.json`. With no `type`, Node.js guesses from the syntax. That guess costs performance, so always set `type`.
+
+<Quiz
+  question="A folder has a package.json whose type field is module. Which loader does Node.js use for config.cjs in that folder?"
+  options={[
+    "ES module, because the type field is module",
+    "CommonJS, because the .cjs extension decides before the type field",
+    "ES module after syntax detection",
+    "Node.js refuses to load the file"
+  ]}
+  answer={1}
+  explanation="Node.js checks the extension first. A .cjs file is always CommonJS and a .mjs file is always an ES module, whatever the nearest package.json says. The type field only decides plain .js files."
+/>
+
+<Depth level="internals" title="How the nearest package.json and syntax detection work">
+
+Node.js searches the current folder for a `package.json`, then each parent, and stops at a `node_modules` folder or the volume root. A `type` of `"commonjs"`, a missing `type`, or no `package.json` at all means CommonJS. For an ambiguous `.js` file, Node.js runs it as CommonJS first. When the parser finds `import`, `export` or top-level `await`, it retries as ESM. This detection is on by default since v22.7.0 and v20.19.0. Failure mode: a `.js` file with `import` in a folder with `"type": "commonjs"` fails, because Node.js parses it as CommonJS. Practice: create `a.mjs`, `b.cjs` and `c.js`, flip `type`, and run each file.
+
+</Depth>
+
+<Depth level="production" title="Layered pinning in a real repository">
+
+{/* <!-- concept: corepack-package-manager-pinning --> */}
+
+The commitlint repository uses layers. `engines` sets the Node.js floor (`package.json:85-88 @ d2be18a`). The `packageManager` field pins the exact pnpm version with a hash (`package.json:89 @ d2be18a`). Corepack, the Node.js tool that reads that field, shipped with Node.js from 14.19.0 up to, not including, 25.0.0. `.mise.toml` sets the local shell version (`.mise.toml:1-3 @ d2be18a`). A `.nvmrc` file is the same idea as an nvm convention. The benefit: laptops and CI run one version. The trade-off: npm only warns about `engines` unless `engine-strict` is set. The concept note `corepack-package-manager-pinning-workstation-and-editor.md` goes deeper.
+
+</Depth>
+
+You now have a full workstation: shell, Git, editor, agent and runtime.
+
+<Resources />

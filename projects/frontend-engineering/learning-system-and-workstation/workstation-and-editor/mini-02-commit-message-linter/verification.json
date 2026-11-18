@@ -1,0 +1,7 @@
+{
+  "checks": [
+    {"kind": "solution-tests", "cwd": "solution", "command": "npm", "args": ["test"]},
+    {"kind": "starter-tests", "cwd": "starter", "command": "npm", "args": ["test"], "expected_exit": 1, "expect_output": "TODO("},
+    {"kind": "starter-start", "cwd": "starter", "command": "node", "args": ["src/cli.js", "--edit", "examples/good.txt"], "expected_exit": 2, "expect_output": "TODO(4): stripComments is not implemented yet"}
+  ]
+}

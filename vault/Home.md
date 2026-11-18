@@ -11,9 +11,23 @@ created: 2026-11-14
 Everything you have learned, by domain. Open a topic and follow its "start here" note from top to bottom.
 
 <!-- tutor:generated:start -->
-_No topics yet._
+## Roadmaps
 
-Ask Claude: "teach me <topic>". The tutor creates the notes, the lesson site pages, and the projects, and lists the topic here.
+- [[_roadmaps/frontend|N1 Frontend Engineering Mastery Roadmap]] — 0/107 topics ready
+
+## Domains
+
+- [[frontend-engineering|Frontend Engineering]] — 3 topics
+
+## All topics
+
+- [[00-start-here-browser-devtools-mastery|Browser DevTools mastery (used in every phase)]] — deep · 3/10 steps ready
+- [[00-start-here-how-to-learn-frontend|How to learn frontend (and keep improving)]] — standard · 9/10 steps ready
+- [[00-start-here-workstation-and-editor|Workstation & editor]] — standard · 9/10 steps ready
+
+## Review
+
+Ask Claude "what's due?" or run `node harness/bin/tutor.mjs recall due` to see the recall cards that are due today.
 <!-- tutor:generated:end -->
 
 ## My insights

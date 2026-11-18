@@ -1,0 +1,68 @@
+---
+title: Pull requests, conventional commits and .gitignore
+description: Each change travels from its own branch through a reviewed pull request, carrying commit messages that tools can read.
+order: 4
+concepts: [GitHub flow, pull request, Conventional Commits, Semantic Versioning, interactive staging, .gitignore, secrets]
+---
+
+{/* <!-- concept: pr-workflow --> */}
+
+How does a bug fix reach `main` after a teammate checks it? GitHub flow is GitHub's answer: one branch per change, then a pull request. A pull request is a request to merge your branch into the default branch, with review and checks.
+
+Follow the path. Find the loop that sends a change back.
+
+<Diagram id="github-flow" />
+
+A review comment leads to a new commit on the same branch, and the open pull request updates itself. The benefit over a push to `main`: a person and automatic checks see each change first. You pay with time spent on review. A branch with unrelated changes makes review harder.
+
+{/* <!-- concept: conventional-commits --> */}
+
+Conventional Commits 1.0.0 is a message format: `type(scope): description`. Tools read the type. In Semantic Versioning, `fix` means a PATCH release and `feat` means a MINOR release. A `!` after the type, or a `BREAKING CHANGE:` footer, means a MAJOR release. So a tool can write the changelog from history. The cost: a wrong type gives a wrong version.
+
+{/* <!-- concept: interactive-staging-and-gitignore --> */}
+
+Two Git tools keep commits focused. `git add -p` shows each hunk, a block of changed lines, and asks whether to stage it. One edited file can become two commits. A `.gitignore` file lists patterns that Git must not offer to track.
+
+{/* <!-- concept: secrets-out-of-git --> */}
+
+```text
+# build output and logs
+dist/
+*.log
+# local secrets: API keys, passwords, private keys
+.env
+*.pem
+```
+
+A secret is a password or an access key. Write the `.gitignore` before the first commit. Ignoring does not untrack a file, and old snapshots keep it.
+
+**Interpretation.** If you pushed a key, treat it as leaked: revoke it and create a new one. Then run `git rm --cached .env`; the file stays on disk.
+
+<SortBuckets
+  prompt="Sort each commit message by the release it causes under Conventional Commits 1.0.0."
+  buckets={["PATCH", "MINOR", "MAJOR", "Not valid"]}
+  items={[
+    { text: "fix(cart): round prices to two decimals", bucket: "PATCH" },
+    { text: "fix: stop double submit on slow networks", bucket: "PATCH" },
+    { text: "feat(search): add filter by tag", bucket: "MINOR" },
+    { text: "feat!: drop support for Node 18", bucket: "MAJOR" },
+    { text: "refactor: rename config key (footer BREAKING CHANGE: key renamed)", bucket: "MAJOR" },
+    { text: "Fixed the login bug", bucket: "Not valid" },
+    { text: "feat add dark mode", bucket: "Not valid" }
+  ]}
+  explanation="fix maps to PATCH and feat to MINOR. A ! before the colon or a BREAKING CHANGE: footer maps to MAJOR for any type, also refactor. A message needs a type, then an optional scope, then a colon and a space; 'Fixed the login bug' has no type, and 'feat add dark mode' has no colon."
+/>
+
+<Depth level="internals" title="How commitlint checks a message">
+
+commitlint parses the message, then runs named rule functions over it. Each rule has the shape `rule(parsed, when, value)` and returns `[passed, message]` (`@commitlint/types/src/rules.ts:18-28 @ d2be18a`). The config only says which rules are on and at what level (`@commitlint/config-conventional/src/index.ts:5-44 @ d2be18a`). The linter also skips merge, revert and `fixup!` messages (`@commitlint/is-ignored/src/defaults.ts:21-32 @ d2be18a`).
+
+</Depth>
+
+<Depth level="production" title="Gates for messages and secrets">
+
+The commitlint repository runs the same CLI twice. A `commit-msg` hook checks the message file with `--edit $1` (`.husky/commit-msg:1 @ d2be18a`). CI checks the whole pull request range (`.github/workflows/commitlint.yml:46-52 @ d2be18a`). The reason: a developer can skip a hook with `--no-verify`, but not CI. Practice: write the message for "add a tag filter that also renames the `q` URL parameter", then name the release it causes. Check: `feat!: ...` or a `BREAKING CHANGE:` footer, so MAJOR.
+
+For secrets, Pro Git shows how to remove a password file from every commit, and now recommends `git-filter-repo` over `filter-branch`. The rewrite makes new commits, so clones made earlier still hold the file. Git's own passwords need care too: the `store` credential helper saves them as plain text in `~/.git-credentials`, while `osxkeychain` encrypts them. Practice: add `.env` to `.gitignore`, then check that `git status` no longer lists it.
+
+</Depth>

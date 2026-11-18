@@ -1,0 +1,9 @@
+flowchart LR
+  A[Spec and context] --> B[Failing test]
+  B --> C[Agent diff]
+  C --> D{Run check}
+  D -->|fail| C
+  D -->|pass| E{Review every line}
+  E -->|unclear| C
+  E -->|unsafe| A
+  E -->|explained| F[Merge]

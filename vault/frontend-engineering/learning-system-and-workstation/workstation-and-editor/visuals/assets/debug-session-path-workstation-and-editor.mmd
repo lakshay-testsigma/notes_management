@@ -1,0 +1,7 @@
+flowchart LR
+  S[Set breakpoint F9] --> G[Start F5]
+  G --> H[Pause at line]
+  H --> I[Inspect Variables]
+  I --> O[Step Over F10]
+  O --> H
+  I --> N[Continue F5]

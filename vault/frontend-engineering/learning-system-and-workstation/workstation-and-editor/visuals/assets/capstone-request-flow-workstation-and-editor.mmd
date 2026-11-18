@@ -1,0 +1,14 @@
+sequenceDiagram
+  participant Git as Git hook
+  participant Cli as Cli
+  participant Source as GitCommitSource
+  participant Lint as LintCommitsUseCase
+  participant Rules as CommitRules
+  Git->>Cli: lint --edit .git/COMMIT_EDITMSG
+  Cli->>Source: fromFile(path)
+  Source-->>Cli: one message
+  Cli->>Lint: execute(commits)
+  Lint->>Rules: check(parsed commit)
+  Rules-->>Lint: results per rule
+  Lint-->>Cli: Report
+  Cli-->>Git: exit 0, or exit 1 and the problems

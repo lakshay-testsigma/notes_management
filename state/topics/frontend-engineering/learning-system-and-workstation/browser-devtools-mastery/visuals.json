@@ -1,0 +1,34 @@
+[
+  {
+    "id": "how-it-works",
+    "kind": "workflow",
+    "scope": "end-to-end",
+    "format": "mermaid",
+    "file": "vault/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/visuals/assets/how-it-works-browser-devtools-mastery.mmd",
+    "concept_ids": [
+      "elements-styles-panel",
+      "sources-panel-debugging",
+      "network-panel",
+      "performance-panel",
+      "memory-panel",
+      "local-overrides"
+    ],
+    "source_ids": [
+      "chrome-devtools-docs",
+      "chrome-devtools-network-docs",
+      "chrome-devtools-measure-docs",
+      "chrome-devtools-memory-docs"
+    ],
+    "purpose": "Show the inspect, debug, measure, fix and verify loop that every DevTools task follows.",
+    "explanation": "You start on the live page. You inspect the element or log in Elements and Console. You pause the code with a breakpoint in Sources. You measure the cost in Network, Performance or Memory. You try a fix as a live edit or a local override, then reload to verify it.",
+    "alt": "Flowchart: Live page, then Inspect with Elements and Console, then Debug with Sources breakpoints, then Measure with Network, Performance and Memory, then Edit live or use local overrides, then Reload and verify, which loops back to the live page.",
+    "learning_check": {
+      "question": "Which panel do you open after a breakpoint shows the code is correct but the page is still slow?",
+      "answer": "A measuring panel: Performance for slow scripts or rendering, Network for slow requests, Memory for growing memory."
+    },
+    "used_in": [
+      "vault/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/01-brief-browser-devtools-mastery.md"
+    ],
+    "title": "The DevTools inspect, debug, measure and fix loop"
+  }
+]

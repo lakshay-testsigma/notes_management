@@ -1,0 +1,6 @@
+{
+  "checks": [
+    {"kind": "solution-tests", "cwd": ".", "command": "npm", "args": ["test"]},
+    {"kind": "integration", "cwd": ".", "command": "npm", "args": ["run", "test:integration"]}
+  ]
+}

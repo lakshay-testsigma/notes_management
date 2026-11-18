@@ -1,0 +1,8 @@
+flowchart LR
+  B[Create branch] --> C["Commit: feat(...)"]
+  C --> P[Push, open PR]
+  P --> K[Checks run]
+  K --> R[Review]
+  R -- changes asked --> C
+  R -- approved --> M[Merge]
+  M --> D[Delete branch]

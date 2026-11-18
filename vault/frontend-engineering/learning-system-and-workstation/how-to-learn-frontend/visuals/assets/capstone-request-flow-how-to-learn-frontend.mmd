@@ -1,0 +1,21 @@
+sequenceDiagram
+  actor L as Learner
+  participant F as NoteForm
+  participant A as AddNote
+  participant V as NoteValidator
+  participant S as ReviewScheduler
+  participant R as LocalStorageNoteRepository
+  L->>F: press Save note
+  F->>A: execute(draft)
+  A->>V: validate(draft)
+  alt draft is invalid
+    V-->>F: ValidationError (issues)
+    F-->>L: role=alert list, focus moves to it
+  else draft is valid
+    A->>S: first(today)
+    S-->>A: nextReviewOn
+    A->>R: save(note)
+    R-->>A: saved
+    A-->>F: note (nextReviewOn)
+    F-->>L: status line with first review date
+  end

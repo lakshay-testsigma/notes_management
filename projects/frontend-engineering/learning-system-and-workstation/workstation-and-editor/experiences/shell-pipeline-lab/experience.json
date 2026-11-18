@@ -1,0 +1,906 @@
+{
+  "id": "shell-pipeline-lab",
+  "title": "Build a shell pipeline stage by stage",
+  "mode": "interactive",
+  "objective": "Predict the output of each pipeline stage and explain where a redirection sends standard error.",
+  "level": "beginner",
+  "summary": "A short walkthrough sends a seven-line web server log through cat access.log | grep 404 | sort | uniq -c | sort -rn and pauses for predictions. In the stepper, each step shows one stage's standard input next to its standard output. A second trace leaves out sort, and a third shows how Bash processes > out.txt and 2>&1 from left to right, so their order decides where the error message goes.",
+  "concept_ids": [
+    "terminal-shell-basics",
+    "pipes-and-redirection",
+    "path-and-env-vars"
+  ],
+  "source_ids": [
+    "gnu-bash-manual"
+  ],
+  "used_in": [
+    "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/workstation-and-editor/01-terminal-and-shell.mdx"
+  ],
+  "watch": {
+    "video": "shell-pipeline-flow"
+  },
+  "guided": {
+    "video": "shell-pipeline-flow"
+  },
+  "fallback_visual": "shell-pipeline-stages",
+  "simulation": {
+    "component": "AlgorithmStepper",
+    "props": {
+      "title": "Pipeline: stdin and stdout of each stage",
+      "view": "grid",
+      "frames": [
+        {
+          "caption": "cat access.log reads the file and writes its seven lines to its standard output.",
+          "grid": [
+            [
+              "stdin",
+              "stdout"
+            ],
+            [
+              "",
+              "200 /home"
+            ],
+            [
+              "",
+              "404 /old"
+            ],
+            [
+              "",
+              "404 /logo.png"
+            ],
+            [
+              "",
+              "200 /about"
+            ],
+            [
+              "",
+              "404 /old"
+            ],
+            [
+              "",
+              "404 /old"
+            ],
+            [
+              "",
+              "404 /logo.png"
+            ]
+          ],
+          "highlight": [
+            3,
+            5,
+            7,
+            9,
+            11,
+            13,
+            15
+          ],
+          "vars": {
+            "stage": "cat access.log",
+            "stdin lines": "none (reads the file)",
+            "stdout lines": "7"
+          },
+          "line": 1
+        },
+        {
+          "caption": "The pipe gives those seven lines to grep 404 on its standard input. grep writes only the five lines that contain 404.",
+          "grid": [
+            [
+              "stdin",
+              "stdout"
+            ],
+            [
+              "200 /home",
+              "404 /old"
+            ],
+            [
+              "404 /old",
+              "404 /logo.png"
+            ],
+            [
+              "404 /logo.png",
+              "404 /old"
+            ],
+            [
+              "200 /about",
+              "404 /old"
+            ],
+            [
+              "404 /old",
+              "404 /logo.png"
+            ],
+            [
+              "404 /old",
+              ""
+            ],
+            [
+              "404 /logo.png",
+              ""
+            ]
+          ],
+          "highlight": [
+            3,
+            5,
+            7,
+            9,
+            11
+          ],
+          "vars": {
+            "stage": "grep 404",
+            "stdin lines": "7",
+            "stdout lines": "5"
+          },
+          "line": 2
+        },
+        {
+          "caption": "sort reads the five lines from grep and writes them in order, so equal lines now sit next to each other.",
+          "grid": [
+            [
+              "stdin",
+              "stdout"
+            ],
+            [
+              "404 /old",
+              "404 /logo.png"
+            ],
+            [
+              "404 /logo.png",
+              "404 /logo.png"
+            ],
+            [
+              "404 /old",
+              "404 /old"
+            ],
+            [
+              "404 /old",
+              "404 /old"
+            ],
+            [
+              "404 /logo.png",
+              "404 /old"
+            ]
+          ],
+          "highlight": [
+            3,
+            5,
+            7,
+            9,
+            11
+          ],
+          "vars": {
+            "stage": "sort",
+            "stdin lines": "5",
+            "stdout lines": "5"
+          },
+          "line": 3
+        },
+        {
+          "caption": "uniq -c reads the sorted lines and writes each group of equal lines once, with its count in front.",
+          "grid": [
+            [
+              "stdin",
+              "stdout"
+            ],
+            [
+              "404 /logo.png",
+              "2 404 /logo.png"
+            ],
+            [
+              "404 /logo.png",
+              "3 404 /old"
+            ],
+            [
+              "404 /old",
+              ""
+            ],
+            [
+              "404 /old",
+              ""
+            ],
+            [
+              "404 /old",
+              ""
+            ]
+          ],
+          "highlight": [
+            3,
+            5
+          ],
+          "vars": {
+            "stage": "uniq -c",
+            "stdin lines": "5",
+            "stdout lines": "2"
+          },
+          "line": 4
+        },
+        {
+          "caption": "sort -rn orders the counted lines by their number, largest first: /old has the most 404 errors.",
+          "grid": [
+            [
+              "stdin",
+              "stdout"
+            ],
+            [
+              "2 404 /logo.png",
+              "3 404 /old"
+            ],
+            [
+              "3 404 /old",
+              "2 404 /logo.png"
+            ]
+          ],
+          "highlight": [
+            3,
+            5
+          ],
+          "vars": {
+            "stage": "sort -rn",
+            "stdin lines": "2",
+            "stdout lines": "2",
+            "finished": "yes"
+          },
+          "line": 5
+        }
+      ],
+      "code": "cat access.log\n  | grep 404\n  | sort\n  | uniq -c\n  | sort -rn",
+      "lang": "bash"
+    },
+    "presets": {
+      "full-pipeline": {
+        "title": "Pipeline: stdin and stdout of each stage",
+        "view": "grid",
+        "frames": [
+          {
+            "caption": "cat access.log reads the file and writes its seven lines to its standard output.",
+            "grid": [
+              [
+                "stdin",
+                "stdout"
+              ],
+              [
+                "",
+                "200 /home"
+              ],
+              [
+                "",
+                "404 /old"
+              ],
+              [
+                "",
+                "404 /logo.png"
+              ],
+              [
+                "",
+                "200 /about"
+              ],
+              [
+                "",
+                "404 /old"
+              ],
+              [
+                "",
+                "404 /old"
+              ],
+              [
+                "",
+                "404 /logo.png"
+              ]
+            ],
+            "highlight": [
+              3,
+              5,
+              7,
+              9,
+              11,
+              13,
+              15
+            ],
+            "vars": {
+              "stage": "cat access.log",
+              "stdin lines": "none (reads the file)",
+              "stdout lines": "7"
+            },
+            "line": 1
+          },
+          {
+            "caption": "The pipe gives those seven lines to grep 404 on its standard input. grep writes only the five lines that contain 404.",
+            "grid": [
+              [
+                "stdin",
+                "stdout"
+              ],
+              [
+                "200 /home",
+                "404 /old"
+              ],
+              [
+                "404 /old",
+                "404 /logo.png"
+              ],
+              [
+                "404 /logo.png",
+                "404 /old"
+              ],
+              [
+                "200 /about",
+                "404 /old"
+              ],
+              [
+                "404 /old",
+                "404 /logo.png"
+              ],
+              [
+                "404 /old",
+                ""
+              ],
+              [
+                "404 /logo.png",
+                ""
+              ]
+            ],
+            "highlight": [
+              3,
+              5,
+              7,
+              9,
+              11
+            ],
+            "vars": {
+              "stage": "grep 404",
+              "stdin lines": "7",
+              "stdout lines": "5"
+            },
+            "line": 2
+          },
+          {
+            "caption": "sort reads the five lines from grep and writes them in order, so equal lines now sit next to each other.",
+            "grid": [
+              [
+                "stdin",
+                "stdout"
+              ],
+              [
+                "404 /old",
+                "404 /logo.png"
+              ],
+              [
+                "404 /logo.png",
+                "404 /logo.png"
+              ],
+              [
+                "404 /old",
+                "404 /old"
+              ],
+              [
+                "404 /old",
+                "404 /old"
+              ],
+              [
+                "404 /logo.png",
+                "404 /old"
+              ]
+            ],
+            "highlight": [
+              3,
+              5,
+              7,
+              9,
+              11
+            ],
+            "vars": {
+              "stage": "sort",
+              "stdin lines": "5",
+              "stdout lines": "5"
+            },
+            "line": 3
+          },
+          {
+            "caption": "uniq -c reads the sorted lines and writes each group of equal lines once, with its count in front.",
+            "grid": [
+              [
+                "stdin",
+                "stdout"
+              ],
+              [
+                "404 /logo.png",
+                "2 404 /logo.png"
+              ],
+              [
+                "404 /logo.png",
+                "3 404 /old"
+              ],
+              [
+                "404 /old",
+                ""
+              ],
+              [
+                "404 /old",
+                ""
+              ],
+              [
+                "404 /old",
+                ""
+              ]
+            ],
+            "highlight": [
+              3,
+              5
+            ],
+            "vars": {
+              "stage": "uniq -c",
+              "stdin lines": "5",
+              "stdout lines": "2"
+            },
+            "line": 4
+          },
+          {
+            "caption": "sort -rn orders the counted lines by their number, largest first: /old has the most 404 errors.",
+            "grid": [
+              [
+                "stdin",
+                "stdout"
+              ],
+              [
+                "2 404 /logo.png",
+                "3 404 /old"
+              ],
+              [
+                "3 404 /old",
+                "2 404 /logo.png"
+              ]
+            ],
+            "highlight": [
+              3,
+              5
+            ],
+            "vars": {
+              "stage": "sort -rn",
+              "stdin lines": "2",
+              "stdout lines": "2",
+              "finished": "yes"
+            },
+            "line": 5
+          }
+        ],
+        "code": "cat access.log\n  | grep 404\n  | sort\n  | uniq -c\n  | sort -rn",
+        "lang": "bash"
+      },
+      "no-sort": {
+        "title": "Remove sort: what does uniq -c count?",
+        "view": "grid",
+        "frames": [
+          {
+            "caption": "cat access.log writes the same seven lines as before.",
+            "grid": [
+              [
+                "stdin",
+                "stdout"
+              ],
+              [
+                "",
+                "200 /home"
+              ],
+              [
+                "",
+                "404 /old"
+              ],
+              [
+                "",
+                "404 /logo.png"
+              ],
+              [
+                "",
+                "200 /about"
+              ],
+              [
+                "",
+                "404 /old"
+              ],
+              [
+                "",
+                "404 /old"
+              ],
+              [
+                "",
+                "404 /logo.png"
+              ]
+            ],
+            "highlight": [
+              3,
+              5,
+              7,
+              9,
+              11,
+              13,
+              15
+            ],
+            "vars": {
+              "stage": "cat access.log",
+              "stdin lines": "none (reads the file)",
+              "stdout lines": "7"
+            },
+            "line": 1
+          },
+          {
+            "caption": "grep 404 keeps the five lines that contain 404, in the order of the file.",
+            "grid": [
+              [
+                "stdin",
+                "stdout"
+              ],
+              [
+                "200 /home",
+                "404 /old"
+              ],
+              [
+                "404 /old",
+                "404 /logo.png"
+              ],
+              [
+                "404 /logo.png",
+                "404 /old"
+              ],
+              [
+                "200 /about",
+                "404 /old"
+              ],
+              [
+                "404 /old",
+                "404 /logo.png"
+              ],
+              [
+                "404 /old",
+                ""
+              ],
+              [
+                "404 /logo.png",
+                ""
+              ]
+            ],
+            "highlight": [
+              3,
+              5,
+              7,
+              9,
+              11
+            ],
+            "vars": {
+              "stage": "grep 404",
+              "stdin lines": "7",
+              "stdout lines": "5"
+            },
+            "line": 2
+          },
+          {
+            "caption": "Without sort, equal lines are not next to each other. uniq -c counts only runs of equal neighbours, so /old and /logo.png each appear twice with split counts.",
+            "grid": [
+              [
+                "stdin",
+                "stdout"
+              ],
+              [
+                "404 /old",
+                "1 404 /old"
+              ],
+              [
+                "404 /logo.png",
+                "1 404 /logo.png"
+              ],
+              [
+                "404 /old",
+                "2 404 /old"
+              ],
+              [
+                "404 /old",
+                "1 404 /logo.png"
+              ],
+              [
+                "404 /logo.png",
+                ""
+              ]
+            ],
+            "highlight": [
+              3,
+              5,
+              7,
+              9
+            ],
+            "vars": {
+              "stage": "uniq -c",
+              "stdin lines": "5",
+              "stdout lines": "4",
+              "finished": "yes"
+            },
+            "line": 3
+          }
+        ],
+        "code": "cat access.log\n  | grep 404\n  | uniq -c",
+        "lang": "bash"
+      },
+      "stderr-order": {
+        "title": "Where does stderr go? Two redirection orders",
+        "view": "grid",
+        "frames": [
+          {
+            "caption": "Command 1: ls notes.txt missing.txt > out.txt 2>&1. Before any redirection, every descriptor points at the terminal.",
+            "grid": [
+              [
+                "descriptor",
+                "points to"
+              ],
+              [
+                "0 stdin",
+                "terminal"
+              ],
+              [
+                "1 stdout",
+                "terminal"
+              ],
+              [
+                "2 stderr",
+                "terminal"
+              ]
+            ],
+            "highlight": [],
+            "vars": {
+              "terminal shows": "not run yet",
+              "out.txt holds": "not run yet"
+            },
+            "line": 1
+          },
+          {
+            "caption": "Bash processes > out.txt first, because it is written first: descriptor 1 (stdout) now points at out.txt.",
+            "grid": [
+              [
+                "descriptor",
+                "points to"
+              ],
+              [
+                "0 stdin",
+                "terminal"
+              ],
+              [
+                "1 stdout",
+                "out.txt"
+              ],
+              [
+                "2 stderr",
+                "terminal"
+              ]
+            ],
+            "highlight": [
+              5
+            ],
+            "vars": {
+              "terminal shows": "not run yet",
+              "out.txt holds": "not run yet"
+            },
+            "line": 1
+          },
+          {
+            "caption": "Bash processes 2>&1 next: descriptor 2 (stderr) becomes a copy of descriptor 1, which is now out.txt. The file list and the error both go to out.txt.",
+            "grid": [
+              [
+                "descriptor",
+                "points to"
+              ],
+              [
+                "0 stdin",
+                "terminal"
+              ],
+              [
+                "1 stdout",
+                "out.txt"
+              ],
+              [
+                "2 stderr",
+                "out.txt"
+              ]
+            ],
+            "highlight": [
+              7
+            ],
+            "vars": {
+              "terminal shows": "nothing",
+              "out.txt holds": "notes.txt and the missing.txt error"
+            },
+            "line": 1
+          },
+          {
+            "caption": "Command 2: ls notes.txt missing.txt 2>&1 > out.txt. Again, every descriptor starts at the terminal.",
+            "grid": [
+              [
+                "descriptor",
+                "points to"
+              ],
+              [
+                "0 stdin",
+                "terminal"
+              ],
+              [
+                "1 stdout",
+                "terminal"
+              ],
+              [
+                "2 stderr",
+                "terminal"
+              ]
+            ],
+            "highlight": [],
+            "vars": {
+              "terminal shows": "not run yet",
+              "out.txt holds": "not run yet"
+            },
+            "line": 2
+          },
+          {
+            "caption": "Bash processes 2>&1 first: descriptor 2 becomes a copy of descriptor 1, which is still the terminal.",
+            "grid": [
+              [
+                "descriptor",
+                "points to"
+              ],
+              [
+                "0 stdin",
+                "terminal"
+              ],
+              [
+                "1 stdout",
+                "terminal"
+              ],
+              [
+                "2 stderr",
+                "terminal"
+              ]
+            ],
+            "highlight": [
+              7
+            ],
+            "vars": {
+              "terminal shows": "not run yet",
+              "out.txt holds": "not run yet"
+            },
+            "line": 2
+          },
+          {
+            "caption": "Bash processes > out.txt next: only descriptor 1 moves to out.txt. Descriptor 2 still points at the terminal, so the error appears on screen.",
+            "grid": [
+              [
+                "descriptor",
+                "points to"
+              ],
+              [
+                "0 stdin",
+                "terminal"
+              ],
+              [
+                "1 stdout",
+                "out.txt"
+              ],
+              [
+                "2 stderr",
+                "terminal"
+              ]
+            ],
+            "highlight": [
+              5
+            ],
+            "vars": {
+              "terminal shows": "the missing.txt error",
+              "out.txt holds": "notes.txt only"
+            },
+            "line": 2
+          }
+        ],
+        "code": "ls notes.txt missing.txt > out.txt 2>&1\nls notes.txt missing.txt 2>&1 > out.txt",
+        "lang": "bash"
+      }
+    }
+  },
+  "sync": [
+    {
+      "scene": "stages",
+      "preset": "full-pipeline"
+    },
+    {
+      "scene": "stderr",
+      "preset": "stderr-order"
+    }
+  ],
+  "inspect": [
+    {
+      "id": "where-grep-lives",
+      "scene": "stages",
+      "label": "Where does Bash find grep?",
+      "region": {
+        "x": 4,
+        "y": 30,
+        "w": 92,
+        "h": 40
+      },
+      "concept_id": "path-and-env-vars",
+      "text": "Bash looks for commands such as grep, sort and uniq in the directories listed in the PATH variable. PATH is a colon-separated list of directories, for example /usr/local/bin:/usr/bin:/bin."
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "what-sort-reads",
+      "kind": "predict",
+      "at": {
+        "scene": "stages"
+      },
+      "prompt": "grep 404 writes five lines. What does sort write to its standard output in this pipeline?",
+      "choices": [
+        {
+          "text": "The same five lines, with equal lines next to each other",
+          "correct": true
+        },
+        {
+          "text": "Two lines, each with a count in front",
+          "misconception": "Thinks sort counts or removes duplicates, which is the job of uniq -c later in the pipeline"
+        },
+        {
+          "text": "All seven lines of access.log in order",
+          "misconception": "Thinks every command in a pipeline reads the original file instead of the previous command's output"
+        }
+      ],
+      "explanation": "In a pipeline each command reads the previous command's output through the pipe. sort gets only the five lines grep wrote, and it changes their order, not their number.",
+      "concept_ids": [
+        "pipes-and-redirection"
+      ],
+      "revisit": "pipe"
+    },
+    {
+      "id": "where-error-goes",
+      "kind": "predict",
+      "at": {
+        "scene": "stderr"
+      },
+      "prompt": "You run ls notes.txt missing.txt 2>&1 > out.txt. Where does the error message about missing.txt appear?",
+      "choices": [
+        {
+          "text": "On the terminal",
+          "correct": true
+        },
+        {
+          "text": "In out.txt, with the file list",
+          "misconception": "Thinks 2>&1 ties stderr to stdout forever, so stderr follows stdout wherever it moves later"
+        },
+        {
+          "text": "Nowhere, the redirection throws it away",
+          "misconception": "Thinks a redirection of stderr discards the error instead of pointing it at a destination"
+        }
+      ],
+      "explanation": "Bash processes redirections from left to right. 2>&1 makes stderr a copy of stdout while stdout is still the terminal; > out.txt then moves only stdout.",
+      "concept_ids": [
+        "pipes-and-redirection"
+      ],
+      "revisit": "stderr"
+    },
+    {
+      "id": "pipe-ampersand",
+      "kind": "verify",
+      "at": {
+        "tab": "practice"
+      },
+      "prompt": "Which command line does the same as ls notes.txt missing.txt |& grep missing?",
+      "choices": [
+        {
+          "text": "ls notes.txt missing.txt 2>&1 | grep missing",
+          "correct": true
+        },
+        {
+          "text": "ls notes.txt missing.txt | grep missing",
+          "misconception": "Thinks a plain pipe already carries standard error to the next command"
+        },
+        {
+          "text": "ls notes.txt missing.txt | grep missing 2>&1",
+          "misconception": "Thinks a redirection written on grep changes where ls sends its errors"
+        }
+      ],
+      "explanation": "The Bash manual says |& is shorthand for 2>&1 |: it connects the first command's standard error, as well as its standard output, to the next command's standard input.",
+      "concept_ids": [
+        "pipes-and-redirection"
+      ]
+    }
+  ]
+}

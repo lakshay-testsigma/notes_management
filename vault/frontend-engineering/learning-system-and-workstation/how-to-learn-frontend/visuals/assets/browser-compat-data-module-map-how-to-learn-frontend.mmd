@@ -1,0 +1,7 @@
+flowchart LR
+  S[schema-and-types: rules for one claim] --> L[data-linter: checks every file]
+  S --> B[build-pipeline: mirror and bundle]
+  L --> B
+  B --> I[build-and-infra: CI and npm release]
+  B --> C[consumer-api: tree you query]
+  I --> C

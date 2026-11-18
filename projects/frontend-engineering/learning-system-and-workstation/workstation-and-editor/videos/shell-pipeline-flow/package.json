@@ -1,0 +1,10 @@
+{
+  "name": "workstation-and-editor-shell-pipeline-flow",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "npx --yes hyperframes@0.9.59 preview",
+    "check": "npx --yes hyperframes@0.9.59 check",
+    "render": "npx --yes hyperframes@0.9.59 render -o renders/shell-pipeline-flow.mp4"
+  }
+}

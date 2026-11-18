@@ -1,0 +1,6 @@
+flowchart LR
+  dev["Developer terminal: devkit doctor"] --> proc["node src/main.js"]
+  hook[".git/hooks/commit-msg (examples/commit-msg)"] --> proc
+  ci["CI job (examples/devkit-ci.yml)"] --> proc
+  proc --> git["git program"]
+  env["DEVKIT_* environment variables"] --> proc

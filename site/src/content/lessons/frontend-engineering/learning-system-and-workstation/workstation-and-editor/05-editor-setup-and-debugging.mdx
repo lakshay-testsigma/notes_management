@@ -1,0 +1,73 @@
+---
+title: "Editor setup: workspace settings, tasks and the debugger"
+description: A project-level editor setup shares settings through the repository and lets you pause running code to read its state.
+order: 5
+concepts: [VS Code, extensions, settings scope, workspace settings, breakpoint, conditional breakpoint, logpoint, launch.json]
+---
+
+{/* <!-- concept: vs-code-or-jetbrains-zed-setup --> */}
+
+Your editor indents with four spaces and your teammate's with two. Every pull request now shows noise. The fix is an editor setup that lives in the repository. This page uses VS Code; JetBrains IDEs and Zed are other options with their own settings. Extensions add tools to the editor. The roadmap lists ESLint, Prettier or Biome, EditorConfig, Vitest, Playwright Test and Error Lens, among others. Built-in keys save time too: F12 goes to a definition, and F2 renames a symbol everywhere.
+
+{/* <!-- concept: workspace-settings --> */}
+
+VS Code stores settings in `settings.json` files at several scopes. A scope is one layer of settings. Workspace settings live in `.vscode/settings.json` at the project root, so Git shares them with the team. Your user settings say `"editor.tabSize": 4`; the workspace says `2`. Predict the winner, then check the chain.
+
+<Diagram id="settings-precedence" />
+
+A later scope overrides an earlier one, so the workspace value `2` wins. Policy, set by an administrator, always wins. The trade-off: a shared workspace file ends the noise, but it also overrides each person's own choice.
+
+The same file can format code for everyone. With `editor.formatOnSave`, VS Code formats a file each time you save it. `editor.defaultFormatter` picks the tool, here the Prettier extension:
+
+```jsonc
+// .vscode/settings.json
+{
+  "editor.tabSize": 2,
+  "editor.formatOnSave": true,
+  "[javascript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "[typescript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" }
+}
+```
+
+{/* <!-- concept: editor-debugging --> */}
+
+A debugger pauses your running program so you can read its state. The benefit over `console.log`: you see all variables, and you do not edit code. VS Code includes a debugger for JavaScript, TypeScript and Node.js.
+
+<OrderSteps
+  prompt="You debug cart.js in Node.js, where total comes out wrong. Put the steps in order."
+  steps={[
+    "Click the margin next to the total line, or press F9",
+    "Press F5 to start debugging",
+    "Execution pauses at the breakpoint line",
+    "Read price and quantity in the VARIABLES section",
+    "Press F10 to step over the line and watch total change",
+    "Press F5 to continue to the end"
+  ]}
+/>
+
+<Diagram id="debug-session-path" />
+
+A hollow gray circle means the debugger could not register the breakpoint, for example on a line with no executable code.
+
+<Depth level="internals" title="Merging rules and special breakpoints">
+
+Plain values and arrays replace each other across scopes; object values merge. Language-specific blocks such as `[typescript]` override general settings, even from a narrower scope. Some application-wide settings, such as update and security settings, cannot be set per workspace. A conditional breakpoint pauses only when an expression is true, or after a hit count. A logpoint writes a message such as `User ID: {user.id}` to the Debug Console and does not pause.
+
+A profile is a named set of settings, keyboard shortcuts, snippets, tasks and extensions. You can switch profiles, and export one as a `.code-profile` file to share it. The Node.js profile template adds the ESLint and Prettier extensions. An Empty Profile turns off all extensions and changed settings, so you can see if a bug comes from an extension. More keys: Alt+Click adds a cursor, and ⌘D (Ctrl+D) selects the next match.
+
+</Depth>
+
+<Depth level="production" title="Make it repeatable and fast">
+
+VS Code runs the active file by default. A project with a fixed entry point, command-line arguments or environment variables needs a `launch.json` configuration. Practice: commit `.vscode/settings.json` with `"editor.tabSize": 2`, then add a logpoint in a loop. Check: the Debug Console prints one line per pass, and the program never pauses.
+
+The Command Palette (⇧⌘P, or Ctrl+Shift+P) runs any VS Code command by name. A task runs a script or a tool from the editor. Workspace tasks live in `.vscode/tasks.json`, so the team shares them, and ⇧⌘B (Ctrl+Shift+B) runs the build task. Benefit: one key runs the same command for everyone.
+
+```jsonc
+// .vscode/tasks.json: run the "build" script from package.json
+{ "version": "2.0.0", "tasks": [{ "type": "npm", "script": "build" }] }
+```
+
+A snippet is a template for code that you type often. Run **Snippets: Configure Snippets**. In the JSON, `prefix` is the trigger word, `body` is the text, `$1` and `$2` are the cursor stops, and `$0` is the last one. Project snippets go in a `.code-snippets` file in `.vscode`. Practice: add a `clog` snippet with the body `console.log($1);$0`, type `clog`, and check that the cursor lands inside the parentheses.
+
+</Depth>

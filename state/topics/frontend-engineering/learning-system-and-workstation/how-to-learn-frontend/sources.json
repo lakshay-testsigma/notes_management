@@ -1,0 +1,314 @@
+[
+  {
+    "id": "mdn-frontend-curriculum",
+    "type": "official-docs",
+    "title": "MDN Curriculum: front-end developer skills",
+    "url": "https://developer.mozilla.org/en-US/curriculum/",
+    "authors": "Mozilla (MDN Web Docs)",
+    "year": 2026,
+    "tier": "A",
+    "why_trusted": "Mozilla's own free, self-paced curriculum on developer.mozilla.org that lists the essential front-end skills, refined with input from educators and the web community.",
+    "evidence": {
+      "stars": null,
+      "last_commit": null,
+      "citations": null,
+      "venue": null,
+      "publisher": "Mozilla",
+      "used_by": []
+    },
+    "verified_at": "2026-11-17",
+    "verified_via": "https://developer.mozilla.org/en-US/curriculum/getting-started/soft-skills/",
+    "use_for": [
+      "brief",
+      "lesson"
+    ]
+  },
+  {
+    "id": "web-dev-baseline-docs",
+    "type": "official-docs",
+    "title": "Baseline: web platform feature availability",
+    "url": "https://web.dev/baseline",
+    "authors": "Chrome team and external experts (web.dev); WebDX Community Group",
+    "year": 2026,
+    "tier": "A",
+    "why_trusted": "The web.dev page defining Baseline (Newly available when all core browsers support a feature, Widely available 30 months later), a status set by the WebDX Community Group.",
+    "evidence": {
+      "stars": null,
+      "last_commit": null,
+      "citations": null,
+      "venue": null,
+      "publisher": "Google (web.dev)",
+      "used_by": []
+    },
+    "verified_at": "2026-11-17",
+    "verified_via": "https://web.dev/baseline",
+    "use_for": [
+      "digest",
+      "brief",
+      "lesson"
+    ]
+  },
+  {
+    "id": "tc39-process-document",
+    "type": "standard",
+    "title": "The TC39 Process",
+    "url": "https://tc39.es/process-document/",
+    "authors": "TC39 (Ecma International)",
+    "year": 2026,
+    "tier": "A",
+    "why_trusted": "Published by TC39 on its own domain; it defines Stages 0 to 4 that every JavaScript proposal passes, and Stage 4 requires two compatible implementations passing Test262.",
+    "evidence": {
+      "stars": null,
+      "last_commit": null,
+      "citations": null,
+      "venue": "Ecma TC39",
+      "publisher": "TC39",
+      "used_by": []
+    },
+    "verified_at": "2026-11-17",
+    "verified_via": "https://tc39.es/process-document/",
+    "use_for": [
+      "lesson"
+    ]
+  },
+  {
+    "id": "stateofjs-2025-survey",
+    "type": "official-docs",
+    "title": "State of JavaScript 2025 survey results",
+    "url": "https://2025.stateofjs.com/en-US/",
+    "authors": "Devographics",
+    "year": 2026,
+    "tier": "B",
+    "why_trusted": "Annual open survey run by Devographics (13,002 responses, Sept 24 to Nov 10 2025, published Feb 3 2026); its About page states it is a snapshot of a self-selected subset, so use it for trends, not as proof of usage.",
+    "evidence": {
+      "stars": null,
+      "last_commit": null,
+      "citations": null,
+      "venue": null,
+      "publisher": "Devographics",
+      "used_by": []
+    },
+    "verified_at": "2026-11-17",
+    "verified_via": "https://2025.stateofjs.com/en-US/about/",
+    "use_for": [
+      "brief",
+      "lesson"
+    ]
+  },
+  {
+    "id": "chrome-origin-trials-docs",
+    "type": "official-docs",
+    "title": "Origin trials (Chrome for Developers)",
+    "url": "https://developer.chrome.com/docs/web-platform/origin-trials",
+    "authors": "Google Chrome team",
+    "year": 2026,
+    "tier": "A",
+    "why_trusted": "The Chrome team's own documentation of the origin trial program, including registration, tokens and expiry.",
+    "evidence": {
+      "stars": null,
+      "last_commit": null,
+      "citations": null,
+      "venue": null,
+      "publisher": "Google (developer.chrome.com)",
+      "used_by": []
+    },
+    "verified_at": "2026-11-17",
+    "verified_via": "https://developer.chrome.com/docs/web-platform/origin-trials",
+    "use_for": [
+      "lesson"
+    ]
+  },
+  {
+    "id": "mdn-feature-detection-guide",
+    "type": "official-docs",
+    "title": "Implementing feature detection (MDN)",
+    "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Testing/Feature_detection",
+    "authors": "Mozilla contributors",
+    "year": 2025,
+    "tier": "A",
+    "why_trusted": "MDN Web Docs, the cross-browser reference maintained by Mozilla and partners; this guide covers @supports, CSS.supports(), the in operator and undetectable features.",
+    "evidence": {
+      "stars": null,
+      "last_commit": null,
+      "citations": null,
+      "venue": null,
+      "publisher": "Mozilla (MDN Web Docs)",
+      "used_by": []
+    },
+    "verified_at": "2026-11-17",
+    "verified_via": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Testing/Feature_detection",
+    "use_for": [
+      "digest",
+      "brief",
+      "lesson"
+    ]
+  },
+  {
+    "id": "sansec-polyfill-io-blog",
+    "type": "engineering-blog",
+    "title": "Polyfill supply chain attack hits 100K+ sites",
+    "url": "https://sansec.io/research/polyfill-supply-chain-attack",
+    "authors": "Sansec Forensics Team",
+    "year": 2024,
+    "tier": "B",
+    "why_trusted": "Sansec is the security firm that published the first forensic analysis of the 2024 polyfill.io supply-chain attack, with dated updates; it is used here only as evidence of that failure, not as a production-practice source.",
+    "evidence": {
+      "stars": null,
+      "last_commit": null,
+      "citations": null,
+      "venue": null,
+      "publisher": "Sansec BV",
+      "used_by": []
+    },
+    "verified_at": "2026-11-17",
+    "verified_via": "https://sansec.io/research/polyfill-supply-chain-attack",
+    "use_for": [
+      "lesson"
+    ]
+  },
+  {
+    "id": "preactjs-preact-repo",
+    "type": "repo",
+    "title": "preactjs/preact",
+    "url": "https://github.com/preactjs/preact",
+    "authors": "Preact team",
+    "year": 2026,
+    "tier": "A",
+    "why_trusted": "The project itself: the Preact UI library, a React-compatible library with a compact source; MIT license; 39009 stars; the official We-are-using page names production adopters.",
+    "evidence": {
+      "stars": 39009,
+      "last_commit": "2026-11-16",
+      "citations": null,
+      "venue": null,
+      "publisher": null,
+      "archived": false,
+      "license": "MIT",
+      "used_by": [
+        "Babbel",
+        "Groupon",
+        "Etsy",
+        "The New York Times",
+        "Lyft"
+      ]
+    },
+    "verified_at": "2026-11-17",
+    "verified_via": "https://preactjs.com/about/we-are-using",
+    "use_for": [
+      "lesson"
+    ]
+  },
+  {
+    "id": "mdn-browser-compat-data-repo",
+    "type": "repo",
+    "title": "mdn/browser-compat-data",
+    "url": "https://github.com/mdn/browser-compat-data",
+    "authors": "MDN (Mozilla and the MDN community)",
+    "year": 2026,
+    "tier": "A",
+    "why_trusted": "The machine-readable browser compatibility dataset behind MDN browser-support tables, which the Baseline data in web-platform-dx/web-features is computed from; CC0-1.0 data; stars 5794 in the specialised niche of web-platform compatibility data (tier A niche bar is 2000). Used by MDN, caniuse, WebStorm per its README.",
+    "niche_reason": "Specialised niche: web-platform browser compatibility data (2000-star niche bar for tier A).",
+    "evidence": {
+      "stars": 5794,
+      "last_commit": "2026-11-17",
+      "citations": null,
+      "venue": null,
+      "publisher": null,
+      "archived": false,
+      "license": "CC0-1.0",
+      "used_by": [
+        "MDN Web Docs",
+        "caniuse",
+        "JetBrains WebStorm",
+        "JSR",
+        "eslint-plugin-compat"
+      ]
+    },
+    "verified_at": "2026-11-17",
+    "verified_via": "https://api.github.com/repos/mdn/browser-compat-data",
+    "use_for": [
+      "repo-intel",
+      "lesson"
+    ]
+  },
+  {
+    "id": "github-opensource-guide-contribute",
+    "type": "official-docs",
+    "title": "How to Contribute to Open Source (Open Source Guides)",
+    "url": "https://opensource.guide/how-to-contribute/",
+    "authors": "GitHub (Open Source Guides)",
+    "year": 2026,
+    "tier": "A",
+    "why_trusted": "GitHub's own Open Source Guides; its section 'Why contribute to open source?' says public contributions build a reputation and that teaching and learning go together; source repo github/opensource.guide has 15805 stars, last push 2026-11-16.",
+    "evidence": {
+      "stars": 15805,
+      "last_commit": "2026-11-16",
+      "citations": null,
+      "venue": null,
+      "publisher": "GitHub",
+      "used_by": []
+    },
+    "verified_at": "2026-11-17",
+    "verified_via": "https://opensource.guide/how-to-contribute/",
+    "use_for": [
+      "brief",
+      "lesson"
+    ]
+  },
+  {
+    "id": "caniuse-docs",
+    "type": "official-docs",
+    "title": "Can I use: About and support legend",
+    "url": "https://caniuse.com/",
+    "authors": "Fyrd (Alexis Deveria), design by Lensco",
+    "year": 2026,
+    "tier": "A",
+    "why_trusted": "The project's own site for the caniuse browser support tables. Its About page (read live in a browser on 2026-11-17 and 2026-11-18; it answers HTTP 406 to command-line fetches) gives the legend: green supported, red not supported, greenish yellow partial, gray unknown; support data comes from the Fyrd/caniuse GitHub repository (verified via its API) and usage share from StatCounter GlobalStats.",
+    "evidence": {
+      "stars": 5881,
+      "last_commit": "2026-11-11",
+      "citations": null,
+      "venue": null,
+      "publisher": "Fyrd",
+      "archived": false,
+      "license": "CC-BY-4.0",
+      "used_by": [
+        "MDN Web Docs (browser-compat-data README)"
+      ]
+    },
+    "verified_at": "2026-11-17",
+    "verified_via": "https://api.github.com/repos/Fyrd/caniuse",
+    "use_for": [
+      "lesson"
+    ]
+  },
+  {
+    "id": "browserslist-browserslist-repo",
+    "type": "repo",
+    "title": "browserslist/browserslist",
+    "url": "https://github.com/browserslist/browserslist",
+    "authors": "Browserslist organization",
+    "year": 2026,
+    "tier": "A",
+    "why_trusted": "The project itself: the shared config of target browsers that front-end tools read; MIT, 13.6k stars, pushed 2026-11-16, and its README names Autoprefixer, Babel preset-env, postcss-preset-env and eslint-plugin-compat as users.",
+    "evidence": {
+      "stars": 13588,
+      "last_commit": "2026-11-16",
+      "citations": null,
+      "venue": null,
+      "publisher": null,
+      "archived": false,
+      "license": "MIT",
+      "used_by": [
+        "Autoprefixer",
+        "Babel (preset-env)",
+        "postcss-preset-env",
+        "eslint-plugin-compat"
+      ]
+    },
+    "verified_at": "2026-11-17",
+    "verified_via": "https://api.github.com/repos/browserslist/browserslist",
+    "use_for": [
+      "lesson"
+    ]
+  }
+]

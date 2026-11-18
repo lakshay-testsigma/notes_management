@@ -1,0 +1,85 @@
+WEBVTT
+
+1
+00:00:00.200 --> 00:00:04.000
+Your code asks one question: can this browser do it?
+
+2
+00:00:04.000 --> 00:00:07.800
+The answer picks the enhanced code or the fallback code.
+
+3
+00:00:08.200 --> 00:00:10.890
+The screen shows three feature tests.
+
+4
+00:00:10.890 --> 00:00:14.030
+The @supports rule tests CSS inside CSS.
+
+5
+00:00:14.030 --> 00:00:17.160
+CSS.supports runs the same test in JavaScript.
+
+6
+00:00:17.160 --> 00:00:20.300
+The in operator checks an object member.
+
+7
+00:00:20.700 --> 00:00:24.320
+CSS.supports asks the browser about grid-template-columns subgrid.
+
+8
+00:00:24.320 --> 00:00:26.910
+True: the page links subgrid-layout.css.
+
+9
+00:00:26.910 --> 00:00:32.600
+False: the link does not change, and the default layout stays.
+
+10
+00:00:33.000 --> 00:00:37.460
+The in operator asks if navigator has a geolocation member.
+
+11
+00:00:37.460 --> 00:00:41.030
+If yes, the page uses the Geolocation API.
+
+12
+00:00:41.030 --> 00:00:44.600
+If no, the else branch offers static maps.
+
+13
+00:00:45.000 --> 00:00:49.220
+Some features cannot be tested, so you may load a polyfill.
+
+14
+00:00:49.220 --> 00:00:51.520
+Its code runs on your page.
+
+15
+00:00:51.520 --> 00:00:55.360
+In 2024, the polyfill.io domain was sold, and its script
+
+16
+00:00:55.360 --> 00:00:59.200
+was changed to inject malware into more than 100,000 sites.
+
+17
+00:00:59.600 --> 00:01:03.600
+An origin trial lets your site use an experimental feature.
+
+18
+00:01:03.600 --> 00:01:08.400
+You register, get a token, and add the token to your page.
+
+19
+00:01:08.400 --> 00:01:13.200
+When the trial expires, the feature is gone, so keep the fallback.
+
+20
+00:01:13.600 --> 00:01:17.600
+Test the feature, run the enhanced path when it exists,
+
+21
+00:01:17.600 --> 00:01:21.200
+and keep a working fallback when it does not.

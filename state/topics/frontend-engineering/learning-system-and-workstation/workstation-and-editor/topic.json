@@ -1,0 +1,3558 @@
+{
+  "schema": 1,
+  "id": "frontend-engineering/learning-system-and-workstation/workstation-and-editor",
+  "title": "Workstation & editor",
+  "slug": "workstation-and-editor",
+  "domain": "frontend-engineering",
+  "subdomain": "learning-system-and-workstation",
+  "depth": "standard",
+  "created_at": "2026-11-17T19:27:28Z",
+  "updated_at": "2026-11-18T09:43:13Z",
+  "paths": {
+    "state": "state/topics/frontend-engineering/learning-system-and-workstation/workstation-and-editor",
+    "vault": "vault/frontend-engineering/learning-system-and-workstation/workstation-and-editor",
+    "lessons": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/workstation-and-editor",
+    "projects": "projects/frontend-engineering/learning-system-and-workstation/workstation-and-editor",
+    "cache": ".cache"
+  },
+  "profile": {
+    "lesson_pages": [
+      5,
+      7
+    ],
+    "mini_projects": 2,
+    "digests": [
+      2,
+      3
+    ],
+    "repos": [
+      1,
+      1
+    ],
+    "capstone": true,
+    "sources": [
+      5,
+      12
+    ],
+    "recall_cards": 8
+  },
+  "plan": {
+    "summary": "Set up a professional frontend workstation: a fluent shell, Git and GitHub, a configured editor with an in-editor debugger, safe AI-assisted coding, and per-project Node.js versions.",
+    "prerequisites": [
+      {
+        "concept": "Git and GitHub",
+        "known": true,
+        "bridge": "Met in How to learn frontend: Git tracks changes; GitHub hosts repositories, issues and pull requests."
+      },
+      {
+        "concept": "Operating system process",
+        "known": false,
+        "bridge": "A process is a running program with its own input, output, environment variables and exit code."
+      },
+      {
+        "concept": "npm",
+        "known": false,
+        "bridge": "npm installs JavaScript packages listed in package.json and runs its scripts."
+      }
+    ],
+    "outcomes": [
+      "Combine shell commands with pipes, set environment variables and fix a PATH problem.",
+      "Explain Git's commit graph and choose merge or rebase for a given branch.",
+      "Find a bug-introducing commit with git bisect and recover lost work with reflog.",
+      "Open a pull request with conventional commit messages and a clean history.",
+      "Configure an editor workspace and debug JavaScript with breakpoints in the editor.",
+      "Use an AI coding agent with context, review its diff and test it before merging.",
+      "Pin a Node.js version per project and explain ESM versus CommonJS loading."
+    ],
+    "lesson_outline": [
+      {
+        "order": 1,
+        "slug": "terminal-and-shell",
+        "title": "Terminal and shell: pipes, PATH and environment",
+        "activity": "PredictReveal",
+        "complexity": "intermediate",
+        "importance": "core",
+        "spatial": false,
+        "visual": "Experience",
+        "visual_reason": "A pipeline changes data at each stage; the learner adds and removes stages and watches the text stream change.",
+        "interaction_goal": "Build a grep | sort | uniq pipeline stage by stage and predict the output of each stage.",
+        "experience": {
+          "id": "shell-pipeline-lab",
+          "concept_ids": [
+            "terminal-shell-basics",
+            "pipes-and-redirection",
+            "path-and-env-vars"
+          ],
+          "signals": {
+            "complexity": 3,
+            "concepts": 3,
+            "dependent_steps": 3,
+            "changes_over_time": false,
+            "spatial": false,
+            "parameters": 2,
+            "decision_paths": 1,
+            "benefit": "high"
+          }
+        }
+      },
+      {
+        "order": 2,
+        "slug": "git-commit-graph",
+        "title": "Git's commit graph: branches, merge and rebase",
+        "activity": "Quiz",
+        "complexity": "intermediate",
+        "importance": "critical",
+        "spatial": false,
+        "visual": "Experience",
+        "visual_reason": "Merge and rebase produce different commit graphs; the learner runs each command and watches the graph change.",
+        "interaction_goal": "Run merge or rebase on the same two branches and compare the resulting graphs.",
+        "experience": {
+          "id": "git-graph-lab",
+          "concept_ids": [
+            "git-github-fluency",
+            "commit-graph-and-branches",
+            "merge-vs-rebase"
+          ],
+          "signals": {
+            "complexity": 3,
+            "concepts": 3,
+            "dependent_steps": 3,
+            "changes_over_time": false,
+            "spatial": false,
+            "parameters": 2,
+            "decision_paths": 2,
+            "benefit": "high"
+          }
+        }
+      },
+      {
+        "order": 3,
+        "slug": "bisect-reflog-and-recovery",
+        "title": "Find and recover: bisect, reflog, stash and cherry-pick",
+        "activity": "PredictReveal",
+        "complexity": "intermediate",
+        "importance": "core",
+        "spatial": false,
+        "visual": "Experience",
+        "visual_reason": "git bisect halves the suspect range at each step; the learner marks commits good or bad and watches the range shrink.",
+        "interaction_goal": "Mark commits good or bad and predict how many steps bisect needs.",
+        "experience": {
+          "id": "bisect-lab",
+          "concept_ids": [
+            "git-bisect",
+            "reflog-recovery",
+            "stash-and-cherry-pick"
+          ],
+          "signals": {
+            "complexity": 3,
+            "concepts": 3,
+            "dependent_steps": 4,
+            "changes_over_time": false,
+            "spatial": false,
+            "parameters": 2,
+            "decision_paths": 2,
+            "benefit": "high"
+          }
+        }
+      },
+      {
+        "order": 4,
+        "slug": "pull-requests-and-conventional-commits",
+        "title": "Pull requests, conventional commits and .gitignore",
+        "activity": "SortBuckets",
+        "complexity": "basic",
+        "importance": "core",
+        "spatial": false,
+        "visual": "Diagram",
+        "visual_reason": "The GitHub flow is an ordered path from branch to merged pull request; a diagram shows it.",
+        "interaction_goal": "Trace one change from a branch to a reviewed, merged pull request.",
+        "experience": {
+          "id": "pull-requests-and-conventional-commits",
+          "concept_ids": [
+            "pr-workflow",
+            "conventional-commits",
+            "interactive-staging-and-gitignore"
+          ],
+          "signals": {
+            "complexity": 2,
+            "concepts": 2,
+            "dependent_steps": 2,
+            "changes_over_time": false,
+            "spatial": false,
+            "parameters": 0,
+            "decision_paths": 1,
+            "benefit": "medium"
+          }
+        }
+      },
+      {
+        "order": 5,
+        "slug": "editor-setup-and-debugging",
+        "title": "Editor setup: workspace settings, tasks and the debugger",
+        "activity": "OrderSteps",
+        "complexity": "intermediate",
+        "importance": "core",
+        "spatial": false,
+        "visual": "Diagram",
+        "visual_reason": "Settings layers (default, user, workspace) override each other in a fixed order; a diagram shows the precedence and the debugger attach path.",
+        "interaction_goal": "Say which settings layer wins and where a breakpoint stops.",
+        "experience": {
+          "id": "editor-setup-and-debugging",
+          "concept_ids": [
+            "vs-code-or-jetbrains-zed-setup",
+            "workspace-settings",
+            "editor-debugging"
+          ],
+          "signals": {
+            "complexity": 2,
+            "concepts": 3,
+            "dependent_steps": 2,
+            "changes_over_time": false,
+            "spatial": false,
+            "parameters": 1,
+            "decision_paths": 1,
+            "benefit": "medium"
+          }
+        }
+      },
+      {
+        "order": 6,
+        "slug": "ai-assisted-development",
+        "title": "AI-assisted development you can trust",
+        "activity": "SortBuckets",
+        "complexity": "intermediate",
+        "importance": "core",
+        "spatial": false,
+        "visual": "Diagram",
+        "visual_reason": "Safe agent use is a loop of context, tests first, generated diff, review and run; a diagram shows the gates before merge.",
+        "interaction_goal": "Sort agent outputs into merge, review further or reject.",
+        "experience": {
+          "id": "ai-assisted-development",
+          "concept_ids": [
+            "ai-assisted-development",
+            "reviewing-ai-diffs",
+            "untrusted-generated-code"
+          ],
+          "signals": {
+            "complexity": 2,
+            "concepts": 2,
+            "dependent_steps": 2,
+            "changes_over_time": false,
+            "spatial": false,
+            "parameters": 0,
+            "decision_paths": 1,
+            "benefit": "medium"
+          }
+        }
+      },
+      {
+        "order": 7,
+        "slug": "node-versions-and-modules",
+        "title": "Node.js versions, npx and ESM versus CommonJS",
+        "activity": "Quiz",
+        "complexity": "intermediate",
+        "importance": "core",
+        "spatial": false,
+        "visual": "Diagram",
+        "visual_reason": "Node decides ESM or CommonJS from the file extension and the nearest package.json type field; a decision diagram shows it.",
+        "interaction_goal": "Predict which loader Node uses for a given file.",
+        "experience": {
+          "id": "node-versions-and-modules",
+          "concept_ids": [
+            "node-js-runtime-version-management",
+            "esm-vs-cjs",
+            "per-project-node-versions"
+          ],
+          "signals": {
+            "complexity": 2,
+            "concepts": 3,
+            "dependent_steps": 2,
+            "changes_over_time": false,
+            "spatial": false,
+            "parameters": 1,
+            "decision_paths": 1,
+            "benefit": "medium"
+          }
+        }
+      }
+    ],
+    "mini_projects": [
+      {
+        "n": 1,
+        "slug": "bisect-the-regression",
+        "use_case": "A price formatter broke somewhere in the last 30 commits; a developer scripts git bisect run with a test to find the commit that introduced the bug."
+      },
+      {
+        "n": 2,
+        "slug": "commit-message-linter",
+        "use_case": "A team checks every commit message against the Conventional Commits format in a commit-msg hook and in CI, so changelogs can be generated from history."
+      }
+    ],
+    "digest_targets": 2,
+    "repo_targets": 1,
+    "capstone": {
+      "name": "devkit workstation CLI",
+      "problem": "A frontend team onboards new developers often; one Node.js CLI checks the workstation (Node version against .nvmrc and engines, git identity, required tools on PATH), lints commit messages, and writes release notes from conventional commits."
+    },
+    "learner": {
+      "experience": "software developer",
+      "known": [
+        "basic programming",
+        "How to learn frontend (roadmap 00.1)"
+      ],
+      "goals": [
+        "master frontend engineering end to end from the N1 roadmap",
+        "learn visually and by experimenting with simulations",
+        "keep improving after the roadmap ends"
+      ]
+    },
+    "visual_policy": "adaptive",
+    "visual_first": true,
+    "multi_stage": false,
+    "experience_policy": "adaptive",
+    "curriculum": {
+      "schema": 1,
+      "scope": "A frontend developer's workstation: shell fluency, Git and GitHub workflow, editor setup and debugging, responsible AI-assisted coding, and Node.js runtime and version management.",
+      "max_depth": 3,
+      "max_concepts": 33,
+      "concepts": [
+        {
+          "id": "terminal-shell-basics",
+          "title": "Terminal and shell basics",
+          "parent": null,
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [
+            "terminal-shell-basics"
+          ],
+          "source_ids": [
+            "gnu-bash-manual"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/workstation-and-editor/01-terminal-and-shell.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": []
+        },
+        {
+          "id": "pipes-and-redirection",
+          "title": "Pipes and redirection",
+          "parent": "terminal-shell-basics",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [
+            "gnu-bash-manual"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/workstation-and-editor/01-terminal-and-shell.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": [
+            "terminal-shell-basics"
+          ]
+        },
+        {
+          "id": "path-and-env-vars",
+          "title": "PATH and environment variables",
+          "parent": "terminal-shell-basics",
+          "complexity": "basic",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [
+            "gnu-bash-manual"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/workstation-and-editor/01-terminal-and-shell.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": [
+            "terminal-shell-basics"
+          ]
+        },
+        {
+          "id": "ssh-keys-for-git",
+          "title": "SSH keys for Git hosting",
+          "parent": "terminal-shell-basics",
+          "complexity": "basic",
+          "importance": "supporting",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [
+            "chacon-2014-pro-git"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/workstation-and-editor/01-terminal-and-shell.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            },
+            {
+              "path": "vault/frontend-engineering/learning-system-and-workstation/workstation-and-editor/concepts/ssh-keys-for-git-workstation-and-editor.md",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": [
+            "path-and-env-vars"
+          ]
+        },
+        {
+          "id": "git-github-fluency",
+          "title": "Git and GitHub fluency",
+          "parent": null,
+          "complexity": "intermediate",
+          "importance": "critical",
+          "disposition": "included",
+          "roadmap_items": [
+            "git-github-fluency"
+          ],
+          "source_ids": [
+            "chacon-2014-pro-git",
+            "git-scm-docs",
+            "github-flow-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/workstation-and-editor/02-git-commit-graph.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": []
+        },
+        {
+          "id": "commit-graph-and-branches",
+          "title": "Commit graph and branches",
+          "parent": "git-github-fluency",
+          "complexity": "intermediate",
+          "importance": "critical",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [
+            "chacon-2014-pro-git"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/workstation-and-editor/02-git-commit-graph.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": [
+            "git-github-fluency"
+          ]
+        },
+        {
+          "id": "merge-vs-rebase",
+          "title": "Merge versus rebase",
+          "parent": "git-github-fluency",
+          "complexity": "intermediate",
+          "importance": "critical",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [
+            "chacon-2014-pro-git"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/workstation-and-editor/02-git-commit-graph.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": [
+            "commit-graph-and-branches"
+          ]
+        },
+        {
+          "id": "merge-conflicts",
+          "title": "Resolving merge conflicts",
+          "parent": "git-github-fluency",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [
+            "chacon-2014-pro-git"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/workstation-and-editor/02-git-commit-graph.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": [
+            "merge-vs-rebase"
+          ]
+        },
+        {
+          "id": "git-bisect",
+          "title": "Finding a bad commit with git bisect",
+          "parent": "git-github-fluency",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [
+            "git-scm-docs",
+            "chacon-2014-pro-git"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/workstation-and-editor/03-bisect-reflog-and-recovery.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": [
+            "commit-graph-and-branches"
+          ]
+        },
+        {
+          "id": "reflog-recovery",
+          "title": "Recovering work with the reflog",
+          "parent": "git-github-fluency",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [
+            "git-scm-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/workstation-and-editor/03-bisect-reflog-and-recovery.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": [
+            "commit-graph-and-branches"
+          ]
+        },
+        {
+          "id": "stash-and-cherry-pick",
+          "title": "Stash and cherry-pick",
+          "parent": "git-github-fluency",
+          "complexity": "basic",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [
+            "chacon-2014-pro-git"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/workstation-and-editor/03-bisect-reflog-and-recovery.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": [
+            "commit-graph-and-branches"
+          ]
+        },
+        {
+          "id": "interactive-staging-and-gitignore",
+          "title": "Interactive staging and .gitignore",
+          "parent": "git-github-fluency",
+          "complexity": "basic",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [
+            "chacon-2014-pro-git"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/workstation-and-editor/04-pull-requests-and-conventional-commits.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": [
+            "git-github-fluency"
+          ]
+        },
+        {
+          "id": "pr-workflow",
+          "title": "Pull request workflow (GitHub flow)",
+          "parent": "git-github-fluency",
+          "complexity": "basic",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [
+            "github-flow-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/workstation-and-editor/04-pull-requests-and-conventional-commits.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": [
+            "merge-vs-rebase"
+          ]
+        },
+        {
+          "id": "conventional-commits",
+          "title": "Conventional Commits",
+          "parent": "git-github-fluency",
+          "complexity": "basic",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [
+            "conventionalcommits-spec-1-0-0",
+            "conventional-changelog-commitlint-repo"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/workstation-and-editor/04-pull-requests-and-conventional-commits.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": [
+            "pr-workflow"
+          ]
+        },
+        {
+          "id": "vs-code-or-jetbrains-zed-setup",
+          "title": "Editor setup: VS Code, JetBrains or Zed",
+          "parent": null,
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [
+            "vs-code-or-jetbrains-zed-setup"
+          ],
+          "source_ids": [
+            "vscode-settings-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/workstation-and-editor/05-editor-setup-and-debugging.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": []
+        },
+        {
+          "id": "workspace-settings",
+          "title": "Settings layers and workspace settings",
+          "parent": "vs-code-or-jetbrains-zed-setup",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [
+            "vscode-settings-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/workstation-and-editor/05-editor-setup-and-debugging.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": [
+            "vs-code-or-jetbrains-zed-setup"
+          ]
+        },
+        {
+          "id": "editor-debugging",
+          "title": "Debugging JavaScript in the editor",
+          "parent": "vs-code-or-jetbrains-zed-setup",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [
+            "vscode-settings-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/workstation-and-editor/05-editor-setup-and-debugging.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": [
+            "workspace-settings"
+          ]
+        },
+        {
+          "id": "ai-assisted-development",
+          "title": "AI-assisted development",
+          "parent": null,
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [
+            "ai-assisted-development"
+          ],
+          "source_ids": [
+            "claude-code-best-practices",
+            "owasp-llm05-improper-output-handling"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/workstation-and-editor/06-ai-assisted-development.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": []
+        },
+        {
+          "id": "reviewing-ai-diffs",
+          "title": "Reviewing AI-generated diffs",
+          "parent": "ai-assisted-development",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [
+            "claude-code-best-practices"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/workstation-and-editor/06-ai-assisted-development.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": [
+            "ai-assisted-development"
+          ]
+        },
+        {
+          "id": "tests-before-generation",
+          "title": "Tests before generation",
+          "parent": "ai-assisted-development",
+          "complexity": "basic",
+          "importance": "supporting",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [
+            "claude-code-best-practices"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/workstation-and-editor/06-ai-assisted-development.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": [
+            "reviewing-ai-diffs"
+          ]
+        },
+        {
+          "id": "untrusted-generated-code",
+          "title": "Treating generated code as untrusted",
+          "parent": "ai-assisted-development",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [
+            "owasp-llm05-improper-output-handling"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/workstation-and-editor/06-ai-assisted-development.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": [
+            "reviewing-ai-diffs"
+          ]
+        },
+        {
+          "id": "node-js-runtime-version-management",
+          "title": "Node.js runtime and version management",
+          "parent": null,
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [
+            "node-js-runtime-version-management"
+          ],
+          "source_ids": [
+            "nodejs-releases-docs",
+            "nodejs-packages-docs",
+            "npm-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/workstation-and-editor/07-node-versions-and-modules.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": []
+        },
+        {
+          "id": "esm-vs-cjs",
+          "title": "ESM versus CommonJS loading",
+          "parent": "node-js-runtime-version-management",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [
+            "nodejs-packages-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/workstation-and-editor/07-node-versions-and-modules.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": [
+            "node-js-runtime-version-management"
+          ]
+        },
+        {
+          "id": "node-lts-and-release-lines",
+          "title": "Node.js LTS and release lines",
+          "parent": "node-js-runtime-version-management",
+          "complexity": "basic",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [
+            "nodejs-releases-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/workstation-and-editor/07-node-versions-and-modules.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": [
+            "node-js-runtime-version-management"
+          ]
+        },
+        {
+          "id": "per-project-node-versions",
+          "title": "Per-project Node.js versions and engines",
+          "parent": "node-js-runtime-version-management",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [
+            "npm-docs",
+            "nodejs-releases-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/workstation-and-editor/07-node-versions-and-modules.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": [
+            "node-lts-and-release-lines",
+            "path-and-env-vars"
+          ]
+        },
+        {
+          "id": "corepack-package-manager-pinning",
+          "title": "Pinning the package manager with Corepack",
+          "parent": "node-js-runtime-version-management",
+          "complexity": "basic",
+          "importance": "supporting",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [
+            "nodejs-packages-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/workstation-and-editor/07-node-versions-and-modules.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            },
+            {
+              "path": "vault/frontend-engineering/learning-system-and-workstation/workstation-and-editor/concepts/corepack-package-manager-pinning-workstation-and-editor.md",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": [
+            "per-project-node-versions"
+          ]
+        },
+        {
+          "id": "shell-startup-files-and-aliases",
+          "title": "Shell startup files and aliases",
+          "parent": "terminal-shell-basics",
+          "complexity": "basic",
+          "importance": "supporting",
+          "disposition": "included",
+          "roadmap_items": [
+            "terminal-shell-basics"
+          ],
+          "source_ids": [
+            "gnu-bash-manual"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/workstation-and-editor/01-terminal-and-shell.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": [
+            "path-and-env-vars"
+          ]
+        },
+        {
+          "id": "safe-undo-and-git-config",
+          "title": "Safe undo (reset, revert) and git config",
+          "parent": "git-github-fluency",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [
+            "git-github-fluency"
+          ],
+          "source_ids": [
+            "chacon-2014-pro-git"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/workstation-and-editor/03-bisect-reflog-and-recovery.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": []
+        },
+        {
+          "id": "browser-devtools-and-source-maps",
+          "title": "Browser DevTools debugging with source maps",
+          "parent": "vs-code-or-jetbrains-zed-setup",
+          "complexity": "intermediate",
+          "importance": "supporting",
+          "disposition": "deferred",
+          "reason": "Coverage audit round 1 (2026-11-18): no verified source in this topic covers browser DevTools or source maps; the 12-source ceiling is reached and browser debugging belongs to a later roadmap debugging/performance section.",
+          "roadmap_items": [],
+          "source_ids": [],
+          "coverage": [],
+          "prerequisites": [
+            "editor-debugging"
+          ]
+        },
+        {
+          "id": "rewrite-local-history",
+          "title": "Rewriting local history: amend, interactive rebase, squash",
+          "parent": "git-github-fluency",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [
+            "git-github-fluency"
+          ],
+          "source_ids": [
+            "chacon-2014-pro-git"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/workstation-and-editor/02-git-commit-graph.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": []
+        },
+        {
+          "id": "secrets-out-of-git",
+          "title": "Keeping secrets out of Git",
+          "parent": "git-github-fluency",
+          "complexity": "basic",
+          "importance": "supporting",
+          "disposition": "included",
+          "roadmap_items": [
+            "git-github-fluency"
+          ],
+          "source_ids": [
+            "chacon-2014-pro-git"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/workstation-and-editor/04-pull-requests-and-conventional-commits.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": []
+        },
+        {
+          "id": "revision-selection",
+          "title": "Revision selection: HEAD~n and A..B ranges",
+          "parent": "git-github-fluency",
+          "complexity": "basic",
+          "importance": "supporting",
+          "disposition": "included",
+          "roadmap_items": [
+            "git-github-fluency"
+          ],
+          "source_ids": [
+            "chacon-2014-pro-git"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/workstation-and-editor/03-bisect-reflog-and-recovery.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": []
+        },
+        {
+          "id": "signed-commits",
+          "title": "Signed commits",
+          "parent": "git-github-fluency",
+          "complexity": "basic",
+          "importance": "supporting",
+          "disposition": "included",
+          "roadmap_items": [
+            "git-github-fluency"
+          ],
+          "source_ids": [
+            "chacon-2014-pro-git"
+          ],
+          "coverage": [
+            {
+              "path": "vault/frontend-engineering/learning-system-and-workstation/workstation-and-editor/concepts/signed-commits-workstation-and-editor.md",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": [
+            "safe-undo-and-git-config"
+          ]
+        }
+      ],
+      "discovery": [
+        {
+          "round": 1,
+          "frontier": [
+            "terminal-shell-basics",
+            "git-github-fluency",
+            "vs-code-or-jetbrains-zed-setup",
+            "ai-assisted-development",
+            "node-js-runtime-version-management"
+          ],
+          "source_ids": [
+            "chacon-2014-pro-git",
+            "git-scm-docs",
+            "github-flow-docs",
+            "conventionalcommits-spec-1-0-0",
+            "conventional-changelog-commitlint-repo",
+            "vscode-settings-docs",
+            "claude-code-best-practices",
+            "owasp-llm05-improper-output-handling",
+            "nodejs-packages-docs",
+            "nodejs-releases-docs"
+          ],
+          "added": [
+            "terminal-shell-basics",
+            "git-github-fluency",
+            "vs-code-or-jetbrains-zed-setup",
+            "ai-assisted-development",
+            "node-js-runtime-version-management",
+            "pipes-and-redirection",
+            "path-and-env-vars",
+            "ssh-keys-for-git",
+            "commit-graph-and-branches",
+            "merge-vs-rebase",
+            "merge-conflicts",
+            "git-bisect",
+            "reflog-recovery",
+            "stash-and-cherry-pick",
+            "interactive-staging-and-gitignore",
+            "pr-workflow",
+            "conventional-commits",
+            "workspace-settings",
+            "editor-debugging",
+            "reviewing-ai-diffs",
+            "tests-before-generation",
+            "untrusted-generated-code",
+            "esm-vs-cjs",
+            "node-lts-and-release-lines",
+            "per-project-node-versions",
+            "corepack-package-manager-pinning"
+          ],
+          "note": "Roots seeded from roadmap section 00.2. Children proposed by three category units; interactive staging, .gitignore, conflicts and stash had no verified section yet. lazygit and cli/cli checked but not added (source cap)."
+        },
+        {
+          "round": 2,
+          "frontier": [
+            "pipes-and-redirection",
+            "path-and-env-vars",
+            "ssh-keys-for-git",
+            "commit-graph-and-branches",
+            "merge-vs-rebase",
+            "merge-conflicts",
+            "git-bisect",
+            "reflog-recovery",
+            "stash-and-cherry-pick",
+            "interactive-staging-and-gitignore",
+            "pr-workflow",
+            "conventional-commits",
+            "workspace-settings",
+            "editor-debugging",
+            "reviewing-ai-diffs",
+            "tests-before-generation",
+            "untrusted-generated-code",
+            "esm-vs-cjs",
+            "node-lts-and-release-lines",
+            "per-project-node-versions",
+            "corepack-package-manager-pinning"
+          ],
+          "source_ids": [
+            "gnu-bash-manual",
+            "npm-docs",
+            "chacon-2014-pro-git",
+            "nodejs-packages-docs",
+            "vscode-settings-docs",
+            "git-scm-docs"
+          ],
+          "added": [],
+          "note": "(Earlier stop: budget-limit, reopened by the round-1 coverage audit.) All children confirmed against a verified source section (Pro Git pages 2.2, 3.1, 3.2, 4.3, 5.3, 7.2, 7.3; Bash manual; npm package.json engines and npx; Node corepack page). 12-source ceiling reached. Named tools without a verified source (zsh, Oh My Zsh, Starship, iTerm2, Warp, Ghostty, nvm, Volta, mise, fnm, gh, lazygit, GitLens, Copilot, Cursor, JetBrains, Zed, MCP servers, listed extensions) are taught as the roadmap tool list, not as sourced claims."
+        },
+        {
+          "round": 3,
+          "frontier": [
+            "terminal-shell-basics",
+            "git-github-fluency",
+            "vs-code-or-jetbrains-zed-setup"
+          ],
+          "source_ids": [
+            "gnu-bash-manual",
+            "chacon-2014-pro-git"
+          ],
+          "added": [
+            "shell-startup-files-and-aliases",
+            "safe-undo-and-git-config",
+            "browser-devtools-and-source-maps",
+            "rewrite-local-history",
+            "secrets-out-of-git",
+            "revision-selection",
+            "signed-commits"
+          ],
+          "note": "Coverage audits 1-2 and finalize review (2026-11-18): Bash Startup Files; Pro Git 1.6, 2.4, 7.1, 7.4, 7.6, 7.7, 7.14 verified live. DevTools/source maps deferred without a verified source."
+        },
+        {
+          "round": 4,
+          "frontier": [
+            "shell-startup-files-and-aliases",
+            "safe-undo-and-git-config",
+            "rewrite-local-history",
+            "secrets-out-of-git",
+            "revision-selection",
+            "signed-commits"
+          ],
+          "source_ids": [
+            "gnu-bash-manual",
+            "chacon-2014-pro-git"
+          ],
+          "added": [],
+          "stop_reason": "scope-boundary",
+          "note": "Leaves taught on pages 01-04 and one concept note; no further children inside this workstation topic."
+        }
+      ]
+    }
+  },
+  "stages": [
+    {
+      "id": "intake",
+      "wave": 0,
+      "skill": "learn-intake",
+      "status": "done",
+      "scope": "required",
+      "started_at": "2026-11-17T19:27:30Z",
+      "finished_at": "2026-11-18T09:09:18Z",
+      "attempts": 1,
+      "units": [],
+      "note": "",
+      "continue_after_failure": false,
+      "validation": {
+        "version": 2,
+        "fingerprint": "cd2ac39a1d29af7c39f0f8a16af1d245e4e71db468623e85c636f179cdf5508b",
+        "at": "2026-11-18T09:09:18Z",
+        "forced": false
+      }
+    },
+    {
+      "id": "research",
+      "wave": 1,
+      "skill": "learn-research",
+      "status": "done",
+      "scope": "required",
+      "started_at": "2026-11-17T19:28:42Z",
+      "finished_at": "2026-11-18T09:16:10Z",
+      "attempts": 1,
+      "units": [
+        {
+          "id": "discovery-01-shell-node",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "discovery-01-git",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "discovery-01-editor-ai",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "discovery-02-children",
+          "status": "done",
+          "handoff": null
+        }
+      ],
+      "note": "",
+      "continue_after_failure": false,
+      "validation": {
+        "version": 2,
+        "fingerprint": "5d8c8e6d516528f03075b6871d632c8ad18ef9d0b44726c36e62baef292d0646",
+        "at": "2026-11-18T09:16:10Z",
+        "forced": false
+      }
+    },
+    {
+      "id": "brief",
+      "wave": 1,
+      "skill": "learn-brief",
+      "status": "done",
+      "scope": "required",
+      "started_at": "2026-11-17T19:40:17Z",
+      "finished_at": "2026-11-18T09:16:13Z",
+      "attempts": 1,
+      "units": [],
+      "note": "",
+      "continue_after_failure": false,
+      "validation": {
+        "version": 2,
+        "fingerprint": "7650738f3c29e76eda2cf8199bcedc75efbed982a85ef92f4c2e060a143b51f8",
+        "at": "2026-11-18T09:16:13Z",
+        "forced": false
+      }
+    },
+    {
+      "id": "digest",
+      "wave": 2,
+      "skill": "learn-digest",
+      "status": "done",
+      "scope": "required",
+      "started_at": "2026-11-17T19:41:18Z",
+      "finished_at": "2026-11-18T09:16:16Z",
+      "attempts": 1,
+      "units": [
+        {
+          "id": "chacon-2014-pro-git",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "nodejs-packages-docs",
+          "status": "done",
+          "handoff": null
+        }
+      ],
+      "note": "",
+      "continue_after_failure": false,
+      "validation": {
+        "version": 2,
+        "fingerprint": "477fc74039f87bf19d62fb66f0afae18cce354ed60ec7c6d038c6d7a2b9b125e",
+        "at": "2026-11-18T09:16:16Z",
+        "forced": false
+      }
+    },
+    {
+      "id": "repo-intel",
+      "wave": 2,
+      "skill": "learn-repo-intel",
+      "status": "done",
+      "scope": "required",
+      "started_at": "2026-11-17T19:41:20Z",
+      "finished_at": "2026-11-18T09:16:19Z",
+      "attempts": 1,
+      "units": [
+        {
+          "id": "conventional-changelog-commitlint-scout",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "conventional-changelog-commitlint-module-parser-and-lint",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "conventional-changelog-commitlint-module-rules",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "conventional-changelog-commitlint-module-config-loading",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "conventional-changelog-commitlint-module-cli-and-hooks",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "conventional-changelog-commitlint-module-build-and-infra",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "conventional-changelog-commitlint-synthesis",
+          "status": "done",
+          "handoff": null
+        }
+      ],
+      "note": "",
+      "continue_after_failure": false,
+      "validation": {
+        "version": 2,
+        "fingerprint": "ba3a0ae9283658ac0760d5240f18eb933da146ebf31b156ec6770af52b87d8cc",
+        "at": "2026-11-18T09:16:19Z",
+        "forced": false
+      }
+    },
+    {
+      "id": "lesson",
+      "wave": 3,
+      "skill": "learn-site",
+      "status": "done",
+      "scope": "required",
+      "started_at": "2026-11-18T08:16:54Z",
+      "finished_at": "2026-11-18T09:36:47Z",
+      "attempts": 3,
+      "units": [
+        {
+          "id": "fix-pages-02-03-04",
+          "status": "done",
+          "handoff": null
+        }
+      ],
+      "note": "",
+      "continue_after_failure": false,
+      "history": [
+        {
+          "at": "2026-11-18T08:07:12Z",
+          "status": "done",
+          "validation": {
+            "version": 2,
+            "fingerprint": "ddca80e01fcd4ef6c9ff28902b202fb1d0786e9510aa4193b0dad9cbd2ec4e41",
+            "at": "2026-11-18T07:57:47Z",
+            "forced": false
+          },
+          "units": [
+            {
+              "id": "experience-shell-pipeline-lab",
+              "status": "done",
+              "handoff": null
+            },
+            {
+              "id": "experience-git-graph-lab",
+              "status": "done",
+              "handoff": null
+            },
+            {
+              "id": "experience-bisect-lab",
+              "status": "done",
+              "handoff": null
+            },
+            {
+              "id": "pages-01-03",
+              "status": "done",
+              "handoff": null
+            },
+            {
+              "id": "pages-04-05",
+              "status": "done",
+              "handoff": null
+            },
+            {
+              "id": "pages-06-07",
+              "status": "done",
+              "handoff": null
+            },
+            {
+              "id": "concept-ssh-keys-for-git",
+              "status": "done",
+              "handoff": null
+            },
+            {
+              "id": "concept-corepack-package-manager-pinning",
+              "status": "done",
+              "handoff": null
+            }
+          ],
+          "note": ""
+        },
+        {
+          "at": "2026-11-18T08:16:16Z",
+          "status": "done",
+          "validation": {
+            "version": 2,
+            "fingerprint": "8479c27a5c3ca691427153798e72d3634b3b64f31feb9aecf20a7f96a661a001",
+            "at": "2026-11-18T08:13:47Z",
+            "forced": false
+          },
+          "units": [
+            {
+              "id": "fix-pages-01-03-05",
+              "status": "done",
+              "handoff": null
+            }
+          ],
+          "note": ""
+        }
+      ],
+      "validation": {
+        "version": 2,
+        "fingerprint": "0230611768d6e0a57f752b2848687d7b2c7d5756d796dd766626092f55a2d6ba",
+        "at": "2026-11-18T09:36:47Z",
+        "forced": false
+      }
+    },
+    {
+      "id": "mini-projects",
+      "wave": 3,
+      "skill": "learn-projects",
+      "status": "done",
+      "scope": "required",
+      "started_at": "2026-11-17T19:52:08Z",
+      "finished_at": "2026-11-18T09:37:21Z",
+      "attempts": 1,
+      "units": [
+        {
+          "id": "mini-01",
+          "status": "done",
+          "handoff": "state/topics/frontend-engineering/learning-system-and-workstation/workstation-and-editor/handoffs/mini-projects-mini-01.md"
+        },
+        {
+          "id": "mini-02",
+          "status": "done",
+          "handoff": null
+        }
+      ],
+      "note": "",
+      "continue_after_failure": false,
+      "validation": {
+        "version": 2,
+        "fingerprint": "9970357c9540de49045dc5e38be47e201d4e7d2cf139c23883bbea3728d6e237",
+        "at": "2026-11-18T09:37:21Z",
+        "forced": false
+      }
+    },
+    {
+      "id": "capstone",
+      "wave": 4,
+      "skill": "learn-capstone",
+      "status": "done",
+      "scope": "required",
+      "started_at": "2026-11-18T07:59:30Z",
+      "finished_at": "2026-11-18T09:37:34Z",
+      "attempts": 2,
+      "units": [
+        {
+          "id": "capstone",
+          "status": "done",
+          "handoff": null
+        }
+      ],
+      "note": "",
+      "continue_after_failure": false,
+      "validation": {
+        "version": 2,
+        "fingerprint": "86e79e306d2b498051fdf96c2b4c49b15ba26d29bea84cff187766c9d5ce65b3",
+        "at": "2026-11-18T09:37:34Z",
+        "forced": false
+      }
+    },
+    {
+      "id": "notes",
+      "wave": 5,
+      "skill": "learn-notes",
+      "status": "done",
+      "scope": "required",
+      "started_at": "2026-11-18T08:21:50Z",
+      "finished_at": "2026-11-18T09:37:37Z",
+      "attempts": 3,
+      "units": [],
+      "note": "",
+      "continue_after_failure": false,
+      "history": [
+        {
+          "at": "2026-11-18T08:14:42Z",
+          "status": "done",
+          "validation": {
+            "version": 2,
+            "fingerprint": "f3db84f52cc2d1088abea4643901f992c8212ea065dac38c7b7b605327ab068b",
+            "at": "2026-11-18T08:05:40Z",
+            "forced": false
+          },
+          "units": [],
+          "note": ""
+        },
+        {
+          "at": "2026-11-18T08:21:48Z",
+          "status": "done",
+          "validation": {
+            "version": 2,
+            "fingerprint": "c1b8ac05192537af5dec8963c13de5d36b2a3729bb32c58c5b249bf991d3c7cd",
+            "at": "2026-11-18T08:14:50Z",
+            "forced": false
+          },
+          "units": [],
+          "note": ""
+        }
+      ],
+      "validation": {
+        "version": 2,
+        "fingerprint": "da5dc6e8efdbaecb13fbfeec10416a95ffe963d64e41b09b04d55ccfa07a1743",
+        "at": "2026-11-18T09:37:37Z",
+        "forced": false
+      }
+    },
+    {
+      "id": "finalize",
+      "wave": 5,
+      "skill": "learn",
+      "status": "failed",
+      "scope": "required",
+      "started_at": "2026-11-18T08:22:00Z",
+      "finished_at": null,
+      "attempts": 1,
+      "units": [],
+      "note": "independent review pending: spawn cap 36/36 reached. Last content review (fp e0c7dc5d) was fix-needed with 1 error (HTTPS password claim on page 01), since fixed inline but not re-reviewed; open warnings: stash/cherry-pick and merge-conflict depth, Node pin practice on page 07, experience Reset restores current preset only, vscode/corepack verified_via detail. Projects review passed (warnings: capstone hook path assumption, mini-02 diagram exit-2 edge, Node version wording).",
+      "continue_after_failure": true
+    }
+  ],
+  "recall": {
+    "cards": {
+      "wae-01": {
+        "box": 1,
+        "due": "2026-11-18",
+        "added": "2026-11-18",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      },
+      "wae-02": {
+        "box": 1,
+        "due": "2026-11-18",
+        "added": "2026-11-18",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      },
+      "wae-03": {
+        "box": 1,
+        "due": "2026-11-18",
+        "added": "2026-11-18",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      },
+      "wae-04": {
+        "box": 1,
+        "due": "2026-11-18",
+        "added": "2026-11-18",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      },
+      "wae-05": {
+        "box": 1,
+        "due": "2026-11-18",
+        "added": "2026-11-18",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      },
+      "wae-06": {
+        "box": 1,
+        "due": "2026-11-18",
+        "added": "2026-11-18",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      },
+      "wae-07": {
+        "box": 1,
+        "due": "2026-11-18",
+        "added": "2026-11-18",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      },
+      "wae-08": {
+        "box": 1,
+        "due": "2026-11-18",
+        "added": "2026-11-18",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      },
+      "wae-09": {
+        "box": 1,
+        "due": "2026-11-18",
+        "added": "2026-11-18",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      },
+      "wae-10": {
+        "box": 1,
+        "due": "2026-11-18",
+        "added": "2026-11-18",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      },
+      "wae-11": {
+        "box": 1,
+        "due": "2026-11-18",
+        "added": "2026-11-18",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      },
+      "wae-12": {
+        "box": 1,
+        "due": "2026-11-18",
+        "added": "2026-11-18",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      },
+      "wae-13": {
+        "box": 1,
+        "due": "2026-11-18",
+        "added": "2026-11-18",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      },
+      "wae-14": {
+        "box": 1,
+        "due": "2026-11-18",
+        "added": "2026-11-18",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      },
+      "wae-15": {
+        "box": 1,
+        "due": "2026-11-18",
+        "added": "2026-11-18",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      },
+      "wae-16": {
+        "box": 1,
+        "due": "2026-11-18",
+        "added": "2026-11-18",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      },
+      "wae-17": {
+        "box": 1,
+        "due": "2026-11-18",
+        "added": "2026-11-18",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      },
+      "wae-18": {
+        "box": 1,
+        "due": "2026-11-18",
+        "added": "2026-11-18",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      },
+      "wae-19": {
+        "box": 1,
+        "due": "2026-11-18",
+        "added": "2026-11-18",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      },
+      "wae-20": {
+        "box": 1,
+        "due": "2026-11-18",
+        "added": "2026-11-18",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      }
+    }
+  },
+  "log": [
+    {
+      "at": "2026-11-17T19:47:29Z",
+      "event": "unit-start",
+      "message": "unit conventional-changelog-commitlint-module-build-and-infra",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-17T19:48:25Z",
+      "event": "unit-done",
+      "message": "unit conventional-changelog-commitlint-module-build-and-infra",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-17T19:48:36Z",
+      "event": "unit-add",
+      "message": "unit conventional-changelog-commitlint-synthesis",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-17T19:48:37Z",
+      "event": "note",
+      "message": "SPAWN 13/36 (commitlint synthesis)"
+    },
+    {
+      "at": "2026-11-17T19:48:54Z",
+      "event": "unit-start",
+      "message": "unit conventional-changelog-commitlint-synthesis",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-17T19:49:53Z",
+      "event": "visual",
+      "message": "added visual commitlint-module-map"
+    },
+    {
+      "at": "2026-11-17T19:49:53Z",
+      "event": "visual",
+      "message": "added visual commitlint-request-flow"
+    },
+    {
+      "at": "2026-11-17T19:51:25Z",
+      "event": "unit-done",
+      "message": "unit conventional-changelog-commitlint-synthesis",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-17T19:51:47Z",
+      "event": "write-note",
+      "message": "vault/frontend-engineering/learning-system-and-workstation/workstation-and-editor/05-repo-intel/00-repo-intel-workstation-and-editor.md"
+    },
+    {
+      "at": "2026-11-17T19:51:49Z",
+      "event": "reader-order",
+      "message": "Imported explicit authored child-note sequence"
+    },
+    {
+      "at": "2026-11-17T19:51:51Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-17T19:51:54Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "digest"
+    },
+    {
+      "at": "2026-11-17T19:52:06Z",
+      "event": "start",
+      "message": "attempt 1",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-17T19:52:08Z",
+      "event": "start",
+      "message": "attempt 1",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-17T19:52:09Z",
+      "event": "unit-add",
+      "message": "unit experience-shell-pipeline-lab",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-17T19:52:10Z",
+      "event": "unit-add",
+      "message": "unit experience-git-graph-lab",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-17T19:52:12Z",
+      "event": "unit-add",
+      "message": "unit experience-bisect-lab",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-17T19:52:13Z",
+      "event": "unit-add",
+      "message": "unit pages-01-03",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-17T19:52:14Z",
+      "event": "unit-add",
+      "message": "unit pages-04-05",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-17T19:52:16Z",
+      "event": "unit-add",
+      "message": "unit pages-06-07",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-17T19:52:17Z",
+      "event": "unit-add",
+      "message": "unit concept-ssh-keys-for-git",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-17T19:52:18Z",
+      "event": "unit-add",
+      "message": "unit concept-corepack-package-manager-pinning",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-17T19:52:20Z",
+      "event": "unit-add",
+      "message": "unit mini-01",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-17T19:52:21Z",
+      "event": "unit-add",
+      "message": "unit mini-02",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-17T19:53:24Z",
+      "event": "note",
+      "message": "Wave 2 done: 2 digests, commitlint repo-intel (d2be18a, 5 modules). Wave 3 batch A: 3 experiences + mini-01. SPAWN 17/36"
+    },
+    {
+      "at": "2026-11-17T19:55:12Z",
+      "event": "unit-start",
+      "message": "unit mini-01",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-17T19:56:27Z",
+      "event": "visual",
+      "message": "added visual git-graph-lab-fallback"
+    },
+    {
+      "at": "2026-11-17T19:57:08Z",
+      "event": "visual",
+      "message": "added visual bisect-lab-fallback"
+    },
+    {
+      "at": "2026-11-18T00:13:06Z",
+      "event": "video",
+      "message": "Rendered git-graph-walkthrough with docker: site/public/media/frontend-engineering/learning-system-and-workstation/workstation-and-editor/git-graph-walkthrough.mp4, 49.0 s, 1920×1080, with narration."
+    },
+    {
+      "at": "2026-11-18T01:40:02Z",
+      "event": "unit-done",
+      "message": "unit experience-git-graph-lab",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T02:05:19Z",
+      "event": "unit-done",
+      "message": "unit experience-shell-pipeline-lab",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T02:05:21Z",
+      "event": "unit-done",
+      "message": "unit experience-bisect-lab",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T02:05:22Z",
+      "event": "note",
+      "message": "SPAWN 20/36 (pages-01-03, pages-04-05, pages-06-07)"
+    },
+    {
+      "at": "2026-11-18T07:10:19Z",
+      "event": "unit-fail",
+      "message": "unit mini-01 (handoff: state/topics/frontend-engineering/learning-system-and-workstation/workstation-and-editor/handoffs/mini-projects-mini-01.md)",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-18T07:11:05Z",
+      "event": "unit-start",
+      "message": "unit pages-01-03",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T07:11:13Z",
+      "event": "unit-start",
+      "message": "unit pages-04-05",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T07:11:28Z",
+      "event": "unit-start",
+      "message": "unit pages-06-07",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T07:11:36Z",
+      "event": "note",
+      "message": "SPAWN 21/36 (mini-01 continuation after host sleep). Pending after this batch: concept-ssh-keys-for-git, concept-corepack-package-manager-pinning, mini-02"
+    },
+    {
+      "at": "2026-11-18T07:13:08Z",
+      "event": "visual",
+      "message": "added visual mini-01-flow"
+    },
+    {
+      "at": "2026-11-18T07:13:12Z",
+      "event": "unit-done",
+      "message": "unit mini-01",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-18T07:13:34Z",
+      "event": "visual",
+      "message": "added visual github-flow"
+    },
+    {
+      "at": "2026-11-18T07:13:37Z",
+      "event": "note",
+      "message": "SPAWN 22/36 (mini-02). mini-01 done: 8/8 solution tests, starter fails on TODO("
+    },
+    {
+      "at": "2026-11-18T07:13:42Z",
+      "event": "visual",
+      "message": "added visual ai-review-loop"
+    },
+    {
+      "at": "2026-11-18T07:14:10Z",
+      "event": "visual",
+      "message": "added visual settings-precedence"
+    },
+    {
+      "at": "2026-11-18T07:14:10Z",
+      "event": "visual",
+      "message": "added visual debug-session-path"
+    },
+    {
+      "at": "2026-11-18T07:14:16Z",
+      "event": "unit-done",
+      "message": "unit pages-04-05",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T07:14:27Z",
+      "event": "unit-done",
+      "message": "unit pages-01-03",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T07:14:29Z",
+      "event": "unit-done",
+      "message": "unit pages-06-07",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T07:14:55Z",
+      "event": "note",
+      "message": "SPAWN 24/36 (concept-ssh-keys, concept-corepack). Pages 01-07 written."
+    },
+    {
+      "at": "2026-11-18T07:53:29Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-18T07:53:50Z",
+      "event": "execution-check",
+      "message": "research: pass",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T07:53:52Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T07:53:54Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "brief"
+    },
+    {
+      "at": "2026-11-18T07:53:55Z",
+      "event": "reader-order",
+      "message": "Imported explicit authored child-note sequence"
+    },
+    {
+      "at": "2026-11-18T07:53:57Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "digest"
+    },
+    {
+      "at": "2026-11-18T07:53:59Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T07:55:17Z",
+      "event": "note",
+      "message": "SPAWN 27/36 (re-spawn concept-ssh-keys, concept-corepack, mini-02 after lost session). Harness fixes: check-manifest extensionless import, smoke ignores aborted media preloads."
+    },
+    {
+      "at": "2026-11-18T07:55:47Z",
+      "event": "write-note",
+      "message": "vault/frontend-engineering/learning-system-and-workstation/workstation-and-editor/concepts/corepack-package-manager-pinning-workstation-and-editor.md"
+    },
+    {
+      "at": "2026-11-18T07:55:51Z",
+      "event": "unit-done",
+      "message": "unit concept-corepack-package-manager-pinning",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T07:56:01Z",
+      "event": "visual",
+      "message": "added visual mini-02-flow"
+    },
+    {
+      "at": "2026-11-18T07:56:02Z",
+      "event": "write-note",
+      "message": "vault/frontend-engineering/learning-system-and-workstation/workstation-and-editor/concepts/ssh-keys-for-git-workstation-and-editor.md"
+    },
+    {
+      "at": "2026-11-18T07:56:05Z",
+      "event": "unit-done",
+      "message": "unit mini-02",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-18T07:56:07Z",
+      "event": "unit-done",
+      "message": "unit concept-ssh-keys-for-git",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T07:57:03Z",
+      "event": "execution-check",
+      "message": "mini-projects: pass",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-18T07:57:44Z",
+      "event": "write-note",
+      "message": "vault/frontend-engineering/learning-system-and-workstation/workstation-and-editor/02-lesson-workstation-and-editor.md"
+    },
+    {
+      "at": "2026-11-18T07:57:45Z",
+      "event": "write-note",
+      "message": "vault/frontend-engineering/learning-system-and-workstation/workstation-and-editor/03-mini-projects-workstation-and-editor.md"
+    },
+    {
+      "at": "2026-11-18T07:57:47Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T07:57:50Z",
+      "event": "gate-failed",
+      "message": "1 problems",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-18T07:58:18Z",
+      "event": "execution-check",
+      "message": "mini-projects: pass",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-18T07:58:20Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-18T07:58:48Z",
+      "event": "start",
+      "message": "attempt 1",
+      "stage": "capstone"
+    },
+    {
+      "at": "2026-11-18T07:58:50Z",
+      "event": "unit-add",
+      "message": "unit capstone",
+      "stage": "capstone"
+    },
+    {
+      "at": "2026-11-18T07:58:51Z",
+      "event": "note",
+      "message": "SPAWN 28/36 (capstone). Wave 3 done: lesson + mini-projects gated; wrote 02-lesson/03-mini-projects index notes and mini-02 verification.json."
+    },
+    {
+      "at": "2026-11-18T07:59:30Z",
+      "event": "start",
+      "message": "attempt 2",
+      "stage": "capstone"
+    },
+    {
+      "at": "2026-11-18T07:59:32Z",
+      "event": "unit-start",
+      "message": "unit capstone",
+      "stage": "capstone"
+    },
+    {
+      "at": "2026-11-18T08:03:26Z",
+      "event": "visual",
+      "message": "added visual capstone-layers"
+    },
+    {
+      "at": "2026-11-18T08:03:27Z",
+      "event": "visual",
+      "message": "added visual capstone-request-flow"
+    },
+    {
+      "at": "2026-11-18T08:03:27Z",
+      "event": "visual",
+      "message": "added visual capstone-deployment"
+    },
+    {
+      "at": "2026-11-18T08:03:42Z",
+      "event": "write-note",
+      "message": "vault/frontend-engineering/learning-system-and-workstation/workstation-and-editor/06-capstone-workstation-and-editor.md"
+    },
+    {
+      "at": "2026-11-18T08:03:53Z",
+      "event": "execution-check",
+      "message": "capstone: pass",
+      "stage": "capstone"
+    },
+    {
+      "at": "2026-11-18T08:03:57Z",
+      "event": "unit-done",
+      "message": "unit capstone",
+      "stage": "capstone"
+    },
+    {
+      "at": "2026-11-18T08:04:13Z",
+      "event": "execution-check",
+      "message": "capstone: pass",
+      "stage": "capstone"
+    },
+    {
+      "at": "2026-11-18T08:04:16Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "capstone"
+    },
+    {
+      "at": "2026-11-18T08:04:26Z",
+      "event": "start",
+      "message": "attempt 1",
+      "stage": "notes"
+    },
+    {
+      "at": "2026-11-18T08:05:31Z",
+      "event": "write-note",
+      "message": "vault/frontend-engineering/learning-system-and-workstation/workstation-and-editor/07-final-notes-workstation-and-editor.md"
+    },
+    {
+      "at": "2026-11-18T08:05:33Z",
+      "event": "write-note",
+      "message": "vault/frontend-engineering/learning-system-and-workstation/workstation-and-editor/08-recall-workstation-and-editor.md"
+    },
+    {
+      "at": "2026-11-18T08:05:35Z",
+      "event": "recall-sync",
+      "message": "14 added, 0 removed, 14 total"
+    },
+    {
+      "at": "2026-11-18T08:05:40Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "notes"
+    },
+    {
+      "at": "2026-11-18T08:05:54Z",
+      "event": "note",
+      "message": "SPAWN 29/36 (audit round 1). Capstone + notes gated (14 cards)."
+    },
+    {
+      "at": "2026-11-18T08:06:45Z",
+      "event": "plan",
+      "message": "plan fields set: curriculum",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-18T08:06:53Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-18T08:07:07Z",
+      "event": "execution-check",
+      "message": "research: pass",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T08:07:10Z",
+      "event": "gate-failed",
+      "message": "4 problems",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T08:07:12Z",
+      "event": "reset",
+      "message": "was done",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T08:07:40Z",
+      "event": "plan",
+      "message": "plan fields set: curriculum",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-18T08:07:43Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-18T08:07:59Z",
+      "event": "execution-check",
+      "message": "research: pass",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T08:08:02Z",
+      "event": "gate-failed",
+      "message": "1 problems",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T08:08:11Z",
+      "event": "plan",
+      "message": "plan fields set: curriculum",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-18T08:08:13Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-18T08:08:43Z",
+      "event": "execution-check",
+      "message": "research: pass",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T08:08:46Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T08:08:48Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "brief"
+    },
+    {
+      "at": "2026-11-18T08:08:51Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "digest"
+    },
+    {
+      "at": "2026-11-18T08:08:53Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T08:08:54Z",
+      "event": "start",
+      "message": "attempt 2",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T08:08:56Z",
+      "event": "unit-add",
+      "message": "unit fix-pages-01-03-05",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T08:09:22Z",
+      "event": "note",
+      "message": "AUDIT round 1: 6 gaps, 2 concepts added (shell-startup-files-and-aliases, safe-undo-and-git-config), 1 deferred (browser-devtools-and-source-maps, no verified source); thin gaps to pages 01/05. SPAWN 30/36 (fix-pages-01-03-05)."
+    },
+    {
+      "at": "2026-11-18T08:11:40Z",
+      "event": "unit-start",
+      "message": "unit fix-pages-01-03-05",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T08:13:33Z",
+      "event": "unit-done",
+      "message": "unit fix-pages-01-03-05",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T08:13:47Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T08:14:13Z",
+      "event": "execution-check",
+      "message": "mini-projects: pass",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-18T08:14:16Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-18T08:14:24Z",
+      "event": "execution-check",
+      "message": "capstone: pass",
+      "stage": "capstone"
+    },
+    {
+      "at": "2026-11-18T08:14:27Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "capstone"
+    },
+    {
+      "at": "2026-11-18T08:14:42Z",
+      "event": "reset",
+      "message": "was done",
+      "stage": "notes"
+    },
+    {
+      "at": "2026-11-18T08:14:44Z",
+      "event": "start",
+      "message": "attempt 2",
+      "stage": "notes"
+    },
+    {
+      "at": "2026-11-18T08:14:46Z",
+      "event": "write-note",
+      "message": "vault/frontend-engineering/learning-system-and-workstation/workstation-and-editor/07-final-notes-workstation-and-editor.md"
+    },
+    {
+      "at": "2026-11-18T08:14:47Z",
+      "event": "write-note",
+      "message": "vault/frontend-engineering/learning-system-and-workstation/workstation-and-editor/08-recall-workstation-and-editor.md"
+    },
+    {
+      "at": "2026-11-18T08:14:49Z",
+      "event": "recall-sync",
+      "message": "2 added, 0 removed, 16 total"
+    },
+    {
+      "at": "2026-11-18T08:14:50Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "notes"
+    },
+    {
+      "at": "2026-11-18T08:15:04Z",
+      "event": "note",
+      "message": "Lesson/projects/capstone/notes re-gated after audit 1 (16 cards). SPAWN 31/36 (audit round 2)."
+    },
+    {
+      "at": "2026-11-18T08:15:53Z",
+      "event": "plan",
+      "message": "plan fields set: curriculum",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-18T08:15:56Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-18T08:16:11Z",
+      "event": "execution-check",
+      "message": "research: failed",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T08:16:14Z",
+      "event": "gate-failed",
+      "message": "1 problems",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T08:16:16Z",
+      "event": "reset",
+      "message": "was done",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T08:16:43Z",
+      "event": "execution-check",
+      "message": "research: pass",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T08:16:46Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T08:16:48Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "brief"
+    },
+    {
+      "at": "2026-11-18T08:16:51Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "digest"
+    },
+    {
+      "at": "2026-11-18T08:16:53Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T08:16:54Z",
+      "event": "start",
+      "message": "attempt 3",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T08:16:56Z",
+      "event": "unit-add",
+      "message": "unit fix-pages-02-03-04",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T08:17:19Z",
+      "event": "note",
+      "message": "AUDIT round 2: 3 gaps, 3 added (rewrite-local-history p02, revision-selection p03, secrets-out-of-git p04); max_concepts 32. SPAWN 32/36 (fix-pages-02-03-04). Reserve 33-34 for verifiers."
+    },
+    {
+      "at": "2026-11-18T08:17:34Z",
+      "event": "unit-start",
+      "message": "unit fix-pages-02-03-04",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T08:20:48Z",
+      "event": "unit-done",
+      "message": "unit fix-pages-02-03-04",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T08:21:09Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T08:21:34Z",
+      "event": "execution-check",
+      "message": "mini-projects: pass",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-18T08:21:37Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-18T08:21:44Z",
+      "event": "execution-check",
+      "message": "capstone: pass",
+      "stage": "capstone"
+    },
+    {
+      "at": "2026-11-18T08:21:47Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "capstone"
+    },
+    {
+      "at": "2026-11-18T08:21:48Z",
+      "event": "reset",
+      "message": "was done",
+      "stage": "notes"
+    },
+    {
+      "at": "2026-11-18T08:21:50Z",
+      "event": "start",
+      "message": "attempt 3",
+      "stage": "notes"
+    },
+    {
+      "at": "2026-11-18T08:21:51Z",
+      "event": "write-note",
+      "message": "vault/frontend-engineering/learning-system-and-workstation/workstation-and-editor/08-recall-workstation-and-editor.md"
+    },
+    {
+      "at": "2026-11-18T08:21:53Z",
+      "event": "recall-sync",
+      "message": "2 added, 0 removed, 18 total"
+    },
+    {
+      "at": "2026-11-18T08:21:54Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "notes"
+    },
+    {
+      "at": "2026-11-18T08:22:00Z",
+      "event": "start",
+      "message": "attempt 1",
+      "stage": "finalize"
+    },
+    {
+      "at": "2026-11-18T08:22:29Z",
+      "event": "execution-check",
+      "message": "finalize: pass",
+      "stage": "finalize"
+    },
+    {
+      "at": "2026-11-18T08:23:20Z",
+      "event": "note",
+      "message": "Finalize: structure + execution checks pass (fp aef4173a). SPAWN 34/36 (verify-content, verify-projects). Preview on 127.0.0.1:4399."
+    },
+    {
+      "at": "2026-11-18T08:35:10Z",
+      "event": "write-note",
+      "message": "vault/frontend-engineering/learning-system-and-workstation/workstation-and-editor/concepts/ssh-keys-for-git-workstation-and-editor.md"
+    },
+    {
+      "at": "2026-11-18T08:36:10Z",
+      "event": "source-update",
+      "message": "updated vscode-settings-docs: why_trusted, evidence.venue, verified_at, verified_via, evidence_urls",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T08:36:58Z",
+      "event": "write-note",
+      "message": "vault/frontend-engineering/learning-system-and-workstation/workstation-and-editor/concepts/signed-commits-workstation-and-editor.md"
+    },
+    {
+      "at": "2026-11-18T08:37:12Z",
+      "event": "plan",
+      "message": "plan fields set: curriculum",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-18T08:37:22Z",
+      "event": "write-note",
+      "message": "vault/frontend-engineering/learning-system-and-workstation/workstation-and-editor/02-lesson-workstation-and-editor.md"
+    },
+    {
+      "at": "2026-11-18T09:03:34Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-18T09:04:23Z",
+      "event": "execution-check",
+      "message": "research: failed",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T09:04:26Z",
+      "event": "gate-failed",
+      "message": "2 problems",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T09:05:04Z",
+      "event": "execution-check",
+      "message": "mini-projects: pass",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-18T09:05:14Z",
+      "event": "execution-check",
+      "message": "capstone: pass",
+      "stage": "capstone"
+    },
+    {
+      "at": "2026-11-18T09:05:16Z",
+      "event": "write-note",
+      "message": "vault/frontend-engineering/learning-system-and-workstation/workstation-and-editor/08-recall-workstation-and-editor.md"
+    },
+    {
+      "at": "2026-11-18T09:05:18Z",
+      "event": "recall-sync",
+      "message": "2 added, 0 removed, 20 total"
+    },
+    {
+      "at": "2026-11-18T09:05:30Z",
+      "event": "plan",
+      "message": "plan fields set: curriculum",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-18T09:05:33Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-18T09:06:06Z",
+      "event": "execution-check",
+      "message": "research: failed",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T09:06:14Z",
+      "event": "gate-failed",
+      "message": "1 problems",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T09:07:13Z",
+      "event": "source-update",
+      "message": "updated gnu-bash-manual: url, verified_via, verified_at",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T09:07:16Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-18T09:08:21Z",
+      "event": "execution-check",
+      "message": "research: failed",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T09:08:24Z",
+      "event": "gate-failed",
+      "message": "1 problems",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T09:09:14Z",
+      "event": "source-update",
+      "message": "updated gnu-bash-manual: verified_via, evidence_urls",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T09:09:18Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-18T09:10:37Z",
+      "event": "execution-check",
+      "message": "research: failed",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T09:10:40Z",
+      "event": "gate-failed",
+      "message": "1 problems",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T09:11:59Z",
+      "event": "execution-check",
+      "message": "research: failed",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T09:14:17Z",
+      "event": "execution-check",
+      "message": "research: failed",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T09:16:01Z",
+      "event": "execution-check",
+      "message": "research: pass",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T09:16:10Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T09:16:13Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "brief"
+    },
+    {
+      "at": "2026-11-18T09:16:16Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "digest"
+    },
+    {
+      "at": "2026-11-18T09:16:19Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T09:16:25Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T09:16:55Z",
+      "event": "execution-check",
+      "message": "mini-projects: pass",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-18T09:16:58Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-18T09:17:06Z",
+      "event": "execution-check",
+      "message": "capstone: pass",
+      "stage": "capstone"
+    },
+    {
+      "at": "2026-11-18T09:17:08Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "capstone"
+    },
+    {
+      "at": "2026-11-18T09:17:11Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "notes"
+    },
+    {
+      "at": "2026-11-18T09:17:44Z",
+      "event": "execution-check",
+      "message": "finalize: pass",
+      "stage": "finalize"
+    },
+    {
+      "at": "2026-11-18T09:18:21Z",
+      "event": "note",
+      "message": "Review round 1: content fix-needed (5 errors fixed inline: fallback visual file, SSH key path, VS Code tasks/palette/snippets + source evidence, signed-commits concept note, bisect video check bug in harness/lib/video.mjs), projects pass with warnings (2 fixed). All stages re-gated; fp e0c7dc5d. SPAWN 36/36 (final reviews). Cap reached."
+    },
+    {
+      "at": "2026-11-18T09:36:42Z",
+      "event": "write-note",
+      "message": "vault/frontend-engineering/learning-system-and-workstation/workstation-and-editor/03-mini-projects-workstation-and-editor.md"
+    },
+    {
+      "at": "2026-11-18T09:36:47Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T09:37:18Z",
+      "event": "execution-check",
+      "message": "mini-projects: pass",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-18T09:37:21Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-18T09:37:30Z",
+      "event": "execution-check",
+      "message": "capstone: pass",
+      "stage": "capstone"
+    },
+    {
+      "at": "2026-11-18T09:37:34Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "capstone"
+    },
+    {
+      "at": "2026-11-18T09:37:37Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "notes"
+    },
+    {
+      "at": "2026-11-18T09:38:16Z",
+      "event": "execution-check",
+      "message": "finalize: pass",
+      "stage": "finalize"
+    },
+    {
+      "at": "2026-11-18T09:38:28Z",
+      "event": "fail",
+      "message": "independent review pending: spawn cap 36/36 reached. Last content review (fp e0c7dc5d) was fix-needed with 1 error (HTTPS password claim on page 01), since fixed inline but not re-reviewed; open warnings: stash/cherry-pick and merge-conflict depth, Node pin practice on page 07, experience Reset restores current preset only, vscode/corepack verified_via detail. Projects review passed (warnings: capstone hook path assumption, mini-02 diagram exit-2 edge, Node version wording).",
+      "stage": "finalize"
+    },
+    {
+      "at": "2026-11-18T09:38:30Z",
+      "event": "note",
+      "message": "ROADMAP frontend: section 00.2 generated; finalize failed only for pending independent review at spawn cap. Next section 00.3."
+    },
+    {
+      "at": "2026-11-18T09:43:13Z",
+      "event": "fail",
+      "message": "independent review pending: spawn cap 36/36 reached. Last content review (fp e0c7dc5d) was fix-needed with 1 error (HTTPS password claim on page 01), since fixed inline but not re-reviewed; open warnings: stash/cherry-pick and merge-conflict depth, Node pin practice on page 07, experience Reset restores current preset only, vscode/corepack verified_via detail. Projects review passed (warnings: capstone hook path assumption, mini-02 diagram exit-2 edge, Node version wording).",
+      "stage": "finalize"
+    }
+  ],
+  "roadmap": {
+    "id": "frontend",
+    "section": "00.2"
+  },
+  "quality": {
+    "executions": {
+      "research": {
+        "version": 2,
+        "fingerprint": "5d8c8e6d516528f03075b6871d632c8ad18ef9d0b44726c36e62baef292d0646",
+        "at": "2026-11-18T09:16:01Z",
+        "ok": true,
+        "checks": [
+          {
+            "label": "claude-code-best-practices: https://code.claude.com/docs/en/best-practices",
+            "source": "claude-code-best-practices",
+            "requested_url": "https://code.claude.com/docs/en/best-practices",
+            "ok": true,
+            "status": 200,
+            "bytes": 503962,
+            "sha256": "3fb02c67b4be9f20e410c5af8e654a54899b9a64f60241ad0945d7d3d46b01e6"
+          },
+          {
+            "label": "owasp-llm05-improper-output-handling: https://genai.owasp.org/llmrisk/llm052025-improper-output-handling/",
+            "source": "owasp-llm05-improper-output-handling",
+            "requested_url": "https://genai.owasp.org/llmrisk/llm052025-improper-output-handling/",
+            "ok": true,
+            "status": 200,
+            "bytes": 364198,
+            "sha256": "e960bdc9c9aa238f1abfca67e6a6ccc7b3002124441836af0a89488305116231"
+          },
+          {
+            "label": "vscode-settings-docs: https://code.visualstudio.com/docs/getstarted/settings",
+            "source": "vscode-settings-docs",
+            "requested_url": "https://code.visualstudio.com/docs/getstarted/settings",
+            "ok": true,
+            "status": 200,
+            "bytes": 179574,
+            "sha256": "29472f43f32179029e8d38e559b692c06a2862738053c2b4e5c04246d0ee1d12"
+          },
+          {
+            "label": "vscode-settings-docs: https://code.visualstudio.com/docs/editor/debugging",
+            "source": "vscode-settings-docs",
+            "requested_url": "https://code.visualstudio.com/docs/editor/debugging",
+            "ok": true,
+            "status": 200,
+            "bytes": 146100,
+            "sha256": "8f27116bff9ebcc964086a9e0e0503f52f8b9a723686206569fb911abcc00f01"
+          },
+          {
+            "label": "vscode-settings-docs: https://code.visualstudio.com/docs/debugtest/tasks",
+            "source": "vscode-settings-docs",
+            "requested_url": "https://code.visualstudio.com/docs/debugtest/tasks",
+            "ok": true,
+            "status": 200,
+            "bytes": 291412,
+            "sha256": "34668125589dda0d2c84a7c89fad12cb0857e47bd19507a7803a7356cf6ba0df"
+          },
+          {
+            "label": "vscode-settings-docs: https://code.visualstudio.com/docs/editing/userdefinedsnippets",
+            "source": "vscode-settings-docs",
+            "requested_url": "https://code.visualstudio.com/docs/editing/userdefinedsnippets",
+            "ok": true,
+            "status": 200,
+            "bytes": 160134,
+            "sha256": "5401834ff6e8f50af20094d4ced282b1041e4340504ae6235c0fc6e911895f61"
+          },
+          {
+            "label": "vscode-settings-docs: https://code.visualstudio.com/docs/editing/getting-started/userinterface",
+            "source": "vscode-settings-docs",
+            "requested_url": "https://code.visualstudio.com/docs/editing/getting-started/userinterface",
+            "ok": true,
+            "status": 200,
+            "bytes": 256101,
+            "sha256": "792068c756967635b543e47ff2416286a464c463f14e57dacf4692a370046d74"
+          },
+          {
+            "label": "vscode-settings-docs: https://code.visualstudio.com/docs/editing/codebasics",
+            "source": "vscode-settings-docs",
+            "requested_url": "https://code.visualstudio.com/docs/editing/codebasics",
+            "ok": true,
+            "status": 200,
+            "bytes": 256630,
+            "sha256": "82ca02da93cd77f6bbb8b6a7a0a2172c8cb4d1abac1d1597fe0c2c136f541d35"
+          },
+          {
+            "label": "vscode-settings-docs: https://code.visualstudio.com/docs/editing/editingevolved",
+            "source": "vscode-settings-docs",
+            "requested_url": "https://code.visualstudio.com/docs/editing/editingevolved",
+            "ok": true,
+            "status": 200,
+            "bytes": 159330,
+            "sha256": "56c89b5911cf6ab202e2ae0fb5b1a5a844c9f1599209c3b9707dbff92dd0d64d"
+          },
+          {
+            "label": "vscode-settings-docs: https://code.visualstudio.com/docs/configure/profiles",
+            "source": "vscode-settings-docs",
+            "requested_url": "https://code.visualstudio.com/docs/configure/profiles",
+            "ok": true,
+            "status": 200,
+            "bytes": 173495,
+            "sha256": "6f5cbf07348828b8985aed641a7f60079e2a30a31484e15033d7e3573eaa6433"
+          },
+          {
+            "label": "chacon-2014-pro-git: https://git-scm.com/book/en/v2",
+            "source": "chacon-2014-pro-git",
+            "requested_url": "https://git-scm.com/book/en/v2",
+            "ok": true,
+            "status": 200,
+            "bytes": 121705,
+            "sha256": "b15cbf1b8bebdd30e5efe84cb7e3b79c56ff6669c1461e7199fc7a95f422f25d"
+          },
+          {
+            "label": "chacon-2014-pro-git: https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository",
+            "source": "chacon-2014-pro-git",
+            "requested_url": "https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository",
+            "ok": true,
+            "status": 200,
+            "bytes": 156104,
+            "sha256": "a90607b93af9646200cb9a51957f45434740abec415bc4db738a9bdf5f85d88b"
+          },
+          {
+            "label": "chacon-2014-pro-git: https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging",
+            "source": "chacon-2014-pro-git",
+            "requested_url": "https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging",
+            "ok": true,
+            "status": 200,
+            "bytes": 139702,
+            "sha256": "d8a23be344ced7f2c46968507536c1a376ba7318d4361d2a400df7c50cfa8b77"
+          },
+          {
+            "label": "chacon-2014-pro-git: https://git-scm.com/book/en/v2/Git-Tools-Stashing-and-Cleaning",
+            "source": "chacon-2014-pro-git",
+            "requested_url": "https://git-scm.com/book/en/v2/Git-Tools-Stashing-and-Cleaning",
+            "ok": true,
+            "status": 200,
+            "bytes": 136007,
+            "sha256": "b34ec1584965523a59f7560f7d573a400d1fdf7d5357a6993772ea81a99fdc33"
+          },
+          {
+            "label": "chacon-2014-pro-git: https://git-scm.com/book/en/v2/Git-Tools-Interactive-Staging",
+            "source": "chacon-2014-pro-git",
+            "requested_url": "https://git-scm.com/book/en/v2/Git-Tools-Interactive-Staging",
+            "ok": true,
+            "status": 200,
+            "bytes": 131041,
+            "sha256": "5b1363e0ca859bd821f5e4dd770e9a5d509eb5e93fe1066c917f54ea184cf956"
+          },
+          {
+            "label": "chacon-2014-pro-git: https://git-scm.com/book/en/v2/Distributed-Git-Maintaining-a-Project",
+            "source": "chacon-2014-pro-git",
+            "requested_url": "https://git-scm.com/book/en/v2/Distributed-Git-Maintaining-a-Project",
+            "ok": true,
+            "status": 200,
+            "bytes": 159786,
+            "sha256": "1d30d486fa14aee23d2d1a8139b41ca3808a79a5afbcc41763fc443631fcd73b"
+          },
+          {
+            "label": "chacon-2014-pro-git: https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell",
+            "source": "chacon-2014-pro-git",
+            "requested_url": "https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell",
+            "ok": true,
+            "status": 200,
+            "bytes": 136157,
+            "sha256": "5e8d8d13ed5a6c64779cae1e07607febaf013c8b288e6cae9fc56e8675a0c4c1"
+          },
+          {
+            "label": "chacon-2014-pro-git: https://git-scm.com/book/en/v2/Git-on-the-Server-Generating-Your-SSH-Public-Key",
+            "source": "chacon-2014-pro-git",
+            "requested_url": "https://git-scm.com/book/en/v2/Git-on-the-Server-Generating-Your-SSH-Public-Key",
+            "ok": true,
+            "status": 200,
+            "bytes": 125112,
+            "sha256": "ac6c2bb7ac6a61142c85794d76b5c3595d2318200d977b5412285954339d9840"
+          },
+          {
+            "label": "git-scm-docs: https://git-scm.com/docs/git-reflog",
+            "source": "git-scm-docs",
+            "requested_url": "https://git-scm.com/docs/git-reflog",
+            "ok": true,
+            "status": 200,
+            "bytes": 44019,
+            "sha256": "efc4fef6b908efd3a854aa28f30b88592073bbaeb6212fb4e9496565dd8855e4"
+          },
+          {
+            "label": "git-scm-docs: https://git-scm.com/docs/git-bisect",
+            "source": "git-scm-docs",
+            "requested_url": "https://git-scm.com/docs/git-bisect",
+            "ok": true,
+            "status": 200,
+            "bytes": 72443,
+            "sha256": "64b48ae8ee475d3cff8f2ebb75d5436ac5c83e845da660ed4afb3815f071f9ea"
+          },
+          {
+            "label": "github-flow-docs: https://docs.github.com/en/get-started/using-github/github-flow",
+            "source": "github-flow-docs",
+            "requested_url": "https://docs.github.com/en/get-started/using-github/github-flow",
+            "ok": true,
+            "status": 200,
+            "bytes": 199691,
+            "sha256": "c4aa54fb936389310222288fa56e5f213b06953a7292f5acbae3a199455e0116"
+          },
+          {
+            "label": "conventionalcommits-spec-1-0-0: https://www.conventionalcommits.org/en/v1.0.0/",
+            "source": "conventionalcommits-spec-1-0-0",
+            "requested_url": "https://www.conventionalcommits.org/en/v1.0.0/",
+            "ok": true,
+            "status": 200,
+            "bytes": 21914,
+            "sha256": "1f02d0f99e4a830daafa4cc75d92e1fe4aef50984c6c398aabd50d7c1214091f"
+          },
+          {
+            "label": "conventional-changelog-commitlint-repo: https://api.github.com/repos/conventional-changelog/commitlint",
+            "source": "conventional-changelog-commitlint-repo",
+            "requested_url": "https://api.github.com/repos/conventional-changelog/commitlint",
+            "ok": true,
+            "status": 200,
+            "bytes": 7898,
+            "sha256": "1868b35f4f7dceb23ba5c45b3dc46b8a117a8510cc26767733a916d32eaafd80",
+            "repository": {
+              "stars": 18828,
+              "archived": false,
+              "pushed_at": "2026-11-17T07:50:37Z",
+              "license": "MIT"
+            }
+          },
+          {
+            "label": "nodejs-packages-docs: https://nodejs.org/api/packages.html",
+            "source": "nodejs-packages-docs",
+            "requested_url": "https://nodejs.org/api/packages.html",
+            "ok": true,
+            "status": 200,
+            "bytes": 156561,
+            "sha256": "45199d164f1ae745244daaf0c14fa49fa6cde390a477e2673836448754a4dae7"
+          },
+          {
+            "label": "nodejs-packages-docs: https://nodejs.org/api/corepack.html",
+            "source": "nodejs-packages-docs",
+            "requested_url": "https://nodejs.org/api/corepack.html",
+            "ok": true,
+            "status": 200,
+            "bytes": 367791,
+            "sha256": "7a0ccfa99d664227cb0b43dc8412a305f2f16f440bb091c7559a4c814a7919b0"
+          },
+          {
+            "label": "nodejs-releases-docs: https://nodejs.org/en/about/previous-releases",
+            "source": "nodejs-releases-docs",
+            "requested_url": "https://nodejs.org/en/about/previous-releases",
+            "ok": true,
+            "status": 200,
+            "bytes": 287490,
+            "sha256": "3d9e187ddb39709d1e04b41436bd58cee94c7bc2347d08755e0cae9f4fb16829"
+          },
+          {
+            "label": "gnu-bash-manual: https://www.gnu.org/software/bash/manual/html_node/Bash-Startup-Files.html",
+            "source": "gnu-bash-manual",
+            "requested_url": "https://www.gnu.org/software/bash/manual/html_node/Bash-Startup-Files.html",
+            "ok": true,
+            "status": 200,
+            "bytes": 10645,
+            "sha256": "f848824892d5f43842c8b582b6fe34147c1cbe211c00a68a12fb9ddfb1277381"
+          },
+          {
+            "label": "gnu-bash-manual: https://www.gnu.org/software/bash/manual/bash.html",
+            "source": "gnu-bash-manual",
+            "requested_url": "https://www.gnu.org/software/bash/manual/bash.html",
+            "ok": true,
+            "status": 200,
+            "bytes": 1040954,
+            "sha256": "78d0eefbe60cfe7345ffdafede7294f055b04e53bd520360ff699b24f81e2b4b"
+          },
+          {
+            "label": "npm-docs: https://docs.npmjs.com/cli/v11/configuring-npm/package-json",
+            "source": "npm-docs",
+            "requested_url": "https://docs.npmjs.com/cli/v11/configuring-npm/package-json",
+            "ok": true,
+            "status": 200,
+            "bytes": 906996,
+            "sha256": "cf8dd47c597b9f47e3c0048a7972bcc4ff2b1d3239444f9b3a7a55cb8821bfd1"
+          },
+          {
+            "label": "npm-docs: https://docs.npmjs.com/cli/v11/commands/npx",
+            "source": "npm-docs",
+            "requested_url": "https://docs.npmjs.com/cli/v11/commands/npx",
+            "ok": true,
+            "status": 200,
+            "bytes": 527571,
+            "sha256": "9c33358cd5bef19f57415b1f3b4219eb61d43b302b056404da86589332f46a49"
+          }
+        ]
+      },
+      "mini-projects": {
+        "version": 2,
+        "fingerprint": "9970357c9540de49045dc5e38be47e201d4e7d2cf139c23883bbea3728d6e237",
+        "at": "2026-11-18T09:37:18Z",
+        "ok": true,
+        "checks": [
+          {
+            "label": "mini-01-bisect-the-regression: solution-tests",
+            "command": "npm",
+            "args": [
+              "test"
+            ],
+            "expected_exit": 0,
+            "exit": 0,
+            "ok": true,
+            "output_sha256": "409dc9ae3775394e3d1aae48429402d68cda0d1754631391d78d56fa140e1689"
+          },
+          {
+            "label": "mini-01-bisect-the-regression: starter-tests",
+            "command": "npm",
+            "args": [
+              "test"
+            ],
+            "expected_exit": 1,
+            "exit": 1,
+            "ok": true,
+            "output_sha256": "8e41741daf1621dad0f20ccbf82bf2228d220311b3653f329d7b74a21fb3ff39"
+          },
+          {
+            "label": "mini-01-bisect-the-regression: starter-start",
+            "command": "node",
+            "args": [
+              "src/find-regression.js"
+            ],
+            "expected_exit": 1,
+            "exit": 1,
+            "ok": true,
+            "output_sha256": "86d940f649e3eb5ec08fcd95e97f4589653f31bdfae6bdf59b8eadfd3149f85e"
+          },
+          {
+            "label": "mini-02-commit-message-linter: solution-tests",
+            "command": "npm",
+            "args": [
+              "test"
+            ],
+            "expected_exit": 0,
+            "exit": 0,
+            "ok": true,
+            "output_sha256": "55f01c6e304530328295cf7f97be32178c1282fec235176032472cf9734b4605"
+          },
+          {
+            "label": "mini-02-commit-message-linter: starter-tests",
+            "command": "npm",
+            "args": [
+              "test"
+            ],
+            "expected_exit": 1,
+            "exit": 1,
+            "ok": true,
+            "output_sha256": "3d262fe9483eb5ad25f5f107ebd046a2b6aca2f1ec0492739ffc035c13401603"
+          },
+          {
+            "label": "mini-02-commit-message-linter: starter-start",
+            "command": "node",
+            "args": [
+              "src/cli.js",
+              "--edit",
+              "examples/good.txt"
+            ],
+            "expected_exit": 2,
+            "exit": 2,
+            "ok": true,
+            "output_sha256": "34d2d8ac52bc3743d40456a95be851cd9309440c7a3f228e59e4a5b74a971872"
+          }
+        ]
+      },
+      "capstone": {
+        "version": 2,
+        "fingerprint": "86e79e306d2b498051fdf96c2b4c49b15ba26d29bea84cff187766c9d5ce65b3",
+        "at": "2026-11-18T09:37:30Z",
+        "ok": true,
+        "checks": [
+          {
+            "label": "capstone: solution-tests",
+            "command": "npm",
+            "args": [
+              "test"
+            ],
+            "expected_exit": 0,
+            "exit": 0,
+            "ok": true,
+            "output_sha256": "ff52e22d1af5309c636f9ae975a1cc1456c6eff1e8802367c2840c4985485984"
+          },
+          {
+            "label": "capstone: integration",
+            "command": "npm",
+            "args": [
+              "run",
+              "test:integration"
+            ],
+            "expected_exit": 0,
+            "exit": 0,
+            "ok": true,
+            "output_sha256": "ef2f9afd398b5e2024f2a1ce7bfd3943b5d93f3561a66be7a82bc0475b2efe8b"
+          }
+        ]
+      },
+      "finalize": {
+        "version": 2,
+        "fingerprint": "ff491a54ea1bfc35954cd5e126da1182b111ca96c6f784331ed036df17c5a881",
+        "at": "2026-11-18T09:38:16Z",
+        "ok": true,
+        "checks": [
+          {
+            "label": "site build",
+            "command": "npm",
+            "args": [
+              "--prefix",
+              "site",
+              "run",
+              "build"
+            ],
+            "expected_exit": 0,
+            "exit": 0,
+            "ok": true,
+            "output_sha256": "aeb3aa20143d774072d09278e0dd5c22163b678c61f787e38ff9c77d9ec504ac"
+          },
+          {
+            "label": "site smoke",
+            "command": "npm",
+            "args": [
+              "--prefix",
+              "site",
+              "run",
+              "smoke"
+            ],
+            "expected_exit": 0,
+            "exit": 0,
+            "ok": true,
+            "output_sha256": "6d21954b7d8f94a14587a91becaada89eb92d763637c1a5e6f4ed880b711522d"
+          },
+          {
+            "label": "site manifest:check",
+            "command": "npm",
+            "args": [
+              "--prefix",
+              "site",
+              "run",
+              "manifest:check"
+            ],
+            "expected_exit": 0,
+            "exit": 0,
+            "ok": true,
+            "output_sha256": "9cf80b4d6837916eb7b42c75c5478750c54297762700cff81b192e0cd083e529"
+          }
+        ]
+      }
+    }
+  },
+  "reader_order": {
+    "digest": [
+      "04-digests/chacon-2014-pro-git-workstation-and-editor.md",
+      "04-digests/nodejs-packages-docs-workstation-and-editor.md"
+    ],
+    "repo-intel": [
+      "05-repo-intel/conventional-changelog-commitlint/commitlint-overview.md",
+      "05-repo-intel/conventional-changelog-commitlint/commitlint-architecture.md",
+      "05-repo-intel/conventional-changelog-commitlint/commitlint-findings.md",
+      "05-repo-intel/conventional-changelog-commitlint/commitlint-tech-and-services.md",
+      "05-repo-intel/conventional-changelog-commitlint/commitlint-takeaways.md",
+      "05-repo-intel/conventional-changelog-commitlint/commitlint-module-parser-and-lint.md",
+      "05-repo-intel/conventional-changelog-commitlint/commitlint-module-rules.md",
+      "05-repo-intel/conventional-changelog-commitlint/commitlint-module-config-loading.md",
+      "05-repo-intel/conventional-changelog-commitlint/commitlint-module-cli-and-hooks.md",
+      "05-repo-intel/conventional-changelog-commitlint/commitlint-module-build-and-infra.md",
+      "05-repo-intel/conventional-changelog-commitlint/commitlint-pattern-rules-as-data.md",
+      "05-repo-intel/conventional-changelog-commitlint/commitlint-pattern-one-checker-two-gates.md",
+      "05-repo-intel/conventional-changelog-commitlint/commitlint-pattern-layered-version-pinning.md"
+    ]
+  }
+}

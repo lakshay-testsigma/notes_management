@@ -1,0 +1,10 @@
+flowchart LR
+  A[Page loads] --> B{Test the feature}
+  B -->|CSS rule| C["@supports (prop: value)"]
+  B -->|CSS in JS| D["CSS.supports(prop, value)"]
+  B -->|JS member| E["'x' in navigator"]
+  C --> F{Supported?}
+  D --> F
+  E --> F
+  F -->|yes| G[Enhanced code]
+  F -->|no| H[Fallback code]

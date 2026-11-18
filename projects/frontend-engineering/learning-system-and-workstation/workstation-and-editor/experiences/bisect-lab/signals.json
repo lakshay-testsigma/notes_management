@@ -1,0 +1,14 @@
+{
+  "topic": "git bisect",
+  "level": "beginner",
+  "signals": {
+    "complexity": 3,
+    "concepts": 3,
+    "dependent_steps": 4,
+    "changes_over_time": false,
+    "spatial": false,
+    "parameters": 2,
+    "decision_paths": 2,
+    "benefit": "high"
+  }
+}

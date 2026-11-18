@@ -1,0 +1,3264 @@
+{
+  "schema": 1,
+  "id": "frontend-engineering/learning-system-and-workstation/how-to-learn-frontend",
+  "title": "How to learn frontend (and keep improving)",
+  "slug": "how-to-learn-frontend",
+  "domain": "frontend-engineering",
+  "subdomain": "learning-system-and-workstation",
+  "depth": "standard",
+  "created_at": "2026-11-17T17:49:13Z",
+  "updated_at": "2026-11-18T09:43:11Z",
+  "paths": {
+    "state": "state/topics/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend",
+    "vault": "vault/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend",
+    "lessons": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend",
+    "projects": "projects/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend",
+    "cache": ".cache"
+  },
+  "profile": {
+    "lesson_pages": [
+      5,
+      7
+    ],
+    "mini_projects": 2,
+    "digests": [
+      2,
+      3
+    ],
+    "repos": [
+      1,
+      1
+    ],
+    "capstone": true,
+    "sources": [
+      5,
+      12
+    ],
+    "recall_cards": 8
+  },
+  "plan": {
+    "summary": "A repeatable system for learning frontend: read primary sources, build small demos, measure them in DevTools, explain them, and check browser support before shipping.",
+    "prerequisites": [
+      {
+        "concept": "Browser developer tools",
+        "known": false,
+        "bridge": "DevTools let you inspect and measure a live page."
+      },
+      {
+        "concept": "Web standards",
+        "known": false,
+        "bridge": "WHATWG and W3C write the specs that browsers implement."
+      },
+      {
+        "concept": "Git and GitHub",
+        "known": false,
+        "bridge": "Git tracks code changes; GitHub hosts repositories and issues."
+      }
+    ],
+    "outcomes": [
+      "Explain the read, build, measure, explain loop and run it on one feature.",
+      "Explain why primary sources beat tutorials, and find the right spec section.",
+      "Decide whether a web feature can ship today using Baseline and caniuse.",
+      "Build a feature check that falls back when an API is missing.",
+      "Build a weekly routine of practice, news, code reading and teaching."
+    ],
+    "lesson_outline": [
+      {
+        "order": 1,
+        "slug": "the-learning-loop",
+        "title": "The learning loop: read, build, measure, explain",
+        "activity": "OrderSteps",
+        "complexity": "basic",
+        "importance": "core",
+        "spatial": false,
+        "visual": null,
+        "visual_reason": "The four-step loop is the roadmap's own convention; no vetted source states it, so a worked prose trace plus OrderSteps practice is used instead of a drawn cycle.",
+        "experience": {
+          "id": "the-learning-loop",
+          "concept_ids": [
+            "learning-loop"
+          ],
+          "mode": "static",
+          "override_reason": "The cycle is the roadmap convention without a vetted source, so no video may draw it.",
+          "signals": {
+            "complexity": 2,
+            "concepts": 1,
+            "dependent_steps": 4,
+            "changes_over_time": false,
+            "spatial": false,
+            "parameters": 0,
+            "decision_paths": 1,
+            "benefit": "medium"
+          }
+        }
+      },
+      {
+        "order": 2,
+        "slug": "primary-sources-first",
+        "title": "Primary sources over tutorials",
+        "activity": "MatchPairs",
+        "complexity": "basic",
+        "importance": "core",
+        "spatial": false,
+        "visual": "Timeline",
+        "visual_reason": "TC39 stages 0 to 4 are an ordered maturity sequence stated by the process document.",
+        "interaction_goal": "Step through the stages and say at which stage a feature is safe to rely on.",
+        "experience": {
+          "id": "primary-sources-first",
+          "concept_ids": [
+            "primary-sources",
+            "spec-maturity-stages"
+          ],
+          "signals": {
+            "complexity": 1,
+            "concepts": 1,
+            "dependent_steps": 0,
+            "changes_over_time": false,
+            "spatial": false,
+            "parameters": 0,
+            "decision_paths": 1,
+            "benefit": "low"
+          }
+        }
+      },
+      {
+        "order": 3,
+        "slug": "can-i-ship-it",
+        "title": "Can I ship it? Baseline and caniuse",
+        "activity": "Quiz",
+        "complexity": "intermediate",
+        "importance": "core",
+        "spatial": false,
+        "visual": "Experience",
+        "visual_reason": "Baseline status changes when browser support and elapsed months change; the learner changes them and watches the label move.",
+        "interaction_goal": "Toggle core-browser support and months since newly available; predict the Baseline label.",
+        "experience": {
+          "id": "baseline-status-lab",
+          "concept_ids": [
+            "baseline-and-caniuse",
+            "baseline-lifecycle",
+            "caniuse-tables"
+          ],
+          "signals": {
+            "complexity": 3,
+            "concepts": 3,
+            "dependent_steps": 2,
+            "changes_over_time": true,
+            "spatial": false,
+            "parameters": 2,
+            "decision_paths": 1,
+            "benefit": "high"
+          }
+        }
+      },
+      {
+        "order": 4,
+        "slug": "feature-detection-and-polyfills",
+        "title": "Feature detection, polyfills and experimental features",
+        "activity": "PredictReveal",
+        "complexity": "intermediate",
+        "importance": "core",
+        "spatial": false,
+        "visual": "Experience",
+        "visual_reason": "Toggling simulated browser support and watching which branch of the detection code runs shows progressive enhancement directly.",
+        "interaction_goal": "Turn an API on or off in a simulated browser and predict which code path renders.",
+        "experience": {
+          "id": "feature-detect-lab",
+          "concept_ids": [
+            "feature-detection",
+            "polyfills-when-needed",
+            "experimental-features"
+          ],
+          "signals": {
+            "complexity": 3,
+            "concepts": 3,
+            "dependent_steps": 2,
+            "changes_over_time": false,
+            "spatial": false,
+            "parameters": 2,
+            "decision_paths": 2,
+            "benefit": "high"
+          }
+        }
+      },
+      {
+        "order": 5,
+        "slug": "read-other-peoples-code",
+        "title": "Read other people's code",
+        "activity": "PredictReveal",
+        "complexity": "intermediate",
+        "importance": "core",
+        "spatial": false,
+        "visual": "CodeWalkthrough",
+        "visual_reason": "Stepping line by line through real Preact source shows how to read a library.",
+        "interaction_goal": "Step through a small Preact source function and predict the value it returns.",
+        "experience": {
+          "id": "read-other-peoples-code",
+          "concept_ids": [
+            "reading-source-code"
+          ],
+          "mode": "static",
+          "override_reason": "CodeWalkthrough already steps through the code line by line, so a separate video adds no learning value.",
+          "signals": {
+            "complexity": 3,
+            "concepts": 2,
+            "dependent_steps": 3,
+            "changes_over_time": false,
+            "spatial": false,
+            "parameters": 0,
+            "decision_paths": 1,
+            "benefit": "medium"
+          }
+        }
+      },
+      {
+        "order": 6,
+        "slug": "a-weekly-practice-routine",
+        "title": "A weekly routine: practice and staying current",
+        "activity": "SortBuckets",
+        "complexity": "basic",
+        "importance": "core",
+        "spatial": false,
+        "visual": null,
+        "visual_reason": "A basic routine needs a short list and a sorting activity, not a drawing; cadences are roadmap advice, not sourced data.",
+        "experience": {
+          "id": "a-weekly-practice-routine",
+          "concept_ids": [
+            "staying-current",
+            "practice-platforms"
+          ],
+          "signals": {
+            "complexity": 2,
+            "concepts": 2,
+            "dependent_steps": 0,
+            "changes_over_time": false,
+            "spatial": false,
+            "parameters": 0,
+            "decision_paths": 1,
+            "benefit": "medium"
+          }
+        }
+      },
+      {
+        "order": 7,
+        "slug": "build-in-public-and-teach",
+        "title": "Build in public and teach",
+        "activity": "Quiz",
+        "complexity": "intermediate",
+        "importance": "core",
+        "spatial": false,
+        "visual": "Diagram",
+        "visual_reason": "The GitHub Open Source Guide gives an ordered path to a first contribution; a diagram shows it.",
+        "interaction_goal": "Trace a first contribution from README and CONTRIBUTING to issue to pull request.",
+        "experience": {
+          "id": "build-in-public-and-teach",
+          "concept_ids": [
+            "build-in-public",
+            "reproducible-bug-report"
+          ],
+          "signals": {
+            "complexity": 2,
+            "concepts": 1,
+            "dependent_steps": 2,
+            "changes_over_time": false,
+            "spatial": false,
+            "parameters": 0,
+            "decision_paths": 1,
+            "benefit": "medium"
+          }
+        }
+      }
+    ],
+    "mini_projects": [
+      {
+        "n": 1,
+        "slug": "baseline-checker",
+        "use_case": "A frontend team lead pastes a list of CSS and JS features and gets each one's support and Baseline-style status from MDN browser-compat-data, to decide what can ship without fallbacks."
+      },
+      {
+        "n": 2,
+        "slug": "share-button-fallback",
+        "use_case": "A blog adds a Share button that uses the Web Share API where it exists and falls back to copy-to-clipboard everywhere else."
+      }
+    ],
+    "digest_targets": 2,
+    "repo_targets": 1,
+    "capstone": {
+      "name": "TIL learning journal",
+      "problem": "A developer working through a long roadmap needs one web app to log a today-I-learned note per item, link its primary sources, show the Baseline status of web features it mentions, and surface notes due for review."
+    },
+    "learner": {
+      "experience": "software developer",
+      "known": [
+        "basic programming"
+      ],
+      "goals": [
+        "master frontend engineering end to end from the N1 roadmap",
+        "learn visually and by experimenting with simulations",
+        "keep improving after the roadmap ends"
+      ]
+    },
+    "visual_policy": "adaptive",
+    "visual_first": true,
+    "multi_stage": false,
+    "experience_policy": "adaptive",
+    "curriculum": {
+      "schema": 1,
+      "scope": "How a developer learns frontend and keeps improving: the learning loop, primary sources, browser support literacy, feature detection, staying current, practice, code reading and teaching.",
+      "max_depth": 3,
+      "max_concepts": 30,
+      "concepts": [
+        {
+          "id": "learning-loop",
+          "title": "Learning loop: read, build, measure, explain",
+          "parent": null,
+          "complexity": "basic",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [
+            "learning-loop-read-build-measure-explain"
+          ],
+          "source_ids": [
+            "mdn-frontend-curriculum"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend/01-the-learning-loop.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": []
+        },
+        {
+          "id": "primary-sources",
+          "title": "Primary sources over tutorials",
+          "parent": null,
+          "complexity": "basic",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [
+            "primary-sources-over-tutorials"
+          ],
+          "source_ids": [
+            "mdn-frontend-curriculum",
+            "tc39-process-document"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend/02-primary-sources-first.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": []
+        },
+        {
+          "id": "spec-maturity-stages",
+          "title": "Spec maturity stages (TC39 Stage 0 to 4)",
+          "parent": "primary-sources",
+          "complexity": "basic",
+          "importance": "supporting",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [
+            "tc39-process-document"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend/02-primary-sources-first.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": [
+            "primary-sources"
+          ]
+        },
+        {
+          "id": "baseline-and-caniuse",
+          "title": "Browser support literacy: Baseline and caniuse",
+          "parent": null,
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [
+            "browser-support-literacy-baseline-caniuse"
+          ],
+          "source_ids": [
+            "web-dev-baseline-docs",
+            "caniuse-docs",
+            "mdn-browser-compat-data-repo"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend/03-can-i-ship-it.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": []
+        },
+        {
+          "id": "baseline-lifecycle",
+          "title": "Baseline lifecycle: limited, newly, widely available",
+          "parent": "baseline-and-caniuse",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [
+            "web-dev-baseline-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend/03-can-i-ship-it.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": [
+            "baseline-and-caniuse"
+          ]
+        },
+        {
+          "id": "caniuse-tables",
+          "title": "Reading caniuse support tables",
+          "parent": "baseline-and-caniuse",
+          "complexity": "basic",
+          "importance": "supporting",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [
+            "caniuse-docs",
+            "mdn-browser-compat-data-repo"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend/03-can-i-ship-it.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            },
+            {
+              "path": "vault/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend/concepts/caniuse-tables-how-to-learn-frontend.md",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": [
+            "baseline-and-caniuse"
+          ]
+        },
+        {
+          "id": "feature-detection",
+          "title": "Feature detection, polyfills and experimental features",
+          "parent": null,
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [
+            "feature-detection-polyfills-experimental-features"
+          ],
+          "source_ids": [
+            "mdn-feature-detection-guide",
+            "chrome-origin-trials-docs",
+            "browserslist-browserslist-repo",
+            "sansec-polyfill-io-blog"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend/04-feature-detection-and-polyfills.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": [
+            "baseline-and-caniuse"
+          ]
+        },
+        {
+          "id": "polyfills-when-needed",
+          "title": "Polyfills only when needed, and their supply-chain risk",
+          "parent": "feature-detection",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [
+            "mdn-feature-detection-guide",
+            "browserslist-browserslist-repo",
+            "sansec-polyfill-io-blog"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend/04-feature-detection-and-polyfills.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            },
+            {
+              "path": "vault/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend/concepts/polyfills-when-needed-how-to-learn-frontend.md",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": [
+            "feature-detection"
+          ]
+        },
+        {
+          "id": "experimental-features",
+          "title": "Experimental features and origin trials",
+          "parent": "feature-detection",
+          "complexity": "basic",
+          "importance": "supporting",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [
+            "chrome-origin-trials-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend/04-feature-detection-and-polyfills.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": [
+            "feature-detection"
+          ]
+        },
+        {
+          "id": "progressive-enhancement-vs-graceful-degradation",
+          "title": "Progressive enhancement vs graceful degradation",
+          "parent": "feature-detection",
+          "complexity": "basic",
+          "importance": "supporting",
+          "disposition": "deferred",
+          "reason": "Definitions were read live on MDN Glossary pages, but the 12-source ceiling was reached; pages explain feature detection fallbacks without naming the two strategies. Deferred to a later topic with a free source slot.",
+          "roadmap_items": [],
+          "source_ids": [],
+          "coverage": []
+        },
+        {
+          "id": "corejs-polyfill-strategy",
+          "title": "core-js polyfill strategy",
+          "parent": "polyfills-when-needed",
+          "complexity": "basic",
+          "importance": "supporting",
+          "disposition": "deferred",
+          "reason": "The core-js README did not load and Babel claims came only from a search snippet; unverified, so not taught.",
+          "roadmap_items": [],
+          "source_ids": [],
+          "coverage": []
+        },
+        {
+          "id": "browser-test-channels",
+          "title": "Browser test channels: Canary, Nightly, Technology Preview, flags",
+          "parent": "experimental-features",
+          "complexity": "basic",
+          "importance": "supporting",
+          "disposition": "deferred",
+          "reason": "Only a Chrome search snippet was found; no live verified page for Nightly, Safari Technology Preview or flags within the source ceiling.",
+          "roadmap_items": [],
+          "source_ids": [],
+          "coverage": []
+        },
+        {
+          "id": "staying-current",
+          "title": "Staying current: release notes, blogs, surveys",
+          "parent": null,
+          "complexity": "basic",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [
+            "stay-current-newsletters-podcasts-surveys"
+          ],
+          "source_ids": [
+            "mdn-frontend-curriculum",
+            "stateofjs-2025-survey"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend/06-a-weekly-practice-routine.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": []
+        },
+        {
+          "id": "practice-platforms",
+          "title": "Practice and interview prep",
+          "parent": null,
+          "complexity": "basic",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [
+            "practice-platforms-interview-prep"
+          ],
+          "source_ids": [
+            "mdn-frontend-curriculum"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend/06-a-weekly-practice-routine.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": []
+        },
+        {
+          "id": "reading-source-code",
+          "title": "Reading other people's code",
+          "parent": null,
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [
+            "read-other-people-s-code"
+          ],
+          "source_ids": [
+            "preactjs-preact-repo",
+            "mdn-browser-compat-data-repo"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend/05-read-other-peoples-code.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": []
+        },
+        {
+          "id": "build-in-public",
+          "title": "Build in public and teach",
+          "parent": null,
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [
+            "build-in-public-teach"
+          ],
+          "source_ids": [
+            "github-opensource-guide-contribute",
+            "mdn-frontend-curriculum"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend/07-build-in-public-and-teach.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": []
+        },
+        {
+          "id": "reproducible-bug-report",
+          "title": "Write a bug report with steps to reproduce",
+          "parent": "build-in-public",
+          "complexity": "basic",
+          "importance": "supporting",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [
+            "github-opensource-guide-contribute"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend/07-build-in-public-and-teach.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": [
+            "build-in-public"
+          ]
+        }
+      ],
+      "discovery": [
+        {
+          "round": 1,
+          "frontier": [
+            "learning-loop",
+            "primary-sources",
+            "baseline-and-caniuse",
+            "feature-detection",
+            "staying-current",
+            "practice-platforms",
+            "reading-source-code",
+            "build-in-public"
+          ],
+          "source_ids": [
+            "mdn-frontend-curriculum",
+            "web-dev-baseline-docs",
+            "tc39-process-document",
+            "stateofjs-2025-survey",
+            "chrome-origin-trials-docs",
+            "mdn-feature-detection-guide",
+            "sansec-polyfill-io-blog",
+            "preactjs-preact-repo",
+            "mdn-browser-compat-data-repo"
+          ],
+          "added": [
+            "learning-loop",
+            "primary-sources",
+            "baseline-and-caniuse",
+            "feature-detection",
+            "staying-current",
+            "practice-platforms",
+            "reading-source-code",
+            "build-in-public",
+            "spec-maturity-stages",
+            "baseline-lifecycle",
+            "caniuse-tables",
+            "polyfills-when-needed",
+            "experimental-features"
+          ],
+          "note": "Roots seeded from roadmap section 00.1; web-features repo rejected (<1000 stars); zustand dropped (no named adopter)."
+        },
+        {
+          "round": 2,
+          "frontier": [
+            "learning-loop",
+            "practice-platforms",
+            "build-in-public",
+            "staying-current",
+            "reading-source-code",
+            "spec-maturity-stages",
+            "baseline-lifecycle",
+            "caniuse-tables",
+            "polyfills-when-needed",
+            "experimental-features",
+            "feature-detection"
+          ],
+          "source_ids": [
+            "mdn-frontend-curriculum",
+            "stateofjs-2025-survey",
+            "preactjs-preact-repo",
+            "github-opensource-guide-contribute",
+            "caniuse-docs",
+            "browserslist-browserslist-repo",
+            "tc39-process-document",
+            "web-dev-baseline-docs"
+          ],
+          "added": [
+            "progressive-enhancement-vs-graceful-degradation",
+            "corejs-polyfill-strategy",
+            "browser-test-channels"
+          ],
+          "note": "12-source ceiling reached. Unsupported roadmap specifics (named newsletters, named practice platforms, blogging, the read-build-measure-explain framing as a sourced method) are taught as the roadmap convention, not as sourced claims. Three children deferred."
+        },
+        {
+          "round": 3,
+          "frontier": [
+            "build-in-public"
+          ],
+          "source_ids": [
+            "github-opensource-guide-contribute"
+          ],
+          "added": [
+            "reproducible-bug-report"
+          ],
+          "note": "Coverage audit round 2 verified opensource.guide How to contribute > How to submit a contribution > Communicating effectively > Give context."
+        },
+        {
+          "round": 4,
+          "frontier": [
+            "reproducible-bug-report"
+          ],
+          "source_ids": [
+            "github-opensource-guide-contribute"
+          ],
+          "added": [],
+          "stop_reason": "budget-limit",
+          "note": "Leaf confirmed in the same guide section; no further in-scope children. 12-source ceiling reached; three children remain deferred (see their reasons)."
+        }
+      ]
+    }
+  },
+  "stages": [
+    {
+      "id": "intake",
+      "wave": 0,
+      "skill": "learn-intake",
+      "status": "done",
+      "scope": "required",
+      "started_at": "2026-11-17T17:49:24Z",
+      "finished_at": "2026-11-18T09:41:45Z",
+      "attempts": 1,
+      "units": [],
+      "note": "",
+      "continue_after_failure": false,
+      "validation": {
+        "version": 2,
+        "fingerprint": "42b804329587f07e6b6cdc441c555bcb3b7faf61b0d94e2fd3375217397fb712",
+        "at": "2026-11-18T09:41:45Z",
+        "forced": false
+      }
+    },
+    {
+      "id": "research",
+      "wave": 1,
+      "skill": "learn-research",
+      "status": "done",
+      "scope": "required",
+      "started_at": "2026-11-17T17:51:16Z",
+      "finished_at": "2026-11-18T09:42:03Z",
+      "attempts": 1,
+      "units": [
+        {
+          "id": "discovery-01-learning-habits",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "discovery-01-browser-support",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "discovery-01-code-and-repos",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "discovery-02-habits-and-code",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "discovery-02-support-tooling",
+          "status": "done",
+          "handoff": null
+        }
+      ],
+      "note": "",
+      "continue_after_failure": false,
+      "validation": {
+        "version": 2,
+        "fingerprint": "44e019f979e2e25b26ba4aa9b3fbc3617ffccee3b2b629668f91d6e13870975f",
+        "at": "2026-11-18T09:42:03Z",
+        "forced": false
+      }
+    },
+    {
+      "id": "brief",
+      "wave": 1,
+      "skill": "learn-brief",
+      "status": "done",
+      "scope": "required",
+      "started_at": "2026-11-17T17:58:36Z",
+      "finished_at": "2026-11-18T09:42:06Z",
+      "attempts": 1,
+      "units": [],
+      "note": "",
+      "continue_after_failure": false,
+      "validation": {
+        "version": 2,
+        "fingerprint": "61160aedafe1cf331cd71abf6fda023d5531c353f148c83df9c27a1f1fcc99e8",
+        "at": "2026-11-18T09:42:06Z",
+        "forced": false
+      }
+    },
+    {
+      "id": "digest",
+      "wave": 2,
+      "skill": "learn-digest",
+      "status": "done",
+      "scope": "required",
+      "started_at": "2026-11-17T17:59:46Z",
+      "finished_at": "2026-11-18T09:42:10Z",
+      "attempts": 1,
+      "units": [
+        {
+          "id": "web-dev-baseline-docs",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "mdn-feature-detection-guide",
+          "status": "done",
+          "handoff": null
+        }
+      ],
+      "note": "",
+      "continue_after_failure": false,
+      "validation": {
+        "version": 2,
+        "fingerprint": "7d4ada53dfc5b72b8271730025ec3e15c2d353d6b0f78bed2ed397075c26d54f",
+        "at": "2026-11-18T09:42:10Z",
+        "forced": false
+      }
+    },
+    {
+      "id": "repo-intel",
+      "wave": 2,
+      "skill": "learn-repo-intel",
+      "status": "done",
+      "scope": "required",
+      "started_at": "2026-11-17T17:59:47Z",
+      "finished_at": "2026-11-18T09:42:13Z",
+      "attempts": 1,
+      "units": [
+        {
+          "id": "mdn-browser-compat-data-scout",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "mdn-browser-compat-data-module-schema-and-types",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "mdn-browser-compat-data-module-data-linter",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "mdn-browser-compat-data-module-build-pipeline",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "mdn-browser-compat-data-module-consumer-api",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "mdn-browser-compat-data-module-build-and-infra",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "mdn-browser-compat-data-synthesis",
+          "status": "done",
+          "handoff": null
+        }
+      ],
+      "note": "",
+      "continue_after_failure": false,
+      "validation": {
+        "version": 2,
+        "fingerprint": "ed3bbc069b93fcdbf530fa46bfa877bbb1398eb1399623c6b2356c1d2f8b08fa",
+        "at": "2026-11-18T09:42:13Z",
+        "forced": false
+      }
+    },
+    {
+      "id": "lesson",
+      "wave": 3,
+      "skill": "learn-site",
+      "status": "done",
+      "scope": "required",
+      "started_at": "2026-11-17T19:13:12Z",
+      "finished_at": "2026-11-18T09:42:17Z",
+      "attempts": 4,
+      "units": [],
+      "note": "",
+      "continue_after_failure": false,
+      "history": [
+        {
+          "at": "2026-11-17T18:38:13Z",
+          "status": "done",
+          "validation": {
+            "version": 2,
+            "fingerprint": "e6cb008e3f1c69f9e1f05ffd382a0b3239f7bb2f7d829adb62374c9af36b9929",
+            "at": "2026-11-17T18:21:27Z",
+            "forced": false
+          },
+          "units": [
+            {
+              "id": "experience-baseline-status-lab",
+              "status": "done",
+              "handoff": null
+            },
+            {
+              "id": "experience-feature-detect-lab",
+              "status": "done",
+              "handoff": null
+            },
+            {
+              "id": "pages-01-03",
+              "status": "done",
+              "handoff": null
+            },
+            {
+              "id": "pages-04-05",
+              "status": "done",
+              "handoff": null
+            },
+            {
+              "id": "pages-06-07",
+              "status": "done",
+              "handoff": null
+            },
+            {
+              "id": "concept-caniuse-tables",
+              "status": "done",
+              "handoff": null
+            },
+            {
+              "id": "concept-polyfills-when-needed",
+              "status": "done",
+              "handoff": null
+            }
+          ],
+          "note": ""
+        },
+        {
+          "at": "2026-11-17T18:38:31Z",
+          "status": "pending",
+          "units": [],
+          "note": ""
+        },
+        {
+          "at": "2026-11-17T18:39:07Z",
+          "status": "pending",
+          "units": [],
+          "note": ""
+        },
+        {
+          "at": "2026-11-17T19:00:25Z",
+          "status": "done",
+          "validation": {
+            "version": 2,
+            "fingerprint": "b2695f781f89ec63a886958b9c87a8299045af2571aa2b8e722ece4faf59bbc6",
+            "at": "2026-11-17T18:40:16Z",
+            "forced": false
+          },
+          "units": [
+            {
+              "id": "fix-page-07",
+              "status": "done",
+              "handoff": null
+            }
+          ],
+          "note": ""
+        },
+        {
+          "at": "2026-11-17T19:13:12Z",
+          "status": "done",
+          "validation": {
+            "version": 2,
+            "fingerprint": "3ab725157fc12f0f5f9b8c0408b6427dca28a1def7d550f2e8821a693ea42086",
+            "at": "2026-11-17T19:02:20Z",
+            "forced": false
+          },
+          "units": [
+            {
+              "id": "fix-pages-02-03-06",
+              "status": "done",
+              "handoff": null
+            },
+            {
+              "id": "fix-video-feature-detect-walkthrough",
+              "status": "done",
+              "handoff": null
+            }
+          ],
+          "note": ""
+        }
+      ],
+      "validation": {
+        "version": 2,
+        "fingerprint": "492107ca714cb95bc7325cd86e88b75af144b0406ce0cddfa5c228b647d713da",
+        "at": "2026-11-18T09:42:17Z",
+        "forced": false
+      }
+    },
+    {
+      "id": "mini-projects",
+      "wave": 3,
+      "skill": "learn-projects",
+      "status": "done",
+      "scope": "required",
+      "started_at": "2026-11-17T19:10:39Z",
+      "finished_at": "2026-11-18T09:42:39Z",
+      "attempts": 4,
+      "units": [],
+      "note": "",
+      "continue_after_failure": false,
+      "history": [
+        {
+          "at": "2026-11-17T18:39:31Z",
+          "status": "done",
+          "validation": {
+            "version": 2,
+            "fingerprint": "98df11259bcc9517a554df68054fc14c0949df91713adad57d783d19498f6e84",
+            "at": "2026-11-17T18:21:00Z",
+            "forced": false
+          },
+          "units": [
+            {
+              "id": "mini-01",
+              "status": "done",
+              "handoff": null
+            },
+            {
+              "id": "mini-02",
+              "status": "done",
+              "handoff": null
+            }
+          ],
+          "note": ""
+        },
+        {
+          "at": "2026-11-17T19:00:27Z",
+          "status": "done",
+          "validation": {
+            "version": 2,
+            "fingerprint": "983a4ce3e90cd581edf949c8e7b7699f56278b0f8e5115ce50c84864fb65b98a",
+            "at": "2026-11-17T18:39:55Z",
+            "forced": false
+          },
+          "units": [],
+          "note": ""
+        },
+        {
+          "at": "2026-11-17T19:10:38Z",
+          "status": "done",
+          "validation": {
+            "version": 2,
+            "fingerprint": "174f98f4d770e956a66686a4d1e6fba51e772e00b810d919306a7671d22a1db6",
+            "at": "2026-11-17T19:02:05Z",
+            "forced": false
+          },
+          "units": [
+            {
+              "id": "fix-readmes",
+              "status": "done",
+              "handoff": null
+            }
+          ],
+          "note": ""
+        }
+      ],
+      "validation": {
+        "version": 2,
+        "fingerprint": "d103f35033e1ce398b4492c9f00223ce778316bc97133eed8f59a477e22d3c83",
+        "at": "2026-11-18T09:42:39Z",
+        "forced": false
+      }
+    },
+    {
+      "id": "capstone",
+      "wave": 4,
+      "skill": "learn-capstone",
+      "status": "done",
+      "scope": "required",
+      "started_at": "2026-11-17T19:11:00Z",
+      "finished_at": "2026-11-18T09:42:48Z",
+      "attempts": 4,
+      "units": [],
+      "note": "",
+      "continue_after_failure": false,
+      "history": [
+        {
+          "at": "2026-11-17T18:40:17Z",
+          "status": "done",
+          "validation": {
+            "version": 2,
+            "fingerprint": "9ea18b7c48aa064260f7bb7b9ab368f335f815291ee185e78016f55919164dd3",
+            "at": "2026-11-17T18:35:05Z",
+            "forced": false
+          },
+          "units": [
+            {
+              "id": "capstone",
+              "status": "done",
+              "handoff": null
+            }
+          ],
+          "note": ""
+        },
+        {
+          "at": "2026-11-17T19:02:21Z",
+          "status": "done",
+          "validation": {
+            "version": 2,
+            "fingerprint": "b716b55171237d0eb5b31cef2a755b63831d09d9faf603d1b6e9e57c6bac5ecb",
+            "at": "2026-11-17T18:40:25Z",
+            "forced": false
+          },
+          "units": [],
+          "note": ""
+        },
+        {
+          "at": "2026-11-17T19:10:59Z",
+          "status": "done",
+          "validation": {
+            "version": 2,
+            "fingerprint": "29492f231cb16dac8cf9e7d1ad8afb9a5650295de8472a3710e077bce05fb2b3",
+            "at": "2026-11-17T19:02:28Z",
+            "forced": false
+          },
+          "units": [],
+          "note": ""
+        }
+      ],
+      "validation": {
+        "version": 2,
+        "fingerprint": "3449afd8fbedafe5418fee930d90d508f8eaadd669e7e989dec997181c1074bd",
+        "at": "2026-11-18T09:42:48Z",
+        "forced": false
+      }
+    },
+    {
+      "id": "notes",
+      "wave": 5,
+      "skill": "learn-notes",
+      "status": "done",
+      "scope": "required",
+      "started_at": "2026-11-17T19:02:30Z",
+      "finished_at": "2026-11-18T09:42:50Z",
+      "attempts": 3,
+      "units": [],
+      "note": "",
+      "continue_after_failure": false,
+      "history": [
+        {
+          "at": "2026-11-17T18:40:35Z",
+          "status": "done",
+          "validation": {
+            "version": 2,
+            "fingerprint": "569d56c6986f2ad9d6471268d7d5160e74ef5de2b657a6a39b8cbd7670c7d48d",
+            "at": "2026-11-17T18:36:23Z",
+            "forced": false
+          },
+          "units": [],
+          "note": ""
+        },
+        {
+          "at": "2026-11-17T19:02:29Z",
+          "status": "done",
+          "validation": {
+            "version": 2,
+            "fingerprint": "8824018b5113d128ff333d7c83d720280acabe1939a671176526eaaf382eb29c",
+            "at": "2026-11-17T18:40:38Z",
+            "forced": false
+          },
+          "units": [],
+          "note": ""
+        }
+      ],
+      "validation": {
+        "version": 2,
+        "fingerprint": "a6611a6774be1b7627c7d8753ccda20a42e01f1bb751dee22577328d4ea0ede4",
+        "at": "2026-11-18T09:42:50Z",
+        "forced": false
+      }
+    },
+    {
+      "id": "finalize",
+      "wave": 5,
+      "skill": "learn",
+      "status": "failed",
+      "scope": "required",
+      "started_at": "2026-11-17T19:13:21Z",
+      "finished_at": null,
+      "attempts": 3,
+      "units": [],
+      "note": "re-review blocked: harness/validator code changed after the 2026-11-17 passing reviews (fp 6fe5d1e0 -> 962d47d8); all other stages re-gated and finalize execution check passes; spawn cap 36/36 already used, so fresh content+projects reviews were not spawned",
+      "continue_after_failure": true,
+      "validation": {
+        "version": 2,
+        "fingerprint": "6fe5d1e05833d22fb792da47b872ff71fce8b01ba55a9dafdfc248e5ed6f95cc",
+        "at": "2026-11-17T19:25:21Z",
+        "forced": false
+      }
+    }
+  ],
+  "recall": {
+    "cards": {
+      "htlf-01": {
+        "box": 1,
+        "due": "2026-11-18",
+        "added": "2026-11-18",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      },
+      "htlf-02": {
+        "box": 1,
+        "due": "2026-11-18",
+        "added": "2026-11-18",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      },
+      "htlf-03": {
+        "box": 1,
+        "due": "2026-11-18",
+        "added": "2026-11-18",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      },
+      "htlf-04": {
+        "box": 1,
+        "due": "2026-11-18",
+        "added": "2026-11-18",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      },
+      "htlf-05": {
+        "box": 1,
+        "due": "2026-11-18",
+        "added": "2026-11-18",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      },
+      "htlf-06": {
+        "box": 1,
+        "due": "2026-11-18",
+        "added": "2026-11-18",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      },
+      "htlf-07": {
+        "box": 1,
+        "due": "2026-11-18",
+        "added": "2026-11-18",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      },
+      "htlf-08": {
+        "box": 1,
+        "due": "2026-11-18",
+        "added": "2026-11-18",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      },
+      "htlf-09": {
+        "box": 1,
+        "due": "2026-11-18",
+        "added": "2026-11-18",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      },
+      "htlf-10": {
+        "box": 1,
+        "due": "2026-11-18",
+        "added": "2026-11-18",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      },
+      "htlf-11": {
+        "box": 1,
+        "due": "2026-11-18",
+        "added": "2026-11-18",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      },
+      "htlf-12": {
+        "box": 1,
+        "due": "2026-11-18",
+        "added": "2026-11-18",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      },
+      "htlf-13": {
+        "box": 1,
+        "due": "2026-11-18",
+        "added": "2026-11-18",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      },
+      "htlf-14": {
+        "box": 1,
+        "due": "2026-11-18",
+        "added": "2026-11-18",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      },
+      "htlf-15": {
+        "box": 1,
+        "due": "2026-11-18",
+        "added": "2026-11-18",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      }
+    }
+  },
+  "log": [
+    {
+      "at": "2026-11-17T18:03:53Z",
+      "event": "unit-start",
+      "message": "unit mdn-browser-compat-data-module-build-and-infra",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-17T18:03:55Z",
+      "event": "unit-done",
+      "message": "unit mdn-browser-compat-data-module-build-pipeline",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-17T18:03:56Z",
+      "event": "unit-done",
+      "message": "unit mdn-browser-compat-data-module-consumer-api",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-17T18:04:45Z",
+      "event": "unit-done",
+      "message": "unit mdn-browser-compat-data-module-build-and-infra",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-17T18:04:53Z",
+      "event": "unit-add",
+      "message": "unit mdn-browser-compat-data-synthesis",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-17T18:04:54Z",
+      "event": "note",
+      "message": "SPAWN 14/36 (repo synthesis)."
+    },
+    {
+      "at": "2026-11-17T18:05:18Z",
+      "event": "unit-start",
+      "message": "unit mdn-browser-compat-data-synthesis",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-17T18:06:52Z",
+      "event": "visual",
+      "message": "added visual browser-compat-data-module-map"
+    },
+    {
+      "at": "2026-11-17T18:06:52Z",
+      "event": "visual",
+      "message": "added visual browser-compat-data-request-flow"
+    },
+    {
+      "at": "2026-11-17T18:08:10Z",
+      "event": "unit-done",
+      "message": "unit mdn-browser-compat-data-synthesis",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-17T18:08:24Z",
+      "event": "reader-order",
+      "message": "Imported explicit authored child-note sequence"
+    },
+    {
+      "at": "2026-11-17T18:08:25Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "digest"
+    },
+    {
+      "at": "2026-11-17T18:08:25Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-17T18:08:34Z",
+      "event": "note",
+      "message": "WAVE2 done: 2 digests, BCD repo-intel (8f942b4). Lookahead for 00.2 skipped to protect orchestrator context (14 returns so far)."
+    },
+    {
+      "at": "2026-11-17T18:08:34Z",
+      "event": "start",
+      "message": "attempt 1",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-17T18:08:34Z",
+      "event": "start",
+      "message": "attempt 1",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-17T18:08:35Z",
+      "event": "unit-add",
+      "message": "unit experience-baseline-status-lab",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-17T18:08:35Z",
+      "event": "unit-add",
+      "message": "unit experience-feature-detect-lab",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-17T18:08:36Z",
+      "event": "unit-add",
+      "message": "unit pages-01-03",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-17T18:08:36Z",
+      "event": "unit-add",
+      "message": "unit pages-04-05",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-17T18:08:37Z",
+      "event": "unit-add",
+      "message": "unit pages-06-07",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-17T18:08:37Z",
+      "event": "unit-add",
+      "message": "unit concept-caniuse-tables",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-17T18:08:38Z",
+      "event": "unit-add",
+      "message": "unit concept-polyfills-when-needed",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-17T18:08:38Z",
+      "event": "unit-add",
+      "message": "unit mini-01",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-17T18:08:39Z",
+      "event": "unit-add",
+      "message": "unit mini-02",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-17T18:09:34Z",
+      "event": "note",
+      "message": "SPAWN 18/36 (wave3 batch1: exp baseline-status-lab, exp feature-detect-lab, pages-01-03, mini-01). Queued: pages-04-05, pages-06-07, concept-caniuse-tables, concept-polyfills-when-needed, mini-02."
+    },
+    {
+      "at": "2026-11-17T18:09:36Z",
+      "event": "unit-start",
+      "message": "unit pages-01-03",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-17T18:11:05Z",
+      "event": "visual",
+      "message": "added visual tc39-stages-timeline"
+    },
+    {
+      "at": "2026-11-17T18:12:03Z",
+      "event": "unit-done",
+      "message": "unit pages-01-03",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-17T18:12:33Z",
+      "event": "visual",
+      "message": "added visual mini-01-flow-baseline-checker"
+    },
+    {
+      "at": "2026-11-17T18:12:34Z",
+      "event": "unit-done",
+      "message": "unit mini-01",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-17T18:12:42Z",
+      "event": "unit-start",
+      "message": "unit pages-04-05",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-17T18:13:06Z",
+      "event": "unit-done",
+      "message": "unit experience-baseline-status-lab",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-17T18:13:11Z",
+      "event": "unit-start",
+      "message": "unit pages-06-07",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-17T18:13:19Z",
+      "event": "unit-done",
+      "message": "unit experience-feature-detect-lab",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-17T18:13:29Z",
+      "event": "note",
+      "message": "SPAWN 21/36. Done: pages-01-03, mini-01, exp baseline-status-lab (stepper with fixed frames, not free toggles; storyboard guided video). Running: exp feature-detect-lab, pages-04-05, pages-06-07, concept-caniuse-tables. Queued: concept-polyfills-when-needed, mini-02."
+    },
+    {
+      "at": "2026-11-17T18:14:36Z",
+      "event": "visual",
+      "message": "added visual first-contribution-path"
+    },
+    {
+      "at": "2026-11-17T18:14:39Z",
+      "event": "write-note",
+      "message": "vault/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend/concepts/caniuse-tables-how-to-learn-frontend.md"
+    },
+    {
+      "at": "2026-11-17T18:14:40Z",
+      "event": "unit-done",
+      "message": "unit pages-06-07",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-17T18:14:44Z",
+      "event": "unit-done",
+      "message": "unit concept-caniuse-tables",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-17T18:15:01Z",
+      "event": "write-note",
+      "message": "vault/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend/concepts/polyfills-when-needed-how-to-learn-frontend.md"
+    },
+    {
+      "at": "2026-11-17T18:15:03Z",
+      "event": "unit-done",
+      "message": "unit concept-polyfills-when-needed",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-17T18:16:22Z",
+      "event": "visual",
+      "message": "added visual mini-02-flow-share-button-fallback"
+    },
+    {
+      "at": "2026-11-17T18:16:25Z",
+      "event": "unit-done",
+      "message": "unit mini-02",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-17T18:16:46Z",
+      "event": "visual",
+      "message": "added visual preact-create-element-walkthrough"
+    },
+    {
+      "at": "2026-11-17T18:16:51Z",
+      "event": "unit-done",
+      "message": "unit pages-04-05",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-17T18:18:12Z",
+      "event": "execution-check",
+      "message": "mini-projects: failed",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-17T18:18:33Z",
+      "event": "execution-check",
+      "message": "mini-projects: failed",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-17T18:21:00Z",
+      "event": "execution-check",
+      "message": "mini-projects: pass",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-17T18:21:00Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-17T18:21:07Z",
+      "event": "note",
+      "message": "mini-projects: workers omitted verification.json; orchestrator wrote it. Bumped vitest to 5.1.0 (tinypool critical), vite 8.3.8, @types/node 22.20.5; picomatch advisory has no fix, so audit uses --omit=dev (documented in READMEs). Gate passed."
+    },
+    {
+      "at": "2026-11-17T18:21:27Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-17T18:21:33Z",
+      "event": "start",
+      "message": "attempt 1",
+      "stage": "capstone"
+    },
+    {
+      "at": "2026-11-17T18:21:34Z",
+      "event": "unit-add",
+      "message": "unit capstone",
+      "stage": "capstone"
+    },
+    {
+      "at": "2026-11-17T18:21:35Z",
+      "event": "note",
+      "message": "WAVE3 done: lesson (7 pages, 2 concept notes, 2 experiences, 14 visuals; site build ok) + mini-projects gated. SPAWN 24/36 (capstone)."
+    },
+    {
+      "at": "2026-11-17T18:34:17Z",
+      "event": "visual",
+      "message": "added visual capstone-layers"
+    },
+    {
+      "at": "2026-11-17T18:34:17Z",
+      "event": "visual",
+      "message": "added visual capstone-request-flow"
+    },
+    {
+      "at": "2026-11-17T18:34:18Z",
+      "event": "visual",
+      "message": "added visual capstone-deployment"
+    },
+    {
+      "at": "2026-11-17T18:34:48Z",
+      "event": "execution-check",
+      "message": "capstone: pass",
+      "stage": "capstone"
+    },
+    {
+      "at": "2026-11-17T18:34:52Z",
+      "event": "unit-done",
+      "message": "unit capstone",
+      "stage": "capstone"
+    },
+    {
+      "at": "2026-11-17T18:35:04Z",
+      "event": "execution-check",
+      "message": "capstone: pass",
+      "stage": "capstone"
+    },
+    {
+      "at": "2026-11-17T18:35:05Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "capstone"
+    },
+    {
+      "at": "2026-11-17T18:35:11Z",
+      "event": "note",
+      "message": "WAVE4 capstone done (TIL journal, 40 tests, checks pass). SPAWN 24/36. Next: notes inline, then coverage audit (2 rounds), finalize."
+    },
+    {
+      "at": "2026-11-17T18:35:19Z",
+      "event": "start",
+      "message": "attempt 1",
+      "stage": "notes"
+    },
+    {
+      "at": "2026-11-17T18:36:17Z",
+      "event": "recall-sync",
+      "message": "14 added, 0 removed, 14 total"
+    },
+    {
+      "at": "2026-11-17T18:36:23Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "notes"
+    },
+    {
+      "at": "2026-11-17T18:36:24Z",
+      "event": "note",
+      "message": "notes done: final notes 499 words, 14 recall cards synced. Next: coverage audit round 1."
+    },
+    {
+      "at": "2026-11-17T18:36:40Z",
+      "event": "note",
+      "message": "SPAWN 25/36 (coverage audit round 1)."
+    },
+    {
+      "at": "2026-11-17T18:37:07Z",
+      "event": "note",
+      "message": "AUDIT round 1: 3 gaps, 0 added. browserslist already in concepts/polyfills-when-needed; progressive enhancement remains deferred (source lacks term); bug-reproduction unverified (no fetch) -> round 2 verifies. SPAWN 26/36 (audit round 2)."
+    },
+    {
+      "at": "2026-11-17T18:37:45Z",
+      "event": "plan",
+      "message": "plan fields set: summary, prerequisites, outcomes, lesson_outline, mini_projects, digest_targets, repo_targets, capstone, learner, visual_policy, visual_first, multi_stage, experience_policy, curriculum",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-17T18:37:54Z",
+      "event": "note",
+      "message": "AUDIT round 2: 1 gap, 1 added (reproducible-bug-report -> page 07). Page 04 failure-mode flag rejected: polyfill.io Depth block covers it. SPAWN 27/36 (fix page 07)."
+    },
+    {
+      "at": "2026-11-17T18:37:55Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-17T18:38:09Z",
+      "event": "execution-check",
+      "message": "research: pass",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-17T18:38:11Z",
+      "event": "gate-failed",
+      "message": "2 problems",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-17T18:38:13Z",
+      "event": "reset",
+      "message": "was done",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-17T18:38:18Z",
+      "event": "gate-failed",
+      "message": "2 problems",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-17T18:38:27Z",
+      "event": "plan",
+      "message": "plan fields set: summary, prerequisites, outcomes, lesson_outline, mini_projects, digest_targets, repo_targets, capstone, learner, visual_policy, visual_first, multi_stage, experience_policy, curriculum",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-17T18:38:28Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-17T18:38:30Z",
+      "event": "gate-failed",
+      "message": "2 problems",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-17T18:38:31Z",
+      "event": "reset",
+      "message": "was pending",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-17T18:38:36Z",
+      "event": "gate-failed",
+      "message": "2 problems",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-17T18:38:44Z",
+      "event": "plan",
+      "message": "plan fields set: summary, prerequisites, outcomes, lesson_outline, mini_projects, digest_targets, repo_targets, capstone, learner, visual_policy, visual_first, multi_stage, experience_policy, curriculum",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-17T18:38:46Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-17T18:38:56Z",
+      "event": "execution-check",
+      "message": "research: pass",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-17T18:38:57Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-17T18:38:59Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "brief"
+    },
+    {
+      "at": "2026-11-17T18:39:00Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "digest"
+    },
+    {
+      "at": "2026-11-17T18:39:02Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-17T18:39:07Z",
+      "event": "reset",
+      "message": "was pending",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-17T18:39:09Z",
+      "event": "start",
+      "message": "attempt 2",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-17T18:39:10Z",
+      "event": "unit-add",
+      "message": "unit fix-page-07",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-17T18:39:31Z",
+      "event": "reset",
+      "message": "was done",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-17T18:39:32Z",
+      "event": "start",
+      "message": "attempt 2",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-17T18:39:54Z",
+      "event": "execution-check",
+      "message": "mini-projects: pass",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-17T18:39:55Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-17T18:40:01Z",
+      "event": "unit-done",
+      "message": "unit fix-page-07",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-17T18:40:16Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-17T18:40:17Z",
+      "event": "reset",
+      "message": "was done",
+      "stage": "capstone"
+    },
+    {
+      "at": "2026-11-17T18:40:18Z",
+      "event": "start",
+      "message": "attempt 2",
+      "stage": "capstone"
+    },
+    {
+      "at": "2026-11-17T18:40:23Z",
+      "event": "execution-check",
+      "message": "capstone: pass",
+      "stage": "capstone"
+    },
+    {
+      "at": "2026-11-17T18:40:25Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "capstone"
+    },
+    {
+      "at": "2026-11-17T18:40:35Z",
+      "event": "reset",
+      "message": "was done",
+      "stage": "notes"
+    },
+    {
+      "at": "2026-11-17T18:40:36Z",
+      "event": "start",
+      "message": "attempt 2",
+      "stage": "notes"
+    },
+    {
+      "at": "2026-11-17T18:40:37Z",
+      "event": "recall-sync",
+      "message": "1 added, 0 removed, 15 total"
+    },
+    {
+      "at": "2026-11-17T18:40:38Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "notes"
+    },
+    {
+      "at": "2026-11-17T18:40:44Z",
+      "event": "note",
+      "message": "AUDIT done (2 rounds, 1 gap added). All stages re-gated through notes. Starting finalize."
+    },
+    {
+      "at": "2026-11-17T18:40:44Z",
+      "event": "start",
+      "message": "attempt 1",
+      "stage": "finalize"
+    },
+    {
+      "at": "2026-11-17T18:41:09Z",
+      "event": "execution-check",
+      "message": "finalize: failed",
+      "stage": "finalize"
+    },
+    {
+      "at": "2026-11-17T18:41:33Z",
+      "event": "execution-check",
+      "message": "finalize: failed",
+      "stage": "finalize"
+    },
+    {
+      "at": "2026-11-17T18:42:19Z",
+      "event": "note",
+      "message": "finalize: smoke flaky once (net::ERR_ABORTED on narration .wav of feature-detect-walkthrough composition when page closes); two reruns clean. Harness smoke treats aborted media preloads as failures."
+    },
+    {
+      "at": "2026-11-17T18:42:56Z",
+      "event": "execution-check",
+      "message": "finalize: pass",
+      "stage": "finalize"
+    },
+    {
+      "at": "2026-11-17T18:45:13Z",
+      "event": "note",
+      "message": "SPAWN 29/36 (verifiers content+projects). Preview at 127.0.0.1:4399 (stop: npx --prefix site astro preview stop). Review fingerprint 196adf68…"
+    },
+    {
+      "at": "2026-11-17T18:59:22Z",
+      "event": "note",
+      "message": "REVIEW 1 (fp 196adf68): content fix-needed (1 error brief Widely=no fallback; 8 warnings), projects fix-needed (1 error capstone-request-flow; 4 README warnings). Reviewer JSON returned session id as reviewer_run_id; real worker ids differ. Repairs: orchestrator brief/sources/findings cite; workers: pages 02/03/06, video feature-detect-walkthrough rebuild, project docs+diagram. Page 04/05 first-click-before-hydration = shared island issue, reported not fixed."
+    },
+    {
+      "at": "2026-11-17T18:59:42Z",
+      "event": "source-update",
+      "message": "updated caniuse-docs: verified_via",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-17T18:59:43Z",
+      "event": "source-update",
+      "message": "updated mdn-frontend-curriculum: verified_via",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-17T18:59:44Z",
+      "event": "source-update",
+      "message": "updated sansec-polyfill-io-blog: why_trusted, evidence.used_by",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-17T18:59:55Z",
+      "event": "source-update",
+      "message": "updated caniuse-docs: verified_via, why_trusted",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-17T19:00:08Z",
+      "event": "execution-check",
+      "message": "research: pass",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-17T19:00:17Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-17T19:00:19Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-17T19:00:21Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "brief"
+    },
+    {
+      "at": "2026-11-17T19:00:22Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "digest"
+    },
+    {
+      "at": "2026-11-17T19:00:24Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-17T19:00:25Z",
+      "event": "reset",
+      "message": "was done",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-17T19:00:26Z",
+      "event": "start",
+      "message": "attempt 3",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-17T19:00:27Z",
+      "event": "reset",
+      "message": "was done",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-17T19:00:27Z",
+      "event": "start",
+      "message": "attempt 3",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-17T19:00:28Z",
+      "event": "unit-add",
+      "message": "unit fix-pages-02-03-06",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-17T19:00:29Z",
+      "event": "unit-add",
+      "message": "unit fix-video-feature-detect-walkthrough",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-17T19:00:30Z",
+      "event": "unit-add",
+      "message": "unit fix-readmes",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-17T19:01:18Z",
+      "event": "note",
+      "message": "HANDOFF: SPAWN 32/36 (fix-pages-02-03-06, fix-video, fix-readmes running). Orchestrator fixed brief claims, how-it-works visual, final-notes key idea, findings citation, 3 source evidence entries; re-gated intake..repo-intel. Next: when fixes return -> done lesson, mini-projects, reset/check/done capstone, notes, check finalize, new review packet, 2 fresh reviewers (spawns 33-34), import with real worker ids, done finalize, stop preview."
+    },
+    {
+      "at": "2026-11-17T19:01:37Z",
+      "event": "unit-done",
+      "message": "unit fix-video-feature-detect-walkthrough",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-17T19:01:38Z",
+      "event": "unit-done",
+      "message": "unit fix-readmes",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-17T19:02:02Z",
+      "event": "unit-done",
+      "message": "unit fix-pages-02-03-06",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-17T19:02:04Z",
+      "event": "execution-check",
+      "message": "mini-projects: pass",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-17T19:02:05Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-17T19:02:20Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-17T19:02:21Z",
+      "event": "reset",
+      "message": "was done",
+      "stage": "capstone"
+    },
+    {
+      "at": "2026-11-17T19:02:22Z",
+      "event": "start",
+      "message": "attempt 3",
+      "stage": "capstone"
+    },
+    {
+      "at": "2026-11-17T19:02:27Z",
+      "event": "execution-check",
+      "message": "capstone: pass",
+      "stage": "capstone"
+    },
+    {
+      "at": "2026-11-17T19:02:28Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "capstone"
+    },
+    {
+      "at": "2026-11-17T19:02:29Z",
+      "event": "reset",
+      "message": "was done",
+      "stage": "notes"
+    },
+    {
+      "at": "2026-11-17T19:02:30Z",
+      "event": "start",
+      "message": "attempt 3",
+      "stage": "notes"
+    },
+    {
+      "at": "2026-11-17T19:02:32Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "notes"
+    },
+    {
+      "at": "2026-11-17T19:02:37Z",
+      "event": "start",
+      "message": "attempt 2",
+      "stage": "finalize"
+    },
+    {
+      "at": "2026-11-17T19:02:55Z",
+      "event": "execution-check",
+      "message": "finalize: pass",
+      "stage": "finalize"
+    },
+    {
+      "at": "2026-11-17T19:03:43Z",
+      "event": "note",
+      "message": "SPAWN 34/36 (review round 2: content + projects, fp cfec52dc). All stages re-gated; check finalize PASS. Import reviews with real worker ids (content ad4491eea76da3479, projects a8529eb43c9148adc), then validate --all, done finalize, stop preview (cd site && npx astro preview stop)."
+    },
+    {
+      "at": "2026-11-17T19:10:32Z",
+      "event": "note",
+      "message": "REVIEW 2 projects fix-needed: Node prereq -> 22.12 (+engines), esbuild non-force fix applied, mini-01-flow and capstone-layers diagrams redrawn and synced. Fixed by orchestrator."
+    },
+    {
+      "at": "2026-11-17T19:10:38Z",
+      "event": "reset",
+      "message": "was done",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-17T19:10:39Z",
+      "event": "start",
+      "message": "attempt 4",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-17T19:10:57Z",
+      "event": "execution-check",
+      "message": "mini-projects: pass",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-17T19:10:59Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-17T19:10:59Z",
+      "event": "reset",
+      "message": "was done",
+      "stage": "capstone"
+    },
+    {
+      "at": "2026-11-17T19:11:00Z",
+      "event": "start",
+      "message": "attempt 4",
+      "stage": "capstone"
+    },
+    {
+      "at": "2026-11-17T19:11:05Z",
+      "event": "execution-check",
+      "message": "capstone: pass",
+      "stage": "capstone"
+    },
+    {
+      "at": "2026-11-17T19:11:06Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "capstone"
+    },
+    {
+      "at": "2026-11-17T19:13:03Z",
+      "event": "note",
+      "message": "REVIEW 2 content fix-needed: feature-detect-lab booleans->strings (17), hint/prompt labels fixed, page 03 label wording, page 06 Depth block (roadmap extras: podcasts, State of CSS/HTML, 3-4 sources, interview task kinds, unendorsed). Shared: Reset simulation returns to current preset first frame; AlgorithmStepper shows index numbers; islands hydrate on visible; video caption check needs >=6-word first sentence."
+    },
+    {
+      "at": "2026-11-17T19:13:12Z",
+      "event": "reset",
+      "message": "was done",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-17T19:13:12Z",
+      "event": "start",
+      "message": "attempt 4",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-17T19:13:14Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-17T19:13:21Z",
+      "event": "start",
+      "message": "attempt 3",
+      "stage": "finalize"
+    },
+    {
+      "at": "2026-11-17T19:13:40Z",
+      "event": "execution-check",
+      "message": "finalize: pass",
+      "stage": "finalize"
+    },
+    {
+      "at": "2026-11-17T19:14:13Z",
+      "event": "note",
+      "message": "SPAWN 36/36 (final review round 3, fp 6fe5d1e0; content a3e8f419642d11864, projects afc80121d736a303f). Cap reached: if either is fix-needed, fail finalize with remaining findings (no more spawns)."
+    },
+    {
+      "at": "2026-11-17T19:25:14Z",
+      "event": "quality-review",
+      "message": "content: pass",
+      "stage": "finalize"
+    },
+    {
+      "at": "2026-11-17T19:25:15Z",
+      "event": "quality-review",
+      "message": "projects: pass",
+      "stage": "finalize"
+    },
+    {
+      "at": "2026-11-17T19:25:21Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "finalize"
+    },
+    {
+      "at": "2026-11-17T19:25:30Z",
+      "event": "note",
+      "message": "ROADMAP frontend: section 00.1 done; next 00.2. Follow-ups (non-blocking review warnings): final-notes two over-strong claims; first-contribution-path ordering wording; page 02 spec-section practice; mini-01 Unknown edge; capstone layers interface->domain edge; request-flow error arrow; engines range ^22.12||^24||>=26. Shared harness: AlgorithmStepper indices, hydrate-on-visible first click, Reset simulation scope, smoke aborts on media preload, video caption 6-word check."
+    },
+    {
+      "at": "2026-11-18T07:49:44Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-18T07:49:59Z",
+      "event": "execution-check",
+      "message": "research: pass",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T07:50:02Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T07:50:05Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "brief"
+    },
+    {
+      "at": "2026-11-18T07:50:10Z",
+      "event": "reader-order",
+      "message": "Imported explicit authored child-note sequence"
+    },
+    {
+      "at": "2026-11-18T07:50:14Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "digest"
+    },
+    {
+      "at": "2026-11-18T07:50:16Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T07:50:19Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T07:50:42Z",
+      "event": "execution-check",
+      "message": "mini-projects: pass",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-18T07:50:45Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-18T07:50:50Z",
+      "event": "execution-check",
+      "message": "capstone: pass",
+      "stage": "capstone"
+    },
+    {
+      "at": "2026-11-18T07:50:53Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "capstone"
+    },
+    {
+      "at": "2026-11-18T07:50:56Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "notes"
+    },
+    {
+      "at": "2026-11-18T07:51:36Z",
+      "event": "execution-check",
+      "message": "finalize: failed",
+      "stage": "finalize"
+    },
+    {
+      "at": "2026-11-18T07:51:40Z",
+      "event": "gate-failed",
+      "message": "3 problems",
+      "stage": "finalize"
+    },
+    {
+      "at": "2026-11-18T07:52:18Z",
+      "event": "execution-check",
+      "message": "finalize: failed",
+      "stage": "finalize"
+    },
+    {
+      "at": "2026-11-18T07:52:57Z",
+      "event": "execution-check",
+      "message": "finalize: pass",
+      "stage": "finalize"
+    },
+    {
+      "at": "2026-11-18T07:53:18Z",
+      "event": "fail",
+      "message": "re-review blocked: harness/validator code changed after the 2026-11-17 passing reviews (fp 6fe5d1e0 -> 962d47d8); all other stages re-gated and finalize execution check passes; spawn cap 36/36 already used, so fresh content+projects reviews were not spawned",
+      "stage": "finalize"
+    },
+    {
+      "at": "2026-11-18T07:53:19Z",
+      "event": "note",
+      "message": "SESSION 2026-11-18: re-gated intake..notes after harness change; fixed site/scripts/check-manifest.mjs (extensionless import) and smoke.mjs (ignore aborted media preloads). Finalize failed only for stale reviews at spawn cap."
+    },
+    {
+      "at": "2026-11-18T09:41:45Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-18T09:42:00Z",
+      "event": "execution-check",
+      "message": "research: pass",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T09:42:03Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T09:42:06Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "brief"
+    },
+    {
+      "at": "2026-11-18T09:42:07Z",
+      "event": "reader-order",
+      "message": "Imported explicit authored child-note sequence"
+    },
+    {
+      "at": "2026-11-18T09:42:10Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "digest"
+    },
+    {
+      "at": "2026-11-18T09:42:13Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T09:42:17Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T09:42:36Z",
+      "event": "execution-check",
+      "message": "mini-projects: pass",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-18T09:42:39Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-18T09:42:45Z",
+      "event": "execution-check",
+      "message": "capstone: pass",
+      "stage": "capstone"
+    },
+    {
+      "at": "2026-11-18T09:42:48Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "capstone"
+    },
+    {
+      "at": "2026-11-18T09:42:50Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "notes"
+    },
+    {
+      "at": "2026-11-18T09:43:11Z",
+      "event": "fail",
+      "message": "re-review blocked: harness/validator code changed after the 2026-11-17 passing reviews (fp 6fe5d1e0 -> 962d47d8); all other stages re-gated and finalize execution check passes; spawn cap 36/36 already used, so fresh content+projects reviews were not spawned",
+      "stage": "finalize"
+    }
+  ],
+  "roadmap": {
+    "id": "frontend",
+    "section": "00.1"
+  },
+  "quality": {
+    "executions": {
+      "research": {
+        "version": 2,
+        "fingerprint": "44e019f979e2e25b26ba4aa9b3fbc3617ffccee3b2b629668f91d6e13870975f",
+        "at": "2026-11-18T09:42:00Z",
+        "ok": true,
+        "checks": [
+          {
+            "label": "mdn-frontend-curriculum: https://developer.mozilla.org/en-US/curriculum/getting-started/soft-skills/",
+            "source": "mdn-frontend-curriculum",
+            "requested_url": "https://developer.mozilla.org/en-US/curriculum/getting-started/soft-skills/",
+            "ok": true,
+            "status": 200,
+            "bytes": 123502,
+            "sha256": "53229390acad503a8a9aa54102d8e7ee17abd7ecce4bcba6e33f05a782d6f8f3"
+          },
+          {
+            "label": "mdn-frontend-curriculum: https://developer.mozilla.org/en-US/curriculum/",
+            "source": "mdn-frontend-curriculum",
+            "requested_url": "https://developer.mozilla.org/en-US/curriculum/",
+            "ok": true,
+            "status": 200,
+            "bytes": 159115,
+            "sha256": "5f23ec18eb15d2eecf0a6aa9c7ff77fbeeea3b502d5bbfff36a260f008955f84"
+          },
+          {
+            "label": "web-dev-baseline-docs: https://web.dev/baseline",
+            "source": "web-dev-baseline-docs",
+            "requested_url": "https://web.dev/baseline",
+            "ok": true,
+            "status": 200,
+            "bytes": 215819,
+            "sha256": "2aadf381d20c9b81b2da18aa0cc2914313e85a769ac10a60e80d2b2728ebb920"
+          },
+          {
+            "label": "tc39-process-document: https://tc39.es/process-document/",
+            "source": "tc39-process-document",
+            "requested_url": "https://tc39.es/process-document/",
+            "ok": true,
+            "status": 200,
+            "bytes": 18378,
+            "sha256": "6f20b8b519ce46aa602b84a62ad6f33c428e766fa5ef03c43a85a0a077a9ca6c"
+          },
+          {
+            "label": "stateofjs-2025-survey: https://2025.stateofjs.com/en-US/about/",
+            "source": "stateofjs-2025-survey",
+            "requested_url": "https://2025.stateofjs.com/en-US/about/",
+            "ok": true,
+            "status": 200,
+            "bytes": 187111,
+            "sha256": "bf3c761f443c8ec968dbbcbf5cf95cfffeafa425f470cc1f9f400f9edf1232d6"
+          },
+          {
+            "label": "stateofjs-2025-survey: https://2025.stateofjs.com/en-US/",
+            "source": "stateofjs-2025-survey",
+            "requested_url": "https://2025.stateofjs.com/en-US/",
+            "ok": true,
+            "status": 200,
+            "bytes": 222688,
+            "sha256": "560b16441b8a4e1722df6e9223a56141c958d328c72a3d67a832a865a834052d"
+          },
+          {
+            "label": "chrome-origin-trials-docs: https://developer.chrome.com/docs/web-platform/origin-trials",
+            "source": "chrome-origin-trials-docs",
+            "requested_url": "https://developer.chrome.com/docs/web-platform/origin-trials",
+            "ok": true,
+            "status": 200,
+            "bytes": 138647,
+            "sha256": "6f669d4379bfd17b9731510346e1904f892f362b8ca97457cbc1480f6e185f4b"
+          },
+          {
+            "label": "mdn-feature-detection-guide: https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Testing/Feature_detection",
+            "source": "mdn-feature-detection-guide",
+            "requested_url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Testing/Feature_detection",
+            "ok": true,
+            "status": 200,
+            "bytes": 190881,
+            "sha256": "6d4dd51ed8afecd95b8aa935ead7d96e7e6564575a76acd342601b16be0e85c1"
+          },
+          {
+            "label": "sansec-polyfill-io-blog: https://sansec.io/research/polyfill-supply-chain-attack",
+            "source": "sansec-polyfill-io-blog",
+            "requested_url": "https://sansec.io/research/polyfill-supply-chain-attack",
+            "ok": true,
+            "status": 200,
+            "bytes": 38083,
+            "sha256": "1950ddf024e65635d61e860e12c5bd1865b8ac12953e5611a3b85f189c324ff0"
+          },
+          {
+            "label": "preactjs-preact-repo: https://preactjs.com/about/we-are-using",
+            "source": "preactjs-preact-repo",
+            "requested_url": "https://preactjs.com/about/we-are-using",
+            "ok": true,
+            "status": 200,
+            "bytes": 23576,
+            "sha256": "5c1629f67421cb62e9378eb9d7a035c83cd7ebd623f0344cc6df74b698aebac7"
+          },
+          {
+            "label": "mdn-browser-compat-data-repo: https://api.github.com/repos/mdn/browser-compat-data",
+            "source": "mdn-browser-compat-data-repo",
+            "requested_url": "https://api.github.com/repos/mdn/browser-compat-data",
+            "ok": true,
+            "status": 200,
+            "bytes": 7114,
+            "sha256": "cd2e7cd9dee74bf1096f0eaa4cc2413a6352a506686bd1e8912e7789a6318345",
+            "repository": {
+              "stars": 5794,
+              "archived": false,
+              "pushed_at": "2026-11-18T04:32:44Z",
+              "license": "CC0-1.0"
+            }
+          },
+          {
+            "label": "github-opensource-guide-contribute: https://opensource.guide/how-to-contribute/",
+            "source": "github-opensource-guide-contribute",
+            "requested_url": "https://opensource.guide/how-to-contribute/",
+            "ok": true,
+            "status": 200,
+            "bytes": 63894,
+            "sha256": "8ff70a4586ba12ce3fd4c02ce0250041773086b9b809728aa60b622c19d2c036"
+          },
+          {
+            "label": "caniuse-docs: https://api.github.com/repos/Fyrd/caniuse",
+            "source": "caniuse-docs",
+            "requested_url": "https://api.github.com/repos/Fyrd/caniuse",
+            "ok": true,
+            "status": 200,
+            "bytes": 5470,
+            "sha256": "0473f6ad65545c8162e8b4397dfec093cac2c9f9fd403be7d253e19524f21cc5"
+          },
+          {
+            "label": "caniuse-docs: https://caniuse.com/",
+            "source": "caniuse-docs",
+            "requested_url": "https://caniuse.com/",
+            "ok": true,
+            "status": 200,
+            "bytes": 19196,
+            "sha256": "19f012b8c5a4363d87064641ca69e6d3b28486a09e8f07305fe7f3bbb675263d"
+          },
+          {
+            "label": "browserslist-browserslist-repo: https://api.github.com/repos/browserslist/browserslist",
+            "source": "browserslist-browserslist-repo",
+            "requested_url": "https://api.github.com/repos/browserslist/browserslist",
+            "ok": true,
+            "status": 200,
+            "bytes": 7341,
+            "sha256": "673dfe32f9262a692ec730e2ccae81491793494e1515634a95c647bc6065a52c",
+            "repository": {
+              "stars": 13589,
+              "archived": false,
+              "pushed_at": "2026-11-16T21:31:20Z",
+              "license": "MIT"
+            }
+          }
+        ]
+      },
+      "mini-projects": {
+        "version": 2,
+        "fingerprint": "d103f35033e1ce398b4492c9f00223ce778316bc97133eed8f59a477e22d3c83",
+        "at": "2026-11-18T09:42:36Z",
+        "ok": true,
+        "checks": [
+          {
+            "label": "mini-01-baseline-checker: solution-tests",
+            "command": "npm",
+            "args": [
+              "test"
+            ],
+            "expected_exit": 0,
+            "exit": 0,
+            "ok": true,
+            "output_sha256": "eacc47c1cd6fece10c5ee3ca33dfbcf080c3b14de8737b69c6d5ecf1f011404a"
+          },
+          {
+            "label": "mini-01-baseline-checker: typecheck",
+            "command": "npx",
+            "args": [
+              "tsc",
+              "--noEmit"
+            ],
+            "expected_exit": 0,
+            "exit": 0,
+            "ok": true,
+            "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "label": "mini-01-baseline-checker: starter-tests",
+            "command": "npm",
+            "args": [
+              "test"
+            ],
+            "expected_exit": 1,
+            "exit": 1,
+            "ok": true,
+            "output_sha256": "02bb783a31b0583d4486d0a87cffbf560d203e3ec4926892d9b3f084b40c2b49"
+          },
+          {
+            "label": "mini-01-baseline-checker: starter-start",
+            "command": "npx",
+            "args": [
+              "tsx",
+              "src/main.ts",
+              "css.properties.gap"
+            ],
+            "expected_exit": 0,
+            "exit": 0,
+            "ok": true,
+            "output_sha256": "2b11b6e4ceae93d4ec682ac0a521c3fdbdd01b6752582bba3a82079af672bf3a"
+          },
+          {
+            "label": "mini-01-baseline-checker: audit",
+            "command": "npm",
+            "args": [
+              "audit",
+              "--omit=dev",
+              "--audit-level=high"
+            ],
+            "expected_exit": 0,
+            "exit": 0,
+            "ok": true,
+            "output_sha256": "6d8c5c8f3d7684adb070417bd608d01ae90aa3dc26a65af03ffda4955f38d9a3"
+          },
+          {
+            "label": "mini-01-baseline-checker: audit",
+            "command": "npm",
+            "args": [
+              "audit",
+              "--omit=dev",
+              "--audit-level=high"
+            ],
+            "expected_exit": 0,
+            "exit": 0,
+            "ok": true,
+            "output_sha256": "6d8c5c8f3d7684adb070417bd608d01ae90aa3dc26a65af03ffda4955f38d9a3"
+          },
+          {
+            "label": "mini-02-share-button-fallback: solution-tests",
+            "command": "npm",
+            "args": [
+              "test"
+            ],
+            "expected_exit": 0,
+            "exit": 0,
+            "ok": true,
+            "output_sha256": "11eee7a3b4aa52e7d8b9a7f06adc4826215c254b2a362929c4d908760741c749"
+          },
+          {
+            "label": "mini-02-share-button-fallback: typecheck",
+            "command": "npx",
+            "args": [
+              "tsc",
+              "--noEmit"
+            ],
+            "expected_exit": 0,
+            "exit": 0,
+            "ok": true,
+            "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "label": "mini-02-share-button-fallback: build",
+            "command": "npx",
+            "args": [
+              "vite",
+              "build",
+              "--outDir",
+              "node_modules/.verify-dist",
+              "--emptyOutDir"
+            ],
+            "expected_exit": 0,
+            "exit": 0,
+            "ok": true,
+            "output_sha256": "08d1890758483085f69860b432e2cf8263110b93807a6fc0a0f913c9c7b5a3f9"
+          },
+          {
+            "label": "mini-02-share-button-fallback: starter-tests",
+            "command": "npm",
+            "args": [
+              "test"
+            ],
+            "expected_exit": 1,
+            "exit": 1,
+            "ok": true,
+            "output_sha256": "2690fe187704912d74c2cd3ec68861f8c50fd2bfc98da56ce52431897c9b13a5"
+          },
+          {
+            "label": "mini-02-share-button-fallback: starter-start",
+            "command": "npx",
+            "args": [
+              "vite",
+              "build",
+              "--outDir",
+              "node_modules/.verify-dist",
+              "--emptyOutDir"
+            ],
+            "expected_exit": 0,
+            "exit": 0,
+            "ok": true,
+            "output_sha256": "a9142408b1dc123a8f601b0c2ff8bf13172166d2c63eac11b4e441ab5fab23b9"
+          },
+          {
+            "label": "mini-02-share-button-fallback: audit",
+            "command": "npm",
+            "args": [
+              "audit",
+              "--omit=dev",
+              "--audit-level=high"
+            ],
+            "expected_exit": 0,
+            "exit": 0,
+            "ok": true,
+            "output_sha256": "6d8c5c8f3d7684adb070417bd608d01ae90aa3dc26a65af03ffda4955f38d9a3"
+          },
+          {
+            "label": "mini-02-share-button-fallback: audit",
+            "command": "npm",
+            "args": [
+              "audit",
+              "--omit=dev",
+              "--audit-level=high"
+            ],
+            "expected_exit": 0,
+            "exit": 0,
+            "ok": true,
+            "output_sha256": "6d8c5c8f3d7684adb070417bd608d01ae90aa3dc26a65af03ffda4955f38d9a3"
+          }
+        ]
+      },
+      "capstone": {
+        "version": 2,
+        "fingerprint": "3449afd8fbedafe5418fee930d90d508f8eaadd669e7e989dec997181c1074bd",
+        "at": "2026-11-18T09:42:45Z",
+        "ok": true,
+        "checks": [
+          {
+            "label": "capstone: solution-tests",
+            "command": "npm",
+            "args": [
+              "test"
+            ],
+            "expected_exit": 0,
+            "exit": 0,
+            "ok": true,
+            "output_sha256": "52026e73c6297a056c75b672959a0aac8e80e60f7c08dfcd1b44cc6675fb3d6c"
+          },
+          {
+            "label": "capstone: typecheck",
+            "command": "npx",
+            "args": [
+              "tsc",
+              "--noEmit"
+            ],
+            "expected_exit": 0,
+            "exit": 0,
+            "ok": true,
+            "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "label": "capstone: build",
+            "command": "npx",
+            "args": [
+              "vite",
+              "build",
+              "--outDir",
+              "node_modules/.verify-dist",
+              "--emptyOutDir"
+            ],
+            "expected_exit": 0,
+            "exit": 0,
+            "ok": true,
+            "output_sha256": "0d2f38c0f305d70b6ee8838c9837635e6ff9b1439f6d6454ddf07fd37babe9be"
+          },
+          {
+            "label": "capstone: audit",
+            "command": "npm",
+            "args": [
+              "audit",
+              "--omit=dev",
+              "--audit-level=high"
+            ],
+            "expected_exit": 0,
+            "exit": 0,
+            "ok": true,
+            "output_sha256": "6d8c5c8f3d7684adb070417bd608d01ae90aa3dc26a65af03ffda4955f38d9a3"
+          }
+        ]
+      },
+      "finalize": {
+        "version": 2,
+        "fingerprint": "962d47d892c039bcd16e75faf74c8adf790777d07aa8942ad87f154879413be0",
+        "at": "2026-11-18T07:52:57Z",
+        "ok": true,
+        "checks": [
+          {
+            "label": "site build",
+            "command": "npm",
+            "args": [
+              "--prefix",
+              "site",
+              "run",
+              "build"
+            ],
+            "expected_exit": 0,
+            "exit": 0,
+            "ok": true,
+            "output_sha256": "e2e858a5249208bed61de32da0ca4192e9a2e63e709db051e09dfebb335668c4"
+          },
+          {
+            "label": "site smoke",
+            "command": "npm",
+            "args": [
+              "--prefix",
+              "site",
+              "run",
+              "smoke"
+            ],
+            "expected_exit": 0,
+            "exit": 0,
+            "ok": true,
+            "output_sha256": "d565e217509ddf5a0494fc544c0955461943bc7e2eb7accb2229e00d573ce08c"
+          },
+          {
+            "label": "site manifest:check",
+            "command": "npm",
+            "args": [
+              "--prefix",
+              "site",
+              "run",
+              "manifest:check"
+            ],
+            "expected_exit": 0,
+            "exit": 0,
+            "ok": true,
+            "output_sha256": "9cf80b4d6837916eb7b42c75c5478750c54297762700cff81b192e0cd083e529"
+          }
+        ]
+      }
+    },
+    "reviews": {
+      "content": {
+        "scope": "content",
+        "reviewer": "tutor-verifier",
+        "verdict": "pass",
+        "checks": [
+          "sources",
+          "reading-order",
+          "activity-correctness",
+          "diagram-semantics",
+          "beginner-readability",
+          "insights",
+          "research-coverage",
+          "practical-depth",
+          "visual-usefulness",
+          "learner-fit",
+          "visual-accuracy",
+          "visual-efficacy",
+          "interaction-behavior",
+          "interactive-topic-fit",
+          "accessibility-responsive",
+          "writing-standard",
+          "video-consistency",
+          "experience-behavior"
+        ],
+        "findings": [
+          {
+            "severity": "warning",
+            "path": "vault/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend/visuals/visual-first-contribution-path-how-to-learn-frontend.md",
+            "problem": "Note and page 07 caption say the GitHub guide 'orders the path'; the guide lists README, CONTRIBUTING and issue tracker but states no strict reading order (branches are supported).",
+            "fix": "Say 'lists these steps' and mark the README -> CONTRIBUTING -> issues order as an interpretation."
+          },
+          {
+            "severity": "warning",
+            "path": "vault/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend/07-final-notes-how-to-learn-frontend.md",
+            "problem": "'a Widely available feature ships with no fallback code' and 'tutorials go stale and specs do not' are stronger than page 03 and web.dev/baseline.",
+            "fix": "Reword to 'usually needs no fallback for most sites; check your analytics' and 'tutorials freeze a moment; primary sources are updated with the platform'."
+          },
+          {
+            "severity": "warning",
+            "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend/02-primary-sources-first.mdx",
+            "problem": "Outcome 2 'find the right spec section' is taught in one sentence; no activity practices finding a spec section from MDN.",
+            "fix": "Add a one-line practice step (MDN :has() -> Specifications -> Selectors Level 4) or narrow the outcome."
+          },
+          {
+            "severity": "warning",
+            "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend/03-can-i-ship-it.mdx",
+            "problem": "Shared AlgorithmStepper prints index numbers 0-6 under labelled cells in both labs; outside topic authority.",
+            "fix": "Shared component: hide indices for label cells."
+          }
+        ],
+        "not_checked": [
+          "Most cited lines in the five repo-intel module notes (only the lines listed under research-coverage were opened)",
+          "Recall cards after htlf-03, and the 03-mini-projects and 06-capstone notes (projects scope)",
+          "web.dev Baseline example dates for Subgrid and Popover not re-checked live (Popover January 2025 rests on the digest)",
+          "Rendered MP4 frames: both videos are honest storyboards; storyboard, transcript, captions and Guided scene list compared instead",
+          "Keyboard-only operation of Experience tabs and Diagram zoom (named buttons observed; no key presses sent)"
+        ],
+        "independent": true,
+        "reviewer_run_id": "a3e8f419642d11864",
+        "input_fingerprint": "6fe5d1e05833d22fb792da47b872ff71fce8b01ba55a9dafdfc248e5ed6f95cc",
+        "assessments": {
+          "sources": "12 entries, 10 tier A and 2 tier B, each with evidence, verified_at and matching verified_via. Live re-checks 2026-11-18: tc39 process document (stages 0,1,2,2.7,3,4; only Stage 0 named; four Stage 4 criteria match page 02), web.dev/baseline (labels, 30 months, 7 core browsers match page 03), opensource.guide (llamas/goldfish, 'X doesn't happen when I do Y', small fixes to PR, free examples match page 07), MDN soft-skills, Sansec, Chrome origin trials all match. No URL outside sources.json; roadmap names labelled unverified.",
+          "reading-order": "00-start-here lists 01-09, all ready and present; 3 deferrals disclosed with reasons and budget-limit stop. Pages ordered 1-7; only 07 ends with Resources. Wikilinks resolve. validate --all --structure-only passes all 10 stages.",
+          "activity-correctness": "OrderSteps, MatchPairs, Quiz (Popover Jan 2025 + 30 months = Jul 2027, so Newly in Nov 2026), PredictReveal (static map per MDN; {href, children:'Docs'} per preact create-element.js:16-33 @ 34b99c6), SortBuckets and page 07 Quiz keys all correct. Live checkpoints counted 0->1 of 5 with 'Right.' feedback.",
+          "diagram-semantics": "first-contribution-path branches source-backed; strict README->CONTRIBUTING order is interpretation (warning). Brief how-it-works backed by BCD README and MDN guide; digest mechanism and final-notes model labelled correctly; storyboards' 7 scenes each match sources.",
+          "beginner-readability": "Terms defined before use; all pages 110-260 words; no quote blocks, aside, details, imports; interpretations marked; depth in Depth blocks.",
+          "insights": "Every generated note has exactly one '## My insights' with nothing below (awk scan); learner insights file untouched.",
+          "research-coverage": "13 included and 3 deferred concepts with honest reasons, disclosed on page 04. All 8 roadmap items map to included concepts on pages 01-07. Six sources re-opened live; repo citations opened at 8f942b4 and 34b99c6 all match; no contradictory evidence.",
+          "practical-depth": "Six aspects traced in prose for every concept (use case + benefit, trade-off, failure, practice) across pages 01-07 and both concept notes; outcome-2 spec-section practice thin (warning).",
+          "visual-usefulness": "Intermediate concepts get interactive labs, CodeWalkthrough and Diagram; basic pages omit visuals with stated reasons. Live Playwright: presets change table and caption meaningfully (3->7 of 7, Limited->Newly; stalled clock stays Limited; :has() clock flips to Widely at month 30). No console or page errors.",
+          "learner-fit": "Developer new to frontend: prerequisites bridged, no basic programming re-taught, visual/experimental goal met by two labs and a code stepper, every 00.1 roadmap item taught, unverified roadmap names labelled. Outcome 2 thinly practised (warning).",
+          "visual-accuracy": "17 visuals. baseline-status-lab matches web.dev; feature-detect-lab matches MDN and Chrome origin trials; preact walkthrough highlights correct lines live; tc39 timeline matches with caveat; first-contribution-path overstates ordering (warning). Project visuals left to projects scope.",
+          "visual-efficacy": "Reviewer judgment: tc39 timeline neutral; baseline lab helps (stalled-clock counterexample); feature lab neutral to helps (origin-trial expiry); preact walkthrough helps; contribution path neutral. None decorative; every learning check answerable.",
+          "interaction-behavior": "Page 03 presets, Forward/Back, Reset (restores preset first frame, shared limit), challenge reached. Page 04 presets show result false/true and path fallback/enhanced correctly incl. origin-trial expiry; Back/Reset work. Timeline, CodeWalkthrough (Back disabled at step 1, Next 1->4) and Diagram zoom/reset work.",
+          "interactive-topic-fit": "Every interactive object uses its page's concept: real core-browser names and :has() date, geolocation/subgrid/origin trial, real Preact source, TC39 stages, topic scenarios in activities. Nothing copied from another topic.",
+          "accessibility-responsive": "375 px: scrollWidth 375 on all 7 pages after scrolling islands into view. Named buttons; Diagram text alternative with zoom key instructions; lab state shown as text; both videos have captions.vtt and transcript.md. Key presses not sent (not_checked).",
+          "writing-standard": "tutor style pages 03/04/05/07: 93/97/83/95%. Spot reads: short active sentences, terms first, analogy and interpretations marked. Final notes simplify two claims too far (warning).",
+          "video-consistency": "Both videos honest storyboards (check passes, not rendered, not claimed rendered). Storyboard, transcript timestamps and Guided scene list agree; transcript claims match re-checked sources.",
+          "experience-behavior": "Both labs interactive with explore/guided/practice and 5 checkpoints; experience check 'built and current'. All tabs used live; Guided 81 s step player with question pauses; checkpoint explanations match sources; experiment goals reachable; static fallbacks exist."
+        },
+        "at": "2026-11-17T19:25:14Z",
+        "fingerprint": "6fe5d1e05833d22fb792da47b872ff71fce8b01ba55a9dafdfc248e5ed6f95cc"
+      },
+      "projects": {
+        "scope": "projects",
+        "reviewer": "tutor-verifier",
+        "verdict": "pass",
+        "checks": [
+          "solution-tests",
+          "starter-behavior",
+          "dependency-health",
+          "architecture",
+          "documented-commands",
+          "project-diagrams"
+        ],
+        "findings": [
+          {
+            "severity": "warning",
+            "path": "projects/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend/mini-01-baseline-checker/README.md",
+            "problem": "Diagram attaches 'release date missing -> Unknown' to interoperableDate; checkFeature returns 'unknown' in its own loop before calling interoperableDate (solution/src/baseline.ts:57-63).",
+            "fix": "Attach the Unknown edge to checkFeature or a releaseDate lookup node; update README and the registered .mmd."
+          },
+          {
+            "severity": "warning",
+            "path": "projects/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend/capstone/ARCHITECTURE.md",
+            "problem": "Layers diagram shows only interface -> application; interface also imports domain errors and types (describe-error.ts, NoteCard.tsx, source-lines.ts, FeatureBadges.tsx).",
+            "fix": "Add an interface -> domain edge labelled 'error classes and types' and one prose sentence; update capstone-layers asset."
+          },
+          {
+            "severity": "warning",
+            "path": "projects/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend/capstone/ARCHITECTURE.md",
+            "problem": "Request-flow error arrow V-->>F skips AddNote; the ValidationError propagates through AddNote.execute.",
+            "fix": "Draw V-->>A then A-->>F (thrown ValidationError) in ARCHITECTURE.md and capstone-request-flow asset."
+          },
+          {
+            "severity": "warning",
+            "path": "projects/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend/capstone/package.json",
+            "problem": "engines.node '>=22.12.0' allows Node 23 and 25, which vitest@5.1.0 ('^22.12.0 || ^24.0.0 || >=26.0.0') does not support; same in mini-01 and mini-02.",
+            "fix": "Use '^22.12.0 || ^24.0.0 || >=26.0.0' in all five package.json files or state LTS-only in README prerequisites."
+          }
+        ],
+        "not_checked": [
+          "Runtime behaviour on Node 22.12 itself: the only Node available was v26.8.1",
+          "Real navigator.share 'shared' and 'cancelled' outcomes in a browser with the Web Share API (headless Chromium on macOS lacks it); covered by unit tests only",
+          "mini-02 'npm start -- --host' LAN path: simulated with an init script, not opened over a LAN address"
+        ],
+        "independent": true,
+        "reviewer_run_id": "afc80121d736a303f",
+        "input_fingerprint": "6fe5d1e05833d22fb792da47b872ff71fce8b01ba55a9dafdfc248e5ed6f95cc",
+        "assessments": {
+          "solution-tests": "Scratch copies on Node v26.8.1: mini-01 18/18 passed, tsc exit 0; mini-02 14/14 passed, tsc exit 0, vite build ok; capstone 40/40 passed across 5 files, typecheck exit 0, build ok (276.86 kB JS). Every verification.json check executed with its expected result.",
+          "starter-behavior": "mini-01 starter: npm test exit 1, 18 failed, all from TODO(1..5) throws; tsc exit 0; tsx main.ts prints 'TODO(1): getFeature is not implemented yet' exit 0. mini-02 starter: 14 failed, all TODO(1..4); tsc exit 0; vite build ok; button click raises only TODO(4). Starter tests identical to solution tests (diff -r).",
+          "dependency-health": "npm audit --omit=dev --audit-level=high exit 0 in all five folders. Full audit: only GHSA-fc5q-39xc-vjpf (picomatch <=4.0.7, first_patched_version null per gh api) via dev-only vite/vitest/tinyglobby/fdir; npm's fix is a semver-major downgrade, matching README warnings. Runtime deps pinned exactly (react/react-dom 19.3.1, @mdn/browser-compat-data 8.1.9).",
+          "architecture": "All classes in ARCHITECTURE.md exist in named files; adapters implement domain ports; domain imports only domain; application only domain; main.tsx sole composition root; CompatTreeReader only in scripts; only error classes inherit. Browser check at 375px: empty save focuses role=alert list; valid save shows 'First review is due 2026-11-19'; badges correct; notes persist; javascript: source rejected; no overflow. Deviation: interface imports domain errors/types (warning).",
+          "documented-commands": "mini-01 npm install/test/start outputs match README (WIDELY gap, ERROR for nope, group-path error). mini-02 npm start served 200; keyboard click test gave clipboard and manual-link paths. capstone: npm install, cp .env.example .env, npm run dev, test, typecheck, build, data (32 features, byte-identical snapshot) all worked in a scratch copy; no files left in project folders. Vault notes give same commands and Node 22.12+.",
+          "project-diagrams": "All 5 .mmd assets identical to embedded Mermaid. mini-02 flow matches share.ts and browser behaviour; capstone-deployment matches package.json/main.tsx/Config; capstone-request-flow matches AddNote.execute (error arrow simplified, warning); capstone-layers omits interface->domain (warning); mini-01 places Unknown on interoperableDate instead of checkFeature (warning). No invented modules."
+        },
+        "at": "2026-11-17T19:25:15Z",
+        "fingerprint": "6fe5d1e05833d22fb792da47b872ff71fce8b01ba55a9dafdfc248e5ed6f95cc"
+      }
+    }
+  },
+  "reader_order": {
+    "digest": [
+      "04-digests/web-dev-baseline-docs-how-to-learn-frontend.md",
+      "04-digests/mdn-feature-detection-guide-how-to-learn-frontend.md"
+    ],
+    "repo-intel": [
+      "05-repo-intel/mdn-browser-compat-data/browser-compat-data-overview.md",
+      "05-repo-intel/mdn-browser-compat-data/browser-compat-data-architecture.md",
+      "05-repo-intel/mdn-browser-compat-data/browser-compat-data-findings.md",
+      "05-repo-intel/mdn-browser-compat-data/browser-compat-data-tech-and-services.md",
+      "05-repo-intel/mdn-browser-compat-data/browser-compat-data-takeaways.md",
+      "05-repo-intel/mdn-browser-compat-data/browser-compat-data-module-schema-and-types.md",
+      "05-repo-intel/mdn-browser-compat-data/browser-compat-data-module-data-linter.md",
+      "05-repo-intel/mdn-browser-compat-data/browser-compat-data-module-build-pipeline.md",
+      "05-repo-intel/mdn-browser-compat-data/browser-compat-data-module-consumer-api.md",
+      "05-repo-intel/mdn-browser-compat-data/browser-compat-data-module-build-and-infra.md",
+      "05-repo-intel/mdn-browser-compat-data/browser-compat-data-pattern-schema-first-data.md",
+      "05-repo-intel/mdn-browser-compat-data/browser-compat-data-pattern-derive-dont-copy.md",
+      "05-repo-intel/mdn-browser-compat-data/browser-compat-data-pattern-honest-uncertainty.md",
+      "05-repo-intel/mdn-browser-compat-data/browser-compat-data-pattern-guarded-release.md"
+    ]
+  }
+}

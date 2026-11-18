@@ -1,0 +1,65 @@
+WEBVTT
+
+1
+00:00:00.200 --> 00:00:02.880
+Can you use a web feature today?
+
+2
+00:00:02.880 --> 00:00:04.800
+Baseline answers with one label.
+
+3
+00:00:05.200 --> 00:00:11.000
+Baseline checks seven core browsers: Chrome on desktop and Android, Edge,
+
+4
+00:00:11.000 --> 00:00:16.800
+Firefox on desktop and Android, and Safari on macOS and iOS.
+
+5
+00:00:17.200 --> 00:00:19.740
+A feature starts as Limited availability.
+
+6
+00:00:19.740 --> 00:00:24.830
+When the last core browser ships it, the feature is Newly available.
+
+7
+00:00:24.830 --> 00:00:27.800
+Thirty months later, it is Widely available.
+
+8
+00:00:28.200 --> 00:00:33.210
+The thirty month clock starts only when the last core browser ships.
+
+9
+00:00:33.210 --> 00:00:37.800
+Before that day, the feature stays Limited, however old it is.
+
+10
+00:00:38.200 --> 00:00:42.970
+The has selector became Newly available in December 2023.
+
+11
+00:00:42.970 --> 00:00:48.800
+Add thirty months, and it is Widely available in June 2026.
+
+12
+00:00:49.200 --> 00:00:52.540
+Can I use shows support for each browser.
+
+13
+00:00:52.540 --> 00:00:55.460
+Green means supported, red means not supported,
+
+14
+00:00:55.460 --> 00:00:58.800
+greenish yellow means partial, and gray means unknown.
+
+15
+00:00:59.200 --> 00:01:04.230
+Widely available means the feature works for most sites, not all.
+
+16
+00:01:04.230 --> 00:01:08.800
+If your users run older browsers, check their support yourself.

@@ -1,0 +1,701 @@
+{
+  "generated_by": "tutor experience build",
+  "id": "baseline-status-lab",
+  "topic": "frontend-engineering/learning-system-and-workstation/how-to-learn-frontend",
+  "title": "Move a feature through the Baseline labels",
+  "mode": "interactive",
+  "objective": "Predict a feature's Baseline label from its core-browser support and the months since it became Newly available.",
+  "level": "beginner",
+  "summary": "A guided walkthrough of the Baseline lifecycle, paused for predictions, and a stepper with seven core-browser cells. Highlighted cells are browsers that support the feature. The learner adds browsers one by one and runs the 30-month clock, and watches the label move from Limited availability to Newly available to Widely available. The :has() selector, Newly available in December 2023, is the worked example. A last question reads the Can I use color legend.",
+  "page": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend/03-can-i-ship-it.mdx",
+  "page_url": "/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend/lesson/03-can-i-ship-it/",
+  "tabs": [
+    "explore",
+    "guided",
+    "practice"
+  ],
+  "watch": null,
+  "guided": {
+    "video_id": "baseline-status-guided",
+    "title": "How a feature moves from Limited to Widely available",
+    "status": "storyboard",
+    "blocker": "not rendered yet; run `tutor video <topic> render <id>`",
+    "mp4_url": null,
+    "captions_url": null,
+    "composition_url": "/media/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend/baseline-status-guided/composition/index.html",
+    "duration": 69,
+    "scenes": [
+      {
+        "id": "intro",
+        "heading": "Can I ship this feature?",
+        "start": 0,
+        "duration": 5
+      },
+      {
+        "id": "core",
+        "heading": "Seven core browsers",
+        "start": 5,
+        "duration": 12
+      },
+      {
+        "id": "lifecycle",
+        "heading": "Three labels in a fixed order",
+        "start": 17,
+        "duration": 11
+      },
+      {
+        "id": "stalled",
+        "heading": "One missing browser stops the clock",
+        "start": 28,
+        "duration": 10
+      },
+      {
+        "id": "clock",
+        "heading": "The :has() selector, month by month",
+        "start": 38,
+        "duration": 11
+      },
+      {
+        "id": "caniuse",
+        "heading": "Reading a Can I use table",
+        "start": 49,
+        "duration": 10
+      },
+      {
+        "id": "limits",
+        "heading": "What Widely available does not promise",
+        "start": 59,
+        "duration": 10
+      }
+    ],
+    "transcript": "# How a feature moves from Limited to Widely available\n\nBaseline gives each web feature one label. It checks seven core browsers: Chrome on desktop and Android, Edge, Firefox on desktop and Android, and Safari on macOS and iOS. While any one of them lacks the feature, the label is Limited availability. When the last one ships it, the feature is Newly available. Thirty months later it is Widely available, as the :has() selector shows: Newly available in December 2023, Widely available in June 2026. Can I use shows the support of each browser with four colors. Widely available means most sites, not all.\n\n**00:00 Can I ship this feature?.** Can you use a web feature today? Baseline answers with one label.\n\n**00:05 Seven core browsers.** Baseline checks seven core browsers: Chrome on desktop and Android, Edge, Firefox on desktop and Android, and Safari on macOS and iOS.\n\n**00:17 Three labels in a fixed order.** A feature starts as Limited availability. When the last core browser ships it, the feature is Newly available. Thirty months later, it is Widely available.\n\n**00:28 One missing browser stops the clock.** The thirty month clock starts only when the last core browser ships. Before that day, the feature stays Limited, however old it is.\n\n**00:38 The :has() selector, month by month.** The has selector became Newly available in December 2023. Add thirty months, and it is Widely available in June 2026.\n\n**00:49 Reading a Can I use table.** Can I use shows support for each browser. Green means supported, red means not supported, greenish yellow means partial, and gray means unknown.\n\n**00:59 What Widely available does not promise.** Widely available means the feature works for most sites, not all. If your users run older browsers, check their support yourself.\n\nSources:\n\n- Baseline: web platform feature availability — https://web.dev/baseline\n- Can I use: About and support legend — https://caniuse.com/\n- mdn/browser-compat-data — https://github.com/mdn/browser-compat-data\n",
+    "explanation": "Only two inputs move the Baseline label: whether every core browser supports the feature, and how many months have passed since the last one shipped it.",
+    "alt": "Baseline gives each web feature one label. It checks seven core browsers: Chrome on desktop and Android, Edge, Firefox on desktop and Android, and Safari on macOS and iOS. While any one of them lacks the feature, the label is Limited availability. When the last one ships it, the feature is Newly available. Thirty months later it is Widely available, as the :has() selector shows: Newly available in December 2023, Widely available in June 2026. Can I use shows the support of each browser with four colors. Widely available means most sites, not all."
+  },
+  "summary_video": null,
+  "simulation": {
+    "component": "AlgorithmStepper",
+    "props": {
+      "title": "Baseline label: highlighted cells support the feature",
+      "view": "array",
+      "code": "const core = [\"Chrome\", \"Chrome Android\", \"Edge\", \"Firefox\",\n  \"Firefox Android\", \"Safari\", \"Safari iOS\"];\nfunction baselineStatus(supportedIn, monthsSinceNewly) {\n  if (!core.every((b) => supportedIn.includes(b)))\n    return \"Limited availability\";\n  if (monthsSinceNewly < 30)\n    return \"Newly available\";\n  return \"Widely available\";\n}",
+      "lang": "javascript",
+      "speed": 1800,
+      "frames": [
+        {
+          "caption": "Feature X ships in Chrome, Chrome Android and Edge. Four core browsers still lack it, so the label is Limited availability.",
+          "array": [
+            "Chrome",
+            "Chrome Android",
+            "Edge",
+            "Firefox",
+            "Firefox Android",
+            "Safari",
+            "Safari iOS"
+          ],
+          "highlight": [
+            0,
+            1,
+            2
+          ],
+          "vars": {
+            "when": "step 1",
+            "supported": "3 of 7",
+            "months_since_newly": "not started",
+            "status": "Limited availability"
+          },
+          "line": 5
+        },
+        {
+          "caption": "Firefox on desktop and Android ship Feature X. Two core browsers still lack it: still Limited availability.",
+          "array": [
+            "Chrome",
+            "Chrome Android",
+            "Edge",
+            "Firefox",
+            "Firefox Android",
+            "Safari",
+            "Safari iOS"
+          ],
+          "highlight": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "vars": {
+            "when": "step 2",
+            "supported": "5 of 7",
+            "months_since_newly": "not started",
+            "status": "Limited availability"
+          },
+          "line": 5
+        },
+        {
+          "caption": "Safari on macOS ships it. Six of seven is not enough: one missing core browser keeps the label at Limited availability.",
+          "array": [
+            "Chrome",
+            "Chrome Android",
+            "Edge",
+            "Firefox",
+            "Firefox Android",
+            "Safari",
+            "Safari iOS"
+          ],
+          "highlight": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "vars": {
+            "when": "step 3",
+            "supported": "6 of 7",
+            "months_since_newly": "not started",
+            "status": "Limited availability"
+          },
+          "line": 5
+        },
+        {
+          "caption": "Safari on iOS ships it. Every core browser supports Feature X, so today is its newly interoperable date: Newly available.",
+          "array": [
+            "Chrome",
+            "Chrome Android",
+            "Edge",
+            "Firefox",
+            "Firefox Android",
+            "Safari",
+            "Safari iOS"
+          ],
+          "highlight": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "vars": {
+            "when": "step 4",
+            "supported": "7 of 7",
+            "months_since_newly": 0,
+            "status": "Newly available"
+          },
+          "line": 7
+        }
+      ]
+    },
+    "presets": {
+      "browsers-ship": {
+        "title": "Feature X ships in the core browsers one by one",
+        "frames": [
+          {
+            "caption": "Feature X ships in Chrome, Chrome Android and Edge. Four core browsers still lack it, so the label is Limited availability.",
+            "array": [
+              "Chrome",
+              "Chrome Android",
+              "Edge",
+              "Firefox",
+              "Firefox Android",
+              "Safari",
+              "Safari iOS"
+            ],
+            "highlight": [
+              0,
+              1,
+              2
+            ],
+            "vars": {
+              "when": "step 1",
+              "supported": "3 of 7",
+              "months_since_newly": "not started",
+              "status": "Limited availability"
+            },
+            "line": 5
+          },
+          {
+            "caption": "Firefox on desktop and Android ship Feature X. Two core browsers still lack it: still Limited availability.",
+            "array": [
+              "Chrome",
+              "Chrome Android",
+              "Edge",
+              "Firefox",
+              "Firefox Android",
+              "Safari",
+              "Safari iOS"
+            ],
+            "highlight": [
+              0,
+              1,
+              2,
+              3,
+              4
+            ],
+            "vars": {
+              "when": "step 2",
+              "supported": "5 of 7",
+              "months_since_newly": "not started",
+              "status": "Limited availability"
+            },
+            "line": 5
+          },
+          {
+            "caption": "Safari on macOS ships it. Six of seven is not enough: one missing core browser keeps the label at Limited availability.",
+            "array": [
+              "Chrome",
+              "Chrome Android",
+              "Edge",
+              "Firefox",
+              "Firefox Android",
+              "Safari",
+              "Safari iOS"
+            ],
+            "highlight": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "vars": {
+              "when": "step 3",
+              "supported": "6 of 7",
+              "months_since_newly": "not started",
+              "status": "Limited availability"
+            },
+            "line": 5
+          },
+          {
+            "caption": "Safari on iOS ships it. Every core browser supports Feature X, so today is its newly interoperable date: Newly available.",
+            "array": [
+              "Chrome",
+              "Chrome Android",
+              "Edge",
+              "Firefox",
+              "Firefox Android",
+              "Safari",
+              "Safari iOS"
+            ],
+            "highlight": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "vars": {
+              "when": "step 4",
+              "supported": "7 of 7",
+              "months_since_newly": 0,
+              "status": "Newly available"
+            },
+            "line": 7
+          }
+        ]
+      },
+      "stalled-clock": {
+        "title": "Feature Y: six of seven core browsers for years",
+        "frames": [
+          {
+            "caption": "Year 1: Feature Y works in six core browsers. Safari on iOS lacks it, so the label is Limited availability.",
+            "array": [
+              "Chrome",
+              "Chrome Android",
+              "Edge",
+              "Firefox",
+              "Firefox Android",
+              "Safari",
+              "Safari iOS"
+            ],
+            "highlight": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "vars": {
+              "when": "year 1",
+              "supported": "6 of 7",
+              "months_since_newly": "not started",
+              "status": "Limited availability"
+            },
+            "line": 5
+          },
+          {
+            "caption": "Year 3: still six of seven. No newly interoperable date exists, so the 30-month clock has not started. Still Limited.",
+            "array": [
+              "Chrome",
+              "Chrome Android",
+              "Edge",
+              "Firefox",
+              "Firefox Android",
+              "Safari",
+              "Safari iOS"
+            ],
+            "highlight": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "vars": {
+              "when": "year 3",
+              "supported": "6 of 7",
+              "months_since_newly": "not started",
+              "status": "Limited availability"
+            },
+            "line": 5
+          },
+          {
+            "caption": "Year 5: still six of seven. Age alone never moves the label: still Limited availability.",
+            "array": [
+              "Chrome",
+              "Chrome Android",
+              "Edge",
+              "Firefox",
+              "Firefox Android",
+              "Safari",
+              "Safari iOS"
+            ],
+            "highlight": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "vars": {
+              "when": "year 5",
+              "supported": "6 of 7",
+              "months_since_newly": "not started",
+              "status": "Limited availability"
+            },
+            "line": 5
+          },
+          {
+            "caption": "Safari on iOS ships Feature Y. All seven core browsers support it, so the clock starts at 0: Newly available.",
+            "array": [
+              "Chrome",
+              "Chrome Android",
+              "Edge",
+              "Firefox",
+              "Firefox Android",
+              "Safari",
+              "Safari iOS"
+            ],
+            "highlight": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "vars": {
+              "when": "year 5 + ship",
+              "supported": "7 of 7",
+              "months_since_newly": 0,
+              "status": "Newly available"
+            },
+            "line": 7
+          }
+        ]
+      },
+      "has-clock": {
+        "title": "The :has() selector after December 2023",
+        "frames": [
+          {
+            "caption": "December 2023: the :has() selector is Newly available. All seven core browsers support it; the clock reads 0 months.",
+            "array": [
+              "Chrome",
+              "Chrome Android",
+              "Edge",
+              "Firefox",
+              "Firefox Android",
+              "Safari",
+              "Safari iOS"
+            ],
+            "highlight": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "vars": {
+              "when": "Dec 2023",
+              "supported": "7 of 7",
+              "months_since_newly": 0,
+              "status": "Newly available"
+            },
+            "line": 7
+          },
+          {
+            "caption": "December 2024: 12 months have passed. 12 is less than 30, so the label stays Newly available.",
+            "array": [
+              "Chrome",
+              "Chrome Android",
+              "Edge",
+              "Firefox",
+              "Firefox Android",
+              "Safari",
+              "Safari iOS"
+            ],
+            "highlight": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "vars": {
+              "when": "Dec 2024",
+              "supported": "7 of 7",
+              "months_since_newly": 12,
+              "status": "Newly available"
+            },
+            "line": 7
+          },
+          {
+            "caption": "May 2026: 29 months have passed. 29 is still less than 30, so the label stays Newly available.",
+            "array": [
+              "Chrome",
+              "Chrome Android",
+              "Edge",
+              "Firefox",
+              "Firefox Android",
+              "Safari",
+              "Safari iOS"
+            ],
+            "highlight": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "vars": {
+              "when": "May 2026",
+              "supported": "7 of 7",
+              "months_since_newly": 29,
+              "status": "Newly available"
+            },
+            "line": 7
+          },
+          {
+            "caption": "June 2026: 30 months have passed since the newly interoperable date, so :has() is Widely available.",
+            "array": [
+              "Chrome",
+              "Chrome Android",
+              "Edge",
+              "Firefox",
+              "Firefox Android",
+              "Safari",
+              "Safari iOS"
+            ],
+            "highlight": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "vars": {
+              "when": "Jun 2026",
+              "supported": "7 of 7",
+              "months_since_newly": 30,
+              "status": "Widely available"
+            },
+            "line": 8
+          }
+        ]
+      }
+    }
+  },
+  "sync": [
+    {
+      "scene": "lifecycle",
+      "preset": "browsers-ship"
+    },
+    {
+      "scene": "stalled",
+      "preset": "stalled-clock"
+    },
+    {
+      "scene": "clock",
+      "preset": "has-clock"
+    }
+  ],
+  "inspect": [],
+  "deck": null,
+  "checkpoints": [
+    {
+      "id": "six-of-seven",
+      "kind": "predict",
+      "at": {
+        "scene": "lifecycle"
+      },
+      "prompt": "A feature works in six of the seven core browsers. Which Baseline label does it have?",
+      "choices": [
+        {
+          "text": "Limited availability",
+          "correct": true
+        },
+        {
+          "text": "Newly available",
+          "misconception": "Thinks most core browsers is enough, but Newly available needs every core browser"
+        },
+        {
+          "text": "Widely available",
+          "misconception": "Treats broad support as Widely available, which also needs 30 months after every core browser ships"
+        }
+      ],
+      "explanation": "Baseline has no partial step. While any one core browser lacks the feature, the label is Limited availability. Only the last core browser to ship it moves the label to Newly available.",
+      "concept_ids": [
+        "baseline-lifecycle"
+      ],
+      "revisit": "core"
+    },
+    {
+      "id": "start-the-clock",
+      "kind": "experiment",
+      "at": {
+        "scene": "stalled"
+      },
+      "prompt": "Feature Y has worked in six core browsers for years. Step forward until its label leaves Limited availability. What finally changes the label?",
+      "goal": {
+        "preset": "stalled-clock",
+        "condition": {
+          "path": "vars.status",
+          "op": "eq",
+          "value": "Newly available"
+        },
+        "hint": "Press Forward until the seventh cell, Safari iOS, is highlighted."
+      },
+      "explanation": "The years alone change nothing, because the 30-month clock counts from the newly interoperable date. That date exists only when the last core browser ships the feature, so Safari on iOS shipping it is what moves the label.",
+      "concept_ids": [
+        "baseline-lifecycle"
+      ]
+    },
+    {
+      "id": "month-29",
+      "kind": "predict",
+      "at": {
+        "scene": "clock"
+      },
+      "prompt": "The :has() selector became Newly available in December 2023. Which label does it have in May 2026, 29 months later?",
+      "choices": [
+        {
+          "text": "Newly available",
+          "correct": true
+        },
+        {
+          "text": "Widely available",
+          "misconception": "Rounds 29 months up, or counts from the first browser that shipped instead of the last"
+        },
+        {
+          "text": "Limited availability",
+          "misconception": "Thinks a feature drops back to Limited while it waits for the 30 months"
+        }
+      ],
+      "explanation": "Widely available starts when 30 months have passed since the newly interoperable date. 29 is less than 30, so :has() stays Newly available until June 2026.",
+      "concept_ids": [
+        "baseline-lifecycle"
+      ],
+      "revisit": "lifecycle"
+    },
+    {
+      "id": "reach-widely",
+      "kind": "experiment",
+      "at": {
+        "tab": "practice"
+      },
+      "prompt": "Run the :has() clock forward until the label reads Widely available. In which month does it change?",
+      "goal": {
+        "preset": "has-clock",
+        "condition": {
+          "path": "vars.status",
+          "op": "eq",
+          "value": "Widely available"
+        },
+        "hint": "Press Forward until months_since_newly reaches 30."
+      },
+      "explanation": "Every core browser already supports :has(), so only time moves the label. At 30 months after December 2023, which is June 2026, the label changes to Widely available.",
+      "concept_ids": [
+        "baseline-lifecycle",
+        "baseline-and-caniuse"
+      ]
+    },
+    {
+      "id": "greenish-yellow",
+      "kind": "verify",
+      "at": {
+        "tab": "practice"
+      },
+      "prompt": "In a Can I use table, the cell for one browser is greenish yellow. What does that cell tell you?",
+      "choices": [
+        {
+          "text": "That browser has partial support",
+          "correct": true
+        },
+        {
+          "text": "That browser fully supports the feature",
+          "misconception": "Reads any color that is not red as full support"
+        },
+        {
+          "text": "Nobody knows if that browser supports it",
+          "misconception": "Confuses partial support with gray, which means support unknown"
+        }
+      ],
+      "explanation": "The Can I use legend uses four colors: green for supported, red for not supported, greenish yellow for partial support, and gray for unknown. Partial support means you must check which part works before you rely on it.",
+      "concept_ids": [
+        "caniuse-tables"
+      ]
+    }
+  ],
+  "fallback_visual": "web-dev-baseline-docs-mechanism",
+  "concept_ids": [
+    "baseline-and-caniuse",
+    "baseline-lifecycle",
+    "caniuse-tables"
+  ],
+  "sources": [
+    {
+      "id": "web-dev-baseline-docs",
+      "title": "Baseline: web platform feature availability",
+      "url": "https://web.dev/baseline"
+    },
+    {
+      "id": "caniuse-docs",
+      "title": "Can I use: About and support legend",
+      "url": "https://caniuse.com/"
+    },
+    {
+      "id": "mdn-browser-compat-data-repo",
+      "title": "mdn/browser-compat-data",
+      "url": "https://github.com/mdn/browser-compat-data"
+    }
+  ],
+  "input_hash": "b4c46e549801e8301586d0ab7d78a637d8384b63a02d44b75b97b46d0f1535cd"
+}

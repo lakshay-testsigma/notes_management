@@ -1,0 +1,7 @@
+flowchart LR
+  demo["make-demo-repo.js: createDemoRepo (30 commits)"] --> start["find-regression.js: git bisect start bad good"]
+  start --> run["git bisect run node check.js"]
+  run --> check["check.js: classify at each commit"]
+  check -->|"exit 0 good, 1 bad, 125 skip"| run
+  run --> parse["parseFirstBadCommit"]
+  parse --> reset["git bisect reset"]

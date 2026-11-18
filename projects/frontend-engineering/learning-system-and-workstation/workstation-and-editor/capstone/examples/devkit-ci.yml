@@ -1,0 +1,14 @@
+# One CI job: the same linter as the hook, on the whole pull request range.
+name: devkit
+on: pull_request
+jobs:
+  commits:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # a shallow clone would hide commits
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - run: node src/main.js lint --from "origin/${{ github.base_ref }}" --to HEAD

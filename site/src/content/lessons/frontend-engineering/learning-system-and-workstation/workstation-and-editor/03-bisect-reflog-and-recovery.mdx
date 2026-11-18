@@ -1,0 +1,69 @@
+---
+title: "Find and recover: bisect, reflog, stash and cherry-pick"
+description: git bisect finds the first bad commit by halving the suspect range at each test.
+order: 3
+concepts: [git bisect, binary search, reflog, git stash, git cherry-pick, revision selection]
+---
+
+{/* <!-- concept: git-bisect --> */}
+{/* <!-- concept: reflog-recovery --> */}
+{/* <!-- concept: stash-and-cherry-pick --> */}
+{/* <!-- concept: safe-undo-and-git-config --> */}
+{/* <!-- concept: revision-selection --> */}
+
+A test passed at tag `v1.0` and fails now, 100 commits later. `git bisect` does a binary search over history: each test halves the suspect range.
+
+Run `git bisect start`, then `git bisect bad` for the broken commit, then `git bisect good v1.0`. Git checks out the middle commit. You test it and answer `git bisect good` or `git bisect bad`. When one commit is left, Git names the first bad commit. `git bisect reset` returns you to the start.
+
+<PredictReveal
+  prompt="About 100 commits sit between the good tag and the broken HEAD. About how many tests does git bisect need?"
+  options={["About 7", "About 50", "About 100"]}
+  correct={0}
+  answer="About 7 tests."
+  reasoning="Each answer removes half the range: 100, 50, 25, 13, 7, 4, 2, 1. That is about seven halvings."
+/>
+
+In the lab, pick the bad commit, predict the tests, then step.
+
+<Experience id="bisect-lab" />
+
+A script can answer for you: `git bisect run npm test`. The trade-off: a flaky test marks the wrong half, so the search ends at the wrong commit.
+
+The reflog is your safety net. It records each change of a branch tip or `HEAD` in your local repository. After a bad `git reset --hard`, run `git reflog`, find the lost commit, then run `git branch rescue HEAD@{2}`.
+
+`git stash` shelves uncommitted work so you can switch branches, and `git stash pop` brings it back. `git cherry-pick <sha>` copies one commit onto your branch.
+
+Commands name commits by ancestry. `HEAD~2` is the grandparent of `HEAD`, through first parents. A range `A..B` holds the commits reachable from `B` but not from `A`.
+
+```bash
+git show HEAD^              # the parent of HEAD (same as HEAD~)
+git show HEAD~3             # follow first parents three times
+git show d921970^2          # the second parent of a merge commit
+git log main..feature       # commits on feature that main does not have
+git log origin/main..HEAD   # the commits that git push would send
+```
+
+`git restore` discards file edits. `git reset` moves your branch back: `--soft` keeps the changes staged, `--mixed` (the default) unstages them, and `--hard` also overwrites your files. Reset rewrites history, so for pushed commits use `git revert`: it adds a new commit that reverses the old one.
+
+```bash
+git config --global user.name "Ada Lovelace"     # once per machine: every commit records it
+git config --global user.email ada@example.com
+git restore --staged app.js   # unstage; the edit stays
+git restore app.js            # discard the edit; Git cannot bring it back
+git reset --soft HEAD~1       # undo the last local commit, keep its changes staged
+git revert a1b2c3d            # pushed commit: add a commit that reverses it
+```
+
+<Depth level="internals">
+
+For `git bisect run`, exit code 0 means good and 125 means skip. Any other code from 1 to 127 means bad, and other codes stop the run. Use 125 when the code cannot be tested, for example when it does not build. `git stash apply` keeps the stash, `git stash pop` applies it and drops it, and `-u` also saves untracked files. A cherry-picked commit gets a new checksum, because its applied date differs from the original. The reflog is local only. Its entries expire after 90 days by default, or 30 days for commits that no branch reaches. `HEAD~` follows first parents only, so it skips commits that a merge brought in; `^2` reaches them. Swap the sides, `feature..main`, and you get the other branch's commits.
+
+</Depth>
+
+<Depth level="production">
+
+Wrap the test so a broken build skips instead of failing: `git bisect run sh -c "make || exit 125; ./check.sh"`. Before you clean a working tree, run `git clean -n -d`: it lists what `git clean` would delete. **Interpretation.** Untracked files are not in any commit, so the reflog cannot bring them back.
+
+Only `reset --hard` destroys data, because it overwrites the working directory without a check. If teammates already have the commits, avoid reset and revert instead. To revert a merge commit, name the parent to keep: `git revert -m 1 HEAD`. Run `git config` without `--global` inside one repository to use another identity there. Practice: commit twice, run `git reset --soft HEAD~1`, and check `git status`: the change waits, staged. Before you push, run `git log --oneline origin/main..` to see what leaves. In Windows `cmd.exe`, quote `"HEAD^"`, because `^` is special there.
+
+</Depth>

@@ -1,0 +1,738 @@
+{
+  "id": "feature-detect-lab",
+  "title": "Switch a browser feature on and off",
+  "mode": "interactive",
+  "objective": "Predict which code path a feature test runs when the browser has or lacks the feature.",
+  "level": "beginner",
+  "summary": "A guided walkthrough of three feature tests from MDN (@supports, CSS.supports and the in operator), paused for predictions, plus a simulated browser where the learner switches subgrid, geolocation or an origin-trial feature on and off and steps through the test to see whether the enhanced or the fallback code runs. It ends with the polyfill.io risk and why an expired origin trial still needs the fallback.",
+  "concept_ids": [
+    "feature-detection",
+    "polyfills-when-needed",
+    "experimental-features"
+  ],
+  "source_ids": [
+    "mdn-feature-detection-guide",
+    "chrome-origin-trials-docs",
+    "sansec-polyfill-io-blog"
+  ],
+  "used_in": [
+    "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend/04-feature-detection-and-polyfills.mdx"
+  ],
+  "guided": {
+    "video": "feature-detect-walkthrough"
+  },
+  "fallback_visual": "mdn-feature-detection-guide-mechanism",
+  "simulation": {
+    "component": "AlgorithmStepper",
+    "props": {
+      "title": "Geolocation API on: the in test",
+      "code": "if (\"geolocation\" in navigator) {\n  // use the Geolocation API (enhanced)\n} else {\n  // offer static maps instead (fallback)\n}",
+      "lang": "javascript",
+      "frames": [
+        {
+          "caption": "The page loads in a browser that has the Geolocation API. No test has run yet.",
+          "array": [
+            "Page loads",
+            "Feature test",
+            "Enhanced code",
+            "Fallback code"
+          ],
+          "highlight": [
+            0
+          ],
+          "vars": {
+            "feature": "geolocation",
+            "browser_support": "on",
+            "test": "in operator",
+            "result": "not run",
+            "path": "none"
+          }
+        },
+        {
+          "caption": "\"geolocation\" in navigator is true, because navigator has a geolocation member.",
+          "array": [
+            "Page loads",
+            "Feature test",
+            "Enhanced code",
+            "Fallback code"
+          ],
+          "highlight": [
+            1
+          ],
+          "vars": {
+            "feature": "geolocation",
+            "browser_support": "on",
+            "test": "in operator",
+            "result": "true",
+            "path": "none"
+          },
+          "line": 1
+        },
+        {
+          "caption": "The if branch runs: the page uses the Geolocation API.",
+          "array": [
+            "Page loads",
+            "Feature test",
+            "Enhanced code",
+            "Fallback code"
+          ],
+          "highlight": [
+            2
+          ],
+          "vars": {
+            "feature": "geolocation",
+            "browser_support": "on",
+            "test": "in operator",
+            "result": "true",
+            "path": "enhanced"
+          },
+          "line": 2
+        }
+      ],
+      "view": "array",
+      "speed": 1600
+    },
+    "presets": {
+      "geolocation-on": {
+        "title": "Geolocation API on: the in test",
+        "code": "if (\"geolocation\" in navigator) {\n  // use the Geolocation API (enhanced)\n} else {\n  // offer static maps instead (fallback)\n}",
+        "lang": "javascript",
+        "frames": [
+          {
+            "caption": "The page loads in a browser that has the Geolocation API. No test has run yet.",
+            "array": [
+              "Page loads",
+              "Feature test",
+              "Enhanced code",
+              "Fallback code"
+            ],
+            "highlight": [
+              0
+            ],
+            "vars": {
+              "feature": "geolocation",
+              "browser_support": "on",
+              "test": "in operator",
+              "result": "not run",
+              "path": "none"
+            }
+          },
+          {
+            "caption": "\"geolocation\" in navigator is true, because navigator has a geolocation member.",
+            "array": [
+              "Page loads",
+              "Feature test",
+              "Enhanced code",
+              "Fallback code"
+            ],
+            "highlight": [
+              1
+            ],
+            "vars": {
+              "feature": "geolocation",
+              "browser_support": "on",
+              "test": "in operator",
+              "result": "true",
+              "path": "none"
+            },
+            "line": 1
+          },
+          {
+            "caption": "The if branch runs: the page uses the Geolocation API.",
+            "array": [
+              "Page loads",
+              "Feature test",
+              "Enhanced code",
+              "Fallback code"
+            ],
+            "highlight": [
+              2
+            ],
+            "vars": {
+              "feature": "geolocation",
+              "browser_support": "on",
+              "test": "in operator",
+              "result": "true",
+              "path": "enhanced"
+            },
+            "line": 2
+          }
+        ]
+      },
+      "geolocation-off": {
+        "title": "Geolocation API off: the in test",
+        "code": "if (\"geolocation\" in navigator) {\n  // use the Geolocation API (enhanced)\n} else {\n  // offer static maps instead (fallback)\n}",
+        "lang": "javascript",
+        "frames": [
+          {
+            "caption": "The page loads in a browser without the Geolocation API. No test has run yet.",
+            "array": [
+              "Page loads",
+              "Feature test",
+              "Enhanced code",
+              "Fallback code"
+            ],
+            "highlight": [
+              0
+            ],
+            "vars": {
+              "feature": "geolocation",
+              "browser_support": "off",
+              "test": "in operator",
+              "result": "not run",
+              "path": "none"
+            }
+          },
+          {
+            "caption": "\"geolocation\" in navigator is false, because navigator has no geolocation member.",
+            "array": [
+              "Page loads",
+              "Feature test",
+              "Enhanced code",
+              "Fallback code"
+            ],
+            "highlight": [
+              1
+            ],
+            "vars": {
+              "feature": "geolocation",
+              "browser_support": "off",
+              "test": "in operator",
+              "result": "false",
+              "path": "none"
+            },
+            "line": 1
+          },
+          {
+            "caption": "The else branch runs and offers static maps. The page still works.",
+            "array": [
+              "Page loads",
+              "Feature test",
+              "Enhanced code",
+              "Fallback code"
+            ],
+            "highlight": [
+              3
+            ],
+            "vars": {
+              "feature": "geolocation",
+              "browser_support": "off",
+              "test": "in operator",
+              "result": "false",
+              "path": "fallback"
+            },
+            "line": 4
+          }
+        ]
+      },
+      "subgrid-js-on": {
+        "title": "Subgrid on: CSS.supports() in JavaScript",
+        "code": "const ok = CSS.supports(\"grid-template-columns\", \"subgrid\");\nif (ok) {\n  link.href = \"subgrid-layout.css\"; // enhanced layout\n}\n// no match: the default stylesheet stays (fallback)",
+        "lang": "javascript",
+        "frames": [
+          {
+            "caption": "The page loads in a browser that supports subgrid. No test has run yet.",
+            "array": [
+              "Page loads",
+              "Feature test",
+              "Enhanced code",
+              "Fallback code"
+            ],
+            "highlight": [
+              0
+            ],
+            "vars": {
+              "feature": "subgrid",
+              "browser_support": "on",
+              "test": "CSS.supports()",
+              "result": "not run",
+              "path": "none"
+            }
+          },
+          {
+            "caption": "CSS.supports asks whether grid-template-columns: subgrid is a valid pair. This browser answers true.",
+            "array": [
+              "Page loads",
+              "Feature test",
+              "Enhanced code",
+              "Fallback code"
+            ],
+            "highlight": [
+              1
+            ],
+            "vars": {
+              "feature": "subgrid",
+              "browser_support": "on",
+              "test": "CSS.supports()",
+              "result": "true",
+              "path": "none"
+            },
+            "line": 1
+          },
+          {
+            "caption": "The if block runs and links subgrid-layout.css, so the visitor gets the enhanced layout.",
+            "array": [
+              "Page loads",
+              "Feature test",
+              "Enhanced code",
+              "Fallback code"
+            ],
+            "highlight": [
+              2
+            ],
+            "vars": {
+              "feature": "subgrid",
+              "browser_support": "on",
+              "test": "CSS.supports()",
+              "result": "true",
+              "path": "enhanced"
+            },
+            "line": 3
+          }
+        ]
+      },
+      "subgrid-js-off": {
+        "title": "Subgrid off: CSS.supports() in JavaScript",
+        "code": "const ok = CSS.supports(\"grid-template-columns\", \"subgrid\");\nif (ok) {\n  link.href = \"subgrid-layout.css\"; // enhanced layout\n}\n// no match: the default stylesheet stays (fallback)",
+        "lang": "javascript",
+        "frames": [
+          {
+            "caption": "The page loads in a browser without subgrid. No test has run yet.",
+            "array": [
+              "Page loads",
+              "Feature test",
+              "Enhanced code",
+              "Fallback code"
+            ],
+            "highlight": [
+              0
+            ],
+            "vars": {
+              "feature": "subgrid",
+              "browser_support": "off",
+              "test": "CSS.supports()",
+              "result": "not run",
+              "path": "none"
+            }
+          },
+          {
+            "caption": "CSS.supports asks whether grid-template-columns: subgrid is a valid pair. This browser answers false.",
+            "array": [
+              "Page loads",
+              "Feature test",
+              "Enhanced code",
+              "Fallback code"
+            ],
+            "highlight": [
+              1
+            ],
+            "vars": {
+              "feature": "subgrid",
+              "browser_support": "off",
+              "test": "CSS.supports()",
+              "result": "false",
+              "path": "none"
+            },
+            "line": 1
+          },
+          {
+            "caption": "The if block is skipped. The link does not change, so the default stylesheet gives the fallback layout.",
+            "array": [
+              "Page loads",
+              "Feature test",
+              "Enhanced code",
+              "Fallback code"
+            ],
+            "highlight": [
+              3
+            ],
+            "vars": {
+              "feature": "subgrid",
+              "browser_support": "off",
+              "test": "CSS.supports()",
+              "result": "false",
+              "path": "fallback"
+            },
+            "line": 5
+          }
+        ]
+      },
+      "subgrid-css-on": {
+        "title": "Subgrid on: the @supports rule",
+        "code": "@supports (grid-template-columns: subgrid) {\n  /* subgrid layout rules (enhanced) */\n}\n@supports not (grid-template-columns: subgrid) {\n  /* fallback layout rules */\n}",
+        "lang": "css",
+        "frames": [
+          {
+            "caption": "The page loads in a browser that supports subgrid. The CSS rules need no JavaScript.",
+            "array": [
+              "Page loads",
+              "Feature test",
+              "Enhanced code",
+              "Fallback code"
+            ],
+            "highlight": [
+              0
+            ],
+            "vars": {
+              "feature": "subgrid",
+              "browser_support": "on",
+              "test": "@supports",
+              "result": "not run",
+              "path": "none"
+            }
+          },
+          {
+            "caption": "@supports (grid-template-columns: subgrid) matches, so its block applies: the enhanced layout.",
+            "array": [
+              "Page loads",
+              "Feature test",
+              "Enhanced code",
+              "Fallback code"
+            ],
+            "highlight": [
+              2
+            ],
+            "vars": {
+              "feature": "subgrid",
+              "browser_support": "on",
+              "test": "@supports",
+              "result": "true",
+              "path": "enhanced"
+            },
+            "line": 1
+          },
+          {
+            "caption": "@supports not (...) does not match, so the fallback rules are ignored.",
+            "array": [
+              "Page loads",
+              "Feature test",
+              "Enhanced code",
+              "Fallback code"
+            ],
+            "highlight": [
+              2
+            ],
+            "vars": {
+              "feature": "subgrid",
+              "browser_support": "on",
+              "test": "@supports",
+              "result": "true",
+              "path": "enhanced"
+            },
+            "line": 4
+          }
+        ]
+      },
+      "subgrid-css-off": {
+        "title": "Subgrid off: the @supports rule",
+        "code": "@supports (grid-template-columns: subgrid) {\n  /* subgrid layout rules (enhanced) */\n}\n@supports not (grid-template-columns: subgrid) {\n  /* fallback layout rules */\n}",
+        "lang": "css",
+        "frames": [
+          {
+            "caption": "The page loads in a browser without subgrid. The CSS rules need no JavaScript.",
+            "array": [
+              "Page loads",
+              "Feature test",
+              "Enhanced code",
+              "Fallback code"
+            ],
+            "highlight": [
+              0
+            ],
+            "vars": {
+              "feature": "subgrid",
+              "browser_support": "off",
+              "test": "@supports",
+              "result": "not run",
+              "path": "none"
+            }
+          },
+          {
+            "caption": "@supports (grid-template-columns: subgrid) does not match, so the subgrid rules are ignored.",
+            "array": [
+              "Page loads",
+              "Feature test",
+              "Enhanced code",
+              "Fallback code"
+            ],
+            "highlight": [
+              1
+            ],
+            "vars": {
+              "feature": "subgrid",
+              "browser_support": "off",
+              "test": "@supports",
+              "result": "false",
+              "path": "none"
+            },
+            "line": 1
+          },
+          {
+            "caption": "@supports not (...) matches, so its block applies: the fallback layout.",
+            "array": [
+              "Page loads",
+              "Feature test",
+              "Enhanced code",
+              "Fallback code"
+            ],
+            "highlight": [
+              3
+            ],
+            "vars": {
+              "feature": "subgrid",
+              "browser_support": "off",
+              "test": "@supports",
+              "result": "false",
+              "path": "fallback"
+            },
+            "line": 5
+          }
+        ]
+      },
+      "origin-trial": {
+        "title": "An experimental feature in an origin trial",
+        "code": "<!-- added during the trial: -->\n<meta http-equiv=\"origin-trial\" content=\"YOUR_TOKEN\">\n<script>\n  if (\"experimentalApi\" in window) { /* enhanced */ }\n  else { /* fallback */ }\n</script>",
+        "lang": "html",
+        "frames": [
+          {
+            "caption": "Before the trial: no token on the page, so the experimental feature is off. The test is false and the fallback runs.",
+            "array": [
+              "Page loads",
+              "Feature test",
+              "Enhanced code",
+              "Fallback code"
+            ],
+            "highlight": [
+              3
+            ],
+            "vars": {
+              "feature": "experimental API",
+              "token": "none",
+              "trial": "not joined",
+              "result": "false",
+              "path": "fallback"
+            },
+            "line": 4
+          },
+          {
+            "caption": "You register for the origin trial, get a token, and add it in a meta tag. The feature is on for your site.",
+            "array": [
+              "Page loads",
+              "Feature test",
+              "Enhanced code",
+              "Fallback code"
+            ],
+            "highlight": [
+              0
+            ],
+            "vars": {
+              "feature": "experimental API",
+              "token": "in meta tag",
+              "trial": "active",
+              "result": "not run",
+              "path": "none"
+            },
+            "line": 2
+          },
+          {
+            "caption": "The same test now returns true, so the enhanced code runs.",
+            "array": [
+              "Page loads",
+              "Feature test",
+              "Enhanced code",
+              "Fallback code"
+            ],
+            "highlight": [
+              2
+            ],
+            "vars": {
+              "feature": "experimental API",
+              "token": "in meta tag",
+              "trial": "active",
+              "result": "true",
+              "path": "enhanced"
+            },
+            "line": 4
+          },
+          {
+            "caption": "The trial expires. The feature is off again, the test returns false, and the fallback runs. Keep the fallback.",
+            "array": [
+              "Page loads",
+              "Feature test",
+              "Enhanced code",
+              "Fallback code"
+            ],
+            "highlight": [
+              3
+            ],
+            "vars": {
+              "feature": "experimental API",
+              "token": "in meta tag",
+              "trial": "expired",
+              "result": "false",
+              "path": "fallback"
+            },
+            "line": 5
+          }
+        ]
+      }
+    }
+  },
+  "sync": [
+    {
+      "scene": "subgrid",
+      "preset": "subgrid-js-on"
+    },
+    {
+      "scene": "geolocation",
+      "preset": "geolocation-off"
+    },
+    {
+      "scene": "origin-trial",
+      "preset": "origin-trial"
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "geo-missing-path",
+      "kind": "predict",
+      "at": {
+        "scene": "geolocation"
+      },
+      "prompt": "This browser has no Geolocation API. Which code runs?",
+      "choices": [
+        {
+          "text": "The else branch, which offers static maps",
+          "correct": true
+        },
+        {
+          "text": "The if branch, then the page crashes on the missing API",
+          "misconception": "Thinks the if block runs no matter what the test returns"
+        },
+        {
+          "text": "Nothing: the in test throws an error",
+          "misconception": "Thinks testing for a missing member is itself an error, when it just returns false"
+        }
+      ],
+      "explanation": "\"geolocation\" in navigator only asks whether navigator has that member. Here it returns false, so the else branch runs and the visitor gets static maps instead of a broken page.",
+      "concept_ids": [
+        "feature-detection"
+      ],
+      "revisit": "three-tests"
+    },
+    {
+      "id": "subgrid-off-experiment",
+      "kind": "experiment",
+      "at": {
+        "scene": "subgrid"
+      },
+      "prompt": "Switch subgrid off in the simulated browser (pick \"subgrid js off\" or \"subgrid css off\") and step until the page picks a layout. Which layout does the visitor get?",
+      "goal": {
+        "condition": {
+          "all": [
+            {
+              "path": "vars.feature",
+              "op": "eq",
+              "value": "subgrid"
+            },
+            {
+              "path": "vars.path",
+              "op": "eq",
+              "value": "fallback"
+            },
+            {
+              "path": "done",
+              "op": "eq",
+              "value": true
+            }
+          ]
+        },
+        "hint": "Pick \"subgrid js off\" or \"subgrid css off\", then press Forward until the caption names the fallback layout."
+      },
+      "explanation": "With subgrid missing, CSS.supports returns false and @supports not (...) matches. Both tests send the browser to the fallback layout, so the page still works without the new feature.",
+      "concept_ids": [
+        "feature-detection"
+      ]
+    },
+    {
+      "id": "polyfill-risk",
+      "kind": "verify",
+      "at": {
+        "scene": "polyfill"
+      },
+      "prompt": "Why can a polyfill loaded from a third-party address be a risk?",
+      "choices": [
+        {
+          "text": "Its code runs on your page, so whoever controls that address controls the code",
+          "correct": true
+        },
+        {
+          "text": "Polyfills only slow the page down",
+          "misconception": "Sees only a speed cost, not who controls the code that runs"
+        },
+        {
+          "text": "Polyfills can only change CSS, so there is no risk",
+          "misconception": "Thinks a polyfill is styling, when it is script with full access to the page"
+        }
+      ],
+      "explanation": "A polyfill is script that runs with your page. In 2024 the polyfill.io domain was sold and its script was changed to inject malware, which affected more than 100,000 sites.",
+      "concept_ids": [
+        "polyfills-when-needed"
+      ]
+    },
+    {
+      "id": "trial-expired",
+      "kind": "predict",
+      "at": {
+        "scene": "origin-trial"
+      },
+      "prompt": "Your page uses an experimental feature through an origin trial, behind a feature test. The trial expires. What does a visitor get?",
+      "choices": [
+        {
+          "text": "The fallback code, because the test now returns false",
+          "correct": true
+        },
+        {
+          "text": "The enhanced code, because the token is still in the page",
+          "misconception": "Thinks a token keeps the feature on after the trial ends"
+        },
+        {
+          "text": "A broken page",
+          "misconception": "Forgets that the feature test guards the experimental code"
+        }
+      ],
+      "explanation": "An origin trial turns the feature on only while the trial runs. After it expires the feature is off, the test returns false, and the fallback runs. That is why experimental features always need a fallback.",
+      "concept_ids": [
+        "experimental-features",
+        "feature-detection"
+      ],
+      "revisit": "origin-trial"
+    },
+    {
+      "id": "why-not-sniffing",
+      "kind": "verify",
+      "at": {
+        "tab": "practice"
+      },
+      "prompt": "Why does MDN tell you to test the feature instead of reading which browser visits the site?",
+      "choices": [
+        {
+          "text": "The test asks the real browser what it can do; the browser name only guesses",
+          "correct": true
+        },
+        {
+          "text": "Reading the browser name is not possible in JavaScript",
+          "misconception": "Thinks sniffing is impossible, when MDN rejects it because it is unreliable"
+        },
+        {
+          "text": "Feature tests make the page load faster",
+          "misconception": "Thinks the benefit is speed, not a correct answer per browser"
+        }
+      ],
+      "explanation": "MDN calls browser sniffing a terrible practice. A feature test checks the actual capability at run time, so each browser gets the code path it can run.",
+      "concept_ids": [
+        "feature-detection"
+      ]
+    }
+  ]
+}

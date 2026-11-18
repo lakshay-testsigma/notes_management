@@ -1,0 +1,19 @@
+sequenceDiagram
+  participant H as commit-msg hook
+  participant C as cli
+  participant R as read
+  participant L as load
+  participant N as lint
+  participant U as rules
+  participant F as format
+  H->>C: cli.js --edit path
+  C->>R: pick message source
+  R-->>C: message text
+  C->>L: load config
+  L-->>C: rules and parser options
+  C->>N: lint message
+  N->>U: rule(parsed, when, value)
+  U-->>N: passed and message
+  N-->>C: errors and warnings
+  C->>F: format report
+  C-->>H: exit code 0, 1, 2, 3 or 9

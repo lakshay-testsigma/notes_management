@@ -1,0 +1,10 @@
+flowchart TD
+  A[File to load] --> B{Extension?}
+  B -->|.mjs| E[ES module]
+  B -->|.cjs| C[CommonJS]
+  B -->|.js| D{Nearest package.json type?}
+  D -->|module| E
+  D -->|commonjs| C
+  D -->|missing| F{ESM syntax found?}
+  F -->|yes, retry| E
+  F -->|no| C

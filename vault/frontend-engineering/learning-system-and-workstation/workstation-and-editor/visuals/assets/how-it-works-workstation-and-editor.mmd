@@ -1,0 +1,7 @@
+flowchart LR
+  A[Create a branch] --> B[Edit and debug<br/>in the editor]
+  B --> C[Commit with a<br/>Conventional Commit message]
+  C --> D[Push and open<br/>a pull request]
+  D --> E[Review and discuss]
+  E -->|changes requested| B
+  E -->|approved| F[Merge, then<br/>delete the branch]

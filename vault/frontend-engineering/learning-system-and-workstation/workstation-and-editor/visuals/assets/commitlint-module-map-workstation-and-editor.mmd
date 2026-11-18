@@ -1,0 +1,8 @@
+flowchart LR
+  H[Hook or CI] --> CLI[cli and read]
+  CLI --> LD[load config]
+  LD --> LT[lint engine]
+  LT --> RU[rules and ensure]
+  LT --> PA[parse]
+  LT --> FM[format]
+  FM --> CLI

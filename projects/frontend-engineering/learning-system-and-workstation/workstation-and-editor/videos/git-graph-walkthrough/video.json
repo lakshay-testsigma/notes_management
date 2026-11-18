@@ -1,0 +1,58 @@
+{
+  "id": "git-graph-walkthrough",
+  "title": "Merge and rebase on the same fork",
+  "purpose": "See how merge and rebase join the same two diverged branches and why the two histories differ.",
+  "sequence_reason": "Each command moves pointers and creates commits in a fixed order, and the result of each step depends on the step before.",
+  "summary": "Commits C1 and C2 sit on main. The branch feature adds C3 and main adds C4, both with the parent C2. On main, git merge feature records a merge commit C5 with the two parents C4 and C3. On feature, git rebase main replays C3 on top of C4 as a new commit C3', so history is a straight line. Both give the same final files, so rebase only commits that exist only in your repository.",
+  "explanation": "A branch is a movable pointer to a commit. Merge adds a commit with two parents and rewrites nothing; rebase copies your commits as new commits on top of the other branch (Pro Git 3.1, 3.2, 3.6).",
+  "learning_check": {
+    "question": "After git rebase main on feature, is C3 still the tip of feature?",
+    "answer": "No. Rebase creates a new commit C3' with the parent C4, and feature now points to C3'. The old C3 is no longer on the branch."
+  },
+  "concept_ids": ["commit-graph-and-branches", "merge-vs-rebase", "git-github-fluency"],
+  "source_ids": ["chacon-2014-pro-git"],
+  "used_in": ["site/src/content/lessons/frontend-engineering/learning-system-and-workstation/workstation-and-editor/02-git-commit-graph.mdx"],
+  "narration": { "engine": "auto" },
+  "scenes": [
+    {
+      "id": "commits",
+      "duration": 10,
+      "heading": "Commits, branches and HEAD",
+      "narration": "Each commit stores a snapshot and a link to its parent. A branch is a movable pointer, and HEAD names your current branch.",
+      "source_ids": ["chacon-2014-pro-git"],
+      "visual": { "type": "steps", "items": ["Commit: a snapshot plus a parent link", "Branch: a pointer to one commit", "HEAD: the branch you are on", "New commit: your branch moves forward"] }
+    },
+    {
+      "id": "fork",
+      "duration": 9,
+      "heading": "One history forks into two",
+      "narration": "Now the history forks into two lines. Feature adds C3, main adds C4, and both commits have the parent C2.",
+      "source_ids": ["chacon-2014-pro-git"],
+      "visual": { "type": "compare", "left": { "label": "feature", "items": ["C3, parent C2", "feature points to C3"] }, "right": { "label": "main", "items": ["C4, parent C2", "main points to C4"] }, "verdict": "C2 is the common ancestor of both tips." }
+    },
+    {
+      "id": "merge",
+      "duration": 10,
+      "heading": "git merge feature, on main",
+      "narration": "On main, git merge feature combines C4, C3 and their common ancestor C2. Git records C5, a merge commit with two parents.",
+      "source_ids": ["chacon-2014-pro-git"],
+      "visual": { "type": "steps", "items": ["Find the common ancestor C2", "Three-way merge of C4 and C3", "Record merge commit C5 with two parents", "main moves to C5, feature stays at C3"] }
+    },
+    {
+      "id": "rebase",
+      "duration": 10,
+      "heading": "git rebase main, on feature",
+      "narration": "On feature, git rebase main replays the change of C3 on top of C4 as a new commit, C3'. History becomes a straight line.",
+      "source_ids": ["chacon-2014-pro-git"],
+      "visual": { "type": "steps", "items": ["Save the change that C3 made", "Reset feature to C4, the tip of main", "Apply the change as new commit C3'", "History is one straight line"] }
+    },
+    {
+      "id": "golden-rule",
+      "duration": 10,
+      "heading": "Same files, different history",
+      "narration": "Both commands give the same final files, but rebase rewrites commits. Never rebase commits that exist outside your repository.",
+      "source_ids": ["chacon-2014-pro-git"],
+      "visual": { "type": "compare", "left": { "label": "Merge", "items": ["Keeps both lines of work", "Adds a commit with two parents", "Rewrites no commits"] }, "right": { "label": "Rebase", "items": ["One straight line", "Creates new commits", "Safe for local commits only"] }, "verdict": "Do not rebase commits that exist outside your repository." }
+    }
+  ]
+}

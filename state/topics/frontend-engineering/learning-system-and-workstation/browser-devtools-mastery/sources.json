@@ -1,0 +1,303 @@
+[
+  {
+    "id": "chrome-devtools-docs",
+    "type": "official-docs",
+    "title": "Chrome DevTools documentation: Elements/CSS, Console, JavaScript debugging, Overrides",
+    "url": "https://developer.chrome.com/docs/devtools",
+    "authors": "Chrome DevTools team (Google), Kayce Basques and Sofia Emelianova",
+    "year": 2026,
+    "tier": "A",
+    "why_trusted": "The official documentation of Chrome DevTools, hosted on developer.chrome.com by the Chrome team that builds the tool; the pages read today cover CSS inspection, the Console and its utilities API, breakpoints, source maps and local overrides.",
+    "evidence": {
+      "stars": null,
+      "last_commit": null,
+      "citations": null,
+      "venue": null,
+      "publisher": "Google Chrome for Developers",
+      "used_by": []
+    },
+    "verified_at": "2026-11-18",
+    "verified_via": "https://developer.chrome.com/docs/devtools/javascript/breakpoints",
+    "use_for": [
+      "brief",
+      "lesson"
+    ],
+    "evidence_urls": [
+      "https://developer.chrome.com/docs/devtools/css/reference",
+      "https://developer.chrome.com/docs/devtools/css/grid",
+      "https://developer.chrome.com/docs/devtools/css/flexbox",
+      "https://developer.chrome.com/docs/devtools/console/reference",
+      "https://developer.chrome.com/docs/devtools/console/utilities",
+      "https://developer.chrome.com/docs/devtools/console/live-expressions",
+      "https://developer.chrome.com/docs/devtools/javascript/reference",
+      "https://developer.chrome.com/docs/devtools/javascript/breakpoints",
+      "https://developer.chrome.com/docs/devtools/javascript/source-maps",
+      "https://developer.chrome.com/docs/devtools/overrides"
+    ]
+  },
+  {
+    "id": "ecma-426-source-map",
+    "type": "standard",
+    "title": "ECMA-426: Source map format specification",
+    "url": "https://tc39.es/ecma426/",
+    "authors": "Ecma International TC39-TG4 (editors Asumu Takikawa, Nicolo Ribaudo, Jon Kuperman)",
+    "year": 2026,
+    "tier": "A",
+    "why_trusted": "The Ecma International standard for the source map format that DevTools, bundlers and compilers follow; the full text is freely readable and the live page is dated 11 November 2026.",
+    "evidence": {
+      "stars": null,
+      "last_commit": null,
+      "citations": null,
+      "venue": "Ecma International, ECMA-426 (TC39)",
+      "publisher": "Ecma International",
+      "used_by": []
+    },
+    "verified_at": "2026-11-18",
+    "verified_via": "https://tc39.es/ecma426/",
+    "use_for": [
+      "digest",
+      "lesson"
+    ]
+  },
+  {
+    "id": "chrome-devtools-network-docs",
+    "type": "official-docs",
+    "title": "Chrome DevTools: Network features reference",
+    "url": "https://developer.chrome.com/docs/devtools/network/reference",
+    "authors": "Kayce Basques, Sofia Emelianova (Chrome DevTools team)",
+    "year": 2026,
+    "tier": "A",
+    "why_trusted": "The official Chrome DevTools reference for the Network panel on developer.chrome.com, written by the Chrome team; it lists the timing phases Queueing, Stalled, DNS Lookup, Initial connection, Request sent, Waiting (TTFB) and Content Download, plus throttling and HAR export.",
+    "evidence": {
+      "stars": null,
+      "last_commit": null,
+      "citations": null,
+      "venue": null,
+      "publisher": "Google Chrome DevTools team",
+      "used_by": []
+    },
+    "verified_at": "2026-11-18",
+    "verified_via": "https://developer.chrome.com/docs/devtools/network/reference",
+    "use_for": [
+      "brief",
+      "digest",
+      "lesson"
+    ],
+    "evidence_urls": [
+      "https://developer.chrome.com/docs/devtools/network/reference"
+    ]
+  },
+  {
+    "id": "chrome-devtools-memory-docs",
+    "type": "official-docs",
+    "title": "Chrome DevTools: Fix memory problems and heap snapshots",
+    "url": "https://developer.chrome.com/docs/devtools/memory-problems",
+    "authors": "Chrome DevTools team",
+    "year": 2026,
+    "tier": "A",
+    "why_trusted": "The official Chrome DevTools guide to memory leaks; covers detached DOM nodes, allocation timelines, heap snapshots, the Retainers section and the Comparison view.",
+    "evidence": {
+      "stars": null,
+      "last_commit": null,
+      "citations": null,
+      "venue": null,
+      "publisher": "Google Chrome DevTools team",
+      "used_by": []
+    },
+    "verified_at": "2026-11-18",
+    "verified_via": "https://developer.chrome.com/docs/devtools/memory-problems",
+    "use_for": [
+      "digest",
+      "lesson"
+    ],
+    "evidence_urls": [
+      "https://developer.chrome.com/docs/devtools/memory-problems",
+      "https://developer.chrome.com/docs/devtools/memory-problems/heap-snapshots"
+    ]
+  },
+  {
+    "id": "chrome-devtools-measure-docs",
+    "type": "official-docs",
+    "title": "Chrome DevTools: Performance, Application, Coverage, Rendering and Recorder docs",
+    "url": "https://developer.chrome.com/docs/devtools/performance/reference",
+    "authors": "Chrome DevTools team",
+    "year": 2026,
+    "tier": "A",
+    "why_trusted": "Official Chrome DevTools references for the Performance panel (live metrics with CrUX, CPU throttling, layout shifts, insights) and the Application, Coverage, Rendering and Recorder panels.",
+    "evidence": {
+      "stars": null,
+      "last_commit": null,
+      "citations": null,
+      "venue": null,
+      "publisher": "Google Chrome DevTools team",
+      "used_by": []
+    },
+    "verified_at": "2026-11-18",
+    "verified_via": "https://developer.chrome.com/docs/devtools/performance/reference",
+    "use_for": [
+      "lesson"
+    ],
+    "evidence_urls": [
+      "https://developer.chrome.com/docs/devtools/performance/reference",
+      "https://developer.chrome.com/docs/devtools/application",
+      "https://developer.chrome.com/docs/devtools/coverage",
+      "https://developer.chrome.com/docs/devtools/rendering/emulate-css",
+      "https://developer.chrome.com/docs/devtools/recorder"
+    ]
+  },
+  {
+    "id": "web-dev-vitals-docs",
+    "type": "official-docs",
+    "title": "web.dev: Core Web Vitals, long tasks and bfcache",
+    "url": "https://web.dev/articles/vitals",
+    "authors": "Philip Walton, Jeremy Wagner, Brendan Kenny, Barry Pollard (Google)",
+    "year": 2026,
+    "tier": "A",
+    "why_trusted": "web.dev is Google's official web platform guidance site; the Web Vitals article defines the Core Web Vitals thresholds (LCP 2.5 s, INP 200 ms, CLS 0.1) and sibling articles define long tasks (over 50 ms) and bfcache testing.",
+    "evidence": {
+      "stars": null,
+      "last_commit": null,
+      "citations": null,
+      "venue": null,
+      "publisher": "web.dev (Google)",
+      "used_by": []
+    },
+    "verified_at": "2026-11-18",
+    "verified_via": "https://web.dev/articles/vitals",
+    "use_for": [
+      "lesson"
+    ],
+    "evidence_urls": [
+      "https://web.dev/articles/vitals",
+      "https://web.dev/articles/optimize-long-tasks",
+      "https://web.dev/articles/bfcache"
+    ]
+  },
+  {
+    "id": "firefox-devtools-user-docs",
+    "type": "official-docs",
+    "title": "Firefox DevTools User Docs",
+    "url": "https://firefox-source-docs.mozilla.org/devtools-user/",
+    "authors": "Mozilla",
+    "year": 2026,
+    "tier": "A",
+    "why_trusted": "The official user documentation of Firefox DevTools, hosted on Mozilla's Firefox Source Docs and covering the Grid and Flexbox inspectors, Edit fonts, Accessibility inspector and about:debugging.",
+    "evidence": {
+      "stars": null,
+      "last_commit": null,
+      "citations": null,
+      "venue": null,
+      "publisher": "Mozilla",
+      "used_by": []
+    },
+    "verified_at": "2026-11-18",
+    "verified_via": "https://firefox-source-docs.mozilla.org/devtools-user/page_inspector/how_to/examine_grid_layouts/index.html",
+    "use_for": [
+      "lesson",
+      "digest"
+    ]
+  },
+  {
+    "id": "webkit-web-inspector-docs",
+    "type": "official-docs",
+    "title": "Web Inspector Reference (WebKit)",
+    "url": "https://webkit.org/web-inspector/",
+    "authors": "WebKit project",
+    "year": 2026,
+    "tier": "A",
+    "why_trusted": "The Web Inspector reference published by the WebKit project, which builds Safari's engine and its inspector, including the Enabling Web Inspector page for iOS devices.",
+    "evidence": {
+      "stars": null,
+      "last_commit": null,
+      "citations": null,
+      "venue": null,
+      "publisher": "WebKit project (Apple)",
+      "used_by": []
+    },
+    "verified_at": "2026-11-18",
+    "verified_via": "https://webkit.org/web-inspector/enabling-web-inspector/",
+    "use_for": [
+      "lesson"
+    ]
+  },
+  {
+    "id": "chrome-devtools-remote-debugging-docs",
+    "type": "official-docs",
+    "title": "Get started with remote debugging Android devices",
+    "url": "https://developer.chrome.com/docs/devtools/remote-debugging",
+    "authors": "Google Chrome team",
+    "year": 2026,
+    "tier": "A",
+    "why_trusted": "The official Chrome DevTools documentation for debugging Android Chrome from a desktop via chrome://inspect, maintained by the Chrome team.",
+    "evidence": {
+      "stars": null,
+      "last_commit": null,
+      "citations": null,
+      "venue": null,
+      "publisher": "Google",
+      "used_by": []
+    },
+    "verified_at": "2026-11-18",
+    "verified_via": "https://developer.chrome.com/docs/devtools/remote-debugging",
+    "use_for": [
+      "lesson"
+    ]
+  },
+  {
+    "id": "googlechrome-lighthouse-repo",
+    "type": "repo",
+    "title": "GoogleChrome/lighthouse",
+    "url": "https://github.com/GoogleChrome/lighthouse",
+    "authors": "Google Chrome team",
+    "year": 2026,
+    "tier": "A",
+    "why_trusted": "The Lighthouse project itself (Apache-2.0), owned by the GoogleChrome organization; its README states Lighthouse is integrated into the Chrome DevTools Lighthouse panel, and its JSON report and trace processing (core/lib/tracehouse) are the formats the capstone CLI reads.",
+    "evidence": {
+      "stars": 31153,
+      "last_commit": "2026-11-18",
+      "citations": null,
+      "venue": null,
+      "publisher": null,
+      "archived": false,
+      "license": "Apache-2.0",
+      "used_by": [
+        "Chrome DevTools (Lighthouse panel)"
+      ]
+    },
+    "verified_at": "2026-11-18",
+    "verified_via": "https://api.github.com/repos/GoogleChrome/lighthouse",
+    "use_for": [
+      "repo-intel",
+      "lesson"
+    ]
+  },
+  {
+    "id": "chromedevtools-devtools-frontend-repo",
+    "type": "repo",
+    "title": "ChromeDevTools/devtools-frontend",
+    "url": "https://github.com/ChromeDevTools/devtools-frontend",
+    "authors": "Chrome DevTools team",
+    "year": 2026,
+    "tier": "A",
+    "niche_reason": "Specialised niche: the browser DevTools UI code itself, the only implementation of Chrome DevTools.",
+    "why_trusted": "The client side of Chrome DevTools itself (BSD-3-Clause), per its README; the GitHub repo mirrors chromium.googlesource.com, so study only the narrow subtrees front_end/models/trace, front_end/models/har and front_end/panels/network, not the whole tree.",
+    "evidence": {
+      "stars": 4103,
+      "last_commit": "2026-11-18",
+      "citations": null,
+      "venue": null,
+      "publisher": "Google (Chromium project)",
+      "archived": false,
+      "license": "BSD-3-Clause",
+      "used_by": [
+        "Google Chrome"
+      ]
+    },
+    "verified_at": "2026-11-18",
+    "verified_via": "https://api.github.com/repos/ChromeDevTools/devtools-frontend",
+    "use_for": [
+      "repo-intel",
+      "lesson"
+    ]
+  }
+]

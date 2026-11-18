@@ -1,0 +1,19 @@
+:root { font-family: system-ui, sans-serif; line-height: 1.5; color: #1a1a1a; background: #fff; }
+body { margin: 0 auto; max-width: 48rem; padding: 1rem; }
+label { display: block; margin-top: 0.75rem; font-weight: 600; }
+input, textarea { width: 100%; box-sizing: border-box; padding: 0.4rem; font: inherit; border: 1px solid #555; }
+button { margin-top: 0.75rem; padding: 0.5rem 0.9rem; font: inherit; background: #0b3d91; color: #fff; border: 2px solid #0b3d91; cursor: pointer; }
+:focus-visible { outline: 3px solid #b35900; outline-offset: 2px; }
+.skip { position: absolute; left: -999px; }
+.skip:focus { left: 0.5rem; top: 0.5rem; background: #fff; padding: 0.5rem; }
+.hint, .meta { margin: 0.1rem 0; color: #444; font-size: 0.9rem; }
+.errors { border: 2px solid #8a1c1c; padding: 0.5rem 1rem; margin: 0.5rem 0; }
+.status:empty { display: none; }
+ul { padding-left: 1.2rem; }
+.note { list-style: none; border: 1px solid #888; padding: 0.5rem 1rem; margin: 0.75rem 0; }
+.badges { list-style: none; padding: 0; }
+.badge { display: block; margin: 0.25rem 0; padding: 0.2rem 0.5rem; border-left: 6px solid #555; background: #f2f2f2; }
+.badge-widely { border-color: #146c2e; }
+.badge-newly { border-color: #0b3d91; }
+.badge-limited { border-color: #8a1c1c; }
+@media (max-width: 480px) { body { padding: 0.5rem; } }

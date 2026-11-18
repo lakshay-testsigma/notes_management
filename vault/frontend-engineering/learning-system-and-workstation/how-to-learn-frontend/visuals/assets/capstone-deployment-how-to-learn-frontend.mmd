@@ -1,0 +1,6 @@
+flowchart LR
+  Pkg["@mdn/browser-compat-data (dev dependency)"] -->|npm run data| Snap["feature-snapshot.json"]
+  Snap --> Build["vite build: static files"]
+  Env["VITE_ variables"] --> Build
+  Build --> Host["any static file host"]
+  Host --> Browser["browser: React app + localStorage"]

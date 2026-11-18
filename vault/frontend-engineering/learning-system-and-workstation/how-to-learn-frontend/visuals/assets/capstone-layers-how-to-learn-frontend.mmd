@@ -1,0 +1,9 @@
+flowchart TD
+  Main["main.tsx: wires objects"] --> UI
+  Main --> App
+  Main --> Dom
+  Main --> Infra
+  UI["interface: App, NoteForm, NoteCard"] --> App
+  App["application: AddNote, ListNotes, ListDueNotes, MarkReviewed, GetFeatureStatuses"] --> Dom
+  Dom["domain: NoteValidator, ReviewScheduler, BaselineCalculator, FeatureKeyExtractor, ports"]
+  Infra["infrastructure: LocalStorageNoteRepository, SnapshotFeatureCatalog, SystemClock, JsonLogger"] -->|implements ports| Dom

@@ -1,4 +1,35 @@
 {
   "schema": 1,
-  "topics": []
+  "topics": [
+    {
+      "id": "frontend-engineering/learning-system-and-workstation/browser-devtools-mastery",
+      "title": "Browser DevTools mastery (used in every phase)",
+      "slug": "browser-devtools-mastery",
+      "domain": "frontend-engineering",
+      "subdomain": "learning-system-and-workstation",
+      "depth": "deep",
+      "created_at": "2026-11-18T09:43:20Z",
+      "state": "state/topics/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery"
+    },
+    {
+      "id": "frontend-engineering/learning-system-and-workstation/how-to-learn-frontend",
+      "title": "How to learn frontend (and keep improving)",
+      "slug": "how-to-learn-frontend",
+      "domain": "frontend-engineering",
+      "subdomain": "learning-system-and-workstation",
+      "depth": "standard",
+      "created_at": "2026-11-17T17:49:13Z",
+      "state": "state/topics/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend"
+    },
+    {
+      "id": "frontend-engineering/learning-system-and-workstation/workstation-and-editor",
+      "title": "Workstation & editor",
+      "slug": "workstation-and-editor",
+      "domain": "frontend-engineering",
+      "subdomain": "learning-system-and-workstation",
+      "depth": "standard",
+      "created_at": "2026-11-17T19:27:28Z",
+      "state": "state/topics/frontend-engineering/learning-system-and-workstation/workstation-and-editor"
+    }
+  ]
 }

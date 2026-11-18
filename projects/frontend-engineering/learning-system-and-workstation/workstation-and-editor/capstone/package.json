@@ -1,0 +1,15 @@
+{
+  "name": "devkit",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Workstation doctor, commit linter and release-notes writer in one CLI.",
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "bin": { "devkit": "src/main.js" },
+  "scripts": {
+    "test": "node --test \"tests/**/*.test.js\"",
+    "test:unit": "node --test \"tests/unit/*.test.js\"",
+    "test:integration": "node --test \"tests/integration/*.test.js\"",
+    "doctor": "node src/main.js doctor"
+  }
+}
