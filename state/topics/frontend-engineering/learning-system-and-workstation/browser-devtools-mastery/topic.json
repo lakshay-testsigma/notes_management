@@ -7,7 +7,7 @@
   "subdomain": "learning-system-and-workstation",
   "depth": "deep",
   "created_at": "2026-11-18T09:43:20Z",
-  "updated_at": "2026-11-18T11:38:07Z",
+  "updated_at": "2026-11-18T11:44:14Z",
   "paths": {
     "state": "state/topics/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery",
     "vault": "vault/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery",
@@ -2427,13 +2427,14 @@
       "id": "finalize",
       "wave": 5,
       "skill": "learn",
-      "status": "pending",
+      "status": "failed",
       "scope": "required",
-      "started_at": null,
+      "started_at": "2026-11-18T11:38:27Z",
       "finished_at": null,
-      "attempts": 0,
+      "attempts": 1,
       "units": [],
-      "note": ""
+      "note": "host limit: site smoke cannot run — Playwright Chromium download blocked by sandbox network (cdn.playwright.dev, server closed connection) and headless Chrome cannot launch in the sandbox; independent verifier reviews therefore not run. Build, validate --all --structure-only, visuals check and manifest check pass. Rerun: allow cdn.playwright.dev, npx --prefix site playwright install chromium, then continue frontend.",
+      "continue_after_failure": true
     }
   ],
   "recall": {
@@ -2569,30 +2570,6 @@
     }
   },
   "log": [
-    {
-      "at": "2026-11-18T10:17:43Z",
-      "event": "start",
-      "message": "attempt 1",
-      "stage": "digest"
-    },
-    {
-      "at": "2026-11-18T10:17:44Z",
-      "event": "start",
-      "message": "attempt 1",
-      "stage": "repo-intel"
-    },
-    {
-      "at": "2026-11-18T10:17:46Z",
-      "event": "unit-add",
-      "message": "unit ecma-426-source-map",
-      "stage": "digest"
-    },
-    {
-      "at": "2026-11-18T10:17:47Z",
-      "event": "unit-add",
-      "message": "unit chrome-devtools-network-docs",
-      "stage": "digest"
-    },
     {
       "at": "2026-11-18T10:17:49Z",
       "event": "unit-add",
@@ -3713,6 +3690,29 @@
       "event": "done",
       "message": "gate passed",
       "stage": "notes"
+    },
+    {
+      "at": "2026-11-18T11:38:27Z",
+      "event": "start",
+      "message": "attempt 1",
+      "stage": "finalize"
+    },
+    {
+      "at": "2026-11-18T11:38:43Z",
+      "event": "execution-check",
+      "message": "finalize: failed",
+      "stage": "finalize"
+    },
+    {
+      "at": "2026-11-18T11:44:09Z",
+      "event": "fail",
+      "message": "host limit: site smoke cannot run — Playwright Chromium download blocked by sandbox network (cdn.playwright.dev, server closed connection) and headless Chrome cannot launch in the sandbox; independent verifier reviews therefore not run. Build, validate --all --structure-only, visuals check and manifest check pass. Rerun: allow cdn.playwright.dev, npx --prefix site playwright install chromium, then continue frontend.",
+      "stage": "finalize"
+    },
+    {
+      "at": "2026-11-18T11:44:14Z",
+      "event": "note",
+      "message": "ROADMAP frontend: section 00.3 degraded (finalize blocked by sandbox browser); next 00.4; peak workers 5; spawns 43/56"
     }
   ],
   "roadmap": {
@@ -4252,6 +4252,57 @@
             "exit": 0,
             "ok": true,
             "output_sha256": "6d8c5c8f3d7684adb070417bd608d01ae90aa3dc26a65af03ffda4955f38d9a3"
+          }
+        ]
+      },
+      "finalize": {
+        "version": 2,
+        "fingerprint": "affc3e4256bc13e6e0a1dda987b952fc23f5a76b9970f8eb486fb890594ec8fe",
+        "at": "2026-11-18T11:38:43Z",
+        "ok": false,
+        "checks": [
+          {
+            "label": "site build",
+            "command": "npm",
+            "args": [
+              "--prefix",
+              "site",
+              "run",
+              "build"
+            ],
+            "expected_exit": 0,
+            "exit": 0,
+            "ok": true,
+            "output_sha256": "150171edc476de7d08214645740b3ecb0bdf1da570a4be83c18bab45f40339dc"
+          },
+          {
+            "label": "site smoke",
+            "command": "npm",
+            "args": [
+              "--prefix",
+              "site",
+              "run",
+              "smoke"
+            ],
+            "expected_exit": 0,
+            "exit": 2,
+            "ok": false,
+            "output_sha256": "7acfcdcebed0110da66e740650a7ae5231a57c470fd9ba47feb4baf3fb42decb",
+            "problem": "\n> tutor-site@0.0.1 smoke\n> node scripts/smoke.mjs\n\nsmoke: the Chromium browser that Playwright drives is not downloaded yet.\nRun this once in site/, then run the smoke test again:\n\n    npx playwright install chromium\n\n"
+          },
+          {
+            "label": "site manifest:check",
+            "command": "npm",
+            "args": [
+              "--prefix",
+              "site",
+              "run",
+              "manifest:check"
+            ],
+            "expected_exit": 0,
+            "exit": 0,
+            "ok": true,
+            "output_sha256": "9cf80b4d6837916eb7b42c75c5478750c54297762700cff81b192e0cd083e529"
           }
         ]
       }

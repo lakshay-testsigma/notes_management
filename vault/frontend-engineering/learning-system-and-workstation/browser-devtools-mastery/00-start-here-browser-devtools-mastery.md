@@ -140,9 +140,9 @@ Research stopped: scope-boundary. Leaves taught on pages 01-11; deeper trace int
 | 3 | mini-projects | ready |
 | 4 | capstone | ready |
 | 5 | notes | ready |
-| 5 | finalize | not started |
+| 5 | finalize | needs another try |
 
-Next to generate: `finalize`. Ask Claude to continue this topic, or run `node harness/bin/tutor.mjs next frontend-engineering/learning-system-and-workstation/browser-devtools-mastery`.
+Everything is generated. Review due cards with `node harness/bin/tutor.mjs recall due browser-devtools-mastery`.
 <!-- tutor:generated:end -->
 
 ## My insights
