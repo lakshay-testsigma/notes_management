@@ -17,6 +17,7 @@ Every diagram, simulation and video of this topic, with the concepts it teaches 
 - [[visual-mdn-webextensions-anatomy-docs-mechanism-browser-extension-toolkit|Parts of a WebExtension and who talks to whom]] — Show the parts that manifest.json can declare and which of them touch the page.
 - [[visual-axe-core-module-map-browser-extension-toolkit|axe-core module map]] — Show the six analyzed parts of axe-core and which part calls which.
 - [[visual-team-extension-profile-browser-extension-toolkit|A vetted team extension profile]] — Show how a team profile groups vetted extensions and which manifest permission each group asks for.
+- [[visual-capstone-layers-browser-extension-toolkit|toolkit-profile CLI layers]] — Show which layer depends on which in the toolkit-profile CLI.
 
 ## Workflow
 
@@ -27,6 +28,7 @@ Every diagram, simulation and video of this topic, with the concepts it teaches 
 ## Sequence
 
 - [[visual-axe-core-request-flow-browser-extension-toolkit|One axe.run call from start to report]] — Show how one scan moves through the engine and where a check can answer 'cannot tell'.
+- [[visual-capstone-request-flow-browser-extension-toolkit|One run of the toolkit-profile CLI]] — Show the order of a run and where it stops early.
 
 ## Video
 
@@ -51,5 +53,9 @@ Every diagram, simulation and video of this topic, with the concepts it teaches 
 
 - [[visual-mini-01-flow-browser-extension-toolkit|Extension permission audit flow]] — Show how manifest files and a JSON policy become a verdict per extension.
 - [[visual-mini-02-flow-browser-extension-toolkit|Release a11y and SEO check flow]] — Show how saved pages become findings with three outcomes and a CI exit code.
+
+## Deployment
+
+- [[visual-capstone-deployment-browser-extension-toolkit|toolkit-profile CLI deployment]] — Show what the process reads and writes.
 
 ## My insights

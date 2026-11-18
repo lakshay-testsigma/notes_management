@@ -13,5 +13,6 @@ Extension permissions are the list of powers an extension asks for in its manife
 ## Where it shows up
 
 - [[mdn-webextensions-anatomy-docs-browser-extension-toolkit]]
+- [[06-capstone-browser-extension-toolkit]]
 
 ## My insights

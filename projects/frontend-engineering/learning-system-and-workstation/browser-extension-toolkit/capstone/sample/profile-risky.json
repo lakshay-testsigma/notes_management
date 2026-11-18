@@ -1,0 +1,7 @@
+{
+  "name": "Profile with a risky extension",
+  "extensions": [
+    { "id": "color-picker", "name": "Color Picker", "phase": "build", "manifest": "manifests/color-picker.json" },
+    { "id": "super-helper", "name": "Super Helper", "phase": "security", "manifest": "manifests/super-helper.json" }
+  ]
+}

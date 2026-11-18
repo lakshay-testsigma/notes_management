@@ -1,0 +1,6 @@
+{
+  "manifest_version": 3,
+  "name": "Web Vitals Overlay",
+  "permissions": ["storage", "tabs"],
+  "content_scripts": [{ "matches": ["<all_urls>"], "js": ["overlay.js"] }]
+}

@@ -14,5 +14,6 @@ axe-core is an open-source engine that checks a web page for accessibility probl
 
 - [[lighthouse-tech-and-services]]
 - [[axe-core-tech-and-services]]
+- [[06-capstone-browser-extension-toolkit]]
 
 ## My insights

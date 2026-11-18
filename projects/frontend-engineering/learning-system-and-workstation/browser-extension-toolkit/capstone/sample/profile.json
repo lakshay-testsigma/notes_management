@@ -1,0 +1,8 @@
+{
+  "name": "Frontend team profile",
+  "extensions": [
+    { "id": "color-picker", "name": "Color Picker", "phase": "build", "manifest": "manifests/color-picker.json" },
+    { "id": "web-vitals", "name": "Web Vitals Overlay", "phase": "performance", "manifest": "manifests/web-vitals.json" },
+    { "id": "axe-devtools", "name": "Accessibility Checker", "phase": "accessibility", "manifest": "manifests/axe-devtools.json" }
+  ]
+}

@@ -15,5 +15,6 @@ Schema validation checks data against a written description of its shape before 
 - [[browser-compat-data-pattern-schema-first-data]]
 - [[06-capstone-how-to-learn-frontend]]
 - [[devtools-frontend-pattern-untrusted-input]]
+- [[06-capstone-browser-extension-toolkit]]
 
 ## My insights

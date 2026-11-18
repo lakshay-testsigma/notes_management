@@ -894,5 +894,81 @@
     "used_in": [
       "projects/frontend-engineering/learning-system-and-workstation/browser-extension-toolkit/mini-02-release-a11y-seo-check/README.md"
     ]
+  },
+  {
+    "id": "capstone-layers",
+    "title": "toolkit-profile CLI layers",
+    "kind": "architecture",
+    "purpose": "Show which layer depends on which in the toolkit-profile CLI.",
+    "explanation": "The interface layer (Cli, TextRenderer) calls the application layer: use cases, checks, ProfileLoader and ManifestScorer. Application code uses only the domain: Policy, Profile, Outcome, Summary and the ports. The infrastructure layer implements the ports with files, jsdom and axe-core. Arrows point inward, so the rules never import a disk or a DOM library.",
+    "alt": "Flowchart: main.ts wires the interface layer and the infrastructure layer. The interface layer depends on the application layer. The application layer and the infrastructure layer both depend on the domain layer, which depends on nothing. Dependencies point inward.",
+    "learning_check": {
+      "question": "Which layer would you change to read pages from a live URL instead of a file, and which layers stay the same?",
+      "answer": "Add an adapter in the infrastructure layer for the page source port. The domain, application and interface layers stay the same."
+    },
+    "used_in": [
+      "projects/frontend-engineering/learning-system-and-workstation/browser-extension-toolkit/capstone/ARCHITECTURE.md",
+      "vault/frontend-engineering/learning-system-and-workstation/browser-extension-toolkit/06-capstone-browser-extension-toolkit.md"
+    ],
+    "scope": "stage",
+    "format": "mermaid",
+    "concept_ids": [
+      "automated-a11y-rule-limits",
+      "extension-risk-and-vetting"
+    ],
+    "source_ids": [
+      "dequelabs-axe-core-repo"
+    ],
+    "file": "vault/frontend-engineering/learning-system-and-workstation/browser-extension-toolkit/visuals/assets/capstone-layers-browser-extension-toolkit.mmd"
+  },
+  {
+    "id": "capstone-request-flow",
+    "title": "One run of the toolkit-profile CLI",
+    "kind": "sequence",
+    "purpose": "Show the order of a run and where it stops early.",
+    "explanation": "Cli asks ProfileLoader to load the policy and profile. A bad file ends the run with exit code 2. Otherwise ValidateProfileUseCase judges each extension. One failing extension ends the run with exit code 1 before any page check. If none fails, AuditPageUseCase runs each Check on one shared context and returns pass, fail or review rows.",
+    "alt": "Sequence diagram: Cli calls ProfileLoader. A policy or profile error ends the run with exit 2. Otherwise ValidateProfileUseCase runs. If an extension fails, the run stops with exit 1. If none fails, AuditPageUseCase runs each Check and returns rows to Cli.",
+    "learning_check": {
+      "question": "A profile lists one extension with debugger and all-sites access. Do the page checks run?",
+      "answer": "No. The extension scores above the reject limit, so Cli prints Profile rejected and exits with code 1 before AuditPageUseCase starts."
+    },
+    "used_in": [
+      "projects/frontend-engineering/learning-system-and-workstation/browser-extension-toolkit/capstone/ARCHITECTURE.md"
+    ],
+    "scope": "stage",
+    "format": "mermaid",
+    "concept_ids": [
+      "automated-a11y-rule-limits",
+      "extension-risk-and-vetting"
+    ],
+    "source_ids": [
+      "dequelabs-axe-core-repo"
+    ],
+    "file": "vault/frontend-engineering/learning-system-and-workstation/browser-extension-toolkit/visuals/assets/capstone-request-flow-browser-extension-toolkit.mmd"
+  },
+  {
+    "id": "capstone-deployment",
+    "title": "toolkit-profile CLI deployment",
+    "kind": "deployment",
+    "purpose": "Show what the process reads and writes.",
+    "explanation": "The tool is one Node.js process, or one Docker image with the same entry point. It reads saved files and three environment variables. It writes the report to stdout, JSON logs to stderr and an exit code of 0, 1 or 2. There is no server, no database and no network call.",
+    "alt": "Flowchart: saved profile, manifests, page and headers files, plus the environment variables TOOLKIT_POLICY, TOOLKIT_LOG_LEVEL and TOOLKIT_STRICT, feed one Node process. The process writes the report to stdout, JSON logs to stderr and an exit code.",
+    "learning_check": {
+      "question": "Where do the report and the logs go, and why does it matter in CI?",
+      "answer": "The report goes to stdout and logs to stderr, so CI can save the report without log lines mixed in. The exit code tells CI whether to fail the build."
+    },
+    "used_in": [
+      "projects/frontend-engineering/learning-system-and-workstation/browser-extension-toolkit/capstone/ARCHITECTURE.md"
+    ],
+    "scope": "detail",
+    "format": "mermaid",
+    "concept_ids": [
+      "automated-a11y-rule-limits",
+      "extension-risk-and-vetting"
+    ],
+    "source_ids": [
+      "dequelabs-axe-core-repo"
+    ],
+    "file": "vault/frontend-engineering/learning-system-and-workstation/browser-extension-toolkit/visuals/assets/capstone-deployment-browser-extension-toolkit.mmd"
   }
 ]

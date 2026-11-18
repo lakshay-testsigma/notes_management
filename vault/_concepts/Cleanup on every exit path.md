@@ -13,5 +13,6 @@ Cleanup on every exit path means shared state (a "running" flag, temporary data)
 ## Where it shows up
 
 - [[axe-core-pattern-cleanup-on-every-exit]]
+- [[06-capstone-browser-extension-toolkit]]
 
 ## My insights

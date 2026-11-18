@@ -1,0 +1,49 @@
+{
+  "checks": [
+    {
+      "kind": "solution-tests",
+      "cwd": ".",
+      "command": "npm",
+      "args": [
+        "test"
+      ]
+    },
+    {
+      "kind": "typecheck",
+      "cwd": ".",
+      "command": "npm",
+      "args": [
+        "run",
+        "typecheck"
+      ]
+    },
+    {
+      "kind": "integration",
+      "cwd": ".",
+      "command": "node",
+      "args": [
+        "src/main.ts",
+        "run",
+        "--profile",
+        "sample/profile.json",
+        "--page",
+        "tests/fixtures/page-good.html",
+        "--headers",
+        "tests/fixtures/headers-good.txt",
+        "--url",
+        "https://shop.example.com/"
+      ],
+      "expect_output": "0 fail"
+    },
+    {
+      "kind": "audit",
+      "cwd": ".",
+      "command": "npm",
+      "args": [
+        "audit",
+        "--omit=dev",
+        "--audit-level=high"
+      ]
+    }
+  ]
+}

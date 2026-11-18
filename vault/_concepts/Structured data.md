@@ -13,5 +13,6 @@ Structured data is machine-readable markup, often JSON-LD, that states facts abo
 ## Where it shows up
 
 - [[google-js-seo-basics-docs-browser-extension-toolkit]]
+- [[06-capstone-browser-extension-toolkit]]
 
 ## My insights

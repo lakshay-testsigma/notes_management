@@ -15,5 +15,6 @@ Rules as data means each check is a named function, and a config file only says 
 - [[commitlint-pattern-rules-as-data]]
 - [[06-capstone-workstation-and-editor]]
 - [[axe-core-pattern-rules-as-data]]
+- [[06-capstone-browser-extension-toolkit]]
 
 ## My insights
