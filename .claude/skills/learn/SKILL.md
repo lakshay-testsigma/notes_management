@@ -36,13 +36,13 @@ a plain topic list) are the source of truth for what must be taught. A file with
 `new` or `changed-since-import` goes to `learn-roadmap` (Step 2A or 2C) before anything else.
 
 **2. Model tiers: facts on the cheaper model, wording on the stronger one.** Each role file
-in `.claude/agents/` declares its tier in `tier:` and its Claude model in `model:` (`sonnet` or `opus`). Spawn with that model; never upgrade a
+in `.claude/agents/` declares its tier in `tier:` and its model in `model:` (`deepseek-v4.1-flash` or `deepseek-v4-pro`). Spawn with that model; never upgrade a
 fact worker to fix wording; route the wording to a writer instead.
 
 | Tier | Work | Roles / stages |
 |------|------|----------------|
-| fact (`sonnet`) | Find, verify and extract facts that are on the public web: sources, digests, repository analysis, runnable projects, gap audits | `tutor-researcher`, `tutor-digester`, `tutor-repo-analyst`, `tutor-project-builder`, `tutor-coverage-auditor` |
-| writer (`opus`) | Turn those facts into the learner-facing wording and format: lesson pages, experiences, review of meaning | `tutor-lesson-builder`, `tutor-video-producer`, `tutor-verifier`; the inline stages `brief` and `notes` run in this session |
+| fact (`deepseek-v4.1-flash`) | Find, verify and extract facts that are on the public web: sources, digests, repository analysis, runnable projects, gap audits | `tutor-researcher`, `tutor-digester`, `tutor-repo-analyst`, `tutor-project-builder`, `tutor-coverage-auditor` |
+| writer (`deepseek-v4-pro`) | Turn those facts into the learner-facing wording and format: lesson pages, experiences, review of meaning | `tutor-lesson-builder`, `tutor-video-producer`, `tutor-verifier`; the inline stages `brief` and `notes` run in this session |
 
 Writers read the fact tier's output (digests, repo notes, verified sources), not raw pages,
 so the stronger model spends its tokens on clarity, not on searching. Every concept a writer
@@ -51,9 +51,9 @@ teaches states its real use case **and** the benefit over the alternative (aspec
 model and writer to its strongest; log the mapping once with `tutor log`.
 
 Claude Code is the default host: spawn the named agent type from `.claude/agents/`
-(the Agent tool picks up its `model:`), so fact workers run on Sonnet and writer workers
-on Opus; the orchestrator session (with the inline `brief` and `notes`) should run on
-Opus. If the host exposes only a generic spawn API, load the shared role explicitly
+(the Agent tool picks up its `model:`), so fact workers run on `deepseek-v4.1-flash` and writer workers
+on `deepseek-v4-pro`; the orchestrator session (with the inline `brief` and `notes`) should run on
+`deepseek-v4-pro`. If the host exposes only a generic spawn API, load the shared role explicitly
 and pass its `model:`. When model overrides require an empty-context worker, use a
 fresh worker without inherited conversation history and supply the complete brief.
 Respect the smaller of the host and skill concurrency limits. `.codex/` keeps an

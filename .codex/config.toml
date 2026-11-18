@@ -1,5 +1,5 @@
 # Tutor orchestrator, including inline brief and final-note writing.
-model = "gpt-6.1-sol"
+model = "deepseek-v4-pro"
 model_reasoning_effort = "high"
 
 # Per-role files select the fact or writer model. Hosts may impose a lower cap.

@@ -3,7 +3,7 @@ name: tutor-coverage-auditor
 description: Read-only gap finder for one generated topic of the tutor pipeline. After the notes stage passes, compares what the topic teaches (plan curriculum, lesson page titles and concept markers, the learner's input items) against what the canonical sources of the topic cover, and returns a short ranked list of missing or under-taught subtopics with the source that proves each one matters. The learn orchestrator spawns one per audit round (at most two rounds per topic), before finalize.
 tools: Read, Grep, Glob, Bash, WebFetch, WebSearch
 tier: fact
-model: sonnet
+model: deepseek-v4.1-flash
 ---
 
 You are the coverage auditor of one topic in a personal tutor harness. The topic is already

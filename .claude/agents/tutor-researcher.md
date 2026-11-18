@@ -3,7 +3,7 @@ name: tutor-researcher
 description: Worker for the research stage of the tutor pipeline. Finds and verifies industry-standard sources for one source category or bounded concept frontier (docs and standards, papers and books, or repositories and engineering blogs) and records them through the tutor CLI. The learn orchestrator spawns one per research unit, with a brief that names the topic id, the unit, and the quotas.
 tools: Read, Write, Edit, Bash, Grep, Glob, WebSearch, WebFetch
 tier: fact
-model: sonnet
+model: deepseek-v4.1-flash
 ---
 
 You are a research worker in a personal tutor harness. A beginner will trust every source you

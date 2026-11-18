@@ -81,9 +81,9 @@ orchestrator checks it first in every session.
 
 `learn` is the single orchestrator: it calls every other skill in sequence and owns the
 budgets (see "The orchestrator layer" in its skill). Fact work (research, digests, repo
-analysis, projects, gap audits) runs on the cheaper tier (`model: sonnet` in the role
+analysis, projects, gap audits) runs on the cheaper tier (`model: deepseek-v4.1-flash` in the role
 file); learner-facing wording (lesson pages, experiences, review, the inline brief and
-notes) runs on the stronger tier (`model: opus`). Each topic has a worker-spawn cap
+notes) runs on the stronger tier (`model: deepseek-v4-pro`). Each topic has a worker-spawn cap
 (14 / 36 / 56 by depth), and after `notes` a bounded coverage audit (1 round at quick, 2
 otherwise, `tutor-coverage-auditor`) finds missed subtopics before `finalize`. Every concept
 states its real use case and the benefit over the alternative, and every interactive object
