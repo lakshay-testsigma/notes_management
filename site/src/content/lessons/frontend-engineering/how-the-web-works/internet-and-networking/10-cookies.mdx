@@ -12,7 +12,7 @@ concepts: [cookies, Set-Cookie attributes, SameSite, cookie prefixes]
 
 A user signs in to `shop.example.com`, and a payment form on another site posts to it. Does that request carry the session? The answer decides whether a forged request can spend the user's money.
 
-A cookie is a small name and value that the server stores in the browser with a `Set-Cookie` header. The browser then returns it in the `Cookie` header of later requests. HTTP itself is stateless, so cookies carry session state, preferences and tracking IDs. Each attribute on `Set-Cookie` is one check before the browser sends the cookie.
+A cookie is a small name and value, usually at most about 4 KB, that the server stores in the browser with a `Set-Cookie` header. The browser then returns it in the `Cookie` header of later requests. HTTP itself is stateless, so cookies carry session state, preferences and tracking IDs. Each attribute on `Set-Cookie` is one check before the browser sends the cookie.
 
 In the lab, change the request type and the attributes. Predict which of five cookies each request carries, then step through the checks.
 
@@ -20,7 +20,7 @@ In the lab, change the request type and the attributes. Predict which of five co
 
 Domain picks the hosts, Path picks the URL paths, and Secure requires https. SameSite handles cross-site requests, where the scheme or the registrable domain differs. `Strict` never goes cross-site. `Lax` goes only on a top-level navigation with GET. `None` always goes but needs `Secure`. HttpOnly does not change sending; it hides the cookie from `document.cookie`.
 
-**Note.** A `__Host-` prefix makes the browser reject the cookie unless it has `Secure`, no Domain and `Path=/`. That is the closest a cookie gets to an origin boundary, so use it for session cookies.
+**Note.** Name prefixes add checks. A `__Secure-` cookie is rejected unless it has `Secure` and comes from an https page. A `__Host-` cookie also needs no Domain and `Path=/`. That is the closest a cookie gets to an origin boundary, so use it for session cookies.
 
 <Depth level="production">
 

@@ -9,15 +9,15 @@ concepts: [API styles, GraphQL queries, Connect RPC, HTTP caching]
 {/* <!-- concept: graphql-queries --> */}
 {/* <!-- concept: rpc-trpc-grpc-web --> */}
 
-A product page needs a user, their last orders and a price list. You can get them in three styles, and each style uses HTTP differently.
+A product page needs a user, their orders and prices. Three API styles fetch them, and each uses HTTP differently.
 
-A REST-style API is endpoint-based: each resource has its own URL, such as `GET /users/42`. The URL is a unique identifier, so browser caches and CDNs can store the response by its URL. GraphQL is a query language: the client names the exact fields it needs, and the response has the same shape. All operations go to one endpoint, usually `/graphql`, so one request can replace several fetches. RPC (remote procedure call) calls a named function on the server. Connect RPC posts to a URL such as `/connectrpc.eliza.v1.ElizaService/Say` and sends JSON or binary Protobuf, a compact typed message format.
+HTTP calls the target of a request a resource, and a URL identifies it (RFC 9110). A REST-style API, in the simple form used here, gives each resource its own URL, such as `GET /users/42`. HTTP caches and CDNs store a GET response by its URL. GraphQL is a query language: the client names the exact fields it needs, and the response has the same shape. All operations go to one endpoint, usually `/graphql`, so one request replaces several fetches. RPC (remote procedure call) calls a named function on the server. Connect RPC posts to a URL such as `/connectrpc.eliza.v1.ElizaService/Say` with JSON or Protobuf, a compact typed binary format.
 
 Follow each arrow and see which one reaches the cache.
 
 <Diagram id="api-style-map" />
 
-Only the URL-based request reaches the cache by default. GraphQL servers must accept POST and may accept GET for queries. GET puts the query in the URL, so a CDN can cache it, but long queries can pass URL length limits. Connect works over HTTP/1.1, HTTP/2 and HTTP/3, and it also speaks gRPC and gRPC-Web, so browsers and backend services share one typed contract.
+Only GET requests reach the cache. GraphQL servers must accept POST and may accept GET for queries; GET puts the query in the URL, but long queries can pass URL length limits. Connect can also send a method marked side-effect free as a GET request, so browsers and CDNs can cache it. Connect works over HTTP/1.1, HTTP/2 and HTTP/3, and it also speaks gRPC and gRPC-Web, so browsers and services share one typed contract.
 
 <SortBuckets
   prompt="Sort each API need into the style that fits it best."
@@ -28,13 +28,14 @@ Only the URL-based request reaches the cache by default. GraphQL servers must ac
     { text: "Mobile screen that needs a user, orders and prices in one request", bucket: "GraphQL" },
     { text: "Several clients that each pick different fields of the same data", bucket: "GraphQL" },
     { text: "Browser and Go services that share one typed Protobuf contract", bucket: "RPC" },
-    { text: "Backend that already serves gRPC and now needs browser calls", bucket: "RPC" }
+    { text: "Backend that already serves gRPC and now needs browser calls", bucket: "RPC" },
+    { text: "Typed read-only lookup that a CDN may cache through GET", bucket: "RPC" }
   ]}
-  explanation="REST gives each resource a URL, which HTTP caches use as the key. GraphQL lets each client choose its fields at one endpoint, which removes extra round trips but needs GET for HTTP caching. Connect RPC shares typed Protobuf methods and supports gRPC and gRPC-Web, so one contract serves browsers and services."
+  explanation="REST gives each resource a URL, which HTTP caches use as the key. GraphQL lets each client choose its fields at one endpoint, which removes extra round trips but needs GET for HTTP caching. Connect RPC shares typed Protobuf methods and supports gRPC and gRPC-Web, so one contract serves browsers and services; its side-effect-free methods can use GET, so caches work for RPC too."
 />
 
-**Note.** GraphQL has no URL per object, so the GraphQL docs advise a globally unique `id` field. Client caches then store each object by that `id`.
+**Note.** GraphQL has no URL per object, so the GraphQL docs advise a globally unique `id` field. Client caches then store each object by that `id`. This topic does not cover tRPC yet.
 
-This was the last page; the vetted sources below go deeper on each part.
+This was the last page; the sources below go deeper.
 
 <Resources />

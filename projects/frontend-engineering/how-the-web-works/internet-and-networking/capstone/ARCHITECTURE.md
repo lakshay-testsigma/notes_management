@@ -24,7 +24,7 @@ Each layer has one job.
 - **application** (`src/application`): one use case, `RunReport`. It loads the inputs, runs every check and builds the report.
 - **infrastructure** (`src/infrastructure`): adapters for the ports. They read files, parse HAR, read the policy, log, and tell the time.
 - **interface** (`src/interface`): `Cli` and the renderers. They turn a report into text, JSON and an exit code.
-- `src/main.ts` is the composition root. It is the only file that creates objects with `new` and wires them together.
+- `src/main.ts` is the composition root. It creates the long-lived objects (sources, checks, renderers) and wires them together; other files only create values and errors.
 
 ## Classes and their responsibilities
 
@@ -125,7 +125,7 @@ This spec is ready to paste into a lesson page. It uses the `FlowAnimation` prop
 | Liskov substitution | Any `Check` can replace another in `RunReport`; `tests/unit/application.test.ts` uses fake checks. |
 | Interface segregation | Each port has one to three methods (`src/domain/ports.ts`). |
 | Dependency inversion | `RunReport` receives ports in its constructor and never imports an adapter. |
-| Composition over inheritance | No class extends another. Objects are joined in `src/main.ts`. |
+| Composition over inheritance | Only the three error classes extend `Error`; no other class extends another. Objects are joined in `src/main.ts`. |
 | Value objects | `CacheControl` and `SetCookie` are built once by `parse` and then only read. |
 | Own error classes | `InputError`, `PolicyError`, `ConfigError` in `src/domain/errors.ts`. |
 

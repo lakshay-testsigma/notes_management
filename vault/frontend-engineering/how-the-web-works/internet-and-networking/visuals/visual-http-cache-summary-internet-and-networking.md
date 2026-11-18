@@ -50,7 +50,7 @@ Answer: Cache-Control: no-cache with an ETag, so every reuse is a small conditio
 ## Sources
 
 - RFC 9111: HTTP Caching — https://www.rfc-editor.org/rfc/rfc9111 (`rfc-9111-http-caching`)
-- HTTP (MDN Web Docs documentation set) — https://developer.mozilla.org/en-US/docs/Web/HTTP (`mdn-http-docs`)
+- MDN Web Docs: HTTP and web networking — https://developer.mozilla.org/en-US/docs/Web/HTTP (`mdn-http-docs`)
 
 ## Used in
 

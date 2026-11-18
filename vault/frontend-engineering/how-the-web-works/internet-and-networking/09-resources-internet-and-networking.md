@@ -15,16 +15,16 @@ Every source below was checked against a live page before it was recommended.
 
 ## Official documentation
 
-- **[HTTP (MDN Web Docs documentation set)](https://developer.mozilla.org/en-US/docs/Web/HTTP)** — MDN contributors (Mozilla), 2026 · tier A
-  - Why it is trusted: MDN is the browser-vendor reference for the web platform; its HTTP set has guides on caching, redirections (301/302/303/307/308), authentication, range requests, cookies (prefixes), compression, Compression Dictionary Transport, HTTP/1.x connection management (domain sharding), content negotiation, HSTS and mixed content, plus status 429 and Cache-Control references (pages read Nov 2026).
-  - Used for: brief, lesson
-  - Verified: 2026-11-18
 - **[Learn GraphQL (graphql.org)](https://graphql.org/learn/)** — GraphQL Foundation, 2026 · tier A
   - Why it is trusted: The official GraphQL documentation from the GraphQL Foundation (copyright 2026): schemas, queries, mutations, subscriptions, serving over HTTP, caching.
   - Used for: lesson
   - Verified: 2026-11-18
+- **[MDN Web Docs: HTTP and web networking](https://developer.mozilla.org/en-US/docs/Web/HTTP)** — MDN contributors (Mozilla), 2026 · tier A
+  - Why it is trusted: MDN is the browser-vendor reference for the web platform; its HTTP set has guides on caching, redirections (301/302/303/307/308), authentication, range requests, cookies (prefixes), compression, Compression Dictionary Transport, HTTP/1.x connection management (domain sharding), content negotiation, HSTS and mixed content, plus status 429 and Cache-Control references; it also covers the WebTransport, WebSocket and server-sent events (EventSource) APIs, the Priority header (RFC 9218), 100 Continue and 103 Early Hints, the Set-Cookie __Secure- prefix, and the 4KB-per-cookie limit in the cookies guide (pages read Nov 2026).
+  - Used for: brief, lesson
+  - Verified: 2026-11-18
 - **[Cloudflare developer documentation (DNS, Cache, Workers, Images)](https://developers.cloudflare.com/)** — Cloudflare, 2026 · tier B
-  - Why it is trusted: Official documentation of a major CDN and DNS provider; its DNS docs list A, AAAA, CNAME, MX, TXT, CAA, HTTPS, SVCB and NS records and TTL rules, and its Cache docs define cache keys and purge methods.
+  - Why it is trusted: Official documentation of a major CDN and DNS provider; its DNS docs list A, AAAA, CNAME, MX, TXT, CAA, HTTPS, SVCB and NS records and TTL rules, and its Cache docs define cache keys and purge methods. Its Cache docs also give the default cache key (full URL, Origin header, method-override and forwarding headers) and Tiered Cache (lower and upper tier data centers); its SSL concepts page defines a certificate authority.
   - Used for: lesson
   - Verified: 2026-11-18
 - **[Connect RPC documentation](https://connectrpc.com/docs/introduction)** — The Connect Authors (created by Buf), 2026 · tier B

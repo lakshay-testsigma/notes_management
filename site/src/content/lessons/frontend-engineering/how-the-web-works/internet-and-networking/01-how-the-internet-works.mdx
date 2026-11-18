@@ -15,7 +15,7 @@ The browser does not send one big message. It splits data into **packets**: smal
 
 Two transport protocols run on top of IP. **TCP** opens a connection with a handshake, numbers every byte, resends lost packets and delivers bytes in order. **UDP** sends each packet alone, with no handshake and no resend.
 
-This map shows the whole trip; each later page zooms into one box.
+This map shows the whole trip.
 
 <Diagram id="how-it-works" />
 
@@ -38,7 +38,7 @@ In the diagram, find the round trip before HTTP data, and the lost packet.
 
 <Diagram id="packet-journey" />
 
-The handshake costs one full round trip. The lost packet blocks every later byte until the resend arrives. This delay is **head-of-line blocking**. HTTP/1.1 and HTTP/2 accept it, because a page needs every byte in order. HTTP/3 runs on QUIC over UDP, so one lost packet stalls only its own stream. DNS lookups and video calls also use UDP, because a fast answer is worth more than a perfect one.
+The handshake costs one full round trip. The lost packet blocks every later byte until the resend arrives. This delay is **head-of-line blocking**. HTTP/1.1 and HTTP/2 run on TCP, which delivers bytes only in order, so they inherit this stall. HTTP/3 runs on QUIC over UDP, so one lost packet stalls only its own stream. DNS lookups and video calls also use UDP, because a fast answer is worth more than a perfect one.
 
 <Depth level="internals">
 

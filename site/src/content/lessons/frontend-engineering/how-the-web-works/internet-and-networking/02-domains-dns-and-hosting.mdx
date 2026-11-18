@@ -11,7 +11,7 @@ concepts: [domain name, DNS resolver, DNS record, TTL]
 {/* <!-- concept: dns-record-types --> */}
 {/* <!-- concept: dns-prefetch-and-doh --> */}
 
-You deploy a site to a new host, a server that stores your files and answers requests. Users still need its IP address. A **domain name** such as `mozilla.org` is a readable label for it. You rent the name from a **registrar**, which records your **nameservers** (the servers that hold your DNS records) with the **TLD** registry for `.org`.
+You deploy a site to a new host, a server that stores your files and answers requests. Users still need its IP address. A **domain name** such as `mozilla.org` is a readable label for it. You rent the name from a **registrar**, which records your **nameservers** (the servers that hold your DNS records) with the **TLD** registry for `.org`. This page covers names and lookups; the roadmap teaches hosting models later, in section 27.1.
 
 **DNS** (the Domain Name System) turns a name into an address. The browser asks a **recursive resolver**, usually run by your ISP or a service such as Cloudflare. On a cache miss, the resolver walks a chain of servers. Order it first.
 
@@ -42,7 +42,7 @@ Each record has a type. An **A** record holds an IPv4 address, **AAAA** an IPv6 
 
 <Depth level="production">
 
-Before you move a site to a new host, lower the TTL a day ahead, so the switch spreads in minutes. Add `<link rel="dns-prefetch">` for third-party hosts, so the browser resolves them before it needs them. A browser can also open the TCP connection right after that early lookup, before the first request (TCP pre-connect in High Performance Browser Networking). Both hints save round trips on the first request. DNS over HTTPS (DoH) sends lookups inside HTTPS, so the networks on the path cannot read or change them.
+Before you move a site to a new host, lower the TTL a day ahead, so the switch spreads in minutes. Add `<link rel="dns-prefetch">` for third-party hosts, so the browser resolves them before it needs them. A browser can also open the TCP connection right after that early lookup, before the first request (TCP pre-connect in High Performance Browser Networking). Both hints save round trips on the first request. DNS over HTTPS (DoH) sends lookups inside HTTPS, so the networks on the path cannot read or change them. Two more record types matter for HTTPS: a **CAA** record lists which certificate authorities may issue certificates for your domain, and an **HTTPS** (or **SVCB**) record tells clients up front how to connect, for example that the server speaks HTTP/3.
 
 </Depth>
 

@@ -8,7 +8,7 @@ sources: [hpbn-book]
 ---
 # A request crosses the internet as packets
 
-**Sequence** · teaches How the internet moves packets, TCP versus UDP, Routing, ISPs and autonomous systems
+**Sequence** · teaches How the internet moves packets, TCP versus UDP, Routing and ISPs
 
 **Why this visual.** Show that a request travels as packets through routers, that TCP spends one round trip on a handshake, and that TCP resends a lost packet before the browser can read later bytes.
 

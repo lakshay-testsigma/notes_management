@@ -33,7 +33,7 @@ Each finding has one of three results: `ok`, `problem` or `unknown`. The lesson 
 
 ## Prerequisites
 
-- Node.js 22.6 or newer (`node --version`). The project runs `.ts` files directly; Node.js 26 was used to write it.
+- Node.js 22.18 or newer (`node --version`); older versions cannot run `.ts` files without a flag. The project runs `.ts` files directly; Node.js 26 was used to write it.
 - npm (comes with Node.js).
 - You have read the lesson pages on HTTP messages and HTTP caching.
 - No account, network access or running service is needed after `npm install`.
@@ -44,7 +44,7 @@ Each finding has one of three results: `ok`, `problem` or `unknown`. The lesson 
 cd starter
 npm install
 npm test          # 23 of 24 tests fail at the start; that is expected
-npm start         # runs the auditor on tests/fixtures/site.har
+npm start         # runs the auditor on tests/fixtures/site.har (in starter/ it stops with a TODO error and a stack trace until you finish the TODOs)
 ```
 
 The sample file `tests/fixtures/site.har` holds eight responses written by hand. `tests/fixtures/expected.json` lists the findings the finished auditor must report.

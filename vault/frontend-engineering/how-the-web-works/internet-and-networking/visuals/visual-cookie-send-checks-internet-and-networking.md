@@ -44,7 +44,7 @@ Answer: Only None, because an image is not a top-level navigation, so Lax and St
 
 ## Sources
 
-- HTTP (MDN Web Docs documentation set) — https://developer.mozilla.org/en-US/docs/Web/HTTP (`mdn-http-docs`)
+- MDN Web Docs: HTTP and web networking — https://developer.mozilla.org/en-US/docs/Web/HTTP (`mdn-http-docs`)
 - URL Standard (WHATWG Living Standard) — https://url.spec.whatwg.org/ (`whatwg-url-standard`)
 
 ## Used in

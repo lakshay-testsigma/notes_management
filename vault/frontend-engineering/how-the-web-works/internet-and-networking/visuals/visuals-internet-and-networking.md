@@ -22,7 +22,7 @@ Every diagram, simulation and video of this topic, with the concepts it teaches 
 ## Comparison
 
 - [[visual-rfc-9114-http3-mechanism-internet-and-networking|Why HTTP/3 avoids transport head-of-line blocking]] — Show why one lost packet hurts every request on HTTP/2 over TCP but only one request on HTTP/3 over QUIC.
-- [[visual-api-style-map-internet-and-networking|One request in REST, GraphQL and Connect RPC, and which one HTTP caches]] — Show where each API style puts its contract in the HTTP request, and why only URL-based requests fit HTTP caching by default.
+- [[visual-api-style-map-internet-and-networking|One request in REST, GraphQL and Connect RPC, and which one HTTP caches]] — Show where each API style puts its contract in the HTTP request, and why only GET requests, keyed by URL, fit HTTP caching.
 - [[visual-compression-compare-internet-and-networking|gzip compared with Brotli and Zstandard]] — Let the learner choose a content coding for a static bundle and for per-request HTML, and see the size against CPU trade-off.
 
 ## Architecture

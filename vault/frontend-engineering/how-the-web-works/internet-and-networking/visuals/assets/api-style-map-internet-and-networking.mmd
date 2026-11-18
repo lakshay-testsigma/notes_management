@@ -5,4 +5,5 @@ flowchart LR
   app -- "POST /Service/Method" --> rpc["Connect RPC"]
   rest -- "URL = cache key" --> cache["HTTP cache / CDN"]
   gql -. "only GET queries" .-> cache
+  rpc -. "GET for side-effect-free methods" .-> cache
   rpc -- "JSON or Protobuf" --> server["Server code"]

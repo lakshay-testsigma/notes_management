@@ -14,23 +14,19 @@ sources: [mdn-http-docs, hpbn-book, cloudflare-docs, rfc-9111-http-caching]
 
 ```mermaid
 flowchart LR
-  U[You type a URL] --> D[DNS: name to IP address]
-  D --> C[Connect: TCP or QUIC]
-  C --> T[TLS: encrypt and check the certificate]
-  T --> R[HTTP request with headers and cookies]
-  R --> K{Cache or CDN has a fresh copy?}
-  K -- yes --> P[Response from the cache]
-  K -- no --> S[Origin server builds the response]
-  S --> P2[Compressed response with cache headers]
-  P --> B[Browser renders the page]
-  P2 --> B
+  D[DNS: name to IP address] --> C[Connect and TLS: TCP + TLS, or QUIC with TLS built in]
+  C --> R[HTTP request with headers and cookies]
+  R --> K{Browser cache or CDN has a fresh copy?}
+  K -- yes --> P[Response: page renders]
+  K -- no --> S[Origin server builds a compressed response]
+  S --> P
 ```
 
 ## What it shows
 
-The browser first asks DNS for the server's IP address. It opens a connection (TCP, or QUIC for HTTP/3) and runs a TLS handshake to encrypt it and check the certificate. It sends an HTTP request with headers and cookies. A browser cache or a CDN can answer from a fresh stored copy; otherwise the origin server builds the response, usually compressed and with cache headers. The browser then renders the page.
+The browser first asks DNS for the server's IP address. It then connects and encrypts: TCP followed by a TLS handshake, or QUIC for HTTP/3, which includes TLS in its own handshake. TLS also checks the certificate. The browser sends an HTTP request with headers and cookies. A browser cache or a CDN can answer from a fresh stored copy; otherwise the origin server builds the response, usually compressed and with cache headers. Either way, the response arrives and the browser renders the page.
 
-Text alternative: Flowchart: you type a URL, DNS turns the name into an IP address, the browser connects with TCP or QUIC, TLS encrypts and checks the certificate, the browser sends an HTTP request with headers and cookies. If a cache or CDN has a fresh copy it answers; otherwise the origin server builds a compressed response with cache headers. Both paths end with the browser rendering the page.
+Text alternative: Flowchart with six steps: DNS turns the name into an IP address; the browser connects and encrypts with TCP plus TLS, or QUIC with TLS built in; it sends an HTTP request with headers and cookies. A decision asks whether the browser cache or a CDN has a fresh copy. If yes, the response comes from the cache; if no, the origin server builds a compressed response. Both paths end at the response, where the page renders.
 
 ## Check yourself
 
@@ -40,7 +36,7 @@ Answer: A cache (the browser cache or a CDN) answered with a stored copy. The Ca
 
 ## Sources
 
-- HTTP (MDN Web Docs documentation set) — https://developer.mozilla.org/en-US/docs/Web/HTTP (`mdn-http-docs`)
+- MDN Web Docs: HTTP and web networking — https://developer.mozilla.org/en-US/docs/Web/HTTP (`mdn-http-docs`)
 - High Performance Browser Networking — https://hpbn.co/ (`hpbn-book`)
 - Cloudflare developer documentation (DNS, Cache, Workers, Images) — https://developers.cloudflare.com/ (`cloudflare-docs`)
 - RFC 9111: HTTP Caching — https://www.rfc-editor.org/rfc/rfc9111 (`rfc-9111-http-caching`)

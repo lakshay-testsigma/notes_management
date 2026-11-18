@@ -8,7 +8,7 @@ sources: [rfc-9110-http-semantics, rfc-9114-http3, mdn-http-docs, hpbn-book, nod
 ---
 # One lost packet in HTTP/1.1, HTTP/2 and HTTP/3
 
-**Video** · teaches HTTP/1.1, HTTP/2 and HTTP/3, Head-of-line blocking and multiplexing, Why domain sharding and sprites are anti-patterns now, Header compression and stream priorities, QUIC, 0-RTT and connection migration
+**Video** · teaches HTTP/1.1, HTTP/2 and HTTP/3, Head-of-line blocking and multiplexing, Why HTTP/1-era workarounds such as domain sharding are anti-patterns now, Header compression and stream priorities, QUIC, 0-RTT and connection migration
 
 **Why this visual.** See at which layer head-of-line blocking happens in each HTTP version, and how ALPN picks the version.
 
@@ -66,7 +66,7 @@ Answer: On HTTP/2 over TCP, A, B and C all wait, because TCP releases bytes only
 
 - RFC 9110: HTTP Semantics — https://www.rfc-editor.org/rfc/rfc9110 (`rfc-9110-http-semantics`)
 - RFC 9114: HTTP/3 — https://www.rfc-editor.org/rfc/rfc9114 (`rfc-9114-http3`)
-- HTTP (MDN Web Docs documentation set) — https://developer.mozilla.org/en-US/docs/Web/HTTP (`mdn-http-docs`)
+- MDN Web Docs: HTTP and web networking — https://developer.mozilla.org/en-US/docs/Web/HTTP (`mdn-http-docs`)
 - High Performance Browser Networking — https://hpbn.co/ (`hpbn-book`)
 - nodejs/undici: HTTP/1.1 client for Node.js (fetch, cache interceptor, cookies) — https://github.com/nodejs/undici (`nodejs-undici-repo`)
 

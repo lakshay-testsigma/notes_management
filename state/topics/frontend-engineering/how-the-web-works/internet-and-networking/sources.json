@@ -179,12 +179,12 @@
   {
     "id": "mdn-http-docs",
     "type": "official-docs",
-    "title": "HTTP (MDN Web Docs documentation set)",
+    "title": "MDN Web Docs: HTTP and web networking",
     "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP",
     "authors": "MDN contributors (Mozilla)",
     "year": 2026,
     "tier": "A",
-    "why_trusted": "MDN is the browser-vendor reference for the web platform; its HTTP set has guides on caching, redirections (301/302/303/307/308), authentication, range requests, cookies (prefixes), compression, Compression Dictionary Transport, HTTP/1.x connection management (domain sharding), content negotiation, HSTS and mixed content, plus status 429 and Cache-Control references (pages read Nov 2026).",
+    "why_trusted": "MDN is the browser-vendor reference for the web platform; its HTTP set has guides on caching, redirections (301/302/303/307/308), authentication, range requests, cookies (prefixes), compression, Compression Dictionary Transport, HTTP/1.x connection management (domain sharding), content negotiation, HSTS and mixed content, plus status 429 and Cache-Control references; it also covers the WebTransport, WebSocket and server-sent events (EventSource) APIs, the Priority header (RFC 9218), 100 Continue and 103 Early Hints, the Set-Cookie __Secure- prefix, and the 4KB-per-cookie limit in the cookies guide (pages read Nov 2026).",
     "evidence": {
       "stars": null,
       "last_commit": null,
@@ -194,7 +194,7 @@
       "used_by": []
     },
     "verified_at": "2026-11-18",
-    "verified_via": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Connection_management_in_HTTP_1.x; https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Compression_dictionary_transport; https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Strict-Transport-Security; https://developer.mozilla.org/en-US/docs/Web/Security/Defenses/Mixed_content; https://developer.mozilla.org/en-US/docs/Web/Security/Defenses/Certificate_Transparency; https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Redirections; https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Authentication; https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Range_requests; https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/429; https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Cache-Control; https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Caching",
+    "verified_via": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Connection_management_in_HTTP_1.x; https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Compression_dictionary_transport; https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Strict-Transport-Security; https://developer.mozilla.org/en-US/docs/Web/Security/Defenses/Mixed_content; https://developer.mozilla.org/en-US/docs/Web/Security/Defenses/Certificate_Transparency; https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Redirections; https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Authentication; https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Range_requests; https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/429; https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Cache-Control; https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Caching; https://developer.mozilla.org/en-US/docs/Web/API/WebTransport_API; https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API; https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events; https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Priority; https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/100; https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/103; https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Set-Cookie; https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Cookies",
     "use_for": [
       "brief",
       "lesson"
@@ -218,7 +218,7 @@
       "used_by": []
     },
     "verified_at": "2026-11-18",
-    "verified_via": "https://hpbn.co/ ; https://hpbn.co/primer-on-latency-and-bandwidth/ ; https://hpbn.co/primer-on-web-performance/ (section Browser Optimization: TCP pre-connect, dns-prefetch link hint, Table 10-2 speculative optimization hints)",
+    "verified_via": "https://hpbn.co/ ; https://hpbn.co/primer-on-latency-and-bandwidth/ ; https://hpbn.co/primer-on-web-performance/ (section Browser Optimization: TCP pre-connect, dns-prefetch link hint, Table 10-2 speculative optimization hints) ; https://hpbn.co/transport-layer-security-tls/ (sections Chain of Trust and Certificate Authorities; Let’s Encrypt, ACME)",
     "use_for": [
       "lesson"
     ]
@@ -231,7 +231,7 @@
     "authors": "Cloudflare",
     "year": 2026,
     "tier": "B",
-    "why_trusted": "Official documentation of a major CDN and DNS provider; its DNS docs list A, AAAA, CNAME, MX, TXT, CAA, HTTPS, SVCB and NS records and TTL rules, and its Cache docs define cache keys and purge methods.",
+    "why_trusted": "Official documentation of a major CDN and DNS provider; its DNS docs list A, AAAA, CNAME, MX, TXT, CAA, HTTPS, SVCB and NS records and TTL rules, and its Cache docs define cache keys and purge methods. Its Cache docs also give the default cache key (full URL, Origin header, method-override and forwarding headers) and Tiered Cache (lower and upper tier data centers); its SSL concepts page defines a certificate authority.",
     "evidence": {
       "stars": null,
       "last_commit": null,
@@ -241,7 +241,7 @@
       "used_by": []
     },
     "verified_at": "2026-11-18",
-    "verified_via": "https://developers.cloudflare.com/dns/manage-dns-records/reference/dns-record-types/; https://developers.cloudflare.com/dns/manage-dns-records/reference/ttl/; https://developers.cloudflare.com/cache/how-to/purge-cache/; https://developers.cloudflare.com/1.1.1.1/encryption/dns-over-https/",
+    "verified_via": "https://developers.cloudflare.com/dns/manage-dns-records/reference/dns-record-types/; https://developers.cloudflare.com/dns/manage-dns-records/reference/ttl/; https://developers.cloudflare.com/cache/how-to/purge-cache/; https://developers.cloudflare.com/1.1.1.1/encryption/dns-over-https/; https://developers.cloudflare.com/cache/how-to/cache-keys/; https://developers.cloudflare.com/cache/how-to/tiered-cache/; https://developers.cloudflare.com/ssl/concepts/",
     "use_for": [
       "lesson"
     ]

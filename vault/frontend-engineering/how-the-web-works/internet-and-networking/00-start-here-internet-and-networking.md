@@ -64,7 +64,7 @@ Run `npm run site:dev` in the repository root, then open `/frontend-engineering/
 8. CDNs and the edge — `/frontend-engineering/how-the-web-works/internet-and-networking/lesson/08-cdns-and-the-edge/`
 9. Compression: gzip, Brotli, Zstandard and dictionaries — `/frontend-engineering/how-the-web-works/internet-and-networking/lesson/09-compression/`
 10. Cookies: attributes, SameSite and prefixes — `/frontend-engineering/how-the-web-works/internet-and-networking/lesson/10-cookies/`
-11. Realtime transports: polling, SSE, WebSockets and WebRTC — `/frontend-engineering/how-the-web-works/internet-and-networking/lesson/11-realtime-transports/`
+11. Realtime transports: polling, SSE, WebSockets, WebTransport and WebRTC — `/frontend-engineering/how-the-web-works/internet-and-networking/lesson/11-realtime-transports/`
 12. REST, GraphQL and RPC in production — `/frontend-engineering/how-the-web-works/internet-and-networking/lesson/12-api-styles-in-production/`
 
 ## Research scope and concept notes
@@ -73,10 +73,10 @@ The network a frontend developer depends on: internet packets and transport, dom
 - How the internet moves packets: included
 - IP addresses, IPv4/IPv6 and ports: deferred — No verified source in this run explains IP addressing and ports in depth (HPBN mentions IP only briefly); page 1 names IP addresses and ports inside the packet journey, and the coverage audit may add a source.
 - TCP versus UDP: included
-- Routing, ISPs and autonomous systems: included
+- Routing and ISPs: included
 - Domain names and hosting: included
 - Registrars, TLDs and nameservers: included
-- Static, server and serverless hosting: deferred — No verified source in this run compares static, server and serverless hosting; the roadmap's deployment and hosting phase teaches it.
+- Static, server and serverless hosting: deferred — Taught in roadmap section 27.1 (CI/CD & hosting: hosting platforms, domains and DNS for deploys). No verified hosting-models source fits this topic within the 12-source cap; page 2 names the term only.
 - DNS resolution: included
 - DNS record types and TTL: included
 - DNS prefetch and DNS over HTTPS: included
@@ -88,7 +88,7 @@ The network a frontend developer depends on: internet packets and transport, dom
 - Head-of-line blocking and multiplexing: included
 - Header compression and stream priorities: included
 - QUIC, 0-RTT and connection migration: included
-- Why domain sharding and sprites are anti-patterns now: included
+- Why HTTP/1-era workarounds such as domain sharding are anti-patterns now: included
 - TLS and HTTPS: included
 - The TLS 1.3 handshake: included
 - Certificates, CAs and the chain of trust: included
@@ -103,7 +103,7 @@ The network a frontend developer depends on: internet packets and transport, dom
 - Vary, browser caches and shared caches: included
 - Cache busting with hashed filenames: included
 - CDNs and the edge: included
-- PoPs, origin shield, cache keys and purge: included
+- PoPs, tiered caching, cache keys and purge: included
 - Edge compute and image CDNs: included
 - HTTP compression: included
 - gzip, Brotli and Zstandard: included
@@ -115,7 +115,7 @@ The network a frontend developer depends on: internet packets and transport, dom
 - Realtime transports: included
 - Polling, long polling and Server-Sent Events: included
 - WebSockets: included
-- WebRTC peer connections (WebTransport not covered: no verified source): included
+- WebTransport and WebRTC: included
 - REST, GraphQL and RPC: included
 - Resource-oriented REST: deferred — No verified REST-style source in this run (RFC 9110 defines resources and methods, not the REST style); the roadmap deep-dives REST in Phase 13.
 - Query-based GraphQL: included
@@ -125,8 +125,9 @@ The network a frontend developer depends on: internet packets and transport, dom
 - Range requests and 206 Partial Content: included
 - 429 Too Many Requests and Retry-After: included
 - CORS: cross-origin requests and preflight: deferred — Taught in roadmap section 01.2 (How browsers work), page 7, concept cors-coop-coep, with its own verified MDN source; this topic links origin to it.
+- tRPC: type-safe RPC for TypeScript apps: deferred — The canonical source (trpc.io) was confirmed live, but the topic is at its 12-source cap and no recorded source covers tRPC. The roadmap sub-item stays open here; the TypeScript and backend-for-frontend sections (06.x, 13.x) are the natural place to teach it.
 
-Research stopped: budget-limit. Audit round 1 concepts expanded against the re-verified MDN pages; Bearer token usage and resource-hint syntax have no direct verified page, so they stay out.
+Research stopped: budget-limit. Audit round 1 concepts expanded against the re-verified MDN pages; Bearer token usage and resource-hint syntax have no direct verified page, so they stay out. Review fix: WebTransport re-verified on MDN and taught on page 11; tRPC deferred (no slot); hosting deferred to section 27.1.
 
 ## Projects
 

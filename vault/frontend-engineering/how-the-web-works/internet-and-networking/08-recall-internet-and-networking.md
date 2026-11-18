@@ -115,6 +115,11 @@ Your client gets `429 Too Many Requests` with `Retry-After: 3600`. What should i
 ?
 Stop sending requests to that server (or resource) for 3600 seconds, then retry. Retrying at once makes the rate limit last longer.
 
+<!-- card: ian-22 -->
+A game needs many independent message streams and can drop late position updates. What does WebTransport give it that WebSockets do not, and what does it need?
+?
+WebTransport runs over HTTP/3, so it offers several independent streams and unreliable datagrams; a lost packet does not stall the other streams. It needs HTTP/3 support on both the browser and the server.
+
 ## Reopen map
 
 | Card | Outcome it covers | Reopen when missed |
@@ -140,5 +145,6 @@ Stop sending requests to that server (or resource) for 3600 seconds, then retry.
 | ian-19 | outcome 1: authentication status codes | lesson page `04-http-messages` |
 | ian-20 | outcome 1: range requests | lesson page `04-http-messages` |
 | ian-21 | outcome 1: rate limits | lesson page `04-http-messages` |
+| ian-22 | outcome 7: WebTransport | lesson page `11-realtime-transports` |
 
 ## My insights

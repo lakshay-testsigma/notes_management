@@ -32,7 +32,7 @@ Press Play and watch where encryption starts. Then switch off the trust store an
     { from: "server", to: "client", packet: "EncExtensions", caption: "From here on, every handshake message is encrypted." },
     { from: "server", to: "client", packet: "Certificate", caption: "The server sends its certificate chain, its own certificate first." },
     { from: "server", to: "client", packet: "CertVerify", caption: "The server signs the handshake so far with its private key. This proves it owns the certificate." },
-    { from: "server", to: "client", packet: "Finished", caption: "The server sends a MAC over the whole handshake, so tampering shows." },
+    { from: "server", to: "client", packet: "Finished", caption: "The server sends a MAC over the whole handshake. A MAC is a keyed checksum that proves the data was not changed." },
     { from: "client", to: "store", packet: "chain", caption: "The browser checks that the chain ends at an authority in its local trust store." },
     { from: "client", to: "server", packet: "Finished", caption: "All proofs hold, so the browser sends its own Finished." },
     { from: "client", to: "server", packet: "GET /", caption: "The first HTTP request travels as encrypted application data." }
@@ -41,11 +41,11 @@ Press Play and watch where encryption starts. Then switch off the trust store an
   brokenCaptions={{ store: "The browser cannot link the certificate to a trusted authority, so it aborts the handshake." }}
 />
 
-A key share is half of a key exchange. Both sides combine shares to derive the same secret without ever sending it. A certificate alone can be copied, so CertificateVerify proves possession of the private key. The chain links the server's certificate to an authority the browser already trusts. The video replays this order slowly.
+A key share is half of a key exchange. Both sides combine shares to derive the same secret without ever sending it. A certificate alone can be copied, so CertificateVerify proves possession of the private key. The chain links the server's certificate to an authority the browser already trusts. A certificate authority (CA) issues certificates. Let’s Encrypt is a CA that issues them free and automatically with the ACME protocol. The video replays this order slowly.
 
 <Video id="tls13-handshake" />
 
-Compared with older TLS, 1.3 needs one round trip, encrypts everything after ServerHello, and always gives forward secrecy: a stolen key later cannot decrypt recorded traffic.
+Compared with older TLS, 1.3 needs one round trip and encrypts everything after ServerHello. Every full handshake gives forward secrecy: a stolen key later cannot decrypt recorded traffic. Resumption with only a pre-shared key (PSK) does not (RFC 9846, Sections 1.3 and 2.2).
 
 <OrderSteps
   prompt="Put the TLS 1.3 handshake messages in the order they are sent."

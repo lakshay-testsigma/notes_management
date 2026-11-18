@@ -1,8 +1,8 @@
 ---
-title: "Realtime transports: polling, SSE, WebSockets and WebRTC"
+title: "Realtime transports: polling, SSE, WebSockets, WebTransport and WebRTC"
 description: Pick a realtime transport by who sends the data and how much delay the feature can accept.
 order: 11
-concepts: [polling, Server-Sent Events, WebSocket, WebRTC]
+concepts: [polling, Server-Sent Events, WebSocket, WebTransport, WebRTC]
 ---
 
 {/* <!-- concept: realtime-transports --> */}
@@ -12,7 +12,7 @@ concepts: [polling, Server-Sent Events, WebSocket, WebRTC]
 
 A notification badge, a stock ticker and a chat all show live data. HTTP lets only the client start a request, so each feature needs a way for new data to reach the browser. The right choice depends on two questions: who sends the data, and how old may it be?
 
-Periodic polling asks the server again every few seconds. It is simple, but each empty check still costs about 850 bytes of headers and cookies. Long polling holds the request open until an update arrives. Server-Sent Events (SSE) keep one HTTP response open, and the server writes each event into it at once. The browser's `EventSource` reconnects by itself. A WebSocket starts as an HTTP request, upgrades the connection, and then carries messages in both directions.
+Periodic polling asks the server again every few seconds. It is simple, but each empty check still costs about 850 bytes of headers and cookies. Long polling holds the request open until an update arrives. Server-Sent Events (SSE) keep one HTTP response of type `text/event-stream` open, and the server writes each event into it. The browser reads it with `EventSource`, which reconnects by itself. A WebSocket opens a two-way session: it starts as an HTTP request, upgrades the connection, and then carries messages in both directions without polling.
 
 In the deck, choose a path for each feature and open the deep dives. Watch which question removes each option.
 
@@ -20,7 +20,13 @@ In the deck, choose a path for each feature and open the deep dives. Watch which
 
 SSE wins when only the server sends text, because it is plain HTTP and needs no new protocol. WebSocket wins when the client also sends often, as in a shared cursor. Polling wins when a 30-second delay is fine, because one response batches many updates.
 
-**Note.** WebRTC connects two browsers directly, peer to peer, for audio, video and data. Use it for calls, not for server updates. This lesson leaves out WebTransport, because the topic has no vetted source for it yet.
+**Note.** WebRTC connects two browsers directly, peer to peer, for audio, video and data. Use it for calls, not for server updates.
+
+<Depth level="internals" title="WebTransport">
+
+WebTransport is a browser API that sends data between client and server over HTTP/3. One session carries many streams, one-way or two-way, and each feature can use its own stream. It can also send unreliable datagrams: the network may lose them, and nothing resends them. That suits game state or live positions, where only the newest value matters. A WebSocket gives you one ordered stream only. The limit: the server must speak HTTP/3, and browser and server support is newer than for WebSocket, so keep a WebSocket fallback.
+
+</Depth>
 
 <Depth level="production">
 

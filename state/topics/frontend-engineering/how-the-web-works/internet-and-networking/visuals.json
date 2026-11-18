@@ -23,8 +23,8 @@
       "rfc-9111-http-caching"
     ],
     "purpose": "Show the order of the network steps behind every page load, so each later page has a place in one picture.",
-    "explanation": "The browser first asks DNS for the server's IP address. It opens a connection (TCP, or QUIC for HTTP/3) and runs a TLS handshake to encrypt it and check the certificate. It sends an HTTP request with headers and cookies. A browser cache or a CDN can answer from a fresh stored copy; otherwise the origin server builds the response, usually compressed and with cache headers. The browser then renders the page.",
-    "alt": "Flowchart: you type a URL, DNS turns the name into an IP address, the browser connects with TCP or QUIC, TLS encrypts and checks the certificate, the browser sends an HTTP request with headers and cookies. If a cache or CDN has a fresh copy it answers; otherwise the origin server builds a compressed response with cache headers. Both paths end with the browser rendering the page.",
+    "explanation": "The browser first asks DNS for the server's IP address. It then connects and encrypts: TCP followed by a TLS handshake, or QUIC for HTTP/3, which includes TLS in its own handshake. TLS also checks the certificate. The browser sends an HTTP request with headers and cookies. A browser cache or a CDN can answer from a fresh stored copy; otherwise the origin server builds the response, usually compressed and with cache headers. Either way, the response arrives and the browser renders the page.",
+    "alt": "Flowchart with six steps: DNS turns the name into an IP address; the browser connects and encrypts with TCP plus TLS, or QUIC with TLS built in; it sends an HTTP request with headers and cookies. A decision asks whether the browser cache or a CDN has a fresh copy. If yes, the response comes from the cache; if no, the origin server builds a compressed response. Both paths end at the response, where the page renders.",
     "learning_check": {
       "question": "A second visit to a page is much faster although the server is slow. Which step most likely answered, and what decided it?",
       "answer": "A cache (the browser cache or a CDN) answered with a stored copy. The Cache-Control headers of the first response decided how long that copy stays fresh."
@@ -1526,11 +1526,11 @@
       "rfc-9111-http-caching"
     ],
     "purpose": "Show which layer of a CDN answers a request, where the cache key decides hit or miss, and what a purge removes.",
-    "explanation": "The browser sends its request to a nearby point of presence (PoP), a CDN data center close to the user. The PoP builds a cache key from the URL and some headers. On a hit it answers at once. On a miss it asks the origin and stores the response as its Cache-Control allows. A purge by URL or tag removes PoP copies only, so the next request refills from the origin.",
+    "explanation": "The browser sends its request to a nearby point of presence (PoP), a CDN data center close to the user. The PoP builds a cache key; by default it is the full URL with the query string, plus a few headers such as Origin. On a hit it answers at once. On a miss it asks the origin and stores the response as its Cache-Control allows. A purge by URL or tag removes PoP copies only, so the next request refills from the origin.",
     "alt": "Flowchart: the browser sends a request to a nearby PoP. The PoP checks whether its cache key is stored. A hit goes straight back to the browser. A miss goes to the origin server, which returns the response with Cache-Control to the PoP. A dashed arrow shows the purge API removing PoP copies by URL or by tag.",
     "learning_check": {
-      "question": "You purge /app.js by URL. A user who loaded it yesterday reloads normally. Which layer answers, and why?",
-      "answer": "The user's browser cache can still answer while its copy is fresh. A CDN purge removes copies at the PoPs only; it does not reach browser caches."
+      "question": "You purge /app.js by URL. A user who loaded it one hour ago opens the page again via a link, and their cached copy is still fresh. Which layer answers, and why?",
+      "answer": "The user's browser cache answers, because its copy is still fresh and a normal navigation reuses it. A CDN purge removes copies at the PoPs only; it does not reach browser caches."
     },
     "used_in": [
       "site/src/content/lessons/frontend-engineering/how-the-web-works/internet-and-networking/08-cdns-and-the-edge.mdx"
@@ -1574,15 +1574,16 @@
       "rpc-trpc-grpc-web"
     ],
     "source_ids": [
+      "rfc-9110-http-semantics",
       "graphql-learn",
       "connectrpc-docs"
     ],
-    "purpose": "Show where each API style puts its contract in the HTTP request, and why only URL-based requests fit HTTP caching by default.",
-    "explanation": "A REST-style endpoint names each resource by its URL, so the URL is the cache key that HTTP caches and CDNs use. GraphQL sends every operation to one endpoint, usually /graphql, with POST; only queries sent with GET can use HTTP caching. Connect RPC posts to a URL named after the service and method and carries JSON or binary Protobuf over HTTP/1.1, HTTP/2 or HTTP/3.",
-    "alt": "Flowchart from a browser app to three endpoints. GET /users/42 goes to a REST endpoint, whose URL is the cache key for an HTTP cache or CDN. POST /graphql goes to a GraphQL endpoint, which reaches the cache only for GET queries, drawn as a dotted line. POST /Service/Method goes to Connect RPC, which sends JSON or Protobuf to server code, so only the URL-based style caches by default.",
+    "purpose": "Show where each API style puts its contract in the HTTP request, and why only GET requests, keyed by URL, fit HTTP caching.",
+    "explanation": "HTTP identifies each resource by a URL (RFC 9110). A REST-style endpoint, simplified here, gives each resource its own URL, which HTTP caches and CDNs use as the cache key. GraphQL sends every operation to one endpoint, usually /graphql, with POST; only GET queries can be cached. Connect RPC posts to a URL named after the service and method, with JSON or Protobuf. A Connect method marked side-effect free can be sent as GET, so caches can store it too.",
+    "alt": "Flowchart from a browser app to three endpoints. GET /users/42 goes to a REST endpoint, whose URL is the cache key for an HTTP cache or CDN. POST /graphql goes to a GraphQL endpoint, which reaches the cache only for GET queries, drawn as a dotted line. POST /Service/Method goes to Connect RPC, which sends JSON or Protobuf to server code; a dotted line shows that side-effect-free Connect methods sent with GET can also reach the cache.",
     "learning_check": {
-      "question": "Why can a CDN cache GET /users/42 but not a GraphQL query sent as POST /graphql?",
-      "answer": "HTTP caches use the URL as the key. Every GraphQL POST goes to the same URL with the query in the body, so the URL does not identify the data. Sending the query with GET puts it in the URL and makes caching possible."
+      "question": "Why can a CDN cache GET /users/42 but not a GraphQL query sent as POST /graphql, and how can a Connect RPC call become cacheable?",
+      "answer": "HTTP caches use the URL of a GET request as the key. Every GraphQL POST goes to the same URL with the query in the body, so the URL does not identify the data; sending the query with GET puts it in the URL. Connect can send a method marked side-effect free as a GET request, which caches can store the same way."
     },
     "used_in": [
       "site/src/content/lessons/frontend-engineering/how-the-web-works/internet-and-networking/12-api-styles-in-production.mdx"
