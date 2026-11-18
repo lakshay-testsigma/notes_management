@@ -11,7 +11,7 @@ created: 2026-11-18
 This is the map of the topic. Read the steps from top to bottom. Each step links to the next thing to open, so you never have to search.
 
 <!-- tutor:generated:start -->
-**Depth:** standard · **Progress:** 8 of 10 steps ready
+**Depth:** standard · **Progress:** 9 of 10 steps ready
 
 A browser extension toolkit adds framework, performance, accessibility, SEO and security views that built-in DevTools does not give.
 
@@ -23,8 +23,8 @@ A browser extension toolkit adds framework, performance, accessibility, SEO and 
 4. [[00-digests-browser-extension-toolkit|Digests]] — short summaries of the key papers and docs · *ready*
 5. [[00-repo-intel-browser-extension-toolkit|Repository deep dive]] — how a production open-source project does it · *ready*
 6. [[06-capstone-browser-extension-toolkit|Capstone]] — the production-style project · *ready*
-7. [[07-final-notes-browser-extension-toolkit|Final notes]] — the one-page refresher · *not started*
-8. [[08-recall-browser-extension-toolkit|Recall cards]] — flashcards for spaced review · *not started*
+7. [[07-final-notes-browser-extension-toolkit|Final notes]] — the one-page refresher · *ready*
+8. [[08-recall-browser-extension-toolkit|Recall cards]] — flashcards for spaced review · *ready*
 9. [[09-resources-browser-extension-toolkit|Resources]] — the vetted sources behind everything above · *ready*
 
 Your own additions live in [[my-insights-browser-extension-toolkit|My insights]].
@@ -109,10 +109,10 @@ Research stopped: budget-limit. Five research units (framework-perf, a11y-seo, s
 | 3 | lesson | ready |
 | 3 | mini-projects | ready |
 | 4 | capstone | ready |
-| 5 | notes | not started |
+| 5 | notes | ready |
 | 5 | finalize | not started |
 
-Next to generate: `notes`. Ask Claude to continue this topic, or run `node harness/bin/tutor.mjs next frontend-engineering/learning-system-and-workstation/browser-extension-toolkit`.
+Next to generate: `finalize`. Ask Claude to continue this topic, or run `node harness/bin/tutor.mjs next frontend-engineering/learning-system-and-workstation/browser-extension-toolkit`.
 <!-- tutor:generated:end -->
 
 ## My insights
