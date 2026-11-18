@@ -1,0 +1,15 @@
+---
+import Base from '../layouts/Base.astro';
+import ProgressiveScene from '../components/learn/ProgressiveScene.astro';
+import { cacheScene, buildScene } from '../data/progressive-scenes';
+---
+<Base title="Progressive scenes" description="Explore a complex process by adding one block and one explanation at a time.">
+  <h1>One change at a time</h1>
+  <p class="lede">Build a mental model before seeing the whole system. Each step keeps the parts you know and introduces the next change.</p>
+  <p>These examples demonstrate the shared lesson component. They are authored traces, with illustrative values, rather than live benchmarks or simulations.</p>
+  <ProgressiveScene {...cacheScene} />
+  <p>The cache example follows <a href="https://learn.microsoft.com/en-us/azure/architecture/patterns/cache-aside">the cache-aside pattern</a>. Availability policy and timings are example assumptions.</p>
+  <ProgressiveScene {...buildScene} />
+  <p>The build example simplifies <a href="https://vite.dev/guide/build.html">Vite’s production build</a>. Actual outputs depend on the project configuration.</p>
+  <p>Use this component in notes as <code>&lt;ProgressiveScene /&gt;</code>. The authoring contract is in <code>site/COMPONENTS.md</code>. <a href="/playground/#ProgressiveScene">Explore all lesson components</a>.</p>
+</Base>

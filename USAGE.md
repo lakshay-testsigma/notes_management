@@ -19,7 +19,7 @@ page, so it cannot pass without web access.
 Open this folder in Claude Code and send one message:
 
 ```
-/learn Redis Streams
+teach me Redis Streams
 ```
 
 "teach me Redis Streams" and "generate the notes for Redis Streams" do the
@@ -193,6 +193,33 @@ This asks the recall cards that are due today and records how you did.
    node harness/bin/tutor.mjs reset redis-streams digest
    ```
 
+## Using Claude Code (default)
+
+Open this repository in Claude Code, or run `claude` from its root. `CLAUDE.md`
+and the `learn` skills load automatically. Run the orchestrator session on Opus
+(`/model opus`); it writes the inline brief and notes. The eight worker roles in
+`.claude/agents/` declare their own model:
+
+| Tier | Claude model | Work |
+|------|--------------|------|
+| fact | `sonnet` | Research, digests, repo analysis, projects, coverage audits |
+| writer | `opus` | Lessons, experiences, videos, independent reviews |
+
+To resume the existing frontend roadmap, send:
+
+```text
+Continue the frontend roadmap from tutor CLI state using the learn-roadmap skill.
+Preserve existing notes and recall history.
+```
+
+## Using Codex (optional)
+
+`.codex/config.toml` and `.codex/agents/*.toml` keep a Codex mapping (fact →
+`gpt-6-luna`, writer and orchestrator → `gpt-6.1-sol`). Codex reads `AGENTS.md`;
+the native roles load their shared instructions from `.claude/agents/`. Config format:
+[official OpenAI configuration reference](https://learn.chatgpt.com/docs/config-file/config-reference)
+and [native subagents](https://learn.chatgpt.com/docs/agent-configuration/subagents).
+
 ## Using DeepSeek or another model/host
 
 The workflow is provider-neutral. Select an actual model offered by your host;
@@ -200,7 +227,8 @@ the harness does not choose provider ids or reasoning settings. A cheaper model
 gets the same research, evidence, visual and review requirements. Read the detailed
 [research workflow](docs/RESEARCH-WORKFLOW.md) for recursive discovery and budgets.
 
-Only Claude Code auto-loads .claude skills. In another host, start in this folder:
+Codex reads `AGENTS.md`; the runbook explicitly loads the shared `.claude` skills.
+In another host, start in this folder:
 
 ```text
 Read docs/ARCHITECTURE.md, then CLAUDE.md, AGENTS.md, and

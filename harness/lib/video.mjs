@@ -846,7 +846,9 @@ export function checkVideo(root, topic, id) {
       warnings.push(`not rendered: ${entry.video?.blocker ?? 'unknown reason'}`);
     }
     const html = isFile(path.join(project.dir, 'index.html')) ? readText(path.join(project.dir, 'index.html')) : '';
-    for (const scene of spec.scenes) if (!html.includes(esc(scene.narration.split(/\s+/).slice(0, 6).join(' ')))) problems.push(`scene ${scene.id}: its caption text is missing from index.html; rebuild`);
+    // Captions split narration across elements, so compare against the page text, not raw markup.
+    const htmlText = html.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ');
+    for (const scene of spec.scenes) if (!htmlText.includes(esc(scene.narration.split(/\s+/).slice(0, 6).join(' ')))) problems.push(`scene ${scene.id}: its caption text is missing from index.html; rebuild`);
     if (!/window\.__timelines\["main"\]/.test(html)) problems.push('index.html does not register its timeline on window.__timelines');
   }
   return { ok: problems.length === 0, problems, warnings, status: entry?.video?.status ?? 'missing' };

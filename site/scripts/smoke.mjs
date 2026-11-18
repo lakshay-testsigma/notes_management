@@ -264,6 +264,10 @@ async function checkPage(browser, origin, url, webgl) {
 	});
 	page.on('pageerror', (error) => add(`${hydration.test(error.message) ? 'hydration mismatch' : 'uncaught error'}: ${error.message}`));
 	page.on('requestfailed', (request) => {
+		// A browser cancels audio/video preloads it no longer needs (net::ERR_ABORTED); a missing
+		// file still fails through the `response` handler below with its HTTP status.
+		const aborted = /ERR_ABORTED|NS_BINDING_ABORTED/.test(request.failure()?.errorText ?? '');
+		if (aborted && (request.resourceType() === 'media' || /\.(wav|mp3|ogg|m4a|mp4|webm)(\?|$)/i.test(request.url()))) return;
 		if (local(request.url())) add(`request failed: ${where(request.url())} (${request.failure()?.errorText ?? 'unknown error'})`);
 	});
 	page.on('response', (response) => {

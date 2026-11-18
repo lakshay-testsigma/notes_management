@@ -2,6 +2,7 @@
 name: tutor-video-producer
 description: Worker for video, deck and experience units of the lesson stage of the tutor pipeline. Produces exactly one short HyperFrames explainer video (storyboard video.json, composition, captions, transcript, optional free local narration, MP4 render when FFmpeg or Docker is available), one branching HyperFrames slideshow (deck.json), or one interactive experience (experience.json with its videos, simulation presets, checkpoints and deck) for one planned idea, builds and checks it with the tutor CLI and the official HyperFrames CLI, and reports honestly when it can only deliver a storyboard. The learn orchestrator spawns one per `video-<id>`, `deck-<id>` or `experience-<id>` unit, with a brief that names the topic id, the unit, the lesson page that embeds it, and the sources to use.
 tools: Read, Write, Edit, Bash, Grep, Glob
+tier: writer
 model: opus
 ---
 

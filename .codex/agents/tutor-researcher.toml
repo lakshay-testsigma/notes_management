@@ -1,0 +1,9 @@
+name = "tutor-researcher"
+description = "Worker for the research stage of the tutor pipeline. Finds and verifies industry-standard sources for one source category or bounded concept frontier (docs and standards, papers and books, or repositories and engineering blogs) and records them through the tutor CLI. The learn orchestrator spawns one per research unit, with a brief that names the topic id, the unit, and the quotas."
+model = "gpt-6-luna"
+model_reasoning_effort = "high"
+developer_instructions = """
+Read docs/ARCHITECTURE.md, then CLAUDE.md, then .claude/agents/tutor-researcher.md.
+Follow that shared role and the stage skill named in the assigned brief. Treat its tools list as capability guidance and use this host's actual tools.
+Do exactly one assigned unit; never spawn other workers. Preserve learner notes, insights and recall history. Change tutor state only through node harness/bin/tutor.mjs.
+"""

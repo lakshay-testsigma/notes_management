@@ -90,8 +90,9 @@ function propsOfType(file, source, typeName, seen = new Set()) {
 			const binding = statement.importClause.namedBindings.elements.find((element) => element.name.text === typeName);
 			const from = statement.moduleSpecifier.text;
 			if (!binding || !from.startsWith('.')) continue;
-			const target = path.resolve(path.dirname(file), from);
-			if (!fs.existsSync(target)) return null;
+			const base = path.resolve(path.dirname(file), from);
+			const target = [base, `${base}.ts`, `${base}.tsx`].find((candidate) => fs.existsSync(candidate) && fs.statSync(candidate).isFile());
+			if (!target) return null;
 			return propsOfType(target, parse(target, read(target)), (binding.propertyName ?? binding.name).text, seen);
 		}
 	}

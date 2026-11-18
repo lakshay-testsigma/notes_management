@@ -436,9 +436,11 @@ shape so a smaller model can run it without guessing:
 
 Defined in `.claude/agents/`. Subagents cannot spawn subagents, so only the
 session running `learn` fans out. Each agent definition names the skill file it
-must read first.
+must read first. Claude Code is the default host: role frontmatter records both
+`tier:` and the Claude `model:` (`sonnet` for fact, `opus` for writer). An optional
+Codex mapping lives in `.codex/config.toml` and `.codex/agents/`.
 
-| Agent | Tier (`model:`) | Used by stage | One unit of work |
+| Agent | Tier / Claude model | Used by stage | One unit of work |
 |-------|-----------------|---------------|------------------|
 | `tutor-researcher` | fact (`sonnet`) | research | one source category (docs / papers+books / repos) |
 | `tutor-digester` | fact (`sonnet`) | digest | one source |

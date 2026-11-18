@@ -16,7 +16,7 @@ it, so a prop that is not in the tables below does not exist.
 - [Choosing a component](#choosing-a-component)
 - [Rules for props](#rules-for-props)
 - [Data that reads well](#data-that-reads-well)
-- Visual: [FlowAnimation](#flowanimation) · [SystemDiagram](#systemdiagram) · [SequenceDiagram](#sequencediagram) · [StateMachine](#statemachine) · [Graph3D](#graph3d) · [VectorSpace3D](#vectorspace3d) · [Chart](#chart) · [ParamPlayground](#paramplayground) · [CodeWalkthrough](#codewalkthrough) · [Timeline](#timeline) · [Mermaid](#mermaid) · [Diagram](#diagram) · [Video](#video) · [Experience](#experience) · [ClusterSim](#clustersim) · [AlgorithmStepper](#algorithmstepper) · [CompareView](#compareview) · [CodePlayground](#codeplayground)
+- Visual: [ProgressiveScene](#progressivescene) · [FlowAnimation](#flowanimation) · [SystemDiagram](#systemdiagram) · [SequenceDiagram](#sequencediagram) · [StateMachine](#statemachine) · [Graph3D](#graph3d) · [VectorSpace3D](#vectorspace3d) · [Chart](#chart) · [ParamPlayground](#paramplayground) · [CodeWalkthrough](#codewalkthrough) · [Timeline](#timeline) · [Mermaid](#mermaid) · [Diagram](#diagram) · [Video](#video) · [Experience](#experience) · [ClusterSim](#clustersim) · [AlgorithmStepper](#algorithmstepper) · [CompareView](#compareview) · [CodePlayground](#codeplayground)
 - Activity: [Quiz](#quiz) · [PredictReveal](#predictreveal) · [OrderSteps](#ordersteps) · [MatchPairs](#matchpairs) · [SortBuckets](#sortbuckets)
 - Utility: [Resources](#resources) · [Figure](#figure) · [Depth](#depth)
 - [Topic-specific components](#topic-specific-components)
@@ -55,6 +55,7 @@ One more short paragraph.
 
 | You want to show | Use |
 | --- | --- |
+| A mechanism that gains parts, connections and information as it unfolds | `ProgressiveScene` (isometric SVG, no WebGL) |
 | Something travelling through a system, step by step (a request, a RAG query, a message) | `FlowAnimation` |
 | What happens when a part fails | `FlowAnimation` with `breakable` |
 | What the parts of a system are and what each does | `SystemDiagram` |
@@ -1089,3 +1090,68 @@ not: if a component shows nothing, compare your data with the tables above.
 `npm run check` type-checks the site itself (not the MDX props), and
 `npm run manifest:check` confirms that the manifest, the components and this
 file name the same props.
+
+## ProgressiveScene
+
+A persistent isometric SVG scene. Each step supplies a complete snapshot: visible
+blocks, active directed paths, focus, failures, metrics and an explanation of the
+change. Existing blocks keep their positions. New blocks enter; packets follow
+only the current paths. It is an authored process trace, not a general simulation.
+Use `Graph3D` or `VectorSpace3D` when rotation and spatial exploration teach the idea.
+Examples: `/scene-lab/` and `/playground/#ProgressiveScene`.
+
+| Prop | Type | Purpose |
+| --- | --- | --- |
+| `title` | string | Required concept-specific title |
+| `intro` | string | Required instruction: what to change and predict |
+| `nodes` | SceneNode[] | 1–7 persistent objects |
+| `edges` | SceneEdge[] | Catalog of possible directed paths |
+| `steps` | SceneStep[] | 2–12 full snapshots, no implicit cumulative state |
+
+`SceneNode`: `{id, label, detail, position: [x, z], kind?}`. Labels ≤28 characters;
+`detail` explains the object's job. `kind` is `block` (default), `store`, `queue`,
+or `client`. Coordinates are logical plane coordinates, projected isometrically.
+Use distinct spaced positions; `[[-1,0],[0,-1],[1,0],[0,1]]` makes a four-part diamond.
+The full catalog fixes the projection, so no camera jump occurs as parts appear.
+The object glyphs are symbolic, not physical models.
+
+`SceneEdge`: `{id, from, to, label}`. Endpoints are node IDs. The label names the
+actual operation, also listed as text below the scene. Do not draw a direct
+store-to-cache link when the application performs that write.
+
+`SceneStep`: `{title, description, nodes: string[], edges: string[], changes:
+string[], focus?: string[], failed?: string[], metrics?: [{label,value}],
+source_ids?: string[]}`. Node and edge lists are exact snapshots; omitted objects
+are hidden and omitted edges are inactive. `failed` objects stay visible with an
+unavailable label and dashed outline, but cannot carry traffic. Failure and recovery
+are authored cases, not random events. Metrics are full replacements, with string
+values including units. Explain assumptions and illustrative values in the intro.
+`source_ids` trace the step to vetted topic sources; they are authoring metadata,
+not automatically verified citations. The visual registry and independent reviewer
+still check grounding. The Astro wrapper rejects broken references, hidden
+endpoints and traffic through failed nodes at build time.
+
+```mdx
+<ProgressiveScene
+  title="A job enters a queue"
+  intro="Predict where the job waits, then advance and inspect the queue."
+  nodes={[
+    {id:'producer', label:'Producer', detail:'Creates a job.', position:[-1,0]},
+    {id:'queue', label:'Job queue', detail:'Retains the job until a worker accepts it.', position:[0,-1], kind:'queue'}
+  ]}
+  edges={[{id:'append', from:'producer', to:'queue', label:'Append job'}]}
+  steps={[
+    {title:'Create a job', description:'The producer creates one job.', nodes:['producer'], edges:[], changes:['Producer added.']},
+    {title:'Retain the job', description:'The job waits in the queue.', nodes:['producer','queue'], edges:['append'], focus:['queue'], changes:['Queue added.', 'The job is retained.'], metrics:[{label:'Waiting jobs',value:'1'}]}
+  ]}
+/>
+```
+
+Controls: Back, Next, direct numbered steps, Replay step, Pause/Resume traffic,
+Reset, selectable blocks and a full text sequence. Arrowheads encode direction;
+focus, failure labels and explanations do not rely on color. Blocks are reachable
+by Tab and activated with Enter/Space. Reduced motion removes arrivals and packet
+motion; offscreen traffic pauses. The first snapshot is server rendered; without
+JavaScript the wrapper also prints the complete sequence. No external textures,
+models, font or animation service is needed. This is a visual component; include
+a separate `PredictReveal` or quiz for assessment.

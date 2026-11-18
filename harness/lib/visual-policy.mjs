@@ -1,7 +1,7 @@
 // Opt-in visual decisions for an experienced learner. Legacy plans retain §12.
 const text = value => typeof value === 'string' && value.trim().length > 0;
 export const SPATIAL_VISUALS = ['Graph3D', 'VectorSpace3D'];
-export const SIMULATION_VISUALS = ['ParamPlayground', 'StateMachine', 'FlowAnimation', 'ClusterSim', 'AlgorithmStepper', 'CodePlayground', 'Experience'];
+export const SIMULATION_VISUALS = ['ParamPlayground', 'StateMachine', 'FlowAnimation', 'ProgressiveScene', 'ClusterSim', 'AlgorithmStepper', 'CodePlayground', 'Experience'];
 
 export function adaptiveVisualProblems(page, kinds) {
   if (!page || typeof page !== 'object') return ['needs an outline entry'];

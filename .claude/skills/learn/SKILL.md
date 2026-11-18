@@ -36,7 +36,7 @@ a plain topic list) are the source of truth for what must be taught. A file with
 `new` or `changed-since-import` goes to `learn-roadmap` (Step 2A or 2C) before anything else.
 
 **2. Model tiers: facts on the cheaper model, wording on the stronger one.** Each role file
-in `.claude/agents/` declares its tier in `model:`. Spawn with that tier; never upgrade a
+in `.claude/agents/` declares its tier in `tier:` and its Claude model in `model:` (`sonnet` or `opus`). Spawn with that model; never upgrade a
 fact worker to fix wording; route the wording to a writer instead.
 
 | Tier | Work | Roles / stages |
@@ -49,6 +49,15 @@ so the stronger model spends its tokens on clarity, not on searching. Every conc
 teaches states its real use case **and** the benefit over the alternative (aspect
 `use-case`). On a host without these model names, map fact to the host's cheaper
 model and writer to its strongest; log the mapping once with `tutor log`.
+
+Claude Code is the default host: spawn the named agent type from `.claude/agents/`
+(the Agent tool picks up its `model:`), so fact workers run on Sonnet and writer workers
+on Opus; the orchestrator session (with the inline `brief` and `notes`) should run on
+Opus. If the host exposes only a generic spawn API, load the shared role explicitly
+and pass its `model:`. When model overrides require an empty-context worker, use a
+fresh worker without inherited conversation history and supply the complete brief.
+Respect the smaller of the host and skill concurrency limits. `.codex/` keeps an
+optional Codex mapping for running the same pipeline from Codex.
 
 **3. Context: no agent above 40%.** Workers follow the BUDGET line of the brief. This
 session protects its own context the same way: read `tutor ... --json` output and worker

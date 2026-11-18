@@ -8,7 +8,10 @@ Everything lives in this repository, in the same place for every topic.
 
 ## How to use it
 
-Open this folder in Claude Code and talk to it.
+Open this folder in Claude Code and talk to it. `CLAUDE.md` loads the tutor workflow.
+The project defaults to Claude Opus for orchestration and writing (lesson pages,
+experiences, review), and Claude Sonnet for research and extraction. See
+[Claude setup](USAGE.md#using-claude-code-default).
 
 | You say | What happens | Skill |
 |---------|--------------|-------|

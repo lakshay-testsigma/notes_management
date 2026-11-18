@@ -2,6 +2,7 @@
 import Crumbs from '../components/site/Crumbs.astro';
 import { lessonComponents as C } from '../components/learn';
 import * as sample from '../data/playground';
+import { cacheScene } from '../data/progressive-scenes';
 import Base from '../layouts/Base.astro';
 import { loadTopics } from '../lib/topics';
 import DiagramView from '../components/learn/views/DiagramView.astro';
@@ -42,6 +43,10 @@ const demos = [
 	<h3 id="FlowAnimation">FlowAnimation</h3>
 	<p>Something moving through a system, step by step. Nodes can be switched off to see what breaks.</p>
 	<C.FlowAnimation {...sample.flow} />
+
+	<h3 id="ProgressiveScene">ProgressiveScene</h3>
+	<p>A persistent isometric diagram that gains blocks, paths and information as the learner advances. <a href="/scene-lab/">Try two focused examples</a>.</p>
+	<C.ProgressiveScene {...cacheScene} />
 
 	<h3 id="SystemDiagram">SystemDiagram</h3>
 	<p>The parts of a system. Selecting a part explains it under the diagram.</p>

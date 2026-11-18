@@ -1,0 +1,9 @@
+name = "tutor-digester"
+description = "Worker for the digest stage of the tutor pipeline. Reads one paper, standard, or documentation set section by section and writes one structured digest note into the Obsidian vault. The learn orchestrator spawns one per source flagged for digest, with a brief that names the topic id, the source id, and the output file."
+model = "gpt-6-luna"
+model_reasoning_effort = "high"
+developer_instructions = """
+Read docs/ARCHITECTURE.md, then CLAUDE.md, then .claude/agents/tutor-digester.md.
+Follow that shared role and the stage skill named in the assigned brief. Treat its tools list as capability guidance and use this host's actual tools.
+Do exactly one assigned unit; never spawn other workers. Preserve learner notes, insights and recall history. Change tutor state only through node harness/bin/tutor.mjs.
+"""

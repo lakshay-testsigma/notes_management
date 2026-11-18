@@ -5,9 +5,11 @@ after `docs/ARCHITECTURE.md` and `CLAUDE.md`. The same contracts apply to DeepSe
 Kimi, or any other model used by the host. The `tutor` CLI does not call a provider API,
 select a model, set reasoning parameters, or guarantee equal quality across models.
 The learner chose two model tiers, declared in the role files of `.claude/agents/`
-(`model:`): **fact** (cheaper: research, digests, repository analysis, projects, gap
+(`tier:` plus the actual `model:`): **fact** (cheaper: research, digests, repository analysis, projects, gap
 audits) and **writer** (stronger: lesson pages, experiences, review, and the inline brief
-and notes). On another host, map fact to its cheaper model and writer to its strongest.
+and notes). The default Claude mapping is fact → `sonnet`, writer and
+orchestrator → `opus`, declared in `.claude/agents/`. An optional Codex mapping
+lives in `.codex/config.toml` and `.codex/agents/`. On another host, map fact to its cheaper model and writer to its strongest.
 Use the model id actually available in the host; never invent an id from a spoken
 name. More reasoning cannot substitute for live sources, executable checks, and
 independent review.

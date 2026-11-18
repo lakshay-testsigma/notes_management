@@ -1,0 +1,13 @@
+---
+import Island from './react/ProgressiveScene.tsx';
+import { sceneProblems, type ProgressiveSceneProps } from './react/progressive-scene';
+type Props = ProgressiveSceneProps;
+const problems = sceneProblems(Astro.props);
+if (problems.length) throw new Error(`ProgressiveScene: ${problems.join('; ')}`);
+---
+
+<Island client:visible {...Astro.props} />
+<noscript>
+  <p>The scene starts above. Turn on JavaScript to step through it, or read the sequence here.</p>
+  <ol>{Astro.props.steps.map(step => <li><strong>{step.title}.</strong> {step.description} {step.changes.join(' ')}</li>)}</ol>
+</noscript>

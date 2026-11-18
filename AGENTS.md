@@ -10,8 +10,12 @@ Use the host's fresh-worker API when the learn runbook requests workers. Keep
 workers within the host limit and the skill's limit; do not assume named Claude
 agent types exist on another host. Persist handoffs and resume from CLI state.
 The learner's topic files live in `inputs/`; run `tutor roadmap inbox` first. Worker role
-files declare a model tier (`model:` fact = cheaper, writer = stronger); map them to the
-host's models and respect the per-topic spawn caps and coverage-audit rounds of `learn`.
+files declare `tier:` (fact = cheaper, writer = stronger) and `model:`. Claude Code is
+the default host: role files in `.claude/agents/` use `sonnet` for fact work and `opus`
+for writer work, and the orchestrator runs on Opus. Codex remains optional:
+`.codex/config.toml` and `.codex/agents/` hold its mapping. Load the shared
+`.claude/agents/<role>.md` explicitly when native roles are unavailable; use fresh
+workers with explicit model overrides if the host API requires that. Respect the per-topic spawn caps and coverage-audit rounds of `learn`.
 
 State under `state/` is owned by `node harness/bin/tutor.mjs`; change it only
 through that CLI. Preserve generated notes, learner insights, card IDs and recall

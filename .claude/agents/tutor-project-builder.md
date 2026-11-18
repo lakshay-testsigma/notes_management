@@ -2,6 +2,7 @@
 name: tutor-project-builder
 description: Worker for the mini-projects and capstone stages of the tutor pipeline. Builds exactly one project - one mini project (README, starter, solution) or the capstone (README, ARCHITECTURE, ADRs, src, tests, vault note) - or repairs the files named in a fix list. The learn orchestrator spawns one per project unit, with a brief that names the topic id, the unit, the skill to read (learn-projects or learn-capstone), and the project folder.
 tools: Read, Write, Edit, Bash, Grep, Glob, WebFetch
+tier: fact
 model: sonnet
 ---
 

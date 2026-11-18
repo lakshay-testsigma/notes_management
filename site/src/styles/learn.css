@@ -18,6 +18,39 @@
 .lc-quiet {
 	color: var(--muted);
 }
+
+/* Progressive isometric scenes share the reading surface, never a card. */
+.lc-scene-stage { width: 100%; overflow: hidden; }
+.lc-scene-stage svg { display: block; width: 100%; height: auto; font-family: var(--font-body); }
+.lc-scene-grid path { fill: none; stroke: var(--line); stroke-width: 1; opacity: .4; }
+.lc-scene-node { cursor: pointer; outline: none; }
+.lc-scene-node path, .lc-scene-symbol ellipse, .lc-scene-symbol rect { stroke: var(--line-strong); stroke-width: 1.4; stroke-linejoin: round; }
+.lc-scene-left { fill: var(--surface); }
+.lc-scene-right { fill: var(--line); }
+.lc-scene-top { fill: var(--bg); }
+.lc-scene-symbol path, .lc-scene-symbol ellipse, .lc-scene-symbol rect { fill: none; stroke: var(--text-2); }
+.lc-scene-node.is-focused .lc-scene-top, .lc-scene-node[aria-pressed='true'] .lc-scene-top { fill: var(--accent-soft); stroke: var(--accent); }
+.lc-scene-node:focus-visible .lc-scene-body > path, .lc-scene-node:hover .lc-scene-body > path { stroke: var(--accent); stroke-width: 2.5; }
+.lc-scene-node.is-failed .lc-scene-body > path { stroke: var(--bad-text); stroke-dasharray: 4 3; }
+.lc-scene-label { fill: var(--text); font-size: 15px; font-weight: 600; }
+.lc-scene-failure { fill: var(--bad-text); font-size: 14px; }
+.lc-scene-edge > path { fill: none; stroke: var(--accent); stroke-width: 1.8; }
+.lc-scene-packet { fill: var(--accent); }
+.lc-scene-metrics { display: flex; flex-wrap: wrap; gap: .6rem 1.6rem; margin: 1rem 0 0; }
+.lc-scene-metrics dt { font-size: .85rem; color: var(--muted); }
+.lc-scene-metrics dd { margin: .1rem 0 0; font-family: var(--font-mono); }
+.lc-scene-steps { gap: .5rem 1.1rem; }
+.lc-scene-steps button { min-width: 1.5rem; }
+.lc-scene-explanation p { margin: .7rem 0; }
+.lc-scene-explanation ul { padding-left: 1.25rem; }
+.lc-scene-transcript { padding-left: 1.5rem; }
+@keyframes lc-scene-arrive { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+.lc-scene-body { animation: lc-scene-arrive .5s ease-out both; }
+.lc-scene-stage.is-still .lc-scene-body { animation: none; }
+@media (prefers-reduced-motion: reduce) {
+	.lc-scene-body { animation: none; }
+	.lc-scene-packet { display: none; }
+}
 .lc-good {
 	color: var(--good-text);
 }

@@ -19,6 +19,7 @@ import Experience from './Experience.astro';
 import CodeWalkthrough from './CodeWalkthrough.astro';
 import Figure from './Figure.astro';
 import FlowAnimation from './FlowAnimation.astro';
+import ProgressiveScene from './ProgressiveScene.astro';
 import Graph3D from './Graph3D.astro';
 import MatchPairs from './MatchPairs.astro';
 import Mermaid from './Mermaid.astro';
@@ -38,6 +39,7 @@ import Video from './Video.astro';
 export const lessonComponents = {
 	// visual
 	FlowAnimation,
+	ProgressiveScene,
 	SystemDiagram,
 	SequenceDiagram,
 	StateMachine,

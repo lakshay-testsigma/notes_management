@@ -2,6 +2,7 @@
 name: tutor-digester
 description: Worker for the digest stage of the tutor pipeline. Reads one paper, standard, or documentation set section by section and writes one structured digest note into the Obsidian vault. The learn orchestrator spawns one per source flagged for digest, with a brief that names the topic id, the source id, and the output file.
 tools: Read, Write, Edit, Bash, Grep, Glob, WebFetch, WebSearch
+tier: fact
 model: sonnet
 ---
 

@@ -1,6 +1,7 @@
 {
   "visual": [
     "FlowAnimation",
+    "ProgressiveScene",
     "SystemDiagram",
     "SequenceDiagram",
     "StateMachine",
@@ -202,6 +203,13 @@
     "Experience": [
       "id",
       "topic"
+    ],
+    "ProgressiveScene": [
+      "title",
+      "intro",
+      "nodes",
+      "edges",
+      "steps"
     ]
   }
 }
