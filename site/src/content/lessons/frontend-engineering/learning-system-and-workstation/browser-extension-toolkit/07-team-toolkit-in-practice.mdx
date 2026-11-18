@@ -35,4 +35,8 @@ Read the diagram from the left. Each group joins only after the review, and the 
 A `modifyHeaders` rule has three operations. `set` replaces a header, `append` adds a value (only for an allowlisted set of request headers), and `remove` deletes every value of the header. The permission also matters. `declarativeNetRequest` shows an install warning to the user. `declarativeNetRequestWithHostAccess` shows no such warning, but the extension then needs host permission for the sites it changes. Other caps: 30,000 dynamic safe rules and 50 enabled static rulesets.
 </Depth>
 
+<Depth level="production" title="The API and design workflow">
+First, read the API response as a formatted tree, in the Network panel or a JSON viewer extension. A GraphQL inspector is a similar example for GraphQL calls. Next, mock or rewrite the request. A `redirect` rule sends the API call to a mock URL, and a `modifyHeaders` rule sets a header such as an auth token. Requestly is one example of a tool in this family. For design, a content script reads the page DOM and draws an overlay on top, so you can measure fonts and spacing. VisBug and WhatFont are examples. Each step needs a manifest review first.
+</Depth>
+
 <Resources />

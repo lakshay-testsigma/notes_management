@@ -7,7 +7,7 @@
   "subdomain": "learning-system-and-workstation",
   "depth": "standard",
   "created_at": "2026-11-18T10:19:12Z",
-  "updated_at": "2026-11-18T12:55:49Z",
+  "updated_at": "2026-11-18T12:56:54Z",
   "paths": {
     "state": "state/topics/frontend-engineering/learning-system-and-workstation/browser-extension-toolkit",
     "vault": "vault/frontend-engineering/learning-system-and-workstation/browser-extension-toolkit",
@@ -1287,10 +1287,10 @@
       "id": "lesson",
       "wave": 3,
       "skill": "learn-site",
-      "status": "in_progress",
+      "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T12:55:43Z",
-      "finished_at": null,
+      "finished_at": "2026-11-18T12:56:17Z",
       "attempts": 2,
       "units": [
         {
@@ -1325,12 +1325,12 @@
         },
         {
           "id": "audit1-pages-02-04",
-          "status": "pending",
+          "status": "done",
           "handoff": null
         },
         {
           "id": "audit1-pages-05-07",
-          "status": "pending",
+          "status": "done",
           "handoff": null
         }
       ],
@@ -1338,8 +1338,8 @@
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "6795a78b774b485fc5bbe9bef872bba70d240ffc56015ef8b350e99e2de5e3e2",
-        "at": "2026-11-18T12:35:33Z",
+        "fingerprint": "529a8bb11f2771b657937b179855fb17680ec4b65d005b6a5b740db0cc54557c",
+        "at": "2026-11-18T12:56:17Z",
         "forced": false
       }
     },
@@ -1350,7 +1350,7 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T12:28:23Z",
-      "finished_at": "2026-11-18T12:36:51Z",
+      "finished_at": "2026-11-18T12:56:35Z",
       "attempts": 1,
       "units": [
         {
@@ -1368,8 +1368,8 @@
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "73c44d80314fe970c1a6d2a550fdc8ed29ae83c037fb1223be071f1eda2ad89b",
-        "at": "2026-11-18T12:36:51Z",
+        "fingerprint": "7567ed45e787a8fef1cb99e751d400457f77e3dda99571cb0936ed498420cda2",
+        "at": "2026-11-18T12:56:35Z",
         "forced": false
       }
     },
@@ -1380,7 +1380,7 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T12:37:04Z",
-      "finished_at": "2026-11-18T12:48:14Z",
+      "finished_at": "2026-11-18T12:56:48Z",
       "attempts": 1,
       "units": [
         {
@@ -1393,8 +1393,8 @@
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "e2c949aef451cfe7b191e395373c66d563ce81acd48974938081bd641196c2ba",
-        "at": "2026-11-18T12:48:14Z",
+        "fingerprint": "79039700ec5d014aa0be90536592eb806c78b289aec43975130057c163f54b18",
+        "at": "2026-11-18T12:56:48Z",
         "forced": false
       }
     },
@@ -1405,15 +1405,15 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T12:48:36Z",
-      "finished_at": "2026-11-18T12:49:33Z",
+      "finished_at": "2026-11-18T12:56:54Z",
       "attempts": 1,
       "units": [],
       "note": "",
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "aea55ba8094626d72da5452cb953b1ad761b293f828326010b9bf1256f8a0650",
-        "at": "2026-11-18T12:49:33Z",
+        "fingerprint": "8025235b3793b43926f2e39b1c61df88642894a522b2cacc3f96407e067fd855",
+        "at": "2026-11-18T12:56:54Z",
         "forced": false
       }
     },
@@ -2589,6 +2589,54 @@
       "event": "unit-add",
       "message": "unit audit1-pages-05-07",
       "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T12:56:00Z",
+      "event": "unit-done",
+      "message": "unit audit1-pages-02-04",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T12:56:03Z",
+      "event": "unit-done",
+      "message": "unit audit1-pages-05-07",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T12:56:17Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T12:56:29Z",
+      "event": "execution-check",
+      "message": "mini-projects: pass",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-18T12:56:35Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-18T12:56:42Z",
+      "event": "execution-check",
+      "message": "capstone: pass",
+      "stage": "capstone"
+    },
+    {
+      "at": "2026-11-18T12:56:48Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "capstone"
+    },
+    {
+      "at": "2026-11-18T12:56:54Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "notes"
     }
   ],
   "roadmap": {
@@ -2754,8 +2802,8 @@
       },
       "mini-projects": {
         "version": 2,
-        "fingerprint": "73c44d80314fe970c1a6d2a550fdc8ed29ae83c037fb1223be071f1eda2ad89b",
-        "at": "2026-11-18T12:36:45Z",
+        "fingerprint": "7567ed45e787a8fef1cb99e751d400457f77e3dda99571cb0936ed498420cda2",
+        "at": "2026-11-18T12:56:29Z",
         "ok": true,
         "checks": [
           {
@@ -2767,7 +2815,7 @@
             "expected_exit": 0,
             "exit": 0,
             "ok": true,
-            "output_sha256": "dab9ae4b4297782a65d417011a8777202785cc263263c70a1d9ee08aeafa7444"
+            "output_sha256": "33572d19191642078ed833a18df8313296386f4a8a32b0ef6650b9ad0385f19e"
           },
           {
             "label": "mini-01-extension-permission-audit: starter-tests",
@@ -2778,7 +2826,7 @@
             "expected_exit": 1,
             "exit": 1,
             "ok": true,
-            "output_sha256": "71aa75996f7fed4deee569a9d93f870debe5d7876726756da0a130c55e060c91"
+            "output_sha256": "1b2f3abc40beea181e64aad46e8c4c3ffb34c318ad0b5917f707db6f2eae8493"
           },
           {
             "label": "mini-01-extension-permission-audit: starter-start",
@@ -2828,7 +2876,7 @@
             "expected_exit": 0,
             "exit": 0,
             "ok": true,
-            "output_sha256": "585f1c29f76aa1840ef2fd61e71f0a5003dd643efa0ce75698a2579ad3dd1ba4"
+            "output_sha256": "44ac9af0bd568817ea391f176633d5551d357965b895a71849c1d6dc76eeaf75"
           },
           {
             "label": "mini-02-release-a11y-seo-check: starter-tests",
@@ -2839,7 +2887,7 @@
             "expected_exit": 1,
             "exit": 1,
             "ok": true,
-            "output_sha256": "0c2f7811dd506244cc732f339fdfc6ab31992156e98843c31347b7c8287c0475"
+            "output_sha256": "c34524be4bd9821d46306a203308859ddaeb14f160a13e3b4fd4103151c491ce"
           },
           {
             "label": "mini-02-release-a11y-seo-check: starter-start",
@@ -2885,8 +2933,8 @@
       },
       "capstone": {
         "version": 2,
-        "fingerprint": "e2c949aef451cfe7b191e395373c66d563ce81acd48974938081bd641196c2ba",
-        "at": "2026-11-18T12:48:09Z",
+        "fingerprint": "79039700ec5d014aa0be90536592eb806c78b289aec43975130057c163f54b18",
+        "at": "2026-11-18T12:56:42Z",
         "ok": true,
         "checks": [
           {
@@ -2898,7 +2946,7 @@
             "expected_exit": 0,
             "exit": 0,
             "ok": true,
-            "output_sha256": "fed2029a2eb087b6493eeedb5fda9728bf1b2f7e781761e6aa37ba1669a3091d"
+            "output_sha256": "a1106609b5cfd2e660a20c37acf9544abab4c2aea4f5538ed9ac6a86049e8653"
           },
           {
             "label": "capstone: typecheck",
@@ -2930,7 +2978,7 @@
             "expected_exit": 0,
             "exit": 0,
             "ok": true,
-            "output_sha256": "e4ff02a93aaf3cdfa7a9ba35d963ab258f950d7accf57a89adbfb719eda5dec5"
+            "output_sha256": "517bad4a580d8dfff59678add86b0524c130c361aa57a69b0454906a7ca6e95d"
           },
           {
             "label": "capstone: audit",

@@ -2,14 +2,14 @@
 title: "Accessibility extensions: automated checks and their limits"
 description: An accessibility extension finds some problems fast, but it marks the cases it cannot judge, so keyboard and screen reader tests stay manual.
 order: 4
-concepts: [accessibility extension, axe-core, contrast ratio, incomplete result, manual testing]
+concepts: [accessibility extension, axe-core, contrast ratio, incomplete result, headings and landmarks, manual testing]
 ---
 
-You ship a release page. Is it usable for a person who cannot see the screen, or who uses only a keyboard? Reading every element by hand is slow.
+You ship a release page. Is it usable for a person who cannot see the screen, or who uses only a keyboard? A manual review of every element is slow.
 
-An accessibility extension runs rules against the page DOM and lists the elements that break them. Many of these tools use axe-core, an open-source rule engine. Teams run axe-based checks on each release page, because a check takes seconds and a manual review takes much longer.
+An accessibility extension runs rules against the page DOM and lists the elements that break them. Many of these tools use axe-core, an open-source rule engine. Teams run them on each release, because a check takes seconds.
 
-Take color contrast. The contrast ratio compares the brightness of text with the brightness of its background. WCAG 2.2 level AA asks for 4.5:1 for normal text and 3:1 for large text. A ratio of 4.499:1 fails, because the standard allows no rounding up.
+Take color contrast. The contrast ratio compares the brightness of text with the brightness of its background. WCAG 2.2 level AA asks for 4.5:1 for normal text and 3:1 for large text.
 
 <PredictReveal
   prompt="Your heading text sits on a background image. You run an axe-based extension. What does it report for that contrast check?"
@@ -19,14 +19,18 @@ Take color contrast. The contrast ratio compares the brightness of text with the
   reasoning="axe-core cannot find one background color behind text on an image. It does not guess, because a false violation costs more trust than a missed one. It sends the case to a human."
 />
 
-axe-core has three results, not two. A check can pass, fail as a violation, or return "incomplete". Incomplete means the machine cannot decide. Contrast on images, heading order and page regions all use this third value.
+axe-core has three results, not two. A check can pass, fail as a violation, or return "incomplete". Incomplete means the machine cannot decide.
 
-In the lab below, change the text color, the background and the heading levels. Predict which rules fail before you look.
+{/* <!-- concept: headings-and-landmarks --> */}
+
+Structure is the second check. Headings must nest by rank: an `h2` follows an `h1`, and you do not skip from `h2` to `h4`. Landmarks are page regions that a screen reader user can jump to. The elements `header`, `nav`, `main`, `aside` and `footer` mark them. When a page has several `nav` regions, give each one a label. WAVE from WebAIM is on the W3C list of evaluation tools. Extensions such as HeadingsMap also show the outline.
+
+In the lab, change the text color, the background and the heading levels. Predict which rules fail before you look.
 
 <Experience id="a11y-checks-lab" />
 
 **Note.** Automated checks find only some problems. No rule can tell you whether a keyboard user reaches every control in a sensible order, or whether a screen reader announces the page well. Test those by hand on every release.
 
 <Depth level="internals">
-axe-core computes contrast the way the browser paints. It walks the stack of elements under the text, blends the layers from the bottom up, and includes text shadow and opacity. Then it rounds the ratio down, so 4.499 never shows as a pass. A background image, an overlap, a one-character text or an empty field becomes incomplete, not a failure. See `lib/checks/color/color-contrast-evaluate.js:120-154 @ e80f6b7` and `lib/core/base/rule.js:272-287 @ e80f6b7` in the axe-core repository.
+axe-core computes contrast the way the browser paints. It walks the stack of elements under the text, blends the layers from the bottom up, and includes text shadow and opacity. Then it rounds the ratio down, so 4.499:1 never shows as a pass, because WCAG allows no rounding up. A background image, an overlap, a one-character text or an empty field becomes incomplete, not a failure. See `lib/checks/color/color-contrast-evaluate.js:120-154 @ e80f6b7` and `lib/core/base/rule.js:272-287 @ e80f6b7` in the axe-core repository.
 </Depth>
