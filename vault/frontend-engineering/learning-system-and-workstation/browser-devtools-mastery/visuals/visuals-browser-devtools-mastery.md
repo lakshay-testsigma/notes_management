@@ -25,12 +25,14 @@ Every diagram, simulation and video of this topic, with the concepts it teaches 
 - [[visual-lighthouse-module-map-browser-devtools-mastery|Lighthouse module map]] — See which part of Lighthouse records a page load, which computes metrics, which scores, and which packages it.
 - [[visual-devtools-frontend-module-map-browser-devtools-mastery|DevTools frontend: four studied modules]] — See which parts of the DevTools frontend own the protocol, source maps, HAR and heap snapshots.
 - [[visual-application-storage-map-browser-devtools-mastery|Where the page keeps state: storage areas and the service worker]] — Place each storage area that the Application panel shows, and the service worker between the page and the network.
+- [[visual-capstone-layers-browser-devtools-mastery|Perf-triage layers and their dependencies]] — See which layer may depend on which.
 
 ## Sequence
 
 - [[visual-lighthouse-request-flow-browser-devtools-mastery|Lighthouse flow from page load to score]] — Follow one page load from recording to a 0 to 1 audit score.
 - [[visual-devtools-frontend-request-flow-browser-devtools-mastery|A heap snapshot request across the protocol client]] — Follow one numbered command and its unnumbered events from the model to the worker.
 - [[visual-debugger-lab-fallback-browser-devtools-mastery|Pausing on the stale search response]] — Show the search race and the conditional breakpoint pause as one static diagram for readers without JavaScript.
+- [[visual-capstone-request-flow-browser-devtools-mastery|Perf-triage request flow with a failed input]] — Follow one triage run, including the path of an unreadable file.
 
 ## Video
 
@@ -74,5 +76,9 @@ Every diagram, simulation and video of this topic, with the concepts it teaches 
 ## Decision tree
 
 - [[visual-symptom-to-panel-map-browser-devtools-mastery|Pick the panel from the reported problem]] — Match a reported problem to the one panel that measures it, and see that Lighthouse gathers before it audits.
+
+## Deployment
+
+- [[visual-capstone-deployment-browser-devtools-mastery|Perf-triage run recipe: inputs, settings, outputs]] — See the inputs, settings and outputs of one run.
 
 ## My insights

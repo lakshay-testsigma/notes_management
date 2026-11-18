@@ -7,7 +7,7 @@
   "subdomain": "learning-system-and-workstation",
   "depth": "deep",
   "created_at": "2026-11-18T09:43:20Z",
-  "updated_at": "2026-11-18T10:52:10Z",
+  "updated_at": "2026-11-18T11:22:05Z",
   "paths": {
     "state": "state/topics/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery",
     "vault": "vault/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery",
@@ -2260,13 +2260,26 @@
       "id": "capstone",
       "wave": 4,
       "skill": "learn-capstone",
-      "status": "pending",
+      "status": "done",
       "scope": "required",
-      "started_at": null,
-      "finished_at": null,
-      "attempts": 0,
-      "units": [],
-      "note": ""
+      "started_at": "2026-11-18T11:16:44Z",
+      "finished_at": "2026-11-18T11:22:05Z",
+      "attempts": 2,
+      "units": [
+        {
+          "id": "capstone",
+          "status": "done",
+          "handoff": null
+        }
+      ],
+      "note": "",
+      "continue_after_failure": false,
+      "validation": {
+        "version": 2,
+        "fingerprint": "7c5fea9aeb8ef29e42b7602cf1dcdc1042d9a8594c9c1b2ff25b47d850a311cc",
+        "at": "2026-11-18T11:22:05Z",
+        "forced": false
+      }
     },
     {
       "id": "notes",
@@ -3289,6 +3302,79 @@
       "event": "done",
       "message": "gate passed",
       "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-18T11:15:55Z",
+      "event": "note",
+      "message": "WAVE 3 done; next capstone"
+    },
+    {
+      "at": "2026-11-18T11:16:01Z",
+      "event": "start",
+      "message": "attempt 1",
+      "stage": "capstone"
+    },
+    {
+      "at": "2026-11-18T11:16:03Z",
+      "event": "unit-add",
+      "message": "unit capstone",
+      "stage": "capstone"
+    },
+    {
+      "at": "2026-11-18T11:16:27Z",
+      "event": "note",
+      "message": "SPAWN 32/56; WAVE 4 running: capstone"
+    },
+    {
+      "at": "2026-11-18T11:16:44Z",
+      "event": "start",
+      "message": "attempt 2",
+      "stage": "capstone"
+    },
+    {
+      "at": "2026-11-18T11:16:46Z",
+      "event": "unit-start",
+      "message": "unit capstone",
+      "stage": "capstone"
+    },
+    {
+      "at": "2026-11-18T11:21:18Z",
+      "event": "visual",
+      "message": "added visual capstone-layers"
+    },
+    {
+      "at": "2026-11-18T11:21:19Z",
+      "event": "visual",
+      "message": "added visual capstone-request-flow"
+    },
+    {
+      "at": "2026-11-18T11:21:19Z",
+      "event": "visual",
+      "message": "added visual capstone-deployment"
+    },
+    {
+      "at": "2026-11-18T11:21:37Z",
+      "event": "execution-check",
+      "message": "capstone: pass",
+      "stage": "capstone"
+    },
+    {
+      "at": "2026-11-18T11:21:43Z",
+      "event": "unit-done",
+      "message": "unit capstone",
+      "stage": "capstone"
+    },
+    {
+      "at": "2026-11-18T11:21:56Z",
+      "event": "execution-check",
+      "message": "capstone: pass",
+      "stage": "capstone"
+    },
+    {
+      "at": "2026-11-18T11:22:05Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "capstone"
     }
   ],
   "roadmap": {
@@ -3763,6 +3849,61 @@
           },
           {
             "label": "mini-03-trace-long-task-finder: audit",
+            "command": "npm",
+            "args": [
+              "audit",
+              "--omit=dev",
+              "--audit-level=high"
+            ],
+            "expected_exit": 0,
+            "exit": 0,
+            "ok": true,
+            "output_sha256": "6d8c5c8f3d7684adb070417bd608d01ae90aa3dc26a65af03ffda4955f38d9a3"
+          }
+        ]
+      },
+      "capstone": {
+        "version": 2,
+        "fingerprint": "7c5fea9aeb8ef29e42b7602cf1dcdc1042d9a8594c9c1b2ff25b47d850a311cc",
+        "at": "2026-11-18T11:21:56Z",
+        "ok": true,
+        "checks": [
+          {
+            "label": "capstone: solution-tests",
+            "command": "npm",
+            "args": [
+              "test"
+            ],
+            "expected_exit": 0,
+            "exit": 0,
+            "ok": true,
+            "output_sha256": "c94cd34ab9402c3f1e1fb386dd82bbecd7f77c87892cc5abb0c69a6d7bf92b87"
+          },
+          {
+            "label": "capstone: typecheck",
+            "command": "npm",
+            "args": [
+              "run",
+              "typecheck"
+            ],
+            "expected_exit": 0,
+            "exit": 0,
+            "ok": true,
+            "output_sha256": "570649b7ac21ff139a30ae66eaae7b14435d440fd6ca5fe343f98a3f648ec55f"
+          },
+          {
+            "label": "capstone: integration",
+            "command": "npm",
+            "args": [
+              "start"
+            ],
+            "expected_exit": 0,
+            "exit": 0,
+            "ok": true,
+            "output_sha256": "00832db1929f60bd2646f34f23d7a94689c90c6968dfa69215aacb648f088b7a"
+          },
+          {
+            "label": "capstone: audit",
             "command": "npm",
             "args": [
               "audit",

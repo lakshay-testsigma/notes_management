@@ -15,5 +15,6 @@ A HAR (HTTP Archive) file is a JSON file that records the requests and responses
 - [[chrome-devtools-network-docs-browser-devtools-mastery]]
 - [[devtools-frontend-tech-and-services]]
 - [[03-mini-projects-browser-devtools-mastery]]
+- [[06-capstone-browser-devtools-mastery]]
 
 ## My insights

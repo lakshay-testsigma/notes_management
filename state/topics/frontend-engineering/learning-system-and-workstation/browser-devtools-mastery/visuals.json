@@ -1604,5 +1604,86 @@
     "used_in": [
       "projects/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/mini-03-trace-long-task-finder/README.md"
     ]
+  },
+  {
+    "id": "capstone-layers",
+    "title": "Perf-triage layers and their dependencies",
+    "kind": "architecture",
+    "format": "mermaid",
+    "file": "vault/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/visuals/assets/capstone-layers-browser-devtools-mastery.mmd",
+    "concept_ids": [
+      "har-export",
+      "waterfall-timing-phases",
+      "lighthouse-audits"
+    ],
+    "source_ids": [
+      "googlechrome-lighthouse-repo",
+      "chromedevtools-devtools-frontend-repo"
+    ],
+    "purpose": "See which layer may depend on which.",
+    "explanation": "The interface calls the application layer. Both depend on the domain. Infrastructure implements the domain ports. main.ts wires everything. The domain imports nothing from the other layers.",
+    "alt": "Five boxes: main wires interface and infrastructure; interface depends on application; application and infrastructure both depend on the domain, which holds budgets, model, errors and ports.",
+    "learning_check": {
+      "question": "Which layer does NodeFileSource depend on?",
+      "answer": "The domain, because it implements the FileSource port."
+    },
+    "used_in": [
+      "projects/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/capstone/ARCHITECTURE.md",
+      "vault/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/06-capstone-browser-devtools-mastery.md"
+    ]
+  },
+  {
+    "id": "capstone-request-flow",
+    "title": "Perf-triage request flow with a failed input",
+    "kind": "sequence",
+    "format": "mermaid",
+    "file": "vault/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/visuals/assets/capstone-request-flow-browser-devtools-mastery.mmd",
+    "concept_ids": [
+      "har-export",
+      "waterfall-timing-phases",
+      "lighthouse-audits"
+    ],
+    "source_ids": [
+      "googlechrome-lighthouse-repo",
+      "chromedevtools-devtools-frontend-repo"
+    ],
+    "purpose": "Follow one triage run, including the path of an unreadable file.",
+    "explanation": "The use case asks Artifacts for each input. A gatherer parses it. A bad file becomes a skipped row, and a good file goes to its audit. The use case then returns one ranked report.",
+    "alt": "Sequence of six participants: Cli calls TriageUseCase, which asks Artifacts, which calls a gatherer. If parsing fails the result is skipped; otherwise an audit returns findings and the report is ranked.",
+    "learning_check": {
+      "question": "What happens to a trace that is not valid JSON?",
+      "answer": "It becomes a skipped row; the HAR and Lighthouse files are still checked."
+    },
+    "used_in": [
+      "projects/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/capstone/ARCHITECTURE.md",
+      "vault/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/06-capstone-browser-devtools-mastery.md"
+    ]
+  },
+  {
+    "id": "capstone-deployment",
+    "title": "Perf-triage run recipe: inputs, settings, outputs",
+    "kind": "deployment",
+    "format": "mermaid",
+    "file": "vault/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/visuals/assets/capstone-deployment-browser-devtools-mastery.mmd",
+    "concept_ids": [
+      "har-export",
+      "waterfall-timing-phases",
+      "lighthouse-audits"
+    ],
+    "source_ids": [
+      "googlechrome-lighthouse-repo",
+      "chromedevtools-devtools-frontend-repo"
+    ],
+    "purpose": "See the inputs, settings and outputs of one run.",
+    "explanation": "The CLI is one process or one Docker container. It reads three files and two environment variables. It writes the report to stdout, JSON logs to stderr, and sets an exit code a CI job can read.",
+    "alt": "Three inputs flow into one node process: files, environment variables. The process has three outputs: report on stdout, logs on stderr, and an exit code of 0, 1 or 2.",
+    "learning_check": {
+      "question": "Why are logs on stderr?",
+      "answer": "So stdout holds only the report and can be redirected to a file."
+    },
+    "used_in": [
+      "projects/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/capstone/ARCHITECTURE.md",
+      "vault/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/06-capstone-browser-devtools-mastery.md"
+    ]
   }
 ]

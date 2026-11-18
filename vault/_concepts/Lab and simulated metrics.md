@@ -14,5 +14,6 @@ A lab metric is measured in one controlled page load. A simulated metric is pred
 
 - [[lighthouse-findings]]
 - [[lighthouse-pattern-data-fitted-scoring]]
+- [[06-capstone-browser-devtools-mastery]]
 
 ## My insights

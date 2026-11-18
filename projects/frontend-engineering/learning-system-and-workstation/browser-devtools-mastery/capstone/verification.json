@@ -1,0 +1,8 @@
+{
+  "checks": [
+    {"kind": "solution-tests", "cwd": ".", "command": "npm", "args": ["test"]},
+    {"kind": "typecheck", "cwd": ".", "command": "npm", "args": ["run", "typecheck"]},
+    {"kind": "integration", "cwd": ".", "command": "npm", "args": ["start"], "expect_output": "Ranked findings"},
+    {"kind": "audit", "cwd": ".", "command": "npm", "args": ["audit", "--omit=dev", "--audit-level=high"]}
+  ]
+}

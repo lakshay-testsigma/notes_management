@@ -13,5 +13,6 @@ Memoization stores the result of a function call and returns it when the same in
 ## Where it shows up
 
 - [[lighthouse-pattern-memoized-computed-artifacts]]
+- [[06-capstone-browser-devtools-mastery]]
 
 ## My insights

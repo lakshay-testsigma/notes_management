@@ -1,0 +1,66 @@
+{
+  "traceEvents": [
+    {
+      "name": "RunTask",
+      "ph": "X",
+      "ts": 100000,
+      "dur": 20000,
+      "pid": 1,
+      "tid": 1
+    },
+    {
+      "name": "RunTask",
+      "ph": "X",
+      "ts": 300000,
+      "dur": 320000,
+      "pid": 1,
+      "tid": 1
+    },
+    {
+      "name": "RunTask",
+      "ph": "X",
+      "ts": 800000,
+      "dur": 90000,
+      "pid": 1,
+      "tid": 1
+    },
+    {
+      "name": "RunTask",
+      "ph": "X",
+      "ts": 1200000,
+      "dur": 140000,
+      "pid": 1,
+      "tid": 1
+    },
+    {
+      "name": "RunTask",
+      "ph": "X",
+      "ts": 1500000,
+      "dur": 30000,
+      "pid": 1,
+      "tid": 1
+    },
+    {
+      "name": "LayoutShift",
+      "ph": "I",
+      "ts": 900000,
+      "args": {
+        "data": {
+          "score": 0.12,
+          "had_recent_input": false
+        }
+      }
+    },
+    {
+      "name": "LayoutShift",
+      "ph": "I",
+      "ts": 1400000,
+      "args": {
+        "data": {
+          "score": 0.5,
+          "had_recent_input": true
+        }
+      }
+    }
+  ]
+}

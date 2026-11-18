@@ -13,5 +13,6 @@ A performance trace is a time-ordered recording of what the browser did during a
 ## Where it shows up
 
 - [[lighthouse-pattern-memoized-computed-artifacts]]
+- [[06-capstone-browser-devtools-mastery]]
 
 ## My insights
