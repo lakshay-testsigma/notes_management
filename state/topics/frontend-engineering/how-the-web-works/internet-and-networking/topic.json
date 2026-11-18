@@ -7,7 +7,7 @@
   "subdomain": "how-the-web-works",
   "depth": "deep",
   "created_at": "2026-11-18T12:13:22Z",
-  "updated_at": "2026-11-18T14:57:24Z",
+  "updated_at": "2026-11-18T15:02:48Z",
   "paths": {
     "state": "state/topics/frontend-engineering/how-the-web-works/internet-and-networking",
     "vault": "vault/frontend-engineering/how-the-web-works/internet-and-networking",
@@ -1487,7 +1487,7 @@
           "id": "compression-dictionaries",
           "title": "Compression dictionaries",
           "parent": "http-compression",
-          "complexity": "advanced",
+          "complexity": "intermediate",
           "importance": "supporting",
           "disposition": "included",
           "roadmap_items": [],
@@ -1571,7 +1571,7 @@
           "id": "cookie-prefixes-and-chips",
           "title": "Cookie prefixes and partitioned cookies (CHIPS)",
           "parent": "cookies",
-          "complexity": "advanced",
+          "complexity": "intermediate",
           "importance": "core",
           "disposition": "included",
           "roadmap_items": [],
@@ -1705,7 +1705,7 @@
           "id": "webtransport-and-webrtc",
           "title": "WebRTC peer connections (WebTransport not covered: no verified source)",
           "parent": "realtime-transports",
-          "complexity": "advanced",
+          "complexity": "intermediate",
           "importance": "supporting",
           "disposition": "included",
           "roadmap_items": [],
@@ -2175,15 +2175,15 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T12:14:53Z",
-      "finished_at": "2026-11-18T14:53:28Z",
+      "finished_at": "2026-11-18T14:59:47Z",
       "attempts": 1,
       "units": [],
       "note": "",
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "67c28a9d207c354b6db245fac4f110dcffcb0ebe5ac22b2430af2524c6605ecd",
-        "at": "2026-11-18T14:53:28Z",
+        "fingerprint": "50f61f4ad77138949c5c1b0118a5b67655f12b496cd0c19f12fb75a0ffe9adb4",
+        "at": "2026-11-18T14:59:47Z",
         "forced": false
       }
     },
@@ -2194,7 +2194,7 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T12:15:49Z",
-      "finished_at": "2026-11-18T14:53:44Z",
+      "finished_at": "2026-11-18T14:59:55Z",
       "attempts": 1,
       "units": [
         {
@@ -2227,8 +2227,8 @@
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "3bc80a2a83ef3ef590b54cab7824a7f1fe957b3e53bef9ce584305b5eda3643a",
-        "at": "2026-11-18T14:53:44Z",
+        "fingerprint": "c11aa49829cf65d366636844bb1c6572f4e946d87ad199a66418b1d9d14bedd5",
+        "at": "2026-11-18T14:59:55Z",
         "forced": false
       }
     },
@@ -2239,15 +2239,15 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T13:17:30Z",
-      "finished_at": "2026-11-18T14:53:53Z",
+      "finished_at": "2026-11-18T15:00:02Z",
       "attempts": 1,
       "units": [],
       "note": "",
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "5a131eba3ad1ec061cb11e14f073af59756f3a104558ae7b30bfd075c01967fa",
-        "at": "2026-11-18T14:53:53Z",
+        "fingerprint": "7a4640e791ec0e26a40b5f5af83cbdbfd0ec908a3e0c64818b045f20d5d9ea95",
+        "at": "2026-11-18T15:00:02Z",
         "forced": false
       }
     },
@@ -2258,7 +2258,7 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T13:22:24Z",
-      "finished_at": "2026-11-18T14:54:01Z",
+      "finished_at": "2026-11-18T15:00:09Z",
       "attempts": 1,
       "units": [
         {
@@ -2286,8 +2286,8 @@
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "70d0c9cba026c0c4199110ed2d2b0921858bf0b30f3ee545284f6de09f206110",
-        "at": "2026-11-18T14:54:01Z",
+        "fingerprint": "399aded4d2c2879e4ce876acc085c69adb5cabb354c402e18a12f46c8a256f8d",
+        "at": "2026-11-18T15:00:09Z",
         "forced": false
       }
     },
@@ -2298,7 +2298,7 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T13:22:27Z",
-      "finished_at": "2026-11-18T14:54:09Z",
+      "finished_at": "2026-11-18T15:00:17Z",
       "attempts": 1,
       "units": [
         {
@@ -2376,8 +2376,8 @@
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "c8839ee06e0aca10c2fa9c5b3c20b830474fa587e6bcf9500d40c713903cb492",
-        "at": "2026-11-18T14:54:09Z",
+        "fingerprint": "7d682d260c2f896c9e1d0482c1ac5d8220261536bd1fbf7f9dbb00cdc9ffd910",
+        "at": "2026-11-18T15:00:17Z",
         "forced": false
       }
     },
@@ -2388,7 +2388,7 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T14:54:22Z",
-      "finished_at": "2026-11-18T14:56:18Z",
+      "finished_at": "2026-11-18T15:00:25Z",
       "attempts": 2,
       "units": [
         {
@@ -2467,8 +2467,8 @@
       ],
       "validation": {
         "version": 2,
-        "fingerprint": "28c8b95e15d27a8c5b3bc9f27bc2a904f5fa4134322d70ceeb60f3cbe6d74f2b",
-        "at": "2026-11-18T14:56:18Z",
+        "fingerprint": "a49cf08e9b06a5d7eda76f568654b968f3438274db82cea3427fc862a58b2648",
+        "at": "2026-11-18T15:00:25Z",
         "forced": false
       }
     },
@@ -2479,7 +2479,7 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T13:49:53Z",
-      "finished_at": "2026-11-18T14:56:39Z",
+      "finished_at": "2026-11-18T15:01:18Z",
       "attempts": 1,
       "units": [
         {
@@ -2502,8 +2502,8 @@
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "e1f8210715c2676b406434ee6ac714c5d341720c8f226dec9c7071e31baf49bf",
-        "at": "2026-11-18T14:56:39Z",
+        "fingerprint": "814ee4752d7151be835952a44c9e6e9f21bc8d9276b9f7927ffbaa0aa0b72309",
+        "at": "2026-11-18T15:01:18Z",
         "forced": false
       }
     },
@@ -2514,7 +2514,7 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T14:07:48Z",
-      "finished_at": "2026-11-18T14:56:59Z",
+      "finished_at": "2026-11-18T15:01:36Z",
       "attempts": 1,
       "units": [
         {
@@ -2527,8 +2527,8 @@
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "c2555463f580d65e35521b41f2d703f737443e7d057ea538b7e317eb6f2d9745",
-        "at": "2026-11-18T14:56:59Z",
+        "fingerprint": "f8e8f1ec6f53c1670a892f73e5c6fed0914c06c12b4c8d2142360f4ce59528ed",
+        "at": "2026-11-18T15:01:36Z",
         "forced": false
       }
     },
@@ -2539,7 +2539,7 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T14:57:10Z",
-      "finished_at": "2026-11-18T14:57:24Z",
+      "finished_at": "2026-11-18T15:01:46Z",
       "attempts": 2,
       "units": [],
       "note": "",
@@ -2560,8 +2560,8 @@
       ],
       "validation": {
         "version": 2,
-        "fingerprint": "c579fcf5a07b5a25d654799d9e0426bffd73decfafe0514d83219e9b1b9515ca",
-        "at": "2026-11-18T14:57:24Z",
+        "fingerprint": "f6fabad7f2e04e08f96fc446d062d1ed51fe8d5404b243d4d66116f6e2ea06a3",
+        "at": "2026-11-18T15:01:46Z",
         "forced": false
       }
     },
@@ -2569,11 +2569,11 @@
       "id": "finalize",
       "wave": 5,
       "skill": "learn",
-      "status": "pending",
+      "status": "in_progress",
       "scope": "required",
-      "started_at": null,
+      "started_at": "2026-11-18T15:01:55Z",
       "finished_at": null,
-      "attempts": 0,
+      "attempts": 2,
       "units": [],
       "note": ""
     }
@@ -2751,122 +2751,6 @@
     }
   },
   "log": [
-    {
-      "at": "2026-11-18T13:18:10Z",
-      "event": "done",
-      "message": "gate passed",
-      "stage": "brief"
-    },
-    {
-      "at": "2026-11-18T13:22:24Z",
-      "event": "start",
-      "message": "attempt 1",
-      "stage": "digest"
-    },
-    {
-      "at": "2026-11-18T13:22:27Z",
-      "event": "start",
-      "message": "attempt 1",
-      "stage": "repo-intel"
-    },
-    {
-      "at": "2026-11-18T13:22:30Z",
-      "event": "unit-add",
-      "message": "unit rfc-9111-http-caching",
-      "stage": "digest"
-    },
-    {
-      "at": "2026-11-18T13:22:33Z",
-      "event": "unit-add",
-      "message": "unit rfc-9114-http3",
-      "stage": "digest"
-    },
-    {
-      "at": "2026-11-18T13:22:36Z",
-      "event": "unit-add",
-      "message": "unit rfc-9846-tls13",
-      "stage": "digest"
-    },
-    {
-      "at": "2026-11-18T13:22:39Z",
-      "event": "unit-add",
-      "message": "unit whatwg-url-standard",
-      "stage": "digest"
-    },
-    {
-      "at": "2026-11-18T13:22:42Z",
-      "event": "unit-add",
-      "message": "unit nodejs-undici-scout",
-      "stage": "repo-intel"
-    },
-    {
-      "at": "2026-11-18T13:22:45Z",
-      "event": "unit-add",
-      "message": "unit jshttp-cookie-scout",
-      "stage": "repo-intel"
-    },
-    {
-      "at": "2026-11-18T13:22:47Z",
-      "event": "note",
-      "message": "SPAWN 10/56; WAVE 2: scouts undici, cookie; digests rfc-9111, rfc-9114, rfc-9846 running; queued whatwg-url"
-    },
-    {
-      "at": "2026-11-18T13:23:43Z",
-      "event": "unit-start",
-      "message": "unit rfc-9111-http-caching",
-      "stage": "digest"
-    },
-    {
-      "at": "2026-11-18T13:23:46Z",
-      "event": "unit-start",
-      "message": "unit rfc-9114-http3",
-      "stage": "digest"
-    },
-    {
-      "at": "2026-11-18T13:23:49Z",
-      "event": "unit-start",
-      "message": "unit rfc-9846-tls13",
-      "stage": "digest"
-    },
-    {
-      "at": "2026-11-18T13:24:00Z",
-      "event": "unit-start",
-      "message": "unit jshttp-cookie-scout",
-      "stage": "repo-intel"
-    },
-    {
-      "at": "2026-11-18T13:24:45Z",
-      "event": "visual",
-      "message": "added visual rfc-9111-mechanism"
-    },
-    {
-      "at": "2026-11-18T13:24:50Z",
-      "event": "unit-done",
-      "message": "unit rfc-9111-http-caching",
-      "stage": "digest"
-    },
-    {
-      "at": "2026-11-18T13:25:03Z",
-      "event": "visual",
-      "message": "added visual rfc-9846-tls13-mechanism"
-    },
-    {
-      "at": "2026-11-18T13:25:08Z",
-      "event": "unit-done",
-      "message": "unit rfc-9846-tls13",
-      "stage": "digest"
-    },
-    {
-      "at": "2026-11-18T13:25:11Z",
-      "event": "visual",
-      "message": "added visual rfc-9114-http3-mechanism"
-    },
-    {
-      "at": "2026-11-18T13:25:16Z",
-      "event": "unit-done",
-      "message": "unit rfc-9114-http3",
-      "stage": "digest"
-    },
     {
       "at": "2026-11-18T13:25:26Z",
       "event": "unit-done",
@@ -3896,6 +3780,122 @@
       "event": "done",
       "message": "gate passed",
       "stage": "notes"
+    },
+    {
+      "at": "2026-11-18T14:58:10Z",
+      "event": "note",
+      "message": "AUDIT round 1: 7 gaps, 4 concepts added, 1 deferred, 2 thin fixed"
+    },
+    {
+      "at": "2026-11-18T14:58:12Z",
+      "event": "note",
+      "message": "SPAWN 40/56; coverage audit round 2"
+    },
+    {
+      "at": "2026-11-18T14:58:52Z",
+      "event": "note",
+      "message": "AUDIT round 2: 7 gaps, 0 added. Boundary: Network panel -> 00.3; retries/backoff/AbortController -> 13.2; CSRF/CSP/security headers -> 20.2/20.3; JWT -> 21.1; resource hints/preload/103 -> 02.4/14.2; apex CNAME/ALIAS thin, no verified page (research boundary)"
+    },
+    {
+      "at": "2026-11-18T14:58:57Z",
+      "event": "start",
+      "message": "attempt 1",
+      "stage": "finalize"
+    },
+    {
+      "at": "2026-11-18T14:59:15Z",
+      "event": "plan",
+      "message": "plan fields set: summary, prerequisites, outcomes, lesson_outline, mini_projects, digest_targets, repo_targets, capstone, learner, visual_policy, visual_first, multi_stage, experience_policy, curriculum",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-18T14:59:39Z",
+      "event": "execution-check",
+      "message": "research: pass",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T14:59:47Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-18T14:59:55Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T15:00:02Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "brief"
+    },
+    {
+      "at": "2026-11-18T15:00:09Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "digest"
+    },
+    {
+      "at": "2026-11-18T15:00:17Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T15:00:25Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T15:01:10Z",
+      "event": "execution-check",
+      "message": "mini-projects: pass",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-18T15:01:18Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-18T15:01:28Z",
+      "event": "execution-check",
+      "message": "capstone: pass",
+      "stage": "capstone"
+    },
+    {
+      "at": "2026-11-18T15:01:36Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "capstone"
+    },
+    {
+      "at": "2026-11-18T15:01:46Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "notes"
+    },
+    {
+      "at": "2026-11-18T15:01:55Z",
+      "event": "start",
+      "message": "attempt 2",
+      "stage": "finalize"
+    },
+    {
+      "at": "2026-11-18T15:02:05Z",
+      "event": "execution-check",
+      "message": "finalize: failed",
+      "stage": "finalize"
+    },
+    {
+      "at": "2026-11-18T15:02:48Z",
+      "event": "note",
+      "message": "SPAWN 42/56; finalize verifiers content + projects; smoke blocked (no Chromium)"
     }
   ],
   "roadmap": {
@@ -3906,8 +3906,8 @@
     "executions": {
       "research": {
         "version": 2,
-        "fingerprint": "3bc80a2a83ef3ef590b54cab7824a7f1fe957b3e53bef9ce584305b5eda3643a",
-        "at": "2026-11-18T14:53:07Z",
+        "fingerprint": "c11aa49829cf65d366636844bb1c6572f4e946d87ad199a66418b1d9d14bedd5",
+        "at": "2026-11-18T14:59:39Z",
         "ok": true,
         "checks": [
           {
@@ -4214,8 +4214,8 @@
       },
       "mini-projects": {
         "version": 2,
-        "fingerprint": "e1f8210715c2676b406434ee6ac714c5d341720c8f226dec9c7071e31baf49bf",
-        "at": "2026-11-18T14:56:31Z",
+        "fingerprint": "814ee4752d7151be835952a44c9e6e9f21bc8d9276b9f7927ffbaa0aa0b72309",
+        "at": "2026-11-18T15:01:10Z",
         "ok": true,
         "checks": [
           {
@@ -4227,7 +4227,7 @@
             "expected_exit": 0,
             "exit": 0,
             "ok": true,
-            "output_sha256": "60781adf75d4d4b9a9427104eb10d8dda23fd965c034fa32d6c5a0322830a020"
+            "output_sha256": "f2d3d93d1dd8059b36c6a4b8ee11361d802fc1b564fcadb15fe9ab371902470c"
           },
           {
             "label": "mini-01-dns-record-inspector: starter-tests",
@@ -4238,7 +4238,7 @@
             "expected_exit": 1,
             "exit": 1,
             "ok": true,
-            "output_sha256": "435919478ba6ce4ee598c6ae267d8e1f8849715d728970daf6e637ccb7d9bf6a"
+            "output_sha256": "31e37f19a3e4e8037cf87b3e963859f5901402284558e9aa2e2af66f7664a631"
           },
           {
             "label": "mini-01-dns-record-inspector: starter-start",
@@ -4287,7 +4287,7 @@
             "expected_exit": 0,
             "exit": 0,
             "ok": true,
-            "output_sha256": "2c885bcd8c5989bdf60359f5f1131c8eb4b81cc8aeeaaef6e97a32c6e71335f1"
+            "output_sha256": "5ea67a5f9fda85529362a8f1eb7b538d14e5c031261f789a7febe0eff9d42230"
           },
           {
             "label": "mini-02-cache-header-auditor: starter-tests",
@@ -4298,7 +4298,7 @@
             "expected_exit": 1,
             "exit": 1,
             "ok": true,
-            "output_sha256": "ce2261aaa1170a3bf6d67658eaa69f3377adb9d1895ac8ec2fb1fd6f79ea49ec"
+            "output_sha256": "dbce32df2a20e432ed1ed9151ebe18405b7457223575c3047c348ceefb84a294"
           },
           {
             "label": "mini-02-cache-header-auditor: starter-start",
@@ -4346,7 +4346,7 @@
             "expected_exit": 0,
             "exit": 0,
             "ok": true,
-            "output_sha256": "1323d0d8d5840df86ff6915071684f68bb79413bf56d412571120da40241993e"
+            "output_sha256": "6e23679132d0e5b0a9a9f636ba4e02bf9026188328d542b42b8fb86ad98c7fb7"
           },
           {
             "label": "mini-03-cookie-attribute-linter: starter-tests",
@@ -4357,7 +4357,7 @@
             "expected_exit": 1,
             "exit": 1,
             "ok": true,
-            "output_sha256": "0b5a83770b680ebdb0d1d658676dda49ab9eaafbf6fcfdaa5f524d89420382bc"
+            "output_sha256": "e01e75b940fb2409e4288c2a9f9ef2eb3ca882ffbb009138769b56432034c45e"
           },
           {
             "label": "mini-03-cookie-attribute-linter: starter-start",
@@ -4401,8 +4401,8 @@
       },
       "capstone": {
         "version": 2,
-        "fingerprint": "c2555463f580d65e35521b41f2d703f737443e7d057ea538b7e317eb6f2d9745",
-        "at": "2026-11-18T14:56:47Z",
+        "fingerprint": "f8e8f1ec6f53c1670a892f73e5c6fed0914c06c12b4c8d2142360f4ce59528ed",
+        "at": "2026-11-18T15:01:28Z",
         "ok": true,
         "checks": [
           {
@@ -4414,7 +4414,7 @@
             "expected_exit": 0,
             "exit": 0,
             "ok": true,
-            "output_sha256": "072724a78badc46e26ce653354c0ddb9e5accac410774f972fa9b89c06a712e9"
+            "output_sha256": "3defe88d2018302eaf876f3b69636f961d1b09a1536bed0ed44b0ac46cf188a8"
           },
           {
             "label": "capstone: typecheck",
@@ -4451,6 +4451,57 @@
             "exit": 0,
             "ok": true,
             "output_sha256": "6d8c5c8f3d7684adb070417bd608d01ae90aa3dc26a65af03ffda4955f38d9a3"
+          }
+        ]
+      },
+      "finalize": {
+        "version": 2,
+        "fingerprint": "ef74928620486f2e30bbe1e76986118e774756a17328142f7f0d47f387621c40",
+        "at": "2026-11-18T15:02:05Z",
+        "ok": false,
+        "checks": [
+          {
+            "label": "site build",
+            "command": "npm",
+            "args": [
+              "--prefix",
+              "site",
+              "run",
+              "build"
+            ],
+            "expected_exit": 0,
+            "exit": 0,
+            "ok": true,
+            "output_sha256": "bffd6878bd18de11fc6ffa785710f949f59d6907927ec2d36914d604b1867710"
+          },
+          {
+            "label": "site smoke",
+            "command": "npm",
+            "args": [
+              "--prefix",
+              "site",
+              "run",
+              "smoke"
+            ],
+            "expected_exit": 0,
+            "exit": 2,
+            "ok": false,
+            "output_sha256": "7acfcdcebed0110da66e740650a7ae5231a57c470fd9ba47feb4baf3fb42decb",
+            "problem": "\n> tutor-site@0.0.1 smoke\n> node scripts/smoke.mjs\n\nsmoke: the Chromium browser that Playwright drives is not downloaded yet.\nRun this once in site/, then run the smoke test again:\n\n    npx playwright install chromium\n\n"
+          },
+          {
+            "label": "site manifest:check",
+            "command": "npm",
+            "args": [
+              "--prefix",
+              "site",
+              "run",
+              "manifest:check"
+            ],
+            "expected_exit": 0,
+            "exit": 0,
+            "ok": true,
+            "output_sha256": "9cf80b4d6837916eb7b42c75c5478750c54297762700cff81b192e0cd083e529"
           }
         ]
       }

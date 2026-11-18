@@ -148,7 +148,7 @@ Research stopped: budget-limit. Audit round 1 concepts expanded against the re-v
 | 3 | mini-projects | ready |
 | 4 | capstone | ready |
 | 5 | notes | ready |
-| 5 | finalize | not started |
+| 5 | finalize | in progress |
 
 Next to generate: `finalize`. Ask Claude to continue this topic, or run `node harness/bin/tutor.mjs next frontend-engineering/how-the-web-works/internet-and-networking`.
 <!-- tutor:generated:end -->
