@@ -19,6 +19,7 @@ Every source below was checked against a live page before it was recommended.
   - Why it is trusted: The official hub for the Baseline browser-support status, published on the Chrome team's own site; the page states that Baseline was originated by the Chrome team and is now defined by the WebDX Community Group.
   - Used for: lesson, digest
   - Verified: 2026-11-18
+  - Digest: [[web-dev-baseline-how-to-learn-frontend|read the digest]]
 - **[Getting started with MDN Web Docs](https://developer.mozilla.org/en-US/docs/MDN/Community/Getting_started)** — MDN contributors (Mozilla), 2026 · tier A
   - Why it is trusted: Mozilla's own contribution guide for MDN Web Docs, the reference documentation of the web platform, which defines the public loop of picking a task, opening a pull request, and getting reviewed writing.
   - Used for: brief, lesson
@@ -27,6 +28,7 @@ Every source below was checked against a live page before it was recommended.
   - Why it is trusted: MDN's guide to feature detection: the canonical statement that a browser test must check for the feature and never for the browser name, with @supports and CSS.supports() as the native mechanisms.
   - Used for: lesson, digest
   - Verified: 2026-11-18
+  - Digest: [[mdn-feature-detection-how-to-learn-frontend|read the digest]]
 - **[Learn web development](https://developer.mozilla.org/en-US/docs/Learn_web_development)** — MDN Web Docs community (Mozilla), 2025 · tier A
   - Why it is trusted: MDN's own learning area: the structured tutorial path that Mozilla maintains for front-end skills, and the page that states its module order, its skill tests and its build challenges.
   - Used for: brief, lesson

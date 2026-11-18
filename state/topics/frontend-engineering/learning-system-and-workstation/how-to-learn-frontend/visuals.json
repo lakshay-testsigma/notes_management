@@ -22,5 +22,53 @@
     "used_in": [
       "vault/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend/01-brief-how-to-learn-frontend.md"
     ]
+  },
+  {
+    "id": "web-dev-baseline-mechanism",
+    "title": "How a feature gains a Baseline status",
+    "kind": "workflow",
+    "scope": "detail",
+    "format": "mermaid",
+    "file": "vault/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend/visuals/assets/web-dev-baseline-mechanism-how-to-learn-frontend.mmd",
+    "concept_ids": [
+      "browser-support"
+    ],
+    "source_ids": [
+      "web-dev-baseline"
+    ],
+    "purpose": "See that a Baseline status changes only because of browser support and the passage of time.",
+    "explanation": "A feature starts at Limited availability while browsers disagree about it. When all four core browsers support it, it becomes Newly available on the newly interoperable date. Thirty months later it becomes Widely available, and most sites can then use it without worrying about support.",
+    "alt": "State diagram with three states in a row: Limited availability, then Newly available once every core browser supports the feature, then Widely available after 30 months pass.",
+    "learning_check": {
+      "question": "A feature became Newly available in December 2023. In which month does it become Widely available?",
+      "answer": "June 2026, which is 30 months after December 2023."
+    },
+    "used_in": [
+      "vault/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend/04-digests/web-dev-baseline-how-to-learn-frontend.md"
+    ]
+  },
+  {
+    "id": "mdn-feature-detection-mechanism",
+    "title": "Feature detection: one question, two test paths, two outcomes",
+    "kind": "workflow",
+    "scope": "detail",
+    "format": "mermaid",
+    "file": "vault/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend/visuals/assets/mdn-feature-detection-mechanism-how-to-learn-frontend.mmd",
+    "concept_ids": [
+      "feature-detection"
+    ],
+    "source_ids": [
+      "mdn-feature-detection"
+    ],
+    "purpose": "See that both the CSS at-rule and the JavaScript call ask the same feature question, and that both end in an enhanced path or a fallback path.",
+    "explanation": "The page needs one feature, here a subgrid layout. MDN gives two ways to ask whether the browser has it: the @supports at-rule in CSS and the CSS.supports() call in JavaScript. Both answers go to the same place. A yes applies the enhanced layout and a no applies the fallback layout, so the page always renders. The dashed arrow marks the wrong question. Reading the user agent string to name the browser replaces the feature question with a guess, and MDN discourages it.",
+    "alt": "Flowchart: a need for a subgrid layout leads to the question 'is the feature supported?'. That question splits into a CSS test using @supports and a JavaScript test using CSS.supports. Both tests lead to 'enhanced layout applies' on yes and 'fallback layout applies' on no. A separate box asks the wrong question, which browser is this, and points to the feature question instead.",
+    "learning_check": {
+      "question": "Which of the two tests needs no JavaScript?",
+      "answer": "The @supports at-rule, because the browser runs the test itself while it parses the CSS."
+    },
+    "used_in": [
+      "vault/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend/04-digests/mdn-feature-detection-how-to-learn-frontend.md"
+    ]
   }
 ]

@@ -1,0 +1,9 @@
+flowchart TD
+  N["Need a feature: subgrid layout"] --> Q{"Is the feature supported?"}
+  Q -->|"test in CSS"| C1{"@supports (grid-template-columns: subgrid)"}
+  Q -->|"test in JS"| C2{"CSS.supports('grid-template-columns', 'subgrid')"}
+  C1 -->|yes| E["Enhanced layout applies"]
+  C1 -->|no| F["Fallback layout applies"]
+  C2 -->|yes| E
+  C2 -->|no| F
+  W["Wrong question: which browser is this?"] -.->|"use instead"| Q
