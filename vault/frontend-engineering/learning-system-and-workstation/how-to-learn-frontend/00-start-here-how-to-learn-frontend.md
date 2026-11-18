@@ -11,7 +11,7 @@ created: 2026-11-18
 This is the map of the topic. Read the steps from top to bottom. Each step links to the next thing to open, so you never have to search.
 
 <!-- tutor:generated:start -->
-**Depth:** standard · **Progress:** 1 of 10 steps ready
+**Depth:** standard · **Progress:** 2 of 10 steps ready
 
 How to learn frontend and keep improving: a repeatable read-build-measure-explain loop built on primary sources, browser-support literacy, and continuous practice.
 
@@ -25,7 +25,7 @@ How to learn frontend and keep improving: a repeatable read-build-measure-explai
 6. [[06-capstone-how-to-learn-frontend|Capstone]] — the production-style project · *not started*
 7. [[07-final-notes-how-to-learn-frontend|Final notes]] — the one-page refresher · *not started*
 8. [[08-recall-how-to-learn-frontend|Recall cards]] — flashcards for spaced review · *not started*
-9. [[09-resources-how-to-learn-frontend|Resources]] — the vetted sources behind everything above · *not started*
+9. [[09-resources-how-to-learn-frontend|Resources]] — the vetted sources behind everything above · *ready*
 
 Your own additions live in [[my-insights-how-to-learn-frontend|My insights]].
 
@@ -70,7 +70,7 @@ Set up how a developer learns frontend and keeps improving: the learning loop, p
 - Reading source code: included
 - Teaching in public: included
 
-Research stopped: scope-boundary. Provisional intake tree; research expands each concept and verifies its sources.
+Research stopped: scope-boundary. Research proposed sub-concepts (release-notes-tracking, challenge-briefs, portfolio-and-review, ai-assisted-practice, writing-for-learners, review-feedback-loop) that are folded into their parents' coverage at standard depth; ecosystem-signals and open-source-etiquette deferred. The read-build-measure-explain loop is a synthesis of MDN's documented learn cycle; no official page states that exact loop.
 
 ## Projects
 
@@ -83,7 +83,7 @@ Research stopped: scope-boundary. Provisional intake tree; research expands each
 | Wave | Stage | Status |
 |------|-------|--------|
 | 0 | intake | ready |
-| 1 | research | not started |
+| 1 | research | ready |
 | 1 | brief | not started |
 | 2 | digest | not started |
 | 2 | repo-intel | not started |
@@ -93,7 +93,7 @@ Research stopped: scope-boundary. Provisional intake tree; research expands each
 | 5 | notes | not started |
 | 5 | finalize | not started |
 
-Next to generate: `research`. Ask Claude to continue this topic, or run `node harness/bin/tutor.mjs next frontend-engineering/learning-system-and-workstation/how-to-learn-frontend`.
+Next to generate: `brief`. Ask Claude to continue this topic, or run `node harness/bin/tutor.mjs next frontend-engineering/learning-system-and-workstation/how-to-learn-frontend`.
 <!-- tutor:generated:end -->
 
 ## My insights

@@ -7,7 +7,7 @@
   "subdomain": "learning-system-and-workstation",
   "depth": "standard",
   "created_at": "2026-11-18T17:03:48Z",
-  "updated_at": "2026-11-18T17:04:44Z",
+  "updated_at": "2026-11-18T17:32:38Z",
   "paths": {
     "state": "state/topics/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend",
     "vault": "vault/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend",
@@ -297,7 +297,9 @@
           "complexity": "intermediate",
           "importance": "critical",
           "disposition": "included",
-          "source_ids": [],
+          "source_ids": [
+            "mdn-learn-web-development"
+          ],
           "coverage": [],
           "roadmap_items": [
             "learning-loop-read-build-measure-explain"
@@ -310,7 +312,9 @@
           "complexity": "basic",
           "importance": "core",
           "disposition": "included",
-          "source_ids": [],
+          "source_ids": [
+            "mdn-web-standards-model"
+          ],
           "coverage": [],
           "roadmap_items": [
             "primary-sources-over-tutorials"
@@ -323,7 +327,9 @@
           "complexity": "intermediate",
           "importance": "core",
           "disposition": "included",
-          "source_ids": [],
+          "source_ids": [
+            "web-dev-baseline"
+          ],
           "coverage": [],
           "roadmap_items": [
             "browser-support-literacy-baseline-caniuse"
@@ -336,7 +342,9 @@
           "complexity": "intermediate",
           "importance": "core",
           "disposition": "included",
-          "source_ids": [],
+          "source_ids": [
+            "mdn-feature-detection"
+          ],
           "coverage": [],
           "roadmap_items": [
             "feature-detection-polyfills-experimental-features"
@@ -349,7 +357,9 @@
           "complexity": "basic",
           "importance": "core",
           "disposition": "included",
-          "source_ids": [],
+          "source_ids": [
+            "chrome-for-developers-release-notes"
+          ],
           "coverage": [],
           "roadmap_items": [
             "stay-current-newsletters-podcasts-surveys"
@@ -362,7 +372,9 @@
           "complexity": "basic",
           "importance": "core",
           "disposition": "included",
-          "source_ids": [],
+          "source_ids": [
+            "frontendmentor-challenges"
+          ],
           "coverage": [],
           "roadmap_items": [
             "practice-platforms-interview-prep"
@@ -375,7 +387,10 @@
           "complexity": "intermediate",
           "importance": "core",
           "disposition": "included",
-          "source_ids": [],
+          "source_ids": [
+            "ai-nanoid-repo",
+            "pmndrs-zustand-repo"
+          ],
           "coverage": [],
           "roadmap_items": [
             "read-other-people-s-code"
@@ -388,7 +403,9 @@
           "complexity": "intermediate",
           "importance": "supporting",
           "disposition": "included",
-          "source_ids": [],
+          "source_ids": [
+            "mdn-getting-started-contributing"
+          ],
           "coverage": [],
           "roadmap_items": [
             "build-in-public-teach"
@@ -401,7 +418,9 @@
           "frontier": [
             "learning-loop"
           ],
-          "source_ids": [],
+          "source_ids": [
+            "mdn-learn-web-development"
+          ],
           "added": [
             "learning-loop"
           ]
@@ -411,7 +430,9 @@
           "frontier": [
             "learning-loop"
           ],
-          "source_ids": [],
+          "source_ids": [
+            "mdn-learn-web-development"
+          ],
           "added": [
             "primary-sources",
             "browser-support",
@@ -433,10 +454,19 @@
             "reading-source-code",
             "teaching-in-public"
           ],
-          "source_ids": [],
+          "source_ids": [
+            "mdn-web-standards-model",
+            "web-dev-baseline",
+            "mdn-feature-detection",
+            "chrome-for-developers-release-notes",
+            "frontendmentor-challenges",
+            "ai-nanoid-repo",
+            "pmndrs-zustand-repo",
+            "mdn-getting-started-contributing"
+          ],
           "added": [],
           "stop_reason": "scope-boundary",
-          "note": "Provisional intake tree; research expands each concept and verifies its sources."
+          "note": "Research proposed sub-concepts (release-notes-tracking, challenge-briefs, portfolio-and-review, ai-assisted-practice, writing-for-learners, review-feedback-loop) that are folded into their parents' coverage at standard depth; ecosystem-signals and open-source-etiquette deferred. The read-build-measure-explain loop is a synthesis of MDN's documented learn cycle; no official page states that exact loop."
         }
       ]
     }
@@ -449,15 +479,15 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T17:03:54Z",
-      "finished_at": "2026-11-18T17:04:44Z",
+      "finished_at": "2026-11-18T17:32:25Z",
       "attempts": 1,
       "units": [],
       "note": "",
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "3a25579b7f25b85fc02477e5d7ac5d6484e6d9af42c962a2dda1ddf5856f2fb1",
-        "at": "2026-11-18T17:04:44Z",
+        "fingerprint": "ec1dc49b00b2fd8ba31d00622282e2da4a6644602dcc5ff738f81c49c40d0c51",
+        "at": "2026-11-18T17:32:25Z",
         "forced": false
       }
     },
@@ -465,13 +495,36 @@
       "id": "research",
       "wave": 1,
       "skill": "learn-research",
-      "status": "pending",
+      "status": "done",
       "scope": "required",
-      "started_at": null,
-      "finished_at": null,
-      "attempts": 0,
-      "units": [],
-      "note": ""
+      "started_at": "2026-11-18T17:05:59Z",
+      "finished_at": "2026-11-18T17:32:38Z",
+      "attempts": 1,
+      "units": [
+        {
+          "id": "docs",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "repos",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "discovery-01",
+          "status": "done",
+          "handoff": null
+        }
+      ],
+      "note": "",
+      "continue_after_failure": false,
+      "validation": {
+        "version": 2,
+        "fingerprint": "c3b68824854de3180e7b9e4e01ccc8038fd07c93a25253fde3b47de79b2478bd",
+        "at": "2026-11-18T17:32:38Z",
+        "forced": false
+      }
     },
     {
       "id": "brief",
@@ -601,10 +654,235 @@
       "event": "done",
       "message": "gate passed",
       "stage": "intake"
+    },
+    {
+      "at": "2026-11-18T17:05:59Z",
+      "event": "start",
+      "message": "attempt 1",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T17:05:59Z",
+      "event": "unit-add",
+      "message": "unit docs",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T17:05:59Z",
+      "event": "unit-add",
+      "message": "unit repos",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T17:05:59Z",
+      "event": "unit-add",
+      "message": "unit discovery-01",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T17:08:51Z",
+      "event": "source-add",
+      "message": "added chrome-for-developers-release-notes",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T17:08:51Z",
+      "event": "source-add",
+      "message": "added frontendmentor-challenges",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T17:08:52Z",
+      "event": "source-add",
+      "message": "added mdn-getting-started-contributing",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T17:10:32Z",
+      "event": "unit-done",
+      "message": "unit discovery-01",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T17:10:49Z",
+      "event": "source-add",
+      "message": "added mdn-learn-web-development",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T17:10:49Z",
+      "event": "source-add",
+      "message": "added mdn-web-standards-model",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T17:10:49Z",
+      "event": "source-add",
+      "message": "added web-dev-baseline",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T17:10:49Z",
+      "event": "source-add",
+      "message": "added mdn-feature-detection",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T17:13:56Z",
+      "event": "unit-done",
+      "message": "unit docs",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T17:29:08Z",
+      "event": "source-add",
+      "message": "added ai-nanoid-repo",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T17:29:08Z",
+      "event": "source-add",
+      "message": "added pmndrs-zustand-repo",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T17:31:02Z",
+      "event": "unit-done",
+      "message": "unit repos",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T17:32:19Z",
+      "event": "plan",
+      "message": "plan fields set: curriculum",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-18T17:32:25Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-18T17:32:34Z",
+      "event": "execution-check",
+      "message": "research: pass",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T17:32:38Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "research"
     }
   ],
   "roadmap": {
     "id": "frontend",
     "section": "00.1"
+  },
+  "quality": {
+    "executions": {
+      "research": {
+        "version": 2,
+        "fingerprint": "c3b68824854de3180e7b9e4e01ccc8038fd07c93a25253fde3b47de79b2478bd",
+        "at": "2026-11-18T17:32:34Z",
+        "ok": true,
+        "checks": [
+          {
+            "label": "chrome-for-developers-release-notes: https://developer.chrome.com/release-notes",
+            "source": "chrome-for-developers-release-notes",
+            "requested_url": "https://developer.chrome.com/release-notes",
+            "ok": true,
+            "status": 200,
+            "bytes": 93514,
+            "sha256": "09b09bec9dab5b24148308644fb777b5f010cda12c8e27cee5e3a4e8a59fca73"
+          },
+          {
+            "label": "frontendmentor-challenges: https://www.frontendmentor.io/",
+            "source": "frontendmentor-challenges",
+            "requested_url": "https://www.frontendmentor.io/",
+            "ok": true,
+            "status": 200,
+            "bytes": 93677,
+            "sha256": "693bfc2c39228c90ca2ade390191a53932fbd5c1b9d80b91f9ad3e9837749a97"
+          },
+          {
+            "label": "mdn-getting-started-contributing: https://developer.mozilla.org/en-US/docs/MDN/Community/Getting_started",
+            "source": "mdn-getting-started-contributing",
+            "requested_url": "https://developer.mozilla.org/en-US/docs/MDN/Community/Getting_started",
+            "ok": true,
+            "status": 200,
+            "bytes": 156014,
+            "sha256": "d864f118a272c04c00e1067b34dd6bc40e1aa0f603de6a95b5e5fb581b1f3bf2"
+          },
+          {
+            "label": "mdn-learn-web-development: https://developer.mozilla.org/en-US/docs/Learn_web_development",
+            "source": "mdn-learn-web-development",
+            "requested_url": "https://developer.mozilla.org/en-US/docs/Learn_web_development",
+            "ok": true,
+            "status": 200,
+            "bytes": 185448,
+            "sha256": "28812d12a7e833202679c02f019fe7d6213d3146fd1200cbf0244a12efea8c88"
+          },
+          {
+            "label": "mdn-web-standards-model: https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Web_standards/The_web_standards_model",
+            "source": "mdn-web-standards-model",
+            "requested_url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Web_standards/The_web_standards_model",
+            "ok": true,
+            "status": 200,
+            "bytes": 208340,
+            "sha256": "d45dde1ea57786d6305ad7eaf8367513f52442b6e76bd0ce7cd8284dda5656ca"
+          },
+          {
+            "label": "web-dev-baseline: https://web.dev/baseline",
+            "source": "web-dev-baseline",
+            "requested_url": "https://web.dev/baseline",
+            "ok": true,
+            "status": 200,
+            "bytes": 215823,
+            "sha256": "ccfeac16cccf516eafb8380a4fa803d7a344f0017f03cfd06dee2f49488efb39"
+          },
+          {
+            "label": "mdn-feature-detection: https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Testing/Feature_detection",
+            "source": "mdn-feature-detection",
+            "requested_url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Testing/Feature_detection",
+            "ok": true,
+            "status": 200,
+            "bytes": 190881,
+            "sha256": "6d4dd51ed8afecd95b8aa935ead7d96e7e6564575a76acd342601b16be0e85c1"
+          },
+          {
+            "label": "ai-nanoid-repo: https://api.github.com/repos/ai/nanoid",
+            "source": "ai-nanoid-repo",
+            "requested_url": "https://api.github.com/repos/ai/nanoid",
+            "ok": true,
+            "status": 200,
+            "bytes": 5316,
+            "sha256": "1d70f55bd67add6bc278f685d3ffe14e22860f457987cfabc2c48e95cdfe8a26",
+            "repository": {
+              "stars": 27136,
+              "archived": false,
+              "pushed_at": "2026-11-05T20:34:00Z",
+              "license": "MIT"
+            }
+          },
+          {
+            "label": "pmndrs-zustand-repo: https://api.github.com/repos/pmndrs/zustand",
+            "source": "pmndrs-zustand-repo",
+            "requested_url": "https://api.github.com/repos/pmndrs/zustand",
+            "ok": true,
+            "status": 200,
+            "bytes": 6800,
+            "sha256": "42b092f85f46cd122538aa75cd9f615c02449290a0475173c1fc04cc050c142a",
+            "repository": {
+              "stars": 58948,
+              "archived": false,
+              "pushed_at": "2026-11-06T13:35:06Z",
+              "license": "MIT"
+            }
+          }
+        ]
+      }
+    }
   }
 }

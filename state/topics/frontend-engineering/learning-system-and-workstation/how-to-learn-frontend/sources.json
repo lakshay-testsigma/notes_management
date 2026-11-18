@@ -1,1 +1,231 @@
-[]
+[
+  {
+    "id": "chrome-for-developers-release-notes",
+    "type": "official-docs",
+    "title": "Release notes — Chrome for Developers",
+    "url": "https://developer.chrome.com/release-notes",
+    "authors": "Google (Chrome for Developers)",
+    "year": 2026,
+    "tier": "A",
+    "why_trusted": "Google's own Chrome for Developers release-notes index, which states that release notes from Chrome 155 onward live on Chrome Platform Status and links the stable and beta channels plus the site RSS feed.",
+    "evidence": {
+      "stars": null,
+      "last_commit": null,
+      "citations": null,
+      "venue": "Chrome for Developers",
+      "publisher": "Google",
+      "used_by": []
+    },
+    "verified_at": "2026-11-18",
+    "verified_via": "https://developer.chrome.com/release-notes",
+    "use_for": [
+      "brief",
+      "lesson"
+    ]
+  },
+  {
+    "id": "frontendmentor-challenges",
+    "type": "official-docs",
+    "title": "Frontend Mentor — practice challenges for front-end developers",
+    "url": "https://www.frontendmentor.io/",
+    "authors": "Frontend Mentor",
+    "year": 2026,
+    "tier": "B",
+    "why_trusted": "The practice platform's own site, which states that 1,207,602 people build portfolio-worthy projects there and publishes 133 challenges in five difficulty levels with design files, a product-spec format, and a code review loop.",
+    "evidence": {
+      "stars": null,
+      "last_commit": null,
+      "citations": null,
+      "venue": null,
+      "publisher": "Frontend Mentor",
+      "used_by": [
+        "CSS-Tricks",
+        "Stack Overflow"
+      ]
+    },
+    "verified_at": "2026-11-18",
+    "verified_via": "https://www.frontendmentor.io/",
+    "use_for": [
+      "brief",
+      "lesson"
+    ]
+  },
+  {
+    "id": "mdn-getting-started-contributing",
+    "type": "official-docs",
+    "title": "Getting started with MDN Web Docs",
+    "url": "https://developer.mozilla.org/en-US/docs/MDN/Community/Getting_started",
+    "authors": "MDN contributors (Mozilla)",
+    "year": 2026,
+    "tier": "A",
+    "why_trusted": "Mozilla's own contribution guide for MDN Web Docs, the reference documentation of the web platform, which defines the public loop of picking a task, opening a pull request, and getting reviewed writing.",
+    "evidence": {
+      "stars": null,
+      "last_commit": null,
+      "citations": null,
+      "venue": null,
+      "publisher": "Mozilla",
+      "used_by": []
+    },
+    "verified_at": "2026-11-18",
+    "verified_via": "https://developer.mozilla.org/en-US/docs/MDN/Community/Getting_started",
+    "use_for": [
+      "brief",
+      "lesson"
+    ]
+  },
+  {
+    "id": "mdn-learn-web-development",
+    "type": "official-docs",
+    "title": "Learn web development",
+    "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development",
+    "authors": "MDN Web Docs community (Mozilla)",
+    "year": 2025,
+    "tier": "A",
+    "why_trusted": "MDN's own learning area: the structured tutorial path that Mozilla maintains for front-end skills, and the page that states its module order, its skill tests and its build challenges.",
+    "evidence": {
+      "stars": null,
+      "last_commit": null,
+      "citations": null,
+      "venue": null,
+      "publisher": "Mozilla (MDN Web Docs)",
+      "used_by": []
+    },
+    "verified_at": "2026-11-18",
+    "verified_via": "https://developer.mozilla.org/en-US/docs/Learn_web_development",
+    "use_for": [
+      "brief",
+      "lesson"
+    ]
+  },
+  {
+    "id": "mdn-web-standards-model",
+    "type": "official-docs",
+    "title": "The web standards model",
+    "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Web_standards/The_web_standards_model",
+    "authors": "MDN Web Docs community (Mozilla)",
+    "year": 2026,
+    "tier": "A",
+    "why_trusted": "MDN's own account of which bodies write the web standards (W3C, WHATWG, TC39 with ECMA, Khronos) and how a feature moves from explainer to specification, so a learner can reach the primary source instead of a tutorial summary.",
+    "evidence": {
+      "stars": null,
+      "last_commit": null,
+      "citations": null,
+      "venue": null,
+      "publisher": "Mozilla (MDN Web Docs)",
+      "used_by": []
+    },
+    "verified_at": "2026-11-18",
+    "verified_via": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Web_standards/The_web_standards_model",
+    "use_for": [
+      "brief",
+      "lesson"
+    ]
+  },
+  {
+    "id": "web-dev-baseline",
+    "type": "official-docs",
+    "title": "Baseline",
+    "url": "https://web.dev/baseline",
+    "authors": "Chrome for Developers team (web.dev)",
+    "year": 2026,
+    "tier": "A",
+    "why_trusted": "The official hub for the Baseline browser-support status, published on the Chrome team's own site; the page states that Baseline was originated by the Chrome team and is now defined by the WebDX Community Group.",
+    "evidence": {
+      "stars": null,
+      "last_commit": null,
+      "citations": null,
+      "venue": null,
+      "publisher": "Google (Chrome for Developers, web.dev)",
+      "used_by": []
+    },
+    "verified_at": "2026-11-18",
+    "verified_via": "https://web.dev/baseline",
+    "use_for": [
+      "lesson",
+      "digest"
+    ]
+  },
+  {
+    "id": "mdn-feature-detection",
+    "type": "official-docs",
+    "title": "Implementing feature detection",
+    "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Testing/Feature_detection",
+    "authors": "MDN Web Docs community (Mozilla)",
+    "year": 2025,
+    "tier": "A",
+    "why_trusted": "MDN's guide to feature detection: the canonical statement that a browser test must check for the feature and never for the browser name, with @supports and CSS.supports() as the native mechanisms.",
+    "evidence": {
+      "stars": null,
+      "last_commit": null,
+      "citations": null,
+      "venue": null,
+      "publisher": "Mozilla (MDN Web Docs)",
+      "used_by": []
+    },
+    "verified_at": "2026-11-18",
+    "verified_via": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Testing/Feature_detection",
+    "use_for": [
+      "lesson",
+      "digest"
+    ]
+  },
+  {
+    "id": "ai-nanoid-repo",
+    "type": "repo",
+    "title": "ai/nanoid: A tiny (118 bytes), secure, URL-friendly, unique string ID generator for JavaScript",
+    "url": "https://github.com/ai/nanoid",
+    "authors": "Andrey Sitnik (Evil Martians)",
+    "year": 2026,
+    "tier": "A",
+    "why_trusted": "The original Nano ID implementation, written by the library's author and built by Evil Martians, MIT licensed, and shipped as a runtime dependency of Vite (\"nanoid\": \"^5.1.16\" in packages/vite/package.json) and of PostCSS (\"nanoid\": \"^3.3.20\" in postcss/package.json).",
+    "evidence": {
+      "stars": 27136,
+      "last_commit": "2026-11-05",
+      "citations": null,
+      "venue": null,
+      "publisher": null,
+      "used_by": [
+        "Vite",
+        "PostCSS"
+      ],
+      "archived": false,
+      "license": "MIT"
+    },
+    "verified_at": "2026-11-18",
+    "verified_via": "https://api.github.com/repos/ai/nanoid",
+    "use_for": [
+      "brief",
+      "lesson"
+    ]
+  },
+  {
+    "id": "pmndrs-zustand-repo",
+    "type": "repo",
+    "title": "pmndrs/zustand: Bear necessities for state management in React",
+    "url": "https://github.com/pmndrs/zustand",
+    "authors": "pmndrs (Poimandres)",
+    "year": 2026,
+    "tier": "A",
+    "why_trusted": "The organisation-owned reference implementation of a modern React store, MIT licensed with eight CI workflows and a vitest suite, and a runtime dependency of cal.com (\"zustand\": \"4.5.2\" in packages/features/package.json) and of OpenReplay's tracker package (\"zustand\": \"^4.5.2\" in tracker/tracker-zustand/package.json).",
+    "evidence": {
+      "stars": 58948,
+      "last_commit": "2026-11-06",
+      "citations": null,
+      "venue": null,
+      "publisher": null,
+      "used_by": [
+        "cal.com",
+        "OpenReplay"
+      ],
+      "archived": false,
+      "license": "MIT"
+    },
+    "verified_at": "2026-11-18",
+    "verified_via": "https://api.github.com/repos/pmndrs/zustand",
+    "use_for": [
+      "lesson",
+      "repo-intel"
+    ]
+  }
+]
