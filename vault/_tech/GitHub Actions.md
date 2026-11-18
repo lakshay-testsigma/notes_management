@@ -15,5 +15,7 @@ GitHub Actions is GitHub's built-in automation service. Workflow files in the re
 - [[browser-compat-data-pattern-guarded-release]]
 - [[browser-compat-data-tech-and-services]]
 - [[commitlint-tech-and-services]]
+- [[lighthouse-tech-and-services]]
+- [[devtools-frontend-tech-and-services]]
 
 ## My insights

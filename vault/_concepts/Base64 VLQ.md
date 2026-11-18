@@ -13,5 +13,6 @@ Base64 VLQ (variable-length quantity) is a compact way to write small signed int
 ## Where it shows up
 
 - [[ecma-426-source-map-browser-devtools-mastery]]
+- [[devtools-frontend-module-source-map]]
 
 ## My insights

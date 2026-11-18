@@ -1,0 +1,17 @@
+sequenceDiagram
+  participant NR as navigationGather
+  participant D as Driver
+  participant G as Trace and DevtoolsLog gatherers
+  participant R as Runner
+  participant M as Metric computed artifacts
+  participant A as Audit
+  participant SC as ReportScoring
+  NR->>D: connect
+  NR->>G: start, navigate, stop
+  G-->>NR: trace and devtools log
+  NR->>R: artifacts
+  R->>A: audit with required artifacts
+  A->>M: request metric
+  M-->>A: LCP or TBT in ms
+  A-->>R: score 0 to 1
+  R->>SC: scoreAllCategories

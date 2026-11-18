@@ -13,5 +13,6 @@ The network waterfall is the chart of bars, one per request, that shows when eac
 ## Where it shows up
 
 - [[chrome-devtools-network-docs-browser-devtools-mastery]]
+- [[devtools-frontend-pattern-derived-data-with-unknowns]]
 
 ## My insights

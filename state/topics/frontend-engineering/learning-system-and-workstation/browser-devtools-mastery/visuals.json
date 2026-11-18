@@ -30,5 +30,214 @@
       "vault/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/01-brief-browser-devtools-mastery.md"
     ],
     "title": "The DevTools inspect, debug, measure and fix loop"
+  },
+  {
+    "id": "chrome-devtools-memory-docs-mechanism",
+    "title": "Finding a leak with two heap snapshots",
+    "kind": "workflow",
+    "scope": "stage",
+    "format": "mermaid",
+    "file": "vault/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/visuals/assets/chrome-devtools-memory-docs-mechanism-browser-devtools-mastery.mmd",
+    "concept_ids": [
+      "memory-panel",
+      "heap-snapshots",
+      "retainers-and-detached-dom"
+    ],
+    "source_ids": [
+      "chrome-devtools-memory-docs"
+    ],
+    "purpose": "Learn the order of steps that finds an object that stays in memory and the reference that holds it.",
+    "explanation": "Take a snapshot, do a suspect action, undo it a few times, and take a second snapshot. Compare the two, pick an object that was added, and read its Retainers to find the reference that keeps it alive.",
+    "alt": "Flowchart of eight steps: Snapshot 1, do suspect action, undo it a few times, Snapshot 2, Comparison view, select added object, read Retainers, clear the reference.",
+    "learning_check": {
+      "question": "Which section shows what keeps a selected object alive?",
+      "answer": "The Retainers section, which lists the objects that point to it."
+    },
+    "used_in": [
+      "vault/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/04-digests/chrome-devtools-memory-docs-browser-devtools-mastery.md"
+    ]
+  },
+  {
+    "id": "chrome-devtools-network-docs-mechanism",
+    "title": "Request timing phases in the Network Timing tab",
+    "kind": "workflow",
+    "scope": "detail",
+    "format": "mermaid",
+    "file": "vault/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/visuals/assets/chrome-devtools-network-docs-mechanism-browser-devtools-mastery.mmd",
+    "concept_ids": [
+      "waterfall-timing-phases"
+    ],
+    "source_ids": [
+      "chrome-devtools-network-docs"
+    ],
+    "purpose": "Learn the order of the phases a request passes through, so you can name the slow one.",
+    "explanation": "A request waits in the queue, may stall, resolves the server address, connects, sends the request, waits for the first byte, then downloads the body. The slow phase tells you whether to fix the network, the server or the payload.",
+    "alt": "Flowchart of seven phases in order: Queueing, Stalled, DNS Lookup, Initial connection, Request sent, Waiting for first byte (TTFB), and Content Download. The widest bar shows where the request lost time.",
+    "learning_check": {
+      "question": "Which phase is long when the server is slow to build the response?",
+      "answer": "Waiting (TTFB), which includes one round trip plus the server's preparation time."
+    },
+    "used_in": [
+      "vault/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/04-digests/chrome-devtools-network-docs-browser-devtools-mastery.md"
+    ]
+  },
+  {
+    "id": "ecma-426-source-map-mechanism",
+    "title": "How a source map turns generated code positions into original positions",
+    "kind": "workflow",
+    "scope": "detail",
+    "format": "mermaid",
+    "file": "vault/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/visuals/assets/ecma-426-source-map-mechanism-browser-devtools-mastery.mmd",
+    "concept_ids": [
+      "source-maps",
+      "source-map-vlq-mappings",
+      "ignore-listing-frames"
+    ],
+    "source_ids": [
+      "ecma-426-source-map"
+    ],
+    "purpose": "Show the order of steps from a generated file to an original source position.",
+    "explanation": "The generated file points to a map file. The tool fetches the JSON and splits the mappings string into lines and segments. It decodes each segment from base64 VLQ and adds the numbers to the previous values. The result is an original file, line and column.",
+    "alt": "Flowchart with seven steps: the generated file ends with a sourceMappingURL comment, the tool fetches the map JSON, splits mappings on semicolons into lines, splits each line on commas into segments, decodes VLQ fields, adds them to the previous values, and gets an original file, line and column.",
+    "learning_check": {
+      "question": "Why must a tool decode segments in order instead of reading one segment alone?",
+      "answer": "Most fields are relative to the previous segment, so each value depends on the ones before it."
+    },
+    "used_in": [
+      "vault/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/04-digests/ecma-426-source-map-browser-devtools-mastery.md"
+    ]
+  },
+  {
+    "id": "firefox-devtools-user-docs-mechanism",
+    "title": "Connecting desktop Firefox DevTools to a phone over USB",
+    "kind": "workflow",
+    "scope": "detail",
+    "format": "mermaid",
+    "file": "vault/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/visuals/assets/firefox-devtools-user-docs-mechanism-browser-devtools-mastery.mmd",
+    "concept_ids": [
+      "remote-device-debugging",
+      "firefox-safari-devtools"
+    ],
+    "source_ids": [
+      "firefox-devtools-user-docs"
+    ],
+    "purpose": "Learn the order of steps that attach desktop DevTools to a tab on an Android phone.",
+    "explanation": "You switch on USB debugging on the phone and in Firefox for Android, plug in the cable, and refresh devices in about:debugging. After you authorize the computer on the phone, the device and its open tabs appear. Inspect attaches DevTools to the tab.",
+    "alt": "Flowchart of seven steps: enable Developer options and USB debugging on the phone, enable Remote Debugging via USB in Firefox for Android, connect the cable with adb installed, Refresh devices in about:debugging, authorize the computer on the phone, see the device with its tabs, click Inspect.",
+    "learning_check": {
+      "question": "What must you do on the phone after you click Refresh devices?",
+      "answer": "Authorize the computer, so the device then appears with its open tabs."
+    },
+    "used_in": [
+      "vault/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/04-digests/firefox-devtools-user-docs-browser-devtools-mastery.md"
+    ]
+  },
+  {
+    "id": "lighthouse-module-map",
+    "title": "Lighthouse module map",
+    "kind": "architecture",
+    "scope": "stage",
+    "format": "mermaid",
+    "file": "vault/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/visuals/assets/lighthouse-module-map-browser-devtools-mastery.mmd",
+    "concept_ids": [
+      "lighthouse-audits",
+      "lighthouse-panel-other-panels",
+      "core-web-vitals-live",
+      "performance-panel",
+      "network-panel"
+    ],
+    "source_ids": [
+      "googlechrome-lighthouse-repo"
+    ],
+    "purpose": "See which part of Lighthouse records a page load, which computes metrics, which scores, and which packages it.",
+    "explanation": "Gather records a trace and a devtools log. Metrics parses them and computes LCP and TBT. Audits and scoring turn the numbers into a result. Build bundles the same code for the CLI and for DevTools.",
+    "alt": "Flowchart: Gather feeds Metrics, Metrics feeds Audits and scoring, and Build connects with dotted lines to Gather and to Audits and scoring.",
+    "learning_check": {
+      "question": "Which module never calls an audit?",
+      "answer": "Gather. It only records the trace and the devtools log; audits read them later."
+    },
+    "used_in": [
+      "vault/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/05-repo-intel/googlechrome-lighthouse/lighthouse-architecture.md"
+    ]
+  },
+  {
+    "id": "lighthouse-request-flow",
+    "title": "Lighthouse flow from page load to score",
+    "kind": "sequence",
+    "scope": "end-to-end",
+    "format": "mermaid",
+    "file": "vault/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/visuals/assets/lighthouse-request-flow-browser-devtools-mastery.mmd",
+    "concept_ids": [
+      "lighthouse-audits",
+      "lighthouse-panel-other-panels",
+      "core-web-vitals-live",
+      "performance-panel",
+      "network-panel"
+    ],
+    "source_ids": [
+      "googlechrome-lighthouse-repo"
+    ],
+    "purpose": "Follow one page load from recording to a 0 to 1 audit score.",
+    "explanation": "The navigation runner connects, starts the gatherers, loads the page and stops them. The runner gives each audit only its required artifacts. The audit asks for a metric, then the scoring code averages the scores.",
+    "alt": "Sequence diagram: navigationGather connects a Driver and runs gatherers, the Runner passes artifacts to an Audit, the Audit asks a metric artifact for a value, and ReportScoring scores categories.",
+    "learning_check": {
+      "question": "Where do recording and judging meet?",
+      "answer": "In the saved artifacts: the trace and devtools log that gather produces and audits consume."
+    },
+    "used_in": [
+      "vault/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/05-repo-intel/googlechrome-lighthouse/lighthouse-architecture.md"
+    ]
+  },
+  {
+    "id": "devtools-frontend-module-map",
+    "title": "DevTools frontend: four studied modules",
+    "kind": "architecture",
+    "scope": "stage",
+    "format": "mermaid",
+    "file": "vault/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/visuals/assets/devtools-frontend-module-map-browser-devtools-mastery.mmd",
+    "concept_ids": [
+      "source-maps",
+      "har-export",
+      "heap-snapshots",
+      "remote-device-debugging"
+    ],
+    "source_ids": [
+      "chromedevtools-devtools-frontend-repo"
+    ],
+    "purpose": "See which parts of the DevTools frontend own the protocol, source maps, HAR and heap snapshots.",
+    "explanation": "The protocol client carries every command and event between DevTools and the browser. Heap snapshots arrive as protocol chunks. Source maps are fetched through the page loader. HAR files are built from the request model.",
+    "alt": "Flowchart of four modules: cdp-client sends commands and events to the browser and passes heap profiler chunks to heap-snapshot; source-map loads maps through the page loader; har reads the request model filled from network events.",
+    "learning_check": {
+      "question": "Which module carries heap snapshot chunks from the browser?",
+      "answer": "The cdp-client module, which delivers HeapProfiler events to the heap-snapshot code."
+    },
+    "used_in": [
+      "vault/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/05-repo-intel/chromedevtools-devtools-frontend/devtools-frontend-architecture.md"
+    ]
+  },
+  {
+    "id": "devtools-frontend-request-flow",
+    "title": "A heap snapshot request across the protocol client",
+    "kind": "sequence",
+    "scope": "detail",
+    "format": "mermaid",
+    "file": "vault/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/visuals/assets/devtools-frontend-request-flow-browser-devtools-mastery.mmd",
+    "concept_ids": [
+      "heap-snapshots",
+      "remote-device-debugging"
+    ],
+    "source_ids": [
+      "chromedevtools-devtools-frontend-repo"
+    ],
+    "purpose": "Follow one numbered command and its unnumbered events from the model to the worker.",
+    "explanation": "The model sends a numbered command. Chunk events arrive without a number and are routed by session to the model, then the proxy passes them to a worker. The reply with the same number finishes the stored promise.",
+    "alt": "Sequence diagram: HeapProfilerModel sends takeHeapSnapshot with an id through the connection and transport; chunk events return, are routed by session to the model and forwarded through the proxy to the worker; the reply with the same id resolves the promise.",
+    "learning_check": {
+      "question": "How does the connection tell a reply from an event?",
+      "answer": "A reply carries an id that matches a stored promise; an event has only a method."
+    },
+    "used_in": [
+      "vault/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/05-repo-intel/chromedevtools-devtools-frontend/devtools-frontend-architecture.md"
+    ]
   }
 ]

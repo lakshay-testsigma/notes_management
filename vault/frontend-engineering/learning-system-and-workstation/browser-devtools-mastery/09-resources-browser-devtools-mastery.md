@@ -23,10 +23,12 @@ Every source below was checked against a live page before it was recommended.
   - Why it is trusted: The official Chrome DevTools guide to memory leaks; covers detached DOM nodes, allocation timelines, heap snapshots, the Retainers section and the Comparison view.
   - Used for: digest, lesson
   - Verified: 2026-11-18
+  - Digest: [[chrome-devtools-memory-docs-browser-devtools-mastery|read the digest]]
 - **[Chrome DevTools: Network features reference](https://developer.chrome.com/docs/devtools/network/reference)** — Kayce Basques, Sofia Emelianova (Chrome DevTools team), 2026 · tier A
   - Why it is trusted: The official Chrome DevTools reference for the Network panel on developer.chrome.com, written by the Chrome team; it lists the timing phases Queueing, Stalled, DNS Lookup, Initial connection, Request sent, Waiting (TTFB) and Content Download, plus throttling and HAR export.
   - Used for: brief, digest, lesson
   - Verified: 2026-11-18
+  - Digest: [[chrome-devtools-network-docs-browser-devtools-mastery|read the digest]]
 - **[Chrome DevTools: Performance, Application, Coverage, Rendering and Recorder docs](https://developer.chrome.com/docs/devtools/performance/reference)** — Chrome DevTools team, 2026 · tier A
   - Why it is trusted: Official Chrome DevTools references for the Performance panel (live metrics with CrUX, CPU throttling, layout shifts, insights) and the Application, Coverage, Rendering and Recorder panels.
   - Used for: lesson
@@ -35,6 +37,7 @@ Every source below was checked against a live page before it was recommended.
   - Why it is trusted: The official user documentation of Firefox DevTools, hosted on Mozilla's Firefox Source Docs and covering the Grid and Flexbox inspectors, Edit fonts, Accessibility inspector and about:debugging.
   - Used for: lesson, digest
   - Verified: 2026-11-18
+  - Digest: [[firefox-devtools-user-docs-browser-devtools-mastery|read the digest]]
 - **[Get started with remote debugging Android devices](https://developer.chrome.com/docs/devtools/remote-debugging)** — Google Chrome team, 2026 · tier A
   - Why it is trusted: The official Chrome DevTools documentation for debugging Android Chrome from a desktop via chrome://inspect, maintained by the Chrome team.
   - Used for: lesson
@@ -65,6 +68,7 @@ Every source below was checked against a live page before it was recommended.
   - Why it is trusted: The Ecma International standard for the source map format that DevTools, bundlers and compilers follow; the full text is freely readable and the live page is dated 11 November 2026.
   - Used for: digest, lesson
   - Verified: 2026-11-18
+  - Digest: [[ecma-426-source-map-browser-devtools-mastery|read the digest]]
 <!-- tutor:generated:end -->
 
 ## My insights

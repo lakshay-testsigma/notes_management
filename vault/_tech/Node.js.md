@@ -15,5 +15,6 @@ Node.js is a runtime that runs JavaScript outside the browser, on your computer 
 - [[nodejs-packages-docs-workstation-and-editor]]
 - [[commitlint-tech-and-services]]
 - [[06-capstone-workstation-and-editor]]
+- [[lighthouse-tech-and-services]]
 
 ## My insights

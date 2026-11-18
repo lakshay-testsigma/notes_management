@@ -1,0 +1,7 @@
+flowchart LR
+  Q[Queueing] --> S[Stalled]
+  S --> D[DNS Lookup]
+  D --> C[Initial connection]
+  C --> R[Request sent]
+  R --> W[Waiting TTFB]
+  W --> L[Content Download]

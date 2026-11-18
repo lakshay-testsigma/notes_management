@@ -15,5 +15,7 @@ An exit code is the number a program returns when it ends. Zero means success. A
 - [[commitlint-pattern-one-checker-two-gates]]
 - [[03-mini-projects-workstation-and-editor]]
 - [[06-capstone-workstation-and-editor]]
+- [[lighthouse-pattern-fail-soft-pipeline]]
+- [[devtools-frontend-pattern-fail-soft-parsing]]
 
 ## My insights

@@ -14,5 +14,6 @@ Derived data is a value that a program computes from other data instead of being
 
 - [[browser-compat-data-pattern-derive-dont-copy]]
 - [[06-capstone-how-to-learn-frontend]]
+- [[devtools-frontend-pattern-derived-data-with-unknowns]]
 
 ## My insights

@@ -17,5 +17,6 @@ npm is the package registry and command line tool of the JavaScript world. Autho
 - [[01-brief-workstation-and-editor]]
 - [[nodejs-packages-docs-workstation-and-editor]]
 - [[commitlint-tech-and-services]]
+- [[devtools-frontend-tech-and-services]]
 
 ## My insights

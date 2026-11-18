@@ -15,5 +15,7 @@ TypeScript adds static types to JavaScript. Its compiler `tsc` can also check pl
 - [[browser-compat-data-tech-and-services]]
 - [[06-capstone-how-to-learn-frontend]]
 - [[commitlint-tech-and-services]]
+- [[lighthouse-tech-and-services]]
+- [[devtools-frontend-tech-and-services]]
 
 ## My insights

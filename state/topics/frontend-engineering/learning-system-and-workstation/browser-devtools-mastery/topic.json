@@ -7,7 +7,7 @@
   "subdomain": "learning-system-and-workstation",
   "depth": "deep",
   "created_at": "2026-11-18T09:43:20Z",
-  "updated_at": "2026-11-18T10:17:04Z",
+  "updated_at": "2026-11-18T10:30:44Z",
   "paths": {
     "state": "state/topics/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery",
     "vault": "vault/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery",
@@ -2045,25 +2045,121 @@
       "id": "digest",
       "wave": 2,
       "skill": "learn-digest",
-      "status": "pending",
+      "status": "done",
       "scope": "required",
-      "started_at": null,
-      "finished_at": null,
-      "attempts": 0,
-      "units": [],
-      "note": ""
+      "started_at": "2026-11-18T10:17:43Z",
+      "finished_at": "2026-11-18T10:30:44Z",
+      "attempts": 1,
+      "units": [
+        {
+          "id": "ecma-426-source-map",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "chrome-devtools-network-docs",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "chrome-devtools-memory-docs",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "firefox-devtools-user-docs",
+          "status": "done",
+          "handoff": null
+        }
+      ],
+      "note": "",
+      "continue_after_failure": false,
+      "validation": {
+        "version": 2,
+        "fingerprint": "7905dc4b06f342e3cccc9b17a10170472c9c5cb228c427021f7f63c6c604524f",
+        "at": "2026-11-18T10:30:44Z",
+        "forced": false
+      }
     },
     {
       "id": "repo-intel",
       "wave": 2,
       "skill": "learn-repo-intel",
-      "status": "pending",
+      "status": "done",
       "scope": "required",
-      "started_at": null,
-      "finished_at": null,
-      "attempts": 0,
-      "units": [],
-      "note": ""
+      "started_at": "2026-11-18T10:17:44Z",
+      "finished_at": "2026-11-18T10:30:41Z",
+      "attempts": 1,
+      "units": [
+        {
+          "id": "googlechrome-lighthouse-scout",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "chromedevtools-devtools-frontend-scout",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "googlechrome-lighthouse-module-gather-pipeline",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "googlechrome-lighthouse-module-metrics-and-trace",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "googlechrome-lighthouse-module-audits-and-scoring",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "googlechrome-lighthouse-module-build-and-infra",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "chromedevtools-devtools-frontend-module-source-map",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "chromedevtools-devtools-frontend-module-har",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "chromedevtools-devtools-frontend-module-heap-snapshot",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "chromedevtools-devtools-frontend-module-cdp-client",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "googlechrome-lighthouse-synthesis",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "chromedevtools-devtools-frontend-synthesis",
+          "status": "done",
+          "handoff": null
+        }
+      ],
+      "note": "",
+      "continue_after_failure": false,
+      "validation": {
+        "version": 2,
+        "fingerprint": "c39ab26e1e57c98f8af1d02b9d080044fb462172f46af8fee8b4174cd9680d22",
+        "at": "2026-11-18T10:30:41Z",
+        "forced": false
+      }
     },
     {
       "id": "lesson",
@@ -2365,6 +2461,409 @@
       "event": "done",
       "message": "gate passed",
       "stage": "brief"
+    },
+    {
+      "at": "2026-11-18T10:17:43Z",
+      "event": "start",
+      "message": "attempt 1",
+      "stage": "digest"
+    },
+    {
+      "at": "2026-11-18T10:17:44Z",
+      "event": "start",
+      "message": "attempt 1",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T10:17:46Z",
+      "event": "unit-add",
+      "message": "unit ecma-426-source-map",
+      "stage": "digest"
+    },
+    {
+      "at": "2026-11-18T10:17:47Z",
+      "event": "unit-add",
+      "message": "unit chrome-devtools-network-docs",
+      "stage": "digest"
+    },
+    {
+      "at": "2026-11-18T10:17:49Z",
+      "event": "unit-add",
+      "message": "unit chrome-devtools-memory-docs",
+      "stage": "digest"
+    },
+    {
+      "at": "2026-11-18T10:17:50Z",
+      "event": "unit-add",
+      "message": "unit firefox-devtools-user-docs",
+      "stage": "digest"
+    },
+    {
+      "at": "2026-11-18T10:17:52Z",
+      "event": "unit-add",
+      "message": "unit googlechrome-lighthouse-scout",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T10:17:53Z",
+      "event": "unit-add",
+      "message": "unit chromedevtools-devtools-frontend-scout",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T10:17:55Z",
+      "event": "note",
+      "message": "SPAWN 4/56 before wave 2 (research 4 workers)"
+    },
+    {
+      "at": "2026-11-18T10:18:33Z",
+      "event": "unit-start",
+      "message": "unit ecma-426-source-map",
+      "stage": "digest"
+    },
+    {
+      "at": "2026-11-18T10:18:40Z",
+      "event": "unit-start",
+      "message": "unit chrome-devtools-network-docs",
+      "stage": "digest"
+    },
+    {
+      "at": "2026-11-18T10:18:46Z",
+      "event": "note",
+      "message": "SPAWN 9/56"
+    },
+    {
+      "at": "2026-11-18T10:18:47Z",
+      "event": "note",
+      "message": "WAVE 1 done; running: 2 scouts + digests ecma-426, network, memory; queued: digest firefox-devtools-user-docs, then 8 module units, 2 syntheses"
+    },
+    {
+      "at": "2026-11-18T10:18:49Z",
+      "event": "unit-start",
+      "message": "unit chrome-devtools-memory-docs",
+      "stage": "digest"
+    },
+    {
+      "at": "2026-11-18T10:19:41Z",
+      "event": "visual",
+      "message": "added visual chrome-devtools-memory-docs-mechanism"
+    },
+    {
+      "at": "2026-11-18T10:19:47Z",
+      "event": "unit-done",
+      "message": "unit chrome-devtools-memory-docs",
+      "stage": "digest"
+    },
+    {
+      "at": "2026-11-18T10:19:50Z",
+      "event": "visual",
+      "message": "added visual chrome-devtools-network-docs-mechanism"
+    },
+    {
+      "at": "2026-11-18T10:19:52Z",
+      "event": "visual",
+      "message": "added visual ecma-426-source-map-mechanism"
+    },
+    {
+      "at": "2026-11-18T10:19:53Z",
+      "event": "unit-done",
+      "message": "unit chrome-devtools-network-docs",
+      "stage": "digest"
+    },
+    {
+      "at": "2026-11-18T10:19:57Z",
+      "event": "unit-done",
+      "message": "unit ecma-426-source-map",
+      "stage": "digest"
+    },
+    {
+      "at": "2026-11-18T10:20:40Z",
+      "event": "unit-start",
+      "message": "unit googlechrome-lighthouse-scout",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T10:20:42Z",
+      "event": "unit-start",
+      "message": "unit chromedevtools-devtools-frontend-scout",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T10:21:04Z",
+      "event": "unit-start",
+      "message": "unit firefox-devtools-user-docs",
+      "stage": "digest"
+    },
+    {
+      "at": "2026-11-18T10:21:58Z",
+      "event": "visual",
+      "message": "added visual firefox-devtools-user-docs-mechanism"
+    },
+    {
+      "at": "2026-11-18T10:22:04Z",
+      "event": "unit-done",
+      "message": "unit firefox-devtools-user-docs",
+      "stage": "digest"
+    },
+    {
+      "at": "2026-11-18T10:22:31Z",
+      "event": "unit-done",
+      "message": "unit googlechrome-lighthouse-scout",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T10:22:42Z",
+      "event": "unit-done",
+      "message": "unit chromedevtools-devtools-frontend-scout",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T10:23:24Z",
+      "event": "note",
+      "message": "SPAWN 10/56"
+    },
+    {
+      "at": "2026-11-18T10:23:32Z",
+      "event": "unit-add",
+      "message": "unit googlechrome-lighthouse-module-gather-pipeline",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T10:23:33Z",
+      "event": "unit-add",
+      "message": "unit googlechrome-lighthouse-module-metrics-and-trace",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T10:23:35Z",
+      "event": "unit-add",
+      "message": "unit googlechrome-lighthouse-module-audits-and-scoring",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T10:23:36Z",
+      "event": "unit-add",
+      "message": "unit googlechrome-lighthouse-module-build-and-infra",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T10:23:38Z",
+      "event": "unit-add",
+      "message": "unit chromedevtools-devtools-frontend-module-source-map",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T10:23:39Z",
+      "event": "unit-add",
+      "message": "unit chromedevtools-devtools-frontend-module-har",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T10:23:41Z",
+      "event": "unit-add",
+      "message": "unit chromedevtools-devtools-frontend-module-heap-snapshot",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T10:23:42Z",
+      "event": "unit-add",
+      "message": "unit chromedevtools-devtools-frontend-module-cdp-client",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T10:23:44Z",
+      "event": "unit-add",
+      "message": "unit googlechrome-lighthouse-synthesis",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T10:23:45Z",
+      "event": "unit-add",
+      "message": "unit chromedevtools-devtools-frontend-synthesis",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T10:24:02Z",
+      "event": "unit-start",
+      "message": "unit googlechrome-lighthouse-module-gather-pipeline",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T10:24:10Z",
+      "event": "unit-start",
+      "message": "unit googlechrome-lighthouse-module-metrics-and-trace",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T10:24:17Z",
+      "event": "unit-start",
+      "message": "unit googlechrome-lighthouse-module-audits-and-scoring",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T10:24:26Z",
+      "event": "unit-start",
+      "message": "unit chromedevtools-devtools-frontend-module-source-map",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T10:24:31Z",
+      "event": "note",
+      "message": "SPAWN 15/56"
+    },
+    {
+      "at": "2026-11-18T10:24:33Z",
+      "event": "unit-start",
+      "message": "unit chromedevtools-devtools-frontend-module-heap-snapshot",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T10:24:47Z",
+      "event": "gate-failed",
+      "message": "1 problems",
+      "stage": "digest"
+    },
+    {
+      "at": "2026-11-18T10:24:56Z",
+      "event": "unit-done",
+      "message": "unit googlechrome-lighthouse-module-gather-pipeline",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T10:24:58Z",
+      "event": "unit-done",
+      "message": "unit googlechrome-lighthouse-module-metrics-and-trace",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T10:25:08Z",
+      "event": "unit-done",
+      "message": "unit googlechrome-lighthouse-module-audits-and-scoring",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T10:25:17Z",
+      "event": "unit-start",
+      "message": "unit googlechrome-lighthouse-module-build-and-infra",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T10:25:25Z",
+      "event": "unit-done",
+      "message": "unit chromedevtools-devtools-frontend-module-source-map",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T10:25:27Z",
+      "event": "unit-start",
+      "message": "unit chromedevtools-devtools-frontend-module-har",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T10:25:33Z",
+      "event": "note",
+      "message": "SPAWN 18/56; modules done: lh-gather, lh-metrics, lh-audits; running: lh-build, dt-source-map, dt-heap, dt-har, dt-cdp"
+    },
+    {
+      "at": "2026-11-18T10:25:35Z",
+      "event": "unit-start",
+      "message": "unit chromedevtools-devtools-frontend-module-cdp-client",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T10:25:51Z",
+      "event": "unit-done",
+      "message": "unit chromedevtools-devtools-frontend-module-heap-snapshot",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T10:26:12Z",
+      "event": "unit-done",
+      "message": "unit googlechrome-lighthouse-module-build-and-infra",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T10:26:25Z",
+      "event": "unit-done",
+      "message": "unit chromedevtools-devtools-frontend-module-har",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T10:26:34Z",
+      "event": "note",
+      "message": "SPAWN 19/56; running lh-synthesis, dt-har, dt-cdp; queued dt-synthesis"
+    },
+    {
+      "at": "2026-11-18T10:26:35Z",
+      "event": "unit-done",
+      "message": "unit chromedevtools-devtools-frontend-module-cdp-client",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T10:26:54Z",
+      "event": "unit-start",
+      "message": "unit googlechrome-lighthouse-synthesis",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T10:27:00Z",
+      "event": "unit-start",
+      "message": "unit chromedevtools-devtools-frontend-synthesis",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T10:27:46Z",
+      "event": "visual",
+      "message": "added visual lighthouse-module-map"
+    },
+    {
+      "at": "2026-11-18T10:27:46Z",
+      "event": "visual",
+      "message": "added visual lighthouse-request-flow"
+    },
+    {
+      "at": "2026-11-18T10:28:36Z",
+      "event": "visual",
+      "message": "added visual devtools-frontend-module-map"
+    },
+    {
+      "at": "2026-11-18T10:28:36Z",
+      "event": "visual",
+      "message": "added visual devtools-frontend-request-flow"
+    },
+    {
+      "at": "2026-11-18T10:28:57Z",
+      "event": "unit-done",
+      "message": "unit googlechrome-lighthouse-synthesis",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T10:29:46Z",
+      "event": "unit-done",
+      "message": "unit chromedevtools-devtools-frontend-synthesis",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T10:30:20Z",
+      "event": "note",
+      "message": "SPAWN 20/56"
+    },
+    {
+      "at": "2026-11-18T10:30:37Z",
+      "event": "reader-order",
+      "message": "Imported explicit authored child-note sequence"
+    },
+    {
+      "at": "2026-11-18T10:30:41Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T10:30:44Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "digest"
     }
   ],
   "roadmap": {
@@ -2664,5 +3163,40 @@
         ]
       }
     }
+  },
+  "reader_order": {
+    "digest": [
+      "04-digests/ecma-426-source-map-browser-devtools-mastery.md",
+      "04-digests/chrome-devtools-network-docs-browser-devtools-mastery.md",
+      "04-digests/chrome-devtools-memory-docs-browser-devtools-mastery.md",
+      "04-digests/firefox-devtools-user-docs-browser-devtools-mastery.md"
+    ],
+    "repo-intel": [
+      "05-repo-intel/googlechrome-lighthouse/lighthouse-overview.md",
+      "05-repo-intel/googlechrome-lighthouse/lighthouse-architecture.md",
+      "05-repo-intel/googlechrome-lighthouse/lighthouse-findings.md",
+      "05-repo-intel/googlechrome-lighthouse/lighthouse-tech-and-services.md",
+      "05-repo-intel/googlechrome-lighthouse/lighthouse-takeaways.md",
+      "05-repo-intel/googlechrome-lighthouse/lighthouse-module-gather-pipeline.md",
+      "05-repo-intel/googlechrome-lighthouse/lighthouse-module-metrics-and-trace.md",
+      "05-repo-intel/googlechrome-lighthouse/lighthouse-module-audits-and-scoring.md",
+      "05-repo-intel/googlechrome-lighthouse/lighthouse-module-build-and-infra.md",
+      "05-repo-intel/googlechrome-lighthouse/lighthouse-pattern-memoized-computed-artifacts.md",
+      "05-repo-intel/googlechrome-lighthouse/lighthouse-pattern-fail-soft-pipeline.md",
+      "05-repo-intel/googlechrome-lighthouse/lighthouse-pattern-data-fitted-scoring.md",
+      "05-repo-intel/chromedevtools-devtools-frontend/devtools-frontend-overview.md",
+      "05-repo-intel/chromedevtools-devtools-frontend/devtools-frontend-architecture.md",
+      "05-repo-intel/chromedevtools-devtools-frontend/devtools-frontend-findings.md",
+      "05-repo-intel/chromedevtools-devtools-frontend/devtools-frontend-tech-and-services.md",
+      "05-repo-intel/chromedevtools-devtools-frontend/devtools-frontend-takeaways.md",
+      "05-repo-intel/chromedevtools-devtools-frontend/devtools-frontend-module-source-map.md",
+      "05-repo-intel/chromedevtools-devtools-frontend/devtools-frontend-module-har.md",
+      "05-repo-intel/chromedevtools-devtools-frontend/devtools-frontend-module-heap-snapshot.md",
+      "05-repo-intel/chromedevtools-devtools-frontend/devtools-frontend-module-cdp-client.md",
+      "05-repo-intel/chromedevtools-devtools-frontend/devtools-frontend-pattern-untrusted-input.md",
+      "05-repo-intel/chromedevtools-devtools-frontend/devtools-frontend-pattern-fail-soft-parsing.md",
+      "05-repo-intel/chromedevtools-devtools-frontend/devtools-frontend-pattern-lazy-and-off-thread-work.md",
+      "05-repo-intel/chromedevtools-devtools-frontend/devtools-frontend-pattern-derived-data-with-unknowns.md"
+    ]
   }
 }

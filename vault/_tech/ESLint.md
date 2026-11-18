@@ -13,5 +13,7 @@ ESLint is a tool that reads JavaScript source and reports likely bugs and style 
 ## Where it shows up
 
 - [[browser-compat-data-tech-and-services]]
+- [[lighthouse-tech-and-services]]
+- [[devtools-frontend-tech-and-services]]
 
 ## My insights
