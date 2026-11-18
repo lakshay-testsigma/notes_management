@@ -7,7 +7,7 @@
   "subdomain": "how-the-web-works",
   "depth": "standard",
   "created_at": "2026-11-18T13:23:38Z",
-  "updated_at": "2026-11-18T13:25:56Z",
+  "updated_at": "2026-11-18T13:53:07Z",
   "paths": {
     "state": "state/topics/frontend-engineering/how-the-web-works/how-browsers-work",
     "vault": "vault/frontend-engineering/how-the-web-works/how-browsers-work",
@@ -348,8 +348,23 @@
           "roadmap_items": [
             "browser-architecture"
           ],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "chrome-inside-look-browser",
+            "chrome-renderingng-architecture-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/how-the-web-works/how-browsers-work/01-browser-architecture.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": []
         },
         {
@@ -360,8 +375,23 @@
           "importance": "core",
           "disposition": "included",
           "roadmap_items": [],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "chrome-inside-look-browser",
+            "chrome-renderingng-architecture-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/how-the-web-works/how-browsers-work/01-browser-architecture.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": []
         },
         {
@@ -372,8 +402,22 @@
           "importance": "core",
           "disposition": "included",
           "roadmap_items": [],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "chrome-inside-look-browser"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/how-the-web-works/how-browsers-work/01-browser-architecture.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": []
         },
         {
@@ -384,8 +428,24 @@
           "importance": "supporting",
           "disposition": "included",
           "roadmap_items": [],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "v8-ignition-turbofan",
+            "v8-trash-talk-orinoco",
+            "chrome-inside-look-browser"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/how-the-web-works/how-browsers-work/01-browser-architecture.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": []
         },
         {
@@ -398,8 +458,23 @@
           "roadmap_items": [
             "navigation-page-lifecycle"
           ],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "chrome-inside-look-browser",
+            "webdev-bfcache"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/how-the-web-works/how-browsers-work/02-navigation-and-page-lifecycle.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": [
             "multi-process-model"
           ]
@@ -412,8 +487,22 @@
           "importance": "critical",
           "disposition": "included",
           "roadmap_items": [],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "chrome-inside-look-browser"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/how-the-web-works/how-browsers-work/02-navigation-and-page-lifecycle.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": []
         },
         {
@@ -424,8 +513,23 @@
           "importance": "core",
           "disposition": "included",
           "roadmap_items": [],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "webdev-bfcache",
+            "mdn-same-origin-policy"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/how-the-web-works/how-browsers-work/02-navigation-and-page-lifecycle.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": []
         },
         {
@@ -436,8 +540,22 @@
           "importance": "core",
           "disposition": "included",
           "roadmap_items": [],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "webdev-bfcache"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/how-the-web-works/how-browsers-work/02-navigation-and-page-lifecycle.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": []
         },
         {
@@ -450,8 +568,26 @@
           "roadmap_items": [
             "critical-rendering-path"
           ],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "chrome-inside-look-browser",
+            "webdev-preload-scanner",
+            "mdn-same-origin-policy",
+            "chrome-renderingng-architecture-docs",
+            "googlechrome-lighthouse-repo"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/how-the-web-works/how-browsers-work/03-critical-rendering-path.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": [
             "navigation-steps"
           ]
@@ -464,8 +600,22 @@
           "importance": "critical",
           "disposition": "included",
           "roadmap_items": [],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "chrome-inside-look-browser"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/how-the-web-works/how-browsers-work/03-critical-rendering-path.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": []
         },
         {
@@ -476,8 +626,24 @@
           "importance": "critical",
           "disposition": "included",
           "roadmap_items": [],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "chrome-inside-look-browser",
+            "webdev-preload-scanner",
+            "googlechrome-lighthouse-repo"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/how-the-web-works/how-browsers-work/03-critical-rendering-path.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": []
         },
         {
@@ -488,8 +654,22 @@
           "importance": "core",
           "disposition": "included",
           "roadmap_items": [],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "webdev-preload-scanner"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/how-the-web-works/how-browsers-work/03-critical-rendering-path.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": []
         },
         {
@@ -502,8 +682,23 @@
           "roadmap_items": [
             "rendering-pipeline-compositing"
           ],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "chrome-renderingng-architecture-docs",
+            "chrome-inside-look-browser"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/how-the-web-works/how-browsers-work/04-rendering-pipeline-and-compositing.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": [
             "dom-cssom-render-tree"
           ]
@@ -516,8 +711,23 @@
           "importance": "critical",
           "disposition": "included",
           "roadmap_items": [],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "chrome-inside-look-browser",
+            "chrome-renderingng-architecture-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/how-the-web-works/how-browsers-work/04-rendering-pipeline-and-compositing.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": []
         },
         {
@@ -528,8 +738,23 @@
           "importance": "core",
           "disposition": "included",
           "roadmap_items": [],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "chrome-inside-look-browser",
+            "chrome-renderingng-architecture-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/how-the-web-works/how-browsers-work/04-rendering-pipeline-and-compositing.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": []
         },
         {
@@ -542,8 +767,23 @@
           "roadmap_items": [
             "javascript-engine-internals"
           ],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "v8-ignition-turbofan",
+            "v8-trash-talk-orinoco"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/how-the-web-works/how-browsers-work/06-javascript-engine-internals.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": []
         },
         {
@@ -554,20 +794,48 @@
           "importance": "core",
           "disposition": "included",
           "roadmap_items": [],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "v8-ignition-turbofan"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/how-the-web-works/how-browsers-work/06-javascript-engine-internals.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": []
         },
         {
           "id": "hidden-classes-inline-caches",
-          "title": "Hidden classes, inline caches and deopts",
+          "title": "Hidden classes and stable object shapes",
           "parent": "js-engine-internals",
           "complexity": "advanced",
           "importance": "core",
           "disposition": "included",
           "roadmap_items": [],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "v8-ignition-turbofan"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/how-the-web-works/how-browsers-work/06-javascript-engine-internals.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": []
         },
         {
@@ -578,8 +846,22 @@
           "importance": "core",
           "disposition": "included",
           "roadmap_items": [],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "v8-trash-talk-orinoco"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/how-the-web-works/how-browsers-work/06-javascript-engine-internals.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": []
         },
         {
@@ -592,8 +874,22 @@
           "roadmap_items": [
             "event-loop"
           ],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "whatwg-html-event-loops"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/how-the-web-works/how-browsers-work/05-event-loop.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": []
         },
         {
@@ -604,8 +900,22 @@
           "importance": "critical",
           "disposition": "included",
           "roadmap_items": [],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "whatwg-html-event-loops"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/how-the-web-works/how-browsers-work/05-event-loop.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": []
         },
         {
@@ -616,8 +926,22 @@
           "importance": "core",
           "disposition": "included",
           "roadmap_items": [],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "whatwg-html-event-loops"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/how-the-web-works/how-browsers-work/05-event-loop.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": []
         },
         {
@@ -628,8 +952,25 @@
           "importance": "critical",
           "disposition": "included",
           "roadmap_items": [],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "whatwg-html-event-loops",
+            "chrome-inside-look-browser",
+            "webdev-optimize-long-tasks",
+            "googlechrome-lighthouse-repo"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/how-the-web-works/how-browsers-work/05-event-loop.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": []
         },
         {
@@ -642,8 +983,22 @@
           "roadmap_items": [
             "browser-storage-quotas-overview"
           ],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "mdn-storage-quotas-eviction"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/how-the-web-works/how-browsers-work/07-storage-and-same-origin-in-practice.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": []
         },
         {
@@ -654,8 +1009,23 @@
           "importance": "core",
           "disposition": "included",
           "roadmap_items": [],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "mdn-storage-quotas-eviction",
+            "mdn-same-origin-policy"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/how-the-web-works/how-browsers-work/07-storage-and-same-origin-in-practice.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": []
         },
         {
@@ -666,8 +1036,22 @@
           "importance": "core",
           "disposition": "included",
           "roadmap_items": [],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "mdn-storage-quotas-eviction"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/how-the-web-works/how-browsers-work/07-storage-and-same-origin-in-practice.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": []
         },
         {
@@ -680,8 +1064,22 @@
           "roadmap_items": [
             "same-origin-policy"
           ],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "mdn-same-origin-policy"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/how-the-web-works/how-browsers-work/07-storage-and-same-origin-in-practice.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": [
             "site-isolation"
           ]
@@ -694,24 +1092,182 @@
           "importance": "critical",
           "disposition": "included",
           "roadmap_items": [],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "mdn-same-origin-policy"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/how-the-web-works/how-browsers-work/07-storage-and-same-origin-in-practice.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": []
         },
         {
           "id": "cors-coop-coep",
-          "title": "CORS, COOP and COEP at a glance",
+          "title": "CORS and cross-origin isolation",
           "parent": "same-origin-policy",
           "complexity": "intermediate",
           "importance": "core",
           "disposition": "included",
           "roadmap_items": [],
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "mdn-same-origin-policy"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/how-the-web-works/how-browsers-work/07-storage-and-same-origin-in-practice.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "prerequisites": []
         }
       ],
-      "discovery": []
+      "discovery": [
+        {
+          "round": 1,
+          "frontier": [
+            "browser-architecture",
+            "navigation-and-lifecycle",
+            "critical-rendering-path",
+            "rendering-pipeline",
+            "js-engine-internals",
+            "event-loop",
+            "browser-storage",
+            "same-origin-policy"
+          ],
+          "source_ids": [
+            "mdn-same-origin-policy",
+            "mdn-storage-quotas-eviction",
+            "v8-ignition-turbofan",
+            "v8-trash-talk-orinoco",
+            "googlechrome-lighthouse-repo",
+            "chrome-renderingng-architecture-docs",
+            "chrome-inside-look-browser",
+            "whatwg-html-event-loops",
+            "webdev-bfcache",
+            "webdev-preload-scanner",
+            "webdev-optimize-long-tasks"
+          ],
+          "added": [
+            "browser-architecture",
+            "navigation-and-lifecycle",
+            "critical-rendering-path",
+            "rendering-pipeline",
+            "js-engine-internals",
+            "event-loop",
+            "browser-storage",
+            "same-origin-policy"
+          ],
+          "note": "Roots seeded from the items of roadmap section 01.2 and confirmed against the verified sources."
+        },
+        {
+          "round": 2,
+          "frontier": [
+            "browser-architecture",
+            "navigation-and-lifecycle",
+            "critical-rendering-path",
+            "rendering-pipeline",
+            "js-engine-internals",
+            "event-loop",
+            "browser-storage",
+            "same-origin-policy"
+          ],
+          "source_ids": [
+            "mdn-same-origin-policy",
+            "mdn-storage-quotas-eviction",
+            "v8-ignition-turbofan",
+            "v8-trash-talk-orinoco",
+            "googlechrome-lighthouse-repo",
+            "chrome-renderingng-architecture-docs",
+            "chrome-inside-look-browser",
+            "whatwg-html-event-loops",
+            "webdev-bfcache",
+            "webdev-preload-scanner",
+            "webdev-optimize-long-tasks"
+          ],
+          "added": [
+            "multi-process-model",
+            "site-isolation",
+            "browser-and-js-engines",
+            "navigation-steps",
+            "lifecycle-events",
+            "bfcache-freeze-resume",
+            "dom-cssom-render-tree",
+            "parser-and-render-blocking",
+            "preload-scanner",
+            "layout-paint-composite",
+            "layers-and-will-change",
+            "parsing-bytecode-jit",
+            "hidden-classes-inline-caches",
+            "garbage-collection",
+            "tasks-and-microtasks",
+            "rendering-steps-and-raf",
+            "long-tasks-and-input",
+            "storage-apis-compared",
+            "quotas-eviction-persistence",
+            "what-sop-isolates",
+            "cors-coop-coep"
+          ],
+          "note": "Four research units (docs-browser-internals, docs-engines-storage-origin, repos, gap-01) verified children under each root; gap-01 widened the MDN and V8 entries into documentation sets to stay within the 12-source cap."
+        },
+        {
+          "round": 3,
+          "frontier": [
+            "multi-process-model",
+            "site-isolation",
+            "browser-and-js-engines",
+            "navigation-steps",
+            "lifecycle-events",
+            "bfcache-freeze-resume",
+            "dom-cssom-render-tree",
+            "parser-and-render-blocking",
+            "preload-scanner",
+            "layout-paint-composite",
+            "layers-and-will-change",
+            "parsing-bytecode-jit",
+            "hidden-classes-inline-caches",
+            "garbage-collection",
+            "tasks-and-microtasks",
+            "rendering-steps-and-raf",
+            "long-tasks-and-input",
+            "storage-apis-compared",
+            "quotas-eviction-persistence",
+            "what-sop-isolates",
+            "cors-coop-coep"
+          ],
+          "source_ids": [
+            "mdn-same-origin-policy",
+            "mdn-storage-quotas-eviction",
+            "v8-ignition-turbofan",
+            "v8-trash-talk-orinoco",
+            "googlechrome-lighthouse-repo",
+            "chrome-renderingng-architecture-docs",
+            "chrome-inside-look-browser",
+            "whatwg-html-event-loops",
+            "webdev-bfcache",
+            "webdev-preload-scanner",
+            "webdev-optimize-long-tasks"
+          ],
+          "added": [],
+          "stop_reason": "budget-limit",
+          "note": "Children expanded against the same sources. Inline-cache mechanics, lazy parsing and standalone COOP/COEP have no direct verified source in this run, so the concepts were narrowed to hidden classes and to CORS with cross-origin isolation; the coverage audit may add sources."
+        }
+      ]
     }
   },
   "stages": [
@@ -722,15 +1278,15 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T13:24:36Z",
-      "finished_at": "2026-11-18T13:25:56Z",
+      "finished_at": "2026-11-18T13:52:42Z",
       "attempts": 1,
       "units": [],
       "note": "",
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "aae2957c1e4657778d386376c734b69fe7f45152ce0d0be38f6a9ca355c27566",
-        "at": "2026-11-18T13:25:56Z",
+        "fingerprint": "ac8e7ca4458fdc73a938355a5b84ef5f79c475d57c3699eb9b135e803fb043af",
+        "at": "2026-11-18T13:52:42Z",
         "forced": false
       }
     },
@@ -738,13 +1294,41 @@
       "id": "research",
       "wave": 1,
       "skill": "learn-research",
-      "status": "pending",
+      "status": "done",
       "scope": "required",
-      "started_at": null,
-      "finished_at": null,
-      "attempts": 0,
-      "units": [],
-      "note": ""
+      "started_at": "2026-11-18T13:32:34Z",
+      "finished_at": "2026-11-18T13:53:07Z",
+      "attempts": 1,
+      "units": [
+        {
+          "id": "docs-browser-internals",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "docs-engines-storage-origin",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "repos",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "gap-01",
+          "status": "done",
+          "handoff": null
+        }
+      ],
+      "note": "",
+      "continue_after_failure": false,
+      "validation": {
+        "version": 2,
+        "fingerprint": "7303df9ac3615cedcb5898f878d68335aea6a97a874ca49d8b421787b7fb9398",
+        "at": "2026-11-18T13:53:07Z",
+        "forced": false
+      }
     },
     {
       "id": "brief",
@@ -869,10 +1453,380 @@
       "event": "done",
       "message": "gate passed",
       "stage": "intake"
+    },
+    {
+      "at": "2026-11-18T13:32:34Z",
+      "event": "start",
+      "message": "attempt 1",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T13:33:16Z",
+      "event": "unit-add",
+      "message": "unit docs-browser-internals",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T13:33:23Z",
+      "event": "unit-add",
+      "message": "unit docs-engines-storage-origin",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T13:33:26Z",
+      "event": "unit-add",
+      "message": "unit repos",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T13:33:29Z",
+      "event": "note",
+      "message": "SPAWN 3/36; research docs-browser-internals, docs-engines-storage-origin, repos started (lookahead)"
+    },
+    {
+      "at": "2026-11-18T13:34:41Z",
+      "event": "source-add",
+      "message": "added mdn-same-origin-policy",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T13:34:44Z",
+      "event": "source-add",
+      "message": "added mdn-storage-quotas-eviction",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T13:34:47Z",
+      "event": "source-add",
+      "message": "added v8-ignition-turbofan",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T13:34:51Z",
+      "event": "source-add",
+      "message": "added v8-trash-talk-orinoco",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T13:35:02Z",
+      "event": "source-add",
+      "message": "added googlechrome-lighthouse-repo",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T13:35:05Z",
+      "event": "source-add",
+      "message": "added chrome-renderingng-architecture-docs",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T13:35:08Z",
+      "event": "unit-done",
+      "message": "unit docs-engines-storage-origin",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T13:35:18Z",
+      "event": "unit-done",
+      "message": "unit repos",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T13:35:46Z",
+      "event": "source-add",
+      "message": "added chrome-inside-look-browser",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T13:35:49Z",
+      "event": "source-add",
+      "message": "added whatwg-html-event-loops",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T13:35:52Z",
+      "event": "source-add",
+      "message": "added webdev-bfcache",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T13:35:56Z",
+      "event": "source-add",
+      "message": "added webdev-preload-scanner",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T13:36:28Z",
+      "event": "unit-done",
+      "message": "unit docs-browser-internals",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T13:36:43Z",
+      "event": "unit-add",
+      "message": "unit gap-01",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T13:36:46Z",
+      "event": "note",
+      "message": "SPAWN 4/36; research gap-01 started"
+    },
+    {
+      "at": "2026-11-18T13:37:36Z",
+      "event": "source-add",
+      "message": "added webdev-optimize-long-tasks",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T13:37:39Z",
+      "event": "source-update",
+      "message": "updated chrome-inside-look-browser: use_for",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T13:37:51Z",
+      "event": "source-update",
+      "message": "updated mdn-same-origin-policy: title, why_trusted, verified_via, use_for",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T13:38:00Z",
+      "event": "source-update",
+      "message": "updated v8-ignition-turbofan: title, why_trusted, verified_via",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T13:38:09Z",
+      "event": "source-update",
+      "message": "updated chrome-inside-look-browser: use_for",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T13:38:12Z",
+      "event": "source-update",
+      "message": "updated mdn-storage-quotas-eviction: use_for",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T13:38:29Z",
+      "event": "unit-done",
+      "message": "unit gap-01",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T13:52:12Z",
+      "event": "plan",
+      "message": "plan fields set: summary, prerequisites, outcomes, lesson_outline, mini_projects, digest_targets, repo_targets, capstone, learner, visual_policy, visual_first, multi_stage, experience_policy, curriculum",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-18T13:52:28Z",
+      "event": "execution-check",
+      "message": "research: failed",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T13:52:42Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-18T13:53:00Z",
+      "event": "execution-check",
+      "message": "research: pass",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T13:53:07Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "research"
     }
   ],
   "roadmap": {
     "id": "frontend",
     "section": "01.2"
+  },
+  "quality": {
+    "executions": {
+      "research": {
+        "version": 2,
+        "fingerprint": "7303df9ac3615cedcb5898f878d68335aea6a97a874ca49d8b421787b7fb9398",
+        "at": "2026-11-18T13:53:00Z",
+        "ok": true,
+        "checks": [
+          {
+            "label": "mdn-same-origin-policy: https://developer.mozilla.org/en-US/docs/Web/Security/Defenses/Same-origin_policy",
+            "source": "mdn-same-origin-policy",
+            "requested_url": "https://developer.mozilla.org/en-US/docs/Web/Security/Defenses/Same-origin_policy",
+            "ok": true,
+            "status": 200,
+            "bytes": 167208,
+            "sha256": "28925f6f86306a57f319a9272f32560594b3f9e6b06d68c2b82fefce6ad35313"
+          },
+          {
+            "label": "mdn-same-origin-policy: https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS",
+            "source": "mdn-same-origin-policy",
+            "requested_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS",
+            "ok": true,
+            "status": 200,
+            "bytes": 259950,
+            "sha256": "4b6de343a7307d6ffda69e22edd339a343c67d07bf2665896937290d7db5a2d5"
+          },
+          {
+            "label": "mdn-same-origin-policy: https://developer.mozilla.org/en-US/docs/Web/API/Window/crossOriginIsolated",
+            "source": "mdn-same-origin-policy",
+            "requested_url": "https://developer.mozilla.org/en-US/docs/Web/API/Window/crossOriginIsolated",
+            "ok": true,
+            "status": 200,
+            "bytes": 179638,
+            "sha256": "c1fb3f63e494fe6e0c3d3c9d3f5aacb9b10b4c2173e9c00b720af275542f2dc5"
+          },
+          {
+            "label": "mdn-same-origin-policy: https://developer.mozilla.org/en-US/docs/Web/Performance/Guides/Critical_rendering_path",
+            "source": "mdn-same-origin-policy",
+            "requested_url": "https://developer.mozilla.org/en-US/docs/Web/Performance/Guides/Critical_rendering_path",
+            "ok": true,
+            "status": 200,
+            "bytes": 156384,
+            "sha256": "10bd9e3d591fe28b7cba2a0240219fab9557e49e80e3e285f084dd5dbabc35b2"
+          },
+          {
+            "label": "mdn-same-origin-policy: https://developer.mozilla.org/en-US/docs/Web/API/Document/DOMContentLoaded_event",
+            "source": "mdn-same-origin-policy",
+            "requested_url": "https://developer.mozilla.org/en-US/docs/Web/API/Document/DOMContentLoaded_event",
+            "ok": true,
+            "status": 200,
+            "bytes": 185223,
+            "sha256": "085b9723faf96249b52252860e85b70b7db6f15bbdeb5d8abf2238b1a201dd99"
+          },
+          {
+            "label": "mdn-storage-quotas-eviction: https://developer.mozilla.org/en-US/docs/Web/API/Storage_API/Storage_quotas_and_eviction_criteria",
+            "source": "mdn-storage-quotas-eviction",
+            "requested_url": "https://developer.mozilla.org/en-US/docs/Web/API/Storage_API/Storage_quotas_and_eviction_criteria",
+            "ok": true,
+            "status": 200,
+            "bytes": 164720,
+            "sha256": "496036c2d2264d9f2cf6e00ac96ede9256a910b2aa92426f671e934f44ba756f"
+          },
+          {
+            "label": "v8-ignition-turbofan: https://v8.dev/blog/launching-ignition-and-turbofan",
+            "source": "v8-ignition-turbofan",
+            "requested_url": "https://v8.dev/blog/launching-ignition-and-turbofan",
+            "ok": true,
+            "status": 200,
+            "bytes": 10967,
+            "sha256": "52498d7303b6777929e9b3c10540b629e10d613b6f983c94dd789a150c3f3300"
+          },
+          {
+            "label": "v8-ignition-turbofan: https://v8.dev/docs/hidden-classes",
+            "source": "v8-ignition-turbofan",
+            "requested_url": "https://v8.dev/docs/hidden-classes",
+            "ok": true,
+            "status": 200,
+            "bytes": 27330,
+            "sha256": "0e8213cdf3bfa9766fb72abee9b4a74f4eae056e95adf05298ccf248f645613a"
+          },
+          {
+            "label": "v8-ignition-turbofan: https://v8.dev/blog/scanner",
+            "source": "v8-ignition-turbofan",
+            "requested_url": "https://v8.dev/blog/scanner",
+            "ok": true,
+            "status": 200,
+            "bytes": 18851,
+            "sha256": "3369437f533cc2224db5c8531f13161616cbf8a6d83793131765280089c46de1"
+          },
+          {
+            "label": "v8-trash-talk-orinoco: https://v8.dev/blog/trash-talk",
+            "source": "v8-trash-talk-orinoco",
+            "requested_url": "https://v8.dev/blog/trash-talk",
+            "ok": true,
+            "status": 200,
+            "bytes": 20913,
+            "sha256": "faae82bdd13f3b1b2f1722023750c5b8ee409e48deedd10781e3b603d9d0e223"
+          },
+          {
+            "label": "googlechrome-lighthouse-repo: https://api.github.com/repos/GoogleChrome/lighthouse",
+            "source": "googlechrome-lighthouse-repo",
+            "requested_url": "https://api.github.com/repos/GoogleChrome/lighthouse",
+            "ok": true,
+            "status": 200,
+            "bytes": 7698,
+            "sha256": "cb99384485edc5e028e67c5ba1187fa353c2eef437fe21617a8a76e1020a4697",
+            "repository": {
+              "stars": 31153,
+              "archived": false,
+              "pushed_at": "2026-11-18T00:52:41Z",
+              "license": "Apache-2.0"
+            }
+          },
+          {
+            "label": "chrome-renderingng-architecture-docs: https://developer.chrome.com/docs/chromium/renderingng-architecture",
+            "source": "chrome-renderingng-architecture-docs",
+            "requested_url": "https://developer.chrome.com/docs/chromium/renderingng-architecture",
+            "ok": true,
+            "status": 200,
+            "bytes": 147009,
+            "sha256": "08763d2c1c3a3b654023a7ef24f6265579536b17ca5d5196698b8d47ce55f93c"
+          },
+          {
+            "label": "chrome-inside-look-browser: https://developer.chrome.com/blog/inside-browser-part1",
+            "source": "chrome-inside-look-browser",
+            "requested_url": "https://developer.chrome.com/blog/inside-browser-part1",
+            "ok": true,
+            "status": 200,
+            "bytes": 121038,
+            "sha256": "47b2ffe7c1d270ca335058a3661af7583380e9b0dc6cee58bf4d5a9d14f68826"
+          },
+          {
+            "label": "whatwg-html-event-loops: https://html.spec.whatwg.org/multipage/webappapis.html",
+            "source": "whatwg-html-event-loops",
+            "requested_url": "https://html.spec.whatwg.org/multipage/webappapis.html",
+            "ok": true,
+            "status": 200,
+            "bytes": 806867,
+            "sha256": "ebf03347de6492a414125645ecbb3fb9510c38f50ba9af2b8d38d99a1071d13d"
+          },
+          {
+            "label": "whatwg-html-event-loops: https://html.spec.whatwg.org/multipage/webappapis.html#event-loops",
+            "source": "whatwg-html-event-loops",
+            "requested_url": "https://html.spec.whatwg.org/multipage/webappapis.html#event-loops",
+            "ok": true,
+            "status": 200,
+            "bytes": 806867,
+            "sha256": "ebf03347de6492a414125645ecbb3fb9510c38f50ba9af2b8d38d99a1071d13d"
+          },
+          {
+            "label": "webdev-bfcache: https://web.dev/articles/bfcache",
+            "source": "webdev-bfcache",
+            "requested_url": "https://web.dev/articles/bfcache",
+            "ok": true,
+            "status": 200,
+            "bytes": 158440,
+            "sha256": "8a3f110e9e2f28a03660a9d2f0b5d499072618e81860d621f8dadefaafcdb48f"
+          },
+          {
+            "label": "webdev-preload-scanner: https://web.dev/articles/preload-scanner",
+            "source": "webdev-preload-scanner",
+            "requested_url": "https://web.dev/articles/preload-scanner",
+            "ok": true,
+            "status": 200,
+            "bytes": 135211,
+            "sha256": "9b3f42465a400fd65845d6f3fdfbb649fcd89eab39e9472399c902c40eb98125"
+          },
+          {
+            "label": "webdev-optimize-long-tasks: https://web.dev/articles/optimize-long-tasks",
+            "source": "webdev-optimize-long-tasks",
+            "requested_url": "https://web.dev/articles/optimize-long-tasks",
+            "ok": true,
+            "status": 200,
+            "bytes": 198463,
+            "sha256": "d9aa3f7e0d9b2b87927cfc2ef2d1af8149206bd509389a291f8bed698de8c0a8"
+          }
+        ]
+      }
+    }
   }
 }

@@ -11,7 +11,7 @@ created: 2026-11-18
 This is the map of the topic. Read the steps from top to bottom. Each step links to the next thing to open, so you never have to search.
 
 <!-- tutor:generated:start -->
-**Depth:** standard · **Progress:** 1 of 10 steps ready
+**Depth:** standard · **Progress:** 2 of 10 steps ready
 
 How a browser turns a URL into pixels: its processes, navigation and lifecycle, the critical rendering path and compositing, the JavaScript engine, the event loop, storage and the same-origin policy.
 
@@ -25,7 +25,7 @@ How a browser turns a URL into pixels: its processes, navigation and lifecycle, 
 6. [[06-capstone-how-browsers-work|Capstone]] — the production-style project · *not started*
 7. [[07-final-notes-how-browsers-work|Final notes]] — the one-page refresher · *not started*
 8. [[08-recall-how-browsers-work|Recall cards]] — flashcards for spaced review · *not started*
-9. [[09-resources-how-browsers-work|Resources]] — the vetted sources behind everything above · *not started*
+9. [[09-resources-how-browsers-work|Resources]] — the vetted sources behind everything above · *ready*
 
 Your own additions live in [[my-insights-how-browsers-work|My insights]].
 
@@ -81,7 +81,7 @@ How a browser works for a frontend developer: process architecture and site isol
 - Layers, will-change and layer explosion: included
 - JavaScript engine internals: included
 - Parsing, bytecode and JIT tiers: included
-- Hidden classes, inline caches and deopts: included
+- Hidden classes and stable object shapes: included
 - Generational garbage collection: included
 - The event loop: included
 - Tasks, microtasks and the call stack: included
@@ -92,7 +92,9 @@ How a browser works for a frontend developer: process architecture and site isol
 - Quotas, eviction and persistent storage: included
 - Same-origin policy: included
 - What the same-origin policy isolates and allows: included
-- CORS, COOP and COEP at a glance: included
+- CORS and cross-origin isolation: included
+
+Research stopped: budget-limit. Children expanded against the same sources. Inline-cache mechanics, lazy parsing and standalone COOP/COEP have no direct verified source in this run, so the concepts were narrowed to hidden classes and to CORS with cross-origin isolation; the coverage audit may add sources.
 
 ## Projects
 
@@ -105,7 +107,7 @@ How a browser works for a frontend developer: process architecture and site isol
 | Wave | Stage | Status |
 |------|-------|--------|
 | 0 | intake | ready |
-| 1 | research | not started |
+| 1 | research | ready |
 | 1 | brief | not started |
 | 2 | digest | not started |
 | 2 | repo-intel | not started |
@@ -115,7 +117,7 @@ How a browser works for a frontend developer: process architecture and site isol
 | 5 | notes | not started |
 | 5 | finalize | not started |
 
-Next to generate: `research`. Ask Claude to continue this topic, or run `node harness/bin/tutor.mjs next frontend-engineering/how-the-web-works/how-browsers-work`.
+Next to generate: `brief`. Ask Claude to continue this topic, or run `node harness/bin/tutor.mjs next frontend-engineering/how-the-web-works/how-browsers-work`.
 <!-- tutor:generated:end -->
 
 ## My insights

@@ -28,7 +28,7 @@ flowchart TD
   layers_and_will_change["Layers, will-change and layer explosion"]
   js_engine_internals["JavaScript engine internals"]
   parsing_bytecode_jit["Parsing, bytecode and JIT tiers"]
-  hidden_classes_inline_caches["Hidden classes, inline caches and deopts"]
+  hidden_classes_inline_caches["Hidden classes and stable object shapes"]
   garbage_collection["Generational garbage collection"]
   event_loop["The event loop"]
   tasks_and_microtasks["Tasks, microtasks and the call stack"]
@@ -39,7 +39,7 @@ flowchart TD
   quotas_eviction_persistence["Quotas, eviction and persistent storage"]
   same_origin_policy["Same-origin policy"]
   what_sop_isolates["What the same-origin policy isolates and allows"]
-  cors_coop_coep["CORS, COOP and COEP at a glance"]
+  cors_coop_coep["CORS and cross-origin isolation"]
   browser_architecture --> multi_process_model
   browser_architecture --> site_isolation
   browser_architecture --> browser_and_js_engines

@@ -1,1 +1,262 @@
-[]
+[
+  {
+    "id": "mdn-same-origin-policy",
+    "type": "official-docs",
+    "title": "MDN Web Docs set: same-origin policy, CORS, cross-origin isolation, critical rendering path, DOMContentLoaded",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/Security/Defenses/Same-origin_policy",
+    "authors": "MDN Web Docs contributors",
+    "year": 2026,
+    "tier": "A",
+    "why_trusted": "MDN reference set that defines origin, lists what the browser allows and blocks across origins, and explains CORS with preflight, the COOP and COEP headers behind crossOriginIsolated, the critical rendering path steps and the DOMContentLoaded versus load order. Pages last modified between 2025-02-25 and 2026-10-28.",
+    "evidence": {
+      "stars": null,
+      "last_commit": null,
+      "citations": null,
+      "venue": null,
+      "publisher": "Mozilla (MDN Web Docs)",
+      "used_by": []
+    },
+    "verified_at": "2026-11-18",
+    "verified_via": "https://developer.mozilla.org/en-US/docs/Web/Security/Defenses/Same-origin_policy ; https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS (modified 2026-10-28) ; https://developer.mozilla.org/en-US/docs/Web/API/Window/crossOriginIsolated (modified 2026-08-21) ; https://developer.mozilla.org/en-US/docs/Web/Performance/Guides/Critical_rendering_path (modified 2025-02-25) ; https://developer.mozilla.org/en-US/docs/Web/API/Document/DOMContentLoaded_event (modified 2026-10-26)",
+    "use_for": [
+      "lesson"
+    ]
+  },
+  {
+    "id": "mdn-storage-quotas-eviction",
+    "type": "official-docs",
+    "title": "Storage quotas and eviction criteria",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/API/Storage_API/Storage_quotas_and_eviction_criteria",
+    "authors": "MDN Web Docs contributors",
+    "year": 2026,
+    "tier": "A",
+    "why_trusted": "MDN reference that compares browser storage mechanisms, per-browser quotas, best-effort versus persistent storage and eviction rules. Last modified 2026-01-05.",
+    "evidence": {
+      "stars": null,
+      "last_commit": null,
+      "citations": null,
+      "venue": null,
+      "publisher": "Mozilla (MDN Web Docs)",
+      "used_by": []
+    },
+    "verified_at": "2026-11-18",
+    "verified_via": "https://developer.mozilla.org/en-US/docs/Web/API/Storage_API/Storage_quotas_and_eviction_criteria",
+    "use_for": [
+      "lesson"
+    ]
+  },
+  {
+    "id": "v8-ignition-turbofan",
+    "type": "engineering-blog",
+    "title": "V8 documentation and blog set: Ignition and TurboFan, hidden classes, scanner and parsing",
+    "url": "https://v8.dev/blog/launching-ignition-and-turbofan",
+    "authors": "V8 team",
+    "year": 2017,
+    "tier": "A",
+    "why_trusted": "Official V8 project site. The Ignition and TurboFan post announces the interpreter and compiler pipeline in Chrome 59. The hidden-classes doc explains maps and mentions inline caches only in passing. The 'Blazingly fast parsing, part 1' post (Toon Verwaest, 2019-03-25) covers the scanner and the parser building an AST, but not lazy parsing.",
+    "evidence": {
+      "stars": null,
+      "last_commit": null,
+      "citations": null,
+      "venue": null,
+      "publisher": "V8 project (v8.dev)",
+      "used_by": []
+    },
+    "verified_at": "2026-11-18",
+    "verified_via": "https://v8.dev/blog/launching-ignition-and-turbofan ; https://v8.dev/docs/hidden-classes ; https://v8.dev/blog/scanner",
+    "use_for": [
+      "lesson"
+    ]
+  },
+  {
+    "id": "v8-trash-talk-orinoco",
+    "type": "engineering-blog",
+    "title": "Trash talk: the Orinoco garbage collector",
+    "url": "https://v8.dev/blog/trash-talk",
+    "authors": "Peter Marshall, V8 team",
+    "year": 2019,
+    "tier": "A",
+    "why_trusted": "Official V8 project blog post that explains the generational heap, Scavenger, Mark-Compact and the Orinoco project.",
+    "evidence": {
+      "stars": null,
+      "last_commit": null,
+      "citations": null,
+      "venue": null,
+      "publisher": "V8 project (v8.dev)",
+      "used_by": []
+    },
+    "verified_at": "2026-11-18",
+    "verified_via": "https://v8.dev/blog/trash-talk",
+    "use_for": [
+      "lesson"
+    ]
+  },
+  {
+    "id": "googlechrome-lighthouse-repo",
+    "type": "repo",
+    "title": "GoogleChrome/lighthouse",
+    "url": "https://github.com/GoogleChrome/lighthouse",
+    "authors": "Google Chrome team",
+    "year": 2026,
+    "tier": "A",
+    "why_trusted": "The Chrome team's own open-source tool that drives Chrome over the DevTools Protocol, records a trace of a page load and scores render-blocking, LCP, layout shift and main-thread work; it powers PageSpeed Insights and DevTools.",
+    "evidence": {
+      "stars": 31153,
+      "last_commit": "2026-11-18",
+      "archived": false,
+      "license": "Apache-2.0",
+      "citations": null,
+      "venue": null,
+      "publisher": "GoogleChrome (GitHub organization)",
+      "used_by": [
+        "Chrome DevTools Lighthouse panel"
+      ]
+    },
+    "verified_at": "2026-11-18",
+    "verified_via": "https://api.github.com/repos/GoogleChrome/lighthouse (Apache-2.0, archived=false, pushed 2026-11-18); contents listing of core/audits/insights and core/gather on main",
+    "use_for": [
+      "repo-intel"
+    ]
+  },
+  {
+    "id": "chrome-renderingng-architecture-docs",
+    "type": "engineering-blog",
+    "title": "RenderingNG architecture",
+    "url": "https://developer.chrome.com/docs/chromium/renderingng-architecture",
+    "authors": "Chris Harrelson (illustrations Una Kravets)",
+    "year": 2026,
+    "tier": "A",
+    "why_trusted": "First-party Chrome documentation by a Chromium rendering engineer, describing the rendering pipeline stages and which process and thread runs each.",
+    "evidence": {
+      "stars": null,
+      "last_commit": null,
+      "citations": null,
+      "venue": null,
+      "publisher": "Google Chrome developers (developer.chrome.com)",
+      "used_by": []
+    },
+    "verified_at": "2026-11-18",
+    "verified_via": "https://developer.chrome.com/docs/chromium/renderingng-architecture",
+    "use_for": [
+      "lesson"
+    ]
+  },
+  {
+    "id": "chrome-inside-look-browser",
+    "type": "official-docs",
+    "title": "Inside look at modern web browser (parts 1-4)",
+    "url": "https://developer.chrome.com/blog/inside-browser-part1",
+    "authors": "Mariko Kosaka (Chrome team)",
+    "year": 2018,
+    "tier": "A",
+    "why_trusted": "The Chrome team's own four-part explanation of browser processes, navigation, rendering and compositor input, published on Chrome for Developers.",
+    "evidence": {
+      "stars": null,
+      "last_commit": null,
+      "citations": null,
+      "venue": "Chrome for Developers blog series (parts 1-4)",
+      "publisher": "Google Chrome for Developers",
+      "used_by": []
+    },
+    "verified_at": "2026-11-18",
+    "verified_via": "https://developer.chrome.com/blog/inside-browser-part1",
+    "use_for": [
+      "brief",
+      "digest",
+      "lesson"
+    ]
+  },
+  {
+    "id": "whatwg-html-event-loops",
+    "type": "standard",
+    "title": "HTML Standard: 8.1.7 Event loops (processing model, update the rendering, microtask checkpoint)",
+    "url": "https://html.spec.whatwg.org/multipage/webappapis.html#event-loops",
+    "authors": "WHATWG (HTML Living Standard editors)",
+    "year": 2026,
+    "tier": "A",
+    "why_trusted": "The living standard that defines the event loop, task queues, microtask checkpoints and the update-the-rendering steps that every browser implements.",
+    "evidence": {
+      "stars": null,
+      "last_commit": null,
+      "citations": null,
+      "venue": "HTML Living Standard",
+      "publisher": "WHATWG",
+      "used_by": []
+    },
+    "verified_at": "2026-11-18",
+    "verified_via": "https://html.spec.whatwg.org/multipage/webappapis.html",
+    "use_for": [
+      "digest",
+      "lesson"
+    ]
+  },
+  {
+    "id": "webdev-bfcache",
+    "type": "official-docs",
+    "title": "Back/forward cache",
+    "url": "https://web.dev/articles/bfcache",
+    "authors": "Philip Walton, Barry Pollard",
+    "year": 2023,
+    "tier": "A",
+    "why_trusted": "Google's web.dev reference on bfcache eligibility and the pageshow, pagehide, freeze and resume events, last updated October 2026.",
+    "evidence": {
+      "stars": null,
+      "last_commit": null,
+      "citations": null,
+      "venue": "web.dev articles, published 2023-05-25, updated 2026-10-16",
+      "publisher": "Google web.dev",
+      "used_by": []
+    },
+    "verified_at": "2026-11-18",
+    "verified_via": "https://web.dev/articles/bfcache",
+    "use_for": [
+      "lesson"
+    ]
+  },
+  {
+    "id": "webdev-preload-scanner",
+    "type": "official-docs",
+    "title": "Don't fight the browser preload scanner",
+    "url": "https://web.dev/articles/preload-scanner",
+    "authors": "Jeremy Wagner",
+    "year": 2026,
+    "tier": "B",
+    "why_trusted": "A web.dev article by a Google web performance author that explains the preload scanner and what hides resources from it.",
+    "evidence": {
+      "stars": null,
+      "last_commit": null,
+      "citations": null,
+      "venue": "web.dev articles",
+      "publisher": "Google web.dev",
+      "used_by": []
+    },
+    "verified_at": "2026-11-18",
+    "verified_via": "https://web.dev/articles/preload-scanner",
+    "use_for": [
+      "lesson"
+    ]
+  },
+  {
+    "id": "webdev-optimize-long-tasks",
+    "type": "official-docs",
+    "title": "Optimize long tasks",
+    "url": "https://web.dev/articles/optimize-long-tasks",
+    "authors": "Jeremy Wagner, Brendan Kenny",
+    "year": 2024,
+    "tier": "A",
+    "why_trusted": "Google's web.dev guide that defines a task, the main thread and the 50 ms long-task threshold, and shows yielding with scheduler.yield(). Published 2022-09-30, updated 2024-12-19.",
+    "evidence": {
+      "stars": null,
+      "last_commit": null,
+      "citations": null,
+      "venue": "web.dev articles",
+      "publisher": "Google web.dev",
+      "used_by": []
+    },
+    "verified_at": "2026-11-18",
+    "verified_via": "https://web.dev/articles/optimize-long-tasks",
+    "use_for": [
+      "lesson"
+    ]
+  }
+]
