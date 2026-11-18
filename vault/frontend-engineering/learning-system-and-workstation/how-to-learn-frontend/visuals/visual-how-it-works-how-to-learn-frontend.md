@@ -39,6 +39,7 @@ Answer: Explain, because teaching a topic shows the next gap to read about.
 ## Used in
 
 - [[01-brief-how-to-learn-frontend]]
+- lesson page `/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend/lesson/02-the-learning-loop/` (file `site/src/content/lessons/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend/02-the-learning-loop.mdx`)
 
 Back to [[visuals-how-to-learn-frontend|all visuals]].
 

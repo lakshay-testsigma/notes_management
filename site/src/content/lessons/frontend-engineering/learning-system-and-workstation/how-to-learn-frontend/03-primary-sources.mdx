@@ -1,0 +1,34 @@
+---
+title: Primary sources over tutorials
+description: When sources disagree, trust the one closest to the specification.
+order: 3
+concepts: [primary sources, web standards]
+---
+
+A tutorial, an MDN guide, and a specification all describe the same feature. When they disagree, only one of them is the ground truth.
+
+Read the diagram bottom-up. Each arrow moves one step closer to the source.
+
+<Mermaid
+  chart={`
+flowchart TD
+  Tutorial["Tutorial"] -->|"summarises"| Guide["MDN guide"]
+  Guide -->|"explains"| Spec["Specification"]
+`}
+  caption="The further from the specification, the less you can trust a page."
+/>
+
+The specification says how a technology must work. Three standards bodies write the main ones: WHATWG owns the HTML Living Standard, TC39 and ECMA own ECMAScript, and W3C owns CSS. MDN, Mozilla's web documentation, explains how to use a spec and keeps its guides current. A tutorial is a third-hand summary, and it ages as the platform moves.
+
+A new feature reaches a spec the long way. Someone writes an explainer with a code demo, a working group discusses it, and only then does the text enter the spec.
+
+<MatchPairs
+  prompt="Match each source to the trust it deserves."
+  pairs={[
+    { term: "Specification", definition: "Trust it fully: it states the rules" },
+    { term: "MDN guide", definition: "Trust it highly: it explains how to use the rules" },
+    { term: "Tutorial", definition: "Verify it: a summary that can go stale" }
+  ]}
+/>
+
+Primary sources also tell you what you can ship today. The next page reads Baseline status.

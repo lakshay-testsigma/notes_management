@@ -11,15 +11,15 @@ created: 2026-11-18
 This is the map of the topic. Read the steps from top to bottom. Each step links to the next thing to open, so you never have to search.
 
 <!-- tutor:generated:start -->
-**Depth:** standard · **Progress:** 5 of 10 steps ready
+**Depth:** standard · **Progress:** 6 of 10 steps ready
 
 How to learn frontend and keep improving: a repeatable read-build-measure-explain loop built on primary sources, browser-support literacy, and continuous practice.
 
 ## Read in this order
 
 1. [[01-brief-how-to-learn-frontend|Brief]] — what it is, why it exists, where it is used · *ready*
-2. [[02-lesson-how-to-learn-frontend|Interactive lesson]] — the animated lesson pages on the local site · *not started*
-3. [[03-mini-projects-how-to-learn-frontend|Mini projects]] — small builds with a real use case · *not started*
+2. [[02-lesson-how-to-learn-frontend|Interactive lesson]] — the animated lesson pages on the local site · *ready*
+3. [[03-mini-projects-how-to-learn-frontend|Mini projects]] — small builds with a real use case · *in progress*
 4. [[00-digests-how-to-learn-frontend|Digests]] — short summaries of the key papers and docs · *ready*
 5. [[00-repo-intel-how-to-learn-frontend|Repository deep dive]] — how a production open-source project does it · *ready*
 6. [[06-capstone-how-to-learn-frontend|Capstone]] — the production-style project · *not started*
@@ -74,8 +74,8 @@ Research stopped: scope-boundary. Research proposed sub-concepts (release-notes-
 
 ## Projects
 
-- Mini project (planned): `projects/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend/mini-01-ship-it-checker/` — A frontend team checks a list of CSS and JavaScript features against Baseline status and prints whether each is safe to ship today or needs a fallback.
-- Mini project (planned): `projects/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend/mini-02-learning-log/` — A learner keeps one note per roadmap item with the read, build, measure, and explain steps, scaffolded by a small generator script.
+- Mini project: `projects/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend/mini-01-ship-it-checker/`
+- Mini project: `projects/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend/mini-02-learning-log/`
 - Capstone: `projects/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend/capstone/` — Learning tracker
 
 ## Build status
@@ -87,13 +87,13 @@ Research stopped: scope-boundary. Research proposed sub-concepts (release-notes-
 | 1 | brief | ready |
 | 2 | digest | ready |
 | 2 | repo-intel | ready |
-| 3 | lesson | not started |
-| 3 | mini-projects | not started |
+| 3 | lesson | ready |
+| 3 | mini-projects | in progress |
 | 4 | capstone | not started |
 | 5 | notes | not started |
 | 5 | finalize | not started |
 
-Next to generate: `lesson`, `mini-projects`. Ask Claude to continue this topic, or run `node harness/bin/tutor.mjs next frontend-engineering/learning-system-and-workstation/how-to-learn-frontend`.
+Next to generate: `mini-projects`. Ask Claude to continue this topic, or run `node harness/bin/tutor.mjs next frontend-engineering/learning-system-and-workstation/how-to-learn-frontend`.
 <!-- tutor:generated:end -->
 
 ## My insights

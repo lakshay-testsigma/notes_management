@@ -1,0 +1,65 @@
+---
+title: Practice platforms & reading other people's code
+description: Deliberate practice — building to a brief and reading a tiny library's call chain — beats passive tutorials.
+order: 6
+concepts: [practice platforms, reading source code]
+---
+
+Tutorials show the happy path and stop there. A practice platform such as Frontend Mentor turns that into a loop: choose a challenge, build it your way, submit it, and level up. The other half is reading a tiny library line by line, because a summary hides the decisions.
+
+Here is the core of nanoid's `index.js`, a 174-line file reduced to the lines that make an id. Step through it and predict what each random byte becomes.
+
+<CodeWalkthrough
+  title="nanoid/index.js (core)"
+  lang="js"
+  code={`
+let urlAlphabet =
+  'useandom-26T198340PX75pxJACKVERYMINDBUSHWOLF_GQZbfghjklqvwyzrict'
+let random = (bytes) => crypto.getRandomValues(new Uint8Array(bytes))
+let customRandom = (alphabet, defaultSize, getRandom) => {
+  let mask = (2 << (Math.log(alphabet.length - 1) / Math.LN2)) - 1
+  let step = -~((1.6 * mask * defaultSize) / alphabet.length)
+  return (size = defaultSize) => {
+    let id = ''
+    while (true) {
+      let bytes = getRandom(step)
+      let j = step
+      while (j--) {
+        id += alphabet[bytes[j] & mask] || ''
+        if (id.length === size) return id
+      }
+    }
+  }
+}
+let customAlphabet = (alphabet, defaultSize = 21) =>
+  customRandom(alphabet, defaultSize, random)
+let nanoid = (size = 21) => customAlphabet(urlAlphabet, size)()
+`}
+  steps={[
+    { lines: [1, 2], title: "The alphabet", caption: "urlAlphabet holds 64 URL-safe symbols: a-z, A-Z, 0-9, dash and underscore. Every id is built from these alone." },
+    { lines: 3, title: "Random bytes", caption: "random reads from crypto.getRandomValues, the browser's secure random source." },
+    { lines: [5, 6], title: "The mask", caption: "mask turns the alphabet length into a bit mask: 63 for 64 symbols. A byte masked to 6 bits becomes an index from 0 to 63." },
+    { lines: [10, 14], title: "Map to a symbol", caption: "Each masked byte picks one symbol with alphabet[...]. The loop appends until the id reaches its size." },
+    { lines: [19, 21], title: "The public call", caption: "nanoid is customAlphabet(urlAlphabet) with a default size of 21, so nanoid() returns 21 characters." }
+  ]}
+/>
+
+A call to `nanoid()` reads 21 secure random bytes and masks each to 6 bits. Every byte becomes an index from 0 to 63, which picks one of 64 URL-safe symbols. That is why every id has 21 characters and 126 random bits — the part a summary leaves out.
+
+Now sort the habits you actually use into deliberate practice and passive input.
+
+<SortBuckets
+  prompt="Sort each habit into deliberate practice or passive input."
+  buckets={["Deliberate practice", "Passive input"]}
+  items={[
+    { text: "Build a challenge to its design brief", bucket: "Deliberate practice" },
+    { text: "Follow a call chain in a library's source", bucket: "Deliberate practice" },
+    { text: "Submit a solution and read the review", bucket: "Deliberate practice" },
+    { text: "Watch a tutorial without typing", bucket: "Passive input" },
+    { text: "Copy a snippet and paste it in", bucket: "Passive input" },
+    { text: "Skim a README claim and move on", bucket: "Passive input" }
+  ]}
+  explanation="Deliberate practice produces something you can check: a built challenge, a traced call chain, a reviewed solution. Passive input only consumes: watching, copying, or reading a summary. The loop's read and build steps produce; passive input skips both."
+/>
+
+Build to a brief and read real code; the next page adds the habit that closes the loop — teaching in public.

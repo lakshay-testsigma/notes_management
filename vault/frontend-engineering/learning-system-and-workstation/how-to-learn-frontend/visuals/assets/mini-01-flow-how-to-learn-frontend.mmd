@@ -1,0 +1,15 @@
+flowchart TD
+  table[("src/baseline.ts: baselineTable")]
+  cli["src/cli.ts: main"]
+  feat["src/features.ts: resolveFeature"]
+  decide["src/decide.ts: decideShip"]
+  detect["src/detect.ts: buildDetection"]
+  report["src/report.ts: formatReport"]
+  out["stdout: safe today or needs a fallback"]
+
+  table --> cli
+  cli --> feat
+  feat --> decide
+  decide --> detect
+  detect --> report
+  report --> out

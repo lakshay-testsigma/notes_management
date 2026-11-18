@@ -1,0 +1,46 @@
+---
+title: Feature detection, polyfills & progressive enhancement
+description: Ask the running browser whether it has a feature, then run the code that matches, so every visitor gets a working page.
+order: 5
+concepts: [feature detection, polyfill, progressive enhancement]
+---
+
+You want to lay out a page with subgrid. Some browsers have it, some do not. How do you give every visitor a page that works?
+
+Read both sides, then reveal the trade-off: which approach keeps the page working for every visitor?
+
+<CompareView
+  title="Feature detection or browser sniffing"
+  question="Which approach keeps a page working for every visitor?"
+  left={{ label: "Feature detection", points: [
+    "Asks: does this browser have the feature?",
+    "@supports and CSS.supports() run the same question",
+    "Applies the version that matches",
+    "Every visitor gets a working page"
+  ] }}
+  right={{ label: "Browser sniffing", points: [
+    "Reads the user agent string to name the browser",
+    "Branches on the name, not the feature",
+    "Breaks when a browser changes or hides its name",
+    "MDN calls it a terrible practice"
+  ] }}
+  verdict="Feature detection asks the browser what it can do, so the answer is always current. Sniffing guesses from a name string a browser can hide, so the branch can run where the feature is missing."
+/>
+
+**Feature detection** asks the running browser one question: do you have this feature? In CSS you write `@supports (grid-template-columns: subgrid)`. In JavaScript, `CSS.supports("grid-template-columns", "subgrid")` returns the same answer. The page keeps two versions: the richer layout and a plain fallback. It applies the one that matches, which is **progressive enhancement**. When no test can detect a feature, you reach for a **polyfill**, JavaScript that adds the missing behaviour. **Browser sniffing** reads the user agent string and branches on the browser name. MDN calls it a terrible practice, because a browser can hide its name.
+
+**Note.** `@supports` needs no JavaScript and makes fewer HTTP requests, so MDN prefers it for CSS support checks.
+
+<Quiz
+  question="A new CSS property cannot be detected by any test. What does the source tell you to use instead?"
+  options={[
+    "A browser sniffing branch",
+    "A polyfill",
+    "A media query",
+    "A fixed browser version"
+  ]}
+  answer={1}
+  explanation="Some features cannot be detected, so there is no test to run. MDN sends those cases to a polyfill, JavaScript that adds the missing behaviour, instead of a test."
+/>
+
+Next: where do you practise these habits, and how does reading other people's code help?

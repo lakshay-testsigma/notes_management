@@ -7,7 +7,7 @@
   "subdomain": "learning-system-and-workstation",
   "depth": "standard",
   "created_at": "2026-11-18T17:03:48Z",
-  "updated_at": "2026-11-18T18:18:05Z",
+  "updated_at": "2026-11-18T19:16:20Z",
   "paths": {
     "state": "state/topics/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend",
     "vault": "vault/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend",
@@ -533,15 +533,15 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T17:32:55Z",
-      "finished_at": "2026-11-18T17:34:50Z",
+      "finished_at": "2026-11-18T19:16:20Z",
       "attempts": 1,
       "units": [],
       "note": "",
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "0c83c5cf957c54533c41784a931382bcc72a7f445b67f675171a15fe708b6de4",
-        "at": "2026-11-18T17:34:50Z",
+        "fingerprint": "f9b3d3e7c60ce7169978da1a9f0d24bdb10cf1ef2f2db76812d72c4233be36bf",
+        "at": "2026-11-18T19:16:20Z",
         "forced": false
       }
     },
@@ -629,24 +629,58 @@
       "id": "lesson",
       "wave": 3,
       "skill": "learn-site",
-      "status": "pending",
+      "status": "done",
       "scope": "required",
-      "started_at": null,
-      "finished_at": null,
-      "attempts": 0,
-      "units": [],
-      "note": ""
+      "started_at": "2026-11-18T18:18:38Z",
+      "finished_at": "2026-11-18T19:16:20Z",
+      "attempts": 1,
+      "units": [
+        {
+          "id": "pages-01-03",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "pages-04-05",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "pages-06-07",
+          "status": "done",
+          "handoff": null
+        }
+      ],
+      "note": "",
+      "continue_after_failure": false,
+      "validation": {
+        "version": 2,
+        "fingerprint": "9d8596117b3c177ef4ff54875b07be8ca0f0964b9c73e49d5b68ab263fdb6d1b",
+        "at": "2026-11-18T19:16:20Z",
+        "forced": false
+      }
     },
     {
       "id": "mini-projects",
       "wave": 3,
       "skill": "learn-projects",
-      "status": "pending",
+      "status": "in_progress",
       "scope": "required",
-      "started_at": null,
+      "started_at": "2026-11-18T18:18:40Z",
       "finished_at": null,
-      "attempts": 0,
-      "units": [],
+      "attempts": 1,
+      "units": [
+        {
+          "id": "mini-01",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "mini-02",
+          "status": "in_progress",
+          "handoff": null
+        }
+      ],
       "note": ""
     },
     {
@@ -1064,6 +1098,129 @@
       "event": "done",
       "message": "gate passed",
       "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T18:18:38Z",
+      "event": "start",
+      "message": "attempt 1",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T18:18:39Z",
+      "event": "unit-add",
+      "message": "unit pages-01-03",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T18:18:39Z",
+      "event": "unit-add",
+      "message": "unit pages-04-05",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T18:18:39Z",
+      "event": "unit-add",
+      "message": "unit pages-06-07",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T18:18:40Z",
+      "event": "start",
+      "message": "attempt 1",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-18T18:18:40Z",
+      "event": "unit-add",
+      "message": "unit mini-01",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-18T18:18:40Z",
+      "event": "unit-add",
+      "message": "unit mini-02",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-18T18:19:48Z",
+      "event": "unit-start",
+      "message": "unit pages-04-05",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T18:21:18Z",
+      "event": "unit-start",
+      "message": "unit mini-01",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-18T18:23:07Z",
+      "event": "unit-start",
+      "message": "unit pages-01-03",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T18:23:41Z",
+      "event": "visual",
+      "message": "added visual baseline-ship-decision"
+    },
+    {
+      "at": "2026-11-18T18:23:49Z",
+      "event": "unit-start",
+      "message": "unit pages-06-07",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T18:24:23Z",
+      "event": "visual",
+      "message": "added visual mdn-publish-review-loop"
+    },
+    {
+      "at": "2026-11-18T18:25:30Z",
+      "event": "unit-done",
+      "message": "unit pages-04-05",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T18:25:32Z",
+      "event": "visual",
+      "message": "added visual mini-01-flow"
+    },
+    {
+      "at": "2026-11-18T18:25:32Z",
+      "event": "unit-done",
+      "message": "unit pages-01-03",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T18:26:59Z",
+      "event": "unit-start",
+      "message": "unit mini-02",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-18T18:27:39Z",
+      "event": "unit-done",
+      "message": "unit pages-06-07",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T18:27:59Z",
+      "event": "unit-done",
+      "message": "unit mini-01",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-18T19:16:20Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "brief"
+    },
+    {
+      "at": "2026-11-18T19:16:20Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "lesson"
     }
   ],
   "roadmap": {

@@ -1,0 +1,20 @@
+---
+title: Why a learning method matters
+description: A method with a check step beats passive watching by exposing what you did not learn.
+order: 1
+concepts: [learning loop, passive learning]
+---
+
+You finish a tutorial, copy every line, and the demo runs. It feels like progress. A week later you try the same feature on your own and stall on the first step. The tutorial did not fail you: it never checked what you understood.
+
+<PredictReveal
+  prompt="You copy a tutorial line by line. A week later you rebuild the same feature without it. What most likely happens?"
+  options={["You rebuild it quickly from memory", "You get stuck on a step the tutorial did for you", "You remember every detail"]}
+  correct={1}
+  answer="You get stuck on a step the tutorial did for you."
+  reasoning="Copying shows you the answer but never checks what you understand. Building without the tutorial is the first real test."
+/>
+
+Watching is passive. You see an answer, but nothing tests whether you can produce it yourself. Frontend also changes fast, so a two-year-old tutorial can teach a stale pattern that no longer works.
+
+A method fixes both problems. Read the primary source, the official specification or reference, then build a small demo, measure it in the browser, and explain it in your own words. Each step makes you prove the one before it, so learning turns into a habit you can repeat for every new API.

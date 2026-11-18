@@ -1,0 +1,6 @@
+flowchart LR
+  pick["Pick a task"] --> claim["Claim and tag"]
+  claim --> hints["Get hints"]
+  hints --> pr["Open a PR"]
+  pr --> review["Get reviewed"]
+  review --> publish["Page published"]

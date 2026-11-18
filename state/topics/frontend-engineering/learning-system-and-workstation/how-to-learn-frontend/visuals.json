@@ -20,7 +20,8 @@
       "answer": "Explain, because teaching a topic shows the next gap to read about."
     },
     "used_in": [
-      "vault/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend/01-brief-how-to-learn-frontend.md"
+      "vault/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend/01-brief-how-to-learn-frontend.md",
+      "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend/02-the-learning-loop.mdx"
     ]
   },
   {
@@ -117,6 +118,79 @@
     },
     "used_in": [
       "vault/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend/05-repo-intel/pmndrs-zustand/zustand-architecture.md"
+    ]
+  },
+  {
+    "id": "baseline-ship-decision",
+    "title": "The Baseline ship decision",
+    "kind": "decision-tree",
+    "format": "mermaid",
+    "file": "vault/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend/visuals/assets/baseline-ship-decision-how-to-learn-frontend.mmd",
+    "concept_ids": [
+      "browser-support"
+    ],
+    "source_ids": [
+      "web-dev-baseline"
+    ],
+    "purpose": "Decide whether a feature is safe to ship by tracing it through the Baseline labels.",
+    "explanation": "A feature stays at Limited availability until all four core browsers, Chrome, Edge, Firefox, and Safari, ship it. Once they all do, it becomes Newly available, which means the browsers agree on how it behaves, so it is safe to ship. After 30 months it becomes Widely available and can ship freely.",
+    "alt": "A decision tree: a new feature is Limited and should be held off until all four core browsers ship it; then it is Newly available and safe to ship; after 30 months it becomes Widely available and can ship freely.",
+    "learning_check": {
+      "question": "A feature is Limited today. What must happen before you ship it?",
+      "answer": "All four core browsers must ship it, which makes it Newly available."
+    },
+    "used_in": [
+      "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend/04-browser-support.mdx"
+    ]
+  },
+  {
+    "id": "mdn-publish-review-loop",
+    "title": "Publishing on MDN: the review loop",
+    "kind": "workflow",
+    "scope": "detail",
+    "format": "mermaid",
+    "file": "vault/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend/visuals/assets/mdn-publish-review-loop-how-to-learn-frontend.mmd",
+    "concept_ids": [
+      "teaching-in-public"
+    ],
+    "source_ids": [
+      "mdn-getting-started-contributing"
+    ],
+    "purpose": "See that publishing on MDN is a review loop, not a one-shot upload.",
+    "explanation": "A contribution to MDN starts when you pick a task from the board, claim it, and tag the MDN community team so a mentor can find it. You open a pull request, get the writing reviewed, and the page goes live. Teaching in public is this loop: write it, ship it, and let a reviewer correct what you missed.",
+    "alt": "Six steps in a row: pick a task, claim it and tag the MDN community team, get hints from a mentor, open a pull request, get the writing reviewed, and the page is published.",
+    "learning_check": {
+      "question": "Which step catches the mistakes you did not know you made?",
+      "answer": "The review, because a reviewer checks the writing and asks you to fix what you got wrong."
+    },
+    "used_in": [
+      "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend/07-teach-and-stay-current.mdx"
+    ]
+  },
+  {
+    "id": "mini-01-flow",
+    "title": "How the ship-it checker decides",
+    "kind": "workflow",
+    "scope": "detail",
+    "format": "mermaid",
+    "file": "vault/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend/visuals/assets/mini-01-flow-how-to-learn-frontend.mmd",
+    "concept_ids": [
+      "browser-support",
+      "feature-detection"
+    ],
+    "source_ids": [
+      "web-dev-baseline",
+      "mdn-feature-detection"
+    ],
+    "purpose": "See the order in which the checker reads the Baseline snapshot, decides the verdict, and writes the runtime check.",
+    "explanation": "The command line picks the target and the feature ids. The lookup finds each feature in the Baseline snapshot, the decision compares the feature's status with the target, and the detection step writes the runtime check for the fallback. The report prints one block per feature.",
+    "alt": "Flowchart: the Baseline table and the command line feed the feature lookup, which feeds the ship decision, which feeds the runtime check, which feeds the report, which prints the verdict.",
+    "learning_check": {
+      "question": "Which step turns a Baseline status into a runtime check?",
+      "answer": "The decision step, because it knows the feature needs a fallback and asks the detection step for the check that goes with it."
+    },
+    "used_in": [
+      "projects/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend/mini-01-ship-it-checker/README.md"
     ]
   }
 ]

@@ -1,0 +1,6 @@
+flowchart TD
+  F["New feature"] --> Q1{"All four core browsers ship it?"}
+  Q1 -->|"no"| L["Limited: hold off"]
+  Q1 -->|"yes"| Q2{"30 months passed?"}
+  Q2 -->|"no"| N["Newly: safe to ship"]
+  Q2 -->|"yes"| W["Widely: ship freely"]
