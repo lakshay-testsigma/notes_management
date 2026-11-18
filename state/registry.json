@@ -2,6 +2,16 @@
   "schema": 1,
   "topics": [
     {
+      "id": "frontend-engineering/how-the-web-works/internet-and-networking",
+      "title": "Internet & networking",
+      "slug": "internet-and-networking",
+      "domain": "frontend-engineering",
+      "subdomain": "how-the-web-works",
+      "depth": "deep",
+      "created_at": "2026-11-18T12:13:22Z",
+      "state": "state/topics/frontend-engineering/how-the-web-works/internet-and-networking"
+    },
+    {
       "id": "frontend-engineering/learning-system-and-workstation/browser-devtools-mastery",
       "title": "Browser DevTools mastery (used in every phase)",
       "slug": "browser-devtools-mastery",

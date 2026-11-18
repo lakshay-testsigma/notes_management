@@ -57,7 +57,7 @@ Set up how you learn and the tools you will use for every later phase. Mastery =
 
 Networking and browser internals. Every performance, security and SEO decision later depends on this phase.
 
-- [ ] **01.1** Internet & networking — Not generated yet · 13 items · `frontend-engineering/how-the-web-works/internet-and-networking`
+- [ ] **01.1** [[frontend-engineering/how-the-web-works/internet-and-networking/00-start-here-internet-and-networking|Internet & networking]] — Being generated · 13 items · `frontend-engineering/how-the-web-works/internet-and-networking`
     - How the internet works (core)
     - Domain names & hosting basics (core)
     - DNS (core)

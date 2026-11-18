@@ -1,0 +1,1450 @@
+{
+  "schema": 1,
+  "id": "frontend-engineering/how-the-web-works/internet-and-networking",
+  "title": "Internet & networking",
+  "slug": "internet-and-networking",
+  "domain": "frontend-engineering",
+  "subdomain": "how-the-web-works",
+  "depth": "deep",
+  "created_at": "2026-11-18T12:13:22Z",
+  "updated_at": "2026-11-18T12:16:05Z",
+  "paths": {
+    "state": "state/topics/frontend-engineering/how-the-web-works/internet-and-networking",
+    "vault": "vault/frontend-engineering/how-the-web-works/internet-and-networking",
+    "lessons": "site/src/content/lessons/frontend-engineering/how-the-web-works/internet-and-networking",
+    "projects": "projects/frontend-engineering/how-the-web-works/internet-and-networking",
+    "cache": ".cache"
+  },
+  "profile": {
+    "lesson_pages": [
+      8,
+      12
+    ],
+    "mini_projects": 3,
+    "digests": [
+      4,
+      6
+    ],
+    "repos": [
+      2,
+      3
+    ],
+    "capstone": true,
+    "sources": [
+      5,
+      12
+    ],
+    "recall_cards": 8
+  },
+  "plan": {
+    "summary": "The network layers under every web page: packets, DNS, HTTP and its versions, TLS, URLs and origins, caching, CDNs, compression, cookies, realtime transports and API styles.",
+    "prerequisites": [
+      {
+        "concept": "Browser developer tools",
+        "known": true
+      },
+      {
+        "concept": "HTTP request and response",
+        "known": false,
+        "bridge": "The browser sends a request; the server returns status, headers and body."
+      },
+      {
+        "concept": "Client and server",
+        "known": false,
+        "bridge": "A client asks for data; a server listens and answers."
+      },
+      {
+        "concept": "Network packet",
+        "known": false,
+        "bridge": "A small block of data with a header that says where it goes."
+      }
+    ],
+    "outcomes": [
+      "Explain what happens on the network between typing a URL and the first byte of the page.",
+      "Explain how DNS resolves a name and choose the right record type and TTL.",
+      "Compare HTTP/1.1, HTTP/2 and HTTP/3 and explain head-of-line blocking at each layer.",
+      "Explain the TLS 1.3 handshake and the certificate chain of trust.",
+      "Configure HTTP caching, CDN caching and compression for a static site with hashed assets.",
+      "Set cookies with safe attributes and explain origin versus site.",
+      "Choose a realtime transport and an API style for a product feature."
+    ],
+    "lesson_outline": [
+      {
+        "order": 1,
+        "slug": "how-the-internet-works",
+        "title": "How the internet moves your request: packets, IP, TCP and UDP",
+        "activity": "OrderSteps",
+        "complexity": "intermediate",
+        "importance": "critical",
+        "spatial": false,
+        "visual": "Diagram",
+        "visual_reason": "A request becomes packets that cross routers; a sequence diagram shows the hops, the TCP handshake and a resent lost packet.",
+        "interaction_goal": "Order the steps from typing a URL to the first byte arriving.",
+        "experience": {
+          "id": "packet-journey",
+          "concept_ids": [
+            "internet-packets-and-routing",
+            "ip-addresses-and-ports",
+            "tcp-vs-udp",
+            "routing-and-isps"
+          ],
+          "signals": {
+            "complexity": 3,
+            "concepts": 4,
+            "dependent_steps": 4,
+            "changes_over_time": true,
+            "spatial": false,
+            "parameters": 2,
+            "decision_paths": 1,
+            "benefit": "high"
+          },
+          "mode": "static",
+          "override_reason": "Deep budget is 18; the selector chose interactive (3). The packet journey is one fixed sequence, so a sequence diagram teaches it and keeps the budget for the caching and HTTP version labs."
+        }
+      },
+      {
+        "order": 2,
+        "slug": "domains-dns-and-hosting",
+        "title": "Domains, DNS resolution and hosting",
+        "activity": "OrderSteps",
+        "complexity": "intermediate",
+        "importance": "critical",
+        "spatial": false,
+        "visual": "Diagram",
+        "visual_reason": "The resolver asks root, TLD and authoritative servers in a fixed order; a sequence diagram shows each query, answer and TTL.",
+        "interaction_goal": "Order the resolution chain and pick the record type for each job.",
+        "experience": {
+          "id": "dns-resolution-chain",
+          "concept_ids": [
+            "domains-and-hosting",
+            "registrars-tlds-nameservers",
+            "hosting-models",
+            "dns-resolution",
+            "dns-record-types",
+            "dns-prefetch-and-doh"
+          ],
+          "signals": {
+            "complexity": 3,
+            "concepts": 3,
+            "dependent_steps": 5,
+            "changes_over_time": true,
+            "spatial": false,
+            "parameters": 0,
+            "decision_paths": 0,
+            "benefit": "high"
+          },
+          "mode": "static",
+          "override_reason": "Deep budget is 18; the selector chose explainer (2). A sequence diagram shows the same fixed query chain at no cost."
+        }
+      },
+      {
+        "order": 3,
+        "slug": "urls-and-origins",
+        "title": "URLs, origins and sites",
+        "activity": "SortBuckets",
+        "complexity": "intermediate",
+        "importance": "critical",
+        "spatial": false,
+        "visual": "Diagram",
+        "visual_reason": "One URL splits into scheme, host, port, path, query and fragment; a labelled diagram shows which parts make the origin and which make the site.",
+        "interaction_goal": "Sort URL pairs into same-origin, same-site or cross-site.",
+        "experience": {
+          "id": "url-anatomy",
+          "concept_ids": [
+            "urls-and-origins",
+            "url-parts-and-encoding",
+            "origin-vs-site"
+          ],
+          "signals": {
+            "complexity": 2,
+            "concepts": 3,
+            "dependent_steps": 1,
+            "changes_over_time": false,
+            "spatial": false,
+            "parameters": 0,
+            "decision_paths": 0,
+            "benefit": "medium"
+          }
+        }
+      },
+      {
+        "order": 4,
+        "slug": "http-messages",
+        "title": "HTTP messages: methods, status codes and headers",
+        "activity": "MatchPairs",
+        "complexity": "intermediate",
+        "importance": "critical",
+        "spatial": false,
+        "visual": "Diagram",
+        "visual_reason": "A request and its response have fixed parts; an annotated diagram shows the start line, headers and body of each.",
+        "interaction_goal": "Match each situation to its method and status code.",
+        "experience": {
+          "id": "http-message-anatomy",
+          "concept_ids": [
+            "http-messages",
+            "http-methods-and-idempotency",
+            "http-status-codes",
+            "content-negotiation-and-keep-alive"
+          ],
+          "signals": {
+            "complexity": 2,
+            "concepts": 4,
+            "dependent_steps": 2,
+            "changes_over_time": false,
+            "spatial": false,
+            "parameters": 3,
+            "decision_paths": 1,
+            "benefit": "high"
+          }
+        }
+      },
+      {
+        "order": 5,
+        "slug": "http-versions",
+        "title": "HTTP/1.1, HTTP/2 and HTTP/3: head-of-line blocking",
+        "activity": "PredictReveal",
+        "complexity": "advanced",
+        "importance": "critical",
+        "spatial": false,
+        "visual": "Experience",
+        "visual_reason": "Head-of-line blocking appears at different layers in each version; the learner drops a packet and watches which streams stall in HTTP/1.1, HTTP/2 over TCP and HTTP/3 over QUIC.",
+        "interaction_goal": "Drop one packet and predict which responses stall in each HTTP version.",
+        "experience": {
+          "id": "http-versions-lab",
+          "concept_ids": [
+            "http-versions",
+            "head-of-line-blocking-and-multiplexing",
+            "header-compression-and-priorities",
+            "quic-0rtt-and-migration",
+            "http1-era-anti-patterns"
+          ],
+          "signals": {
+            "complexity": 4,
+            "concepts": 4,
+            "dependent_steps": 3,
+            "changes_over_time": true,
+            "spatial": false,
+            "parameters": 1,
+            "decision_paths": 1,
+            "benefit": "high"
+          },
+          "mode": "interactive",
+          "override_reason": "Deep budget is 18; the selector chose hybrid (6). One parameter (which packet is lost) drives the lesson, so an interactive lesson with checkpoints is enough."
+        }
+      },
+      {
+        "order": 6,
+        "slug": "tls-and-https",
+        "title": "TLS and HTTPS: the handshake and the chain of trust",
+        "activity": "OrderSteps",
+        "complexity": "advanced",
+        "importance": "critical",
+        "spatial": false,
+        "visual": "FlowAnimation",
+        "visual_reason": "The TLS 1.3 handshake is a sequence of messages in one round trip; an explainer shows key share, certificate and Finished messages in order.",
+        "interaction_goal": "Order the handshake messages and name what each certificate in the chain proves.",
+        "experience": {
+          "id": "tls13-handshake",
+          "concept_ids": [
+            "tls-and-https",
+            "tls13-handshake",
+            "certificates-and-chain-of-trust",
+            "hsts-and-mixed-content",
+            "certificate-transparency"
+          ],
+          "signals": {
+            "complexity": 4,
+            "concepts": 4,
+            "dependent_steps": 5,
+            "changes_over_time": true,
+            "spatial": false,
+            "parameters": 0,
+            "decision_paths": 0,
+            "benefit": "high"
+          }
+        },
+        "video": {
+          "id": "tls13-handshake",
+          "reason": "The TLS 1.3 handshake is a timed sequence of messages in one round trip; a 60 s explainer shows them in order."
+        }
+      },
+      {
+        "order": 7,
+        "slug": "http-caching",
+        "title": "HTTP caching: freshness, revalidation and cache busting",
+        "activity": "PredictReveal",
+        "complexity": "advanced",
+        "importance": "critical",
+        "spatial": false,
+        "visual": "Experience",
+        "visual_reason": "Cache behavior depends on several headers and on time; the learner changes Cache-Control, ETag and the clock and watches fresh, stale and revalidated responses.",
+        "interaction_goal": "Set Cache-Control directives and predict whether the next request hits the cache, revalidates or goes to the origin.",
+        "experience": {
+          "id": "http-cache-lab",
+          "concept_ids": [
+            "http-caching",
+            "cache-control-directives",
+            "validation-etag-last-modified",
+            "vary-and-shared-caches",
+            "hashed-filenames-cache-busting"
+          ],
+          "signals": {
+            "complexity": 4,
+            "concepts": 5,
+            "dependent_steps": 3,
+            "changes_over_time": true,
+            "spatial": false,
+            "parameters": 4,
+            "decision_paths": 2,
+            "benefit": "high"
+          }
+        }
+      },
+      {
+        "order": 8,
+        "slug": "cdns-and-the-edge",
+        "title": "CDNs and the edge",
+        "activity": "Quiz",
+        "complexity": "intermediate",
+        "importance": "core",
+        "spatial": false,
+        "visual": "Diagram",
+        "visual_reason": "A CDN puts caches near users; a diagram shows user, PoP, origin shield and origin, and where the cache key and purge act.",
+        "interaction_goal": "Name which layer answers a request and what a purge removes.",
+        "experience": {
+          "id": "cdn-request-path",
+          "concept_ids": [
+            "cdns-and-edge",
+            "pops-cache-keys-and-purge",
+            "edge-compute-and-image-cdns"
+          ],
+          "signals": {
+            "complexity": 3,
+            "concepts": 4,
+            "dependent_steps": 2,
+            "changes_over_time": false,
+            "spatial": false,
+            "parameters": 0,
+            "decision_paths": 0,
+            "benefit": "medium"
+          }
+        }
+      },
+      {
+        "order": 9,
+        "slug": "compression",
+        "title": "Compression: gzip, Brotli, Zstandard and dictionaries",
+        "activity": "MatchPairs",
+        "complexity": "intermediate",
+        "importance": "core",
+        "spatial": false,
+        "visual": "CompareView",
+        "visual_reason": "The codecs trade compression ratio against CPU time; a side-by-side comparison shows when each fits.",
+        "interaction_goal": "Match each asset and delivery setup to the right compression.",
+        "experience": {
+          "id": "compression-compare",
+          "concept_ids": [
+            "http-compression",
+            "gzip-brotli-zstd",
+            "compression-dictionaries"
+          ],
+          "signals": {
+            "complexity": 2,
+            "concepts": 3,
+            "dependent_steps": 1,
+            "changes_over_time": false,
+            "spatial": false,
+            "parameters": 0,
+            "decision_paths": 0,
+            "benefit": "medium"
+          }
+        }
+      },
+      {
+        "order": 10,
+        "slug": "cookies",
+        "title": "Cookies: attributes, SameSite and prefixes",
+        "activity": "PredictReveal",
+        "complexity": "intermediate",
+        "importance": "critical",
+        "spatial": false,
+        "visual": "Experience",
+        "visual_reason": "Whether the browser sends a cookie depends on its attributes and on the request; the learner changes SameSite, Secure, Domain and the request type and sees when the cookie is sent.",
+        "interaction_goal": "Change the attributes and predict whether a cross-site request carries the cookie.",
+        "experience": {
+          "id": "cookie-send-lab",
+          "concept_ids": [
+            "cookies",
+            "set-cookie-attributes",
+            "cookie-prefixes-and-chips",
+            "third-party-cookies"
+          ],
+          "signals": {
+            "complexity": 3,
+            "concepts": 4,
+            "dependent_steps": 2,
+            "changes_over_time": false,
+            "spatial": false,
+            "parameters": 3,
+            "decision_paths": 1,
+            "benefit": "high"
+          }
+        }
+      },
+      {
+        "order": 11,
+        "slug": "realtime-transports",
+        "title": "Realtime transports: polling, SSE, WebSockets, WebTransport and WebRTC",
+        "activity": "SortBuckets",
+        "complexity": "intermediate",
+        "importance": "core",
+        "spatial": false,
+        "visual": "Experience",
+        "visual_reason": "Choosing a transport is a set of decisions (who sends, how often, peer to peer or not); a branching deck walks the learner through them.",
+        "interaction_goal": "Pick a transport for each product feature and justify it.",
+        "experience": {
+          "id": "realtime-transport-deck",
+          "concept_ids": [
+            "realtime-transports",
+            "polling-and-sse",
+            "websockets",
+            "webtransport-and-webrtc"
+          ],
+          "signals": {
+            "complexity": 3,
+            "concepts": 6,
+            "dependent_steps": 1,
+            "changes_over_time": false,
+            "spatial": false,
+            "parameters": 0,
+            "decision_paths": 4,
+            "benefit": "high"
+          }
+        }
+      },
+      {
+        "order": 12,
+        "slug": "api-styles-in-production",
+        "title": "REST, GraphQL and RPC in production",
+        "activity": "SortBuckets",
+        "complexity": "intermediate",
+        "importance": "core",
+        "spatial": false,
+        "visual": "Diagram",
+        "visual_reason": "Each API style puts the contract in a different place; a diagram compares one request in REST, GraphQL and RPC and how each uses HTTP caching.",
+        "interaction_goal": "Sort API needs into REST, GraphQL or RPC.",
+        "experience": {
+          "id": "api-style-map",
+          "concept_ids": [
+            "api-styles",
+            "rest-resources",
+            "graphql-queries",
+            "rpc-trpc-grpc-web"
+          ],
+          "signals": {
+            "complexity": 2,
+            "concepts": 3,
+            "dependent_steps": 1,
+            "changes_over_time": false,
+            "spatial": false,
+            "parameters": 0,
+            "decision_paths": 0,
+            "benefit": "medium"
+          }
+        }
+      }
+    ],
+    "mini_projects": [
+      {
+        "n": 1,
+        "slug": "dns-record-inspector",
+        "use_case": "A developer moving a site to a new host checks that A, AAAA, CNAME, CAA and HTTPS records and their TTLs are right before switching nameservers."
+      },
+      {
+        "n": 2,
+        "slug": "cache-header-auditor",
+        "use_case": "A frontend team checks that hashed assets are immutable and HTML revalidates, by grading Cache-Control, ETag, Vary and Content-Encoding headers from a HAR file."
+      },
+      {
+        "n": 3,
+        "slug": "cookie-attribute-linter",
+        "use_case": "A security reviewer reads the Set-Cookie headers of a login flow and flags missing Secure, HttpOnly or SameSite and broken __Host- prefixes."
+      }
+    ],
+    "digest_targets": 4,
+    "repo_targets": 2,
+    "capstone": {
+      "name": "site network report CLI",
+      "problem": "Before launch, a team checks a site's network setup; a Node.js CLI reads saved DNS answers, TLS certificate data and HAR responses and reports problems in DNS, HTTPS and HSTS, HTTP version, caching, compression and cookies against a policy."
+    },
+    "learner": {
+      "experience": "software developer",
+      "known": [
+        "basic programming",
+        "How to learn frontend (roadmap 00.1)",
+        "Workstation and editor (roadmap 00.2)",
+        "Browser DevTools mastery (roadmap 00.3)",
+        "Browser extension toolkit (roadmap 00.4)"
+      ],
+      "goals": [
+        "master frontend engineering end to end from the N1 roadmap",
+        "learn visually and by experimenting with simulations"
+      ]
+    },
+    "visual_policy": "adaptive",
+    "visual_first": true,
+    "multi_stage": false,
+    "experience_policy": "adaptive",
+    "curriculum": {
+      "schema": 1,
+      "scope": "The network a frontend developer depends on: internet packets and transport, domains and DNS, HTTP messages and versions, TLS, URLs and origins, HTTP and CDN caching, compression, cookies, realtime transports and API styles at a glance.",
+      "max_depth": 4,
+      "max_concepts": 60,
+      "concepts": [
+        {
+          "id": "internet-packets-and-routing",
+          "title": "How the internet moves packets",
+          "parent": null,
+          "complexity": "intermediate",
+          "importance": "critical",
+          "disposition": "included",
+          "roadmap_items": [
+            "how-the-internet-works"
+          ],
+          "source_ids": [],
+          "coverage": [],
+          "prerequisites": []
+        },
+        {
+          "id": "ip-addresses-and-ports",
+          "title": "IP addresses, IPv4/IPv6 and ports",
+          "parent": "internet-packets-and-routing",
+          "complexity": "basic",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [],
+          "coverage": [],
+          "prerequisites": []
+        },
+        {
+          "id": "tcp-vs-udp",
+          "title": "TCP versus UDP",
+          "parent": "internet-packets-and-routing",
+          "complexity": "intermediate",
+          "importance": "critical",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [],
+          "coverage": [],
+          "prerequisites": []
+        },
+        {
+          "id": "routing-and-isps",
+          "title": "Routing, ISPs and autonomous systems",
+          "parent": "internet-packets-and-routing",
+          "complexity": "basic",
+          "importance": "supporting",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [],
+          "coverage": [],
+          "prerequisites": []
+        },
+        {
+          "id": "domains-and-hosting",
+          "title": "Domain names and hosting",
+          "parent": null,
+          "complexity": "basic",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [
+            "domain-names-hosting-basics"
+          ],
+          "source_ids": [],
+          "coverage": [],
+          "prerequisites": []
+        },
+        {
+          "id": "registrars-tlds-nameservers",
+          "title": "Registrars, TLDs and nameservers",
+          "parent": "domains-and-hosting",
+          "complexity": "basic",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [],
+          "coverage": [],
+          "prerequisites": []
+        },
+        {
+          "id": "hosting-models",
+          "title": "Static, server and serverless hosting",
+          "parent": "domains-and-hosting",
+          "complexity": "basic",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [],
+          "coverage": [],
+          "prerequisites": []
+        },
+        {
+          "id": "dns-resolution",
+          "title": "DNS resolution",
+          "parent": null,
+          "complexity": "intermediate",
+          "importance": "critical",
+          "disposition": "included",
+          "roadmap_items": [
+            "dns"
+          ],
+          "source_ids": [],
+          "coverage": [],
+          "prerequisites": [
+            "registrars-tlds-nameservers"
+          ]
+        },
+        {
+          "id": "dns-record-types",
+          "title": "DNS record types and TTL",
+          "parent": "dns-resolution",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [],
+          "coverage": [],
+          "prerequisites": []
+        },
+        {
+          "id": "dns-prefetch-and-doh",
+          "title": "DNS prefetch and DNS over HTTPS",
+          "parent": "dns-resolution",
+          "complexity": "intermediate",
+          "importance": "supporting",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [],
+          "coverage": [],
+          "prerequisites": []
+        },
+        {
+          "id": "http-messages",
+          "title": "HTTP request and response messages",
+          "parent": null,
+          "complexity": "intermediate",
+          "importance": "critical",
+          "disposition": "included",
+          "roadmap_items": [
+            "http-fundamentals"
+          ],
+          "source_ids": [],
+          "coverage": [],
+          "prerequisites": [
+            "tcp-vs-udp"
+          ]
+        },
+        {
+          "id": "http-methods-and-idempotency",
+          "title": "HTTP methods and idempotency",
+          "parent": "http-messages",
+          "complexity": "basic",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [],
+          "coverage": [],
+          "prerequisites": []
+        },
+        {
+          "id": "http-status-codes",
+          "title": "HTTP status codes",
+          "parent": "http-messages",
+          "complexity": "basic",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [],
+          "coverage": [],
+          "prerequisites": []
+        },
+        {
+          "id": "content-negotiation-and-keep-alive",
+          "title": "Content negotiation, headers and keep-alive",
+          "parent": "http-messages",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [],
+          "coverage": [],
+          "prerequisites": []
+        },
+        {
+          "id": "http-versions",
+          "title": "HTTP/1.1, HTTP/2 and HTTP/3",
+          "parent": null,
+          "complexity": "advanced",
+          "importance": "critical",
+          "disposition": "included",
+          "roadmap_items": [
+            "http-1-1-vs-http-2-vs-http-3-quic"
+          ],
+          "source_ids": [],
+          "coverage": [],
+          "prerequisites": [
+            "http-messages"
+          ]
+        },
+        {
+          "id": "head-of-line-blocking-and-multiplexing",
+          "title": "Head-of-line blocking and multiplexing",
+          "parent": "http-versions",
+          "complexity": "advanced",
+          "importance": "critical",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [],
+          "coverage": [],
+          "prerequisites": []
+        },
+        {
+          "id": "header-compression-and-priorities",
+          "title": "Header compression and stream priorities",
+          "parent": "http-versions",
+          "complexity": "advanced",
+          "importance": "supporting",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [],
+          "coverage": [],
+          "prerequisites": []
+        },
+        {
+          "id": "quic-0rtt-and-migration",
+          "title": "QUIC, 0-RTT and connection migration",
+          "parent": "http-versions",
+          "complexity": "advanced",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [],
+          "coverage": [],
+          "prerequisites": []
+        },
+        {
+          "id": "http1-era-anti-patterns",
+          "title": "Why domain sharding and sprites are anti-patterns now",
+          "parent": "http-versions",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [],
+          "coverage": [],
+          "prerequisites": []
+        },
+        {
+          "id": "tls-and-https",
+          "title": "TLS and HTTPS",
+          "parent": null,
+          "complexity": "advanced",
+          "importance": "critical",
+          "disposition": "included",
+          "roadmap_items": [
+            "tls-https"
+          ],
+          "source_ids": [],
+          "coverage": [],
+          "prerequisites": [
+            "tcp-vs-udp"
+          ]
+        },
+        {
+          "id": "tls13-handshake",
+          "title": "The TLS 1.3 handshake",
+          "parent": "tls-and-https",
+          "complexity": "advanced",
+          "importance": "critical",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [],
+          "coverage": [],
+          "prerequisites": []
+        },
+        {
+          "id": "certificates-and-chain-of-trust",
+          "title": "Certificates, CAs and the chain of trust",
+          "parent": "tls-and-https",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [],
+          "coverage": [],
+          "prerequisites": []
+        },
+        {
+          "id": "hsts-and-mixed-content",
+          "title": "HSTS and mixed content",
+          "parent": "tls-and-https",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [],
+          "coverage": [],
+          "prerequisites": []
+        },
+        {
+          "id": "certificate-transparency",
+          "title": "Certificate transparency",
+          "parent": "tls-and-https",
+          "complexity": "intermediate",
+          "importance": "supporting",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [],
+          "coverage": [],
+          "prerequisites": []
+        },
+        {
+          "id": "urls-and-origins",
+          "title": "URLs and origins",
+          "parent": null,
+          "complexity": "intermediate",
+          "importance": "critical",
+          "disposition": "included",
+          "roadmap_items": [
+            "urls-origins"
+          ],
+          "source_ids": [],
+          "coverage": [],
+          "prerequisites": []
+        },
+        {
+          "id": "url-parts-and-encoding",
+          "title": "URL parts and encoding",
+          "parent": "urls-and-origins",
+          "complexity": "basic",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [],
+          "coverage": [],
+          "prerequisites": []
+        },
+        {
+          "id": "origin-vs-site",
+          "title": "Origin versus site and the public suffix list",
+          "parent": "urls-and-origins",
+          "complexity": "intermediate",
+          "importance": "critical",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [],
+          "coverage": [],
+          "prerequisites": []
+        },
+        {
+          "id": "http-caching",
+          "title": "HTTP caching",
+          "parent": null,
+          "complexity": "advanced",
+          "importance": "critical",
+          "disposition": "included",
+          "roadmap_items": [
+            "http-caching"
+          ],
+          "source_ids": [],
+          "coverage": [],
+          "prerequisites": [
+            "http-messages"
+          ]
+        },
+        {
+          "id": "cache-control-directives",
+          "title": "Cache-Control directives",
+          "parent": "http-caching",
+          "complexity": "advanced",
+          "importance": "critical",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [],
+          "coverage": [],
+          "prerequisites": []
+        },
+        {
+          "id": "validation-etag-last-modified",
+          "title": "Revalidation with ETag and Last-Modified",
+          "parent": "http-caching",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [],
+          "coverage": [],
+          "prerequisites": []
+        },
+        {
+          "id": "vary-and-shared-caches",
+          "title": "Vary, browser caches and shared caches",
+          "parent": "http-caching",
+          "complexity": "advanced",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [],
+          "coverage": [],
+          "prerequisites": []
+        },
+        {
+          "id": "hashed-filenames-cache-busting",
+          "title": "Cache busting with hashed filenames",
+          "parent": "http-caching",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [],
+          "coverage": [],
+          "prerequisites": []
+        },
+        {
+          "id": "cdns-and-edge",
+          "title": "CDNs and the edge",
+          "parent": null,
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [
+            "cdns-the-edge"
+          ],
+          "source_ids": [],
+          "coverage": [],
+          "prerequisites": [
+            "http-caching"
+          ]
+        },
+        {
+          "id": "pops-cache-keys-and-purge",
+          "title": "PoPs, origin shield, cache keys and purge",
+          "parent": "cdns-and-edge",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [],
+          "coverage": [],
+          "prerequisites": []
+        },
+        {
+          "id": "edge-compute-and-image-cdns",
+          "title": "Edge compute and image CDNs",
+          "parent": "cdns-and-edge",
+          "complexity": "intermediate",
+          "importance": "supporting",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [],
+          "coverage": [],
+          "prerequisites": []
+        },
+        {
+          "id": "http-compression",
+          "title": "HTTP compression",
+          "parent": null,
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [
+            "compression"
+          ],
+          "source_ids": [],
+          "coverage": [],
+          "prerequisites": [
+            "content-negotiation-and-keep-alive"
+          ]
+        },
+        {
+          "id": "gzip-brotli-zstd",
+          "title": "gzip, Brotli and Zstandard",
+          "parent": "http-compression",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [],
+          "coverage": [],
+          "prerequisites": []
+        },
+        {
+          "id": "compression-dictionaries",
+          "title": "Compression dictionaries",
+          "parent": "http-compression",
+          "complexity": "advanced",
+          "importance": "supporting",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [],
+          "coverage": [],
+          "prerequisites": []
+        },
+        {
+          "id": "cookies",
+          "title": "Cookies",
+          "parent": null,
+          "complexity": "intermediate",
+          "importance": "critical",
+          "disposition": "included",
+          "roadmap_items": [
+            "cookies"
+          ],
+          "source_ids": [],
+          "coverage": [],
+          "prerequisites": [
+            "origin-vs-site"
+          ]
+        },
+        {
+          "id": "set-cookie-attributes",
+          "title": "Set-Cookie attributes and SameSite",
+          "parent": "cookies",
+          "complexity": "intermediate",
+          "importance": "critical",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [],
+          "coverage": [],
+          "prerequisites": []
+        },
+        {
+          "id": "cookie-prefixes-and-chips",
+          "title": "Cookie prefixes and partitioned cookies (CHIPS)",
+          "parent": "cookies",
+          "complexity": "advanced",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [],
+          "coverage": [],
+          "prerequisites": []
+        },
+        {
+          "id": "third-party-cookies",
+          "title": "First-party and third-party cookies",
+          "parent": "cookies",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [],
+          "coverage": [],
+          "prerequisites": []
+        },
+        {
+          "id": "realtime-transports",
+          "title": "Realtime transports",
+          "parent": null,
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [
+            "realtime-transports-overview"
+          ],
+          "source_ids": [],
+          "coverage": [],
+          "prerequisites": [
+            "http-versions"
+          ]
+        },
+        {
+          "id": "polling-and-sse",
+          "title": "Polling, long polling and Server-Sent Events",
+          "parent": "realtime-transports",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [],
+          "coverage": [],
+          "prerequisites": []
+        },
+        {
+          "id": "websockets",
+          "title": "WebSockets",
+          "parent": "realtime-transports",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [],
+          "coverage": [],
+          "prerequisites": []
+        },
+        {
+          "id": "webtransport-and-webrtc",
+          "title": "WebTransport and WebRTC",
+          "parent": "realtime-transports",
+          "complexity": "advanced",
+          "importance": "supporting",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [],
+          "coverage": [],
+          "prerequisites": []
+        },
+        {
+          "id": "api-styles",
+          "title": "REST, GraphQL and RPC",
+          "parent": null,
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [
+            "rest-graphql-rpc-at-a-glance"
+          ],
+          "source_ids": [],
+          "coverage": [],
+          "prerequisites": [
+            "http-messages"
+          ]
+        },
+        {
+          "id": "rest-resources",
+          "title": "Resource-oriented REST",
+          "parent": "api-styles",
+          "complexity": "basic",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [],
+          "coverage": [],
+          "prerequisites": []
+        },
+        {
+          "id": "graphql-queries",
+          "title": "Query-based GraphQL",
+          "parent": "api-styles",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [],
+          "coverage": [],
+          "prerequisites": []
+        },
+        {
+          "id": "rpc-trpc-grpc-web",
+          "title": "RPC: tRPC, gRPC-web and Connect",
+          "parent": "api-styles",
+          "complexity": "intermediate",
+          "importance": "supporting",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [],
+          "coverage": [],
+          "prerequisites": []
+        }
+      ],
+      "discovery": [
+        {
+          "round": 0,
+          "frontier": [
+            "internet-packets-and-routing",
+            "domains-and-hosting",
+            "dns-resolution",
+            "http-messages",
+            "http-versions",
+            "tls-and-https",
+            "urls-and-origins",
+            "http-caching",
+            "cdns-and-edge",
+            "http-compression",
+            "cookies",
+            "realtime-transports",
+            "api-styles"
+          ],
+          "source_ids": [],
+          "added": [
+            "internet-packets-and-routing",
+            "ip-addresses-and-ports",
+            "tcp-vs-udp",
+            "routing-and-isps",
+            "domains-and-hosting",
+            "registrars-tlds-nameservers",
+            "hosting-models",
+            "dns-resolution",
+            "dns-record-types",
+            "dns-prefetch-and-doh",
+            "http-messages",
+            "http-methods-and-idempotency",
+            "http-status-codes",
+            "content-negotiation-and-keep-alive",
+            "http-versions",
+            "head-of-line-blocking-and-multiplexing",
+            "header-compression-and-priorities",
+            "quic-0rtt-and-migration",
+            "http1-era-anti-patterns",
+            "tls-and-https",
+            "tls13-handshake",
+            "certificates-and-chain-of-trust",
+            "hsts-and-mixed-content",
+            "certificate-transparency",
+            "urls-and-origins",
+            "url-parts-and-encoding",
+            "origin-vs-site",
+            "http-caching",
+            "cache-control-directives",
+            "validation-etag-last-modified",
+            "vary-and-shared-caches",
+            "hashed-filenames-cache-busting",
+            "cdns-and-edge",
+            "pops-cache-keys-and-purge",
+            "edge-compute-and-image-cdns",
+            "http-compression",
+            "gzip-brotli-zstd",
+            "compression-dictionaries",
+            "cookies",
+            "set-cookie-attributes",
+            "cookie-prefixes-and-chips",
+            "third-party-cookies",
+            "realtime-transports",
+            "polling-and-sse",
+            "websockets",
+            "webtransport-and-webrtc",
+            "api-styles",
+            "rest-resources",
+            "graphql-queries",
+            "rpc-trpc-grpc-web"
+          ],
+          "note": "Roots seeded from roadmap section 01.1; children proposed at intake, to be verified by research."
+        }
+      ]
+    }
+  },
+  "stages": [
+    {
+      "id": "intake",
+      "wave": 0,
+      "skill": "learn-intake",
+      "status": "done",
+      "scope": "required",
+      "started_at": "2026-11-18T12:14:53Z",
+      "finished_at": "2026-11-18T12:15:18Z",
+      "attempts": 1,
+      "units": [],
+      "note": "",
+      "continue_after_failure": false,
+      "validation": {
+        "version": 2,
+        "fingerprint": "e7dd61d2bd3fef1413cac190e84d9d3716c261677922e2cd705b699ab9726eb5",
+        "at": "2026-11-18T12:15:18Z",
+        "forced": false
+      }
+    },
+    {
+      "id": "research",
+      "wave": 1,
+      "skill": "learn-research",
+      "status": "in_progress",
+      "scope": "required",
+      "started_at": "2026-11-18T12:15:49Z",
+      "finished_at": null,
+      "attempts": 1,
+      "units": [
+        {
+          "id": "docs-http-core",
+          "status": "pending",
+          "handoff": null
+        },
+        {
+          "id": "docs-dns-tls-urls-cookies",
+          "status": "pending",
+          "handoff": null
+        },
+        {
+          "id": "docs-edge-realtime-api",
+          "status": "pending",
+          "handoff": null
+        },
+        {
+          "id": "repos",
+          "status": "pending",
+          "handoff": null
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "brief",
+      "wave": 1,
+      "skill": "learn-brief",
+      "status": "pending",
+      "scope": "required",
+      "started_at": null,
+      "finished_at": null,
+      "attempts": 0,
+      "units": [],
+      "note": ""
+    },
+    {
+      "id": "digest",
+      "wave": 2,
+      "skill": "learn-digest",
+      "status": "pending",
+      "scope": "required",
+      "started_at": null,
+      "finished_at": null,
+      "attempts": 0,
+      "units": [],
+      "note": ""
+    },
+    {
+      "id": "repo-intel",
+      "wave": 2,
+      "skill": "learn-repo-intel",
+      "status": "pending",
+      "scope": "required",
+      "started_at": null,
+      "finished_at": null,
+      "attempts": 0,
+      "units": [],
+      "note": ""
+    },
+    {
+      "id": "lesson",
+      "wave": 3,
+      "skill": "learn-site",
+      "status": "pending",
+      "scope": "required",
+      "started_at": null,
+      "finished_at": null,
+      "attempts": 0,
+      "units": [],
+      "note": ""
+    },
+    {
+      "id": "mini-projects",
+      "wave": 3,
+      "skill": "learn-projects",
+      "status": "pending",
+      "scope": "required",
+      "started_at": null,
+      "finished_at": null,
+      "attempts": 0,
+      "units": [],
+      "note": ""
+    },
+    {
+      "id": "capstone",
+      "wave": 4,
+      "skill": "learn-capstone",
+      "status": "pending",
+      "scope": "required",
+      "started_at": null,
+      "finished_at": null,
+      "attempts": 0,
+      "units": [],
+      "note": ""
+    },
+    {
+      "id": "notes",
+      "wave": 5,
+      "skill": "learn-notes",
+      "status": "pending",
+      "scope": "required",
+      "started_at": null,
+      "finished_at": null,
+      "attempts": 0,
+      "units": [],
+      "note": ""
+    },
+    {
+      "id": "finalize",
+      "wave": 5,
+      "skill": "learn",
+      "status": "pending",
+      "scope": "required",
+      "started_at": null,
+      "finished_at": null,
+      "attempts": 0,
+      "units": [],
+      "note": ""
+    }
+  ],
+  "recall": {
+    "cards": {}
+  },
+  "log": [
+    {
+      "at": "2026-11-18T12:13:22Z",
+      "event": "init",
+      "message": "created with depth deep for roadmap frontend section 01.1"
+    },
+    {
+      "at": "2026-11-18T12:14:53Z",
+      "event": "start",
+      "message": "attempt 1",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-18T12:14:55Z",
+      "event": "plan",
+      "message": "plan fields set: summary, prerequisites, outcomes, lesson_outline, mini_projects, digest_targets, repo_targets, capstone, learner, visual_policy, visual_first, multi_stage, experience_policy, curriculum",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-18T12:15:10Z",
+      "event": "plan",
+      "message": "plan fields set: summary, prerequisites, outcomes, lesson_outline, mini_projects, digest_targets, repo_targets, capstone, learner, visual_policy, visual_first, multi_stage, experience_policy, curriculum",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-18T12:15:18Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-18T12:15:49Z",
+      "event": "start",
+      "message": "attempt 1",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T12:15:52Z",
+      "event": "unit-add",
+      "message": "unit docs-http-core",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T12:15:55Z",
+      "event": "unit-add",
+      "message": "unit docs-dns-tls-urls-cookies",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T12:15:59Z",
+      "event": "unit-add",
+      "message": "unit docs-edge-realtime-api",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T12:16:03Z",
+      "event": "unit-add",
+      "message": "unit repos",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T12:16:05Z",
+      "event": "note",
+      "message": "SPAWN 4/56"
+    }
+  ],
+  "roadmap": {
+    "id": "frontend",
+    "section": "01.1"
+  }
+}
