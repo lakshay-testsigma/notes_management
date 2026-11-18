@@ -7,7 +7,7 @@
   "subdomain": "how-the-web-works",
   "depth": "deep",
   "created_at": "2026-11-18T12:13:22Z",
-  "updated_at": "2026-11-18T12:24:32Z",
+  "updated_at": "2026-11-18T12:26:27Z",
   "paths": {
     "state": "state/topics/frontend-engineering/how-the-web-works/internet-and-networking",
     "vault": "vault/frontend-engineering/how-the-web-works/internet-and-networking",
@@ -1821,7 +1821,7 @@
       ],
       "discovery": [
         {
-          "round": 0,
+          "round": 1,
           "frontier": [
             "internet-packets-and-routing",
             "domains-and-hosting",
@@ -1837,109 +1837,144 @@
             "realtime-transports",
             "api-styles"
           ],
-          "source_ids": [],
+          "source_ids": [
+            "rfc-9110-http-semantics",
+            "rfc-9111-http-caching",
+            "rfc-9114-http3",
+            "rfc-9846-tls13",
+            "whatwg-url-standard",
+            "nodejs-undici-repo",
+            "jshttp-cookie-repo",
+            "mdn-http-docs",
+            "hpbn-book",
+            "cloudflare-docs",
+            "graphql-learn",
+            "connectrpc-docs"
+          ],
           "added": [
             "internet-packets-and-routing",
+            "domains-and-hosting",
+            "dns-resolution",
+            "http-messages",
+            "http-versions",
+            "tls-and-https",
+            "urls-and-origins",
+            "http-caching",
+            "cdns-and-edge",
+            "http-compression",
+            "cookies",
+            "realtime-transports",
+            "api-styles"
+          ],
+          "note": "Roots seeded from the 13 items of roadmap section 01.1 and confirmed against the verified sources."
+        },
+        {
+          "round": 2,
+          "frontier": [
+            "internet-packets-and-routing",
+            "domains-and-hosting",
+            "dns-resolution",
+            "http-messages",
+            "http-versions",
+            "tls-and-https",
+            "urls-and-origins",
+            "http-caching",
+            "cdns-and-edge",
+            "http-compression",
+            "cookies",
+            "realtime-transports",
+            "api-styles"
+          ],
+          "source_ids": [
+            "rfc-9110-http-semantics",
+            "rfc-9111-http-caching",
+            "rfc-9114-http3",
+            "rfc-9846-tls13",
+            "whatwg-url-standard",
+            "nodejs-undici-repo",
+            "jshttp-cookie-repo",
+            "mdn-http-docs",
+            "hpbn-book",
+            "cloudflare-docs",
+            "graphql-learn",
+            "connectrpc-docs"
+          ],
+          "added": [
             "ip-addresses-and-ports",
             "tcp-vs-udp",
             "routing-and-isps",
-            "domains-and-hosting",
             "registrars-tlds-nameservers",
             "hosting-models",
-            "dns-resolution",
             "dns-record-types",
             "dns-prefetch-and-doh",
-            "http-messages",
             "http-methods-and-idempotency",
             "http-status-codes",
             "content-negotiation-and-keep-alive",
-            "http-versions",
             "head-of-line-blocking-and-multiplexing",
             "header-compression-and-priorities",
             "quic-0rtt-and-migration",
             "http1-era-anti-patterns",
-            "tls-and-https",
             "tls13-handshake",
             "certificates-and-chain-of-trust",
             "hsts-and-mixed-content",
             "certificate-transparency",
-            "urls-and-origins",
             "url-parts-and-encoding",
             "origin-vs-site",
-            "http-caching",
             "cache-control-directives",
             "validation-etag-last-modified",
             "vary-and-shared-caches",
             "hashed-filenames-cache-busting",
-            "cdns-and-edge",
             "pops-cache-keys-and-purge",
             "edge-compute-and-image-cdns",
-            "http-compression",
             "gzip-brotli-zstd",
             "compression-dictionaries",
-            "cookies",
             "set-cookie-attributes",
             "cookie-prefixes-and-chips",
             "third-party-cookies",
-            "realtime-transports",
             "polling-and-sse",
             "websockets",
             "webtransport-and-webrtc",
-            "api-styles",
             "rest-resources",
             "graphql-queries",
             "rpc-trpc-grpc-web"
           ],
-          "note": "Roots seeded from roadmap section 01.1; children proposed at intake, to be verified by research."
+          "note": "Roots seeded from roadmap section 01.1. Five research units (http-core, dns-tls-urls-cookies, edge-realtime-api, repos, gap-01) verified children under each root; gap-01 replaced five single-page sources with broader documentation sets to stay within the 12-source cap."
         },
         {
-          "round": 1,
+          "round": 3,
           "frontier": [
-            "internet-packets-and-routing",
             "tcp-vs-udp",
             "routing-and-isps",
-            "domains-and-hosting",
             "registrars-tlds-nameservers",
-            "dns-resolution",
             "dns-record-types",
             "dns-prefetch-and-doh",
-            "http-messages",
             "http-methods-and-idempotency",
             "http-status-codes",
             "content-negotiation-and-keep-alive",
-            "http-versions",
             "head-of-line-blocking-and-multiplexing",
             "header-compression-and-priorities",
             "quic-0rtt-and-migration",
             "http1-era-anti-patterns",
-            "tls-and-https",
             "tls13-handshake",
             "certificates-and-chain-of-trust",
             "hsts-and-mixed-content",
             "certificate-transparency",
-            "urls-and-origins",
             "url-parts-and-encoding",
             "origin-vs-site",
-            "http-caching",
             "cache-control-directives",
             "validation-etag-last-modified",
             "vary-and-shared-caches",
             "hashed-filenames-cache-busting",
-            "cdns-and-edge",
             "pops-cache-keys-and-purge",
             "edge-compute-and-image-cdns",
-            "http-compression",
             "gzip-brotli-zstd",
             "compression-dictionaries",
-            "cookies",
             "set-cookie-attributes",
             "cookie-prefixes-and-chips",
             "third-party-cookies",
-            "realtime-transports",
             "polling-and-sse",
             "websockets",
             "webtransport-and-webrtc",
-            "api-styles",
             "graphql-queries",
             "rpc-trpc-grpc-web"
           ],
@@ -1959,7 +1994,7 @@
           ],
           "added": [],
           "stop_reason": "budget-limit",
-          "note": "Five research units (http-core, dns-tls-urls-cookies, edge-realtime-api, repos, gap-01). gap-01 replaced five single-page sources with broader documentation sets to stay within the 12-source cap. Proposed children dns-caching-and-ttl, tls-0rtt-replay-risk and samesite-lax-strict-none are taught inside dns-record-types, quic-0rtt-and-migration and set-cookie-attributes. Three children deferred with reasons."
+          "note": "Children expanded against the same sources. Proposed dns-caching-and-ttl, tls-0rtt-replay-risk and samesite-lax-strict-none are taught inside dns-record-types, quic-0rtt-and-migration and set-cookie-attributes. Three children deferred with reasons."
         }
       ]
     }
@@ -1972,15 +2007,15 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T12:14:53Z",
-      "finished_at": "2026-11-18T12:22:10Z",
+      "finished_at": "2026-11-18T12:25:58Z",
       "attempts": 1,
       "units": [],
       "note": "",
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "8e59196945d09fbaa6e6b0b244af4ebe6c1ea00ddb1d95fb9547071ae7d32c32",
-        "at": "2026-11-18T12:22:10Z",
+        "fingerprint": "1e5f806ce124a11e2b20b66a9ee225084a95d4ad1e003616117689f099090079",
+        "at": "2026-11-18T12:25:58Z",
         "forced": false
       }
     },
@@ -1988,10 +2023,10 @@
       "id": "research",
       "wave": 1,
       "skill": "learn-research",
-      "status": "in_progress",
+      "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T12:15:49Z",
-      "finished_at": null,
+      "finished_at": "2026-11-18T12:26:27Z",
       "attempts": 1,
       "units": [
         {
@@ -2020,7 +2055,14 @@
           "handoff": null
         }
       ],
-      "note": ""
+      "note": "",
+      "continue_after_failure": false,
+      "validation": {
+        "version": 2,
+        "fingerprint": "7f95cb3e17263746d719b42d61bf31fc8d441a1921b1690161d5f9383cf907c8",
+        "at": "2026-11-18T12:26:27Z",
+        "forced": false
+      }
     },
     {
       "id": "brief",
@@ -2399,6 +2441,54 @@
       "event": "gate-failed",
       "message": "4 problems",
       "stage": "research"
+    },
+    {
+      "at": "2026-11-18T12:25:05Z",
+      "event": "plan",
+      "message": "plan fields set: summary, prerequisites, outcomes, lesson_outline, mini_projects, digest_targets, repo_targets, capstone, learner, visual_policy, visual_first, multi_stage, experience_policy, curriculum",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-18T12:25:09Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-18T12:25:35Z",
+      "event": "execution-check",
+      "message": "research: pass",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T12:25:40Z",
+      "event": "gate-failed",
+      "message": "26 problems",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T12:25:54Z",
+      "event": "plan",
+      "message": "plan fields set: summary, prerequisites, outcomes, lesson_outline, mini_projects, digest_targets, repo_targets, capstone, learner, visual_policy, visual_first, multi_stage, experience_policy, curriculum",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-18T12:25:58Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-18T12:26:23Z",
+      "event": "execution-check",
+      "message": "research: pass",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T12:26:27Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "research"
     }
   ],
   "roadmap": {
@@ -2409,9 +2499,9 @@
     "executions": {
       "research": {
         "version": 2,
-        "fingerprint": "21f353bf8a80cb1944450db98daa38a0892dfa96ce708937bebf1fb65f09b975",
-        "at": "2026-11-18T12:24:22Z",
-        "ok": false,
+        "fingerprint": "7f95cb3e17263746d719b42d61bf31fc8d441a1921b1690161d5f9383cf907c8",
+        "at": "2026-11-18T12:26:23Z",
+        "ok": true,
         "checks": [
           {
             "label": "rfc-9110-http-semantics: https://www.rfc-editor.org/rfc/rfc9110.json",
@@ -2573,31 +2663,28 @@
             "label": "hpbn-book: https://hpbn.co/",
             "source": "hpbn-book",
             "requested_url": "https://hpbn.co/",
-            "ok": false,
-            "status": 0,
-            "bytes": 0,
-            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "problem": "curl: (28) Connection timed out after 25006 milliseconds\n"
+            "ok": true,
+            "status": 200,
+            "bytes": 50601,
+            "sha256": "9be98a0302490e5132aa1d6e1df4788a8674fe668edea31e5243f61d179a286f"
           },
           {
             "label": "hpbn-book: https://hpbn.co/primer-on-latency-and-bandwidth/",
             "source": "hpbn-book",
             "requested_url": "https://hpbn.co/primer-on-latency-and-bandwidth/",
-            "ok": false,
-            "status": 0,
-            "bytes": 0,
-            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "problem": "curl: (28) Connection timed out after 25005 milliseconds\n"
+            "ok": true,
+            "status": 200,
+            "bytes": 33940,
+            "sha256": "e72bf58b9fe76cf5bcff0b67e7dc51383e36add5a7d4a679f2ea5de1cdd744ac"
           },
           {
             "label": "cloudflare-docs: https://developers.cloudflare.com/dns/manage-dns-records/reference/dns-record-types/",
             "source": "cloudflare-docs",
             "requested_url": "https://developers.cloudflare.com/dns/manage-dns-records/reference/dns-record-types/",
-            "ok": false,
-            "status": 0,
-            "bytes": 0,
-            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "problem": "curl: (28) Connection timed out after 25005 milliseconds\n"
+            "ok": true,
+            "status": 200,
+            "bytes": 210718,
+            "sha256": "f975195ba9ae4a0ab3c4e4975d5bb705b1da347b85ce3a7c373b001eeaa8fd1a"
           },
           {
             "label": "cloudflare-docs: https://developers.cloudflare.com/dns/manage-dns-records/reference/ttl/",

@@ -11,7 +11,7 @@ created: 2026-11-18
 This is the map of the topic. Read the steps from top to bottom. Each step links to the next thing to open, so you never have to search.
 
 <!-- tutor:generated:start -->
-**Depth:** deep · **Progress:** 1 of 10 steps ready
+**Depth:** deep · **Progress:** 2 of 10 steps ready
 
 The network layers under every web page: packets, DNS, HTTP and its versions, TLS, URLs and origins, caching, CDNs, compression, cookies, realtime transports and API styles.
 
@@ -25,7 +25,7 @@ The network layers under every web page: packets, DNS, HTTP and its versions, TL
 6. [[06-capstone-internet-and-networking|Capstone]] — the production-style project · *not started*
 7. [[07-final-notes-internet-and-networking|Final notes]] — the one-page refresher · *not started*
 8. [[08-recall-internet-and-networking|Recall cards]] — flashcards for spaced review · *not started*
-9. [[09-resources-internet-and-networking|Resources]] — the vetted sources behind everything above · *in progress*
+9. [[09-resources-internet-and-networking|Resources]] — the vetted sources behind everything above · *ready*
 
 Your own additions live in [[my-insights-internet-and-networking|My insights]].
 
@@ -121,7 +121,7 @@ The network a frontend developer depends on: internet packets and transport, dom
 - Query-based GraphQL: included
 - RPC: tRPC, gRPC-web and Connect: included
 
-Research stopped: budget-limit. Five research units (http-core, dns-tls-urls-cookies, edge-realtime-api, repos, gap-01). gap-01 replaced five single-page sources with broader documentation sets to stay within the 12-source cap. Proposed children dns-caching-and-ttl, tls-0rtt-replay-risk and samesite-lax-strict-none are taught inside dns-record-types, quic-0rtt-and-migration and set-cookie-attributes. Three children deferred with reasons.
+Research stopped: budget-limit. Children expanded against the same sources. Proposed dns-caching-and-ttl, tls-0rtt-replay-risk and samesite-lax-strict-none are taught inside dns-record-types, quic-0rtt-and-migration and set-cookie-attributes. Three children deferred with reasons.
 
 ## Projects
 
@@ -135,7 +135,7 @@ Research stopped: budget-limit. Five research units (http-core, dns-tls-urls-coo
 | Wave | Stage | Status |
 |------|-------|--------|
 | 0 | intake | ready |
-| 1 | research | in progress |
+| 1 | research | ready |
 | 1 | brief | not started |
 | 2 | digest | not started |
 | 2 | repo-intel | not started |
@@ -145,7 +145,7 @@ Research stopped: budget-limit. Five research units (http-core, dns-tls-urls-coo
 | 5 | notes | not started |
 | 5 | finalize | not started |
 
-Next to generate: `research`. Ask Claude to continue this topic, or run `node harness/bin/tutor.mjs next frontend-engineering/how-the-web-works/internet-and-networking`.
+Next to generate: `brief`. Ask Claude to continue this topic, or run `node harness/bin/tutor.mjs next frontend-engineering/how-the-web-works/internet-and-networking`.
 <!-- tutor:generated:end -->
 
 ## My insights
