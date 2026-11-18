@@ -2,12 +2,12 @@
   {
     "id": "react-devtools-docs",
     "type": "official-docs",
-    "title": "React Developer Tools",
+    "title": "React docs set: React Developer Tools, and Render and Commit",
     "url": "https://react.dev/learn/react-developer-tools",
     "authors": "Meta / React team",
     "year": 2026,
     "tier": "A",
-    "why_trusted": "The official react.dev page for the React DevTools browser extension (Components and Profiler panels), maintained by the React team.",
+    "why_trusted": "Official react.dev documentation maintained by the React team: 'React Developer Tools' covers the Components and Profiler panels; 'Render and Commit' states a render is triggered by initial render or a state update in the component or an ancestor, and rendering is recursive through children.",
     "evidence": {
       "stars": null,
       "last_commit": null,
@@ -17,7 +17,7 @@
       "used_by": []
     },
     "verified_at": "2026-11-18",
-    "verified_via": "https://react.dev/learn/react-developer-tools",
+    "verified_via": "https://react.dev/learn/render-and-commit",
     "use_for": [
       "brief",
       "lesson"
@@ -83,12 +83,12 @@
   {
     "id": "redux-configure-store-docs",
     "type": "official-docs",
-    "title": "Configuring Your Store (Redux, Redux DevTools Extension integration)",
+    "title": "Redux docs set: Configuring Your Store and Essentials Part 1 (Redux DevTools Extension)",
     "url": "https://redux.js.org/usage/configuring-your-store",
     "authors": "Redux maintainers",
     "year": 2026,
     "tier": "A",
-    "why_trusted": "Official Redux documentation on redux.js.org; it states that configureStore enables the Redux DevTools Extension by default and documents the devTools option. Its 'prior art' page links to reduxjs/redux-devtools (MIT, 14.4k stars, last commit 2026-11-10) as the developer tools.",
+    "why_trusted": "Official redux.js.org documentation. 'Configuring Your Store' (section 'Other options') documents the devTools option; Essentials Part 1 (section 'Redux DevTools Extension') says it shows a history of state changes and supports time-travel debugging. The 'prior art' page links to reduxjs/redux-devtools (MIT, 14.4k stars).",
     "evidence": {
       "stars": null,
       "last_commit": null,
@@ -98,7 +98,7 @@
       "used_by": []
     },
     "verified_at": "2026-11-18",
-    "verified_via": "https://redux.js.org/usage/configuring-your-store",
+    "verified_via": "https://redux.js.org/tutorials/essentials/part-1-overview-concepts",
     "use_for": [
       "lesson"
     ]
@@ -106,12 +106,12 @@
   {
     "id": "google-js-seo-basics-docs",
     "type": "official-docs",
-    "title": "Understand JavaScript SEO basics",
+    "title": "Google Search Central: JavaScript SEO basics, Redirects, and Site move with URL changes",
     "url": "https://developers.google.com/search/docs/crawling-indexing/javascript/javascript-seo-basics",
     "authors": "Google Search Central",
     "year": 2026,
     "tier": "A",
-    "why_trusted": "Google's own Search Central documentation of how Googlebot crawls, renders and indexes JavaScript pages; sections cover rendered HTML, status codes, soft 404, and JSON-LD.",
+    "why_trusted": "Google's own Search Central documentation of how Googlebot crawls, renders and indexes JavaScript pages (rendered HTML, status codes, soft 404, JSON-LD), plus the redirects page (permanent 301/308 vs temporary 302/307, server-side preferred, JavaScript redirects may be missed) and the site-move page ('Avoid chaining redirects': Googlebot follows up to 10 hops; keep chains under 5).",
     "evidence": {
       "stars": null,
       "last_commit": null,
@@ -121,7 +121,7 @@
       "used_by": []
     },
     "verified_at": "2026-11-18",
-    "verified_via": "https://developers.google.com/search/docs/crawling-indexing/javascript/javascript-seo-basics",
+    "verified_via": "https://developers.google.com/search/docs/crawling-indexing/site-move-with-url-changes",
     "use_for": [
       "digest",
       "lesson"
@@ -130,12 +130,12 @@
   {
     "id": "w3c-wai-selecting-evaluation-tools",
     "type": "official-docs",
-    "title": "Selecting Web Accessibility Evaluation Tools",
+    "title": "W3C WAI: Selecting evaluation tools, Evaluation Tools List, and page-structure tutorials (headings, regions)",
     "url": "https://www.w3.org/WAI/test-evaluate/tools/selecting/",
     "authors": "W3C WAI (EOWG)",
     "year": 2024,
     "tier": "A",
-    "why_trusted": "W3C Web Accessibility Initiative guidance; its section 'What Evaluation Tools Can Do and Can Not Do' states tools cannot check all accessibility aspects automatically and human judgement is required.",
+    "why_trusted": "W3C Web Accessibility Initiative guidance. 'Selecting Web Accessibility Evaluation Tools' says tools cannot check everything and human judgement is required; the Evaluation Tools List names WAVE; the page-structure tutorials 'Headings' and 'Page Regions' define heading ranks and landmark regions (banner, nav, main, contentinfo).",
     "evidence": {
       "stars": null,
       "last_commit": null,

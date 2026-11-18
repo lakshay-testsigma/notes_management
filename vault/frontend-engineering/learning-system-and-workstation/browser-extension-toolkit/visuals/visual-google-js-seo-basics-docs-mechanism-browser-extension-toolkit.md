@@ -37,7 +37,7 @@ Answer: Google indexes the rendered HTML. A disallowed URL is skipped and its Ja
 
 ## Sources
 
-- Understand JavaScript SEO basics — https://developers.google.com/search/docs/crawling-indexing/javascript/javascript-seo-basics (`google-js-seo-basics-docs`)
+- Google Search Central: JavaScript SEO basics, Redirects, and Site move with URL changes — https://developers.google.com/search/docs/crawling-indexing/javascript/javascript-seo-basics (`google-js-seo-basics-docs`)
 
 ## Used in
 

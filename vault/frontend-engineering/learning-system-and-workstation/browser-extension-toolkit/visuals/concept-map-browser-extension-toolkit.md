@@ -22,12 +22,14 @@ flowchart TD
   accessibility_extensions["Accessibility extensions"]
   automated_a11y_rule_limits["What automated accessibility rules can and cannot catch"]
   contrast_and_vision_checks["Contrast and vision emulation checks"]
+  headings_and_landmarks["Headings and landmarks structure"]
   seo_extensions["SEO extensions"]
   rendered_vs_source_html["Rendered HTML versus source HTML"]
   redirects_and_structured_data["Redirect chains and structured data"]
   security_privacy_extensions["Security and privacy extensions"]
   vulnerable_library_detection["Vulnerable library and tech fingerprint detection"]
   headers_cookies_and_csp["Security headers, cookies and CSP inspection"]
+  ad_block_and_proxy_testing["Ad-block resilience and proxy testing"]
   design_css_helper_extensions["Design and CSS helper extensions"]
   api_data_extensions["API and data extensions"]
   request_modification_and_mocking["Request header modification and mocking"]
@@ -41,11 +43,13 @@ flowchart TD
   performance_extensions --> crux_field_data_viewers
   accessibility_extensions --> automated_a11y_rule_limits
   accessibility_extensions --> contrast_and_vision_checks
+  accessibility_extensions --> headings_and_landmarks
   seo_extensions --> rendered_vs_source_html
   seo_extensions --> redirects_and_structured_data
   extension_risk_and_vetting -. needed for .-> security_privacy_extensions
   security_privacy_extensions --> vulnerable_library_detection
   security_privacy_extensions --> headers_cookies_and_csp
+  security_privacy_extensions --> ad_block_and_proxy_testing
   api_data_extensions --> request_modification_and_mocking
   extension_risk_and_vetting --> team_extension_profile
   extension_risk_and_vetting -. needed for .-> team_extension_profile

@@ -24,10 +24,6 @@ Every source below was checked against a live page before it was recommended.
   - Why it is trusted: The official Chrome extensions API reference for the API that block, redirect and header-modifying extensions use; it defines the rule action types block, redirect, allow, upgradeScheme, modifyHeaders and allowAllRequests, plus rule limits and the Header modification section.
   - Used for: lesson
   - Verified: 2026-11-18
-- **[Configuring Your Store (Redux, Redux DevTools Extension integration)](https://redux.js.org/usage/configuring-your-store)** — Redux maintainers, 2026 · tier A
-  - Why it is trusted: Official Redux documentation on redux.js.org; it states that configureStore enables the Redux DevTools Extension by default and documents the devTools option. Its 'prior art' page links to reduxjs/redux-devtools (MIT, 14.4k stars, last commit 2026-11-10) as the developer tools.
-  - Used for: lesson
-  - Verified: 2026-11-18
 - **[Content scripts (Chrome for Developers)](https://developer.chrome.com/docs/extensions/develop/concepts/content-scripts)** — Chrome Extensions team, Google, 2026 · tier A
   - Why it is trusted: Official Chrome extension documentation; its sections on isolated worlds, injection methods, run_at and 'Stay secure' define how content scripts touch pages and what permissions injection needs.
   - Used for: lesson
@@ -36,23 +32,27 @@ Every source below was checked against a live page before it was recommended.
   - Why it is trusted: MDN's reference guide to the Content-Security-Policy header, covering delivery, strict CSP, clickjacking, Trusted Types and report-only testing.
   - Used for: lesson
   - Verified: 2026-11-18
+- **[Google Search Central: JavaScript SEO basics, Redirects, and Site move with URL changes](https://developers.google.com/search/docs/crawling-indexing/javascript/javascript-seo-basics)** — Google Search Central, 2026 · tier A
+  - Why it is trusted: Google's own Search Central documentation of how Googlebot crawls, renders and indexes JavaScript pages (rendered HTML, status codes, soft 404, JSON-LD), plus the redirects page (permanent 301/308 vs temporary 302/307, server-side preferred, JavaScript redirects may be missed) and the site-move page ('Avoid chaining redirects': Googlebot follows up to 10 hops; keep chains under 5).
+  - Used for: digest, lesson
+  - Verified: 2026-11-18
+  - Digest: [[google-js-seo-basics-docs-browser-extension-toolkit|read the digest]]
 - **[Performance features reference / overview (Chrome DevTools)](https://developer.chrome.com/docs/devtools/performance/overview)** — Chrome DevTools team, Google, 2026 · tier A
   - Why it is trusted: Official Chrome DevTools documentation; its sections 'Observe Core Web Vitals live' and 'Compare your experience to the experience of your users' show live metrics and CrUX field data built into the Performance panel.
   - Used for: lesson
   - Verified: 2026-11-18
-- **[React Developer Tools](https://react.dev/learn/react-developer-tools)** — Meta / React team, 2026 · tier A
-  - Why it is trusted: The official react.dev page for the React DevTools browser extension (Components and Profiler panels), maintained by the React team.
+- **[React docs set: React Developer Tools, and Render and Commit](https://react.dev/learn/react-developer-tools)** — Meta / React team, 2026 · tier A
+  - Why it is trusted: Official react.dev documentation maintained by the React team: 'React Developer Tools' covers the Components and Profiler panels; 'Render and Commit' states a render is triggered by initial render or a state update in the component or an ancestor, and rendering is recursive through children.
   - Used for: brief, lesson
   - Verified: 2026-11-18
-- **[Selecting Web Accessibility Evaluation Tools](https://www.w3.org/WAI/test-evaluate/tools/selecting/)** — W3C WAI (EOWG), 2024 · tier A
-  - Why it is trusted: W3C Web Accessibility Initiative guidance; its section 'What Evaluation Tools Can Do and Can Not Do' states tools cannot check all accessibility aspects automatically and human judgement is required.
+- **[Redux docs set: Configuring Your Store and Essentials Part 1 (Redux DevTools Extension)](https://redux.js.org/usage/configuring-your-store)** — Redux maintainers, 2026 · tier A
+  - Why it is trusted: Official redux.js.org documentation. 'Configuring Your Store' (section 'Other options') documents the devTools option; Essentials Part 1 (section 'Redux DevTools Extension') says it shows a history of state changes and supports time-travel debugging. The 'prior art' page links to reduxjs/redux-devtools (MIT, 14.4k stars).
   - Used for: lesson
   - Verified: 2026-11-18
-- **[Understand JavaScript SEO basics](https://developers.google.com/search/docs/crawling-indexing/javascript/javascript-seo-basics)** — Google Search Central, 2026 · tier A
-  - Why it is trusted: Google's own Search Central documentation of how Googlebot crawls, renders and indexes JavaScript pages; sections cover rendered HTML, status codes, soft 404, and JSON-LD.
-  - Used for: digest, lesson
+- **[W3C WAI: Selecting evaluation tools, Evaluation Tools List, and page-structure tutorials (headings, regions)](https://www.w3.org/WAI/test-evaluate/tools/selecting/)** — W3C WAI (EOWG), 2024 · tier A
+  - Why it is trusted: W3C Web Accessibility Initiative guidance. 'Selecting Web Accessibility Evaluation Tools' says tools cannot check everything and human judgement is required; the Evaluation Tools List names WAVE; the page-structure tutorials 'Headings' and 'Page Regions' define heading ranks and landmark regions (banner, nav, main, contentinfo).
+  - Used for: lesson
   - Verified: 2026-11-18
-  - Digest: [[google-js-seo-basics-docs-browser-extension-toolkit|read the digest]]
 
 ## Repositories
 

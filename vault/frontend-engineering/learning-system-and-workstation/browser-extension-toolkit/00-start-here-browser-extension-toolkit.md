@@ -11,14 +11,14 @@ created: 2026-11-18
 This is the map of the topic. Read the steps from top to bottom. Each step links to the next thing to open, so you never have to search.
 
 <!-- tutor:generated:start -->
-**Depth:** standard · **Progress:** 9 of 10 steps ready
+**Depth:** standard · **Progress:** 5 of 10 steps ready
 
 A browser extension toolkit adds framework, performance, accessibility, SEO and security views that built-in DevTools does not give.
 
 ## Read in this order
 
 1. [[01-brief-browser-extension-toolkit|Brief]] — what it is, why it exists, where it is used · *ready*
-2. [[02-lesson-browser-extension-toolkit|Interactive lesson]] — the animated lesson pages on the local site · *ready*
+2. [[02-lesson-browser-extension-toolkit|Interactive lesson]] — the animated lesson pages on the local site · *in progress*
 3. [[03-mini-projects-browser-extension-toolkit|Mini projects]] — small builds with a real use case · *ready*
 4. [[00-digests-browser-extension-toolkit|Digests]] — short summaries of the key papers and docs · *ready*
 5. [[00-repo-intel-browser-extension-toolkit|Repository deep dive]] — how a production open-source project does it · *ready*
@@ -76,20 +76,20 @@ Browser extensions a frontend developer installs once and uses across the roadma
 - Accessibility extensions: included
 - What automated accessibility rules can and cannot catch: included
 - Contrast and vision emulation checks: included
-- Headings and landmarks structure: deferred — No verified source in this run; headings and landmarks are taught in roadmap section 08.2 Building accessible UI.
+- Headings and landmarks structure: included
 - SEO extensions: included
 - Rendered HTML versus source HTML: included
 - Redirect chains and structured data: included
 - Security and privacy extensions: included
 - Vulnerable library and tech fingerprint detection: included
 - Security headers, cookies and CSP inspection: included
-- Ad-block resilience and proxy testing: deferred — No verified source in this run; ad-block resilience and proxy tools (Burp/ZAP) belong to the later security phase of the roadmap.
+- Ad-block resilience and proxy testing: included
 - Design and CSS helper extensions: included
 - API and data extensions: included
 - Request header modification and mocking: included
 - A team extension profile: included
 
-Research stopped: budget-limit. Five research units (framework-perf, a11y-seo, security-helpers, repos, gap-01) verified 12 sources, the cap. Every included concept has vetted evidence. Four children deferred with reasons (no verified source this run; later roadmap sections teach them). Design-helper tools are supported only through the content-script mechanism; tool-specific pages (VisBug archived) were not added.
+Research stopped: budget-limit. Coverage audit round 1: widened W3C WAI, react.dev, Redux and Google Search Central entries into documentation sets (still 12 sources). headings-and-landmarks and ad-block-and-proxy-testing re-included with evidence. other-framework-devtools stays deferred (no free source slot; Angular and Vue pages verified but unrecorded); react-scan-wasted-renders stays deferred (repository fails the source bar).
 
 ## Projects
 
@@ -106,13 +106,13 @@ Research stopped: budget-limit. Five research units (framework-perf, a11y-seo, s
 | 1 | brief | ready |
 | 2 | digest | ready |
 | 2 | repo-intel | ready |
-| 3 | lesson | ready |
+| 3 | lesson | in progress |
 | 3 | mini-projects | ready |
 | 4 | capstone | ready |
 | 5 | notes | ready |
 | 5 | finalize | not started |
 
-Next to generate: `finalize`. Ask Claude to continue this topic, or run `node harness/bin/tutor.mjs next frontend-engineering/learning-system-and-workstation/browser-extension-toolkit`.
+Next to generate: `lesson`, `mini-projects`. Ask Claude to continue this topic, or run `node harness/bin/tutor.mjs next frontend-engineering/learning-system-and-workstation/browser-extension-toolkit`.
 <!-- tutor:generated:end -->
 
 ## My insights

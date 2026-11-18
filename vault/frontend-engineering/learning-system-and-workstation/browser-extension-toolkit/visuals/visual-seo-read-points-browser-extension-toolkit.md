@@ -36,7 +36,7 @@ Answer: The SEO extension, because it reads the rendered DOM, and Google indexes
 
 ## Sources
 
-- Understand JavaScript SEO basics — https://developers.google.com/search/docs/crawling-indexing/javascript/javascript-seo-basics (`google-js-seo-basics-docs`)
+- Google Search Central: JavaScript SEO basics, Redirects, and Site move with URL changes — https://developers.google.com/search/docs/crawling-indexing/javascript/javascript-seo-basics (`google-js-seo-basics-docs`)
 - Content scripts (Chrome for Developers) — https://developer.chrome.com/docs/extensions/develop/concepts/content-scripts (`chrome-extensions-content-scripts-docs`)
 
 ## Used in

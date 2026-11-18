@@ -7,7 +7,7 @@
   "subdomain": "learning-system-and-workstation",
   "depth": "standard",
   "created_at": "2026-11-18T10:19:12Z",
-  "updated_at": "2026-11-18T12:49:33Z",
+  "updated_at": "2026-11-18T12:55:49Z",
   "paths": {
     "state": "state/topics/frontend-engineering/learning-system-and-workstation/browser-extension-toolkit",
     "vault": "vault/frontend-engineering/learning-system-and-workstation/browser-extension-toolkit",
@@ -173,7 +173,8 @@
           "concept_ids": [
             "accessibility-extensions",
             "automated-a11y-rule-limits",
-            "contrast-and-vision-checks"
+            "contrast-and-vision-checks",
+            "headings-and-landmarks"
           ],
           "signals": {
             "complexity": 3,
@@ -233,7 +234,8 @@
           "concept_ids": [
             "security-privacy-extensions",
             "vulnerable-library-detection",
-            "headers-cookies-and-csp"
+            "headers-cookies-and-csp",
+            "ad-block-and-proxy-testing"
           ],
           "signals": {
             "complexity": 3,
@@ -658,12 +660,25 @@
           "parent": "accessibility-extensions",
           "complexity": "basic",
           "importance": "core",
-          "disposition": "deferred",
+          "disposition": "included",
           "roadmap_items": [],
-          "source_ids": [],
-          "coverage": [],
-          "prerequisites": [],
-          "reason": "No verified source in this run; headings and landmarks are taught in roadmap section 08.2 Building accessible UI."
+          "source_ids": [
+            "w3c-wai-selecting-evaluation-tools"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-extension-toolkit/04-accessibility-extensions.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": []
         },
         {
           "id": "seo-extensions",
@@ -834,12 +849,25 @@
           "parent": "security-privacy-extensions",
           "complexity": "basic",
           "importance": "supporting",
-          "disposition": "deferred",
+          "disposition": "included",
           "roadmap_items": [],
-          "source_ids": [],
-          "coverage": [],
-          "prerequisites": [],
-          "reason": "No verified source in this run; ad-block resilience and proxy tools (Burp/ZAP) belong to the later security phase of the roadmap."
+          "source_ids": [
+            "chrome-declarativenetrequest-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-extension-toolkit/06-security-privacy-extensions.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": []
         },
         {
           "id": "design-css-helper-extensions",
@@ -1062,8 +1090,21 @@
             "chrome-extensions-content-scripts-docs"
           ],
           "added": [],
-          "stop_reason": "budget-limit",
           "note": "Five research units (framework-perf, a11y-seo, security-helpers, repos, gap-01) verified 12 sources, the cap. Every included concept has vetted evidence. Four children deferred with reasons (no verified source this run; later roadmap sections teach them). Design-helper tools are supported only through the content-script mechanism; tool-specific pages (VisBug archived) were not added."
+        },
+        {
+          "round": 4,
+          "frontier": [
+            "headings-and-landmarks",
+            "ad-block-and-proxy-testing"
+          ],
+          "source_ids": [
+            "w3c-wai-selecting-evaluation-tools",
+            "chrome-declarativenetrequest-docs"
+          ],
+          "added": [],
+          "stop_reason": "budget-limit",
+          "note": "Coverage audit round 1: widened W3C WAI, react.dev, Redux and Google Search Central entries into documentation sets (still 12 sources). headings-and-landmarks and ad-block-and-proxy-testing re-included with evidence. other-framework-devtools stays deferred (no free source slot; Angular and Vue pages verified but unrecorded); react-scan-wasted-renders stays deferred (repository fails the source bar)."
         }
       ]
     }
@@ -1076,15 +1117,15 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T10:19:15Z",
-      "finished_at": "2026-11-18T10:46:03Z",
+      "finished_at": "2026-11-18T12:53:43Z",
       "attempts": 1,
       "units": [],
       "note": "",
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "c1460645ec7895b9eff936c5dc2725a208b6a50f75acfc9ba1a2401658f9c545",
-        "at": "2026-11-18T10:46:03Z",
+        "fingerprint": "497038b2a7080d6b10c28ed02f76042a866cdd12e148a36b6c85c76c0ed3ae6e",
+        "at": "2026-11-18T12:53:43Z",
         "forced": false
       }
     },
@@ -1095,7 +1136,7 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T10:21:07Z",
-      "finished_at": "2026-11-18T10:46:17Z",
+      "finished_at": "2026-11-18T12:54:35Z",
       "attempts": 1,
       "units": [
         {
@@ -1128,8 +1169,8 @@
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "853b4d1b3bf2b1796d4de7054ba95254ae72d2af65dfbd673212d2a000f36446",
-        "at": "2026-11-18T10:46:17Z",
+        "fingerprint": "d89536141468fa404123c32158e611f56669682cc5c520f644dc0b23eda5de51",
+        "at": "2026-11-18T12:54:35Z",
         "forced": false
       }
     },
@@ -1140,15 +1181,15 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T11:47:13Z",
-      "finished_at": "2026-11-18T12:35:17Z",
+      "finished_at": "2026-11-18T12:54:47Z",
       "attempts": 1,
       "units": [],
       "note": "",
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "03b3a48a2c5f1e394efa287124e14f84730563a265997c5784b94b993674cbbd",
-        "at": "2026-11-18T12:35:17Z",
+        "fingerprint": "c12793797e73e69a1be0f2e0c697682fae15fadafb9fe860671dc738b1f7a575",
+        "at": "2026-11-18T12:54:47Z",
         "forced": false
       }
     },
@@ -1159,7 +1200,7 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T12:12:30Z",
-      "finished_at": "2026-11-18T12:35:23Z",
+      "finished_at": "2026-11-18T12:54:54Z",
       "attempts": 1,
       "units": [
         {
@@ -1177,8 +1218,8 @@
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "b243d3b84924c8a9a58f81f76819062444b91dc2fa850dfb9c0996ae13374409",
-        "at": "2026-11-18T12:35:23Z",
+        "fingerprint": "cbdcac2dc0b7fcdb0dc6bb1327d6a80fdfdc50a3f280edbcfb803c850425426e",
+        "at": "2026-11-18T12:54:54Z",
         "forced": false
       }
     },
@@ -1189,7 +1230,7 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T12:12:33Z",
-      "finished_at": "2026-11-18T12:35:28Z",
+      "finished_at": "2026-11-18T12:55:00Z",
       "attempts": 1,
       "units": [
         {
@@ -1237,8 +1278,8 @@
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "1c5d657d0487c20ba71c16ab49b518a5854cbc406b037f0e7a1c275c69b3d2c7",
-        "at": "2026-11-18T12:35:28Z",
+        "fingerprint": "bed1df5febc9aae8750bfa3680633e8e4f9cd931499f42850bbca2bba79ab8f3",
+        "at": "2026-11-18T12:55:00Z",
         "forced": false
       }
     },
@@ -1246,11 +1287,11 @@
       "id": "lesson",
       "wave": 3,
       "skill": "learn-site",
-      "status": "done",
+      "status": "in_progress",
       "scope": "required",
-      "started_at": "2026-11-18T12:28:20Z",
-      "finished_at": "2026-11-18T12:35:33Z",
-      "attempts": 1,
+      "started_at": "2026-11-18T12:55:43Z",
+      "finished_at": null,
+      "attempts": 2,
       "units": [
         {
           "id": "experience-framework-devtools-lab",
@@ -1280,6 +1321,16 @@
         {
           "id": "pages-06-07",
           "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "audit1-pages-02-04",
+          "status": "pending",
+          "handoff": null
+        },
+        {
+          "id": "audit1-pages-05-07",
+          "status": "pending",
           "handoff": null
         }
       ],
@@ -2439,6 +2490,105 @@
       "event": "done",
       "message": "gate passed",
       "stage": "notes"
+    },
+    {
+      "at": "2026-11-18T12:49:56Z",
+      "event": "note",
+      "message": "SPAWN 26/36; coverage audit round 1"
+    },
+    {
+      "at": "2026-11-18T12:50:55Z",
+      "event": "note",
+      "message": "AUDIT 1: 7 gaps (4 deferred concepts missing, api/design/redirect thin); SPAWN 27/36 research audit-gap-1"
+    },
+    {
+      "at": "2026-11-18T12:52:34Z",
+      "event": "source-update",
+      "message": "updated w3c-wai-selecting-evaluation-tools: title, why_trusted",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T12:52:38Z",
+      "event": "source-update",
+      "message": "updated react-devtools-docs: title, why_trusted, verified_via",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T12:52:41Z",
+      "event": "source-update",
+      "message": "updated redux-configure-store-docs: title, why_trusted, verified_via",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T12:52:44Z",
+      "event": "source-update",
+      "message": "updated google-js-seo-basics-docs: title, why_trusted, verified_via",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T12:53:31Z",
+      "event": "plan",
+      "message": "plan fields set: summary, prerequisites, outcomes, lesson_outline, mini_projects, digest_targets, repo_targets, capstone, learner, visual_policy, visual_first, multi_stage, experience_policy, curriculum",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-18T12:53:43Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-18T12:53:47Z",
+      "event": "note",
+      "message": "SPAWN 29/36; audit-1 fix units audit1-pages-02-04, audit1-pages-05-07"
+    },
+    {
+      "at": "2026-11-18T12:54:28Z",
+      "event": "execution-check",
+      "message": "research: pass",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T12:54:35Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T12:54:47Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "brief"
+    },
+    {
+      "at": "2026-11-18T12:54:54Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "digest"
+    },
+    {
+      "at": "2026-11-18T12:55:00Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T12:55:43Z",
+      "event": "start",
+      "message": "attempt 2",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T12:55:46Z",
+      "event": "unit-add",
+      "message": "unit audit1-pages-02-04",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T12:55:49Z",
+      "event": "unit-add",
+      "message": "unit audit1-pages-05-07",
+      "stage": "lesson"
     }
   ],
   "roadmap": {
@@ -2449,10 +2599,19 @@
     "executions": {
       "research": {
         "version": 2,
-        "fingerprint": "853b4d1b3bf2b1796d4de7054ba95254ae72d2af65dfbd673212d2a000f36446",
-        "at": "2026-11-18T10:46:14Z",
+        "fingerprint": "d89536141468fa404123c32158e611f56669682cc5c520f644dc0b23eda5de51",
+        "at": "2026-11-18T12:54:28Z",
         "ok": true,
         "checks": [
+          {
+            "label": "react-devtools-docs: https://react.dev/learn/render-and-commit",
+            "source": "react-devtools-docs",
+            "requested_url": "https://react.dev/learn/render-and-commit",
+            "ok": true,
+            "status": 200,
+            "bytes": 171031,
+            "sha256": "bf9a09bb4ae8efb7d7931b2d794c708c2e01d98ab66caf91b0d379f70310f591"
+          },
           {
             "label": "react-devtools-docs: https://react.dev/learn/react-developer-tools",
             "source": "react-devtools-docs",
@@ -2469,7 +2628,7 @@
             "ok": true,
             "status": 200,
             "bytes": 210941,
-            "sha256": "8cd4d037f00f5d84eb2e0cffc7f4f90e78b269d5a33d95fad6f5d35f5cdabb46"
+            "sha256": "e57c8b3142a1b135de982bf76cdf53750ddd6337eb7a0d05cb1ca729bcc7c049"
           },
           {
             "label": "dequelabs-axe-core-repo: https://api.github.com/repos/dequelabs/axe-core",
@@ -2487,6 +2646,15 @@
             }
           },
           {
+            "label": "redux-configure-store-docs: https://redux.js.org/tutorials/essentials/part-1-overview-concepts",
+            "source": "redux-configure-store-docs",
+            "requested_url": "https://redux.js.org/tutorials/essentials/part-1-overview-concepts",
+            "ok": true,
+            "status": 200,
+            "bytes": 104794,
+            "sha256": "140694d387ee91f091614f3b4cd41e4c66d48334de943dcbe0abc7b5ceed70f4"
+          },
+          {
             "label": "redux-configure-store-docs: https://redux.js.org/usage/configuring-your-store",
             "source": "redux-configure-store-docs",
             "requested_url": "https://redux.js.org/usage/configuring-your-store",
@@ -2496,13 +2664,22 @@
             "sha256": "18bc0ce6c647bedc5fe1a6af50cb1ec3795bf8034df1c58389de75cbc3623461"
           },
           {
+            "label": "google-js-seo-basics-docs: https://developers.google.com/search/docs/crawling-indexing/site-move-with-url-changes",
+            "source": "google-js-seo-basics-docs",
+            "requested_url": "https://developers.google.com/search/docs/crawling-indexing/site-move-with-url-changes",
+            "ok": true,
+            "status": 200,
+            "bytes": 205580,
+            "sha256": "e11763a13c1a5ea9383426f4a14c08a6e35a3f1956ddf4d23d1dee3e2c4f1330"
+          },
+          {
             "label": "google-js-seo-basics-docs: https://developers.google.com/search/docs/crawling-indexing/javascript/javascript-seo-basics",
             "source": "google-js-seo-basics-docs",
             "requested_url": "https://developers.google.com/search/docs/crawling-indexing/javascript/javascript-seo-basics",
             "ok": true,
             "status": 200,
-            "bytes": 223951,
-            "sha256": "15795847f1d7f48f05a79e5cab4e19fbe95a0481ca164e2548d5a66d9ea7d030"
+            "bytes": 223947,
+            "sha256": "0ce1a540f455318b1fc6397090080cda0b829fa811af1fda798404f6d28ff6a0"
           },
           {
             "label": "w3c-wai-selecting-evaluation-tools: https://www.w3.org/WAI/test-evaluate/tools/selecting/",
@@ -2537,8 +2714,8 @@
             "requested_url": "https://developer.chrome.com/docs/extensions/develop/concepts/content-scripts",
             "ok": true,
             "status": 200,
-            "bytes": 205471,
-            "sha256": "8d7bdf246a0a4f31f45eb66a62da3f93bfd4eb3f0c91e4e9073f1ede1d4d8138"
+            "bytes": 205467,
+            "sha256": "850aeffe91fc3b75f2d3851de81ebe9cc8460e2e38a3e76599b6373da6bbb3c2"
           },
           {
             "label": "mdn-csp-docs: https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CSP",
@@ -2556,11 +2733,11 @@
             "ok": true,
             "status": 200,
             "bytes": 7302,
-            "sha256": "b388645ff9eb415a4575844bf38c4a07b4898f67ecd67af5d61c1ac73fac661b",
+            "sha256": "03a8e6e286c15a13da275eaf36a8cf12a26e3adde4ef9fb59e7ab3439a581c53",
             "repository": {
               "stars": 4216,
               "archived": false,
-              "pushed_at": "2026-11-17T11:26:17Z",
+              "pushed_at": "2026-11-18T10:59:47Z",
               "license": "Apache-2.0"
             }
           },
@@ -2571,7 +2748,7 @@
             "ok": true,
             "status": 200,
             "bytes": 369455,
-            "sha256": "bf9f904725571cbb27399b9d21565605f03303e9ce6cbfa1f6d6d456df6661fc"
+            "sha256": "f3e53548d25b26998a72b6f8c87d78c750b6b2d2e5482296056fffa8dd0d9a29"
           }
         ]
       },

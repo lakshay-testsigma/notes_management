@@ -47,7 +47,7 @@ Answer: Fail: 4.47 is below 4.5. The threshold is a hard minimum. axe rounds the
 ## Sources
 
 - dequelabs/axe-core — https://github.com/dequelabs/axe-core (`dequelabs-axe-core-repo`)
-- Selecting Web Accessibility Evaluation Tools — https://www.w3.org/WAI/test-evaluate/tools/selecting/ (`w3c-wai-selecting-evaluation-tools`)
+- W3C WAI: Selecting evaluation tools, Evaluation Tools List, and page-structure tutorials (headings, regions) — https://www.w3.org/WAI/test-evaluate/tools/selecting/ (`w3c-wai-selecting-evaluation-tools`)
 - Understanding SC 1.4.3: Contrast (Minimum) (WCAG 2.2) — https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html (`w3c-wcag22-understanding-contrast-minimum`)
 
 ## Used in

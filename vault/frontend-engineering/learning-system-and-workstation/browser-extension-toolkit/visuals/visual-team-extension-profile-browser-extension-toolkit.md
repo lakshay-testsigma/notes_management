@@ -41,7 +41,7 @@ Answer: Its host access: a content script can read and change the DOM of every p
 - Anatomy of a WebExtension (MDN) — https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Anatomy_of_a_WebExtension (`mdn-webextensions-anatomy-docs`)
 - Content scripts (Chrome for Developers) — https://developer.chrome.com/docs/extensions/develop/concepts/content-scripts (`chrome-extensions-content-scripts-docs`)
 - chrome.declarativeNetRequest API reference — https://developer.chrome.com/docs/extensions/reference/api/declarativeNetRequest (`chrome-declarativenetrequest-docs`)
-- React Developer Tools — https://react.dev/learn/react-developer-tools (`react-devtools-docs`)
+- React docs set: React Developer Tools, and Render and Commit — https://react.dev/learn/react-developer-tools (`react-devtools-docs`)
 - dequelabs/axe-core — https://github.com/dequelabs/axe-core (`dequelabs-axe-core-repo`)
 - RetireJS/retire.js — https://github.com/RetireJS/retire.js (`retirejs-repo`)
 - Performance features reference / overview (Chrome DevTools) — https://developer.chrome.com/docs/devtools/performance/overview (`chrome-devtools-perf-overview-docs`)

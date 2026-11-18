@@ -43,8 +43,8 @@ Answer: devTools: false. The store still updates, but the integration with the e
 
 ## Sources
 
-- React Developer Tools — https://react.dev/learn/react-developer-tools (`react-devtools-docs`)
-- Configuring Your Store (Redux, Redux DevTools Extension integration) — https://redux.js.org/usage/configuring-your-store (`redux-configure-store-docs`)
+- React docs set: React Developer Tools, and Render and Commit — https://react.dev/learn/react-developer-tools (`react-devtools-docs`)
+- Redux docs set: Configuring Your Store and Essentials Part 1 (Redux DevTools Extension) — https://redux.js.org/usage/configuring-your-store (`redux-configure-store-docs`)
 
 ## Used in
 
