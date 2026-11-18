@@ -5,6 +5,10 @@ order: 6
 concepts: [security-privacy-extensions, vulnerable-library-detection, headers-cookies-and-csp]
 ---
 
+{/* <!-- concept: security-privacy-extensions --> */}
+{/* <!-- concept: vulnerable-library-detection --> */}
+{/* <!-- concept: headers-cookies-and-csp --> */}
+
 A page can look fine and still be weak. Three symptoms hide well: an old library version, a missing security header, and a helper extension with too much access. Each needs a different tool, because each tool sees a different layer.
 
 The first layer is the code the page loads. Retire.js is a scanner that finds JavaScript libraries and their versions on a page. It compares each version with a list of versions that have known vulnerabilities. The Elements panel shows the script tag, but no vulnerability data.

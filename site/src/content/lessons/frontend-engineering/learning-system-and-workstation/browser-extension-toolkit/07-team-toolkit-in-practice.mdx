@@ -5,6 +5,11 @@ order: 7
 concepts: [design-css-helper-extensions, api-data-extensions, request-modification-and-mocking, team-extension-profile]
 ---
 
+{/* <!-- concept: design-css-helper-extensions --> */}
+{/* <!-- concept: api-data-extensions --> */}
+{/* <!-- concept: request-modification-and-mocking --> */}
+{/* <!-- concept: team-extension-profile --> */}
+
 Two more helper families finish the toolkit. Both are useful, and both ask for real power, so judge them by their mechanism.
 
 A design or CSS helper is an extension that inspects or changes styles on a live page. It works through a content script, the extension part that runs inside the page and shares its DOM. The extension can declare the script in the manifest, register it at run time, or inject it when you call it. To inject it, the extension needs host permission or `activeTab`. The use case: you test a spacing or colour change on the real rendered page, with no rebuild. The risk: a script that matches every site can read every page.

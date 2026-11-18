@@ -5,6 +5,10 @@ order: 1
 concepts: [browser extension, manifest.json, content script, DevTools page, host permissions]
 ---
 
+{/* <!-- concept: extension-architecture-and-permissions --> */}
+{/* <!-- concept: content-scripts-and-devtools-pages --> */}
+{/* <!-- concept: extension-risk-and-vetting --> */}
+
 Built-in DevTools shows the DOM. It does not show the React components, the Redux state or the accessibility errors behind that DOM. Without help, you read raw markup and guess. A browser extension is a small program that adds features to the browser. A frontend toolkit is a short list of extensions that add DevTools panels or check a page for you.
 
 Every extension has the same parts. `manifest.json` is the one file that every extension must have. It lists the parts and the permissions that each part gets. A content script is the part that runs inside a page and reads or changes its DOM. A DevTools page is the part that adds a panel to DevTools. A background script reacts to browser events and holds shared state. The parts talk by messages.

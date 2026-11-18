@@ -110,7 +110,7 @@ Research stopped: budget-limit. Coverage audit round 1: widened W3C WAI, react.d
 | 3 | mini-projects | ready |
 | 4 | capstone | ready |
 | 5 | notes | ready |
-| 5 | finalize | not started |
+| 5 | finalize | in progress |
 
 Next to generate: `finalize`. Ask Claude to continue this topic, or run `node harness/bin/tutor.mjs next frontend-engineering/learning-system-and-workstation/browser-extension-toolkit`.
 <!-- tutor:generated:end -->

@@ -5,6 +5,10 @@ order: 5
 concepts: [source HTML, rendered DOM, status code, redirect, structured data, soft 404]
 ---
 
+{/* <!-- concept: seo-extensions --> */}
+{/* <!-- concept: rendered-vs-source-html --> */}
+{/* <!-- concept: redirects-and-structured-data --> */}
+
 Your single-page app sets the page title with JavaScript. View source shows an empty `<title>`. Will the page show up in search with no title?
 
 Google reads a page in stages. First it fetches the server response: the status code and the source HTML. The source HTML is the raw text the server sends. A status code tells Google that a page is fine, missing, or moved to a new URL by a redirect. Later, a headless Chromium browser runs the JavaScript. The result is the rendered DOM, the page after scripts ran. Google indexes that rendered result.
