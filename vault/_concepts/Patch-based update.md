@@ -15,5 +15,6 @@ identity. It is the opposite of replacing the state, and it saves a re-render.
 ## Where it shows up
 
 - [[zustand-pattern-write-as-patch]]
+- [[06-capstone-how-to-learn-frontend]]
 
 ## My insights

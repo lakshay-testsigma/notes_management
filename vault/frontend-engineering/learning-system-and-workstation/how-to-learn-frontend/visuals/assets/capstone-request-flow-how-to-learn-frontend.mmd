@@ -1,0 +1,22 @@
+sequenceDiagram
+  participant D as Developer
+  participant N as NoteCard
+  participant H as useTracker
+  participant C as TrackerController
+  participant U as CompleteStepUseCase
+  participant S as TrackerStore
+  participant R as LocalStorageTrackerRepository
+  participant A as BrowserStorageAdapter
+  D->>N: checks "build"
+  N->>H: markStep(noteId, "build")
+  H->>C: markStep(noteId, "build")
+  C->>U: execute(noteId, "build")
+  U->>S: getState()
+  U->>S: applyPatch(patch)
+  S->>S: applyPatch(state, patch)
+  S->>R: save(nextState)
+  R->>A: setItem(key, json)
+  A-->>R: stored
+  S-->>H: new state
+  H-->>N: progress and gaps are recomputed
+  Note over U,S: An unknown note id throws NoteNotFoundError. The hook shows the message instead of the dashboard.

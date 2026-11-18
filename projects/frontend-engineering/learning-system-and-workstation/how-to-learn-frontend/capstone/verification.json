@@ -1,0 +1,28 @@
+{
+  "checks": [
+    {
+      "kind": "solution-tests",
+      "command": "npm",
+      "args": ["test"],
+      "cwd": "."
+    },
+    {
+      "kind": "typecheck",
+      "command": "npm",
+      "args": ["run", "typecheck"],
+      "cwd": "."
+    },
+    {
+      "kind": "build",
+      "command": "npm",
+      "args": ["run", "build"],
+      "cwd": "."
+    },
+    {
+      "kind": "audit",
+      "command": "npm",
+      "args": ["audit", "--audit-level=high"],
+      "cwd": "."
+    }
+  ]
+}

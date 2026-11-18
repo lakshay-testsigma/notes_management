@@ -23,6 +23,7 @@ Every diagram, simulation and video of this topic, with the concepts it teaches 
 ## Architecture
 
 - [[visual-zustand-module-map-how-to-learn-frontend|The four modules of the zustand library]] — See that the React binding, the middlewares and the build machinery all depend on one small core store.
+- [[visual-capstone-architecture-how-to-learn-frontend|Learning tracker: the layers and who depends on whom]] — See where the rules of the learning loop live and which layer may use which.
 
 ## Sequence
 
@@ -31,5 +32,13 @@ Every diagram, simulation and video of this topic, with the concepts it teaches 
 ## Decision tree
 
 - [[visual-baseline-ship-decision-how-to-learn-frontend|The Baseline ship decision]] — Decide whether a feature is safe to ship by tracing it through the Baseline labels.
+
+## Request flow
+
+- [[visual-capstone-request-flow-how-to-learn-frontend|Learning tracker: one checked step, end to end]] — Follow one step of the learning loop from the click to the saved log.
+
+## Deployment
+
+- [[visual-capstone-deployment-how-to-learn-frontend|Learning tracker: how the app is built and where the log lives]] — See that the app ships as static files and that the log never leaves the browser.
 
 ## My insights

@@ -15,5 +15,6 @@ the artefact the user installs is the thing that has to work.
 ## Where it shows up
 
 - [[zustand-pattern-test-the-built-artefact]]
+- [[06-capstone-how-to-learn-frontend]]
 
 ## My insights

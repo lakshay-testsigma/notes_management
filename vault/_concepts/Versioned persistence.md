@@ -18,5 +18,6 @@ new one instead of letting the app crash on unexpected data.
 
 - [[zustand-module-persist-and-devtools]]
 - [[zustand-pattern-versioned-persistence]]
+- [[06-capstone-how-to-learn-frontend]]
 
 ## My insights

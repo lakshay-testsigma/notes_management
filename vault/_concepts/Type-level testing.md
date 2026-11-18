@@ -18,5 +18,6 @@ types drift, so a broken public API never ships.
 - [[zustand-module-core-store]]
 - [[zustand-module-middleware]]
 - [[zustand-pattern-type-level-contract]]
+- [[06-capstone-how-to-learn-frontend]]
 
 ## My insights

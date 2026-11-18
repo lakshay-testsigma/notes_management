@@ -16,5 +16,6 @@ and it wraps it so the value is stored as JSON.
 ## Where it shows up
 
 - [[zustand-tech-and-services]]
+- [[06-capstone-how-to-learn-frontend]]
 
 ## My insights

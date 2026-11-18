@@ -1,0 +1,19 @@
+flowchart LR
+  subgraph dev["npm run dev"]
+    VITE["Vite dev server :5173"]
+  end
+  subgraph build["npm run build"]
+    TSC["tsc --noEmit"]
+    BUNDLE["dist/ index.html and assets"]
+  end
+  subgraph host["static host"]
+    WEB["any static file host, for example serve :4173"]
+  end
+  subgraph browser["the developer's browser"]
+    LOCAL[("localStorage key from VITE_TRACKER_STORAGE_KEY")]
+  end
+  TSC --> BUNDLE
+  BUNDLE --> WEB
+  VITE --> BROWSER["browser"]
+  WEB --> BROWSER
+  BROWSER -->|reads and writes| LOCAL

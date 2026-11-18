@@ -1,0 +1,40 @@
+flowchart TB
+  subgraph interface["interface: the browser"]
+    APP["App and NoteCard"]
+    HOOK["useTracker"]
+    CTRL["TrackerController"]
+  end
+  subgraph application["application: what the app does"]
+    UC1["CompleteStepUseCase"]
+    UC2["SaveNoteUseCase"]
+    UC3["LoadDashboardUseCase"]
+    UC4["ExportLogUseCase"]
+    STORE["TrackerStore"]
+  end
+  subgraph domain["domain: the rules"]
+    NOTE["LearningNote"]
+    MODEL["model, TrackerState, Progress"]
+    PORTS["ports: TrackerRepository, StorageAdapter, Logger"]
+  end
+  subgraph infrastructure["infrastructure: the outside world"]
+    REPO["LocalStorageTrackerRepository"]
+    STORAGE["BrowserStorageAdapter"]
+    LOG["JsonLogger"]
+    CONF["Config"]
+  end
+  APP --> HOOK
+  HOOK --> CTRL
+  CTRL --> UC1
+  CTRL --> UC2
+  CTRL --> UC3
+  CTRL --> UC4
+  UC1 --> STORE
+  UC2 --> STORE
+  UC3 --> STORE
+  UC4 --> STORE
+  STORE --> MODEL
+  STORE --> PORTS
+  UC1 --> NOTE
+  REPO -. implements .-> PORTS
+  STORAGE -. implements .-> PORTS
+  LOG -. implements .-> PORTS
