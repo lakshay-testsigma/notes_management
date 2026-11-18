@@ -31,6 +31,8 @@ Read both sides, then reveal the trade-off: which approach keeps the page workin
 
 **Note.** `@supports` needs no JavaScript and makes fewer HTTP requests, so MDN prefers it for CSS support checks.
 
+Before a feature reaches Baseline, you can try it early: turn it on behind a browser flag such as **chrome://flags**, watch its status climb on **Web Platform Status**, or join an **origin trial** to test it on a live site. The same progressive enhancement rule applies — keep a plain fallback, because an experimental feature can be off or gone in the next release.
+
 <Quiz
   question="A new CSS property cannot be detected by any test. What does the source tell you to use instead?"
   options={[

@@ -7,7 +7,7 @@
   "subdomain": "learning-system-and-workstation",
   "depth": "standard",
   "created_at": "2026-11-18T17:03:48Z",
-  "updated_at": "2026-11-18T19:33:56Z",
+  "updated_at": "2026-11-18T19:43:54Z",
   "paths": {
     "state": "state/topics/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend",
     "vault": "vault/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend",
@@ -631,9 +631,9 @@
       "skill": "learn-site",
       "status": "done",
       "scope": "required",
-      "started_at": "2026-11-18T18:18:38Z",
-      "finished_at": "2026-11-18T19:16:20Z",
-      "attempts": 1,
+      "started_at": "2026-11-18T19:39:18Z",
+      "finished_at": "2026-11-18T19:43:54Z",
+      "attempts": 2,
       "units": [
         {
           "id": "pages-01-03",
@@ -653,10 +653,40 @@
       ],
       "note": "",
       "continue_after_failure": false,
+      "history": [
+        {
+          "at": "2026-11-18T19:39:17Z",
+          "status": "done",
+          "validation": {
+            "version": 2,
+            "fingerprint": "9d8596117b3c177ef4ff54875b07be8ca0f0964b9c73e49d5b68ab263fdb6d1b",
+            "at": "2026-11-18T19:16:20Z",
+            "forced": false
+          },
+          "units": [
+            {
+              "id": "pages-01-03",
+              "status": "done",
+              "handoff": null
+            },
+            {
+              "id": "pages-04-05",
+              "status": "done",
+              "handoff": null
+            },
+            {
+              "id": "pages-06-07",
+              "status": "done",
+              "handoff": null
+            }
+          ],
+          "note": ""
+        }
+      ],
       "validation": {
         "version": 2,
-        "fingerprint": "9d8596117b3c177ef4ff54875b07be8ca0f0964b9c73e49d5b68ab263fdb6d1b",
-        "at": "2026-11-18T19:16:20Z",
+        "fingerprint": "1fea74f7ad4f3ff73b4ccfda7faacd4e3008a60f345bc8a3399fb51efc72a628",
+        "at": "2026-11-18T19:43:54Z",
         "forced": false
       }
     },
@@ -1434,6 +1464,66 @@
       "event": "done",
       "message": "gate passed",
       "stage": "notes"
+    },
+    {
+      "at": "2026-11-18T19:39:17Z",
+      "event": "reset",
+      "message": "was done",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T19:39:18Z",
+      "event": "start",
+      "message": "attempt 2",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T19:39:19Z",
+      "event": "unit-add",
+      "message": "unit pages-01-03",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T19:39:20Z",
+      "event": "unit-add",
+      "message": "unit pages-04-05",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T19:39:20Z",
+      "event": "unit-add",
+      "message": "unit pages-06-07",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T19:40:53Z",
+      "event": "unit-start",
+      "message": "unit pages-04-05",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T19:41:40Z",
+      "event": "unit-done",
+      "message": "unit pages-01-03",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T19:42:17Z",
+      "event": "unit-done",
+      "message": "unit pages-04-05",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T19:43:35Z",
+      "event": "unit-done",
+      "message": "unit pages-06-07",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T19:43:54Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "lesson"
     }
   ],
   "roadmap": {

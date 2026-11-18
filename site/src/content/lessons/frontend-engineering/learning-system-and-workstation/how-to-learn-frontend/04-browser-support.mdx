@@ -11,9 +11,11 @@ Trace a new feature down the decision path: does every core browser ship it, and
 
 <Diagram id="baseline-ship-decision" />
 
-**Baseline** gives every web platform feature one of three labels. A feature stays at **Limited availability** until every browser in the **core browser set** — Chrome, Edge, Firefox, and Safari — ships it. When all four do, it becomes **Newly available**, which means the browsers now agree on how it behaves. After 30 months it becomes **Widely available**. **caniuse** lists the same support feature by feature and browser version, while Baseline turns it into one label you can decide with. CSS Nesting became Newly available in August 2023, so it reaches Widely available in February 2026.
+**Baseline** gives every web platform feature one of three labels. A feature stays at **Limited availability** until every browser in the **core browser set** — Chrome, Edge, Firefox, and Safari — ships it. When all four do, it becomes **Newly available**, which means the browsers now agree on how it behaves. After 30 months it becomes **Widely available**. A **caniuse** table shows the detail behind that label: the per-version support grid, a global support percentage, usage data, and notes that flag partial support. Baseline turns that detail into one ship decision; caniuse tells you why a feature is still Limited. CSS Nesting became Newly available in August 2023, so it reaches Widely available in February 2026.
 
 **Note.** Newly available is already a guarantee: every core browser supports the feature, so shipping it is safe even before the 30 months pass.
+
+Ship a feature while it is still Limited, and the browsers that have not shipped it drop it. If the feature is load-bearing, those visitors get a broken page, and the team fields bug reports from one browser while the others look fine.
 
 <Quiz
   question="A feature shows Limited availability today. What has to happen before you ship it?"
