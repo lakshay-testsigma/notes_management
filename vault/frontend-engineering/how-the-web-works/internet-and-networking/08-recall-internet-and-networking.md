@@ -95,6 +95,26 @@ undici follows a redirect to another origin. Which request headers does it remov
 ?
 `Authorization`, `Proxy-Authorization`, `Cookie` and `Host`, so credentials for one origin never leak to another. [[undici-findings]]
 
+<!-- card: ian-18 -->
+An API moves `POST /orders` to a new URL for good. Which redirect status keeps the POST and its body, and which one may turn it into a GET?
+?
+308 Permanent Redirect keeps the method and body (307 for a temporary move). 301 and 302 may change a POST into a GET, and 303 always does.
+
+<!-- card: ian-19 -->
+A logged-in user calls an admin-only endpoint. Should the server answer 401 or 403?
+?
+403. The credentials are valid but not enough. 401 means the credentials are missing or invalid, and it comes with `WWW-Authenticate` so the client can try again.
+
+<!-- card: ian-20 -->
+How does a video player jump to minute 30 without downloading the first 30 minutes?
+?
+It sends `Range: bytes=<start>-<end>`. A server that sends `Accept-Ranges: bytes` answers `206 Partial Content` with that part only; an out-of-bounds range gets 416.
+
+<!-- card: ian-21 -->
+Your client gets `429 Too Many Requests` with `Retry-After: 3600`. What should it do?
+?
+Stop sending requests to that server (or resource) for 3600 seconds, then retry. Retrying at once makes the rate limit last longer.
+
 ## Reopen map
 
 | Card | Outcome it covers | Reopen when missed |
@@ -116,5 +136,9 @@ undici follows a redirect to another origin. Which request headers does it remov
 | ian-15 | outcome 7: realtime transports | lesson page `11-realtime-transports` |
 | ian-16 | outcome 7: API styles | lesson page `12-api-styles-in-production` |
 | ian-17 | outcome 6: credentials on redirects | [[undici-findings]] and [[06-capstone-internet-and-networking]] |
+| ian-18 | outcome 1: redirects | lesson page `04-http-messages` |
+| ian-19 | outcome 1: authentication status codes | lesson page `04-http-messages` |
+| ian-20 | outcome 1: range requests | lesson page `04-http-messages` |
+| ian-21 | outcome 1: rate limits | lesson page `04-http-messages` |
 
 ## My insights

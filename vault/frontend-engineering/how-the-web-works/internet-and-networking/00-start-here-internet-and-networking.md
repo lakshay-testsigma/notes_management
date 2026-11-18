@@ -120,8 +120,13 @@ The network a frontend developer depends on: internet packets and transport, dom
 - Resource-oriented REST: deferred — No verified REST-style source in this run (RFC 9110 defines resources and methods, not the REST style); the roadmap deep-dives REST in Phase 13.
 - Query-based GraphQL: included
 - RPC over HTTP: gRPC-web and Connect: included
+- HTTP redirects: 301, 302, 303, 307 and 308: included
+- HTTP authentication: Authorization, 401 and 403: included
+- Range requests and 206 Partial Content: included
+- 429 Too Many Requests and Retry-After: included
+- CORS: cross-origin requests and preflight: deferred — Taught in roadmap section 01.2 (How browsers work), page 7, concept cors-coop-coep, with its own verified MDN source; this topic links origin to it.
 
-Research stopped: budget-limit. Children expanded against the same sources. Proposed dns-caching-and-ttl, tls-0rtt-replay-risk and samesite-lax-strict-none are taught inside dns-record-types, quic-0rtt-and-migration and set-cookie-attributes. Three children deferred with reasons. tRPC and WebTransport have no verified source in this run; their concepts were narrowed to gRPC-web/Connect and WebRTC.
+Research stopped: budget-limit. Audit round 1 concepts expanded against the re-verified MDN pages; Bearer token usage and resource-hint syntax have no direct verified page, so they stay out.
 
 ## Projects
 

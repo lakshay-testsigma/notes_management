@@ -16,7 +16,7 @@ Every source below was checked against a live page before it was recommended.
 ## Official documentation
 
 - **[HTTP (MDN Web Docs documentation set)](https://developer.mozilla.org/en-US/docs/Web/HTTP)** — MDN contributors (Mozilla), 2026 · tier A
-  - Why it is trusted: MDN is the browser-vendor reference for the web platform; its HTTP set has guides on caching, cookies (prefixes), compression, Compression Dictionary Transport, HTTP/1.x connection management (domain sharding), content negotiation, HSTS and mixed content (pages modified Sep to Nov 2026).
+  - Why it is trusted: MDN is the browser-vendor reference for the web platform; its HTTP set has guides on caching, redirections (301/302/303/307/308), authentication, range requests, cookies (prefixes), compression, Compression Dictionary Transport, HTTP/1.x connection management (domain sharding), content negotiation, HSTS and mixed content, plus status 429 and Cache-Control references (pages read Nov 2026).
   - Used for: brief, lesson
   - Verified: 2026-11-18
 - **[Learn GraphQL (graphql.org)](https://graphql.org/learn/)** — GraphQL Foundation, 2026 · tier A

@@ -58,6 +58,10 @@ flowchart TD
   api_styles["REST, GraphQL and RPC"]
   graphql_queries["Query-based GraphQL"]
   rpc_trpc_grpc_web["RPC over HTTP: gRPC-web and Connect"]
+  http_redirects["HTTP redirects: 301, 302, 303, 307 and 308"]
+  http_authentication["HTTP authentication: Authorization, 401 and 403"]
+  range_requests["Range requests and 206 Partial Content"]
+  rate_limiting_and_retry_after["429 Too Many Requests and Retry-After"]
   internet_packets_and_routing --> tcp_vs_udp
   internet_packets_and_routing --> routing_and_isps
   domains_and_hosting --> registrars_tlds_nameservers
@@ -102,6 +106,14 @@ flowchart TD
   http_messages -. needed for .-> api_styles
   api_styles --> graphql_queries
   api_styles --> rpc_trpc_grpc_web
+  http_messages --> http_redirects
+  http_status_codes -. needed for .-> http_redirects
+  http_messages --> http_authentication
+  http_status_codes -. needed for .-> http_authentication
+  http_messages --> range_requests
+  http_status_codes -. needed for .-> range_requests
+  http_messages --> rate_limiting_and_retry_after
+  http_status_codes -. needed for .-> rate_limiting_and_retry_after
 ```
 
 Back to [[visuals-internet-and-networking|all visuals]].

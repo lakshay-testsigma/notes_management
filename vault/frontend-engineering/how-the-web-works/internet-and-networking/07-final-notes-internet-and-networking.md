@@ -44,6 +44,7 @@ All visuals: [[visuals-internet-and-networking|all visuals]].
 - DNS turns a name into records. The TTL decides how long resolvers cache an answer, so lower it before a move.
 - HTTP/1.1 waits per connection, HTTP/2 multiplexes streams on one TCP connection, and HTTP/3 runs on QUIC, so a lost packet blocks only its own stream.
 - TLS 1.3 needs one round trip. The certificate chain proves the server's name; 0-RTT data can be replayed.
+- Status codes carry behavior: 307 and 308 redirect and keep the method and body, 401 asks for credentials while 403 refuses valid ones, 206 returns one byte range, and 429 with `Retry-After` says when to try again.
 - A cached response is fresh until `max-age` (or `s-maxage` for shared caches) runs out; then the cache revalidates with `ETag` and gets `304`.
 - A cookie goes with a request only if Domain, Path, Secure and SameSite allow it. `__Host-` locks it to one host.
 - Origin is scheme, host and port; site is scheme plus registrable domain.

@@ -7,7 +7,7 @@
   "subdomain": "how-the-web-works",
   "depth": "deep",
   "created_at": "2026-11-18T12:13:22Z",
-  "updated_at": "2026-11-18T14:46:23Z",
+  "updated_at": "2026-11-18T14:57:24Z",
   "paths": {
     "state": "state/topics/frontend-engineering/how-the-web-works/internet-and-networking",
     "vault": "vault/frontend-engineering/how-the-web-works/internet-and-networking",
@@ -182,11 +182,15 @@
             "http-messages",
             "http-methods-and-idempotency",
             "http-status-codes",
-            "content-negotiation-and-keep-alive"
+            "content-negotiation-and-keep-alive",
+            "http-redirects",
+            "http-authentication",
+            "range-requests",
+            "rate-limiting-and-retry-after"
           ],
           "signals": {
             "complexity": 2,
-            "concepts": 4,
+            "concepts": 8,
             "dependent_steps": 2,
             "changes_over_time": false,
             "spatial": false,
@@ -1817,6 +1821,135 @@
             }
           ],
           "prerequisites": []
+        },
+        {
+          "id": "http-redirects",
+          "title": "HTTP redirects: 301, 302, 303, 307 and 308",
+          "parent": "http-messages",
+          "complexity": "basic",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [
+            "mdn-http-docs",
+            "rfc-9110-http-semantics"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/how-the-web-works/internet-and-networking/04-http-messages.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": [
+            "http-status-codes"
+          ]
+        },
+        {
+          "id": "http-authentication",
+          "title": "HTTP authentication: Authorization, 401 and 403",
+          "parent": "http-messages",
+          "complexity": "basic",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [
+            "mdn-http-docs",
+            "rfc-9110-http-semantics"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/how-the-web-works/internet-and-networking/04-http-messages.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": [
+            "http-status-codes"
+          ]
+        },
+        {
+          "id": "range-requests",
+          "title": "Range requests and 206 Partial Content",
+          "parent": "http-messages",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [
+            "mdn-http-docs",
+            "rfc-9110-http-semantics"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/how-the-web-works/internet-and-networking/04-http-messages.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": [
+            "http-status-codes"
+          ]
+        },
+        {
+          "id": "rate-limiting-and-retry-after",
+          "title": "429 Too Many Requests and Retry-After",
+          "parent": "http-messages",
+          "complexity": "basic",
+          "importance": "core",
+          "disposition": "included",
+          "roadmap_items": [],
+          "source_ids": [
+            "mdn-http-docs",
+            "rfc-9110-http-semantics"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/how-the-web-works/internet-and-networking/04-http-messages.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
+          "prerequisites": [
+            "http-status-codes"
+          ]
+        },
+        {
+          "id": "cors-basics",
+          "title": "CORS: cross-origin requests and preflight",
+          "parent": "urls-and-origins",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "deferred",
+          "reason": "Taught in roadmap section 01.2 (How browsers work), page 7, concept cors-coop-coep, with its own verified MDN source; this topic links origin to it.",
+          "roadmap_items": [],
+          "source_ids": [],
+          "coverage": [],
+          "prerequisites": []
         }
       ],
       "discovery": [
@@ -1993,8 +2126,43 @@
             "connectrpc-docs"
           ],
           "added": [],
-          "stop_reason": "budget-limit",
           "note": "Children expanded against the same sources. Proposed dns-caching-and-ttl, tls-0rtt-replay-risk and samesite-lax-strict-none are taught inside dns-record-types, quic-0rtt-and-migration and set-cookie-attributes. Three children deferred with reasons. tRPC and WebTransport have no verified source in this run; their concepts were narrowed to gRPC-web/Connect and WebRTC."
+        },
+        {
+          "round": 4,
+          "frontier": [
+            "http-messages",
+            "urls-and-origins"
+          ],
+          "source_ids": [
+            "mdn-http-docs",
+            "rfc-9110-http-semantics",
+            "hpbn-book"
+          ],
+          "added": [
+            "http-redirects",
+            "http-authentication",
+            "range-requests",
+            "rate-limiting-and-retry-after",
+            "cors-basics"
+          ],
+          "note": "Coverage audit round 1: redirects, authentication, range requests and 429/Retry-After added on page 4 after the MDN HTTP pages were re-verified live; CORS deferred to section 01.2; stale-while-revalidate and preconnect fixed on pages 7 and 2."
+        },
+        {
+          "round": 5,
+          "frontier": [
+            "http-redirects",
+            "http-authentication",
+            "range-requests",
+            "rate-limiting-and-retry-after"
+          ],
+          "source_ids": [
+            "mdn-http-docs",
+            "rfc-9110-http-semantics"
+          ],
+          "added": [],
+          "stop_reason": "budget-limit",
+          "note": "Audit round 1 concepts expanded against the re-verified MDN pages; Bearer token usage and resource-hint syntax have no direct verified page, so they stay out."
         }
       ]
     }
@@ -2007,15 +2175,15 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T12:14:53Z",
-      "finished_at": "2026-11-18T14:04:52Z",
+      "finished_at": "2026-11-18T14:53:28Z",
       "attempts": 1,
       "units": [],
       "note": "",
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "e5ae123a81a037232f0ff16c5d66424623da155775fdfb436669fc3cbdff6d2b",
-        "at": "2026-11-18T14:04:52Z",
+        "fingerprint": "67c28a9d207c354b6db245fac4f110dcffcb0ebe5ac22b2430af2524c6605ecd",
+        "at": "2026-11-18T14:53:28Z",
         "forced": false
       }
     },
@@ -2026,7 +2194,7 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T12:15:49Z",
-      "finished_at": "2026-11-18T14:04:59Z",
+      "finished_at": "2026-11-18T14:53:44Z",
       "attempts": 1,
       "units": [
         {
@@ -2059,8 +2227,8 @@
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "177b0283ba6c6d28cdd5a43cb1601dc051ce9ce6d2c873c5824ed07dad0d87d8",
-        "at": "2026-11-18T14:04:59Z",
+        "fingerprint": "3bc80a2a83ef3ef590b54cab7824a7f1fe957b3e53bef9ce584305b5eda3643a",
+        "at": "2026-11-18T14:53:44Z",
         "forced": false
       }
     },
@@ -2071,15 +2239,15 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T13:17:30Z",
-      "finished_at": "2026-11-18T14:05:05Z",
+      "finished_at": "2026-11-18T14:53:53Z",
       "attempts": 1,
       "units": [],
       "note": "",
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "ad838019ac3967b9ebee20f60543efeff28b2467da305327612aaa6a8a3989c9",
-        "at": "2026-11-18T14:05:05Z",
+        "fingerprint": "5a131eba3ad1ec061cb11e14f073af59756f3a104558ae7b30bfd075c01967fa",
+        "at": "2026-11-18T14:53:53Z",
         "forced": false
       }
     },
@@ -2090,7 +2258,7 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T13:22:24Z",
-      "finished_at": "2026-11-18T14:05:12Z",
+      "finished_at": "2026-11-18T14:54:01Z",
       "attempts": 1,
       "units": [
         {
@@ -2118,8 +2286,8 @@
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "69d0aedbc8cc68ae311e0aab73e1e734850a868ddcaec0d9bd54d7f9213e06a5",
-        "at": "2026-11-18T14:05:12Z",
+        "fingerprint": "70d0c9cba026c0c4199110ed2d2b0921858bf0b30f3ee545284f6de09f206110",
+        "at": "2026-11-18T14:54:01Z",
         "forced": false
       }
     },
@@ -2130,7 +2298,7 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T13:22:27Z",
-      "finished_at": "2026-11-18T14:05:18Z",
+      "finished_at": "2026-11-18T14:54:09Z",
       "attempts": 1,
       "units": [
         {
@@ -2208,8 +2376,8 @@
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "8dc4cce96fd34b8110b8e984b6d1fe6fb9076ddf1c1db75fcfd30242c43c1ec6",
-        "at": "2026-11-18T14:05:18Z",
+        "fingerprint": "c8839ee06e0aca10c2fa9c5b3c20b830474fa587e6bcf9500d40c713903cb492",
+        "at": "2026-11-18T14:54:09Z",
         "forced": false
       }
     },
@@ -2219,62 +2387,88 @@
       "skill": "learn-site",
       "status": "done",
       "scope": "required",
-      "started_at": "2026-11-18T13:49:49Z",
-      "finished_at": "2026-11-18T14:05:25Z",
-      "attempts": 1,
+      "started_at": "2026-11-18T14:54:22Z",
+      "finished_at": "2026-11-18T14:56:18Z",
+      "attempts": 2,
       "units": [
         {
-          "id": "experience-http-versions-lab",
-          "status": "done",
-          "handoff": null
-        },
-        {
-          "id": "video-tls13-handshake",
-          "status": "done",
-          "handoff": null
-        },
-        {
-          "id": "experience-http-cache-lab",
-          "status": "done",
-          "handoff": null
-        },
-        {
-          "id": "experience-cookie-send-lab",
-          "status": "done",
-          "handoff": null
-        },
-        {
-          "id": "experience-realtime-transport-deck",
-          "status": "done",
-          "handoff": null
-        },
-        {
-          "id": "pages-01-03",
-          "status": "done",
-          "handoff": null
-        },
-        {
-          "id": "pages-04-06",
-          "status": "done",
-          "handoff": null
-        },
-        {
-          "id": "pages-07-09",
-          "status": "done",
-          "handoff": null
-        },
-        {
-          "id": "pages-10-12",
+          "id": "fix-audit1-pages-02-04-07",
           "status": "done",
           "handoff": null
         }
       ],
       "note": "",
       "continue_after_failure": false,
+      "history": [
+        {
+          "at": "2026-11-18T14:52:07Z",
+          "status": "done",
+          "validation": {
+            "version": 2,
+            "fingerprint": "4ec9653f93ae88028d0e69da81ac2c90eec398566c6232756d1aa0bc09ab570e",
+            "at": "2026-11-18T14:05:25Z",
+            "forced": false
+          },
+          "units": [
+            {
+              "id": "experience-http-versions-lab",
+              "status": "done",
+              "handoff": null
+            },
+            {
+              "id": "video-tls13-handshake",
+              "status": "done",
+              "handoff": null
+            },
+            {
+              "id": "experience-http-cache-lab",
+              "status": "done",
+              "handoff": null
+            },
+            {
+              "id": "experience-cookie-send-lab",
+              "status": "done",
+              "handoff": null
+            },
+            {
+              "id": "experience-realtime-transport-deck",
+              "status": "done",
+              "handoff": null
+            },
+            {
+              "id": "pages-01-03",
+              "status": "done",
+              "handoff": null
+            },
+            {
+              "id": "pages-04-06",
+              "status": "done",
+              "handoff": null
+            },
+            {
+              "id": "pages-07-09",
+              "status": "done",
+              "handoff": null
+            },
+            {
+              "id": "pages-10-12",
+              "status": "done",
+              "handoff": null
+            }
+          ],
+          "note": ""
+        },
+        {
+          "at": "2026-11-18T14:54:18Z",
+          "status": "pending",
+          "units": [],
+          "note": ""
+        }
+      ],
       "validation": {
         "version": 2,
-        "fingerprint": "4ec9653f93ae88028d0e69da81ac2c90eec398566c6232756d1aa0bc09ab570e",
-        "at": "2026-11-18T14:05:25Z",
+        "fingerprint": "28c8b95e15d27a8c5b3bc9f27bc2a904f5fa4134322d70ceeb60f3cbe6d74f2b",
+        "at": "2026-11-18T14:56:18Z",
         "forced": false
       }
     },
@@ -2285,7 +2479,7 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T13:49:53Z",
-      "finished_at": "2026-11-18T14:05:55Z",
+      "finished_at": "2026-11-18T14:56:39Z",
       "attempts": 1,
       "units": [
         {
@@ -2308,8 +2502,8 @@
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "af0d1e7853fac5e6d300f426c5bbe9ceae351d05c4b955dcc88f3765c7b8a197",
-        "at": "2026-11-18T14:05:55Z",
+        "fingerprint": "e1f8210715c2676b406434ee6ac714c5d341720c8f226dec9c7071e31baf49bf",
+        "at": "2026-11-18T14:56:39Z",
         "forced": false
       }
     },
@@ -2320,7 +2514,7 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T14:07:48Z",
-      "finished_at": "2026-11-18T14:43:37Z",
+      "finished_at": "2026-11-18T14:56:59Z",
       "attempts": 1,
       "units": [
         {
@@ -2333,8 +2527,8 @@
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "d5b4b4a70ac0d4d368262781a885fd540099f727a958de6c2d4948259318a2cb",
-        "at": "2026-11-18T14:43:37Z",
+        "fingerprint": "c2555463f580d65e35521b41f2d703f737443e7d057ea538b7e317eb6f2d9745",
+        "at": "2026-11-18T14:56:59Z",
         "forced": false
       }
     },
@@ -2344,16 +2538,30 @@
       "skill": "learn-notes",
       "status": "done",
       "scope": "required",
-      "started_at": "2026-11-18T14:45:19Z",
-      "finished_at": "2026-11-18T14:46:23Z",
-      "attempts": 1,
+      "started_at": "2026-11-18T14:57:10Z",
+      "finished_at": "2026-11-18T14:57:24Z",
+      "attempts": 2,
       "units": [],
       "note": "",
       "continue_after_failure": false,
+      "history": [
+        {
+          "at": "2026-11-18T14:57:04Z",
+          "status": "done",
+          "validation": {
+            "version": 2,
+            "fingerprint": "a196afba1120da1d6b34ad7c55adb54dbbc51c8c341a48b6bd869074b152b4c4",
+            "at": "2026-11-18T14:46:23Z",
+            "forced": false
+          },
+          "units": [],
+          "note": ""
+        }
+      ],
       "validation": {
         "version": 2,
-        "fingerprint": "a196afba1120da1d6b34ad7c55adb54dbbc51c8c341a48b6bd869074b152b4c4",
-        "at": "2026-11-18T14:46:23Z",
+        "fingerprint": "c579fcf5a07b5a25d654799d9e0426bffd73decfafe0514d83219e9b1b9515ca",
+        "at": "2026-11-18T14:57:24Z",
         "forced": false
       }
     },
@@ -2507,203 +2715,42 @@
         "last_reviewed": null,
         "reviews": 0,
         "history": []
+      },
+      "ian-18": {
+        "box": 1,
+        "due": "2026-11-18",
+        "added": "2026-11-18",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      },
+      "ian-19": {
+        "box": 1,
+        "due": "2026-11-18",
+        "added": "2026-11-18",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      },
+      "ian-20": {
+        "box": 1,
+        "due": "2026-11-18",
+        "added": "2026-11-18",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      },
+      "ian-21": {
+        "box": 1,
+        "due": "2026-11-18",
+        "added": "2026-11-18",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
       }
     }
   },
   "log": [
-    {
-      "at": "2026-11-18T12:18:10Z",
-      "event": "source-add",
-      "message": "added jshttp-cookie-repo",
-      "stage": "research"
-    },
-    {
-      "at": "2026-11-18T12:18:12Z",
-      "event": "unit-done",
-      "message": "unit repos",
-      "stage": "research"
-    },
-    {
-      "at": "2026-11-18T12:18:44Z",
-      "event": "unit-add",
-      "message": "unit gap-01",
-      "stage": "research"
-    },
-    {
-      "at": "2026-11-18T12:18:46Z",
-      "event": "note",
-      "message": "SPAWN 5/56; gap-01 consolidates narrow sources into doc sets (cap 12 enforced)"
-    },
-    {
-      "at": "2026-11-18T12:19:55Z",
-      "event": "note",
-      "message": "RESEARCH running: gap-01; done: docs-http-core, docs-dns-tls-urls-cookies, docs-edge-realtime-api, repos (undici, jshttp/cookie)"
-    },
-    {
-      "at": "2026-11-18T12:20:28Z",
-      "event": "source-remove",
-      "message": "removed mdn-http-caching-docs: Superseded by mdn-http-docs, which covers HTTP caching and more",
-      "stage": "research"
-    },
-    {
-      "at": "2026-11-18T12:20:30Z",
-      "event": "source-add",
-      "message": "added mdn-http-docs",
-      "stage": "research"
-    },
-    {
-      "at": "2026-11-18T12:20:33Z",
-      "event": "source-remove",
-      "message": "removed mdn-cookies-guide-docs: Superseded by mdn-http-docs (cookies guide in same set)",
-      "stage": "research"
-    },
-    {
-      "at": "2026-11-18T12:20:35Z",
-      "event": "source-remove",
-      "message": "removed mdn-websockets-api-docs: Superseded by hpbn-book (WebSocket, SSE, WebRTC chapters)",
-      "stage": "research"
-    },
-    {
-      "at": "2026-11-18T12:20:37Z",
-      "event": "source-add",
-      "message": "added hpbn-book",
-      "stage": "research"
-    },
-    {
-      "at": "2026-11-18T12:20:40Z",
-      "event": "source-remove",
-      "message": "removed cloudflare-cache-keys-docs: Superseded by cloudflare-docs, which includes cache keys and purge",
-      "stage": "research"
-    },
-    {
-      "at": "2026-11-18T12:20:44Z",
-      "event": "source-add",
-      "message": "added cloudflare-docs",
-      "stage": "research"
-    },
-    {
-      "at": "2026-11-18T12:20:54Z",
-      "event": "source-remove",
-      "message": "removed mdn-domain-names-docs: Domain names covered by cloudflare-docs DNS/registrar docs",
-      "stage": "research"
-    },
-    {
-      "at": "2026-11-18T12:20:56Z",
-      "event": "source-add",
-      "message": "added graphql-learn",
-      "stage": "research"
-    },
-    {
-      "at": "2026-11-18T12:20:59Z",
-      "event": "source-add",
-      "message": "added connectrpc-docs",
-      "stage": "research"
-    },
-    {
-      "at": "2026-11-18T12:21:17Z",
-      "event": "unit-done",
-      "message": "unit gap-01",
-      "stage": "research"
-    },
-    {
-      "at": "2026-11-18T12:22:01Z",
-      "event": "plan",
-      "message": "plan fields set: summary, prerequisites, outcomes, lesson_outline, mini_projects, digest_targets, repo_targets, capstone, learner, visual_policy, visual_first, multi_stage, experience_policy, curriculum",
-      "stage": "intake"
-    },
-    {
-      "at": "2026-11-18T12:22:10Z",
-      "event": "done",
-      "message": "gate passed",
-      "stage": "intake"
-    },
-    {
-      "at": "2026-11-18T12:24:22Z",
-      "event": "execution-check",
-      "message": "research: failed",
-      "stage": "research"
-    },
-    {
-      "at": "2026-11-18T12:24:24Z",
-      "event": "note",
-      "message": "RESEARCH: 5/5 units done; curriculum merged (47 included, 3 deferred); intake re-gated; research check running"
-    },
-    {
-      "at": "2026-11-18T12:24:32Z",
-      "event": "gate-failed",
-      "message": "4 problems",
-      "stage": "research"
-    },
-    {
-      "at": "2026-11-18T12:25:05Z",
-      "event": "plan",
-      "message": "plan fields set: summary, prerequisites, outcomes, lesson_outline, mini_projects, digest_targets, repo_targets, capstone, learner, visual_policy, visual_first, multi_stage, experience_policy, curriculum",
-      "stage": "intake"
-    },
-    {
-      "at": "2026-11-18T12:25:09Z",
-      "event": "done",
-      "message": "gate passed",
-      "stage": "intake"
-    },
-    {
-      "at": "2026-11-18T12:25:35Z",
-      "event": "execution-check",
-      "message": "research: pass",
-      "stage": "research"
-    },
-    {
-      "at": "2026-11-18T12:25:40Z",
-      "event": "gate-failed",
-      "message": "26 problems",
-      "stage": "research"
-    },
-    {
-      "at": "2026-11-18T12:25:54Z",
-      "event": "plan",
-      "message": "plan fields set: summary, prerequisites, outcomes, lesson_outline, mini_projects, digest_targets, repo_targets, capstone, learner, visual_policy, visual_first, multi_stage, experience_policy, curriculum",
-      "stage": "intake"
-    },
-    {
-      "at": "2026-11-18T12:25:58Z",
-      "event": "done",
-      "message": "gate passed",
-      "stage": "intake"
-    },
-    {
-      "at": "2026-11-18T12:26:23Z",
-      "event": "execution-check",
-      "message": "research: pass",
-      "stage": "research"
-    },
-    {
-      "at": "2026-11-18T12:26:27Z",
-      "event": "done",
-      "message": "gate passed",
-      "stage": "research"
-    },
-    {
-      "at": "2026-11-18T12:26:39Z",
-      "event": "note",
-      "message": "LOOKAHEAD stopped after research; brief waits for 00.4 finalize"
-    },
-    {
-      "at": "2026-11-18T13:17:30Z",
-      "event": "start",
-      "message": "attempt 1",
-      "stage": "brief"
-    },
-    {
-      "at": "2026-11-18T13:17:33Z",
-      "event": "visual",
-      "message": "added visual how-it-works"
-    },
-    {
-      "at": "2026-11-18T13:17:52Z",
-      "event": "gate-failed",
-      "message": "2 problems",
-      "stage": "brief"
-    },
     {
       "at": "2026-11-18T13:18:10Z",
       "event": "done",
@@ -3657,6 +3704,198 @@
       "event": "done",
       "message": "gate passed",
       "stage": "notes"
+    },
+    {
+      "at": "2026-11-18T14:48:23Z",
+      "event": "note",
+      "message": "SPAWN 37/56; coverage audit round 1"
+    },
+    {
+      "at": "2026-11-18T14:49:12Z",
+      "event": "note",
+      "message": "AUDIT round 1: 7 gaps; plan: CORS deferred to 01.2 page 7; new page 13 (redirects, auth, range, 429); fixes p02 preconnect, p07 stale-while-revalidate"
+    },
+    {
+      "at": "2026-11-18T14:49:12Z",
+      "event": "note",
+      "message": "SPAWN 38/56; audit1 source verification"
+    },
+    {
+      "at": "2026-11-18T14:49:54Z",
+      "event": "source-update",
+      "message": "updated mdn-http-docs: verified_via, why_trusted",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T14:49:58Z",
+      "event": "source-update",
+      "message": "updated hpbn-book: verified_via",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T14:50:29Z",
+      "event": "plan",
+      "message": "plan fields set: summary, prerequisites, outcomes, lesson_outline, mini_projects, digest_targets, repo_targets, capstone, learner, visual_policy, visual_first, multi_stage, experience_policy, curriculum",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-18T14:50:45Z",
+      "event": "plan",
+      "message": "plan fields set: summary, prerequisites, outcomes, lesson_outline, mini_projects, digest_targets, repo_targets, capstone, learner, visual_policy, visual_first, multi_stage, experience_policy, curriculum",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-18T14:51:44Z",
+      "event": "execution-check",
+      "message": "research: pass",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T14:51:54Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-18T14:52:02Z",
+      "event": "gate-failed",
+      "message": "4 problems",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T14:52:07Z",
+      "event": "reset",
+      "message": "was done",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T14:52:12Z",
+      "event": "note",
+      "message": "SPAWN 39/56; lesson fix-audit1-pages-02-04-07"
+    },
+    {
+      "at": "2026-11-18T14:52:21Z",
+      "event": "plan",
+      "message": "plan fields set: summary, prerequisites, outcomes, lesson_outline, mini_projects, digest_targets, repo_targets, capstone, learner, visual_policy, visual_first, multi_stage, experience_policy, curriculum",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-18T14:53:07Z",
+      "event": "execution-check",
+      "message": "research: pass",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T14:53:28Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-18T14:53:44Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-18T14:53:53Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "brief"
+    },
+    {
+      "at": "2026-11-18T14:54:01Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "digest"
+    },
+    {
+      "at": "2026-11-18T14:54:09Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-18T14:54:18Z",
+      "event": "reset",
+      "message": "was pending",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T14:54:22Z",
+      "event": "start",
+      "message": "attempt 2",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T14:54:27Z",
+      "event": "unit-add",
+      "message": "unit fix-audit1-pages-02-04-07",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T14:55:50Z",
+      "event": "unit-done",
+      "message": "unit fix-audit1-pages-02-04-07",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T14:56:10Z",
+      "event": "reader-order",
+      "message": "Imported explicit authored child-note sequence"
+    },
+    {
+      "at": "2026-11-18T14:56:18Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T14:56:31Z",
+      "event": "execution-check",
+      "message": "mini-projects: pass",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-18T14:56:39Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-18T14:56:47Z",
+      "event": "execution-check",
+      "message": "capstone: pass",
+      "stage": "capstone"
+    },
+    {
+      "at": "2026-11-18T14:56:59Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "capstone"
+    },
+    {
+      "at": "2026-11-18T14:57:04Z",
+      "event": "reset",
+      "message": "was done",
+      "stage": "notes"
+    },
+    {
+      "at": "2026-11-18T14:57:10Z",
+      "event": "start",
+      "message": "attempt 2",
+      "stage": "notes"
+    },
+    {
+      "at": "2026-11-18T14:57:15Z",
+      "event": "recall-sync",
+      "message": "4 added, 0 removed, 21 total"
+    },
+    {
+      "at": "2026-11-18T14:57:24Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "notes"
     }
   ],
   "roadmap": {
@@ -3667,8 +3906,8 @@
     "executions": {
       "research": {
         "version": 2,
-        "fingerprint": "177b0283ba6c6d28cdd5a43cb1601dc051ce9ce6d2c873c5824ed07dad0d87d8",
-        "at": "2026-11-18T14:03:31Z",
+        "fingerprint": "3bc80a2a83ef3ef590b54cab7824a7f1fe957b3e53bef9ce584305b5eda3643a",
+        "at": "2026-11-18T14:53:07Z",
         "ok": true,
         "checks": [
           {
@@ -3750,7 +3989,7 @@
             "ok": true,
             "status": 200,
             "bytes": 6656,
-            "sha256": "143c094dcde7db3880950249ec798651c4109dad505545971d865fd59f7764ab",
+            "sha256": "4b3de200ee9085c4b8855f2624af97e3a146768328f787bff2f60f0cf2941ad3",
             "repository": {
               "stars": 7741,
               "archived": false,
@@ -3819,6 +4058,60 @@
             "sha256": "6b5bafab036fb58c7276694ddb51555829c876092f85b658e109344bfd1d70ba"
           },
           {
+            "label": "mdn-http-docs: https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Redirections",
+            "source": "mdn-http-docs",
+            "requested_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Redirections",
+            "ok": true,
+            "status": 200,
+            "bytes": 228309,
+            "sha256": "daadae050c51292eaba1fa90a9e2dd941cc0a1039f3660d53d2a658301591e63"
+          },
+          {
+            "label": "mdn-http-docs: https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Authentication",
+            "source": "mdn-http-docs",
+            "requested_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Authentication",
+            "ok": true,
+            "status": 200,
+            "bytes": 224290,
+            "sha256": "e24468c4ae9064210598eccb19d2f831170a7d7e4f262517967fc98ff49eb9b5"
+          },
+          {
+            "label": "mdn-http-docs: https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Range_requests",
+            "source": "mdn-http-docs",
+            "requested_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Range_requests",
+            "ok": true,
+            "status": 200,
+            "bytes": 215363,
+            "sha256": "7bc935ca1aaa497fc9f5b3b3975a9052cb5df2711171085ee9f626c1c0994ceb"
+          },
+          {
+            "label": "mdn-http-docs: https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/429",
+            "source": "mdn-http-docs",
+            "requested_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/429",
+            "ok": true,
+            "status": 200,
+            "bytes": 209369,
+            "sha256": "b8d15f1165ff35626be01d88027408a3b4bff79d775703156bb684dd4df8c193"
+          },
+          {
+            "label": "mdn-http-docs: https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Cache-Control",
+            "source": "mdn-http-docs",
+            "requested_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Cache-Control",
+            "ok": true,
+            "status": 200,
+            "bytes": 248431,
+            "sha256": "021bf802a0e00af83335327998110ad7b66064ed89680f003d92f27fa3b0aae5"
+          },
+          {
+            "label": "mdn-http-docs: https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Caching",
+            "source": "mdn-http-docs",
+            "requested_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Caching",
+            "ok": true,
+            "status": 200,
+            "bytes": 260717,
+            "sha256": "8fb6d5d94ef554befd23e4d173e627832995c99c2d9f776278fd75ecfc8c81e1"
+          },
+          {
             "label": "mdn-http-docs: https://developer.mozilla.org/en-US/docs/Web/HTTP",
             "source": "mdn-http-docs",
             "requested_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP",
@@ -3844,6 +4137,15 @@
             "status": 200,
             "bytes": 33940,
             "sha256": "e72bf58b9fe76cf5bcff0b67e7dc51383e36add5a7d4a679f2ea5de1cdd744ac"
+          },
+          {
+            "label": "hpbn-book: https://hpbn.co/primer-on-web-performance/",
+            "source": "hpbn-book",
+            "requested_url": "https://hpbn.co/primer-on-web-performance/",
+            "ok": true,
+            "status": 200,
+            "bytes": 60259,
+            "sha256": "4519ca2762646db9aa40d68c593b900ea2b4b4f7279d4f4544ffb37c3bb64fc1"
           },
           {
             "label": "cloudflare-docs: https://developers.cloudflare.com/dns/manage-dns-records/reference/dns-record-types/",
@@ -3912,8 +4214,8 @@
       },
       "mini-projects": {
         "version": 2,
-        "fingerprint": "af0d1e7853fac5e6d300f426c5bbe9ceae351d05c4b955dcc88f3765c7b8a197",
-        "at": "2026-11-18T14:05:48Z",
+        "fingerprint": "e1f8210715c2676b406434ee6ac714c5d341720c8f226dec9c7071e31baf49bf",
+        "at": "2026-11-18T14:56:31Z",
         "ok": true,
         "checks": [
           {
@@ -3925,7 +4227,7 @@
             "expected_exit": 0,
             "exit": 0,
             "ok": true,
-            "output_sha256": "b83a9fe6f0fc3fd26e32777e2fe62264e291ceb4f6efb94e8204debe193dd90d"
+            "output_sha256": "60781adf75d4d4b9a9427104eb10d8dda23fd965c034fa32d6c5a0322830a020"
           },
           {
             "label": "mini-01-dns-record-inspector: starter-tests",
@@ -3936,7 +4238,7 @@
             "expected_exit": 1,
             "exit": 1,
             "ok": true,
-            "output_sha256": "6131cf39766cdedab63419aed1434539b44b81aeae583bea97ee8baff73b87fa"
+            "output_sha256": "435919478ba6ce4ee598c6ae267d8e1f8849715d728970daf6e637ccb7d9bf6a"
           },
           {
             "label": "mini-01-dns-record-inspector: starter-start",
@@ -3985,7 +4287,7 @@
             "expected_exit": 0,
             "exit": 0,
             "ok": true,
-            "output_sha256": "516e883436fcdd566026466c44afeef5b6d402e0ccde3c3e7b431b9e89919b05"
+            "output_sha256": "2c885bcd8c5989bdf60359f5f1131c8eb4b81cc8aeeaaef6e97a32c6e71335f1"
           },
           {
             "label": "mini-02-cache-header-auditor: starter-tests",
@@ -3996,7 +4298,7 @@
             "expected_exit": 1,
             "exit": 1,
             "ok": true,
-            "output_sha256": "248c4300e19a81a9b580070433fcdfe5fbae546b184b8a41a0ba31481099a883"
+            "output_sha256": "ce2261aaa1170a3bf6d67658eaa69f3377adb9d1895ac8ec2fb1fd6f79ea49ec"
           },
           {
             "label": "mini-02-cache-header-auditor: starter-start",
@@ -4044,7 +4346,7 @@
             "expected_exit": 0,
             "exit": 0,
             "ok": true,
-            "output_sha256": "283ae7098eee6fcf58dc0d269238c79be5e16e21b460ac345d9c42a7d372f661"
+            "output_sha256": "1323d0d8d5840df86ff6915071684f68bb79413bf56d412571120da40241993e"
           },
           {
             "label": "mini-03-cookie-attribute-linter: starter-tests",
@@ -4055,7 +4357,7 @@
             "expected_exit": 1,
             "exit": 1,
             "ok": true,
-            "output_sha256": "b31dc76f235df461d59a59bb8f20c9ae39f31c274be71ff57b1d070907b279a3"
+            "output_sha256": "0b5a83770b680ebdb0d1d658676dda49ab9eaafbf6fcfdaa5f524d89420382bc"
           },
           {
             "label": "mini-03-cookie-attribute-linter: starter-start",
@@ -4099,8 +4401,8 @@
       },
       "capstone": {
         "version": 2,
-        "fingerprint": "d5b4b4a70ac0d4d368262781a885fd540099f727a958de6c2d4948259318a2cb",
-        "at": "2026-11-18T14:43:29Z",
+        "fingerprint": "c2555463f580d65e35521b41f2d703f737443e7d057ea538b7e317eb6f2d9745",
+        "at": "2026-11-18T14:56:47Z",
         "ok": true,
         "checks": [
           {
@@ -4112,7 +4414,7 @@
             "expected_exit": 0,
             "exit": 0,
             "ok": true,
-            "output_sha256": "17213531d8e79c49da6d86504790e22e32588f556f1206c00d3e90e9ec9bf434"
+            "output_sha256": "072724a78badc46e26ce653354c0ddb9e5accac410774f972fa9b89c06a712e9"
           },
           {
             "label": "capstone: typecheck",

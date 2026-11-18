@@ -33,7 +33,7 @@ A cache takes the lifetime from the first match: `s-maxage` (shared caches only)
 
 <Depth level="production">
 
-A shared cache must skip `private` responses and requests with `Authorization`, unless `public` or `s-maxage` allows them. `Set-Cookie` does not stop caching, so mark per-user responses `private`. `must-revalidate` makes a cache return an error, normally 504, instead of a stale copy (RFC 9111, Sections 3, 5.2.2.2, 7).
+A shared cache must skip `private` responses and requests with `Authorization`, unless `public` or `s-maxage` allows them. `Set-Cookie` does not stop caching, so mark per-user responses `private`. `must-revalidate` makes a cache return an error, normally 504, instead of a stale copy (RFC 9111, Sections 3, 5.2.2.2, 7). Two directives allow stale copies on purpose. `stale-while-revalidate` lets a cache serve a stale response at once and revalidate it in the background. `stale-if-error` lets a cache serve a stale response when the origin answers 500, 502, 503 or 504; browsers ignore it on requests.
 
 </Depth>
 
