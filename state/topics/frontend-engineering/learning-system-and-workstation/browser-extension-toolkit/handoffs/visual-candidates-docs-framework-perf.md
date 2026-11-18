@@ -1,5 +1,0 @@
-- comparison | local live metrics vs CrUX field data for LCP, CLS, INP | chrome-devtools-perf-overview-docs "Compare your experience to the experience of your users" | candidate for CompareView
-- sequence | install react-devtools standalone, run it, add script to head, reload page | react-devtools-docs "Safari and other browsers" | candidate for Video
-- decision | extension vs standalone react-devtools vs React Native DevTools by environment | react-devtools-docs sections "Browser extension", "Safari and other browsers", "Mobile (React Native)" | branch for a deck
-- parameter | devTools option true/false/object changes store connection to the extension | redux-configure-store-docs devTools option | experiment for an interactive experience
-- state change | INP appears only after a user interaction | chrome-devtools-perf-overview-docs "Observe Core Web Vitals live" | candidate for Video

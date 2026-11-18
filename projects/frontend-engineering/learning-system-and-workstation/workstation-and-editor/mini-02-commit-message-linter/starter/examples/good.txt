@@ -1,5 +1,0 @@
-feat(parser): add scope support
-
-Scopes name the part of the code that changed.
-
-Refs: #12

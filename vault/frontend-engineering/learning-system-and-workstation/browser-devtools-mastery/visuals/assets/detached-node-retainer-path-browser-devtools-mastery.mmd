@@ -1,5 +1,0 @@
-flowchart LR
-  R[GC roots] --> W[Window global]
-  W -->|"detachedTree"| U[Detached ul]
-  U --> L[Ten li nodes]
-  T[Document tree] -. "removed ul" .- U

@@ -1,5 +1,0 @@
-flowchart TD
-  q["Who needs to send live data?"] -- "only the server, text" --> sse["Server-Sent Events: one long-lived HTTP response, auto reconnect"]
-  q -- "both sides, at any time" --> ws["WebSocket: messages both ways on one connection"]
-  q -- "server, but some delay is fine" --> poll["Periodic polling: one request per interval, updates batched"]
-  sse -- "no EventSource support" --> lp["Long polling: server holds the request until an update"]

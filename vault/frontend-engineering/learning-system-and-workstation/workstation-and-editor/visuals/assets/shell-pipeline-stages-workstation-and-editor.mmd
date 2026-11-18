@@ -1,7 +1,0 @@
-flowchart LR
-  file["access.log: 7 lines"] --> cat["cat access.log"]
-  cat -->|"stdout to stdin: 7 lines"| grep["grep 404"]
-  grep -->|"5 lines with 404"| sort["sort"]
-  sort -->|"5 lines, equal lines together"| uniq["uniq -c"]
-  uniq -->|"2 counted lines"| sortn["sort -rn"]
-  sortn --> out["3 404 /old, 2 404 /logo.png"]

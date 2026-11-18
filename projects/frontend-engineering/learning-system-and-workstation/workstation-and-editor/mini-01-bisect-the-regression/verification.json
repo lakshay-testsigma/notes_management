@@ -1,7 +1,0 @@
-{
-  "checks": [
-    {"kind": "solution-tests", "cwd": "solution", "command": "npm", "args": ["test"]},
-    {"kind": "starter-tests", "cwd": "starter", "command": "npm", "args": ["test"], "expected_exit": 1, "expect_output": "TODO("},
-    {"kind": "starter-start", "cwd": "starter", "command": "node", "args": ["src/find-regression.js"], "expected_exit": 1, "expect_output": "TODO(2): startBisect is not implemented yet"}
-  ]
-}

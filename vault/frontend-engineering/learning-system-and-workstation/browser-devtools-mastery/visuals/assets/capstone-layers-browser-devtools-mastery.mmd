@@ -1,7 +1,0 @@
-flowchart TD
-  main["main.ts: wires objects"] --> iface
-  iface["interface: Cli, MarkdownRenderer"] --> app
-  app["application: TriageUseCase, Artifacts, gatherers, audits, Ranker"] --> dom
-  infra["infrastructure: NodeFileSource, JsonLogger, Config"] --> dom
-  dom["domain: Budgets, model, errors, ports"]
-  main --> infra

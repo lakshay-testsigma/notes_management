@@ -1,7 +1,0 @@
-flowchart LR
-  U[Browser] -->|request| P[Nearby PoP]
-  P --> K{Cache key stored?}
-  K -->|hit| U
-  K -->|miss| O[Origin server]
-  O -->|Cache-Control| P
-  X[Purge API] -.->|URL or tag| P

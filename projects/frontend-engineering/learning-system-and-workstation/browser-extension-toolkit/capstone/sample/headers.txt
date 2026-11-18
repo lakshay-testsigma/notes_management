@@ -1,4 +1,0 @@
-HTTP/2 200
-content-type: text/html; charset=utf-8
-content-security-policy: default-src 'self'; script-src 'self' 'unsafe-inline'
-strict-transport-security: max-age=3600

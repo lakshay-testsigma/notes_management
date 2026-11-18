@@ -1,5 +1,0 @@
-- comparison | six rule actions: block, redirect, allow, upgradeScheme, modifyHeaders, allowAllRequests | chrome-declarativenetrequest-docs, RuleActionType | candidate for CompareView
-- comparison | modifyHeaders ops: set replaces, append adds (allowlisted request headers), remove deletes all | chrome-declarativenetrequest-docs, Header modification | candidate for CompareView
-- number | 5,000 session rules; 30,000 dynamic safe rules; 50 enabled static rulesets | chrome-declarativenetrequest-docs, Rule limits | candidate for a key-number card
-- decision | declarativeNetRequest (install warning) vs declarativeNetRequestWithHostAccess (host permission needed) | chrome-declarativenetrequest-docs, Permissions | branch for a deck
-- decision | soft 404 in SPA: JavaScript redirect to a URL that returns 404 | google-js-seo-basics-docs, "Avoid soft 404 errors in single-page apps" | branch for a deck

@@ -1,8 +1,0 @@
-flowchart LR
-  hook[".git/hooks/commit-msg: node src/cli.js --edit file"] --> cli["cli.js: runCli"]
-  cli --> strip["hook.js: stripComments"]
-  strip --> lint["lint.js: lint"]
-  lint --> parse["parse.js: parse"]
-  lint --> rules["rules.js: four rules"]
-  cli -->|"lint result"| exit["hook.js: exitCodeFor"]
-  exit -->|"exit 0 accept, 1 reject, 2 tool error"| hook

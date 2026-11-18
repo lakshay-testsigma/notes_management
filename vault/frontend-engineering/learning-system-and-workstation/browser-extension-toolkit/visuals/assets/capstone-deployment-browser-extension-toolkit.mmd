@@ -1,6 +1,0 @@
-flowchart LR
-  files["profile.json, manifests, page.html, headers.txt"] --> proc
-  env["env: TOOLKIT_POLICY, TOOLKIT_LOG_LEVEL, TOOLKIT_STRICT"] --> proc
-  proc["node src/main.ts (or Docker image toolkit-profile)"] --> out["stdout: report"]
-  proc --> err["stderr: JSON logs"]
-  proc --> code["exit code 0, 1 or 2"]

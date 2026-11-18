@@ -1,9 +1,0 @@
-flowchart TD
-  A[Set CPU throttling in Capture settings] --> B[Record, click the page, stop]
-  B --> C[Main track flame chart: time left to right, call stack top to bottom]
-  C --> D{A task over 50 ms?}
-  D -- yes --> E[Long task: red triangle, part over 50 ms shaded red]
-  E --> F[Interactions track: interaction over 200 ms flagged]
-  F --> G[Split the work, update the page first, yield]
-  G --> H[Record again: INP at or under 200 ms]
-  D -- no --> I[Check Layout shifts track: purple diamonds, CLS at or under 0.1]

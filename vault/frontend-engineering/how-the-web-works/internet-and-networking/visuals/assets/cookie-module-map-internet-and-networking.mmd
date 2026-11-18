@@ -1,7 +1,0 @@
-flowchart LR
-  H[cookie-header: parseCookie and stringifyCookie for the Cookie header] --> V[shared rules and helpers: regexps, valueSlice, defaultDecode, defaultEncode]
-  P[set-cookie-parse: lenient reader of Set-Cookie] --> V
-  S[set-cookie-serialize: strict writer of Set-Cookie] --> V
-  B[build-and-infra: size limit, CI, release, benchmarks] -.guards.-> H
-  B -.guards.-> P
-  B -.guards.-> S

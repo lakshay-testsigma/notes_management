@@ -1,8 +1,0 @@
-{
-  "checks": [
-    {"kind": "solution-tests", "cwd": ".", "command": "npm", "args": ["test"]},
-    {"kind": "typecheck", "cwd": ".", "command": "npx", "args": ["tsc", "--noEmit"]},
-    {"kind": "build", "cwd": ".", "command": "npx", "args": ["vite", "build", "--outDir", "node_modules/.verify-dist", "--emptyOutDir"]},
-    {"kind": "audit", "cwd": ".", "command": "npm", "args": ["audit", "--omit=dev", "--audit-level=high"]}
-  ]
-}

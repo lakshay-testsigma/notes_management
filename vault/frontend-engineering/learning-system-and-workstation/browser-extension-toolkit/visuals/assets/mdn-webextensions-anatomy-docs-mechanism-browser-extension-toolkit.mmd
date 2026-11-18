@@ -1,9 +1,0 @@
-flowchart LR
-  M[manifest.json] --> BG[Background script]
-  M --> CS[Content script]
-  M --> UI[Popup, sidebar, options page]
-  M --> WAR[Web accessible resources]
-  CS -- reads and changes --> DOM[Page DOM]
-  CS -- messages --> BG
-  CS -- window.postMessage --> PS[Page scripts]
-  UI -- same APIs as --> BG

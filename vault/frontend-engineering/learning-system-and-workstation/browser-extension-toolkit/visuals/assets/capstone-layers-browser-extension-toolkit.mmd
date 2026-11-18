@@ -1,7 +1,0 @@
-flowchart TD
-  main["main.ts: wires objects"] --> iface
-  iface["interface: Cli, TextRenderer"] --> app
-  app["application: use cases, checks, ProfileLoader, ManifestScorer"] --> dom
-  infra["infrastructure: NodeFileSource, JsdomPageParser, JsdomAxeRunner, JsonLogger, Config"] --> dom
-  dom["domain: Policy, Profile, Outcome, Summary, ports"]
-  main --> infra

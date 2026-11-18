@@ -1,9 +1,0 @@
-{
-  "name": "browser-extension-toolkit-security-pass-slides",
-  "private": true,
-  "type": "module",
-  "scripts": {
-    "present": "npx --yes hyperframes@0.9.59 present composition",
-    "check": "npx --yes hyperframes@0.9.59 check composition --json"
-  }
-}

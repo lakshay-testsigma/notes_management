@@ -1,9 +1,0 @@
-flowchart TD
-  R[Request arrives] --> K{Stored response with same URI and matching Vary?}
-  K -- no --> O[Forward to origin]
-  K -- yes --> F{Fresh: lifetime > current_age?}
-  F -- yes --> H[Serve from cache with Age]
-  F -- no --> V[Conditional request: If-None-Match]
-  V --> S{Origin answer}
-  S -- 304 --> U[Update stored headers, reuse body]
-  S -- 200 --> N[Use new response, may store it]

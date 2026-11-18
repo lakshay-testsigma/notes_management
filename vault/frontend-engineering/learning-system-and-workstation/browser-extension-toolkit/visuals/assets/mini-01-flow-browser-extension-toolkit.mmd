@@ -1,6 +1,0 @@
-flowchart LR
-  files["manifest.json files"] --> main["main.ts: read files and policy.json"]
-  main --> audit["auditManifest"]
-  audit --> rules["findBroadHostFindings, findRiskyApiFindings, findContentScriptFindings"]
-  rules --> verdict["verdictFor: approve, review or reject"]
-  verdict --> report["formatReport: printed table and exit code"]

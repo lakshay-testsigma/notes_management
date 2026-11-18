@@ -1,4 +1,0 @@
-- comparison | default cache key parts: full URL (scheme, host, URI+query), Origin header, method-override headers, forwarding headers | cloudflare-cache-keys-docs, "Default cache key" | candidate for CompareView
-- parameter | cache key template (query string, headers, cookie, host, device/geo/language) fragments one URL into many files or consolidates requests | cloudflare-cache-keys-docs, "Customize cache keys" | experiment for an interactive cache-hit simulator
-- comparison | WebSocket (no backpressure, bidirectional) vs WebTransport (backpressure, unidirectional streams, datagrams, out-of-order) | mdn-websockets-api-docs, "Limitations" and alternatives | candidate for CompareView
-- state change | message flood without backpressure fills memory or pins CPU | mdn-websockets-api-docs, "Limitations" | candidate for Video

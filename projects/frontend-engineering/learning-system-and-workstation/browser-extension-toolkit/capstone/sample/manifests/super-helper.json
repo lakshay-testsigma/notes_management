@@ -1,6 +1,0 @@
-{
-  "manifest_version": 3,
-  "name": "Super Helper",
-  "permissions": ["debugger", "webRequest", "cookies", "scripting"],
-  "host_permissions": ["<all_urls>"]
-}

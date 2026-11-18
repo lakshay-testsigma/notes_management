@@ -1,6 +1,0 @@
-flowchart LR
-  input["input.ts: readSetCookieHeaders"] --> lint["lint.ts: lintHeaders"]
-  main["main.ts"] --> input
-  lint --> parse["parse.ts: parseSetCookie"]
-  lint --> rules["rules.ts: checkAttributes + checkPrefixes"]
-  main --> report["report.ts: formatReport, exitCode"]

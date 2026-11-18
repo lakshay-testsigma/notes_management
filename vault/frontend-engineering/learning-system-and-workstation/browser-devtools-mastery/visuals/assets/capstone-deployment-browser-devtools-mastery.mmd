@@ -1,6 +1,0 @@
-flowchart LR
-  files["HAR, trace, Lighthouse files"] --> proc
-  env["env: PERF_TRIAGE_BUDGETS, PERF_TRIAGE_LOG_LEVEL"] --> proc
-  proc["node src/main.ts (or Docker image perf-triage)"] --> out["stdout: report"]
-  proc --> err["stderr: JSON logs"]
-  proc --> code["exit code 0, 1 or 2"]

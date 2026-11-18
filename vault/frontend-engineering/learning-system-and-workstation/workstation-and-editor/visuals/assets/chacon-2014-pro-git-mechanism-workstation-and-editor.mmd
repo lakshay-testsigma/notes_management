@@ -1,6 +1,0 @@
-flowchart BT
-  C2["C2 (master tip)"] -->|parent| C1["C1 (common ancestor)"]
-  C3["C3 (feature tip)"] -->|parent| C1
-  M["Merge: new commit M"] -->|parent 1| C2
-  M -->|parent 2| C3
-  C3p["Rebase: C3' (copy of C3, new parent)"] -->|parent| C2

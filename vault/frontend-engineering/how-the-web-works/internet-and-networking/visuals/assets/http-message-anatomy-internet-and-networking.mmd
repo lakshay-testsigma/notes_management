@@ -1,9 +1,0 @@
-sequenceDiagram
-  participant B as Browser
-  participant S as API server
-  B->>S: GET /api/cart HTTP/1.1
-  Note over B,S: Request headers: Host, Accept: application/json
-  Note over B,S: Empty line, then no body (GET reads)
-  S-->>B: HTTP/1.1 200 OK
-  Note over B,S: Response headers: Content-Type, Cache-Control
-  Note over B,S: Empty line, then body: the cart as JSON

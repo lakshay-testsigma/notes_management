@@ -1,6 +1,0 @@
-- comparison | static declaration vs dynamic registerContentScripts vs programmatic executeScript (host permission or activeTab needed) | chrome-extensions-content-scripts-docs §Inject scripts | candidate for CompareView
-- parameter | run_at: document_start, document_end, document_idle (default) | chrome-extensions-content-scripts-docs §Run time | experiment for an interactive experience
-- dependency | page and content script share only the DOM, talk via window.postMessage; other APIs via messaging | chrome-extensions-content-scripts-docs §Communication with the embedding page | candidate for Diagram
-- architecture | manifest.json, background scripts, content scripts, popups, sidebars, options pages | mdn-webextensions-anatomy-docs §manifest.json to Web accessible resources | candidate for Diagram
-- comparison | CSP via HTTP header vs meta element (meta lacks some features; report-only cannot use meta) | mdn-csp-docs §CSP overview | candidate for CompareView
-- decision | nonce/hash strict CSP vs allowlist | mdn-csp-docs §Strict CSP | branch for a deck

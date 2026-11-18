@@ -1,7 +1,0 @@
-flowchart LR
-  R[Server response: status code] --> S[Source HTML]
-  S --> J[Headless Chromium runs JS]
-  J --> D[Rendered DOM: title, JSON-LD]
-  D --> I[Google index]
-  V[View source] -. reads .-> S
-  E[SEO extension] -. reads .-> D

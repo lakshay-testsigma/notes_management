@@ -1,6 +1,0 @@
-flowchart TB
-  main["main.js: composition root"] --> interface["interface: Cli, CliArgs, TextReporter"]
-  main --> infrastructure["infrastructure: Config, JsonLogger, SystemEnvironment, GitCommitSource"]
-  interface --> application["application: three use cases, WORKSTATION_CHECKS"]
-  infrastructure --> domain["domain: CommitParser, CommitRules, VersionRange, Report, ports"]
-  application --> domain

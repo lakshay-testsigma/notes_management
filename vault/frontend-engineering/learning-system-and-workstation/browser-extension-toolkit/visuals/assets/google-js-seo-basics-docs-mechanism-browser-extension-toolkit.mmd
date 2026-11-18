@@ -1,8 +1,0 @@
-flowchart LR
-  Q[URL in crawl queue] --> R{robots.txt allows?}
-  R -- no --> X[Skipped, no render]
-  R -- yes --> F[Fetch raw HTML]
-  F --> S[Status 200: queue for render]
-  S --> H[Headless Chromium runs JavaScript]
-  H --> D[Rendered HTML]
-  D --> I[Index]

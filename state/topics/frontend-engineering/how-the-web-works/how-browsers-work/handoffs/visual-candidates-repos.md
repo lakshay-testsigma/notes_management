@@ -1,3 +1,0 @@
-- sequence | animate, style, layout, pre-paint, paint, commit (main thread) -> layerize, raster, activate, aggregate, draw (compositor / Viz) | chrome-renderingng-architecture-docs, page "RenderingNG architecture" pipeline stage list | candidate for Video
-- comparison | which process/thread runs each stage: render main thread, compositor thread, Viz GPU main thread, display compositor thread | chrome-renderingng-architecture-docs, same page | candidate for Diagram
-- sequence | gather (navigation-runner, driver, session) -> audits -> scoring -> report | googlechrome-lighthouse-repo, core/ directory listing (core/runner.js, core/gather, core/audits, core/scoring.js) | candidate for Diagram (verify in repo-intel)

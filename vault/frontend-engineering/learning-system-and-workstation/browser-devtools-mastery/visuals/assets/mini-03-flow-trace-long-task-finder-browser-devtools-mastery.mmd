@@ -1,7 +1,0 @@
-flowchart LR
-  A["main.ts reads trace file"] --> B["loadTraceEvents (trace.ts)"]
-  B --> C["findLongTasks (longTasks.ts)"]
-  B --> D["findLayoutShifts (layoutShifts.ts)"]
-  C --> E["formatReport (report.ts)"]
-  D --> E
-  E --> F["printed report"]

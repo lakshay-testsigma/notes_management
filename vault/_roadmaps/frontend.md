@@ -18,7 +18,7 @@ Interactive checklist: run `npm run site:dev` and open `/roadmaps/frontend.html`
 
 Set up how you learn and the tools you will use for every later phase. Mastery = reading primary sources + building + measuring.
 
-- [ ] **00.1** [[frontend-engineering/learning-system-and-workstation/how-to-learn-frontend/00-start-here-how-to-learn-frontend|How to learn frontend (and keep improving)]] — Generated with gaps · 8 items · `frontend-engineering/learning-system-and-workstation/how-to-learn-frontend`
+- [ ] **00.1** How to learn frontend (and keep improving) — Not generated yet · 8 items · `frontend-engineering/learning-system-and-workstation/how-to-learn-frontend`
     - Learning loop: read → build → measure → explain (core)
     - Primary sources over tutorials (core)
     - Browser support literacy: Baseline & caniuse (core)
@@ -27,13 +27,13 @@ Set up how you learn and the tools you will use for every later phase. Mastery =
     - Practice platforms & interview prep (core)
     - Read other people's code (adv)
     - Build in public & teach (adv)
-- [ ] **00.2** [[frontend-engineering/learning-system-and-workstation/workstation-and-editor/00-start-here-workstation-and-editor|Workstation & editor]] — Generated with gaps · 5 items · `frontend-engineering/learning-system-and-workstation/workstation-and-editor`
+- [ ] **00.2** Workstation & editor — Not generated yet · 5 items · `frontend-engineering/learning-system-and-workstation/workstation-and-editor`
     - Terminal & shell basics (core)
     - Git & GitHub fluency (core)
     - VS Code (or JetBrains / Zed) setup (core)
     - AI-assisted development (core)
     - Node.js runtime & version management (core)
-- [ ] **00.3** [[frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/00-start-here-browser-devtools-mastery|Browser DevTools mastery (used in every phase)]] — Generated with gaps · 10 items · `frontend-engineering/learning-system-and-workstation/browser-devtools-mastery`
+- [ ] **00.3** Browser DevTools mastery (used in every phase) — Not generated yet · 10 items · `frontend-engineering/learning-system-and-workstation/browser-devtools-mastery`
     - Elements & Styles panel (core)
     - Console power use (core)
     - Sources panel & debugging (core)
@@ -44,7 +44,7 @@ Set up how you learn and the tools you will use for every later phase. Mastery =
     - Lighthouse panel & other panels (core)
     - Firefox & Safari DevTools (adv)
     - Remote device debugging (adv)
-- [ ] **00.4** [[frontend-engineering/learning-system-and-workstation/browser-extension-toolkit/00-start-here-browser-extension-toolkit|Browser extension toolkit (install once, used across phases)]] — Generated with gaps · 7 items · `frontend-engineering/learning-system-and-workstation/browser-extension-toolkit`
+- [ ] **00.4** Browser extension toolkit (install once, used across phases) — Not generated yet · 7 items · `frontend-engineering/learning-system-and-workstation/browser-extension-toolkit`
     - Framework devtools extensions (core)
     - Performance extensions (core)
     - Accessibility extensions (core)
@@ -57,7 +57,7 @@ Set up how you learn and the tools you will use for every later phase. Mastery =
 
 Networking and browser internals. Every performance, security and SEO decision later depends on this phase.
 
-- [ ] **01.1** [[frontend-engineering/how-the-web-works/internet-and-networking/00-start-here-internet-and-networking|Internet & networking]] — Being generated · 13 items · `frontend-engineering/how-the-web-works/internet-and-networking`
+- [ ] **01.1** Internet & networking — Not generated yet · 13 items · `frontend-engineering/how-the-web-works/internet-and-networking`
     - How the internet works (core)
     - Domain names & hosting basics (core)
     - DNS (core)
@@ -71,7 +71,7 @@ Networking and browser internals. Every performance, security and SEO decision l
     - Cookies (core)
     - Realtime transports overview (core)
     - REST, GraphQL & RPC at a glance (core)
-- [ ] **01.2** [[frontend-engineering/how-the-web-works/how-browsers-work/00-start-here-how-browsers-work|How browsers work]] — Being generated · 8 items · `frontend-engineering/how-the-web-works/how-browsers-work`
+- [ ] **01.2** How browsers work — Not generated yet · 8 items · `frontend-engineering/how-the-web-works/how-browsers-work`
     - Browser architecture (core)
     - Navigation & page lifecycle (core)
     - Critical rendering path (core)
@@ -119,7 +119,7 @@ HTML is the accessibility, SEO and performance foundation. Write it by hand unti
 
 Modern CSS replaces a lot of JavaScript. Learn the cascade deeply before frameworks.
 
-- [ ] **03.1** CSS core mechanics — Not generated yet · 13 items · `frontend-engineering/css/css-core-mechanics`
+- [ ] **03.1** [[frontend-engineering/css/css-core-mechanics/00-start-here-css-core-mechanics|CSS core mechanics]] — Being generated · 13 items · `frontend-engineering/css/css-core-mechanics`
     - Selectors (core)
     - Cascade, specificity & inheritance (core)
     - Cascade layers (`@layer`) (core)
