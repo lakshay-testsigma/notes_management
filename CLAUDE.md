@@ -55,6 +55,12 @@ orchestrator checks it first in every session.
   `learn-digest`, `learn-repo-intel`, `learn-site`, `learn-projects`, `learn-capstone`,
   `learn-notes`). Use `learn-insight` to save the learner's own insight and `learn-recall` for
   a recall session.
+- For the fastest run of a topic or roadmap, use `notes-management`: the same pipeline
+  with a rolling worker pool, cross-stage queues and early lookahead, inside the CLI's
+  wave rules. `.claude/settings.json` sets auto-compaction at 40% context.
+- Runs are unattended: permissions in this repository are pre-approved, so never ask.
+  After every passed `tutor done`, the orchestrator commits that phase's files
+  (`notes-management` section "Unattended runs"). Never `git push`; a hook blocks it.
 - Never build a path by hand. Take every path from `tutor paths <topic> --json`.
 - Never edit `topic.json` by hand. Change state only with `tutor` commands (`plan --set`,
   `depth`, `start`, `unit`, `done`, `skip`, `fail`, `reset`, `sources add`, `sources update`,

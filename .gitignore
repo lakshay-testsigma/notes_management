@@ -33,3 +33,6 @@ Thumbs.db
 projects/**/videos/*/renders/
 projects/**/videos/*/.hyperframes/
 projects/**/videos/*/node_modules/
+
+# Claude Code personal settings (full-permission mode for unattended runs)
+.claude/settings.local.json
