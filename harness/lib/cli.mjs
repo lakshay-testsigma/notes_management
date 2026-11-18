@@ -3,6 +3,7 @@
 import { checkCommand, orderCommand, rerunCommand, reviewCommand, writeNoteCommand } from './commands/quality.mjs';
 import { removeCommand } from './commands/remove.mjs';
 import { roadmapCommand } from './commands/roadmap.mjs';
+import { researchCommand } from './commands/research.mjs';
 import { styleCommand, videoCommand, visualsCommand } from './commands/media.mjs';
 import { deckCommand, experienceCommand } from './commands/experience.mjs';
 import { checkFlags, parseArgs } from './args.mjs';
@@ -27,9 +28,9 @@ export const COMMANDS = {
   review: {usage:'review <topic> [--file <json>]',summary:'Print the current review fingerprint and checks, or record an independent assessment.',flags:['file'],mutates:ctx=>ctx.flags.file!==undefined,run:reviewCommand},
   'write-note': {usage:'write-note <topic> <note> --file <draft>',summary:'Replace generated prose while protecting existing insights.',flags:['file'],mutates:true,run:writeNoteCommand},
   roadmap: {
-    usage: 'roadmap add --file <roadmap.json|roadmap.html> --domain <d> [--slug <s>] [--title "<T>"] [--depth auto|quick|standard|deep] | inbox | list | status <roadmap> | next <roadmap> | section <roadmap> <num> | render [<roadmap>]',
-    summary: 'A roadmap over a whole field: one topic per section, every item a required concept; writes the HTML checklist and the vault map.',
-    flags: ['file', 'domain', 'slug', 'title', 'depth'],
+    usage: 'roadmap add --file <roadmap.json|roadmap.html> --domain <d> [--slug <s>] [--title "<T>"] [--depth auto|quick|standard|deep] | inbox | list | status <roadmap> | next <roadmap> | phases <roadmap> [--from <phase>] [--to <phase>] | section <roadmap> <num> | render [<roadmap>]',
+    summary: 'A roadmap over a whole field: one topic per section, every item a required concept; writes the HTML checklist and the vault map. `phases` lists the open phases as parallel lanes.',
+    flags: ['file', 'domain', 'slug', 'title', 'depth', 'from', 'to'],
     mutates: (ctx) => ['add', 'render'].includes(ctx.args[0]),
     run: roadmapCommand,
   },
@@ -79,6 +80,13 @@ export const COMMANDS = {
     run: validateCommand,
   },
   map: { usage: 'map [<topic>]', summary: 'Regenerate 00-start-here, 09-resources, the domain map, Home; sync skipped-stage notes and concept backlinks.', flags: [], mutates: true, run: mapCommand },
+  research: {
+    usage: 'research worksheet <topic> [--unit <unit-id>] [--concepts <id>[,<id>...]]',
+    summary: 'Write a fixed step-by-step research checklist (exact queries, six questions per concept, verification per source type, entry template, self-check) so any model can research in depth.',
+    flags: ['unit', 'concepts'],
+    mutates: false,
+    run: researchCommand,
+  },
   sources: {
     usage: 'sources <topic> add --file <entry.json> | sources <topic> list | sources <topic> update <id> --file <patch.json> | sources <topic> remove <id> --reason "..."',
     summary: 'Append, list, correct, or remove vetted sources.',

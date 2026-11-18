@@ -87,6 +87,11 @@ Read only these.
 1. Read the assigned role `.claude/agents/tutor-researcher.md`, source-quality rubric and
    the guide. Start the assigned unit. Read only assigned plan/frontier and source entries.
    A category unit finds strong seed sources; a discovery unit also expands its branch.
+   Then run `node harness/bin/tutor.mjs research worksheet <topic> --unit <unit-id>
+   --concepts <assigned ids>` (the orchestrator may already have done it) and work through
+   `.cache/tmp/<slug>/research-worksheet-<unit>.md` box by box. The worksheet holds the
+   exact queries, the six questions per concept, the verification check per source type
+   and the self-check, so every model tier does the same depth of research.
 2. Search official docs, standards, defining papers and production reports for the specific
    concept. Inspect source contents, not just titles or snippets. Use an open-web search
    to find omissions/alternative terms, then verify against primary evidence. For each

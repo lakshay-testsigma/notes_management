@@ -56,8 +56,11 @@ orchestrator checks it first in every session.
   `learn-notes`). Use `learn-insight` to save the learner's own insight and `learn-recall` for
   a recall session.
 - For the fastest run of a topic or roadmap, use `notes-management`: the same pipeline
-  with a rolling worker pool, cross-stage queues and early lookahead, inside the CLI's
-  wave rules. `.claude/settings.json` sets auto-compaction at 40% context.
+  with a rolling worker pool and cross-stage queues, inside the CLI's wave rules. For a
+  roadmap it runs **every phase in parallel**: one phase orchestrator per phase, each in
+  its own git worktree, listed by `tutor roadmap phases <roadmap>` and merged back when
+  done (`notes-management` section "Parallel phases"). Every research unit follows
+  `tutor research worksheet`, so a smaller model researches as deeply as a large one. `.claude/settings.json` sets auto-compaction at 40% context.
 - Runs are unattended: permissions in this repository are pre-approved, so never ask.
   After every passed `tutor done`, the orchestrator commits that phase's files
   (`notes-management` section "Unattended runs"). Never `git push`; a hook blocks it.

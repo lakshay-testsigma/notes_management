@@ -167,3 +167,29 @@ test('roadmap add rejects malformed data and doctor reports roadmaps', () => fix
   const row = doctor.data.checks.find((c) => c.check === 'roadmaps');
   assert.equal(row.status, 'ok', JSON.stringify(row));
 }));
+
+test('roadmap phases lists one parallel lane per phase with open sections and exact commands', () => fixture((root) => {
+  addFromHtml(root);
+  const all = tutorJson(root, ['roadmap', 'phases', 'testing']);
+  assert.equal(all.code, 0, JSON.stringify(all.data));
+  assert.deepEqual(all.data.phases.map((p) => p.phase), ['00', '01']);
+  assert.equal(all.data.phases[0].sections.length, 1, 'the reference section is not a lane entry');
+  assert.match(all.data.phases[0].sections[0].command, /init .*--roadmap testing --section 00\.1/);
+  assert.match(all.data.phases[0].branch, /^phase-00-/);
+  const ranged = tutorJson(root, ['roadmap', 'phases', 'testing', '--from', '01']);
+  assert.deepEqual(ranged.data.phases.map((p) => p.phase), ['01']);
+}));
+
+test('research worksheet writes a step-by-step checklist from the roadmap items', () => fixture((root) => {
+  addFromHtml(root);
+  const lane = tutorJson(root, ['roadmap', 'phases', 'testing']).data.phases[0].sections[0];
+  const args = lane.command.match(/"[^"]+"|\S+/g).slice(2).map((a) => a.replace(/^"|"$/g, ''));
+  assert.equal(tutor(root, args).code, 0);
+  const sheet = tutorJson(root, ['research', 'worksheet', lane.topic, '--unit', 'discovery-01']);
+  assert.equal(sheet.code, 0, JSON.stringify(sheet.data));
+  assert.deepEqual(sheet.data.subjects, ['assertions', 'test-doubles']);
+  const text = read(root, sheet.data.file);
+  assert.match(text, /"Assertions specification"/);
+  assert.match(text, /Q6\. What small, checkable example/);
+  assert.match(text, /## Step 6 — Self-check/);
+}));

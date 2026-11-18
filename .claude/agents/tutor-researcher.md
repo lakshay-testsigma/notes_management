@@ -18,6 +18,10 @@ prove, from live pages, that each one deserves that trust.
    other files your brief lists under INPUT FILES, and
    `.claude/skills/learn-research/references/source-entries.md` for the entry shape.
 3. Run every command from the repository root as `node harness/bin/tutor.mjs <command>`.
+4. Open your research worksheet (the brief names it; if not, create it with
+   `node harness/bin/tutor.mjs research worksheet <topic> --unit <unit> --concepts <ids>`).
+   Do every step in order and tick each box in the file. Do not report done while a box
+   is open: the worksheet is how you reach full depth whatever model you run on.
 
 ## How you work
 

@@ -342,7 +342,15 @@ not started, with its items and the exact `init ... --roadmap <r> --section <num
 Topics are generated one at a time, in roadmap order. To save time, `roadmap next --json`
 also returns `lookahead`: when exactly one section is in progress, the next not-started
 section, whose intake and research may run in free worker slots (never its writer stages).
-So at most two topics are active at once.
+So at most two topics are active at once inside one lane.
+`roadmap phases <roadmap> [--from <phase>] [--to <phase>]` lists every phase with open
+work as a parallel lane (`phase`, `title`, `branch`, `sections[]` with their exact
+command). The `notes-management` orchestrator runs all lanes at once, one phase
+orchestrator per lane in its own git worktree, and merges each branch back; shared
+generated files are rebuilt after a merge with `doctor --fix`, `map` and `roadmap render`.
+`research worksheet <topic> [--unit <id>] [--concepts <ids>]` writes a fixed research
+checklist to `.cache/tmp/<slug>/research-worksheet-<unit>.md` (exact queries, six
+questions per concept, verification per source type, entry template, self-check).
 
 The learner drops input files in `inputs/`. `tutor roadmap inbox` lists them as `new`,
 `imported` (byte-identical to a stored `source.*`), `changed-since-import`, or

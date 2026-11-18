@@ -105,8 +105,10 @@ section:
   `init_command`, then that topic's intake and `research` stage in the free worker slots of
   the current wave. Stop the lookahead topic after `research` is done; its `brief` and later
   waves start only when the current topic is finalized.
-- At most two topics are ever active (the CLI returns `lookahead: null` otherwise), and the
-  worker limit of `learn` counts the workers of both topics together.
+- Inside one phase lane at most two topics are active (the CLI returns `lookahead: null`
+  otherwise), and the worker limit of `learn` counts the workers of both together.
+  Different phases run in parallel lanes: see `notes-management` "Parallel phases" and
+  `tutor roadmap phases <roadmap>`.
 - Intake of the lookahead topic maps prerequisites against the current topic's plan, not
   its unfinished notes.
 

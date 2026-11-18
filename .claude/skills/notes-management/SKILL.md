@@ -1,6 +1,6 @@
 ---
 name: notes-management
-description: Parallel-first orchestrator for the tutor pipeline. Runs every stage of one topic, or every section of a roadmap such as frontend-engineering, with the most work in flight that the tutor CLI allows - a rolling worker pool instead of batch barriers, one shared queue across all stages of a wave, inline stages done while workers run, and the next roadmap section's intake and research overlapped as early as the CLI permits. Keeps the orchestrator context under 40% with disk handoffs and automatic compaction. Use it when the learner says "/notes-management <topic|roadmap>", "run all phases in parallel", "generate <topic> fast", "speed up <roadmap>", or "continue <roadmap> in parallel".
+description: Parallel-first orchestrator for the tutor pipeline. Runs every stage of one topic, or every section of a roadmap such as frontend-engineering, with the most work in flight that the tutor CLI allows - a rolling worker pool instead of batch barriers, one shared queue across all stages of a wave, inline stages done while workers run, and for a roadmap every phase running at the same time (one phase orchestrator per phase, each in its own git worktree, merged back when done). Research units follow a fixed `tutor research worksheet` so even a smaller model researches in depth. Keeps the orchestrator context under 40% with disk handoffs and automatic compaction. Use it when the learner says "/notes-management <topic|roadmap>", "run all phases in parallel", "generate <topic> fast", "speed up <roadmap>", or "continue <roadmap> in parallel".
 argument-hint: "<topic | roadmap> [--depth quick|standard|deep]  |  continue <topic | roadmap>  |  status"
 ---
 
@@ -24,11 +24,13 @@ The CLI enforces the dependency graph; never try to get around it.
   So `digest` can never start before `brief` is settled, and `lesson` never before
   `digest` and `repo-intel`. All stages of the **same** wave run together.
 - Inside a stage, all units are independent and run together.
-- Across a roadmap, at most two topics are active: the current one and the `lookahead`
-  returned by `tutor roadmap next <roadmap> --json`. Only the lookahead's `intake` and
-  `research` may run early; its writer stages wait until the current topic is finalized.
-- Concurrency limit: min(host slots, the depth table "How many workers at once" in
-  `learn`, 5). In a roadmap it counts the workers of both topics together.
+- Across a roadmap, **every phase runs in parallel** (section "Parallel phases" below):
+  one phase orchestrator per phase, each in its own git worktree. Inside one phase the
+  sections run in roadmap order. `tutor roadmap phases <roadmap> --json` lists the lanes.
+  The old "current + one lookahead" rule applies only inside one phase lane.
+- Concurrency limit per phase orchestrator: min(host slots, the depth table "How many
+  workers at once" in `learn`, 5). The main session caps live phase orchestrators at
+  `MAX_PHASES` (default 6; raise it when the host and rate limits allow).
 
 Parallel speed comes from filling every legal slot, not from skipping order.
 
@@ -109,7 +111,67 @@ writing is confined to the repository root. Two layers enforce it:
 - Caches (npm, browsers, XDG) are pointed into `.cache/` by `env`, so installs and renders
   never write to the home folder. Use `$TMPDIR` for scratch files.
 
-## Roadmap mode (for example `frontend-engineering`)
+## Parallel phases (default for a roadmap)
+
+A roadmap runs **all its phases at the same time**. The main session is only a
+dispatcher: it never runs a stage itself.
+
+1. `tutor roadmap inbox`; import `new` or `changed` files with `learn-roadmap` first.
+2. `tutor roadmap phases <roadmap> --json [--from <phase>] [--to <phase>]` gives one lane
+   per phase with open work: `phase`, `title`, `branch`, and `sections[]` with the exact
+   `command` (an `init` for a new section, `tutor next` for a started one). Use the
+   learner's range if they gave one.
+3. Write the lane table to `.cache/tmp/<roadmap>-phases.md` (phase, agent id, worktree,
+   status, pending phases). This file is the resume point after a compaction.
+4. Start one **phase orchestrator** per lane, up to `MAX_PHASES` live at once:
+   - `Agent` with `subagent_type: general-purpose`, `isolation: "worktree"`,
+     `run_in_background: true`, prompt = `references/phase-orchestrator-brief.md` with
+     its placeholders filled from the lane.
+   - **Spawn one phase orchestrator per message.** Several `isolation: "worktree"`
+     spawns in the same message race on git and are refused ("git identity could not be
+     verified"), leaving dead worktrees behind.
+5. Rolling refill: when a phase orchestrator returns,
+   - `CONTINUE: <worktree> <topic> <stage>`: start a fresh orchestrator **without**
+     isolation, same brief plus "Work only in `<worktree>`; cd there first; resume at
+     `<topic>` `<stage>`".
+   - finished: merge its branch (section "Merging a phase branch"), mark the lane done in
+     the lane table, then spawn the next pending lane.
+6. When every lane is merged: `tutor roadmap status <roadmap>` and the final message.
+
+### Merging a phase branch
+
+Run in the main checkout, one merge at a time:
+
+```bash
+git merge --no-ff --no-edit <branch>
+# Conflicts only appear in shared, generated files. Take either side, then rebuild them:
+git checkout --theirs -- state/registry.json vault/Home.md vault/_roadmaps site/public/roadmaps 2>/dev/null
+node harness/bin/tutor.mjs doctor --fix      # rebuilds state/registry.json from disk
+node harness/bin/tutor.mjs map               # rebuilds maps, Home and concept backlinks
+node harness/bin/tutor.mjs roadmap render <roadmap>
+git add -A -- state vault site/public/roadmaps && git commit --no-edit
+```
+
+For an add/add conflict on a `vault/_concepts` or `vault/_tech` note, keep the side
+with more content, then `tutor map` refills its backlinks. Never resolve a conflict in a
+topic's own folders by hand: each phase owns disjoint topic paths, so such a conflict
+means two lanes worked on one topic; stop that lane and report it. The learner removes
+merged worktrees with `git worktree remove <path>` (the sandbox cannot).
+
+### Research quality on any model
+
+Every research unit, on any model tier, starts with
+`tutor research worksheet <topic> --unit <unit-id> [--concepts <ids>]`. It writes a fixed
+checklist (exact search queries per concept and source role, the six questions per
+concept, the verification check per source type, the entry template, a self-check) to
+`.cache/tmp/<slug>/research-worksheet-<unit>.md`. Put that path in the worker brief and
+tell the worker to tick every box. This makes a smaller model do the same in-depth,
+verified research as a large one: the judgement is in the worksheet, not the model.
+Keep each research unit to at most 4 concepts, so a small context window holds it.
+
+## Roadmap mode, one lane at a time (fallback)
+
+Use this only when the learner asks for sequential order, or inside one phase lane.
 
 1. Run `tutor roadmap inbox`; import `new` or `changed` files with `learn-roadmap` first.
 2. Loop on `tutor roadmap next <roadmap> --json`:

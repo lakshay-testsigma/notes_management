@@ -18,7 +18,7 @@ import {
 import { requireArg } from './shared.mjs';
 import { refreshSharedMaps } from '../maps.mjs';
 
-const USAGE = 'roadmap add --file <roadmap.json|roadmap.html> --domain <domain> [--slug <slug>] [--title "<Title>"] [--depth auto|quick|standard|deep] | roadmap inbox | roadmap list | roadmap status <roadmap> | roadmap next <roadmap> | roadmap section <roadmap> <num> | roadmap render [<roadmap>]';
+const USAGE = 'roadmap add --file <roadmap.json|roadmap.html> --domain <domain> [--slug <slug>] [--title "<Title>"] [--depth auto|quick|standard|deep] | roadmap inbox | roadmap list | roadmap status <roadmap> | roadmap next <roadmap> | roadmap phases <roadmap> [--from <phase>] [--to <phase>] | roadmap section <roadmap> <num> | roadmap render [<roadmap>]';
 
 export function roadmapCommand(ctx) {
   const action = ctx.args[0];
@@ -28,6 +28,7 @@ export function roadmapCommand(ctx) {
     case 'list': return listRoadmaps(ctx);
     case 'status': return statusRoadmap(ctx);
     case 'next': return nextRoadmap(ctx);
+    case 'phases': return phasesRoadmap(ctx);
     case 'section': return showSection(ctx);
     case 'render': return renderRoadmaps(ctx);
     default:
@@ -228,6 +229,43 @@ function lookaheadSection(root, roadmap, row) {
   if (!after) return null;
   const section = findSection(roadmap, after.section);
   return { section: section.num, title: section.title, topic: section.topic.id, items: section.items.length, init_command: initCommandFor(roadmap, section) };
+}
+
+/**
+ * Parallel phase plan: every phase with unfinished sections, one work lane each.
+ * Phases run in parallel (one phase orchestrator per lane, in its own git worktree);
+ * sections inside one phase run in roadmap order.
+ */
+function phasesRoadmap({ root, args, flags }) {
+  const usage = 'roadmap phases <roadmap> [--from <phase>] [--to <phase>]';
+  const roadmap = resolveRoadmap(root, requireArg(args[1], '<roadmap>', usage));
+  const from = stringFlag(flags, 'from');
+  const to = stringFlag(flags, 'to');
+  const inRange = (num) => (!from || Number(num) >= Number(from)) && (!to || Number(num) <= Number(to));
+  const { rows, totals } = roadmapProgress(root, roadmap);
+  const lanes = new Map();
+  for (const row of rows) {
+    if (['complete', 'reference'].includes(row.status)) continue;
+    const section = findSection(roadmap, row.section);
+    if (!section.topic || !inRange(section.phase.num)) continue;
+    const key = section.phase.num;
+    if (!lanes.has(key)) lanes.set(key, { phase: key, title: section.phase.title, branch: `phase-${key}-${slugify(section.phase.title).slice(0, 40)}`, sections: [] });
+    lanes.get(key).sections.push({
+      section: section.num, title: section.title, status: row.status, topic: section.topic.id,
+      depth: section.topic.depth, items: section.items.length,
+      command: row.status === 'not-started' ? initCommandFor(roadmap, section) : `${CLI} next ${section.topic.id}`,
+    });
+  }
+  const phases = [...lanes.values()];
+  const lines = [
+    `${roadmap.title}  ·  ${phases.length} phases with open work  ·  ${totals.complete}/${totals.topics} topics ready`,
+    '',
+    'Run every phase below in parallel, one phase orchestrator each (notes-management "Parallel phases").',
+    'Inside one phase, run its sections in order. Merge each phase branch into the main branch when it ends.',
+    '',
+    ...phases.flatMap((p) => [`Phase ${p.phase} ${p.title}  (branch ${p.branch}, ${p.sections.length} sections)`, ...p.sections.map((s) => `  ${s.section}  ${s.title}  [${s.status}]  ${s.command}`)]),
+  ];
+  return { data: { roadmap: roadmap.id, totals, phases }, text: lines.join('\n') };
 }
 
 function showSection({ root, args }) {
