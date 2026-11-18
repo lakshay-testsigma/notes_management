@@ -7,7 +7,7 @@
   "subdomain": "learning-system-and-workstation",
   "depth": "standard",
   "created_at": "2026-11-18T10:19:12Z",
-  "updated_at": "2026-11-18T12:35:53Z",
+  "updated_at": "2026-11-18T12:36:51Z",
   "paths": {
     "state": "state/topics/frontend-engineering/learning-system-and-workstation/browser-extension-toolkit",
     "vault": "vault/frontend-engineering/learning-system-and-workstation/browser-extension-toolkit",
@@ -1296,10 +1296,10 @@
       "id": "mini-projects",
       "wave": 3,
       "skill": "learn-projects",
-      "status": "in_progress",
+      "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T12:28:23Z",
-      "finished_at": null,
+      "finished_at": "2026-11-18T12:36:51Z",
       "attempts": 1,
       "units": [
         {
@@ -1313,7 +1313,14 @@
           "handoff": null
         }
       ],
-      "note": ""
+      "note": "",
+      "continue_after_failure": false,
+      "validation": {
+        "version": 2,
+        "fingerprint": "73c44d80314fe970c1a6d2a550fdc8ed29ae83c037fb1223be071f1eda2ad89b",
+        "at": "2026-11-18T12:36:51Z",
+        "forced": false
+      }
     },
     {
       "id": "capstone",
@@ -2172,6 +2179,24 @@
       "event": "unit-done",
       "message": "unit mini-02",
       "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-18T12:36:27Z",
+      "event": "gate-failed",
+      "message": "1 problems",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-18T12:36:45Z",
+      "event": "execution-check",
+      "message": "mini-projects: pass",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-18T12:36:51Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "mini-projects"
     }
   ],
   "roadmap": {
@@ -2305,6 +2330,137 @@
             "status": 200,
             "bytes": 369455,
             "sha256": "bf9f904725571cbb27399b9d21565605f03303e9ce6cbfa1f6d6d456df6661fc"
+          }
+        ]
+      },
+      "mini-projects": {
+        "version": 2,
+        "fingerprint": "73c44d80314fe970c1a6d2a550fdc8ed29ae83c037fb1223be071f1eda2ad89b",
+        "at": "2026-11-18T12:36:45Z",
+        "ok": true,
+        "checks": [
+          {
+            "label": "mini-01-extension-permission-audit: solution-tests",
+            "command": "npm",
+            "args": [
+              "test"
+            ],
+            "expected_exit": 0,
+            "exit": 0,
+            "ok": true,
+            "output_sha256": "dab9ae4b4297782a65d417011a8777202785cc263263c70a1d9ee08aeafa7444"
+          },
+          {
+            "label": "mini-01-extension-permission-audit: starter-tests",
+            "command": "npm",
+            "args": [
+              "test"
+            ],
+            "expected_exit": 1,
+            "exit": 1,
+            "ok": true,
+            "output_sha256": "71aa75996f7fed4deee569a9d93f870debe5d7876726756da0a130c55e060c91"
+          },
+          {
+            "label": "mini-01-extension-permission-audit: starter-start",
+            "command": "npx",
+            "args": [
+              "vite-node",
+              "src/main.ts",
+              "sample/manifests"
+            ],
+            "expected_exit": 1,
+            "exit": 1,
+            "ok": true,
+            "output_sha256": "1af7ff58801864188d46171baa1281148ea1683d24acd61cc0f59521fe003c33"
+          },
+          {
+            "label": "mini-01-extension-permission-audit: audit",
+            "command": "npm",
+            "args": [
+              "audit",
+              "--omit=dev",
+              "--audit-level=high"
+            ],
+            "expected_exit": 0,
+            "exit": 0,
+            "ok": true,
+            "output_sha256": "6d8c5c8f3d7684adb070417bd608d01ae90aa3dc26a65af03ffda4955f38d9a3"
+          },
+          {
+            "label": "mini-01-extension-permission-audit: audit",
+            "command": "npm",
+            "args": [
+              "audit",
+              "--omit=dev",
+              "--audit-level=high"
+            ],
+            "expected_exit": 0,
+            "exit": 0,
+            "ok": true,
+            "output_sha256": "6d8c5c8f3d7684adb070417bd608d01ae90aa3dc26a65af03ffda4955f38d9a3"
+          },
+          {
+            "label": "mini-02-release-a11y-seo-check: solution-tests",
+            "command": "npm",
+            "args": [
+              "test"
+            ],
+            "expected_exit": 0,
+            "exit": 0,
+            "ok": true,
+            "output_sha256": "585f1c29f76aa1840ef2fd61e71f0a5003dd643efa0ce75698a2579ad3dd1ba4"
+          },
+          {
+            "label": "mini-02-release-a11y-seo-check: starter-tests",
+            "command": "npm",
+            "args": [
+              "test"
+            ],
+            "expected_exit": 1,
+            "exit": 1,
+            "ok": true,
+            "output_sha256": "0c2f7811dd506244cc732f339fdfc6ab31992156e98843c31347b7c8287c0475"
+          },
+          {
+            "label": "mini-02-release-a11y-seo-check: starter-start",
+            "command": "npx",
+            "args": [
+              "vite-node",
+              "src/main.ts",
+              "sample/pages.json",
+              "sample/baseline.json"
+            ],
+            "expected_exit": 1,
+            "exit": 1,
+            "ok": true,
+            "output_sha256": "ab5804d534b6338585c843179497c5122e27e15b80fc9037e476435f4e584c40"
+          },
+          {
+            "label": "mini-02-release-a11y-seo-check: audit",
+            "command": "npm",
+            "args": [
+              "audit",
+              "--omit=dev",
+              "--audit-level=high"
+            ],
+            "expected_exit": 0,
+            "exit": 0,
+            "ok": true,
+            "output_sha256": "6d8c5c8f3d7684adb070417bd608d01ae90aa3dc26a65af03ffda4955f38d9a3"
+          },
+          {
+            "label": "mini-02-release-a11y-seo-check: audit",
+            "command": "npm",
+            "args": [
+              "audit",
+              "--omit=dev",
+              "--audit-level=high"
+            ],
+            "expected_exit": 0,
+            "exit": 0,
+            "ok": true,
+            "output_sha256": "6d8c5c8f3d7684adb070417bd608d01ae90aa3dc26a65af03ffda4955f38d9a3"
           }
         ]
       }

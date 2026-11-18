@@ -11,7 +11,7 @@ created: 2026-11-18
 This is the map of the topic. Read the steps from top to bottom. Each step links to the next thing to open, so you never have to search.
 
 <!-- tutor:generated:start -->
-**Depth:** standard · **Progress:** 6 of 10 steps ready
+**Depth:** standard · **Progress:** 7 of 10 steps ready
 
 A browser extension toolkit adds framework, performance, accessibility, SEO and security views that built-in DevTools does not give.
 
@@ -19,7 +19,7 @@ A browser extension toolkit adds framework, performance, accessibility, SEO and 
 
 1. [[01-brief-browser-extension-toolkit|Brief]] — what it is, why it exists, where it is used · *ready*
 2. [[02-lesson-browser-extension-toolkit|Interactive lesson]] — the animated lesson pages on the local site · *ready*
-3. [[03-mini-projects-browser-extension-toolkit|Mini projects]] — small builds with a real use case · *in progress*
+3. [[03-mini-projects-browser-extension-toolkit|Mini projects]] — small builds with a real use case · *ready*
 4. [[00-digests-browser-extension-toolkit|Digests]] — short summaries of the key papers and docs · *ready*
 5. [[00-repo-intel-browser-extension-toolkit|Repository deep dive]] — how a production open-source project does it · *ready*
 6. [[06-capstone-browser-extension-toolkit|Capstone]] — the production-style project · *not started*
@@ -107,12 +107,12 @@ Research stopped: budget-limit. Five research units (framework-perf, a11y-seo, s
 | 2 | digest | ready |
 | 2 | repo-intel | ready |
 | 3 | lesson | ready |
-| 3 | mini-projects | in progress |
+| 3 | mini-projects | ready |
 | 4 | capstone | not started |
 | 5 | notes | not started |
 | 5 | finalize | not started |
 
-Next to generate: `mini-projects`. Ask Claude to continue this topic, or run `node harness/bin/tutor.mjs next frontend-engineering/learning-system-and-workstation/browser-extension-toolkit`.
+Next to generate: `capstone`. Ask Claude to continue this topic, or run `node harness/bin/tutor.mjs next frontend-engineering/learning-system-and-workstation/browser-extension-toolkit`.
 <!-- tutor:generated:end -->
 
 ## My insights
