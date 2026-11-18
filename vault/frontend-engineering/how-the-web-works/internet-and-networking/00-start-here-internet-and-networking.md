@@ -11,7 +11,7 @@ created: 2026-11-18
 This is the map of the topic. Read the steps from top to bottom. Each step links to the next thing to open, so you never have to search.
 
 <!-- tutor:generated:start -->
-**Depth:** deep · **Progress:** 7 of 10 steps ready
+**Depth:** deep · **Progress:** 8 of 10 steps ready
 
 The network layers under every web page: packets, DNS, HTTP and its versions, TLS, URLs and origins, caching, CDNs, compression, cookies, realtime transports and API styles.
 
@@ -22,7 +22,7 @@ The network layers under every web page: packets, DNS, HTTP and its versions, TL
 3. [[03-mini-projects-internet-and-networking|Mini projects]] — small builds with a real use case · *ready*
 4. [[00-digests-internet-and-networking|Digests]] — short summaries of the key papers and docs · *ready*
 5. [[00-repo-intel-internet-and-networking|Repository deep dive]] — how a production open-source project does it · *ready*
-6. [[06-capstone-internet-and-networking|Capstone]] — the production-style project · *not started*
+6. [[06-capstone-internet-and-networking|Capstone]] — the production-style project · *ready*
 7. [[07-final-notes-internet-and-networking|Final notes]] — the one-page refresher · *not started*
 8. [[08-recall-internet-and-networking|Recall cards]] — flashcards for spaced review · *not started*
 9. [[09-resources-internet-and-networking|Resources]] — the vetted sources behind everything above · *ready*
@@ -141,11 +141,11 @@ Research stopped: budget-limit. Children expanded against the same sources. Prop
 | 2 | repo-intel | ready |
 | 3 | lesson | ready |
 | 3 | mini-projects | ready |
-| 4 | capstone | not started |
+| 4 | capstone | ready |
 | 5 | notes | not started |
 | 5 | finalize | not started |
 
-Next to generate: `capstone`. Ask Claude to continue this topic, or run `node harness/bin/tutor.mjs next frontend-engineering/how-the-web-works/internet-and-networking`.
+Next to generate: `notes`. Ask Claude to continue this topic, or run `node harness/bin/tutor.mjs next frontend-engineering/how-the-web-works/internet-and-networking`.
 <!-- tutor:generated:end -->
 
 ## My insights

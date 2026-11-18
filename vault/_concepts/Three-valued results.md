@@ -14,5 +14,6 @@ A three-valued result is a check outcome that can be pass, fail, or "cannot tell
 
 - [[axe-core-pattern-three-valued-results]]
 - [[06-capstone-browser-extension-toolkit]]
+- [[06-capstone-internet-and-networking]]
 
 ## My insights

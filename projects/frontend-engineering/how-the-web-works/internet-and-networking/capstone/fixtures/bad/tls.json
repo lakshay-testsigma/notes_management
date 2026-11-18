@@ -1,0 +1,9 @@
+{
+  "host": "www.example.com",
+  "protocol": "TLSv1.2",
+  "notBefore": "2026-06-01T00:00:00Z",
+  "notAfter": "2026-11-28T00:00:00Z",
+  "subjectAltNames": [
+    "example.org"
+  ]
+}

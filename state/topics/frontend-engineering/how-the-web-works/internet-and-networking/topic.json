@@ -7,7 +7,7 @@
   "subdomain": "how-the-web-works",
   "depth": "deep",
   "created_at": "2026-11-18T12:13:22Z",
-  "updated_at": "2026-11-18T14:05:55Z",
+  "updated_at": "2026-11-18T14:43:37Z",
   "paths": {
     "state": "state/topics/frontend-engineering/how-the-web-works/internet-and-networking",
     "vault": "vault/frontend-engineering/how-the-web-works/internet-and-networking",
@@ -2317,13 +2317,26 @@
       "id": "capstone",
       "wave": 4,
       "skill": "learn-capstone",
-      "status": "pending",
+      "status": "done",
       "scope": "required",
-      "started_at": null,
-      "finished_at": null,
-      "attempts": 0,
-      "units": [],
-      "note": ""
+      "started_at": "2026-11-18T14:07:48Z",
+      "finished_at": "2026-11-18T14:43:37Z",
+      "attempts": 1,
+      "units": [
+        {
+          "id": "capstone",
+          "status": "done",
+          "handoff": null
+        }
+      ],
+      "note": "",
+      "continue_after_failure": false,
+      "validation": {
+        "version": 2,
+        "fingerprint": "d5b4b4a70ac0d4d368262781a885fd540099f727a958de6c2d4948259318a2cb",
+        "at": "2026-11-18T14:43:37Z",
+        "forced": false
+      }
     },
     {
       "id": "notes",
@@ -2354,72 +2367,6 @@
     "cards": {}
   },
   "log": [
-    {
-      "at": "2026-11-18T12:17:07Z",
-      "event": "source-add",
-      "message": "added mdn-websockets-api-docs",
-      "stage": "research"
-    },
-    {
-      "at": "2026-11-18T12:17:10Z",
-      "event": "unit-done",
-      "message": "unit docs-edge-realtime-api",
-      "stage": "research"
-    },
-    {
-      "at": "2026-11-18T12:17:13Z",
-      "event": "source-add",
-      "message": "added rfc-9110-http-semantics",
-      "stage": "research"
-    },
-    {
-      "at": "2026-11-18T12:17:16Z",
-      "event": "source-add",
-      "message": "added rfc-9111-http-caching",
-      "stage": "research"
-    },
-    {
-      "at": "2026-11-18T12:17:19Z",
-      "event": "source-add",
-      "message": "added rfc-9114-http3",
-      "stage": "research"
-    },
-    {
-      "at": "2026-11-18T12:17:22Z",
-      "event": "source-add",
-      "message": "added mdn-http-caching-docs",
-      "stage": "research"
-    },
-    {
-      "at": "2026-11-18T12:17:27Z",
-      "event": "source-add",
-      "message": "added rfc-9846-tls13",
-      "stage": "research"
-    },
-    {
-      "at": "2026-11-18T12:17:30Z",
-      "event": "source-add",
-      "message": "added whatwg-url-standard",
-      "stage": "research"
-    },
-    {
-      "at": "2026-11-18T12:17:32Z",
-      "event": "source-add",
-      "message": "added mdn-cookies-guide-docs",
-      "stage": "research"
-    },
-    {
-      "at": "2026-11-18T12:17:35Z",
-      "event": "source-add",
-      "message": "added mdn-domain-names-docs",
-      "stage": "research"
-    },
-    {
-      "at": "2026-11-18T12:17:39Z",
-      "event": "unit-done",
-      "message": "unit docs-http-core",
-      "stage": "research"
-    },
     {
       "at": "2026-11-18T12:17:49Z",
       "event": "unit-done",
@@ -3506,6 +3453,67 @@
       "event": "done",
       "message": "gate passed",
       "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-18T14:07:42Z",
+      "event": "note",
+      "message": "WAVE 3 done; running: none; queued: capstone"
+    },
+    {
+      "at": "2026-11-18T14:07:48Z",
+      "event": "start",
+      "message": "attempt 1",
+      "stage": "capstone"
+    },
+    {
+      "at": "2026-11-18T14:07:52Z",
+      "event": "unit-add",
+      "message": "unit capstone",
+      "stage": "capstone"
+    },
+    {
+      "at": "2026-11-18T14:07:56Z",
+      "event": "note",
+      "message": "SPAWN 36/56; capstone started"
+    },
+    {
+      "at": "2026-11-18T14:14:34Z",
+      "event": "visual",
+      "message": "added visual capstone-layers"
+    },
+    {
+      "at": "2026-11-18T14:14:34Z",
+      "event": "visual",
+      "message": "added visual capstone-request-flow"
+    },
+    {
+      "at": "2026-11-18T14:14:35Z",
+      "event": "visual",
+      "message": "added visual capstone-deployment"
+    },
+    {
+      "at": "2026-11-18T14:42:36Z",
+      "event": "execution-check",
+      "message": "capstone: pass",
+      "stage": "capstone"
+    },
+    {
+      "at": "2026-11-18T14:42:41Z",
+      "event": "unit-done",
+      "message": "unit capstone",
+      "stage": "capstone"
+    },
+    {
+      "at": "2026-11-18T14:43:29Z",
+      "event": "execution-check",
+      "message": "capstone: pass",
+      "stage": "capstone"
+    },
+    {
+      "at": "2026-11-18T14:43:37Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "capstone"
     }
   ],
   "roadmap": {
@@ -3933,6 +3941,61 @@
           },
           {
             "label": "mini-03-cookie-attribute-linter: audit",
+            "command": "npm",
+            "args": [
+              "audit",
+              "--omit=dev",
+              "--audit-level=high"
+            ],
+            "expected_exit": 0,
+            "exit": 0,
+            "ok": true,
+            "output_sha256": "6d8c5c8f3d7684adb070417bd608d01ae90aa3dc26a65af03ffda4955f38d9a3"
+          }
+        ]
+      },
+      "capstone": {
+        "version": 2,
+        "fingerprint": "d5b4b4a70ac0d4d368262781a885fd540099f727a958de6c2d4948259318a2cb",
+        "at": "2026-11-18T14:43:29Z",
+        "ok": true,
+        "checks": [
+          {
+            "label": "capstone: solution-tests",
+            "command": "npm",
+            "args": [
+              "test"
+            ],
+            "expected_exit": 0,
+            "exit": 0,
+            "ok": true,
+            "output_sha256": "17213531d8e79c49da6d86504790e22e32588f556f1206c00d3e90e9ec9bf434"
+          },
+          {
+            "label": "capstone: typecheck",
+            "command": "npm",
+            "args": [
+              "run",
+              "typecheck"
+            ],
+            "expected_exit": 0,
+            "exit": 0,
+            "ok": true,
+            "output_sha256": "f3c075ea6f11035da7b423adadc97ed93aa0eef58d78a4037632f5f4901ebf9c"
+          },
+          {
+            "label": "capstone: integration",
+            "command": "npm",
+            "args": [
+              "start"
+            ],
+            "expected_exit": 0,
+            "exit": 0,
+            "ok": true,
+            "output_sha256": "39359cf01949784dbdc0d978e0c2fb22797f8853400033af152a23df963258cf"
+          },
+          {
+            "label": "capstone: audit",
             "command": "npm",
             "args": [
               "audit",

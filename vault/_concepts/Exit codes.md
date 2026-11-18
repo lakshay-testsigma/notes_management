@@ -20,5 +20,6 @@ An exit code is the number a program returns when it ends. Zero means success. A
 - [[06-capstone-browser-devtools-mastery]]
 - [[axe-core-pattern-cleanup-on-every-exit]]
 - [[06-capstone-browser-extension-toolkit]]
+- [[06-capstone-internet-and-networking]]
 
 ## My insights

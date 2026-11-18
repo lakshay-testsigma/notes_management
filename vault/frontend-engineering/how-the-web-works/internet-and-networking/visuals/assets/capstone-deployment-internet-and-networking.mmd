@@ -1,0 +1,6 @@
+flowchart LR
+  Env["Environment: REPORT_FORMAT, FAIL_ON, LOG_LEVEL, REPORT_NOW, POLICY_FILE"] --> Process
+  Files["Input folder: dns.json, tls.json, site.har, policy.json"] --> Process
+  Process["Process: node src/main.ts (Dockerfile: node:26-slim)"] --> Stdout["stdout: report"]
+  Process --> Stderr["stderr: JSON log lines"]
+  Process --> Exit["exit code 0, 1 or 2"]

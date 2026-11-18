@@ -14,5 +14,6 @@ Fail closed means that when a program cannot tell what is safe, it picks the saf
 
 - [[undici-pattern-bounded-resources]]
 - [[undici-pattern-fail-closed-parsing]]
+- [[06-capstone-internet-and-networking]]
 
 ## My insights

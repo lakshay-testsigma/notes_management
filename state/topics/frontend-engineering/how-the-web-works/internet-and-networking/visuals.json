@@ -1641,5 +1641,101 @@
     "used_in": [
       "projects/frontend-engineering/how-the-web-works/internet-and-networking/mini-03-cookie-attribute-linter/README.md"
     ]
+  },
+  {
+    "id": "capstone-layers",
+    "title": "Site network report: layers",
+    "kind": "architecture",
+    "format": "mermaid",
+    "concept_ids": [
+      "dns-resolution",
+      "tls-and-https",
+      "http-versions",
+      "http-caching",
+      "http-compression",
+      "cookies"
+    ],
+    "source_ids": [
+      "nodejs-undici-repo",
+      "jshttp-cookie-repo",
+      "rfc-9111-http-caching",
+      "rfc-9846-tls13"
+    ],
+    "used_in": [
+      "projects/frontend-engineering/how-the-web-works/internet-and-networking/capstone/ARCHITECTURE.md",
+      "vault/frontend-engineering/how-the-web-works/internet-and-networking/06-capstone-internet-and-networking.md"
+    ],
+    "file": "vault/frontend-engineering/how-the-web-works/internet-and-networking/visuals/assets/capstone-layers-internet-and-networking.mmd",
+    "purpose": "Show the four layers of the capstone and that every dependency points inward to the domain.",
+    "explanation": "main.ts creates every object. The interface layer (Cli and two renderers) calls the application layer (RunReport). RunReport and the infrastructure adapters both depend on the domain, which holds the six Check classes, the CacheControl and SetCookie parsers, Report and the port interfaces. The domain imports nothing from the other layers.",
+    "alt": "Flowchart with six boxes. main.ts points to the interface layer and the infrastructure layer. The interface layer points to the application layer, RunReport. The application layer and the infrastructure layer both point to the domain layer with the six checks, parsers, Report and ports.",
+    "learning_check": {
+      "question": "Which layer would you edit to add a seventh check, and why does the infrastructure layer not change?",
+      "answer": "The domain layer: add one Check class. Infrastructure only reads files and does not know which checks exist."
+    }
+  },
+  {
+    "id": "capstone-request-flow",
+    "title": "Site network report: one run",
+    "kind": "sequence",
+    "format": "mermaid",
+    "concept_ids": [
+      "dns-resolution",
+      "tls-and-https",
+      "http-versions",
+      "http-caching",
+      "http-compression",
+      "cookies"
+    ],
+    "source_ids": [
+      "nodejs-undici-repo",
+      "jshttp-cookie-repo",
+      "rfc-9111-http-caching",
+      "rfc-9846-tls13"
+    ],
+    "used_in": [
+      "projects/frontend-engineering/how-the-web-works/internet-and-networking/capstone/ARCHITECTURE.md",
+      "vault/frontend-engineering/how-the-web-works/internet-and-networking/06-capstone-internet-and-networking.md"
+    ],
+    "file": "vault/frontend-engineering/how-the-web-works/internet-and-networking/visuals/assets/capstone-request-flow-internet-and-networking.mmd",
+    "purpose": "Show one run from Cli to Report, including the invalid-input path and the crashing-check path.",
+    "explanation": "Cli calls RunReport.execute. RunReport asks FileSiteDataSource to read dns.json, tls.json and site.har once, and JsonPolicyRepository to read policy.json. A missing or invalid file raises InputError and the Cli exits 2. Otherwise each Check runs on the same context; a check that throws becomes an unknown finding. Cli renders the Report and exits 0 or 1 by FAIL_ON.",
+    "alt": "Sequence diagram with Cli, RunReport, FileSiteDataSource, JsonPolicyRepository and Check. Cli calls RunReport.execute, which loads the data and policy. An alt block shows InputError and exit 2 for bad files, or each check returning findings to RunReport, then Report to Cli, which renders it and picks exit 0 or 1.",
+    "learning_check": {
+      "question": "What does the report show if one Check class throws an exception?",
+      "answer": "An unknown finding for that check. The other checks still run, and the crash is never counted as a pass."
+    }
+  },
+  {
+    "id": "capstone-deployment",
+    "title": "Site network report: run recipe",
+    "kind": "deployment",
+    "format": "mermaid",
+    "concept_ids": [
+      "dns-resolution",
+      "tls-and-https",
+      "http-versions",
+      "http-caching",
+      "http-compression",
+      "cookies"
+    ],
+    "source_ids": [
+      "nodejs-undici-repo",
+      "jshttp-cookie-repo",
+      "rfc-9111-http-caching",
+      "rfc-9846-tls13"
+    ],
+    "used_in": [
+      "projects/frontend-engineering/how-the-web-works/internet-and-networking/capstone/ARCHITECTURE.md",
+      "vault/frontend-engineering/how-the-web-works/internet-and-networking/06-capstone-internet-and-networking.md"
+    ],
+    "file": "vault/frontend-engineering/how-the-web-works/internet-and-networking/visuals/assets/capstone-deployment-internet-and-networking.mmd",
+    "purpose": "Show what the process reads and writes when it runs locally or in the Docker container.",
+    "explanation": "The process is node src/main.ts, started by npm start or by the Dockerfile on node:26-slim. It reads settings from environment variables and four files from one input folder. It writes the report to stdout, JSON log lines to stderr, and exits with code 0, 1 or 2. It uses no network, database or queue.",
+    "alt": "Flowchart with an environment-variable box and an input-folder box both pointing to the node process. The process points to three outputs: the report on stdout, JSON log lines on stderr, and an exit code of 0, 1 or 2.",
+    "learning_check": {
+      "question": "Why can a CI job use the exit code alone to block a launch?",
+      "answer": "Exit 1 means findings reached the FAIL_ON level and exit 2 means bad input, so only exit 0 lets the job pass."
+    }
   }
 ]

@@ -1,0 +1,17 @@
+{
+  "host": "www.example.com",
+  "records": [
+    {
+      "type": "A",
+      "name": "www.example.com",
+      "ttl": 30,
+      "value": "203.0.113.10"
+    },
+    {
+      "type": "CNAME",
+      "name": "www.example.com",
+      "ttl": 604800,
+      "value": "host.example.net"
+    }
+  ]
+}

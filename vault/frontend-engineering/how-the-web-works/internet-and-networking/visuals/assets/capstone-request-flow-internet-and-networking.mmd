@@ -1,0 +1,17 @@
+sequenceDiagram
+  participant Cli
+  participant RunReport
+  participant FileSiteDataSource
+  participant JsonPolicyRepository
+  participant Check as Check (six classes)
+  Cli->>RunReport: execute()
+  RunReport->>FileSiteDataSource: load() reads dns.json, tls.json, site.har once
+  RunReport->>JsonPolicyRepository: load() reads policy.json
+  alt a file is missing or invalid
+    FileSiteDataSource-->>Cli: InputError, exit 2
+  else inputs are valid
+    RunReport->>Check: run(context) for each check
+    Check-->>RunReport: findings (a crash becomes an unknown finding)
+    RunReport-->>Cli: Report
+    Cli->>Cli: render, exit 0 or 1 by FAIL_ON
+  end

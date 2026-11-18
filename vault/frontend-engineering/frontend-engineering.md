@@ -14,7 +14,7 @@ Building fast, accessible user interfaces for the browser with HTML, CSS, TypeSc
 ## how-the-web-works
 
 - [[00-start-here-how-browsers-work|How browsers work]] — standard · 2/10 steps ready
-- [[00-start-here-internet-and-networking|Internet & networking]] — deep · 7/10 steps ready
+- [[00-start-here-internet-and-networking|Internet & networking]] — deep · 8/10 steps ready
 
 ## learning-system-and-workstation
 

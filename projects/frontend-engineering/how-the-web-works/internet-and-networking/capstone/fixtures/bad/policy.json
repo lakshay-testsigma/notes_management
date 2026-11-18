@@ -1,0 +1,30 @@
+{
+  "host": "www.example.com",
+  "dns": {
+    "minTtl": 300,
+    "maxTtl": 86400,
+    "requireCaa": true,
+    "requireAaaa": true
+  },
+  "tls": {
+    "minProtocol": "TLSv1.3",
+    "minDaysToExpiry": 21,
+    "hstsMinMaxAge": 15552000
+  },
+  "http": {
+    "minVersion": "h2"
+  },
+  "caching": {
+    "hashedAssetPattern": "\\.[0-9a-f]{8}\\.[a-z0-9]+$",
+    "hashedAssetMinMaxAge": 31536000,
+    "htmlMaxAge": 600
+  },
+  "compression": {
+    "minBytes": 1024
+  },
+  "cookies": {
+    "allowNoHttpOnly": [
+      "theme"
+    ]
+  }
+}

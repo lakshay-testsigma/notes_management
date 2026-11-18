@@ -14,5 +14,6 @@ Set-Cookie attributes are the extra settings after name=value in a Set-Cookie he
 
 - [[cookie-pattern-strict-write-lenient-read]]
 - [[undici-module-cookies]]
+- [[06-capstone-internet-and-networking]]
 
 ## My insights

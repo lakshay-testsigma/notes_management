@@ -29,6 +29,7 @@ Every diagram, simulation and video of this topic, with the concepts it teaches 
 
 - [[visual-cookie-module-map-internet-and-networking|jshttp/cookie: module map]] — Show how the four parts of the cookie library relate, so the learner knows where each rule lives.
 - [[visual-undici-module-map-internet-and-networking|nodejs/undici: module map]] — Show which part of undici does which job in the HTTP message path, so the learner knows where cache, version and cookie rules live.
+- [[visual-capstone-layers-internet-and-networking|Site network report: layers]] — Show the four layers of the capstone and that every dependency points inward to the domain.
 
 ## Sequence
 
@@ -37,6 +38,7 @@ Every diagram, simulation and video of this topic, with the concepts it teaches 
 - [[visual-packet-journey-internet-and-networking|A request crosses the internet as packets]] — Show that a request travels as packets through routers, that TCP spends one round trip on a handshake, and that TCP resends a lost packet before the browser can read later bytes.
 - [[visual-dns-resolution-chain-internet-and-networking|How a resolver finds the IP address for developer.mozilla.org]] — Show the fixed order of a DNS lookup on a cache miss, and that the TTL of the answer decides how long the resolver reuses it.
 - [[visual-http-message-anatomy-internet-and-networking|One HTTP request and its response, part by part]] — Show that a request and a response have the same parts: a start line, header fields, an empty line and an optional body. Only the start line differs.
+- [[visual-capstone-request-flow-internet-and-networking|Site network report: one run]] — Show one run from Cli to Report, including the invalid-input path and the crashing-check path.
 
 ## Video
 
@@ -72,5 +74,9 @@ Every diagram, simulation and video of this topic, with the concepts it teaches 
 - [[visual-mini-01-flow-internet-and-networking|DNS record inspector flow]] — Show how the inspector turns one domain name into five record lookups, a report and a list of findings.
 - [[visual-mini-02-flow-internet-and-networking|Cache header auditor: from HAR file to report]] — Show how one HAR response becomes findings, so the learner sees which function owns each rule.
 - [[visual-mini-03-flow-internet-and-networking|Cookie attribute linter flow]] — Show how the linter turns raw Set-Cookie header strings into findings and an exit code.
+
+## Deployment
+
+- [[visual-capstone-deployment-internet-and-networking|Site network report: run recipe]] — Show what the process reads and writes when it runs locally or in the Docker container.
 
 ## My insights

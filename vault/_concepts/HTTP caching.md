@@ -25,5 +25,9 @@ HTTP caching is the reuse of stored HTTP responses so a later request can skip t
 - [[visual-http-cache-lab-internet-and-networking]]
 - [[visual-cdn-request-path-internet-and-networking]]
 - [[visual-mini-02-flow-internet-and-networking]]
+- [[06-capstone-internet-and-networking]]
+- [[visual-capstone-deployment-internet-and-networking]]
+- [[visual-capstone-layers-internet-and-networking]]
+- [[visual-capstone-request-flow-internet-and-networking]]
 
 ## My insights

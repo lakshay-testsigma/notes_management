@@ -15,5 +15,6 @@ A program should write only well-formed data and accept messy data from others. 
 - [[cookie-pattern-strict-write-lenient-read]]
 - [[undici-module-cookies]]
 - [[undici-pattern-fail-closed-parsing]]
+- [[06-capstone-internet-and-networking]]
 
 ## My insights
