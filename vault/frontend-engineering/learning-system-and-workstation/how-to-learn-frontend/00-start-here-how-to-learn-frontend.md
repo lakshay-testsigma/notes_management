@@ -11,7 +11,7 @@ created: 2026-11-18
 This is the map of the topic. Read the steps from top to bottom. Each step links to the next thing to open, so you never have to search.
 
 <!-- tutor:generated:start -->
-**Depth:** standard · **Progress:** 6 of 10 steps ready
+**Depth:** standard · **Progress:** 7 of 10 steps ready
 
 How to learn frontend and keep improving: a repeatable read-build-measure-explain loop built on primary sources, browser-support literacy, and continuous practice.
 
@@ -19,7 +19,7 @@ How to learn frontend and keep improving: a repeatable read-build-measure-explai
 
 1. [[01-brief-how-to-learn-frontend|Brief]] — what it is, why it exists, where it is used · *ready*
 2. [[02-lesson-how-to-learn-frontend|Interactive lesson]] — the animated lesson pages on the local site · *ready*
-3. [[03-mini-projects-how-to-learn-frontend|Mini projects]] — small builds with a real use case · *in progress*
+3. [[03-mini-projects-how-to-learn-frontend|Mini projects]] — small builds with a real use case · *ready*
 4. [[00-digests-how-to-learn-frontend|Digests]] — short summaries of the key papers and docs · *ready*
 5. [[00-repo-intel-how-to-learn-frontend|Repository deep dive]] — how a production open-source project does it · *ready*
 6. [[06-capstone-how-to-learn-frontend|Capstone]] — the production-style project · *not started*
@@ -88,12 +88,12 @@ Research stopped: scope-boundary. Research proposed sub-concepts (release-notes-
 | 2 | digest | ready |
 | 2 | repo-intel | ready |
 | 3 | lesson | ready |
-| 3 | mini-projects | in progress |
+| 3 | mini-projects | ready |
 | 4 | capstone | not started |
 | 5 | notes | not started |
 | 5 | finalize | not started |
 
-Next to generate: `mini-projects`. Ask Claude to continue this topic, or run `node harness/bin/tutor.mjs next frontend-engineering/learning-system-and-workstation/how-to-learn-frontend`.
+Next to generate: `capstone`. Ask Claude to continue this topic, or run `node harness/bin/tutor.mjs next frontend-engineering/learning-system-and-workstation/how-to-learn-frontend`.
 <!-- tutor:generated:end -->
 
 ## My insights

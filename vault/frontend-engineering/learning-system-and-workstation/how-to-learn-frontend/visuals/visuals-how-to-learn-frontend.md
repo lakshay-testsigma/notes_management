@@ -18,6 +18,7 @@ Every diagram, simulation and video of this topic, with the concepts it teaches 
 - [[visual-mdn-feature-detection-mechanism-how-to-learn-frontend|Feature detection: one question, two test paths, two outcomes]] — See that both the CSS at-rule and the JavaScript call ask the same feature question, and that both end in an enhanced path or a fallback path.
 - [[visual-mdn-publish-review-loop-how-to-learn-frontend|Publishing on MDN: the review loop]] — See that publishing on MDN is a review loop, not a one-shot upload.
 - [[visual-mini-01-flow-how-to-learn-frontend|How the ship-it checker decides]] — See the order in which the checker reads the Baseline snapshot, decides the verdict, and writes the runtime check.
+- [[visual-mini-02-learning-log-flow-how-to-learn-frontend|How the learning log scaffolds and checks a note]] — See how one command scaffolds the four steps of the loop and how the check command finds the empty ones.
 
 ## Architecture
 

@@ -7,7 +7,7 @@
   "subdomain": "learning-system-and-workstation",
   "depth": "standard",
   "created_at": "2026-11-18T17:03:48Z",
-  "updated_at": "2026-11-18T19:16:20Z",
+  "updated_at": "2026-11-18T19:20:37Z",
   "paths": {
     "state": "state/topics/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend",
     "vault": "vault/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend",
@@ -664,10 +664,10 @@
       "id": "mini-projects",
       "wave": 3,
       "skill": "learn-projects",
-      "status": "in_progress",
+      "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T18:18:40Z",
-      "finished_at": null,
+      "finished_at": "2026-11-18T19:20:37Z",
       "attempts": 1,
       "units": [
         {
@@ -677,11 +677,18 @@
         },
         {
           "id": "mini-02",
-          "status": "in_progress",
+          "status": "done",
           "handoff": null
         }
       ],
-      "note": ""
+      "note": "",
+      "continue_after_failure": false,
+      "validation": {
+        "version": 2,
+        "fingerprint": "58ca234ea861b75c140f836d8d1a1455bbbcd528e6362395f8daa317f14cfba9",
+        "at": "2026-11-18T19:20:37Z",
+        "forced": false
+      }
     },
     {
       "id": "capstone",
@@ -1221,6 +1228,29 @@
       "event": "done",
       "message": "gate passed",
       "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T19:17:52Z",
+      "event": "visual",
+      "message": "added visual mini-02-learning-log-flow"
+    },
+    {
+      "at": "2026-11-18T19:18:35Z",
+      "event": "unit-done",
+      "message": "unit mini-02",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-18T19:20:27Z",
+      "event": "execution-check",
+      "message": "mini-projects: pass",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-18T19:20:37Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "mini-projects"
     }
   ],
   "roadmap": {
@@ -1327,6 +1357,183 @@
               "pushed_at": "2026-11-06T13:35:06Z",
               "license": "MIT"
             }
+          }
+        ]
+      },
+      "mini-projects": {
+        "version": 2,
+        "fingerprint": "58ca234ea861b75c140f836d8d1a1455bbbcd528e6362395f8daa317f14cfba9",
+        "at": "2026-11-18T19:20:27Z",
+        "ok": true,
+        "checks": [
+          {
+            "label": "mini-01-ship-it-checker: solution-tests",
+            "command": "npm",
+            "args": [
+              "test"
+            ],
+            "expected_exit": 0,
+            "exit": 0,
+            "ok": true,
+            "output_sha256": "b7e8ae7f59c2ccbda31b55d1fdac836477d4c832a11939da9ed92c1e92f02368"
+          },
+          {
+            "label": "mini-01-ship-it-checker: typecheck",
+            "command": "npm",
+            "args": [
+              "run",
+              "typecheck"
+            ],
+            "expected_exit": 0,
+            "exit": 0,
+            "ok": true,
+            "output_sha256": "572bb7dc1761ee25c0d79139587f6a34dfec3910a229d4e057abfa7de9cebda5"
+          },
+          {
+            "label": "mini-01-ship-it-checker: audit",
+            "command": "npm",
+            "args": [
+              "audit",
+              "--audit-level=high"
+            ],
+            "expected_exit": 0,
+            "exit": 0,
+            "ok": true,
+            "output_sha256": "6d8c5c8f3d7684adb070417bd608d01ae90aa3dc26a65af03ffda4955f38d9a3"
+          },
+          {
+            "label": "mini-01-ship-it-checker: starter-tests",
+            "command": "npm",
+            "args": [
+              "test"
+            ],
+            "expected_exit": 1,
+            "exit": 1,
+            "ok": true,
+            "output_sha256": "5fe9e53c260a75ac24aad97d03750789671967b29863be19547960456661f7ee"
+          },
+          {
+            "label": "mini-01-ship-it-checker: starter-start",
+            "command": "npm",
+            "args": [
+              "start"
+            ],
+            "expected_exit": 1,
+            "exit": 1,
+            "ok": true,
+            "output_sha256": "69bf385f2d2d7869a7042c4fb90688e3bbc901804ec3d656aff40e74e72569a6"
+          },
+          {
+            "label": "mini-01-ship-it-checker: typecheck",
+            "command": "npm",
+            "args": [
+              "run",
+              "typecheck"
+            ],
+            "expected_exit": 0,
+            "exit": 0,
+            "ok": true,
+            "output_sha256": "42d118eaeae8c8feb0f1f4a876a1bc72f941f4aefa2e096c35240a4e62e8f730"
+          },
+          {
+            "label": "mini-01-ship-it-checker: audit",
+            "command": "npm",
+            "args": [
+              "audit",
+              "--audit-level=high"
+            ],
+            "expected_exit": 0,
+            "exit": 0,
+            "ok": true,
+            "output_sha256": "6d8c5c8f3d7684adb070417bd608d01ae90aa3dc26a65af03ffda4955f38d9a3"
+          },
+          {
+            "label": "mini-02-learning-log: solution-tests",
+            "command": "npm",
+            "args": [
+              "test"
+            ],
+            "expected_exit": 0,
+            "exit": 0,
+            "ok": true,
+            "output_sha256": "d3e48889918f492eb153910a1c23c0aa8cedd919b5f39c59be5b53fcd16280c2"
+          },
+          {
+            "label": "mini-02-learning-log: typecheck",
+            "command": "npm",
+            "args": [
+              "run",
+              "typecheck"
+            ],
+            "expected_exit": 0,
+            "exit": 0,
+            "ok": true,
+            "output_sha256": "c536d55ed4973e35a49c80ab798c64347347c75e4c7c0608c0dc809f8bd7e6c8"
+          },
+          {
+            "label": "mini-02-learning-log: audit",
+            "command": "npm",
+            "args": [
+              "audit",
+              "--audit-level=high"
+            ],
+            "expected_exit": 0,
+            "exit": 0,
+            "ok": true,
+            "output_sha256": "6d8c5c8f3d7684adb070417bd608d01ae90aa3dc26a65af03ffda4955f38d9a3"
+          },
+          {
+            "label": "mini-02-learning-log: starter-tests",
+            "command": "npm",
+            "args": [
+              "test"
+            ],
+            "expected_exit": 1,
+            "exit": 1,
+            "ok": true,
+            "output_sha256": "c5ee18aa039b48d483bbfba2e39c7a82dadef15e9f1aa80073b9b97c210a6cf7"
+          },
+          {
+            "label": "mini-02-learning-log: starter-start",
+            "command": "npm",
+            "args": [
+              "start",
+              "--",
+              "--topic",
+              "learning-loop",
+              "--date",
+              "2026-11-18",
+              "--out",
+              "notes"
+            ],
+            "expected_exit": 1,
+            "exit": 1,
+            "ok": true,
+            "output_sha256": "f314f9b6bcf02571be6c0321328e2568df55050e993ebd6597d7702897c60d34"
+          },
+          {
+            "label": "mini-02-learning-log: typecheck",
+            "command": "npm",
+            "args": [
+              "run",
+              "typecheck"
+            ],
+            "expected_exit": 0,
+            "exit": 0,
+            "ok": true,
+            "output_sha256": "c536d55ed4973e35a49c80ab798c64347347c75e4c7c0608c0dc809f8bd7e6c8"
+          },
+          {
+            "label": "mini-02-learning-log: audit",
+            "command": "npm",
+            "args": [
+              "audit",
+              "--audit-level=high"
+            ],
+            "expected_exit": 0,
+            "exit": 0,
+            "ok": true,
+            "output_sha256": "6d8c5c8f3d7684adb070417bd608d01ae90aa3dc26a65af03ffda4955f38d9a3"
           }
         ]
       }

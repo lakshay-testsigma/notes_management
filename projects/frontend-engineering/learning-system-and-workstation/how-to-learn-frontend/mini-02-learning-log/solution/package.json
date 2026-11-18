@@ -1,0 +1,22 @@
+{
+  "name": "learning-log",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Scaffold one learning note per roadmap item with the read, build, measure and explain steps.",
+  "engines": {
+    "node": ">=22.12"
+  },
+  "scripts": {
+    "start": "tsx src/cli.ts",
+    "check": "tsx src/cli.ts check",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "22.19.1",
+    "tsx": "4.20.6",
+    "typescript": "5.9.3",
+    "vitest": "5.1.1"
+  }
+}

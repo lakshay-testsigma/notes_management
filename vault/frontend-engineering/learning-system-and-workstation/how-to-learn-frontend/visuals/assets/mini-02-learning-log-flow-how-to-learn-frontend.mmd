@@ -1,0 +1,7 @@
+flowchart LR
+  cli["src/cli.ts"] -->|"create"| build["note.ts: buildNote"]
+  cli -->|"check"| validate["note.ts: validateNote"]
+  build --> name["paths.ts: noteFileName"]
+  build --> note[("notes/2026-11-18-learning-loop.md")]
+  name --> note
+  validate --> print["cli.ts: printMissing"]
