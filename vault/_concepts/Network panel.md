@@ -16,5 +16,9 @@ The Network panel is the DevTools tab that records every request a page makes. I
 - [[visual-chrome-devtools-network-reference-mechanism-browser-devtools-mastery]]
 - [[visual-devtools-frontend-module-map-browser-devtools-mastery]]
 - [[visual-devtools-frontend-request-flow-browser-devtools-mastery]]
+- [[visual-network-panel-waterfall-browser-devtools-mastery]]
+- [[visual-network-waterfall-walkthrough-browser-devtools-mastery]]
+- [[visual-request-timing-phases-sequence-browser-devtools-mastery]]
+- [[visual-mini-02-flow-audit-a-slow-page-browser-devtools-mastery]]
 
 ## My insights

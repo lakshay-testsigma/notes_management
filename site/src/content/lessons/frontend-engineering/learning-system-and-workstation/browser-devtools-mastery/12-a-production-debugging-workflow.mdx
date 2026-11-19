@@ -1,0 +1,43 @@
+---
+title: A production debugging workflow
+description: A fixed path from symptom to panel to evidence to fix lets you debug a production incident without guessing.
+order: 12
+concepts: [triage, evidence, DevTools Protocol, automated checks]
+---
+
+<!-- concept: debugging-workflow -->
+<!-- concept: browser-devtools -->
+
+A user reports that the checkout page is broken. Twelve panels are open to you, and guessing wastes the first hour. Triage means that you sort the incident by its symptom before you touch any code. The symptom names the panel. A slow first load goes to Network. Slow clicks go to Performance. Memory that grows goes to Memory. A broken layout goes to Elements. Old data after a deploy goes to Application. An error only on a phone goes to remote debugging.
+
+Open the experience below. At each branch of a real incident, pick the next panel, then check the evidence it shows.
+
+<Experience id="a-production-debugging-workflow" />
+
+The panel gives you evidence: a trace, a network log or a heap snapshot. Evidence turns "it feels slow" into "this 300 ms task blocks the click". Then you test a fix in DevTools, change the source, and run the same check again.
+
+**Interpretation.** Manual checks do not scale, so teams automate the same checks. The DevTools panels, Lighthouse and Puppeteer all talk to the browser through the DevTools Protocol. Puppeteer is a library that drives Chrome or Firefox from a script. It can script the Lighthouse modes. Lighthouse CI runs audits in automated tests, so a regression can fail the build before users see it.
+
+**Note.** DevTools results depend on your machine, your extensions and the network. Device mode is not a real phone. Record the setup with every piece of evidence.
+
+<Depth level="production">
+
+Lighthouse saves the raw protocol messages, filtered to the `Network.`, `Page.`, `Runtime.` and `Target.` method families, and builds its report from that log (`core/gather/gatherers/devtools-log.js:27 @ 3b399f6`). You can then re-run the audits offline on the saved log. A good incident tool copies this pattern. Save the raw evidence first, then analyze it, and keep it even when a step fails. Lighthouse CI and PageSpeed Insights run on separate servers, so their runs compare better than runs on two laptops.
+
+</Depth>
+
+<OrderSteps
+  prompt="Put the steps of handling a production incident in order."
+  steps={[
+    "Reproduce the bug and write down the exact symptom",
+    "Pick the panel that matches the symptom",
+    "Record evidence: a trace, a network log or a heap snapshot",
+    "Test a fix in DevTools before you change the source",
+    "Ship the fix and run the same check again",
+    "Add an automated check with Puppeteer or Lighthouse CI"
+  ]}
+/>
+
+You now have the full toolbox. The sources below go deeper into each panel.
+
+<Resources />

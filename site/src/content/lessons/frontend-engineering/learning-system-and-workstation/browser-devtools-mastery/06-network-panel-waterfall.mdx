@@ -1,0 +1,63 @@
+---
+title: "Network panel: reading the waterfall"
+description: The waterfall splits every request into timing phases, so the longest phase tells you whether the network, the server or the browser is slow.
+order: 6
+concepts: [Network panel, waterfall, timing phases, TTFB]
+# <!-- concept: network-panel -->
+# <!-- concept: request-timing-phases -->
+---
+
+A product page feels slow, but only for some users. Without a recorder you can only guess: is the server slow, the file large, or the phone network bad? The **Network panel** records every request the page makes while DevTools is open, with one row per request.
+
+The **waterfall** is the column of bars beside those rows. Each bar shows when a request started and how long it took. The lighter part of a bar is time spent waiting, and the darker part is time spent downloading. Click one row and open its **Timing** tab to see the bar split into named phases.
+
+Play the sequence below, one message at a time. Note which side spends each phase.
+
+<SequenceDiagram
+  title="One HTTPS request, phase by phase"
+  actors={["Browser", "DNS resolver", "Server"]}
+  messages={[
+    { from: "Browser", to: "Browser", label: "Queueing", note: "The request waits for higher-priority requests, a free connection (six per origin on HTTP/1.1) or disk cache space." },
+    { from: "Browser", to: "Browser", label: "Stalled", note: "More waiting after the connection starts, for the same reasons." },
+    { from: "Browser", to: "DNS resolver", label: "DNS Lookup", note: "The browser finds the IP address of the server." },
+    { from: "DNS resolver", to: "Browser", label: "IP address", kind: "reply" },
+    { from: "Browser", to: "Server", label: "TCP + SSL", note: "Initial connection: TCP handshakes and SSL negotiation." },
+    { from: "Browser", to: "Server", label: "Request sent" },
+    { from: "Server", to: "Server", label: "Waiting TTFB", note: "Time to first byte: one round trip plus server processing time." },
+    { from: "Server", to: "Browser", label: "first byte", kind: "reply" },
+    { from: "Server", to: "Browser", label: "body bytes", kind: "reply", note: "Content Download: the browser reads the response body." }
+  ]}
+/>
+
+Each phase starts only after the one before it ends. **Time to first byte** (TTFB) is the wait from sending the request to receiving the first byte of the answer.
+
+**Interpretation.** A long Waiting phase points at the server. A long Content Download points at file size or the network. A long Queueing phase points at too many requests competing for connections.
+
+Now change the conditions yourself. Pick a throttling preset or turn off Disable cache, and watch which phases grow.
+
+<Experience id="network-panel-waterfall" />
+
+**Note.** Throttling is emulation inside DevTools. Confirm a fix on a real device and network too.
+
+<OrderSteps
+  prompt="Put the Timing tab phases of a new HTTPS request in order."
+  steps={[
+    "Queueing",
+    "Stalled",
+    "DNS Lookup",
+    "Initial connection (TCP + SSL)",
+    "Request sent",
+    "Waiting (TTFB)",
+    "Content Download"
+  ]}
+/>
+
+<Depth level="production">
+
+The Initiator column names what started a request: the HTML parser, a redirect or a script, with a link to the script line. Hold Shift and hover a row: initiators turn green and dependencies red. Right-click a row to copy it as cURL or as fetch and replay it outside the browser. The Network request blocking tab in the drawer blocks a URL, so you see how the page behaves without it. A HAR export leaves out Cookie, Set-Cookie and Authorization headers unless you turn on sensitive data. Then treat the file as a secret.
+
+Right-click the table header to add columns such as Priority. Check Disable cache to see what a first-time visitor loads. A "Provisional headers" warning means the request came from cache or was invalid, so the Headers tab may be incomplete.
+
+</Depth>
+
+The next page moves from requests to the main thread: the Performance panel.

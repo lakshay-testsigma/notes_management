@@ -1,0 +1,37 @@
+---
+title: What DevTools are for
+description: DevTools show the facts of the running page, and the symptom of a bug tells you which panel to open first.
+order: 1
+concepts: [browser DevTools, panel, DOM, symptom-first debugging]
+---
+
+<!-- concept: browser-devtools -->
+
+A button on your checkout page is in the wrong place, and a request to the server fails. Your source code says what should happen. It does not say what the browser actually did. Browser DevTools are the tools built into Chrome, Firefox and Safari that show you what the browser did: the live page, its requests, its JavaScript and its memory.
+
+DevTools split this work into panels. A panel is one tab that shows one kind of fact. Elements shows the DOM, the tree of elements that the browser builds from your HTML. Network shows every HTTP request, the message that the browser sends to a server for a file or for data.
+
+The diagram maps a symptom to the panel that shows its cause. Read one symptom on the left, then follow its arrow.
+
+<Diagram id="devtools-panel-map" />
+
+So you start from what you see, not from a list of tools. This is faster than the usual alternative: you guess, add `console.log` lines, reload and read again. DevTools read the real state of the page without a change to your code.
+
+<Depth level="internals">
+
+Chrome DevTools is itself a web app, written in TypeScript and CSS. Its panels send commands to the page through the Chrome DevTools Protocol and get back DOM, network, JavaScript and memory data. A Puppeteer script uses the same protocol, so a check that you do by hand can later run as an automated test.
+
+</Depth>
+
+<MatchPairs
+  prompt="Match each symptom to the panel that shows its cause."
+  pairs={[
+    { term: "Elements", definition: "A card sits 20 px too far to the right" },
+    { term: "Console", definition: "A red TypeError appears after you click Save" },
+    { term: "Network", definition: "The product list takes 4 seconds to arrive" },
+    { term: "Performance", definition: "The page freezes for a moment after each click" },
+    { term: "Memory", definition: "The tab gets slower the longer it stays open" }
+  ]}
+/>
+
+The next page opens the first panel, Elements, and edits the live DOM and CSS.

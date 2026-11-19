@@ -1,0 +1,1779 @@
+{
+  "id": "network-panel-waterfall",
+  "title": "Change the conditions and watch the request phases grow",
+  "mode": "interactive",
+  "objective": "Name the timing phases of one request in order and say which phase a slow network, a slow server or the cache changes.",
+  "level": "beginner",
+  "summary": "A guided walkthrough of the Network panel Timing tab, paused for predictions, and a stepper that draws one request phase by phase: Queueing, Stalled, DNS Lookup, Initial connection, Request sent, Waiting (TTFB) and Content Download. Presets switch between no throttling, Fast 4G, Slow 4G, a slow server and a repeat visit with Disable cache off, so the learner sees which phases grow. All millisecond values are example numbers.",
+  "concept_ids": [
+    "network-panel",
+    "request-timing-phases"
+  ],
+  "source_ids": [
+    "chrome-devtools-network-reference"
+  ],
+  "used_in": [
+    "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/06-network-panel-waterfall.mdx"
+  ],
+  "guided": {
+    "video": "network-waterfall-walkthrough"
+  },
+  "fallback_visual": "request-timing-phases-sequence",
+  "simulation": {
+    "component": "AlgorithmStepper",
+    "props": {
+      "title": "One request in the Timing tab (example numbers)",
+      "view": "bars",
+      "speed": 1400,
+      "frames": [
+        {
+          "caption": "No throttling, Disable cache on. The request is issued; no phase has run yet. The grey bar on the right is a fixed 2 s scale. Example numbers.",
+          "array": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            2000
+          ],
+          "highlight": [],
+          "pointers": {
+            "Queueing": 0,
+            "Stalled": 1,
+            "DNS Lookup": 2,
+            "Initial connection": 3,
+            "Request sent": 4,
+            "Waiting (TTFB)": 5,
+            "Content Download": 6,
+            "2 s scale": 7
+          },
+          "vars": {
+            "profile": "No throttling",
+            "disable_cache": "on",
+            "phase": "none yet",
+            "total_ms": 0
+          }
+        },
+        {
+          "caption": "Queueing: 2 ms, the request waits for higher-priority requests, a free connection or disk cache space.",
+          "array": [
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            2000
+          ],
+          "highlight": [
+            0
+          ],
+          "pointers": {
+            "Queueing": 0,
+            "Stalled": 1,
+            "DNS Lookup": 2,
+            "Initial connection": 3,
+            "Request sent": 4,
+            "Waiting (TTFB)": 5,
+            "Content Download": 6,
+            "2 s scale": 7
+          },
+          "vars": {
+            "profile": "No throttling",
+            "disable_cache": "on",
+            "phase": "Queueing",
+            "phase_ms": 2,
+            "total_ms": 2
+          }
+        },
+        {
+          "caption": "Stalled: 3 ms, more waiting after the connection starts, for the same reasons.",
+          "array": [
+            2,
+            3,
+            0,
+            0,
+            0,
+            0,
+            0,
+            2000
+          ],
+          "highlight": [
+            1
+          ],
+          "pointers": {
+            "Queueing": 0,
+            "Stalled": 1,
+            "DNS Lookup": 2,
+            "Initial connection": 3,
+            "Request sent": 4,
+            "Waiting (TTFB)": 5,
+            "Content Download": 6,
+            "2 s scale": 7
+          },
+          "vars": {
+            "profile": "No throttling",
+            "disable_cache": "on",
+            "phase": "Stalled",
+            "phase_ms": 3,
+            "total_ms": 5
+          }
+        },
+        {
+          "caption": "DNS Lookup: 20 ms, the browser finds the server IP address.",
+          "array": [
+            2,
+            3,
+            20,
+            0,
+            0,
+            0,
+            0,
+            2000
+          ],
+          "highlight": [
+            2
+          ],
+          "pointers": {
+            "Queueing": 0,
+            "Stalled": 1,
+            "DNS Lookup": 2,
+            "Initial connection": 3,
+            "Request sent": 4,
+            "Waiting (TTFB)": 5,
+            "Content Download": 6,
+            "2 s scale": 7
+          },
+          "vars": {
+            "profile": "No throttling",
+            "disable_cache": "on",
+            "phase": "DNS Lookup",
+            "phase_ms": 20,
+            "total_ms": 25
+          }
+        },
+        {
+          "caption": "Initial connection: 40 ms, TCP handshakes and SSL negotiation.",
+          "array": [
+            2,
+            3,
+            20,
+            40,
+            0,
+            0,
+            0,
+            2000
+          ],
+          "highlight": [
+            3
+          ],
+          "pointers": {
+            "Queueing": 0,
+            "Stalled": 1,
+            "DNS Lookup": 2,
+            "Initial connection": 3,
+            "Request sent": 4,
+            "Waiting (TTFB)": 5,
+            "Content Download": 6,
+            "2 s scale": 7
+          },
+          "vars": {
+            "profile": "No throttling",
+            "disable_cache": "on",
+            "phase": "Initial connection",
+            "phase_ms": 40,
+            "total_ms": 65
+          }
+        },
+        {
+          "caption": "Request sent: 1 ms, the browser sends the request.",
+          "array": [
+            2,
+            3,
+            20,
+            40,
+            1,
+            0,
+            0,
+            2000
+          ],
+          "highlight": [
+            4
+          ],
+          "pointers": {
+            "Queueing": 0,
+            "Stalled": 1,
+            "DNS Lookup": 2,
+            "Initial connection": 3,
+            "Request sent": 4,
+            "Waiting (TTFB)": 5,
+            "Content Download": 6,
+            "2 s scale": 7
+          },
+          "vars": {
+            "profile": "No throttling",
+            "disable_cache": "on",
+            "phase": "Request sent",
+            "phase_ms": 1,
+            "total_ms": 66
+          }
+        },
+        {
+          "caption": "Waiting (TTFB): 60 ms, one round trip plus server processing time.",
+          "array": [
+            2,
+            3,
+            20,
+            40,
+            1,
+            60,
+            0,
+            2000
+          ],
+          "highlight": [
+            5
+          ],
+          "pointers": {
+            "Queueing": 0,
+            "Stalled": 1,
+            "DNS Lookup": 2,
+            "Initial connection": 3,
+            "Request sent": 4,
+            "Waiting (TTFB)": 5,
+            "Content Download": 6,
+            "2 s scale": 7
+          },
+          "vars": {
+            "profile": "No throttling",
+            "disable_cache": "on",
+            "phase": "Waiting (TTFB)",
+            "phase_ms": 60,
+            "total_ms": 126
+          }
+        },
+        {
+          "caption": "Content Download: 15 ms, the browser reads the response body. Total 141 ms. Waiting (TTFB) is the longest phase, and every phase is short.",
+          "array": [
+            2,
+            3,
+            20,
+            40,
+            1,
+            60,
+            15,
+            2000
+          ],
+          "highlight": [
+            6
+          ],
+          "pointers": {
+            "Queueing": 0,
+            "Stalled": 1,
+            "DNS Lookup": 2,
+            "Initial connection": 3,
+            "Request sent": 4,
+            "Waiting (TTFB)": 5,
+            "Content Download": 6,
+            "2 s scale": 7
+          },
+          "vars": {
+            "profile": "No throttling",
+            "disable_cache": "on",
+            "phase": "Content Download",
+            "phase_ms": 15,
+            "total_ms": 141
+          }
+        }
+      ]
+    },
+    "presets": {
+      "no-throttling": {
+        "title": "No throttling, Disable cache on (first visit)",
+        "frames": [
+          {
+            "caption": "No throttling, Disable cache on. The request is issued; no phase has run yet. The grey bar on the right is a fixed 2 s scale. Example numbers.",
+            "array": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              2000
+            ],
+            "highlight": [],
+            "pointers": {
+              "Queueing": 0,
+              "Stalled": 1,
+              "DNS Lookup": 2,
+              "Initial connection": 3,
+              "Request sent": 4,
+              "Waiting (TTFB)": 5,
+              "Content Download": 6,
+              "2 s scale": 7
+            },
+            "vars": {
+              "profile": "No throttling",
+              "disable_cache": "on",
+              "phase": "none yet",
+              "total_ms": 0
+            }
+          },
+          {
+            "caption": "Queueing: 2 ms, the request waits for higher-priority requests, a free connection or disk cache space.",
+            "array": [
+              2,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              2000
+            ],
+            "highlight": [
+              0
+            ],
+            "pointers": {
+              "Queueing": 0,
+              "Stalled": 1,
+              "DNS Lookup": 2,
+              "Initial connection": 3,
+              "Request sent": 4,
+              "Waiting (TTFB)": 5,
+              "Content Download": 6,
+              "2 s scale": 7
+            },
+            "vars": {
+              "profile": "No throttling",
+              "disable_cache": "on",
+              "phase": "Queueing",
+              "phase_ms": 2,
+              "total_ms": 2
+            }
+          },
+          {
+            "caption": "Stalled: 3 ms, more waiting after the connection starts, for the same reasons.",
+            "array": [
+              2,
+              3,
+              0,
+              0,
+              0,
+              0,
+              0,
+              2000
+            ],
+            "highlight": [
+              1
+            ],
+            "pointers": {
+              "Queueing": 0,
+              "Stalled": 1,
+              "DNS Lookup": 2,
+              "Initial connection": 3,
+              "Request sent": 4,
+              "Waiting (TTFB)": 5,
+              "Content Download": 6,
+              "2 s scale": 7
+            },
+            "vars": {
+              "profile": "No throttling",
+              "disable_cache": "on",
+              "phase": "Stalled",
+              "phase_ms": 3,
+              "total_ms": 5
+            }
+          },
+          {
+            "caption": "DNS Lookup: 20 ms, the browser finds the server IP address.",
+            "array": [
+              2,
+              3,
+              20,
+              0,
+              0,
+              0,
+              0,
+              2000
+            ],
+            "highlight": [
+              2
+            ],
+            "pointers": {
+              "Queueing": 0,
+              "Stalled": 1,
+              "DNS Lookup": 2,
+              "Initial connection": 3,
+              "Request sent": 4,
+              "Waiting (TTFB)": 5,
+              "Content Download": 6,
+              "2 s scale": 7
+            },
+            "vars": {
+              "profile": "No throttling",
+              "disable_cache": "on",
+              "phase": "DNS Lookup",
+              "phase_ms": 20,
+              "total_ms": 25
+            }
+          },
+          {
+            "caption": "Initial connection: 40 ms, TCP handshakes and SSL negotiation.",
+            "array": [
+              2,
+              3,
+              20,
+              40,
+              0,
+              0,
+              0,
+              2000
+            ],
+            "highlight": [
+              3
+            ],
+            "pointers": {
+              "Queueing": 0,
+              "Stalled": 1,
+              "DNS Lookup": 2,
+              "Initial connection": 3,
+              "Request sent": 4,
+              "Waiting (TTFB)": 5,
+              "Content Download": 6,
+              "2 s scale": 7
+            },
+            "vars": {
+              "profile": "No throttling",
+              "disable_cache": "on",
+              "phase": "Initial connection",
+              "phase_ms": 40,
+              "total_ms": 65
+            }
+          },
+          {
+            "caption": "Request sent: 1 ms, the browser sends the request.",
+            "array": [
+              2,
+              3,
+              20,
+              40,
+              1,
+              0,
+              0,
+              2000
+            ],
+            "highlight": [
+              4
+            ],
+            "pointers": {
+              "Queueing": 0,
+              "Stalled": 1,
+              "DNS Lookup": 2,
+              "Initial connection": 3,
+              "Request sent": 4,
+              "Waiting (TTFB)": 5,
+              "Content Download": 6,
+              "2 s scale": 7
+            },
+            "vars": {
+              "profile": "No throttling",
+              "disable_cache": "on",
+              "phase": "Request sent",
+              "phase_ms": 1,
+              "total_ms": 66
+            }
+          },
+          {
+            "caption": "Waiting (TTFB): 60 ms, one round trip plus server processing time.",
+            "array": [
+              2,
+              3,
+              20,
+              40,
+              1,
+              60,
+              0,
+              2000
+            ],
+            "highlight": [
+              5
+            ],
+            "pointers": {
+              "Queueing": 0,
+              "Stalled": 1,
+              "DNS Lookup": 2,
+              "Initial connection": 3,
+              "Request sent": 4,
+              "Waiting (TTFB)": 5,
+              "Content Download": 6,
+              "2 s scale": 7
+            },
+            "vars": {
+              "profile": "No throttling",
+              "disable_cache": "on",
+              "phase": "Waiting (TTFB)",
+              "phase_ms": 60,
+              "total_ms": 126
+            }
+          },
+          {
+            "caption": "Content Download: 15 ms, the browser reads the response body. Total 141 ms. Waiting (TTFB) is the longest phase, and every phase is short.",
+            "array": [
+              2,
+              3,
+              20,
+              40,
+              1,
+              60,
+              15,
+              2000
+            ],
+            "highlight": [
+              6
+            ],
+            "pointers": {
+              "Queueing": 0,
+              "Stalled": 1,
+              "DNS Lookup": 2,
+              "Initial connection": 3,
+              "Request sent": 4,
+              "Waiting (TTFB)": 5,
+              "Content Download": 6,
+              "2 s scale": 7
+            },
+            "vars": {
+              "profile": "No throttling",
+              "disable_cache": "on",
+              "phase": "Content Download",
+              "phase_ms": 15,
+              "total_ms": 141
+            }
+          }
+        ]
+      },
+      "fast-4g": {
+        "title": "Fast 4G throttling, Disable cache on",
+        "frames": [
+          {
+            "caption": "Fast 4G, Disable cache on. The request is issued; no phase has run yet. The grey bar on the right is a fixed 2 s scale. Example numbers.",
+            "array": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              2000
+            ],
+            "highlight": [],
+            "pointers": {
+              "Queueing": 0,
+              "Stalled": 1,
+              "DNS Lookup": 2,
+              "Initial connection": 3,
+              "Request sent": 4,
+              "Waiting (TTFB)": 5,
+              "Content Download": 6,
+              "2 s scale": 7
+            },
+            "vars": {
+              "profile": "Fast 4G",
+              "disable_cache": "on",
+              "phase": "none yet",
+              "total_ms": 0
+            }
+          },
+          {
+            "caption": "Queueing: 2 ms, the request waits for higher-priority requests, a free connection or disk cache space.",
+            "array": [
+              2,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              2000
+            ],
+            "highlight": [
+              0
+            ],
+            "pointers": {
+              "Queueing": 0,
+              "Stalled": 1,
+              "DNS Lookup": 2,
+              "Initial connection": 3,
+              "Request sent": 4,
+              "Waiting (TTFB)": 5,
+              "Content Download": 6,
+              "2 s scale": 7
+            },
+            "vars": {
+              "profile": "Fast 4G",
+              "disable_cache": "on",
+              "phase": "Queueing",
+              "phase_ms": 2,
+              "total_ms": 2
+            }
+          },
+          {
+            "caption": "Stalled: 3 ms, more waiting after the connection starts, for the same reasons.",
+            "array": [
+              2,
+              3,
+              0,
+              0,
+              0,
+              0,
+              0,
+              2000
+            ],
+            "highlight": [
+              1
+            ],
+            "pointers": {
+              "Queueing": 0,
+              "Stalled": 1,
+              "DNS Lookup": 2,
+              "Initial connection": 3,
+              "Request sent": 4,
+              "Waiting (TTFB)": 5,
+              "Content Download": 6,
+              "2 s scale": 7
+            },
+            "vars": {
+              "profile": "Fast 4G",
+              "disable_cache": "on",
+              "phase": "Stalled",
+              "phase_ms": 3,
+              "total_ms": 5
+            }
+          },
+          {
+            "caption": "DNS Lookup: 20 ms, the browser finds the server IP address.",
+            "array": [
+              2,
+              3,
+              20,
+              0,
+              0,
+              0,
+              0,
+              2000
+            ],
+            "highlight": [
+              2
+            ],
+            "pointers": {
+              "Queueing": 0,
+              "Stalled": 1,
+              "DNS Lookup": 2,
+              "Initial connection": 3,
+              "Request sent": 4,
+              "Waiting (TTFB)": 5,
+              "Content Download": 6,
+              "2 s scale": 7
+            },
+            "vars": {
+              "profile": "Fast 4G",
+              "disable_cache": "on",
+              "phase": "DNS Lookup",
+              "phase_ms": 20,
+              "total_ms": 25
+            }
+          },
+          {
+            "caption": "Initial connection: 40 ms, TCP handshakes and SSL negotiation.",
+            "array": [
+              2,
+              3,
+              20,
+              40,
+              0,
+              0,
+              0,
+              2000
+            ],
+            "highlight": [
+              3
+            ],
+            "pointers": {
+              "Queueing": 0,
+              "Stalled": 1,
+              "DNS Lookup": 2,
+              "Initial connection": 3,
+              "Request sent": 4,
+              "Waiting (TTFB)": 5,
+              "Content Download": 6,
+              "2 s scale": 7
+            },
+            "vars": {
+              "profile": "Fast 4G",
+              "disable_cache": "on",
+              "phase": "Initial connection",
+              "phase_ms": 40,
+              "total_ms": 65
+            }
+          },
+          {
+            "caption": "Request sent: 1 ms, the browser sends the request.",
+            "array": [
+              2,
+              3,
+              20,
+              40,
+              1,
+              0,
+              0,
+              2000
+            ],
+            "highlight": [
+              4
+            ],
+            "pointers": {
+              "Queueing": 0,
+              "Stalled": 1,
+              "DNS Lookup": 2,
+              "Initial connection": 3,
+              "Request sent": 4,
+              "Waiting (TTFB)": 5,
+              "Content Download": 6,
+              "2 s scale": 7
+            },
+            "vars": {
+              "profile": "Fast 4G",
+              "disable_cache": "on",
+              "phase": "Request sent",
+              "phase_ms": 1,
+              "total_ms": 66
+            }
+          },
+          {
+            "caption": "Waiting (TTFB): 230 ms, one round trip plus server processing time.",
+            "array": [
+              2,
+              3,
+              20,
+              40,
+              1,
+              230,
+              0,
+              2000
+            ],
+            "highlight": [
+              5
+            ],
+            "pointers": {
+              "Queueing": 0,
+              "Stalled": 1,
+              "DNS Lookup": 2,
+              "Initial connection": 3,
+              "Request sent": 4,
+              "Waiting (TTFB)": 5,
+              "Content Download": 6,
+              "2 s scale": 7
+            },
+            "vars": {
+              "profile": "Fast 4G",
+              "disable_cache": "on",
+              "phase": "Waiting (TTFB)",
+              "phase_ms": 230,
+              "total_ms": 296
+            }
+          },
+          {
+            "caption": "Content Download: 90 ms, the browser reads the response body. Total 386 ms. Compared with No throttling, Waiting (TTFB) and Content Download grew.",
+            "array": [
+              2,
+              3,
+              20,
+              40,
+              1,
+              230,
+              90,
+              2000
+            ],
+            "highlight": [
+              6
+            ],
+            "pointers": {
+              "Queueing": 0,
+              "Stalled": 1,
+              "DNS Lookup": 2,
+              "Initial connection": 3,
+              "Request sent": 4,
+              "Waiting (TTFB)": 5,
+              "Content Download": 6,
+              "2 s scale": 7
+            },
+            "vars": {
+              "profile": "Fast 4G",
+              "disable_cache": "on",
+              "phase": "Content Download",
+              "phase_ms": 90,
+              "total_ms": 386
+            }
+          }
+        ]
+      },
+      "slow-4g": {
+        "title": "Slow 4G throttling, Disable cache on",
+        "frames": [
+          {
+            "caption": "Slow 4G, Disable cache on. The request is issued; no phase has run yet. The grey bar on the right is a fixed 2 s scale. Example numbers.",
+            "array": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              2000
+            ],
+            "highlight": [],
+            "pointers": {
+              "Queueing": 0,
+              "Stalled": 1,
+              "DNS Lookup": 2,
+              "Initial connection": 3,
+              "Request sent": 4,
+              "Waiting (TTFB)": 5,
+              "Content Download": 6,
+              "2 s scale": 7
+            },
+            "vars": {
+              "profile": "Slow 4G",
+              "disable_cache": "on",
+              "phase": "none yet",
+              "total_ms": 0
+            }
+          },
+          {
+            "caption": "Queueing: 2 ms, the request waits for higher-priority requests, a free connection or disk cache space.",
+            "array": [
+              2,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              2000
+            ],
+            "highlight": [
+              0
+            ],
+            "pointers": {
+              "Queueing": 0,
+              "Stalled": 1,
+              "DNS Lookup": 2,
+              "Initial connection": 3,
+              "Request sent": 4,
+              "Waiting (TTFB)": 5,
+              "Content Download": 6,
+              "2 s scale": 7
+            },
+            "vars": {
+              "profile": "Slow 4G",
+              "disable_cache": "on",
+              "phase": "Queueing",
+              "phase_ms": 2,
+              "total_ms": 2
+            }
+          },
+          {
+            "caption": "Stalled: 3 ms, more waiting after the connection starts, for the same reasons.",
+            "array": [
+              2,
+              3,
+              0,
+              0,
+              0,
+              0,
+              0,
+              2000
+            ],
+            "highlight": [
+              1
+            ],
+            "pointers": {
+              "Queueing": 0,
+              "Stalled": 1,
+              "DNS Lookup": 2,
+              "Initial connection": 3,
+              "Request sent": 4,
+              "Waiting (TTFB)": 5,
+              "Content Download": 6,
+              "2 s scale": 7
+            },
+            "vars": {
+              "profile": "Slow 4G",
+              "disable_cache": "on",
+              "phase": "Stalled",
+              "phase_ms": 3,
+              "total_ms": 5
+            }
+          },
+          {
+            "caption": "DNS Lookup: 20 ms, the browser finds the server IP address.",
+            "array": [
+              2,
+              3,
+              20,
+              0,
+              0,
+              0,
+              0,
+              2000
+            ],
+            "highlight": [
+              2
+            ],
+            "pointers": {
+              "Queueing": 0,
+              "Stalled": 1,
+              "DNS Lookup": 2,
+              "Initial connection": 3,
+              "Request sent": 4,
+              "Waiting (TTFB)": 5,
+              "Content Download": 6,
+              "2 s scale": 7
+            },
+            "vars": {
+              "profile": "Slow 4G",
+              "disable_cache": "on",
+              "phase": "DNS Lookup",
+              "phase_ms": 20,
+              "total_ms": 25
+            }
+          },
+          {
+            "caption": "Initial connection: 40 ms, TCP handshakes and SSL negotiation.",
+            "array": [
+              2,
+              3,
+              20,
+              40,
+              0,
+              0,
+              0,
+              2000
+            ],
+            "highlight": [
+              3
+            ],
+            "pointers": {
+              "Queueing": 0,
+              "Stalled": 1,
+              "DNS Lookup": 2,
+              "Initial connection": 3,
+              "Request sent": 4,
+              "Waiting (TTFB)": 5,
+              "Content Download": 6,
+              "2 s scale": 7
+            },
+            "vars": {
+              "profile": "Slow 4G",
+              "disable_cache": "on",
+              "phase": "Initial connection",
+              "phase_ms": 40,
+              "total_ms": 65
+            }
+          },
+          {
+            "caption": "Request sent: 1 ms, the browser sends the request.",
+            "array": [
+              2,
+              3,
+              20,
+              40,
+              1,
+              0,
+              0,
+              2000
+            ],
+            "highlight": [
+              4
+            ],
+            "pointers": {
+              "Queueing": 0,
+              "Stalled": 1,
+              "DNS Lookup": 2,
+              "Initial connection": 3,
+              "Request sent": 4,
+              "Waiting (TTFB)": 5,
+              "Content Download": 6,
+              "2 s scale": 7
+            },
+            "vars": {
+              "profile": "Slow 4G",
+              "disable_cache": "on",
+              "phase": "Request sent",
+              "phase_ms": 1,
+              "total_ms": 66
+            }
+          },
+          {
+            "caption": "Waiting (TTFB): 620 ms, one round trip plus server processing time.",
+            "array": [
+              2,
+              3,
+              20,
+              40,
+              1,
+              620,
+              0,
+              2000
+            ],
+            "highlight": [
+              5
+            ],
+            "pointers": {
+              "Queueing": 0,
+              "Stalled": 1,
+              "DNS Lookup": 2,
+              "Initial connection": 3,
+              "Request sent": 4,
+              "Waiting (TTFB)": 5,
+              "Content Download": 6,
+              "2 s scale": 7
+            },
+            "vars": {
+              "profile": "Slow 4G",
+              "disable_cache": "on",
+              "phase": "Waiting (TTFB)",
+              "phase_ms": 620,
+              "total_ms": 686
+            }
+          },
+          {
+            "caption": "Content Download: 900 ms, the browser reads the response body. Total 1586 ms. Waiting (TTFB) and Content Download grew the most: each round trip and each byte is slower.",
+            "array": [
+              2,
+              3,
+              20,
+              40,
+              1,
+              620,
+              900,
+              2000
+            ],
+            "highlight": [
+              6
+            ],
+            "pointers": {
+              "Queueing": 0,
+              "Stalled": 1,
+              "DNS Lookup": 2,
+              "Initial connection": 3,
+              "Request sent": 4,
+              "Waiting (TTFB)": 5,
+              "Content Download": 6,
+              "2 s scale": 7
+            },
+            "vars": {
+              "profile": "Slow 4G",
+              "disable_cache": "on",
+              "phase": "Content Download",
+              "phase_ms": 900,
+              "total_ms": 1586
+            }
+          }
+        ]
+      },
+      "slow-server": {
+        "title": "Slow server, no throttling, Disable cache on",
+        "frames": [
+          {
+            "caption": "Slow server, Disable cache on. The request is issued; no phase has run yet. The grey bar on the right is a fixed 2 s scale. Example numbers.",
+            "array": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              2000
+            ],
+            "highlight": [],
+            "pointers": {
+              "Queueing": 0,
+              "Stalled": 1,
+              "DNS Lookup": 2,
+              "Initial connection": 3,
+              "Request sent": 4,
+              "Waiting (TTFB)": 5,
+              "Content Download": 6,
+              "2 s scale": 7
+            },
+            "vars": {
+              "profile": "Slow server",
+              "disable_cache": "on",
+              "phase": "none yet",
+              "total_ms": 0
+            }
+          },
+          {
+            "caption": "Queueing: 2 ms, the request waits for higher-priority requests, a free connection or disk cache space.",
+            "array": [
+              2,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              2000
+            ],
+            "highlight": [
+              0
+            ],
+            "pointers": {
+              "Queueing": 0,
+              "Stalled": 1,
+              "DNS Lookup": 2,
+              "Initial connection": 3,
+              "Request sent": 4,
+              "Waiting (TTFB)": 5,
+              "Content Download": 6,
+              "2 s scale": 7
+            },
+            "vars": {
+              "profile": "Slow server",
+              "disable_cache": "on",
+              "phase": "Queueing",
+              "phase_ms": 2,
+              "total_ms": 2
+            }
+          },
+          {
+            "caption": "Stalled: 3 ms, more waiting after the connection starts, for the same reasons.",
+            "array": [
+              2,
+              3,
+              0,
+              0,
+              0,
+              0,
+              0,
+              2000
+            ],
+            "highlight": [
+              1
+            ],
+            "pointers": {
+              "Queueing": 0,
+              "Stalled": 1,
+              "DNS Lookup": 2,
+              "Initial connection": 3,
+              "Request sent": 4,
+              "Waiting (TTFB)": 5,
+              "Content Download": 6,
+              "2 s scale": 7
+            },
+            "vars": {
+              "profile": "Slow server",
+              "disable_cache": "on",
+              "phase": "Stalled",
+              "phase_ms": 3,
+              "total_ms": 5
+            }
+          },
+          {
+            "caption": "DNS Lookup: 20 ms, the browser finds the server IP address.",
+            "array": [
+              2,
+              3,
+              20,
+              0,
+              0,
+              0,
+              0,
+              2000
+            ],
+            "highlight": [
+              2
+            ],
+            "pointers": {
+              "Queueing": 0,
+              "Stalled": 1,
+              "DNS Lookup": 2,
+              "Initial connection": 3,
+              "Request sent": 4,
+              "Waiting (TTFB)": 5,
+              "Content Download": 6,
+              "2 s scale": 7
+            },
+            "vars": {
+              "profile": "Slow server",
+              "disable_cache": "on",
+              "phase": "DNS Lookup",
+              "phase_ms": 20,
+              "total_ms": 25
+            }
+          },
+          {
+            "caption": "Initial connection: 40 ms, TCP handshakes and SSL negotiation.",
+            "array": [
+              2,
+              3,
+              20,
+              40,
+              0,
+              0,
+              0,
+              2000
+            ],
+            "highlight": [
+              3
+            ],
+            "pointers": {
+              "Queueing": 0,
+              "Stalled": 1,
+              "DNS Lookup": 2,
+              "Initial connection": 3,
+              "Request sent": 4,
+              "Waiting (TTFB)": 5,
+              "Content Download": 6,
+              "2 s scale": 7
+            },
+            "vars": {
+              "profile": "Slow server",
+              "disable_cache": "on",
+              "phase": "Initial connection",
+              "phase_ms": 40,
+              "total_ms": 65
+            }
+          },
+          {
+            "caption": "Request sent: 1 ms, the browser sends the request.",
+            "array": [
+              2,
+              3,
+              20,
+              40,
+              1,
+              0,
+              0,
+              2000
+            ],
+            "highlight": [
+              4
+            ],
+            "pointers": {
+              "Queueing": 0,
+              "Stalled": 1,
+              "DNS Lookup": 2,
+              "Initial connection": 3,
+              "Request sent": 4,
+              "Waiting (TTFB)": 5,
+              "Content Download": 6,
+              "2 s scale": 7
+            },
+            "vars": {
+              "profile": "Slow server",
+              "disable_cache": "on",
+              "phase": "Request sent",
+              "phase_ms": 1,
+              "total_ms": 66
+            }
+          },
+          {
+            "caption": "Waiting (TTFB): 1400 ms, one round trip plus server processing time.",
+            "array": [
+              2,
+              3,
+              20,
+              40,
+              1,
+              1400,
+              0,
+              2000
+            ],
+            "highlight": [
+              5
+            ],
+            "pointers": {
+              "Queueing": 0,
+              "Stalled": 1,
+              "DNS Lookup": 2,
+              "Initial connection": 3,
+              "Request sent": 4,
+              "Waiting (TTFB)": 5,
+              "Content Download": 6,
+              "2 s scale": 7
+            },
+            "vars": {
+              "profile": "Slow server",
+              "disable_cache": "on",
+              "phase": "Waiting (TTFB)",
+              "phase_ms": 1400,
+              "total_ms": 1466
+            }
+          },
+          {
+            "caption": "Content Download: 15 ms, the browser reads the response body. Total 1481 ms. Only Waiting (TTFB) grew, so the time is spent on the server, not on the network.",
+            "array": [
+              2,
+              3,
+              20,
+              40,
+              1,
+              1400,
+              15,
+              2000
+            ],
+            "highlight": [
+              6
+            ],
+            "pointers": {
+              "Queueing": 0,
+              "Stalled": 1,
+              "DNS Lookup": 2,
+              "Initial connection": 3,
+              "Request sent": 4,
+              "Waiting (TTFB)": 5,
+              "Content Download": 6,
+              "2 s scale": 7
+            },
+            "vars": {
+              "profile": "Slow server",
+              "disable_cache": "on",
+              "phase": "Content Download",
+              "phase_ms": 15,
+              "total_ms": 1481
+            }
+          }
+        ]
+      },
+      "cache-repeat-visit": {
+        "title": "Repeat visit, Disable cache off",
+        "frames": [
+          {
+            "caption": "Repeat visit, Disable cache off. The request is issued; no phase has run yet. The grey bar on the right is a fixed 2 s scale. Example numbers.",
+            "array": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              2000
+            ],
+            "highlight": [],
+            "pointers": {
+              "Queueing": 0,
+              "Stalled": 1,
+              "DNS Lookup": 2,
+              "Initial connection": 3,
+              "Request sent": 4,
+              "Waiting (TTFB)": 5,
+              "Content Download": 6,
+              "2 s scale": 7
+            },
+            "vars": {
+              "profile": "Repeat visit",
+              "disable_cache": "off",
+              "phase": "none yet",
+              "total_ms": 0
+            }
+          },
+          {
+            "caption": "Queueing: 2 ms, the request waits for higher-priority requests, a free connection or disk cache space.",
+            "array": [
+              2,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              2000
+            ],
+            "highlight": [
+              0
+            ],
+            "pointers": {
+              "Queueing": 0,
+              "Stalled": 1,
+              "DNS Lookup": 2,
+              "Initial connection": 3,
+              "Request sent": 4,
+              "Waiting (TTFB)": 5,
+              "Content Download": 6,
+              "2 s scale": 7
+            },
+            "vars": {
+              "profile": "Repeat visit",
+              "disable_cache": "off",
+              "phase": "Queueing",
+              "phase_ms": 2,
+              "total_ms": 2
+            }
+          },
+          {
+            "caption": "Stalled: 0 ms, more waiting after the connection starts, for the same reasons.",
+            "array": [
+              2,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              2000
+            ],
+            "highlight": [
+              1
+            ],
+            "pointers": {
+              "Queueing": 0,
+              "Stalled": 1,
+              "DNS Lookup": 2,
+              "Initial connection": 3,
+              "Request sent": 4,
+              "Waiting (TTFB)": 5,
+              "Content Download": 6,
+              "2 s scale": 7
+            },
+            "vars": {
+              "profile": "Repeat visit",
+              "disable_cache": "off",
+              "phase": "Stalled",
+              "phase_ms": 0,
+              "total_ms": 2
+            }
+          },
+          {
+            "caption": "DNS Lookup: 0 ms, the browser finds the server IP address.",
+            "array": [
+              2,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              2000
+            ],
+            "highlight": [
+              2
+            ],
+            "pointers": {
+              "Queueing": 0,
+              "Stalled": 1,
+              "DNS Lookup": 2,
+              "Initial connection": 3,
+              "Request sent": 4,
+              "Waiting (TTFB)": 5,
+              "Content Download": 6,
+              "2 s scale": 7
+            },
+            "vars": {
+              "profile": "Repeat visit",
+              "disable_cache": "off",
+              "phase": "DNS Lookup",
+              "phase_ms": 0,
+              "total_ms": 2
+            }
+          },
+          {
+            "caption": "Initial connection: 0 ms, TCP handshakes and SSL negotiation.",
+            "array": [
+              2,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              2000
+            ],
+            "highlight": [
+              3
+            ],
+            "pointers": {
+              "Queueing": 0,
+              "Stalled": 1,
+              "DNS Lookup": 2,
+              "Initial connection": 3,
+              "Request sent": 4,
+              "Waiting (TTFB)": 5,
+              "Content Download": 6,
+              "2 s scale": 7
+            },
+            "vars": {
+              "profile": "Repeat visit",
+              "disable_cache": "off",
+              "phase": "Initial connection",
+              "phase_ms": 0,
+              "total_ms": 2
+            }
+          },
+          {
+            "caption": "Request sent: 0 ms, the browser sends the request.",
+            "array": [
+              2,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              2000
+            ],
+            "highlight": [
+              4
+            ],
+            "pointers": {
+              "Queueing": 0,
+              "Stalled": 1,
+              "DNS Lookup": 2,
+              "Initial connection": 3,
+              "Request sent": 4,
+              "Waiting (TTFB)": 5,
+              "Content Download": 6,
+              "2 s scale": 7
+            },
+            "vars": {
+              "profile": "Repeat visit",
+              "disable_cache": "off",
+              "phase": "Request sent",
+              "phase_ms": 0,
+              "total_ms": 2
+            }
+          },
+          {
+            "caption": "Waiting (TTFB): 0 ms, one round trip plus server processing time.",
+            "array": [
+              2,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              2000
+            ],
+            "highlight": [
+              5
+            ],
+            "pointers": {
+              "Queueing": 0,
+              "Stalled": 1,
+              "DNS Lookup": 2,
+              "Initial connection": 3,
+              "Request sent": 4,
+              "Waiting (TTFB)": 5,
+              "Content Download": 6,
+              "2 s scale": 7
+            },
+            "vars": {
+              "profile": "Repeat visit",
+              "disable_cache": "off",
+              "phase": "Waiting (TTFB)",
+              "phase_ms": 0,
+              "total_ms": 2
+            }
+          },
+          {
+            "caption": "Content Download: 0 ms, the browser reads the response body. The file came from the browser cache, so the request did not go to the server and the network phases show no time in this example.",
+            "array": [
+              2,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              2000
+            ],
+            "highlight": [
+              6
+            ],
+            "pointers": {
+              "Queueing": 0,
+              "Stalled": 1,
+              "DNS Lookup": 2,
+              "Initial connection": 3,
+              "Request sent": 4,
+              "Waiting (TTFB)": 5,
+              "Content Download": 6,
+              "2 s scale": 7
+            },
+            "vars": {
+              "profile": "Repeat visit",
+              "disable_cache": "off",
+              "phase": "Content Download",
+              "phase_ms": 0,
+              "total_ms": 2
+            }
+          }
+        ]
+      }
+    }
+  },
+  "sync": [
+    {
+      "scene": "waiting",
+      "preset": "slow-server"
+    },
+    {
+      "scene": "throttling",
+      "preset": "slow-4g"
+    },
+    {
+      "scene": "cache",
+      "preset": "cache-repeat-visit"
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "phase-order",
+      "kind": "predict",
+      "at": {
+        "scene": "phases"
+      },
+      "prompt": "Which phase must finish before Request sent can start on a new HTTPS connection?",
+      "choices": [
+        {
+          "text": "Initial connection, with its TCP handshakes and SSL negotiation",
+          "correct": true
+        },
+        {
+          "text": "Waiting (TTFB)",
+          "misconception": "Thinks the server answers before the request reaches it"
+        },
+        {
+          "text": "Content Download",
+          "misconception": "Thinks the body downloads before the request is sent"
+        }
+      ],
+      "explanation": "The Timing tab lists the phases in order. The request travels over the connection, so Initial connection, which covers the TCP handshakes and SSL negotiation, comes before Request sent.",
+      "concept_ids": [
+        "request-timing-phases"
+      ],
+      "revisit": "phases"
+    },
+    {
+      "id": "slow-server-experiment",
+      "kind": "experiment",
+      "at": {
+        "scene": "waiting"
+      },
+      "prompt": "Load the Slow server preset and step to the last phase. Which bar is now the longest, and how does it compare with the No throttling preset?",
+      "goal": {
+        "preset": "slow-server",
+        "condition": {
+          "all": [
+            {
+              "path": "vars.profile",
+              "op": "eq",
+              "value": "Slow server"
+            },
+            {
+              "path": "done",
+              "op": "eq",
+              "value": true
+            }
+          ]
+        },
+        "hint": "Press Forward until the caption names Content Download, then compare the Waiting (TTFB) bar."
+      },
+      "explanation": "Waiting (TTFB) is one round trip plus server processing time. A slow server adds processing time, so only Waiting grows while Content Download stays short.",
+      "concept_ids": [
+        "request-timing-phases"
+      ]
+    },
+    {
+      "id": "throttle-predict",
+      "kind": "predict",
+      "at": {
+        "scene": "throttling"
+      },
+      "prompt": "You switch Throttling from No throttling to Slow 4G. Which phases grow the most?",
+      "choices": [
+        {
+          "text": "Waiting (TTFB) and Content Download",
+          "correct": true
+        },
+        {
+          "text": "Only Queueing",
+          "misconception": "Thinks throttling adds more requests to the queue instead of slowing the network"
+        },
+        {
+          "text": "None, throttling only slows the CPU",
+          "misconception": "Confuses network throttling with CPU throttling in the Performance panel"
+        }
+      ],
+      "explanation": "Waiting includes one round trip and Content Download reads the body over the network. A slower network makes each round trip and each byte slower, so these two phases grow.",
+      "concept_ids": [
+        "network-panel",
+        "request-timing-phases"
+      ],
+      "revisit": "throttling"
+    },
+    {
+      "id": "cache-predict",
+      "kind": "predict",
+      "at": {
+        "scene": "cache"
+      },
+      "prompt": "Disable cache is off and you reload a page you visited before. What happens to a cached file?",
+      "choices": [
+        {
+          "text": "It loads from the browser cache, as on a repeat visit",
+          "correct": true
+        },
+        {
+          "text": "It downloads again with every phase",
+          "misconception": "Thinks the browser ignores its cache unless DevTools forces it"
+        },
+        {
+          "text": "It fails until you clear the cache",
+          "misconception": "Thinks a cached file blocks a new load"
+        }
+      ],
+      "explanation": "Repeat visits normally load files from the browser cache. Disable cache turns that off, so the page loads like a first-time visit and every request goes to the network.",
+      "concept_ids": [
+        "network-panel"
+      ],
+      "revisit": "cache"
+    },
+    {
+      "id": "diagnose",
+      "kind": "verify",
+      "at": {
+        "tab": "practice"
+      },
+      "prompt": "One request shows Queueing 900 ms and every other phase short. What is the most likely cause?",
+      "choices": [
+        {
+          "text": "Too many requests compete, for example for the six connections per origin of HTTP/1.1",
+          "correct": true
+        },
+        {
+          "text": "The server is slow to answer",
+          "misconception": "Reads any long bar as server time instead of Waiting (TTFB)"
+        },
+        {
+          "text": "The file is very large",
+          "misconception": "Confuses Queueing with Content Download"
+        }
+      ],
+      "explanation": "Queueing is the time before the request starts: it waits for higher-priority requests, a free connection or disk cache space. A slow server shows in Waiting (TTFB), and a large file in Content Download.",
+      "concept_ids": [
+        "request-timing-phases"
+      ]
+    }
+  ]
+}

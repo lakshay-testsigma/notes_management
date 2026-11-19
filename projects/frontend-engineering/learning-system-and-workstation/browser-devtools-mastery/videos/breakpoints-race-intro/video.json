@@ -1,0 +1,77 @@
+{
+  "id": "breakpoints-race-intro",
+  "title": "Why a search box shows stale results",
+  "purpose": "See how two racing fetches cause stale results, and why a breakpoint finds the cause faster than console.log.",
+  "sequence_reason": "The bug depends on the order in which two responses arrive, so motion shows the cause better than one static picture.",
+  "summary": "A user types re and then react in a search box. Each input event starts a fetch. The react response arrives first and the slow re response arrives last, so the list shows results for the old query. A breakpoint pauses the code before a line runs, so you can read the Scope, Watch and Call Stack panes instead of guessing with console.log.",
+  "explanation": "Two requests can be in flight at the same time. The response that arrives last overwrites the list, even when it belongs to an old query.",
+  "learning_check": {
+    "question": "Why does the list show results for re when the box says react?",
+    "answer": "The re request was slower. Its response arrived after the react response and overwrote the list."
+  },
+  "concept_ids": ["breakpoint-debugging", "async-call-stacks"],
+  "source_ids": ["chrome-devtools-docs"],
+  "used_in": ["site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/04-breakpoints-and-async-debugging.mdx"],
+  "narration": { "engine": "auto" },
+  "scenes": [
+    {
+      "id": "intro",
+      "duration": 5,
+      "heading": "Stale search results",
+      "narration": "This search box shows results for an old query. Breakpoints show you why.",
+      "visual": { "type": "title", "subtitle": "Two fetches, one list" }
+    },
+    {
+      "id": "race",
+      "duration": 13,
+      "heading": "Two requests race",
+      "narration": "The user types re, then react. Each input event starts a fetch to the server. The react response comes back first. The slow re response comes back last and overwrites the list.",
+      "source_ids": ["chrome-devtools-docs"],
+      "visual": {
+        "type": "flow",
+        "nodes": [
+          { "id": "box", "label": "Search box", "sub": "input event" },
+          { "id": "server", "label": "Server", "sub": "/search?q=" },
+          { "id": "list", "label": "Results list", "sub": "render()" }
+        ],
+        "path": [
+          { "from": "box", "to": "server", "packet": "q=re", "label": "The first request is slow." },
+          { "from": "box", "to": "server", "packet": "q=react", "label": "The second request starts before the first ends." },
+          { "from": "server", "to": "list", "packet": "react items", "label": "The fast response arrives first." },
+          { "from": "server", "to": "list", "packet": "re items", "label": "The slow response arrives last and wins." }
+        ]
+      }
+    },
+    {
+      "id": "why-pause",
+      "duration": 10,
+      "heading": "console.log or a breakpoint",
+      "narration": "A console.log prints only the values you guessed in advance. A breakpoint pauses the code, so you can read every variable in scope.",
+      "source_ids": ["chrome-devtools-docs"],
+      "visual": {
+        "type": "compare",
+        "left": { "label": "console.log", "items": ["You choose the values first", "You edit and reload the code"] },
+        "right": { "label": "Breakpoint", "items": ["The code pauses before the line", "You read every value in scope"] },
+        "verdict": "A breakpoint shows values you did not think to log."
+      }
+    },
+    {
+      "id": "loop",
+      "duration": 12,
+      "heading": "The debugging loop",
+      "narration": "In the Sources panel, you set a breakpoint. DevTools pauses before that line runs. You read the Scope, Watch and Call Stack panes, then step or resume.",
+      "source_ids": ["chrome-devtools-docs"],
+      "visual": {
+        "type": "steps",
+        "items": ["Set a breakpoint in Sources", "DevTools pauses before the line", "Read Scope, Watch and Call Stack", "Step or resume"]
+      }
+    },
+    {
+      "id": "next",
+      "duration": 5,
+      "heading": "Now catch the race",
+      "narration": "Next, you set the breakpoints yourself and catch the stale response.",
+      "visual": { "type": "title", "subtitle": "Line, conditional and fetch breakpoints" }
+    }
+  ]
+}

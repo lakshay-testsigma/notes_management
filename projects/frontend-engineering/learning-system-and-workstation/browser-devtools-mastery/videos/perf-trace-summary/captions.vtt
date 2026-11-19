@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.200 --> 00:00:04.800
+Four rules connect everything you tried in this lab.
+
+2
+00:00:05.200 --> 00:00:07.290
+Live metrics spot the problem.
+
+3
+00:00:07.290 --> 00:00:09.370
+A trace shows each task.
+
+4
+00:00:09.370 --> 00:00:13.130
+A task over 50 milliseconds is a long task.
+
+5
+00:00:13.130 --> 00:00:14.800
+Yielding splits long work.
+
+6
+00:00:15.200 --> 00:00:17.380
+At 4x in our example,
+
+7
+00:00:17.380 --> 00:00:21.750
+one big task made a second click wait 135 milliseconds.
+
+8
+00:00:21.750 --> 00:00:24.800
+Four yielding pieces cut it to 15.
+
+9
+00:00:25.200 --> 00:00:27.310
+Throttling slows your own computer.
+
+10
+00:00:27.310 --> 00:00:29.840
+It cannot copy a real phone,
+
+11
+00:00:29.840 --> 00:00:32.800
+so check field data when you can.

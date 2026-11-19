@@ -1,0 +1,61 @@
+WEBVTT
+
+1
+00:00:00.200 --> 00:00:02.310
+A button click feels slow.
+
+2
+00:00:02.310 --> 00:00:04.840
+The Performance panel records a trace,
+
+3
+00:00:04.840 --> 00:00:07.800
+so you can see the slow task.
+
+4
+00:00:08.200 --> 00:00:09.840
+Open the Performance panel.
+
+5
+00:00:09.840 --> 00:00:11.070
+Set CPU throttling.
+
+6
+00:00:11.070 --> 00:00:14.340
+Click Record, click the button, then click Stop.
+
+7
+00:00:14.340 --> 00:00:16.800
+The Main track shows the tasks.
+
+8
+00:00:17.200 --> 00:00:20.960
+The click starts a task on the main thread.
+
+9
+00:00:20.960 --> 00:00:24.710
+The main thread runs one task at a time,
+
+10
+00:00:24.710 --> 00:00:26.800
+so the next paint waits.
+
+11
+00:00:27.200 --> 00:00:30.400
+In this example the handler needs 40 milliseconds.
+
+12
+00:00:30.400 --> 00:00:34.800
+A 4x slowdown makes it 160, and 6x makes it 240.
+
+13
+00:00:35.200 --> 00:00:38.960
+Any task over 50 milliseconds is a long task.
+
+14
+00:00:38.960 --> 00:00:41.880
+DevTools adds a red triangle and shades
+
+15
+00:00:41.880 --> 00:00:44.800
+only the time past 50 milliseconds red.

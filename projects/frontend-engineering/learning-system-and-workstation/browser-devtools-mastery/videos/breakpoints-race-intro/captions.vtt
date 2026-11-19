@@ -1,0 +1,57 @@
+WEBVTT
+
+1
+00:00:00.200 --> 00:00:03.380
+This search box shows results for an old query.
+
+2
+00:00:03.380 --> 00:00:04.800
+Breakpoints show you why.
+
+3
+00:00:05.200 --> 00:00:07.560
+The user types re, then react.
+
+4
+00:00:07.560 --> 00:00:11.110
+Each input event starts a fetch to the server.
+
+5
+00:00:11.110 --> 00:00:13.470
+The react response comes back first.
+
+6
+00:00:13.470 --> 00:00:17.800
+The slow re response comes back last and overwrites the list.
+
+7
+00:00:18.200 --> 00:00:22.370
+A console.log prints only the values you guessed in advance.
+
+8
+00:00:22.370 --> 00:00:24.460
+A breakpoint pauses the code,
+
+9
+00:00:24.460 --> 00:00:27.800
+so you can read every variable in scope.
+
+10
+00:00:28.200 --> 00:00:31.640
+In the Sources panel, you set a breakpoint.
+
+11
+00:00:31.640 --> 00:00:34.210
+DevTools pauses before that line runs.
+
+12
+00:00:34.210 --> 00:00:38.080
+You read the Scope, Watch and Call Stack panes,
+
+13
+00:00:38.080 --> 00:00:39.800
+then step or resume.
+
+14
+00:00:40.200 --> 00:00:44.800
+Next, you set the breakpoints yourself and catch the stale response.

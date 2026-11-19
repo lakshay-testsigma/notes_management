@@ -1,0 +1,180 @@
+{
+  "id": "perf-trace-guided",
+  "title": "Walk through a throttled trace",
+  "purpose": "Read the flame chart and see how throttling and yielding change long tasks and input delay.",
+  "sequence_reason": "Each scene changes one setting of the same recording, so the learner sees cause and effect step by step.",
+  "summary": "A guided walk through one click handler. At 1x it is one 40 ms task. The flame chart shows time from left to right and the call stack from top to bottom. A 4x slowdown makes one 160 ms long task, and a second click waits 135 ms. Four yielding pieces of 40 ms remove the long task and cut the wait to 15 ms. At 6x the pieces are 60 ms and long again, so the work needs smaller pieces.",
+  "explanation": "Throttling makes every task longer; yielding keeps each task short so the browser can handle input between pieces.",
+  "learning_check": {
+    "question": "Why does yielding cut the input delay without doing less work?",
+    "answer": "The main thread runs one task at a time. Short pieces end sooner, so a waiting click runs between pieces instead of after all the work."
+  },
+  "concept_ids": [
+    "performance-panel",
+    "flame-chart-and-long-tasks",
+    "core-web-vitals-in-devtools"
+  ],
+  "source_ids": [
+    "chrome-devtools-performance-reference",
+    "webdev-optimize-long-tasks"
+  ],
+  "used_in": [
+    "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/07-performance-panel-traces.mdx"
+  ],
+  "narration": {
+    "engine": "auto"
+  },
+  "scenes": [
+    {
+      "id": "record",
+      "duration": 10,
+      "heading": "No throttling: one 40 ms task",
+      "narration": "Without throttling, the handler runs as one task of 40 milliseconds. That is under the 50 millisecond limit, so nothing is red.",
+      "visual": {
+        "type": "bars",
+        "unit": " ms",
+        "items": [
+          {
+            "label": "Handler task",
+            "value": 40
+          },
+          {
+            "label": "Long-task limit",
+            "value": 50
+          }
+        ]
+      },
+      "source_ids": [
+        "chrome-devtools-performance-reference",
+        "webdev-optimize-long-tasks"
+      ]
+    },
+    {
+      "id": "flame",
+      "duration": 12,
+      "heading": "How to read the flame chart",
+      "narration": "Read the flame chart like this. Left to right is time. Top to bottom is the call stack. An event on top causes the events below it.",
+      "visual": {
+        "type": "steps",
+        "items": [
+          "x-axis: time",
+          "y-axis: call stack",
+          "Events on top cause events below",
+          "A wide box is a slow call"
+        ]
+      },
+      "source_ids": [
+        "chrome-devtools-performance-reference"
+      ]
+    },
+    {
+      "id": "throttle",
+      "duration": 10,
+      "heading": "4x slowdown: one 160 ms task",
+      "narration": "Now set a 4x slowdown. The CPU runs four times as slowly, so the same handler becomes one task of 160 milliseconds.",
+      "visual": {
+        "type": "bars",
+        "unit": " ms",
+        "items": [
+          {
+            "label": "No throttling",
+            "value": 40
+          },
+          {
+            "label": "4x slowdown",
+            "value": 160
+          }
+        ]
+      },
+      "source_ids": [
+        "chrome-devtools-performance-reference"
+      ]
+    },
+    {
+      "id": "long-task",
+      "duration": 10,
+      "heading": "The second click waits",
+      "narration": "A second click arrives at 25 milliseconds. It waits until the task ends at 160. The last 110 milliseconds are shaded red.",
+      "visual": {
+        "type": "timeline",
+        "events": [
+          {
+            "label": "0 ms",
+            "detail": "Task starts"
+          },
+          {
+            "label": "25 ms",
+            "detail": "Second click arrives"
+          },
+          {
+            "label": "50 ms",
+            "detail": "Red part starts"
+          },
+          {
+            "label": "160 ms",
+            "detail": "Task ends, click runs"
+          }
+        ]
+      },
+      "source_ids": [
+        "chrome-devtools-performance-reference",
+        "webdev-optimize-long-tasks"
+      ]
+    },
+    {
+      "id": "yield",
+      "duration": 10,
+      "heading": "Yield between pieces",
+      "narration": "Split the work into four pieces and yield between them. Each piece takes 40 milliseconds, so the click runs after the first piece.",
+      "visual": {
+        "type": "compare",
+        "left": {
+          "label": "One task",
+          "items": [
+            "160 ms, long task",
+            "Click waits 135 ms"
+          ]
+        },
+        "right": {
+          "label": "Four pieces",
+          "items": [
+            "40 ms each, no long task",
+            "Click waits 15 ms"
+          ]
+        },
+        "verdict": "Same work, shorter wait."
+      },
+      "source_ids": [
+        "webdev-optimize-long-tasks"
+      ]
+    },
+    {
+      "id": "six-x",
+      "duration": 10,
+      "heading": "6x slowdown: smaller pieces",
+      "narration": "At 6x, each of four pieces takes 60 milliseconds, so every piece is a long task again. Eight pieces of 30 milliseconds fix it.",
+      "visual": {
+        "type": "bars",
+        "unit": " ms",
+        "items": [
+          {
+            "label": "4 pieces at 6x",
+            "value": 60
+          },
+          {
+            "label": "Long-task limit",
+            "value": 50
+          },
+          {
+            "label": "8 pieces at 6x",
+            "value": 30
+          }
+        ]
+      },
+      "source_ids": [
+        "chrome-devtools-performance-reference",
+        "webdev-optimize-long-tasks"
+      ]
+    }
+  ]
+}

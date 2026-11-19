@@ -1,0 +1,115 @@
+{
+  "id": "breakpoint-types-and-stepping",
+  "title": "Breakpoint types and stepping",
+  "purpose": "Choose the breakpoint type that answers your question, and choose how to step once the code is paused.",
+  "summary": "A short deck asks which breakpoint to set for a bug. The main path compares line-of-code, conditional, logpoint, DOM change, XHR/fetch and event listener breakpoints, then the three stepping buttons. Two deep dives show how a conditional breakpoint catches the stale search response and how step into, over and out move through render.",
+  "explanation": "Each breakpoint type answers one question: where in the code, under which condition, on which element, on which request or after which event. Stepping then moves one line or one function at a time.",
+  "learning_check": {
+    "question": "You want to log a value on every call without pausing and without editing the code. Which breakpoint type do you use?",
+    "answer": "A logpoint. It logs a message to the Console and does not pause."
+  },
+  "concept_ids": ["breakpoint-debugging", "async-call-stacks"],
+  "source_ids": ["chrome-devtools-docs"],
+  "used_in": ["site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/04-breakpoints-and-async-debugging.mdx"],
+  "slides": [
+    {
+      "id": "question",
+      "heading": "Which breakpoint do you set?",
+      "notes": "Ask the learner what they know about the bug: the line, the element, the request URL or the event. The answer chooses the breakpoint type.",
+      "source_ids": ["chrome-devtools-docs"],
+      "visual": { "type": "title", "subtitle": "Start from what you already know" }
+    },
+    {
+      "id": "types",
+      "heading": "One type per question",
+      "notes": "Reveal the types one at a time. Each one pauses on a different kind of event, so each answers a different question.",
+      "reveal": true,
+      "source_ids": ["chrome-devtools-docs"],
+      "visual": {
+        "type": "steps",
+        "items": ["Line-of-code: pause on an exact line", "Conditional: pause on a line only when true", "Logpoint: log to the Console, no pause", "DOM change: pause on code that changes a node", "XHR/fetch: pause when a URL has a string", "Event listener: pause on code after an event"]
+      },
+      "hotspots": [ { "label": "Catch the stale response", "target": "conditional-race" } ]
+    },
+    {
+      "id": "stepping",
+      "heading": "Three ways to step",
+      "notes": "Once paused, choose how far to move. Step over skips a function that is not related to the bug; step into enters one that is; step out finishes the current function.",
+      "reveal": true,
+      "source_ids": ["chrome-devtools-docs"],
+      "visual": {
+        "type": "compare",
+        "left": { "label": "The function is related", "items": ["Step into: pause inside it"] },
+        "right": { "label": "The function is not related", "items": ["Step over: run it whole", "Step out: finish it and return"] },
+        "verdict": "Resume runs until the next breakpoint."
+      },
+      "hotspots": [ { "label": "Step through render", "target": "step-render" } ]
+    },
+    {
+      "id": "takeaway",
+      "heading": "Pause, read, move",
+      "notes": "At every pause read Scope for local values, Watch for your own expressions and the Call Stack for how the code got there.",
+      "source_ids": ["chrome-devtools-docs"],
+      "visual": {
+        "type": "compare",
+        "left": { "label": "Read", "items": ["Scope", "Watch", "Call Stack"] },
+        "right": { "label": "Move", "items": ["Step into, over, out", "Resume"] },
+        "verdict": "Evidence first, then the next step."
+      }
+    }
+  ],
+  "sequences": [
+    {
+      "id": "conditional-race",
+      "label": "Catch the stale response",
+      "slides": [
+        {
+          "id": "line-too-often",
+          "heading": "A line breakpoint pauses every time",
+          "notes": "On line 5 a plain breakpoint pauses for the fresh react response and for the stale re response, so you resume past pauses you do not need.",
+          "source_ids": ["chrome-devtools-docs"],
+          "visual": {
+            "type": "compare",
+            "left": { "label": "Pause 1", "items": ["query react", "box react", "fresh"] },
+            "right": { "label": "Pause 2", "items": ["query re", "box react", "stale"] },
+            "verdict": "Only pause 2 shows the bug."
+          }
+        },
+        {
+          "id": "condition-skips",
+          "heading": "A condition skips the fresh pause",
+          "notes": "Right-click the line number, choose Add conditional breakpoint and enter query !== input.value. DevTools now pauses only on the stale response.",
+          "source_ids": ["chrome-devtools-docs"],
+          "visual": {
+            "type": "equation",
+            "expression": "query !== input.value",
+            "terms": [
+              { "text": "query", "note": "what this call searched for" },
+              { "text": "input.value", "note": "what the box says now" }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "step-render",
+      "label": "Step through render",
+      "slides": [
+        {
+          "id": "into-render",
+          "heading": "Step into render",
+          "notes": "Paused on line 5, step into moves the pause to line 8 inside render. The Call Stack now has render on top of onInput.",
+          "source_ids": ["chrome-devtools-docs"],
+          "visual": { "type": "steps", "items": ["Paused on line 5 in onInput", "Step into: line 8 in render", "Call Stack: render above onInput"] }
+        },
+        {
+          "id": "over-and-out",
+          "heading": "Step over, then step out",
+          "notes": "Step over runs line 8 and line 9 one at a time; the label then says Results for re. Step out returns to onInput on line 6.",
+          "source_ids": ["chrome-devtools-docs"],
+          "visual": { "type": "steps", "items": ["Step over: line 8 writes the re items", "Step over: label says Results for re", "Step out: back in onInput"] }
+        }
+      ]
+    }
+  ]
+}

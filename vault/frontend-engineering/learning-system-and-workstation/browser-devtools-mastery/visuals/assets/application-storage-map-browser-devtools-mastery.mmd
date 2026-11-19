@@ -1,0 +1,14 @@
+flowchart LR
+  page([Page on one origin])
+  ck[(Cookies)]
+  ls[(localStorage)]
+  ss[(sessionStorage)]
+  idb[(IndexedDB)]
+  sw[Service worker]
+  cs[(Cache Storage)]
+  page -->|sent to server| ck
+  page -->|across sessions| ls
+  page -->|page session| ss
+  page -->|object stores| idb
+  page -->|requests| sw
+  sw -->|cached files| cs

@@ -4,7 +4,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=1920, height=1080" />
-    <title>Traces and Web Vitals in four rules</title>
+    <title>Performance traces in four rules</title>
     <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src data:; img-src 'self' data:; media-src 'self'; connect-src 'none'; frame-src 'none'; form-action 'none'; base-uri 'none'" />
     <script src="../../../../../_hf/gsap.min.js"></script>
     <script src="../../../../../_hf/hyperframe.runtime.iife.js"></script>
@@ -58,16 +58,21 @@
   </head>
   <body>
     <div id="root" data-composition-id="main" data-start="0" data-duration="33" data-width="1920" data-height="1080">
-      <section id="sc1" class="clip scene" data-start="0" data-duration="5" data-track-index="0"><div class="stage"><div class="title-card"><h1 id="sc1-big">Four rules</h1><p id="sc1-sub">Throttle, find, split, record again</p></div></div></section>
-      <section id="sc2" class="clip scene" data-start="5" data-duration="16" data-track-index="0"><p class="kicker">Browser DevTools mastery (used in every phase) · 2/3</p><h2 class="heading" id="sc2-h">The routine</h2><div class="stage"><ol class="steps"><li id="sc2-i0"><span class="num">1</span><span>Throttle the CPU</span></li><li id="sc2-i1"><span class="num">2</span><span>Record and click</span></li><li id="sc2-i2"><span class="num">3</span><span>Find tasks over 50 ms</span></li><li id="sc2-i3"><span class="num">4</span><span>Split the work, record again</span></li></ol></div></section>
-      <section id="sc3" class="clip scene" data-start="21" data-duration="12" data-track-index="0"><p class="kicker">Browser DevTools mastery (used in every phase) · 3/3</p><h2 class="heading" id="sc3-h">The good values</h2><div class="stage"><ol class="steps"><li id="sc3-i0"><span class="num">1</span><span>LCP: 2.5 s or less</span></li><li id="sc3-i1"><span class="num">2</span><span>INP: 200 ms or less</span></li><li id="sc3-i2"><span class="num">3</span><span>CLS: 0.1 or less</span></li></ol></div></section>
-      <div class="clip caption" id="cap1" data-start="0.2" data-duration="4.6" data-track-index="1"><p>Four rules for every performance check.</p></div>
-      <div class="clip caption" id="cap2" data-start="5.2" data-duration="2.13" data-track-index="1"><p>Throttle the CPU.</p></div>
-      <div class="clip caption" id="cap3" data-start="7.33" data-duration="2.12" data-track-index="1"><p>Record and click.</p></div>
-      <div class="clip caption" id="cap4" data-start="9.45" data-duration="3.55" data-track-index="1"><p>Find tasks over 50 milliseconds.</p></div>
-      <div class="clip caption" id="cap5" data-start="13" data-duration="7.8" data-track-index="1"><p>Split the work so the page paints first, then record again.</p></div>
-      <div class="clip caption" id="cap6" data-start="21.2" data-duration="4.97" data-track-index="1"><p>Then compare with the good values:</p></div>
-      <div class="clip caption" id="cap7" data-start="26.17" data-duration="6.63" data-track-index="1"><p>LCP 2.5 seconds, INP 200 milliseconds, CLS 0.1.</p></div>
+      <section id="sc1" class="clip scene" data-start="0" data-duration="5" data-track-index="0"><div class="stage"><div class="title-card"><h1 id="sc1-big">Performance traces in four rules</h1><p id="sc1-sub">Measure, record, find, split</p></div></div></section>
+      <section id="sc2" class="clip scene" data-start="5" data-duration="10" data-track-index="0"><p class="kicker">Browser DevTools mastery (used in every phase) · 2/4</p><h2 class="heading" id="sc2-h">The rules</h2><div class="stage"><ol class="steps"><li id="sc2-i0"><span class="num">1</span><span>Live metrics spot the problem</span></li><li id="sc2-i1"><span class="num">2</span><span>A trace shows each task</span></li><li id="sc2-i2"><span class="num">3</span><span>Over 50 ms is a long task</span></li><li id="sc2-i3"><span class="num">4</span><span>Yielding splits long work</span></li></ol></div></section>
+      <section id="sc3" class="clip scene" data-start="15" data-duration="10" data-track-index="0"><p class="kicker">Browser DevTools mastery (used in every phase) · 3/4</p><h2 class="heading" id="sc3-h">Same work, shorter wait</h2><div class="stage"><div class="bars"><div class="bar-row"><span class="bar-label">One task at 4x</span><span class="bar" id="sc3-b0" style="width:1000px"></span><span class="bar-value" id="sc3-bv0">135 ms</span></div><div class="bar-row"><span class="bar-label">Four pieces at 4x</span><span class="bar" id="sc3-b1" style="width:111.11px"></span><span class="bar-value" id="sc3-bv1">15 ms</span></div></div></div></section>
+      <section id="sc4" class="clip scene" data-start="25" data-duration="8" data-track-index="0"><p class="kicker">Browser DevTools mastery (used in every phase) · 4/4</p><h2 class="heading" id="sc4-h">Throttling is a guide</h2><div class="stage"><div class="compare"><div class="col" id="sc4-l"><h3>CPU throttling</h3><ul><li id="sc4-l0">Slows your CPU by a factor</li><li id="sc4-l1">Good for finding long tasks</li></ul></div><div class="col" id="sc4-r"><h3>Not a real phone</h3><ul><li id="sc4-r0">Relative to your computer</li><li id="sc4-r1">Field data shows real users</li></ul></div></div><p class="verdict" id="sc4-v">Use throttling to find problems, not to promise numbers.</p></div></section>
+      <div class="clip caption" id="cap1" data-start="0.2" data-duration="4.6" data-track-index="1"><p>Four rules connect everything you tried in this lab.</p></div>
+      <div class="clip caption" id="cap2" data-start="5.2" data-duration="2.09" data-track-index="1"><p>Live metrics spot the problem.</p></div>
+      <div class="clip caption" id="cap3" data-start="7.29" data-duration="2.08" data-track-index="1"><p>A trace shows each task.</p></div>
+      <div class="clip caption" id="cap4" data-start="9.37" data-duration="3.76" data-track-index="1"><p>A task over 50 milliseconds is a long task.</p></div>
+      <div class="clip caption" id="cap5" data-start="13.13" data-duration="1.67" data-track-index="1"><p>Yielding splits long work.</p></div>
+      <div class="clip caption" id="cap6" data-start="15.2" data-duration="2.18" data-track-index="1"><p>At 4x in our example,</p></div>
+      <div class="clip caption" id="cap7" data-start="17.38" data-duration="4.37" data-track-index="1"><p>one big task made a second click wait 135 milliseconds.</p></div>
+      <div class="clip caption" id="cap8" data-start="21.75" data-duration="3.05" data-track-index="1"><p>Four yielding pieces cut it to 15.</p></div>
+      <div class="clip caption" id="cap9" data-start="25.2" data-duration="2.11" data-track-index="1"><p>Throttling slows your own computer.</p></div>
+      <div class="clip caption" id="cap10" data-start="27.31" data-duration="2.53" data-track-index="1"><p>It cannot copy a real phone,</p></div>
+      <div class="clip caption" id="cap11" data-start="29.84" data-duration="2.96" data-track-index="1"><p>so check field data when you can.</p></div>
       
     </div>
     <script>
@@ -76,24 +81,27 @@
       tl.from("#sc2-h", { opacity: 0, y: 20, duration: 0.5 }, 5.05);
       tl.from("#sc2-i0", { opacity: 0, x: -24, duration: 0.45 }, 5.6);
       tl.to("#sc2-i0", { borderLeftColor: "var(--accent)", backgroundColor: "var(--soft)", duration: 0.3 }, 5.6);
-      tl.from("#sc2-i1", { opacity: 0, x: -24, duration: 0.45 }, 9.3);
-      tl.to("#sc2-i1", { borderLeftColor: "var(--accent)", backgroundColor: "var(--soft)", duration: 0.3 }, 9.3);
-      tl.to("#sc2-i0", { borderLeftColor: "var(--line)", backgroundColor: "rgba(0,0,0,0)", opacity: 0.7, duration: 0.3 }, 9.3);
-      tl.from("#sc2-i2", { opacity: 0, x: -24, duration: 0.45 }, 13);
-      tl.to("#sc2-i2", { borderLeftColor: "var(--accent)", backgroundColor: "var(--soft)", duration: 0.3 }, 13);
-      tl.to("#sc2-i1", { borderLeftColor: "var(--line)", backgroundColor: "rgba(0,0,0,0)", opacity: 0.7, duration: 0.3 }, 13);
-      tl.from("#sc2-i3", { opacity: 0, x: -24, duration: 0.45 }, 16.7);
-      tl.to("#sc2-i3", { borderLeftColor: "var(--accent)", backgroundColor: "var(--soft)", duration: 0.3 }, 16.7);
-      tl.to("#sc2-i2", { borderLeftColor: "var(--line)", backgroundColor: "rgba(0,0,0,0)", opacity: 0.7, duration: 0.3 }, 16.7);
-      tl.from("#sc3-h", { opacity: 0, y: 20, duration: 0.5 }, 21.05);
-      tl.from("#sc3-i0", { opacity: 0, x: -24, duration: 0.45 }, 21.6);
-      tl.to("#sc3-i0", { borderLeftColor: "var(--accent)", backgroundColor: "var(--soft)", duration: 0.3 }, 21.6);
-      tl.from("#sc3-i1", { opacity: 0, x: -24, duration: 0.45 }, 25.2);
-      tl.to("#sc3-i1", { borderLeftColor: "var(--accent)", backgroundColor: "var(--soft)", duration: 0.3 }, 25.2);
-      tl.to("#sc3-i0", { borderLeftColor: "var(--line)", backgroundColor: "rgba(0,0,0,0)", opacity: 0.7, duration: 0.3 }, 25.2);
-      tl.from("#sc3-i2", { opacity: 0, x: -24, duration: 0.45 }, 28.8);
-      tl.to("#sc3-i2", { borderLeftColor: "var(--accent)", backgroundColor: "var(--soft)", duration: 0.3 }, 28.8);
-      tl.to("#sc3-i1", { borderLeftColor: "var(--line)", backgroundColor: "rgba(0,0,0,0)", opacity: 0.7, duration: 0.3 }, 28.8);
+      tl.from("#sc2-i1", { opacity: 0, x: -24, duration: 0.45 }, 7.8);
+      tl.to("#sc2-i1", { borderLeftColor: "var(--accent)", backgroundColor: "var(--soft)", duration: 0.3 }, 7.8);
+      tl.to("#sc2-i0", { borderLeftColor: "var(--line)", backgroundColor: "rgba(0,0,0,0)", opacity: 0.7, duration: 0.3 }, 7.8);
+      tl.from("#sc2-i2", { opacity: 0, x: -24, duration: 0.45 }, 10);
+      tl.to("#sc2-i2", { borderLeftColor: "var(--accent)", backgroundColor: "var(--soft)", duration: 0.3 }, 10);
+      tl.to("#sc2-i1", { borderLeftColor: "var(--line)", backgroundColor: "rgba(0,0,0,0)", opacity: 0.7, duration: 0.3 }, 10);
+      tl.from("#sc2-i3", { opacity: 0, x: -24, duration: 0.45 }, 12.2);
+      tl.to("#sc2-i3", { borderLeftColor: "var(--accent)", backgroundColor: "var(--soft)", duration: 0.3 }, 12.2);
+      tl.to("#sc2-i2", { borderLeftColor: "var(--line)", backgroundColor: "rgba(0,0,0,0)", opacity: 0.7, duration: 0.3 }, 12.2);
+      tl.from("#sc3-h", { opacity: 0, y: 20, duration: 0.5 }, 15.05);
+      tl.from("#sc3-b0", { scaleX: 0, transformOrigin: "left center", duration: 0.6, ease: "power2.out" }, 15.5);
+      tl.from("#sc3-bv0", { opacity: 0, duration: 0.3 }, 15.9);
+      tl.from("#sc3-b1", { scaleX: 0, transformOrigin: "left center", duration: 0.6, ease: "power2.out" }, 19.9);
+      tl.from("#sc3-bv1", { opacity: 0, duration: 0.3 }, 20.3);
+      tl.from("#sc4-h", { opacity: 0, y: 20, duration: 0.5 }, 25.05);
+      tl.from("#sc4 .col h3", { opacity: 0, y: 16, duration: 0.4, stagger: 0.2 }, 25.3);
+      tl.from("#sc4-l0", { opacity: 0, x: -20, duration: 0.4 }, 25.9);
+      tl.from("#sc4-r0", { opacity: 0, x: 20, duration: 0.4 }, 27.4);
+      tl.from("#sc4-l1", { opacity: 0, x: -20, duration: 0.4 }, 28.9);
+      tl.from("#sc4-r1", { opacity: 0, x: 20, duration: 0.4 }, 30.4);
+      tl.from("#sc4-v", { opacity: 0, y: 12, duration: 0.4 }, 29.4);
       window.__timelines = window.__timelines || {};
       window.__timelines["main"] = tl;
       tl.seek(0);

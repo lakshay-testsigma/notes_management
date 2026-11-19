@@ -1,0 +1,71 @@
+---
+title: Console power use
+description: The Console is a command line inside the running page, and its utilities print data in the shape you need without a change to your code.
+order: 3
+concepts: [Console, console.table, console.dir, Console utilities]
+---
+
+<!-- concept: console-api -->
+
+Your cart shows a wrong total, and three API responses arrive in an array. `console.log(requests)` prints one long line that you must open by hand. The Console is the DevTools panel that shows log messages and also runs any JavaScript you type in the context of the page. So you can ask the page questions while it runs.
+
+Two Console API calls change the shape of the output. `console.table(array)` prints an array of objects as a table, one row per item. `console.dir(object)` lists the properties of one object.
+
+The playground console prints only text lines, so two small helpers imitate the two views. Run it and compare the output. Then do the TODO, which is the same as `console.table(requests, ["url", "ms"])`.
+
+<CodePlayground
+  title="console.table and console.dir on the same data"
+  code={`
+    const requests = [
+      { url: "/api/cart", status: 200, ms: 84 },
+      { url: "/api/user", status: 401, ms: 31 },
+      { url: "/api/price", status: 500, ms: 912 }
+    ];
+    // Imitates console.table: one row per item, one column per key
+    function table(rows, columns) {
+      const cols = columns || Object.keys(rows[0]);
+      console.log(["(index)"].concat(cols).join(" | "));
+      rows.forEach(function (row, i) {
+        console.log([i].concat(cols.map(function (c) { return row[c]; })).join(" | "));
+      });
+    }
+    // Imitates console.dir: every property of one object
+    function dir(obj) {
+      Object.keys(obj).forEach(function (key) {
+        console.log(key + ": " + typeof obj[key] + " " + JSON.stringify(obj[key]));
+      });
+    }
+    table(requests); // TODO: show only the url and ms columns
+    dir(requests[2]);
+  `}
+  expected={`(index) | url | ms\n0 | /api/cart | 84\n1 | /api/user | 31\n2 | /api/price | 912\nurl: string "/api/price"\nstatus: number 500\nms: number 912`}
+  hint="Pass a second argument to table: an array with the column names you want to keep."
+/>
+
+The table shows the slow 912 ms request at a glance. The dir view shows the types of one item. Paste the array and `console.table(requests)` into your browser's Console to see the real table.
+
+<Depth level="internals">
+
+Console utilities are shortcuts that work only on the Console command line, not in your scripts. `$0` is the element you last selected in Elements, and `$1` to `$4` are the four before it. `$$('img')` returns an array, like `Array.from(document.querySelectorAll('img'))`. `copy(obj)` puts a string of the object on your clipboard. `monitorEvents($0, "click")` logs every click event on that element. If the page loads jQuery, `$` becomes jQuery's function.
+
+</Depth>
+
+<Depth level="production">
+
+A live expression pins an expression to the top of the Console and updates it every 250 ms. A logpoint logs a message from a line of code without a pause and without a `console.log` in your source. The Console clears on each page load unless you turn on Preserve log in Console Settings.
+
+</Depth>
+
+<Quiz
+  question="After a login form submits, the page redirects, and your log messages vanish before you can read them. What do you change?"
+  options={[
+    "Replace console.log with console.table",
+    "Turn on Preserve log in Console Settings",
+    "Add a live expression for the form",
+    "Run $0 after the redirect"
+  ]}
+  answer={1}
+  explanation="By default the Console clears whenever a new page loads. Preserve log keeps the messages across page loads, so you can read what happened before the redirect."
+/>
+
+The next page moves from printing values to pausing code in the Sources panel.

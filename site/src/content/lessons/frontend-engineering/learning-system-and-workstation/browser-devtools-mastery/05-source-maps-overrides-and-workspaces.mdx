@@ -1,0 +1,44 @@
+---
+title: Source maps, overrides and workspaces
+description: DevTools maps the code the browser runs back to files you own, so you debug and edit your own code instead of the shipped bundle.
+order: 5
+concepts: [source map, sourceMappingURL, local overrides, workspace]
+# <!-- concept: source-maps -->
+# <!-- concept: local-overrides-and-workspaces -->
+---
+
+Your build tool **minifies** your code: it shrinks `search.ts` into one long line of `app.min.js`. The browser runs that line. A breakpoint or an error on it tells you nothing.
+
+A **source map** is a small JSON file that records where each piece of generated code came from in your original files. The minified file ends with a `//# sourceMappingURL=` comment that gives the map's address. DevTools loads the map, shows `search.ts` in the Sources panel, and maps every breakpoint, log and error to it. The browser still runs the minified code.
+
+<PredictReveal
+  prompt="You rebuild the app and deploy the new app.min.js, but the server still sends the old app.min.js.map. You set a breakpoint on line 40 of search.ts. What happens?"
+  options={["DevTools refuses to load the map", "The breakpoint lands on the wrong code", "Everything works, because maps are only hints"]}
+  correct={1}
+  answer="The breakpoint lands on the wrong code, with no warning."
+  reasoning="A map only stores positions. Nothing in the format links a map to one exact build, so a stale map gives wrong positions."
+/>
+
+Follow one position through the chain below. Each box must work, or the trace stops.
+
+<Diagram id="source-map-position-lookup" />
+
+The map's `mappings` string holds short **segments**, and each segment stores numbers as differences from the previous one. That keeps the file small.
+
+Two related features map a network file to a local file. **Local overrides** save your DevTools edits to a folder, and DevTools serves those copies on reload. Use them to test a fix on a site you cannot deploy to, even a changed CORS response header. A **workspace** connects DevTools to your project folder, so an edit in DevTools saves to the real source file.
+
+**Note.** Overrides turn off the browser cache, and they do not save DOM edits from the Elements panel.
+
+<Depth level="internals">
+
+ECMA-426 defines the format. `version` must be 3. A semicolon in `mappings` ends a generated line, and a comma separates segments. Each number is base64 VLQ: every character carries 5 data bits and a continuation bit. A server can also send an HTTP header `sourcemap: <url>`; it wins over the comment.
+
+</Depth>
+
+<Depth level="production">
+
+A map with `sourcesContent` embeds your original code, and the standard has no security section. Decide on purpose whether public users may download your maps. In Settings, check "JavaScript source maps" when DevTools shows only minified files. A workspace connects automatically when your dev server serves `/.well-known/appspecific/com.chrome.devtools.json`.
+
+</Depth>
+
+Next, you leave the code and watch the requests that load it.

@@ -1,0 +1,67 @@
+---
+title: "Memory leaks and heap snapshots"
+description: An object leaks when a path of references still connects it to a GC root, and a heap snapshot shows you that path.
+order: 8
+concepts: [heap snapshot, retainers, detached DOM node, garbage collection]
+---
+
+<!-- concept: memory-panel -->
+<!-- concept: heap-snapshot-retainers -->
+<!-- concept: detached-dom-nodes -->
+
+Your single-page app gets slower each hour a user keeps it open. That is the usual symptom of a memory leak: a bug that makes the page use more and more memory over time. The Task Manager shows that memory grows. It cannot show which object holds it. The Memory panel can.
+
+The garbage collector frees an object only when no path of references leads to it from a GC root, such as `window`. A DOM node is detached when you remove it from the DOM tree but JavaScript still references it. Detached nodes are a common cause of leaks. Predict the result of this code from the Chrome docs.
+
+<PredictReveal
+  prompt="The code runs body.removeChild(treeRef), then treeRef = null. The variable leafRef still points to #leaf, a child of #tree. Can the garbage collector free #tree now?"
+  options={["Yes, nothing points to #tree any more", "No, #tree is still reachable through #leaf", "Only #leaf stays, #tree is freed"]}
+  correct={1}
+  answer="No. #tree stays in memory until leafRef = null runs too."
+  reasoning="#leaf keeps a reference to its parent, so a path still runs from window through leafRef and #leaf up to #tree. The whole subtree is detached, but reachable."
+/>
+
+Now test it on the graph. Use the build controls to disconnect two nodes in this order: body from #tree, treeRef from #tree, then leafRef from #leaf. After each cut, ask which DOM nodes still have a path to Window.
+
+<Graph3D
+  title="Retainers of a detached #tree"
+  editable
+  groups={[
+    { id: "root", label: "GC root" },
+    { id: "js", label: "JavaScript variable" },
+    { id: "dom", label: "DOM node" }
+  ]}
+  nodes={[
+    { id: "window", label: "Window", group: "root", size: 1.5, detail: "A GC root. The garbage collector keeps every object it can reach from here." },
+    { id: "body", label: "body", group: "dom", detail: "The live DOM tree. Cut its link to #tree to model body.removeChild(treeRef)." },
+    { id: "tree", label: "#tree", group: "dom", size: 1.2, detail: "Once removed from body, it is a detached node. It leaks while any path to Window remains." },
+    { id: "leaf", label: "#leaf", group: "dom", detail: "A child of #tree. It keeps a parentNode reference to #tree." },
+    { id: "treeRef", label: "treeRef", group: "js", detail: "A global variable. Cut its link to model treeRef = null." },
+    { id: "leafRef", label: "leafRef", group: "js", detail: "A global variable. Cut its link to model leafRef = null. Only then is the whole subtree collectable." }
+  ]}
+  links={[
+    { source: "window", target: "body" },
+    { source: "body", target: "tree" },
+    { source: "tree", target: "leaf" },
+    { source: "window", target: "treeRef" },
+    { source: "treeRef", target: "tree" },
+    { source: "window", target: "leafRef" },
+    { source: "leafRef", target: "leaf" }
+  ]}
+/>
+
+After the first two cuts, #tree still hangs from Window through leafRef. Only the third cut leaves both DOM nodes with no path, so the collector can free them. In a heap snapshot, the Retainers section lists exactly these paths: the objects that point to the object you select.
+
+<Depth level="internals">
+
+A heap snapshot records every object in the JavaScript heap at one moment. Shallow size is the memory an object holds itself. Retained size is the memory you free when you delete the object and everything that only it keeps reachable. A detached tree often has a small shallow size and a large retained size. Distance is the length of the shortest path to a root.
+
+</Depth>
+
+<Depth level="production">
+
+To confirm a leak, take a snapshot, do an action and reverse it, such as open and close a dialog, then take a second snapshot. The Comparison view shows the objects that were not freed. The filter "Objects retained by detached nodes" finds them fast. The Allocation timeline shows when new memory appears. Objects you used in the Console can also stay alive, and the filter "Objects retained by the DevTools console" shows them.
+
+</Depth>
+
+The next page leaves the heap and looks at data the browser keeps on disk.

@@ -1,0 +1,73 @@
+WEBVTT
+
+1
+00:00:00.200 --> 00:00:03.620
+The onInput function reads the box on line 3,
+
+2
+00:00:03.620 --> 00:00:07.800
+awaits getJSON on line 4, and calls render on line 5.
+
+3
+00:00:08.200 --> 00:00:12.130
+An XHR or fetch breakpoint with the text search?q= pauses
+
+4
+00:00:12.130 --> 00:00:15.660
+on line 12 when a request URL contains it.
+
+5
+00:00:15.660 --> 00:00:18.800
+It pauses twice: for re, then for react.
+
+6
+00:00:19.200 --> 00:00:23.500
+A line-of-code breakpoint on line 5 pauses for every response.
+
+7
+00:00:23.500 --> 00:00:26.930
+First react arrives, and query matches the box.
+
+8
+00:00:26.930 --> 00:00:30.800
+Then re arrives, but the box still says react.
+
+9
+00:00:31.200 --> 00:00:35.500
+A conditional breakpoint pauses only when its condition is true.
+
+10
+00:00:35.500 --> 00:00:39.360
+With query !== input.value, it skips the fresh react
+
+11
+00:00:39.360 --> 00:00:42.800
+response and stops on the stale re response.
+
+12
+00:00:43.200 --> 00:00:44.980
+Step into enters render,
+
+13
+00:00:44.980 --> 00:00:49.000
+so render goes on top of the Call Stack.
+
+14
+00:00:49.000 --> 00:00:51.230
+Step over runs one line.
+
+15
+00:00:51.230 --> 00:00:54.800
+Step out finishes render and returns to onInput.
+
+16
+00:00:55.200 --> 00:00:59.400
+After an await, the stack holds only the resumed code.
+
+17
+00:00:59.400 --> 00:01:04.440
+Async frames link it back to the code that started the fetch,
+
+18
+00:01:04.440 --> 00:01:07.800
+so the Call Stack shows the whole history.

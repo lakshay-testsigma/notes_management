@@ -1,0 +1,73 @@
+---
+title: "Performance panel: traces and Core Web Vitals"
+description: A trace records every task on the main thread, so you can find the exact task that makes a click feel slow.
+order: 7
+concepts: [performance trace, flame chart, long task, Core Web Vitals]
+---
+
+<!-- concept: performance-panel -->
+<!-- concept: flame-chart-and-long-tasks -->
+<!-- concept: core-web-vitals-in-devtools -->
+
+A shopper clicks "Add to cart" and nothing happens for half a second. You feel the lag, but you cannot see its cause. The Performance panel shows it. A trace is a recording of everything the browser did for a few seconds: scripts, style, layout and paint.
+
+When you open the panel, the live metrics screen shows three Core Web Vitals. LCP (Largest Contentful Paint) is when the main content appears. CLS (Cumulative Layout Shift) is how much content jumps. INP (Interaction to Next Paint) is how fast the page answers a click. Turn on field data to compare your local values with CrUX, Chrome's data from real users. When a problem repeats, record a trace.
+
+The main thread is where almost all your JavaScript runs, and it runs one task at a time. A task over 50 ms is a long task. While it runs, the page cannot answer the next click. Play the animation and watch one click become a long task.
+
+<FlowAnimation
+  title="One slow click on the main thread"
+  nodes={[
+    { id: "click", label: "Click", kind: "pill" },
+    { id: "main", label: "Main thread" },
+    { id: "handler", label: "handleClick_" },
+    { id: "render", label: "Style and layout" },
+    { id: "frame", label: "Next frame", kind: "pill" },
+    { id: "trace", label: "Trace", kind: "store" }
+  ]}
+  edges={[
+    { from: "click", to: "main" },
+    { from: "main", to: "handler" },
+    { from: "handler", to: "render" },
+    { from: "render", to: "frame" },
+    { from: "main", to: "trace", dashed: true }
+  ]}
+  steps={[
+    { from: "click", to: "main", packet: "click event", caption: "The click waits until the main thread is free. A busy thread makes the click wait." },
+    { from: "main", to: "handler", packet: "task 400 ms", caption: "The click handler runs for 400 ms. It is one task, so nothing else can run." },
+    { from: "main", to: "trace", packet: "red 350 ms", caption: "DevTools marks the task with a red triangle and shades the 350 ms past the 50 ms limit." },
+    { from: "handler", to: "render", packet: "purple", caption: "Then the browser recalculates style and layout. The flame chart shows this work in purple." },
+    { from: "render", to: "frame", packet: "paint", caption: "The next frame paints. INP is the time from the click to this paint." }
+  ]}
+/>
+
+The flame chart draws this as boxes. Time runs left to right, and each call sits under the call that caused it. Scripting is yellow and rendering is purple. Now use the lab: throttle the CPU, predict which task crosses 50 ms, and watch INP change.
+
+<Experience id="performance-panel-traces" />
+
+**Note.** CPU throttling slows your own machine by a factor such as 2x. It cannot truly copy a mobile CPU, so compare your trace with field data before you trust a number.
+
+<Depth level="internals">
+
+Click a box in the Main track to see its duration, self time, source link and stack trace. Self time is the time a function spent itself; total time adds its children. The Bottom-up table sorts by self time, and the Call tree shows which root activity caused the most work. Other tracks help too: the Interactions track puts a red triangle on interactions over 200 ms, and the Layout shifts track shows each shift as a purple diamond.
+
+</Depth>
+
+<Depth level="production">
+
+The benefit over timing code by hand is that one recording covers loading, scripts and rendering, with no code change. For a slow first load, use Record and reload: DevTools opens about:blank, reloads, and stops a few seconds after load. The Insights tab lists the same insights as Lighthouse and highlights the matching events. Annotate a trace and share it with a teammate. The fix for a long task is usually to split it and yield to the main thread.
+
+</Depth>
+
+<Quiz
+  question="A trace shows a click task of 400 ms. Which part does DevTools shade red, and why?"
+  options={[
+    "All 400 ms, because the whole task is slow",
+    "The last 350 ms, because only the time past 50 ms counts as blocking",
+    "Nothing, because only network requests get red marks"
+  ]}
+  answer={1}
+  explanation="A task over 50 ms is a long task. DevTools adds a red triangle and shades only the part past 50 ms, so a 400 ms task shows 350 ms of red. That is the time the page could not answer the user."
+/>
+
+The next page looks at a slower problem: memory that grows and never comes back.

@@ -1,0 +1,37 @@
+WEBVTT
+
+1
+00:00:00.200 --> 00:00:04.800
+The stale list came from a slow response that arrived last.
+
+2
+00:00:05.200 --> 00:00:09.110
+Use a line-of-code breakpoint when you know the line.
+
+3
+00:00:09.110 --> 00:00:13.460
+Add a condition to skip pauses you do not need.
+
+4
+00:00:13.460 --> 00:00:17.800
+Use a fetch breakpoint when you know only the URL.
+
+5
+00:00:18.200 --> 00:00:24.250
+At each pause, Scope shows the local values, Watch tracks your own
+
+6
+00:00:24.250 --> 00:00:29.800
+expression, and the Call Stack shows how the code got there.
+
+7
+00:00:30.200 --> 00:00:32.920
+The evidence points to the fix.
+
+8
+00:00:32.920 --> 00:00:36.080
+The code must ignore a response whose
+
+9
+00:00:36.080 --> 00:00:38.800
+query no longer matches the box.

@@ -11,15 +11,15 @@ created: 2026-11-19
 This is the map of the topic. Read the steps from top to bottom. Each step links to the next thing to open, so you never have to search.
 
 <!-- tutor:generated:start -->
-**Depth:** deep · **Progress:** 5 of 10 steps ready
+**Depth:** deep · **Progress:** 7 of 10 steps ready
 
 Browser DevTools are the inspectors built into every browser that show the live page, its code, network, performance and memory, so you can find the cause of a bug from evidence.
 
 ## Read in this order
 
 1. [[01-brief-browser-devtools-mastery|Brief]] — what it is, why it exists, where it is used · *ready*
-2. [[02-lesson-browser-devtools-mastery|Interactive lesson]] — the animated lesson pages on the local site · *not started*
-3. [[03-mini-projects-browser-devtools-mastery|Mini projects]] — small builds with a real use case · *not started*
+2. [[02-lesson-browser-devtools-mastery|Interactive lesson]] — the animated lesson pages on the local site · *ready*
+3. [[03-mini-projects-browser-devtools-mastery|Mini projects]] — small builds with a real use case · *ready*
 4. [[00-digests-browser-devtools-mastery|Digests]] — short summaries of the key papers and docs · *ready*
 5. [[00-repo-intel-browser-devtools-mastery|Repository deep dive]] — how a production open-source project does it · *ready*
 6. [[06-capstone-browser-devtools-mastery|Capstone]] — the production-style project · *not started*
@@ -98,9 +98,9 @@ Research stopped: scope-boundary. Discovery units proposed further children (bre
 
 ## Projects
 
-- Mini project (planned): `projects/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/mini-01-debug-an-async-race/` — A support engineer reproduces and fixes a search box that shows stale results because two fetches race.
-- Mini project (planned): `projects/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/mini-02-audit-a-slow-page/` — A frontend developer finds why a product page loads slowly using the waterfall, a trace and Lighthouse, then fixes LCP.
-- Mini project (planned): `projects/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/mini-03-find-the-memory-leak/` — A single-page app grows memory on every route change; the developer finds the detached nodes and the retaining listener.
+- Mini project: `projects/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/mini-01-debug-an-async-race/`
+- Mini project: `projects/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/mini-02-audit-a-slow-page/`
+- Mini project: `projects/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/mini-03-find-the-memory-leak/`
 - Capstone: `projects/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/capstone/` — Page health inspector
 
 ## Build status
@@ -112,13 +112,13 @@ Research stopped: scope-boundary. Discovery units proposed further children (bre
 | 1 | brief | ready |
 | 2 | digest | ready |
 | 2 | repo-intel | ready |
-| 3 | lesson | not started |
-| 3 | mini-projects | not started |
+| 3 | lesson | ready |
+| 3 | mini-projects | ready |
 | 4 | capstone | not started |
 | 5 | notes | not started |
 | 5 | finalize | not started |
 
-Next to generate: `lesson`, `mini-projects`. Ask Claude to continue this topic, or run `node harness/bin/tutor.mjs next frontend-engineering/learning-system-and-workstation/browser-devtools-mastery`.
+Next to generate: `capstone`. Ask Claude to continue this topic, or run `node harness/bin/tutor.mjs next frontend-engineering/learning-system-and-workstation/browser-devtools-mastery`.
 <!-- tutor:generated:end -->
 
 ## My insights

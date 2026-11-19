@@ -1,0 +1,698 @@
+{
+  "id": "performance-panel-traces",
+  "title": "Record a trace and find the long task",
+  "mode": "hybrid",
+  "objective": "Read a main-thread trace, spot long tasks over 50 ms, and predict how CPU throttling and yielding change input delay.",
+  "level": "advanced",
+  "summary": "An intro video records a trace of one slow click. A simulated Main track lets the learner pick CPU throttling (none, 4x, 6x) and one big task or yielding pieces, then step through the trace to see which tasks pass 50 ms, how much is shaded red, and how long a second click waits. A guided walkthrough explains the flame chart axes, deep dives cover yielding and the live Core Web Vitals, and a summary video connects the rules. The task times are a simulated example built on the 50 ms rule; real numbers depend on your machine.",
+  "concept_ids": [
+    "performance-panel",
+    "flame-chart-and-long-tasks",
+    "core-web-vitals-in-devtools"
+  ],
+  "source_ids": [
+    "chrome-devtools-performance-reference",
+    "webdev-optimize-long-tasks"
+  ],
+  "used_in": [
+    "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/07-performance-panel-traces.mdx"
+  ],
+  "watch": {
+    "video": "perf-trace-intro"
+  },
+  "guided": {
+    "video": "perf-trace-guided"
+  },
+  "summary_video": "perf-trace-summary",
+  "deck": "perf-deep-dives",
+  "fallback_visual": "chrome-devtools-performance-reference-mechanism",
+  "simulation": {
+    "component": "AlgorithmStepper",
+    "props": {
+      "title": "Main track of one click: bars are tasks in ms, highlighted bars are long tasks",
+      "view": "bars",
+      "code": "button.addEventListener('click', async () => {\n  for (const piece of work) {   // 40 ms of work at 1x\n    doPiece(piece);             // one-task presets: no yield\n    await scheduler.yield();    // yield presets: pause here\n  }                             // a waiting click runs now\n});",
+      "lang": "javascript",
+      "frames": [
+        {
+          "caption": "Recording at no throttling. The click handler needs 40 ms at 1x, so here it needs 40 ms of work, run as one task on the main thread.",
+          "array": [
+            40
+          ],
+          "highlight": [],
+          "vars": {
+            "cpu": "1x",
+            "split": "one task",
+            "task_ms": 40
+          },
+          "line": 3
+        },
+        {
+          "caption": "Main track: no task is over 50 ms, so DevTools marks no long task and shades nothing red.",
+          "array": [
+            40
+          ],
+          "highlight": [],
+          "vars": {
+            "cpu": "1x",
+            "split": "one task",
+            "task_ms": 40,
+            "long_tasks": 0,
+            "blocking_ms": 0
+          },
+          "line": 3
+        },
+        {
+          "caption": "A second click arrives 25 ms after the work starts. The main thread runs one task at a time, so the click waits until the task that is running ends at 40 ms: input delay 15 ms.",
+          "array": [
+            40
+          ],
+          "highlight": [],
+          "pointers": {
+            "click 2": 0
+          },
+          "vars": {
+            "cpu": "1x",
+            "split": "one task",
+            "task_ms": 40,
+            "long_tasks": 0,
+            "blocking_ms": 0,
+            "input_delay_ms": 15
+          },
+          "line": 3
+        }
+      ]
+    },
+    "presets": {
+      "cpu-1x-one-task": {
+        "frames": [
+          {
+            "caption": "Recording at no throttling. The click handler needs 40 ms at 1x, so here it needs 40 ms of work, run as one task on the main thread.",
+            "array": [
+              40
+            ],
+            "highlight": [],
+            "vars": {
+              "cpu": "1x",
+              "split": "one task",
+              "task_ms": 40
+            },
+            "line": 3
+          },
+          {
+            "caption": "Main track: no task is over 50 ms, so DevTools marks no long task and shades nothing red.",
+            "array": [
+              40
+            ],
+            "highlight": [],
+            "vars": {
+              "cpu": "1x",
+              "split": "one task",
+              "task_ms": 40,
+              "long_tasks": 0,
+              "blocking_ms": 0
+            },
+            "line": 3
+          },
+          {
+            "caption": "A second click arrives 25 ms after the work starts. The main thread runs one task at a time, so the click waits until the task that is running ends at 40 ms: input delay 15 ms.",
+            "array": [
+              40
+            ],
+            "highlight": [],
+            "pointers": {
+              "click 2": 0
+            },
+            "vars": {
+              "cpu": "1x",
+              "split": "one task",
+              "task_ms": 40,
+              "long_tasks": 0,
+              "blocking_ms": 0,
+              "input_delay_ms": 15
+            },
+            "line": 3
+          }
+        ]
+      },
+      "cpu-1x-yield-4-pieces": {
+        "frames": [
+          {
+            "caption": "Recording at no throttling. The click handler needs 40 ms at 1x, so here it needs 40 ms of work, run as 4 tasks of 10 ms on the main thread.",
+            "array": [
+              10,
+              10,
+              10,
+              10
+            ],
+            "highlight": [],
+            "vars": {
+              "cpu": "1x",
+              "split": "4 pieces, yield between",
+              "task_ms": 10
+            },
+            "line": 4
+          },
+          {
+            "caption": "Main track: no task is over 50 ms, so DevTools marks no long task and shades nothing red.",
+            "array": [
+              10,
+              10,
+              10,
+              10
+            ],
+            "highlight": [],
+            "vars": {
+              "cpu": "1x",
+              "split": "4 pieces, yield between",
+              "task_ms": 10,
+              "long_tasks": 0,
+              "blocking_ms": 0
+            },
+            "line": 4
+          },
+          {
+            "caption": "A second click arrives 25 ms after the work starts. The main thread runs one task at a time, so the click waits until the task that is running ends at 30 ms: input delay 5 ms.",
+            "array": [
+              10,
+              10,
+              10,
+              10
+            ],
+            "highlight": [],
+            "pointers": {
+              "click 2": 2
+            },
+            "vars": {
+              "cpu": "1x",
+              "split": "4 pieces, yield between",
+              "task_ms": 10,
+              "long_tasks": 0,
+              "blocking_ms": 0,
+              "input_delay_ms": 5
+            },
+            "line": 5
+          }
+        ]
+      },
+      "cpu-4x-one-task": {
+        "frames": [
+          {
+            "caption": "Recording at 4x CPU slowdown. The click handler needs 40 ms at 1x, so here it needs 160 ms of work, run as one task on the main thread.",
+            "array": [
+              160
+            ],
+            "highlight": [],
+            "vars": {
+              "cpu": "4x",
+              "split": "one task",
+              "task_ms": 160
+            },
+            "line": 3
+          },
+          {
+            "caption": "Main track: 1 of 1 task is a long task (over 50 ms). DevTools shades only the time past 50 ms red: 110 ms in total.",
+            "array": [
+              160
+            ],
+            "highlight": [
+              0
+            ],
+            "vars": {
+              "cpu": "4x",
+              "split": "one task",
+              "task_ms": 160,
+              "long_tasks": 1,
+              "blocking_ms": 110
+            },
+            "line": 3
+          },
+          {
+            "caption": "A second click arrives 25 ms after the work starts. The main thread runs one task at a time, so the click waits until the task that is running ends at 160 ms: input delay 135 ms.",
+            "array": [
+              160
+            ],
+            "highlight": [
+              0
+            ],
+            "pointers": {
+              "click 2": 0
+            },
+            "vars": {
+              "cpu": "4x",
+              "split": "one task",
+              "task_ms": 160,
+              "long_tasks": 1,
+              "blocking_ms": 110,
+              "input_delay_ms": 135
+            },
+            "line": 3
+          }
+        ]
+      },
+      "cpu-4x-yield-4-pieces": {
+        "frames": [
+          {
+            "caption": "Recording at 4x CPU slowdown. The click handler needs 40 ms at 1x, so here it needs 160 ms of work, run as 4 tasks of 40 ms on the main thread.",
+            "array": [
+              40,
+              40,
+              40,
+              40
+            ],
+            "highlight": [],
+            "vars": {
+              "cpu": "4x",
+              "split": "4 pieces, yield between",
+              "task_ms": 40
+            },
+            "line": 4
+          },
+          {
+            "caption": "Main track: no task is over 50 ms, so DevTools marks no long task and shades nothing red.",
+            "array": [
+              40,
+              40,
+              40,
+              40
+            ],
+            "highlight": [],
+            "vars": {
+              "cpu": "4x",
+              "split": "4 pieces, yield between",
+              "task_ms": 40,
+              "long_tasks": 0,
+              "blocking_ms": 0
+            },
+            "line": 4
+          },
+          {
+            "caption": "A second click arrives 25 ms after the work starts. The main thread runs one task at a time, so the click waits until the task that is running ends at 40 ms: input delay 15 ms.",
+            "array": [
+              40,
+              40,
+              40,
+              40
+            ],
+            "highlight": [],
+            "pointers": {
+              "click 2": 0
+            },
+            "vars": {
+              "cpu": "4x",
+              "split": "4 pieces, yield between",
+              "task_ms": 40,
+              "long_tasks": 0,
+              "blocking_ms": 0,
+              "input_delay_ms": 15
+            },
+            "line": 5
+          }
+        ]
+      },
+      "cpu-6x-one-task": {
+        "frames": [
+          {
+            "caption": "Recording at 6x CPU slowdown. The click handler needs 40 ms at 1x, so here it needs 240 ms of work, run as one task on the main thread.",
+            "array": [
+              240
+            ],
+            "highlight": [],
+            "vars": {
+              "cpu": "6x",
+              "split": "one task",
+              "task_ms": 240
+            },
+            "line": 3
+          },
+          {
+            "caption": "Main track: 1 of 1 task is a long task (over 50 ms). DevTools shades only the time past 50 ms red: 190 ms in total.",
+            "array": [
+              240
+            ],
+            "highlight": [
+              0
+            ],
+            "vars": {
+              "cpu": "6x",
+              "split": "one task",
+              "task_ms": 240,
+              "long_tasks": 1,
+              "blocking_ms": 190
+            },
+            "line": 3
+          },
+          {
+            "caption": "A second click arrives 25 ms after the work starts. The main thread runs one task at a time, so the click waits until the task that is running ends at 240 ms: input delay 215 ms.",
+            "array": [
+              240
+            ],
+            "highlight": [
+              0
+            ],
+            "pointers": {
+              "click 2": 0
+            },
+            "vars": {
+              "cpu": "6x",
+              "split": "one task",
+              "task_ms": 240,
+              "long_tasks": 1,
+              "blocking_ms": 190,
+              "input_delay_ms": 215
+            },
+            "line": 3
+          }
+        ]
+      },
+      "cpu-6x-yield-4-pieces": {
+        "frames": [
+          {
+            "caption": "Recording at 6x CPU slowdown. The click handler needs 40 ms at 1x, so here it needs 240 ms of work, run as 4 tasks of 60 ms on the main thread.",
+            "array": [
+              60,
+              60,
+              60,
+              60
+            ],
+            "highlight": [],
+            "vars": {
+              "cpu": "6x",
+              "split": "4 pieces, yield between",
+              "task_ms": 60
+            },
+            "line": 4
+          },
+          {
+            "caption": "Main track: 4 of 4 tasks are long tasks (over 50 ms). DevTools shades only the time past 50 ms red: 40 ms in total.",
+            "array": [
+              60,
+              60,
+              60,
+              60
+            ],
+            "highlight": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "vars": {
+              "cpu": "6x",
+              "split": "4 pieces, yield between",
+              "task_ms": 60,
+              "long_tasks": 4,
+              "blocking_ms": 40
+            },
+            "line": 4
+          },
+          {
+            "caption": "A second click arrives 25 ms after the work starts. The main thread runs one task at a time, so the click waits until the task that is running ends at 60 ms: input delay 35 ms.",
+            "array": [
+              60,
+              60,
+              60,
+              60
+            ],
+            "highlight": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "pointers": {
+              "click 2": 0
+            },
+            "vars": {
+              "cpu": "6x",
+              "split": "4 pieces, yield between",
+              "task_ms": 60,
+              "long_tasks": 4,
+              "blocking_ms": 40,
+              "input_delay_ms": 35
+            },
+            "line": 5
+          }
+        ]
+      },
+      "cpu-6x-yield-8-pieces": {
+        "frames": [
+          {
+            "caption": "Recording at 6x CPU slowdown. The click handler needs 40 ms at 1x, so here it needs 240 ms of work, run as 8 tasks of 30 ms on the main thread.",
+            "array": [
+              30,
+              30,
+              30,
+              30,
+              30,
+              30,
+              30,
+              30
+            ],
+            "highlight": [],
+            "vars": {
+              "cpu": "6x",
+              "split": "8 pieces, yield between",
+              "task_ms": 30
+            },
+            "line": 4
+          },
+          {
+            "caption": "Main track: no task is over 50 ms, so DevTools marks no long task and shades nothing red.",
+            "array": [
+              30,
+              30,
+              30,
+              30,
+              30,
+              30,
+              30,
+              30
+            ],
+            "highlight": [],
+            "vars": {
+              "cpu": "6x",
+              "split": "8 pieces, yield between",
+              "task_ms": 30,
+              "long_tasks": 0,
+              "blocking_ms": 0
+            },
+            "line": 4
+          },
+          {
+            "caption": "A second click arrives 25 ms after the work starts. The main thread runs one task at a time, so the click waits until the task that is running ends at 30 ms: input delay 5 ms.",
+            "array": [
+              30,
+              30,
+              30,
+              30,
+              30,
+              30,
+              30,
+              30
+            ],
+            "highlight": [],
+            "pointers": {
+              "click 2": 0
+            },
+            "vars": {
+              "cpu": "6x",
+              "split": "8 pieces, yield between",
+              "task_ms": 30,
+              "long_tasks": 0,
+              "blocking_ms": 0,
+              "input_delay_ms": 5
+            },
+            "line": 5
+          }
+        ]
+      }
+    }
+  },
+  "sync": [
+    {
+      "scene": "record",
+      "preset": "cpu-1x-one-task"
+    },
+    {
+      "scene": "throttle",
+      "preset": "cpu-4x-one-task"
+    },
+    {
+      "scene": "yield",
+      "preset": "cpu-4x-yield-4-pieces"
+    },
+    {
+      "scene": "six-x",
+      "preset": "cpu-6x-yield-4-pieces"
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "why-not-a-phone",
+      "kind": "explain",
+      "at": {
+        "after": "watch"
+      },
+      "prompt": "In one sentence: why does a 4x CPU slowdown not show you exactly how a phone runs your page?",
+      "explanation": "Throttling slows your own CPU by a factor, so the result is relative to your computer. A fast laptop at 4x is still not a given phone. Calibrated presets get closer to low and mid-tier devices.",
+      "concept_ids": [
+        "performance-panel"
+      ]
+    },
+    {
+      "id": "predict-4x",
+      "kind": "predict",
+      "at": {
+        "scene": "throttle"
+      },
+      "prompt": "The handler takes 40 ms with no throttling. You set a 4x slowdown and record again. What does the Main track show?",
+      "choices": [
+        {
+          "text": "One task of about 160 ms, marked as a long task",
+          "correct": true
+        },
+        {
+          "text": "One task of about 40 ms, because the code did not change",
+          "misconception": "Thinks CPU throttling changes only the network, not script time"
+        },
+        {
+          "text": "Four tasks of 40 ms each",
+          "misconception": "Thinks throttling splits a task instead of slowing it down"
+        }
+      ],
+      "explanation": "A 4x slowdown makes the CPU run four times as slowly, so the same work takes about 160 ms. That is over 50 ms, so DevTools marks it as a long task and shades the time past 50 ms red.",
+      "concept_ids": [
+        "performance-panel",
+        "flame-chart-and-long-tasks"
+      ],
+      "revisit": "record"
+    },
+    {
+      "id": "no-long-tasks-at-4x",
+      "kind": "experiment",
+      "at": {
+        "scene": "yield"
+      },
+      "prompt": "Keep the 4x slowdown. Change how the work is split until the trace has no long task and a second click waits at most 20 ms.",
+      "goal": {
+        "preset": "cpu-4x-one-task",
+        "condition": {
+          "all": [
+            {
+              "path": "vars.cpu",
+              "op": "eq",
+              "value": "4x"
+            },
+            {
+              "path": "vars.long_tasks",
+              "op": "eq",
+              "value": 0
+            },
+            {
+              "path": "vars.input_delay_ms",
+              "op": "lte",
+              "value": 20
+            }
+          ]
+        },
+        "hint": "Pick cpu 4x yield 4 pieces, then press Step until the last frame."
+      },
+      "explanation": "Yielding ends the task after each 40 ms piece. No piece passes 50 ms, and the browser can run the waiting click between pieces, so the click waits 15 ms instead of 135 ms. The total work is the same.",
+      "concept_ids": [
+        "flame-chart-and-long-tasks"
+      ]
+    },
+    {
+      "id": "six-x-pieces",
+      "kind": "observe",
+      "at": {
+        "scene": "six-x"
+      },
+      "prompt": "Load cpu 6x yield 4 pieces and step to the second frame. Watch which bars are highlighted.",
+      "look_for": "All four 60 ms pieces are long tasks again, but each has only 10 ms of red. With 8 pieces of 30 ms, none is long.",
+      "explanation": "Yielding helps only when each piece stays under 50 ms on the slow device. A slower CPU makes every piece longer, so the work needs smaller pieces.",
+      "concept_ids": [
+        "flame-chart-and-long-tasks"
+      ]
+    },
+    {
+      "id": "red-part",
+      "kind": "verify",
+      "at": {
+        "slide": "long-tasks"
+      },
+      "prompt": "A task in the Main track lasts 120 ms. Which part does DevTools shade red?",
+      "choices": [
+        {
+          "text": "The last 70 ms, the time past 50 ms",
+          "correct": true
+        },
+        {
+          "text": "The whole 120 ms",
+          "misconception": "Thinks the whole long task is shaded, not only the part past the limit"
+        },
+        {
+          "text": "The first 50 ms",
+          "misconception": "Thinks the red part is the allowed time instead of the excess"
+        }
+      ],
+      "explanation": "DevTools shades only the part of a long task that is past 50 ms. That part is the blocking period: total time minus 50 ms.",
+      "concept_ids": [
+        "flame-chart-and-long-tasks"
+      ]
+    },
+    {
+      "id": "slow-interaction",
+      "kind": "verify",
+      "at": {
+        "slide": "live-metrics"
+      },
+      "prompt": "In a trace, which interactions get a red triangle in the Interactions track?",
+      "choices": [
+        {
+          "text": "Interactions over 200 ms",
+          "correct": true
+        },
+        {
+          "text": "Interactions over 50 ms",
+          "misconception": "Mixes the long-task limit with the interaction limit"
+        },
+        {
+          "text": "Every interaction that causes a layout shift",
+          "misconception": "Mixes the Interactions track with the Layout shifts track"
+        }
+      ],
+      "explanation": "The Interactions track marks interactions over 200 ms with a red triangle. Hover over one to see its input delay, processing time and presentation delay.",
+      "concept_ids": [
+        "core-web-vitals-in-devtools"
+      ]
+    },
+    {
+      "id": "flame-stack",
+      "kind": "verify",
+      "at": {
+        "tab": "practice"
+      },
+      "prompt": "In the flame chart, handleClick sits directly below an anonymous function. What does that tell you?",
+      "choices": [
+        {
+          "text": "The anonymous function called handleClick",
+          "correct": true
+        },
+        {
+          "text": "handleClick ran after the anonymous function finished",
+          "misconception": "Thinks the y-axis is time, not the call stack"
+        },
+        {
+          "text": "handleClick took longer than the anonymous function",
+          "misconception": "Thinks vertical position shows duration instead of width"
+        }
+      ],
+      "explanation": "The x-axis is time and the y-axis is the call stack. Events on top cause the events below them, so the box under a function is a call it made. Width, not height, shows how long it ran.",
+      "concept_ids": [
+        "flame-chart-and-long-tasks"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,251 @@
+{
+  "id": "debugging-triage-paths",
+  "title": "Triage a production bug: which panel first?",
+  "purpose": "Choose the first DevTools panel from the symptom a user reports, and see what evidence each panel gives.",
+  "summary": "A user reports a problem on a live site. The deck groups six symptoms: a slow first load, slow clicks, growing memory, a broken layout, old data after a deploy and an error only on an iPhone. Each branch opens the panel that records the matching evidence, shows what to read there, and names the cost of opening the wrong panel first.",
+  "explanation": "Each panel records one kind of evidence, so the symptom tells you which panel can show the cause first.",
+  "learning_check": {
+    "question": "A page gets slower each time a user opens and closes a dialog. Which panel do you open first, and what do you do there?",
+    "answer": "Memory: take a heap snapshot, open and close the dialog, take a second snapshot, and compare them to see what grows."
+  },
+  "concept_ids": ["debugging-workflow", "browser-devtools"],
+  "source_ids": ["chrome-devtools-docs", "chrome-devtools-network-reference", "chrome-devtools-performance-reference", "chrome-devtools-memory-docs", "webkit-web-inspector-docs"],
+  "used_in": ["site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/12-a-production-debugging-workflow.mdx"],
+  "slides": [
+    {
+      "id": "incident",
+      "heading": "A user reports a bug. Where do you look?",
+      "notes": "State the decision: DevTools has many panels, and the first one you open decides how fast you find evidence.",
+      "visual": { "type": "title", "subtitle": "Start from the symptom, not from your favorite panel" }
+    },
+    {
+      "id": "evidence-map",
+      "heading": "Each panel records one kind of evidence",
+      "notes": "Name what each panel records. The symptom tells you which kind of evidence holds the cause.",
+      "reveal": true,
+      "visual": { "type": "steps", "items": [
+        "Network: every request and its timing phases",
+        "Performance: main-thread tasks on a timeline",
+        "Memory: what the JavaScript heap holds",
+        "Elements: the DOM and the CSS rules that apply",
+        "Application: service workers, caches and storage"
+      ] }
+    },
+    {
+      "id": "speed-symptoms",
+      "heading": "Symptoms of speed and memory",
+      "notes": "Three symptoms look alike to a user: the site feels slow. Open each branch to see which panel separates them.",
+      "visual": { "type": "steps", "items": [
+        "The first load is slow",
+        "Clicks and scrolling feel slow",
+        "The tab gets slower the longer it is open"
+      ] },
+      "hotspots": [
+        { "label": "Slow first load", "target": "slow-load" },
+        { "label": "Slow clicks", "target": "slow-click" },
+        { "label": "Memory grows", "target": "memory-grows" }
+      ]
+    },
+    {
+      "id": "wrong-result-symptoms",
+      "heading": "Symptoms of a wrong result",
+      "notes": "These three symptoms show wrong output, not slow output. Open each branch to see where the cause is recorded.",
+      "visual": { "type": "steps", "items": [
+        "The layout is broken",
+        "Users see old data after a deploy",
+        "An error happens only on an iPhone"
+      ] },
+      "hotspots": [
+        { "label": "Broken layout", "target": "broken-layout" },
+        { "label": "Stale data", "target": "stale-data" },
+        { "label": "Error only on iPhone", "target": "iphone-only" }
+      ]
+    },
+    {
+      "id": "triage-rule",
+      "heading": "The triage rule",
+      "notes": "Turn the branches into one repeatable procedure that works for a symptom you have not seen before.",
+      "reveal": true,
+      "visual": { "type": "steps", "items": [
+        "Write the symptom in one sentence",
+        "Open the panel that records that evidence",
+        "Reproduce the problem while it records",
+        "Change code only after the evidence names a cause"
+      ] }
+    }
+  ],
+  "sequences": [
+    {
+      "id": "slow-load",
+      "label": "Slow first load",
+      "slides": [
+        {
+          "id": "slow-load-network",
+          "heading": "Open Network and read the Timing tab",
+          "notes": "Tick Disable cache to load the page like a first-time visitor, pick a slow throttling preset, reload, then open the slowest request's Timing tab.",
+          "visual": { "type": "steps", "items": [
+            "Tick Disable cache: you load like a first-time visitor",
+            "Throttle to Slow 4G and reload",
+            "Open the slowest request, then its Timing tab",
+            "Long Waiting (TTFB): look at the server",
+            "Long Content Download: look at file size"
+          ] }
+        },
+        {
+          "id": "slow-load-tradeoff",
+          "heading": "Wrong first choice: Memory",
+          "notes": "A heap snapshot shows what JavaScript holds in memory. It has no request timing, so it cannot show a slow server or a large file.",
+          "visual": { "type": "compare",
+            "left": { "label": "Network first", "items": [ "One row per request", "Time split into phases", "Points to server or file size" ] },
+            "right": { "label": "Memory first", "items": [ "Heap objects and sizes", "No request timing", "The slow request stays hidden" ] },
+            "verdict": "A slow load is a request problem until the Timing tab says otherwise." }
+        }
+      ]
+    },
+    {
+      "id": "slow-click",
+      "label": "Slow clicks",
+      "slides": [
+        {
+          "id": "slow-click-performance",
+          "heading": "Open Performance and record the click",
+          "notes": "Click Record, repeat the slow click, stop. In the Main track a task over 50 ms is a long task; the part beyond 50 ms is red. Bottom-up shows which function used the time.",
+          "visual": { "type": "flow",
+            "nodes": [
+              { "id": "rec", "label": "Record", "sub": "repeat the click" },
+              { "id": "main", "label": "Main track", "sub": "flame chart" },
+              { "id": "red", "label": "Red part", "sub": "task over 50 ms" },
+              { "id": "bu", "label": "Bottom-up", "sub": "costly function" }
+            ],
+            "path": [
+              { "from": "rec", "to": "main", "label": "trace of tasks" },
+              { "from": "main", "to": "red", "label": "find the long task" },
+              { "from": "red", "to": "bu", "label": "name the cost" }
+            ] }
+        },
+        {
+          "id": "slow-click-tradeoff",
+          "heading": "Wrong first choice: Network",
+          "notes": "Network lists requests. A click handler that only runs JavaScript sends no request, so Network shows nothing slow while the main thread is busy.",
+          "visual": { "type": "compare",
+            "left": { "label": "Performance first", "items": [ "Tasks on a timeline", "Long tasks marked red", "Interactions over 200 ms marked" ] },
+            "right": { "label": "Network first", "items": [ "Requests only", "Busy main thread not shown", "You may blame a fast request" ] },
+            "verdict": "Slow input is a main-thread problem until the trace says otherwise." }
+        }
+      ]
+    },
+    {
+      "id": "memory-grows",
+      "label": "Memory grows",
+      "slides": [
+        {
+          "id": "memory-symptoms",
+          "heading": "Name the memory symptom first",
+          "notes": "The memory docs list three symptoms. Progressive slowdown suggests a leak, constant bad performance suggests bloat, and frequent pauses suggest frequent garbage collection.",
+          "visual": { "type": "compare",
+            "left": { "label": "Symptom", "items": [ "Slower and slower over time", "Bad from the start", "Frequent short pauses" ] },
+            "right": { "label": "Likely problem", "items": [ "Memory leak", "Memory bloat", "Frequent garbage collection" ] } }
+        },
+        {
+          "id": "memory-snapshots",
+          "heading": "Compare two heap snapshots",
+          "notes": "Take a heap snapshot, do the action and undo it, take a second snapshot, then use the Comparison view. Detached DOM nodes are removed from the page but still referenced by JavaScript.",
+          "visual": { "type": "timeline", "events": [
+            { "label": "Snapshot 1", "detail": "the baseline heap" },
+            { "label": "Open and close the dialog", "detail": "the action and its reverse" },
+            { "label": "Snapshot 2", "detail": "the heap after" },
+            { "label": "Comparison view", "detail": "what grew, such as detached DOM nodes" }
+          ] }
+        },
+        {
+          "id": "memory-tradeoff",
+          "heading": "Wrong first choice: one snapshot",
+          "notes": "One snapshot shows the heap at one moment. A leak is growth, so you need two snapshots around the same action to see it.",
+          "visual": { "type": "compare",
+            "left": { "label": "Two snapshots", "items": [ "Same action between them", "Growth is visible", "Retainers show who holds it" ] },
+            "right": { "label": "One snapshot", "items": [ "Size at one moment", "Normal and leaked objects mixed", "Growth stays hidden" ] },
+            "verdict": "A leak is a change over time, so measure twice." }
+        }
+      ]
+    },
+    {
+      "id": "broken-layout",
+      "label": "Broken layout",
+      "slides": [
+        {
+          "id": "layout-elements",
+          "heading": "Open Elements and inspect the box",
+          "notes": "Right-click the broken element and choose Inspect. The Styles pane lists the CSS rules that apply, shows overridden ones crossed out, and lets you edit a value to test a fix live.",
+          "visual": { "type": "steps", "items": [
+            "Right-click the broken element, choose Inspect",
+            "Read the Styles pane: which rules apply",
+            "Crossed-out rules were overridden",
+            "Edit a value live to test the fix"
+          ] }
+        },
+        {
+          "id": "layout-tradeoff",
+          "heading": "Wrong first choice: Sources",
+          "notes": "Sources pauses JavaScript. When a CSS rule causes the broken layout, stepping through scripts spends time on code that is not the cause.",
+          "visual": { "type": "compare",
+            "left": { "label": "Elements first", "items": [ "The element's box and rules", "Overrides shown", "Live edit tests a fix" ] },
+            "right": { "label": "Sources first", "items": [ "JavaScript line by line", "CSS cause not shown", "Slow path to the rule" ] },
+            "verdict": "Inspect the box before you debug the script." }
+        }
+      ]
+    },
+    {
+      "id": "stale-data",
+      "label": "Stale data",
+      "slides": [
+        {
+          "id": "stale-application",
+          "heading": "Open Application, then Network",
+          "notes": "In Application, the Service Workers tab shows the active worker and offers Update on reload and Bypass for network. Cache Storage lists cached responses. In Network, tick Disable cache and reload to compare.",
+          "visual": { "type": "steps", "items": [
+            "Application, Service Workers: which worker is active",
+            "Tick Update on reload or Bypass for network",
+            "Application, Cache Storage: the cached responses",
+            "Network, Disable cache: reload and compare"
+          ] }
+        },
+        {
+          "id": "stale-tradeoff",
+          "heading": "Wrong first choice: Elements",
+          "notes": "Elements shows the old value in the DOM. It does not show where the value came from, a cache, a service worker or the server.",
+          "visual": { "type": "compare",
+            "left": { "label": "Application first", "items": [ "Service worker state", "Cached responses listed", "Source of the old value" ] },
+            "right": { "label": "Elements first", "items": [ "The old value on screen", "No origin shown", "You confirm, not explain" ] },
+            "verdict": "Find where the data came from, not only what it shows." }
+        }
+      ]
+    },
+    {
+      "id": "iphone-only",
+      "label": "Error only on iPhone",
+      "slides": [
+        {
+          "id": "iphone-remote",
+          "heading": "Attach Web Inspector to the real iPhone",
+          "notes": "On the iPhone, turn on Safari, Advanced, Web Inspector. On the Mac, turn on the Safari developer features, connect the cable, then pick the device in the Develop menu and read its Console and Sources.",
+          "visual": { "type": "steps", "items": [
+            "iPhone: Settings, Safari, Advanced, Web Inspector on",
+            "Mac Safari: show features for web developers",
+            "Connect the cable",
+            "Develop menu: pick the iPhone and the page",
+            "Read the error in the device's Console"
+          ] }
+        },
+        {
+          "id": "iphone-tradeoff",
+          "heading": "Wrong first choice: device mode only",
+          "notes": "Chrome device mode is a first-order approximation: the page still runs in desktop Chrome on your laptop. An error that comes from the phone's browser may not appear there.",
+          "visual": { "type": "compare",
+            "left": { "label": "Real device", "items": [ "The phone's own browser", "The real error and stack", "Needs a cable and a Mac" ] },
+            "right": { "label": "Device mode", "items": [ "Desktop Chrome, small viewport", "Fast to open", "Can miss phone-only errors" ] },
+            "verdict": "Use device mode for layout; use the real device for a device-only error." }
+        }
+      ]
+    }
+  ]
+}

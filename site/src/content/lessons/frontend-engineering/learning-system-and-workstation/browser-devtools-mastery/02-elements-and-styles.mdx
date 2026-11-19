@@ -1,0 +1,51 @@
+---
+title: "Elements & Styles: the live DOM and cascade"
+description: The Styles tab shows every CSS rule that matches an element, and the Computed tab and box model show the one value that wins.
+order: 2
+concepts: [Styles tab, Computed tab, box model, layout overlay]
+---
+
+<!-- concept: elements-and-styles -->
+<!-- concept: box-model-and-layout-overlays -->
+
+Your "Buy" button is wider than the design. Right-click it and choose Inspect. The Elements panel selects the element in the DOM tree, and the Styles tab lists every CSS rule that matches it. The cascade is the browser's way to choose one value when several rules set the same property. In the Styles tab, a declaration that lost is crossed out.
+
+Two rules set padding here: `.btn { padding: 8px 16px }` and `.btn-primary { padding: 12px 24px }`. The button is 80 px of text with a 1 px border.
+
+<PredictReveal
+  prompt="In the Styles tab you clear the checkbox next to padding in .btn-primary. What is the computed padding-left now?"
+  options={["0px, because you removed the padding", "16px, from the .btn rule", "24px, because the change waits for a reload"]}
+  correct={1}
+  answer="16px. The crossed-out .btn declaration becomes active again."
+  reasoning="Clearing a checkbox turns off one declaration. The next matching rule in the cascade then wins, and the page updates at once."
+/>
+
+Compare the panel before and after that one click. Watch the computed value and the box width.
+
+<CompareView
+  title="One checkbox in Elements > Styles"
+  question="Which rule made the button too wide?"
+  left={{ label: "Before: .btn-primary on", points: [".btn padding is crossed out", "Computed padding-left: 24px", "Box model: 80 + 24 + 24 + 1 + 1"], metrics: { "box width (px)": 130, "padding-left (px)": 24 } }}
+  right={{ label: "After: .btn-primary padding off", points: [".btn padding is active again", "Computed padding-left: 16px", "Box model: 80 + 16 + 16 + 1 + 1"], metrics: { "box width (px)": 114, "padding-left (px)": 16 } }}
+  unit=""
+  lowerIsBetter
+  verdict="The .btn-primary padding adds 16 px of width. Fix that rule in your source file, because a DevTools edit is gone after a reload."
+/>
+
+**Assumption.** The numbers use the default box sizing, where width is content plus padding plus border.
+
+The Styles tab shows every rule, so you see why a value won. The Computed tab shows only the final values, so you read the result quickly. The box model diagram shows margin, border, padding and content, and you can double-click a value to change it. These edits change only the page in memory, not your files. This loop is faster than edit, save and reload.
+
+<Depth level="internals">
+
+Some states exist only while you act. A `:hover` style vanishes when the mouse moves to DevTools. Click `:hov` in the Styles tab and check `:hover`, `:focus` or `:active` to force that state. Elements with `display: grid` or `flex` get a badge in the DOM tree. Click it to draw a layout overlay on the page. Elements with `container-type` get a container badge. The Styles tab also groups rules by cascade layer. Firefox's Flexbox inspector shows an item's content size, flexibility and final size.
+
+</Depth>
+
+<Depth level="production">
+
+To keep a CSS change across page loads, use Local Overrides or save it to a workspace. Otherwise, right-click a declaration and choose "Copy all CSS changes", then paste them into your source.
+
+</Depth>
+
+Next, the Console lets you query this same DOM with code.

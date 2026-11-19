@@ -1,0 +1,198 @@
+{
+  "id": "network-waterfall-walkthrough",
+  "title": "Read the timing phases of one request",
+  "purpose": "Name the seven timing phases of one request in order and say what makes each phase grow.",
+  "sequence_reason": "The Timing tab lists phases in a fixed order, and a change in conditions grows some phases and not others, so motion shows the cause.",
+  "summary": "The Network panel Timing tab splits one request into Queueing, Stalled, DNS Lookup, Initial connection, Request sent, Waiting (TTFB) and Content Download. A slow server grows Waiting, Slow 4G throttling grows Waiting and Content Download, and a repeat visit with the cache on loads the file from the browser cache.",
+  "explanation": "Read the longest phase first: it tells you where the time goes. The millisecond values in this walkthrough are example numbers, not measurements.",
+  "learning_check": {
+    "question": "Waiting (TTFB) is long and Content Download is short. Where do you look first?",
+    "answer": "At the server: Waiting is one round trip plus server processing time, so a long Waiting with a short download points at server time."
+  },
+  "concept_ids": [
+    "network-panel",
+    "request-timing-phases"
+  ],
+  "source_ids": [
+    "chrome-devtools-network-reference"
+  ],
+  "used_in": [
+    "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/06-network-panel-waterfall.mdx"
+  ],
+  "narration": {
+    "engine": "auto"
+  },
+  "scenes": [
+    {
+      "id": "intro",
+      "duration": 8,
+      "heading": "One request, seven phases",
+      "narration": "Open the Network panel, click one request, and open the Timing tab. It splits the request into phases.",
+      "visual": {
+        "type": "title",
+        "subtitle": "Network panel, Timing tab"
+      }
+    },
+    {
+      "id": "phases",
+      "duration": 10,
+      "heading": "The phases, in order",
+      "narration": "The phases run in this order: Queueing, Stalled, DNS Lookup, Initial connection, Request sent, Waiting, and Content Download.",
+      "visual": {
+        "type": "timeline",
+        "events": [
+          {
+            "label": "Queueing"
+          },
+          {
+            "label": "Stalled"
+          },
+          {
+            "label": "DNS Lookup"
+          },
+          {
+            "label": "Initial connection"
+          },
+          {
+            "label": "Request sent"
+          },
+          {
+            "label": "Waiting (TTFB)"
+          },
+          {
+            "label": "Content Download"
+          }
+        ]
+      }
+    },
+    {
+      "id": "queueing",
+      "duration": 10,
+      "heading": "Queueing and Stalled are waits",
+      "narration": "Queueing and Stalled are waits. The request waits for higher-priority requests, a free connection, or disk cache space.",
+      "visual": {
+        "type": "steps",
+        "items": [
+          "Higher-priority requests go first",
+          "HTTP/1.0 and 1.1 allow six connections per origin",
+          "The browser waits for disk cache space"
+        ]
+      }
+    },
+    {
+      "id": "connection",
+      "duration": 9,
+      "heading": "Find the server, then connect",
+      "narration": "DNS Lookup finds the server IP address. Initial connection covers the TCP handshakes and the SSL negotiation.",
+      "visual": {
+        "type": "steps",
+        "items": [
+          "DNS Lookup: find the server IP address",
+          "Initial connection: TCP handshakes and SSL negotiation",
+          "Request sent: the browser sends the request"
+        ]
+      }
+    },
+    {
+      "id": "waiting",
+      "duration": 10,
+      "heading": "A slow server grows Waiting",
+      "narration": "Waiting, or TTFB, is one round trip plus server time. In this example, a slow server makes Waiting the longest bar.",
+      "visual": {
+        "type": "bars",
+        "unit": "ms (example)",
+        "items": [
+          {
+            "label": "Queueing",
+            "value": 2
+          },
+          {
+            "label": "Stalled",
+            "value": 3
+          },
+          {
+            "label": "DNS Lookup",
+            "value": 20
+          },
+          {
+            "label": "Initial connection",
+            "value": 40
+          },
+          {
+            "label": "Request sent",
+            "value": 1
+          },
+          {
+            "label": "Waiting (TTFB)",
+            "value": 1400
+          },
+          {
+            "label": "Content Download",
+            "value": 15
+          }
+        ]
+      }
+    },
+    {
+      "id": "throttling",
+      "duration": 10,
+      "heading": "Throttling grows the network phases",
+      "narration": "Now set Throttling to Slow 4G. Waiting and Content Download grow, because each round trip and each byte is slower.",
+      "visual": {
+        "type": "compare",
+        "left": {
+          "label": "No throttling",
+          "items": [
+            "Waiting (TTFB): 60 ms",
+            "Content Download: 15 ms"
+          ]
+        },
+        "right": {
+          "label": "Slow 4G",
+          "items": [
+            "Waiting (TTFB): 620 ms",
+            "Content Download: 900 ms"
+          ]
+        },
+        "verdict": "Example numbers: the network phases grow"
+      }
+    },
+    {
+      "id": "cache",
+      "duration": 10,
+      "heading": "Disable cache on or off",
+      "narration": "Disable cache makes a first visit. Turn it off and reload: a repeat visit loads files from the browser cache instead.",
+      "visual": {
+        "type": "compare",
+        "left": {
+          "label": "Disable cache on",
+          "items": [
+            "First-time visit",
+            "The request goes to the server"
+          ]
+        },
+        "right": {
+          "label": "Disable cache off",
+          "items": [
+            "Repeat visit",
+            "The file comes from the browser cache"
+          ]
+        }
+      }
+    },
+    {
+      "id": "readout",
+      "duration": 10,
+      "heading": "Read the longest phase first",
+      "narration": "Read the longest phase first. Long Waiting points at the server, long Content Download at size or network, long Queueing at competition.",
+      "visual": {
+        "type": "steps",
+        "items": [
+          "Long Waiting (TTFB): look at the server",
+          "Long Content Download: file size or network",
+          "Long Queueing: too many requests compete"
+        ]
+      }
+    }
+  ]
+}

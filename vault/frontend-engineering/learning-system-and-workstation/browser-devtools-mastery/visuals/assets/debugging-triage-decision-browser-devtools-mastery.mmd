@@ -1,0 +1,8 @@
+flowchart LR
+  S{"What does the user report?"}
+  S -- "slow first load" --> N["Network: Timing tab phases"]
+  S -- "slow clicks or scrolling" --> P["Performance: flame chart, tasks over 50 ms"]
+  S -- "memory grows over time" --> M["Memory: compare heap snapshots"]
+  S -- "broken layout" --> E["Elements: Styles pane rules"]
+  S -- "old data after a deploy" --> A["Application: service worker and Cache Storage"]
+  S -- "error only on a phone" --> R["Remote debugging on the real device"]

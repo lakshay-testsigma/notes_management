@@ -1,0 +1,6 @@
+flowchart LR
+  input["main.js: input event"] --> onInput["searchBox.js: onInput"]
+  onInput -->|"fetch /api/search"| server["server.js"]
+  server --> fake["fakeApi.js: search with random delay"]
+  fake -->|"late response"| onInput
+  onInput -->|"id === latestId"| render["main.js: render"]

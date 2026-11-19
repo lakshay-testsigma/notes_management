@@ -1,0 +1,97 @@
+{
+  "id": "breakpoints-race-guided",
+  "title": "Catch the search race with breakpoints",
+  "purpose": "Use fetch, line and conditional breakpoints, stepping and async frames to find which response makes the list stale.",
+  "sequence_reason": "Each pause depends on the one before it, and the call stack changes at every step, so a guided sequence shows the change.",
+  "summary": "A fetch breakpoint pauses on line 12 each time a request to search?q= starts. A line-of-code breakpoint on line 5 pauses for both responses. A conditional breakpoint with query !== input.value pauses only on the stale re response. Step into enters render, step over runs one line, step out returns. After an await the stack holds only the resumed code; async frames link it back to the code that started the fetch.",
+  "explanation": "A conditional breakpoint skips the pauses you do not need. Async frames in the Call Stack show which earlier call started the code that is paused now.",
+  "learning_check": {
+    "question": "Which breakpoint pauses only on the stale response?",
+    "answer": "A conditional breakpoint on line 5 with the condition query !== input.value."
+  },
+  "concept_ids": ["breakpoint-debugging", "async-call-stacks"],
+  "source_ids": ["chrome-devtools-docs"],
+  "used_in": ["site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/04-breakpoints-and-async-debugging.mdx"],
+  "narration": { "engine": "auto" },
+  "scenes": [
+    {
+      "id": "the-bug",
+      "duration": 8,
+      "heading": "The code under test",
+      "narration": "The onInput function reads the box on line 3, awaits getJSON on line 4, and calls render on line 5.",
+      "visual": { "type": "title", "subtitle": "onInput: line 3 query, line 4 getJSON, line 5 render" }
+    },
+    {
+      "id": "two-requests",
+      "duration": 11,
+      "heading": "A fetch breakpoint",
+      "narration": "An XHR or fetch breakpoint with the text search?q= pauses on line 12 when a request URL contains it. It pauses twice: for re, then for react.",
+      "source_ids": ["chrome-devtools-docs"],
+      "visual": {
+        "type": "flow",
+        "nodes": [
+          { "id": "event", "label": "input event", "sub": "onInput" },
+          { "id": "line4", "label": "Line 12", "sub": "fetch sends" },
+          { "id": "pause", "label": "Paused", "sub": "URL has search?q=" }
+        ],
+        "path": [
+          { "from": "event", "to": "line4", "packet": "query = re" },
+          { "from": "line4", "to": "pause", "packet": "q=re", "label": "Pause 1: the re request starts." },
+          { "from": "event", "to": "line4", "packet": "query = react" },
+          { "from": "line4", "to": "pause", "packet": "q=react", "label": "Pause 2: the react request starts." }
+        ]
+      }
+    },
+    {
+      "id": "line-pause",
+      "duration": 12,
+      "heading": "A line-of-code breakpoint",
+      "narration": "A line-of-code breakpoint on line 5 pauses for every response. First react arrives, and query matches the box. Then re arrives, but the box still says react.",
+      "source_ids": ["chrome-devtools-docs"],
+      "visual": {
+        "type": "steps",
+        "items": ["Pause 1: query is react, box is react", "Resume: label says Results for react", "Pause 2: query is re, box is react", "Resume: label says Results for re"]
+      }
+    },
+    {
+      "id": "conditional",
+      "duration": 12,
+      "heading": "A conditional breakpoint",
+      "narration": "A conditional breakpoint pauses only when its condition is true. With query !== input.value, it skips the fresh react response and stops on the stale re response.",
+      "source_ids": ["chrome-devtools-docs"],
+      "visual": {
+        "type": "equation",
+        "expression": "query !== input.value",
+        "terms": [
+          { "text": "query", "note": "the text this call read on line 3" },
+          { "text": "input.value", "note": "the text in the box now" },
+          { "text": "!==", "note": "true only for a stale response" }
+        ]
+      }
+    },
+    {
+      "id": "step-into",
+      "duration": 12,
+      "heading": "Step into, over and out",
+      "narration": "Step into enters render, so render goes on top of the Call Stack. Step over runs one line. Step out finishes render and returns to onInput.",
+      "source_ids": ["chrome-devtools-docs"],
+      "visual": {
+        "type": "steps",
+        "items": ["Step into: pause on line 8 in render", "Step over: line 8 runs, pause on line 9", "Step over: label says Results for re", "Step out: back in onInput"]
+      }
+    },
+    {
+      "id": "async-stack",
+      "duration": 13,
+      "heading": "Async frames link the call history",
+      "narration": "After an await, the stack holds only the resumed code. Async frames link it back to the code that started the fetch, so the Call Stack shows the whole history.",
+      "source_ids": ["chrome-devtools-docs"],
+      "visual": {
+        "type": "compare",
+        "left": { "label": "Synchronous frames only", "items": ["onInput, line 5", "Who started this fetch?"] },
+        "right": { "label": "With async frames", "items": ["onInput, line 5", "async boundary: await fetch", "onInput, line 4, query re"] },
+        "verdict": "The async frames show which input event started the stale request."
+      }
+    }
+  ]
+}

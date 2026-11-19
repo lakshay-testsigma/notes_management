@@ -1,0 +1,7 @@
+flowchart LR
+  hash["URL hash change"] --> router["router.js: render()"]
+  router -->|"unmount() old view"| report["views.js: createReportView"]
+  report -->|"addEventListener resize"| win["window"]
+  report -->|"cacheNode(row)"| cache["cache.js: cachedNodes"]
+  win -.->|"holds onResize, header, rows"| report
+  cache -.->|"holds 200 row nodes"| report

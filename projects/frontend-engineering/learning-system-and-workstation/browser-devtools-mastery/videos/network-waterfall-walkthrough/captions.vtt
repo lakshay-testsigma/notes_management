@@ -1,0 +1,81 @@
+WEBVTT
+
+1
+00:00:00.200 --> 00:00:05.270
+Open the Network panel, click one request, and open the Timing tab.
+
+2
+00:00:05.270 --> 00:00:07.800
+It splits the request into phases.
+
+3
+00:00:08.200 --> 00:00:12.470
+The phases run in this order: Queueing, Stalled,
+
+4
+00:00:12.470 --> 00:00:17.800
+DNS Lookup, Initial connection, Request sent, Waiting, and Content Download.
+
+5
+00:00:18.200 --> 00:00:20.870
+Queueing and Stalled are waits.
+
+6
+00:00:20.870 --> 00:00:24.070
+The request waits for higher-priority requests,
+
+7
+00:00:24.070 --> 00:00:27.800
+a free connection, or disk cache space.
+
+8
+00:00:28.200 --> 00:00:31.740
+DNS Lookup finds the server IP address.
+
+9
+00:00:31.740 --> 00:00:36.800
+Initial connection covers the TCP handshakes and the SSL negotiation.
+
+10
+00:00:37.200 --> 00:00:41.770
+Waiting, or TTFB, is one round trip plus server time.
+
+11
+00:00:41.770 --> 00:00:46.800
+In this example, a slow server makes Waiting the longest bar.
+
+12
+00:00:47.200 --> 00:00:50.080
+Now set Throttling to Slow 4G.
+
+13
+00:00:50.080 --> 00:00:52.480
+Waiting and Content Download grow,
+
+14
+00:00:52.480 --> 00:00:56.800
+because each round trip and each byte is slower.
+
+15
+00:00:57.200 --> 00:00:59.940
+Disable cache makes a first visit.
+
+16
+00:00:59.940 --> 00:01:02.230
+Turn it off and reload:
+
+17
+00:01:02.230 --> 00:01:06.800
+a repeat visit loads files from the browser cache instead.
+
+18
+00:01:07.200 --> 00:01:09.380
+Read the longest phase first.
+
+19
+00:01:09.380 --> 00:01:12.000
+Long Waiting points at the server,
+
+20
+00:01:12.000 --> 00:01:16.800
+long Content Download at size or network, long Queueing at competition.

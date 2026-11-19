@@ -1,0 +1,11 @@
+{
+  "name": "mini-02-audit-a-slow-page",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "A product page with deliberate performance problems, for DevTools practice.",
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "node --test tests/"
+  }
+}

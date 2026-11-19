@@ -1,0 +1,10 @@
+{
+  "name": "browser-devtools-mastery-breakpoints-race-guided",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "npx --yes hyperframes@0.9.59 preview",
+    "check": "npx --yes hyperframes@0.9.59 check",
+    "render": "npx --yes hyperframes@0.9.59 render -o renders/breakpoints-race-guided.mp4"
+  }
+}

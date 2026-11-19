@@ -218,5 +218,2111 @@
     "used_in": [
       "vault/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/05-repo-intel/chromedevtools-devtools-frontend/devtools-frontend-architecture.md"
     ]
+  },
+  {
+    "id": "debugging-triage-decision",
+    "title": "Which DevTools panel to open first for a symptom",
+    "kind": "workflow",
+    "scope": "end-to-end",
+    "format": "mermaid",
+    "file": "vault/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/visuals/assets/debugging-triage-decision-browser-devtools-mastery.mmd",
+    "concept_ids": [
+      "debugging-workflow",
+      "browser-devtools"
+    ],
+    "source_ids": [
+      "chrome-devtools-docs",
+      "chrome-devtools-network-reference",
+      "chrome-devtools-performance-reference",
+      "chrome-devtools-memory-docs",
+      "webkit-web-inspector-docs"
+    ],
+    "purpose": "Pick the first panel from the symptom, so the first evidence you collect can explain the problem.",
+    "explanation": "Each panel records one kind of evidence. Network records requests and their timing. Performance records main-thread tasks. Memory records the heap. Elements shows the DOM and the CSS rules. Application shows service workers and storage. A phone-only error needs DevTools attached to the real device.",
+    "alt": "Decision diagram: one question, what does the user report, branches to six panels. Slow first load goes to Network, slow clicks to Performance, growing memory to Memory, broken layout to Elements, old data after a deploy to Application, and an error only on a phone to remote debugging on the real device.",
+    "learning_check": {
+      "question": "A page gets slower each time a user opens and closes a dialog. Which panel do you open first?",
+      "answer": "Memory: take a heap snapshot, repeat the action, take another and compare them to find what grows."
+    },
+    "used_in": [
+      "projects/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/experiences/a-production-debugging-workflow/experience.json"
+    ]
+  },
+  {
+    "id": "debugging-triage-paths",
+    "title": "Triage a production bug: which panel first?",
+    "kind": "presentation",
+    "format": "hyperframes-slideshow",
+    "concept_ids": [
+      "debugging-workflow",
+      "browser-devtools"
+    ],
+    "source_ids": [
+      "chrome-devtools-docs",
+      "chrome-devtools-network-reference",
+      "chrome-devtools-performance-reference",
+      "chrome-devtools-memory-docs",
+      "webkit-web-inspector-docs"
+    ],
+    "purpose": "Choose the first DevTools panel from the symptom a user reports, and see what evidence each panel gives.",
+    "explanation": "Each panel records one kind of evidence, so the symptom tells you which panel can show the cause first.",
+    "alt": "A user reports a problem on a live site. The deck groups six symptoms: a slow first load, slow clicks, growing memory, a broken layout, old data after a deploy and an error only on an iPhone. Each branch opens the panel that records the matching evidence, shows what to read there, and names the cost of opening the wrong panel first.",
+    "learning_check": {
+      "question": "A page gets slower each time a user opens and closes a dialog. Which panel do you open first, and what do you do there?",
+      "answer": "Memory: take a heap snapshot, open and close the dialog, take a second snapshot, and compare them to see what grows."
+    },
+    "used_in": [
+      "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/12-a-production-debugging-workflow.mdx"
+    ],
+    "deck": {
+      "project_dir": "projects/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/videos/debugging-triage-paths",
+      "status": "built",
+      "input_hash": "ad27c9e0d1814d9bf95a41eedb3a69eee4a01a8d132ef55fb72eca21356b4a14",
+      "outline": "projects/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/videos/debugging-triage-paths/outline.md",
+      "island": {
+        "slides": [
+          {
+            "sceneId": "incident",
+            "notes": "State the decision: DevTools has many panels, and the first one you open decides how fast you find evidence."
+          },
+          {
+            "sceneId": "evidence-map",
+            "notes": "Name what each panel records. The symptom tells you which kind of evidence holds the cause.",
+            "fragments": [
+              4.3,
+              4.6,
+              4.9,
+              5.2,
+              5.5
+            ]
+          },
+          {
+            "sceneId": "speed-symptoms",
+            "notes": "Three symptoms look alike to a user: the site feels slow. Open each branch to see which panel separates them.",
+            "hotspots": [
+              {
+                "id": "speed-symptoms-h1",
+                "label": "Slow first load",
+                "target": "slow-load",
+                "region": {
+                  "x": 5,
+                  "y": 81,
+                  "w": 20,
+                  "h": 12
+                }
+              },
+              {
+                "id": "speed-symptoms-h2",
+                "label": "Slow clicks",
+                "target": "slow-click",
+                "region": {
+                  "x": 27,
+                  "y": 81,
+                  "w": 20,
+                  "h": 12
+                }
+              },
+              {
+                "id": "speed-symptoms-h3",
+                "label": "Memory grows",
+                "target": "memory-grows",
+                "region": {
+                  "x": 49,
+                  "y": 81,
+                  "w": 20,
+                  "h": 12
+                }
+              }
+            ]
+          },
+          {
+            "sceneId": "wrong-result-symptoms",
+            "notes": "These three symptoms show wrong output, not slow output. Open each branch to see where the cause is recorded.",
+            "hotspots": [
+              {
+                "id": "wrong-result-symptoms-h1",
+                "label": "Broken layout",
+                "target": "broken-layout",
+                "region": {
+                  "x": 5,
+                  "y": 81,
+                  "w": 20,
+                  "h": 12
+                }
+              },
+              {
+                "id": "wrong-result-symptoms-h2",
+                "label": "Stale data",
+                "target": "stale-data",
+                "region": {
+                  "x": 27,
+                  "y": 81,
+                  "w": 20,
+                  "h": 12
+                }
+              },
+              {
+                "id": "wrong-result-symptoms-h3",
+                "label": "Error only on iPhone",
+                "target": "iphone-only",
+                "region": {
+                  "x": 49,
+                  "y": 81,
+                  "w": 20,
+                  "h": 12
+                }
+              }
+            ]
+          },
+          {
+            "sceneId": "triage-rule",
+            "notes": "Turn the branches into one repeatable procedure that works for a symptom you have not seen before.",
+            "fragments": [
+              16.3,
+              16.6,
+              16.9,
+              17.2
+            ]
+          }
+        ],
+        "slideSequences": [
+          {
+            "id": "slow-load",
+            "label": "Slow first load",
+            "slides": [
+              {
+                "sceneId": "slow-load-network",
+                "notes": "Tick Disable cache to load the page like a first-time visitor, pick a slow throttling preset, reload, then open the slowest request's Timing tab."
+              },
+              {
+                "sceneId": "slow-load-tradeoff",
+                "notes": "A heap snapshot shows what JavaScript holds in memory. It has no request timing, so it cannot show a slow server or a large file."
+              }
+            ]
+          },
+          {
+            "id": "slow-click",
+            "label": "Slow clicks",
+            "slides": [
+              {
+                "sceneId": "slow-click-performance",
+                "notes": "Click Record, repeat the slow click, stop. In the Main track a task over 50 ms is a long task; the part beyond 50 ms is red. Bottom-up shows which function used the time."
+              },
+              {
+                "sceneId": "slow-click-tradeoff",
+                "notes": "Network lists requests. A click handler that only runs JavaScript sends no request, so Network shows nothing slow while the main thread is busy."
+              }
+            ]
+          },
+          {
+            "id": "memory-grows",
+            "label": "Memory grows",
+            "slides": [
+              {
+                "sceneId": "memory-symptoms",
+                "notes": "The memory docs list three symptoms. Progressive slowdown suggests a leak, constant bad performance suggests bloat, and frequent pauses suggest frequent garbage collection."
+              },
+              {
+                "sceneId": "memory-snapshots",
+                "notes": "Take a heap snapshot, do the action and undo it, take a second snapshot, then use the Comparison view. Detached DOM nodes are removed from the page but still referenced by JavaScript."
+              },
+              {
+                "sceneId": "memory-tradeoff",
+                "notes": "One snapshot shows the heap at one moment. A leak is growth, so you need two snapshots around the same action to see it."
+              }
+            ]
+          },
+          {
+            "id": "broken-layout",
+            "label": "Broken layout",
+            "slides": [
+              {
+                "sceneId": "layout-elements",
+                "notes": "Right-click the broken element and choose Inspect. The Styles pane lists the CSS rules that apply, shows overridden ones crossed out, and lets you edit a value to test a fix live."
+              },
+              {
+                "sceneId": "layout-tradeoff",
+                "notes": "Sources pauses JavaScript. When a CSS rule causes the broken layout, stepping through scripts spends time on code that is not the cause."
+              }
+            ]
+          },
+          {
+            "id": "stale-data",
+            "label": "Stale data",
+            "slides": [
+              {
+                "sceneId": "stale-application",
+                "notes": "In Application, the Service Workers tab shows the active worker and offers Update on reload and Bypass for network. Cache Storage lists cached responses. In Network, tick Disable cache and reload to compare."
+              },
+              {
+                "sceneId": "stale-tradeoff",
+                "notes": "Elements shows the old value in the DOM. It does not show where the value came from, a cache, a service worker or the server."
+              }
+            ]
+          },
+          {
+            "id": "iphone-only",
+            "label": "Error only on iPhone",
+            "slides": [
+              {
+                "sceneId": "iphone-remote",
+                "notes": "On the iPhone, turn on Safari, Advanced, Web Inspector. On the Mac, turn on the Safari developer features, connect the cable, then pick the device in the Develop menu and read its Console and Sources."
+              },
+              {
+                "sceneId": "iphone-tradeoff",
+                "notes": "Chrome device mode is a first-order approximation: the page still runs in desktop Chrome on your laptop. An error that comes from the phone's browser may not appear there."
+              }
+            ]
+          }
+        ]
+      },
+      "timeline": [
+        {
+          "id": "incident",
+          "heading": "A user reports a bug. Where do you look?",
+          "start": 0,
+          "duration": 4,
+          "sequence": null,
+          "fragments": []
+        },
+        {
+          "id": "evidence-map",
+          "heading": "Each panel records one kind of evidence",
+          "start": 4,
+          "duration": 4,
+          "sequence": null,
+          "fragments": [
+            4.3,
+            4.6,
+            4.9,
+            5.2,
+            5.5
+          ]
+        },
+        {
+          "id": "speed-symptoms",
+          "heading": "Symptoms of speed and memory",
+          "start": 8,
+          "duration": 4,
+          "sequence": null,
+          "fragments": []
+        },
+        {
+          "id": "wrong-result-symptoms",
+          "heading": "Symptoms of a wrong result",
+          "start": 12,
+          "duration": 4,
+          "sequence": null,
+          "fragments": []
+        },
+        {
+          "id": "triage-rule",
+          "heading": "The triage rule",
+          "start": 16,
+          "duration": 4,
+          "sequence": null,
+          "fragments": [
+            16.3,
+            16.6,
+            16.9,
+            17.2
+          ]
+        },
+        {
+          "id": "slow-load-network",
+          "heading": "Open Network and read the Timing tab",
+          "start": 20,
+          "duration": 4,
+          "sequence": "slow-load",
+          "fragments": []
+        },
+        {
+          "id": "slow-load-tradeoff",
+          "heading": "Wrong first choice: Memory",
+          "start": 24,
+          "duration": 4,
+          "sequence": "slow-load",
+          "fragments": []
+        },
+        {
+          "id": "slow-click-performance",
+          "heading": "Open Performance and record the click",
+          "start": 28,
+          "duration": 4,
+          "sequence": "slow-click",
+          "fragments": []
+        },
+        {
+          "id": "slow-click-tradeoff",
+          "heading": "Wrong first choice: Network",
+          "start": 32,
+          "duration": 4,
+          "sequence": "slow-click",
+          "fragments": []
+        },
+        {
+          "id": "memory-symptoms",
+          "heading": "Name the memory symptom first",
+          "start": 36,
+          "duration": 4,
+          "sequence": "memory-grows",
+          "fragments": []
+        },
+        {
+          "id": "memory-snapshots",
+          "heading": "Compare two heap snapshots",
+          "start": 40,
+          "duration": 4,
+          "sequence": "memory-grows",
+          "fragments": []
+        },
+        {
+          "id": "memory-tradeoff",
+          "heading": "Wrong first choice: one snapshot",
+          "start": 44,
+          "duration": 4,
+          "sequence": "memory-grows",
+          "fragments": []
+        },
+        {
+          "id": "layout-elements",
+          "heading": "Open Elements and inspect the box",
+          "start": 48,
+          "duration": 4,
+          "sequence": "broken-layout",
+          "fragments": []
+        },
+        {
+          "id": "layout-tradeoff",
+          "heading": "Wrong first choice: Sources",
+          "start": 52,
+          "duration": 4,
+          "sequence": "broken-layout",
+          "fragments": []
+        },
+        {
+          "id": "stale-application",
+          "heading": "Open Application, then Network",
+          "start": 56,
+          "duration": 4,
+          "sequence": "stale-data",
+          "fragments": []
+        },
+        {
+          "id": "stale-tradeoff",
+          "heading": "Wrong first choice: Elements",
+          "start": 60,
+          "duration": 4,
+          "sequence": "stale-data",
+          "fragments": []
+        },
+        {
+          "id": "iphone-remote",
+          "heading": "Attach Web Inspector to the real iPhone",
+          "start": 64,
+          "duration": 4,
+          "sequence": "iphone-only",
+          "fragments": []
+        },
+        {
+          "id": "iphone-tradeoff",
+          "heading": "Wrong first choice: device mode only",
+          "start": 68,
+          "duration": 4,
+          "sequence": "iphone-only",
+          "fragments": []
+        }
+      ],
+      "slides": 5,
+      "branches": [
+        {
+          "id": "slow-load",
+          "label": "Slow first load",
+          "slides": 2
+        },
+        {
+          "id": "slow-click",
+          "label": "Slow clicks",
+          "slides": 2
+        },
+        {
+          "id": "memory-grows",
+          "label": "Memory grows",
+          "slides": 3
+        },
+        {
+          "id": "broken-layout",
+          "label": "Broken layout",
+          "slides": 2
+        },
+        {
+          "id": "stale-data",
+          "label": "Stale data",
+          "slides": 2
+        },
+        {
+          "id": "iphone-only",
+          "label": "Error only on iPhone",
+          "slides": 2
+        }
+      ],
+      "composition": "site/public/media/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/debugging-triage-paths/composition/index.html",
+      "composition_url": "/media/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/debugging-triage-paths/composition/index.html",
+      "present_command": "npx --yes hyperframes@0.9.59 present projects/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/videos/debugging-triage-paths/composition",
+      "check": {
+        "hash": "ad27c9e0d1814d9bf95a41eedb3a69eee4a01a8d132ef55fb72eca21356b4a14",
+        "errors": 1,
+        "warnings": 0,
+        "findings": [
+          "check_runtime_failure: The browser is already running for /tmp/claude-501/puppeteer_dev_chrome_profile-EtpY7z. Use a different `userDataDir` or stop the running browser first.\nChrome exited with code 21 when launched on its own.\nstderr:\n[1119/161151.475637:ERROR:third_party/crashpad/crashpad/util/mach/bootstrap.cc:65] bootstrap_check_in org.chromium.crashpad.child_port_handshake.81752.416306.NQOSPBMXCEMSUTCK: Permission denied (1100)\n[1119/161151.478474:ERROR:third_party/crashpad/crashpad/util/file/file_io.cc:103] ReadExactly: expected 4, observed 0\n[1119/161151.480699:ERROR:third_party/crashpad/crashpad/util/file/file_io_posix.cc:208] open /Users/lakshay.goyal/Library/Application Support/Google/Chrome/Crashpad/settings.dat: Operation not permitted (1)\n[1119/161151.481166:ERROR:third_party/crashpad/crashpad/util/file/file_io_posix.cc:208] open /Users/lakshay.goyal/Library/Application Support/Google/Chrome/Crashpad/settings.dat: Operation not permitted (1)\n[81745:416284:1119/161151.495418:ERROR:chrome/browser/process_singleton_posix.cc:1046] Failed to create socket directory.\n[81745:416284:1119/161151.495628:ERROR:chrome/app/chrome_main_delegate.cc:635] Failed to create a ProcessSingleton for your profile directory. This means that running multiple instances would start multiple browser processes rather than opening a new window in the existing process. Aborting now to avoid profile corruption."
+        ]
+      }
+    }
+  },
+  {
+    "id": "network-waterfall-walkthrough",
+    "title": "Read the timing phases of one request",
+    "kind": "video",
+    "format": "hyperframes",
+    "concept_ids": [
+      "network-panel",
+      "request-timing-phases"
+    ],
+    "source_ids": [
+      "chrome-devtools-network-reference"
+    ],
+    "purpose": "Name the seven timing phases of one request in order and say what makes each phase grow.",
+    "explanation": "Read the longest phase first: it tells you where the time goes. The millisecond values in this walkthrough are example numbers, not measurements.",
+    "alt": "The Network panel Timing tab splits one request into Queueing, Stalled, DNS Lookup, Initial connection, Request sent, Waiting (TTFB) and Content Download. A slow server grows Waiting, Slow 4G throttling grows Waiting and Content Download, and a repeat visit with the cache on loads the file from the browser cache.",
+    "learning_check": {
+      "question": "Waiting (TTFB) is long and Content Download is short. Where do you look first?",
+      "answer": "At the server: Waiting is one round trip plus server processing time, so a long Waiting with a short download points at server time."
+    },
+    "used_in": [
+      "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/06-network-panel-waterfall.mdx"
+    ],
+    "video": {
+      "project_dir": "projects/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/videos/network-waterfall-walkthrough",
+      "status": "storyboard",
+      "blocker": "FFmpeg is not installed and Docker is not running; install FFmpeg (for example `brew install ffmpeg`) or start Docker",
+      "storyboard": "projects/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/videos/network-waterfall-walkthrough/storyboard.md",
+      "transcript": "projects/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/videos/network-waterfall-walkthrough/transcript.md",
+      "captions_source": "projects/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/videos/network-waterfall-walkthrough/captions.vtt",
+      "duration_s": 77,
+      "scenes": 8,
+      "narration": "say",
+      "input_hash": "10ca5780c0fb3479cd9b37876de9057b7d26b0e385b2a7e2a439e26457338d8e",
+      "timeline": [
+        {
+          "id": "intro",
+          "heading": "One request, seven phases",
+          "start": 0,
+          "duration": 8
+        },
+        {
+          "id": "phases",
+          "heading": "The phases, in order",
+          "start": 8,
+          "duration": 10
+        },
+        {
+          "id": "queueing",
+          "heading": "Queueing and Stalled are waits",
+          "start": 18,
+          "duration": 10
+        },
+        {
+          "id": "connection",
+          "heading": "Find the server, then connect",
+          "start": 28,
+          "duration": 9
+        },
+        {
+          "id": "waiting",
+          "heading": "A slow server grows Waiting",
+          "start": 37,
+          "duration": 10
+        },
+        {
+          "id": "throttling",
+          "heading": "Throttling grows the network phases",
+          "start": 47,
+          "duration": 10
+        },
+        {
+          "id": "cache",
+          "heading": "Disable cache on or off",
+          "start": 57,
+          "duration": 10
+        },
+        {
+          "id": "readout",
+          "heading": "Read the longest phase first",
+          "start": 67,
+          "duration": 10
+        }
+      ],
+      "composition": "site/public/media/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/network-waterfall-walkthrough/composition/index.html",
+      "composition_url": "/media/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/network-waterfall-walkthrough/composition/index.html",
+      "lint": {
+        "hash": "10ca5780c0fb3479cd9b37876de9057b7d26b0e385b2a7e2a439e26457338d8e",
+        "errors": 0,
+        "warnings": 29,
+        "findings": []
+      }
+    }
+  },
+  {
+    "id": "network-panel-waterfall",
+    "title": "Change the conditions and watch the request phases grow",
+    "kind": "experience",
+    "format": "experience",
+    "component": "Experience",
+    "concept_ids": [
+      "network-panel",
+      "request-timing-phases"
+    ],
+    "source_ids": [
+      "chrome-devtools-network-reference"
+    ],
+    "purpose": "Name the timing phases of one request in order and say which phase a slow network, a slow server or the cache changes.",
+    "explanation": "Step through an animated walkthrough, change the simulation and answer the checkpoints. Name the timing phases of one request in order and say which phase a slow network, a slow server or the cache changes.",
+    "alt": "A guided walkthrough of the Network panel Timing tab, paused for predictions, and a stepper that draws one request phase by phase: Queueing, Stalled, DNS Lookup, Initial connection, Request sent, Waiting (TTFB) and Content Download. Presets switch between no throttling, Fast 4G, Slow 4G, a slow server and a repeat visit with Disable cache off, so the learner sees which phases grow. All millisecond values are example numbers.",
+    "learning_check": {
+      "question": "Which phase must finish before Request sent can start on a new HTTPS connection?",
+      "answer": "Initial connection, with its TCP handshakes and SSL negotiation. The Timing tab lists the phases in order. The request travels over the connection, so Initial connection, which covers the TCP handshakes and SSL negotiation, comes before Request sent."
+    },
+    "used_in": [
+      "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/06-network-panel-waterfall.mdx"
+    ],
+    "experience": {
+      "mode": "interactive",
+      "level": "beginner",
+      "project_dir": "projects/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/experiences/network-panel-waterfall",
+      "built": "projects/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/experiences/network-panel-waterfall/experience.built.json",
+      "tabs": [
+        "explore",
+        "guided",
+        "practice"
+      ],
+      "parts": {
+        "watch": null,
+        "guided": "network-waterfall-walkthrough",
+        "deck": null,
+        "summary_video": null,
+        "simulation": "AlgorithmStepper"
+      },
+      "checkpoints": 5,
+      "fallback_visual": "request-timing-phases-sequence",
+      "input_hash": "151d13e95a41866e56a784f45bcae68124b10e116f2afdb22d33ea283eb5e538",
+      "spec_hash": "e4e416cae9c3d836c1e6242c14b922f3053f704de8e4fda7003ba3656237202d",
+      "built_at": "2026-11-19T10:49:36Z"
+    }
+  },
+  {
+    "id": "devtools-panel-map",
+    "title": "Which DevTools panel answers which symptom",
+    "kind": "decision-tree",
+    "scope": "stage",
+    "format": "mermaid",
+    "file": "vault/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/visuals/assets/devtools-panel-map-browser-devtools-mastery.mmd",
+    "concept_ids": [
+      "browser-devtools"
+    ],
+    "source_ids": [
+      "chrome-devtools-docs",
+      "chrome-devtools-network-reference",
+      "chrome-devtools-performance-reference",
+      "chrome-devtools-memory-docs"
+    ],
+    "purpose": "Pick the first panel to open from the symptom of a bug, instead of opening panels at random.",
+    "explanation": "Each DevTools panel shows one kind of fact about the running page. Elements shows the DOM and CSS. Console shows errors and runs code. Sources pauses JavaScript. Network shows every request. Performance records the main thread. Memory takes heap snapshots. So the symptom tells you which panel to open first.",
+    "alt": "One box labelled bug symptom points to six panels: looks wrong goes to Elements, error shown to Console, wrong logic to Sources, slow request to Network, janky click to Performance, and grows over time to Memory. The symptom decides the first panel.",
+    "learning_check": {
+      "question": "A page gets slower the longer it stays open. Which panel do you open first?",
+      "answer": "Memory, because a page that grows over time points to memory that the page never frees."
+    },
+    "used_in": [
+      "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/01-what-devtools-are-for.mdx"
+    ]
+  },
+  {
+    "id": "a-production-debugging-workflow",
+    "title": "Triage a production bug: pick the first panel",
+    "kind": "experience",
+    "format": "experience",
+    "component": "Experience",
+    "concept_ids": [
+      "debugging-workflow",
+      "browser-devtools"
+    ],
+    "source_ids": [
+      "chrome-devtools-docs",
+      "chrome-devtools-network-reference",
+      "chrome-devtools-performance-reference",
+      "chrome-devtools-memory-docs",
+      "webkit-web-inspector-docs"
+    ],
+    "purpose": "Choose the first DevTools panel from a reported symptom and explain what evidence it gives and what a wrong first choice costs.",
+    "explanation": "Choose a path through the deck and open the deep dives. Choose the first DevTools panel from a reported symptom and explain what evidence it gives and what a wrong first choice costs.",
+    "alt": "A branching deck starts from six real symptoms: a slow first load, slow clicks, growing memory, a broken layout, old data after a deploy and an error only on an iPhone. Each branch opens the panel that records the matching evidence (Network, Performance, Memory, Elements, Application or remote debugging), shows what to read there, and compares it with a tempting wrong first panel.",
+    "learning_check": {
+      "question": "A page loads slowly for new visitors but fast on a reload. Which panel do you open first?",
+      "answer": "Network, with Disable cache ticked, then the slow request's Timing tab. A reload can use the cache, so the first visit is slower. Disable cache repeats the first visit, and the Timing tab shows whether Waiting or Content Download used the time."
+    },
+    "used_in": [
+      "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/12-a-production-debugging-workflow.mdx"
+    ],
+    "experience": {
+      "mode": "branching",
+      "level": "beginner",
+      "project_dir": "projects/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/experiences/a-production-debugging-workflow",
+      "built": "projects/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/experiences/a-production-debugging-workflow/experience.built.json",
+      "tabs": [
+        "deepdive",
+        "practice"
+      ],
+      "parts": {
+        "watch": null,
+        "guided": null,
+        "deck": "debugging-triage-paths",
+        "summary_video": null,
+        "simulation": null
+      },
+      "checkpoints": 4,
+      "fallback_visual": "debugging-triage-decision",
+      "input_hash": "728cb48a63830cb05114d777a1c144105da2dcfc9dd7d6a220280ad6926285bf",
+      "spec_hash": "82cd8503e174607cf725c13a6b9e5644c169c56ea546fb8ee51e997c128b5c9c",
+      "built_at": "2026-11-19T10:42:20Z"
+    }
+  },
+  {
+    "id": "styles-checkbox-before-after",
+    "title": "One Styles checkbox: computed padding and box width before and after",
+    "kind": "comparison",
+    "format": "component",
+    "component": "CompareView",
+    "concept_ids": [
+      "elements-and-styles",
+      "box-model-and-layout-overlays"
+    ],
+    "source_ids": [
+      "chrome-devtools-docs",
+      "firefox-devtools-user-docs"
+    ],
+    "purpose": "See how turning off the winning declaration changes the computed value and the box size.",
+    "explanation": "Two rules set padding on one button. The Styles tab crosses out the losing .btn declaration. When you clear the .btn-primary checkbox, .btn wins again, computed padding-left drops from 24px to 16px and the box shrinks from 130 px to 114 px. Example numbers assume content-box sizing.",
+    "alt": "Two columns compare a button before and after one Styles checkbox. Before, computed padding-left is 24px and the box is 130 px wide. After, padding-left is 16px and the box is 114 px, so the .btn-primary rule caused the extra width.",
+    "learning_check": {
+      "question": "Why does padding-left become 16px and not 0px when you turn off the .btn-primary padding?",
+      "answer": "The .btn rule still matches the button, so its crossed-out declaration wins the cascade again."
+    },
+    "used_in": [
+      "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/02-elements-and-styles.mdx"
+    ]
+  },
+  {
+    "id": "perf-deep-dives",
+    "title": "Performance panel deep dives",
+    "kind": "presentation",
+    "format": "hyperframes-slideshow",
+    "concept_ids": [
+      "performance-panel",
+      "flame-chart-and-long-tasks",
+      "core-web-vitals-in-devtools"
+    ],
+    "source_ids": [
+      "chrome-devtools-performance-reference",
+      "webdev-optimize-long-tasks"
+    ],
+    "purpose": "Go deeper into long tasks and yielding, and into the Core Web Vitals that the live metrics view and trace tracks show.",
+    "explanation": "Live metrics tell you that something is slow; a trace tells you which task made it slow and why input had to wait.",
+    "alt": "A short deck on where page time goes. The main path covers the working loop, the long-task rule, the live metrics view and when to use each. One deep dive explains why the main thread blocks input and how scheduler.yield() splits work. The other shows how INP and CLS appear in a trace: the Interactions track, the Layout shifts track and the Insights tab.",
+    "learning_check": {
+      "question": "What is the blocking period of a 90 ms task?",
+      "answer": "40 ms: the task time minus 50 ms."
+    },
+    "used_in": [
+      "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/07-performance-panel-traces.mdx"
+    ],
+    "deck": {
+      "project_dir": "projects/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/videos/perf-deep-dives",
+      "status": "built",
+      "input_hash": "7a05b00a2b53bd35578484c231799eb2830def3a48716ca820bfe4d935d3fca4",
+      "outline": "projects/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/videos/perf-deep-dives/outline.md",
+      "island": {
+        "slides": [
+          {
+            "sceneId": "question",
+            "notes": "Ask the learner how they would find out why one click on a page feels slow."
+          },
+          {
+            "sceneId": "workflow",
+            "notes": "Reveal one step at a time. Live metrics come first, a trace only when the problem repeats.",
+            "fragments": [
+              4.3,
+              4.6,
+              4.9,
+              5.2
+            ]
+          },
+          {
+            "sceneId": "long-tasks",
+            "notes": "A task over 50 ms gets a red triangle, and only the time past 50 ms is shaded red.",
+            "fragments": [
+              8.3,
+              8.6,
+              8.9
+            ],
+            "hotspots": [
+              {
+                "id": "long-tasks-h1",
+                "label": "Long tasks and yielding",
+                "target": "long-tasks-yielding",
+                "region": {
+                  "x": 5,
+                  "y": 81,
+                  "w": 64,
+                  "h": 12
+                }
+              }
+            ]
+          },
+          {
+            "sceneId": "live-metrics",
+            "notes": "The live metrics screen updates as you use the page, including soft navigations in single-page apps.",
+            "fragments": [
+              12.3,
+              12.6,
+              12.9
+            ],
+            "hotspots": [
+              {
+                "id": "live-metrics-h1",
+                "label": "Core Web Vitals in a trace",
+                "target": "vitals-in-trace",
+                "region": {
+                  "x": 5,
+                  "y": 81,
+                  "w": 64,
+                  "h": 12
+                }
+              }
+            ]
+          },
+          {
+            "sceneId": "takeaway",
+            "notes": "Live metrics are cheap and always on; a trace costs a recording but shows each task."
+          }
+        ],
+        "slideSequences": [
+          {
+            "id": "long-tasks-yielding",
+            "label": "Long tasks and yielding",
+            "slides": [
+              {
+                "sceneId": "one-at-a-time",
+                "notes": "The main thread can only process one task at a time, so input that arrives during a long task must wait.",
+                "fragments": [
+                  20.3,
+                  20.6,
+                  20.9
+                ]
+              },
+              {
+                "sceneId": "split-work",
+                "notes": "Breaking a long task into smaller ones lets the browser respond to input between the pieces."
+              },
+              {
+                "sceneId": "scheduler-yield",
+                "notes": "The await pauses the function; the browser can run input first, then the function continues where it left off.",
+                "fragments": [
+                  28.3,
+                  28.6,
+                  28.9,
+                  29.2
+                ]
+              }
+            ]
+          },
+          {
+            "id": "vitals-in-trace",
+            "label": "Core Web Vitals in a trace",
+            "slides": [
+              {
+                "sceneId": "interactions-track",
+                "notes": "Interactions over 200 ms get a red triangle; the tooltip splits the time into three parts.",
+                "fragments": [
+                  32.3,
+                  32.6,
+                  32.9,
+                  33.2
+                ]
+              },
+              {
+                "sceneId": "layout-shifts-track",
+                "notes": "Each layout shift is a purple diamond; hover highlights the element, click shows the score and likely culprits.",
+                "fragments": [
+                  36.3,
+                  36.6,
+                  36.9
+                ]
+              },
+              {
+                "sceneId": "insights-tab",
+                "notes": "The Insights tab in the left sidebar groups findings such as LCP and INP subparts and third parties."
+              }
+            ]
+          }
+        ]
+      },
+      "timeline": [
+        {
+          "id": "question",
+          "heading": "Where did the time go?",
+          "start": 0,
+          "duration": 4,
+          "sequence": null,
+          "fragments": []
+        },
+        {
+          "id": "workflow",
+          "heading": "The working loop",
+          "start": 4,
+          "duration": 4,
+          "sequence": null,
+          "fragments": [
+            4.3,
+            4.6,
+            4.9,
+            5.2
+          ]
+        },
+        {
+          "id": "long-tasks",
+          "heading": "The 50 ms rule",
+          "start": 8,
+          "duration": 4,
+          "sequence": null,
+          "fragments": [
+            8.3,
+            8.6,
+            8.9
+          ]
+        },
+        {
+          "id": "live-metrics",
+          "heading": "Live metrics first",
+          "start": 12,
+          "duration": 4,
+          "sequence": null,
+          "fragments": [
+            12.3,
+            12.6,
+            12.9
+          ]
+        },
+        {
+          "id": "takeaway",
+          "heading": "Metrics spot, traces explain",
+          "start": 16,
+          "duration": 4,
+          "sequence": null,
+          "fragments": []
+        },
+        {
+          "id": "one-at-a-time",
+          "heading": "One task at a time",
+          "start": 20,
+          "duration": 4,
+          "sequence": "long-tasks-yielding",
+          "fragments": [
+            20.3,
+            20.6,
+            20.9
+          ]
+        },
+        {
+          "id": "split-work",
+          "heading": "Split the work",
+          "start": 24,
+          "duration": 4,
+          "sequence": "long-tasks-yielding",
+          "fragments": []
+        },
+        {
+          "id": "scheduler-yield",
+          "heading": "await scheduler.yield()",
+          "start": 28,
+          "duration": 4,
+          "sequence": "long-tasks-yielding",
+          "fragments": [
+            28.3,
+            28.6,
+            28.9,
+            29.2
+          ]
+        },
+        {
+          "id": "interactions-track",
+          "heading": "INP: the Interactions track",
+          "start": 32,
+          "duration": 4,
+          "sequence": "vitals-in-trace",
+          "fragments": [
+            32.3,
+            32.6,
+            32.9,
+            33.2
+          ]
+        },
+        {
+          "id": "layout-shifts-track",
+          "heading": "CLS: the Layout shifts track",
+          "start": 36,
+          "duration": 4,
+          "sequence": "vitals-in-trace",
+          "fragments": [
+            36.3,
+            36.6,
+            36.9
+          ]
+        },
+        {
+          "id": "insights-tab",
+          "heading": "The Insights tab",
+          "start": 40,
+          "duration": 4,
+          "sequence": "vitals-in-trace",
+          "fragments": []
+        }
+      ],
+      "slides": 5,
+      "branches": [
+        {
+          "id": "long-tasks-yielding",
+          "label": "Long tasks and yielding",
+          "slides": 3
+        },
+        {
+          "id": "vitals-in-trace",
+          "label": "Core Web Vitals in a trace",
+          "slides": 3
+        }
+      ],
+      "composition": "site/public/media/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/perf-deep-dives/composition/index.html",
+      "composition_url": "/media/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/perf-deep-dives/composition/index.html",
+      "present_command": "npx --yes hyperframes@0.9.59 present projects/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/videos/perf-deep-dives/composition",
+      "check": {
+        "hash": "7a05b00a2b53bd35578484c231799eb2830def3a48716ca820bfe4d935d3fca4",
+        "errors": 1,
+        "warnings": 0,
+        "findings": [
+          "check_runtime_failure: The browser is already running for /tmp/claude-501/puppeteer_dev_chrome_profile-6hgtCr. Use a different `userDataDir` or stop the running browser first.\nChrome exited with code 21 when launched on its own.\nstderr:\n[1119/161338.477354:ERROR:third_party/crashpad/crashpad/util/mach/bootstrap.cc:65] bootstrap_check_in org.chromium.crashpad.child_port_handshake.84704.429647.GZCZMFTEMKDRYMMN: Permission denied (1100)\n[1119/161338.479464:ERROR:third_party/crashpad/crashpad/util/file/file_io.cc:103] ReadExactly: expected 4, observed 0\n[1119/161338.480853:ERROR:third_party/crashpad/crashpad/util/file/file_io_posix.cc:208] open /Users/lakshay.goyal/Library/Application Support/Google/Chrome/Crashpad/settings.dat: Operation not permitted (1)\n[1119/161338.481205:ERROR:third_party/crashpad/crashpad/util/file/file_io_posix.cc:208] open /Users/lakshay.goyal/Library/Application Support/Google/Chrome/Crashpad/settings.dat: Operation not permitted (1)\n[84700:429625:1119/161338.497658:ERROR:chrome/browser/process_singleton_posix.cc:1046] Failed to create socket directory.\n[84700:429625:1119/161338.497873:ERROR:chrome/app/chrome_main_delegate.cc:635] Failed to create a ProcessSingleton for your profile directory. This means that running multiple instances would start multiple browser processes rather than opening a new window in the existing process. Aborting now to avoid profile corruption."
+        ]
+      }
+    }
+  },
+  {
+    "id": "perf-trace-intro",
+    "title": "One slow click, recorded in a trace",
+    "kind": "video",
+    "format": "hyperframes",
+    "concept_ids": [
+      "performance-panel",
+      "flame-chart-and-long-tasks",
+      "core-web-vitals-in-devtools"
+    ],
+    "source_ids": [
+      "chrome-devtools-performance-reference",
+      "webdev-optimize-long-tasks"
+    ],
+    "purpose": "See how a Performance recording shows a slow click as a long task on the main thread.",
+    "explanation": "A trace turns a slow feeling into one task you can measure. The 50 ms limit tells you which tasks block the page.",
+    "alt": "You open the Performance panel, set CPU throttling, record while you click a button, and stop. The Main track shows the click handler as a task. In this example the handler needs 40 ms, 160 ms at 4x and 240 ms at 6x. A task over 50 ms is a long task: DevTools adds a red triangle and shades the time past 50 ms.",
+    "learning_check": {
+      "question": "A task lasts 160 ms. Is it a long task, and how much of it is red?",
+      "answer": "Yes. It is over 50 ms, so DevTools marks it and shades the last 110 ms red."
+    },
+    "used_in": [
+      "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/07-performance-panel-traces.mdx"
+    ],
+    "video": {
+      "project_dir": "projects/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/videos/perf-trace-intro",
+      "status": "storyboard",
+      "blocker": "FFmpeg is not installed and Docker is not running; install FFmpeg (for example `brew install ffmpeg`) or start Docker. The storyboard, captions and transcript are ready; render later with `tutor video frontend-engineering/learning-system-and-workstation/browser-devtools-mastery render perf-trace-intro`.",
+      "storyboard": "projects/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/videos/perf-trace-intro/storyboard.md",
+      "transcript": "projects/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/videos/perf-trace-intro/transcript.md",
+      "captions_source": "projects/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/videos/perf-trace-intro/captions.vtt",
+      "duration_s": 45,
+      "scenes": 5,
+      "narration": "say",
+      "input_hash": "5aba4b905b81c16a20c48fcedd7a7f738a776c60168b7049aa205dd4b2d08891",
+      "timeline": [
+        {
+          "id": "intro",
+          "heading": "One slow click, recorded",
+          "start": 0,
+          "duration": 8
+        },
+        {
+          "id": "record",
+          "heading": "Record a runtime trace",
+          "start": 8,
+          "duration": 9
+        },
+        {
+          "id": "main-thread",
+          "heading": "The click becomes a task",
+          "start": 17,
+          "duration": 10
+        },
+        {
+          "id": "throttle",
+          "heading": "Throttling slows the same work",
+          "start": 27,
+          "duration": 8
+        },
+        {
+          "id": "long-task",
+          "heading": "Over 50 ms is a long task",
+          "start": 35,
+          "duration": 10
+        }
+      ],
+      "composition": "site/public/media/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/perf-trace-intro/composition/index.html",
+      "composition_url": "/media/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/perf-trace-intro/composition/index.html",
+      "lint": {
+        "hash": "5aba4b905b81c16a20c48fcedd7a7f738a776c60168b7049aa205dd4b2d08891",
+        "errors": 0,
+        "warnings": 21,
+        "findings": []
+      }
+    }
+  },
+  {
+    "id": "perf-trace-guided",
+    "title": "Walk through a throttled trace",
+    "kind": "video",
+    "format": "hyperframes",
+    "concept_ids": [
+      "performance-panel",
+      "flame-chart-and-long-tasks",
+      "core-web-vitals-in-devtools"
+    ],
+    "source_ids": [
+      "chrome-devtools-performance-reference",
+      "webdev-optimize-long-tasks"
+    ],
+    "purpose": "Read the flame chart and see how throttling and yielding change long tasks and input delay.",
+    "explanation": "Throttling makes every task longer; yielding keeps each task short so the browser can handle input between pieces.",
+    "alt": "A guided walk through one click handler. At 1x it is one 40 ms task. The flame chart shows time from left to right and the call stack from top to bottom. A 4x slowdown makes one 160 ms long task, and a second click waits 135 ms. Four yielding pieces of 40 ms remove the long task and cut the wait to 15 ms. At 6x the pieces are 60 ms and long again, so the work needs smaller pieces.",
+    "learning_check": {
+      "question": "Why does yielding cut the input delay without doing less work?",
+      "answer": "The main thread runs one task at a time. Short pieces end sooner, so a waiting click runs between pieces instead of after all the work."
+    },
+    "used_in": [
+      "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/07-performance-panel-traces.mdx"
+    ],
+    "video": {
+      "project_dir": "projects/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/videos/perf-trace-guided",
+      "status": "storyboard",
+      "blocker": "FFmpeg is not installed and Docker is not running; install FFmpeg (for example `brew install ffmpeg`) or start Docker",
+      "storyboard": "projects/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/videos/perf-trace-guided/storyboard.md",
+      "transcript": "projects/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/videos/perf-trace-guided/transcript.md",
+      "captions_source": "projects/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/videos/perf-trace-guided/captions.vtt",
+      "duration_s": 62,
+      "scenes": 6,
+      "narration": "say",
+      "input_hash": "2855faec491658fa7c7a592a37d286b1e1b6cc4250e780573ff02248606ed6fd",
+      "timeline": [
+        {
+          "id": "record",
+          "heading": "No throttling: one 40 ms task",
+          "start": 0,
+          "duration": 10
+        },
+        {
+          "id": "flame",
+          "heading": "How to read the flame chart",
+          "start": 10,
+          "duration": 12
+        },
+        {
+          "id": "throttle",
+          "heading": "4x slowdown: one 160 ms task",
+          "start": 22,
+          "duration": 10
+        },
+        {
+          "id": "long-task",
+          "heading": "The second click waits",
+          "start": 32,
+          "duration": 10
+        },
+        {
+          "id": "yield",
+          "heading": "Yield between pieces",
+          "start": 42,
+          "duration": 10
+        },
+        {
+          "id": "six-x",
+          "heading": "6x slowdown: smaller pieces",
+          "start": 52,
+          "duration": 10
+        }
+      ],
+      "composition": "site/public/media/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/perf-trace-guided/composition/index.html",
+      "composition_url": "/media/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/perf-trace-guided/composition/index.html",
+      "lint": {
+        "hash": "2855faec491658fa7c7a592a37d286b1e1b6cc4250e780573ff02248606ed6fd",
+        "errors": 0,
+        "warnings": 25,
+        "findings": []
+      }
+    }
+  },
+  {
+    "id": "perf-trace-summary",
+    "title": "Performance traces in four rules",
+    "kind": "video",
+    "format": "hyperframes",
+    "concept_ids": [
+      "performance-panel",
+      "flame-chart-and-long-tasks",
+      "core-web-vitals-in-devtools"
+    ],
+    "source_ids": [
+      "chrome-devtools-performance-reference",
+      "webdev-optimize-long-tasks"
+    ],
+    "purpose": "Connect live metrics, traces, long tasks and yielding into one way of working.",
+    "explanation": "Use live metrics to spot a problem, a trace to find the long task, and yielding to keep tasks short.",
+    "alt": "A recap. Live metrics show LCP, CLS and INP while you use the page. A recorded trace shows each task on the main thread. A task over 50 ms is a long task, and only the part past 50 ms is red. Yielding splits long work so input can run between pieces. Throttling is relative to your computer, so it is a guide, not a phone.",
+    "learning_check": {
+      "question": "You see a high INP in live metrics. What do you do next?",
+      "answer": "Repeat the slow interaction while you record a trace, then look for long tasks in the Main track and the Interactions track."
+    },
+    "used_in": [
+      "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/07-performance-panel-traces.mdx"
+    ],
+    "video": {
+      "project_dir": "projects/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/videos/perf-trace-summary",
+      "status": "storyboard",
+      "blocker": "FFmpeg is not installed and Docker is not running; install FFmpeg (for example `brew install ffmpeg`) or start Docker. The storyboard, captions and transcript are ready; render later with `tutor video frontend-engineering/learning-system-and-workstation/browser-devtools-mastery render perf-trace-summary`.",
+      "storyboard": "projects/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/videos/perf-trace-summary/storyboard.md",
+      "transcript": "projects/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/videos/perf-trace-summary/transcript.md",
+      "captions_source": "projects/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/videos/perf-trace-summary/captions.vtt",
+      "duration_s": 33,
+      "scenes": 4,
+      "narration": "say",
+      "input_hash": "59f43e0c92950cd39ea0010a5030404576b55207ca02fd1db642acce0b11bac0",
+      "timeline": [
+        {
+          "id": "intro",
+          "heading": "Performance traces in four rules",
+          "start": 0,
+          "duration": 5
+        },
+        {
+          "id": "rules",
+          "heading": "The rules",
+          "start": 5,
+          "duration": 10
+        },
+        {
+          "id": "delay",
+          "heading": "Same work, shorter wait",
+          "start": 15,
+          "duration": 10
+        },
+        {
+          "id": "caveat",
+          "heading": "Throttling is a guide",
+          "start": 25,
+          "duration": 8
+        }
+      ],
+      "composition": "site/public/media/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/perf-trace-summary/composition/index.html",
+      "composition_url": "/media/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/perf-trace-summary/composition/index.html",
+      "lint": {
+        "hash": "59f43e0c92950cd39ea0010a5030404576b55207ca02fd1db642acce0b11bac0",
+        "errors": 0,
+        "warnings": 16,
+        "findings": []
+      }
+    }
+  },
+  {
+    "id": "performance-panel-traces",
+    "title": "Record a trace and find the long task",
+    "kind": "experience",
+    "format": "experience",
+    "component": "Experience",
+    "concept_ids": [
+      "performance-panel",
+      "flame-chart-and-long-tasks",
+      "core-web-vitals-in-devtools"
+    ],
+    "source_ids": [
+      "chrome-devtools-performance-reference",
+      "webdev-optimize-long-tasks"
+    ],
+    "purpose": "Read a main-thread trace, spot long tasks over 50 ms, and predict how CPU throttling and yielding change input delay.",
+    "explanation": "Watch, experiment with the simulation, step through the walkthrough, explore the deep dives and practice. Read a main-thread trace, spot long tasks over 50 ms, and predict how CPU throttling and yielding change input delay.",
+    "alt": "An intro video records a trace of one slow click. A simulated Main track lets the learner pick CPU throttling (none, 4x, 6x) and one big task or yielding pieces, then step through the trace to see which tasks pass 50 ms, how much is shaded red, and how long a second click waits. A guided walkthrough explains the flame chart axes, deep dives cover yielding and the live Core Web Vitals, and a summary video connects the rules. The task times are a simulated example built on the 50 ms rule; real numbers depend on your machine.",
+    "learning_check": {
+      "question": "The handler takes 40 ms with no throttling. You set a 4x slowdown and record again. What does the Main track show?",
+      "answer": "One task of about 160 ms, marked as a long task. A 4x slowdown makes the CPU run four times as slowly, so the same work takes about 160 ms. That is over 50 ms, so DevTools marks it as a long task and shades the time past 50 ms red."
+    },
+    "used_in": [
+      "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/07-performance-panel-traces.mdx"
+    ],
+    "experience": {
+      "mode": "hybrid",
+      "level": "advanced",
+      "project_dir": "projects/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/experiences/performance-panel-traces",
+      "built": "projects/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/experiences/performance-panel-traces/experience.built.json",
+      "tabs": [
+        "watch",
+        "explore",
+        "guided",
+        "deepdive",
+        "practice"
+      ],
+      "parts": {
+        "watch": "perf-trace-intro",
+        "guided": "perf-trace-guided",
+        "deck": "perf-deep-dives",
+        "summary_video": "perf-trace-summary",
+        "simulation": "AlgorithmStepper"
+      },
+      "checkpoints": 7,
+      "fallback_visual": "chrome-devtools-performance-reference-mechanism",
+      "input_hash": "bee997397bb4b5dc2f9c24142389f8e0300273cc468ca30376a93bcd43e4f92f",
+      "spec_hash": "d75fac419f056b3e5d07aea1e2e87c9de2cbadbd4957d83802a9f33d8d484341",
+      "built_at": "2026-11-19T10:43:59Z"
+    }
+  },
+  {
+    "id": "console-table-vs-dir",
+    "title": "console.table and console.dir on the same request data",
+    "kind": "comparison",
+    "format": "component",
+    "component": "CodePlayground",
+    "concept_ids": [
+      "console-api"
+    ],
+    "source_ids": [
+      "chrome-devtools-docs"
+    ],
+    "purpose": "Compare the table view of an array with the property view of one object, and choose columns for the table.",
+    "explanation": "The same three API responses print in two shapes. console.table gives one row per item, so the slow 912 ms request stands out. console.dir lists each property of one item with its type. A second argument to console.table keeps only the columns you name.",
+    "alt": "A runnable code editor prints three requests as a table with url and ms columns, then lists the url, status and ms properties of the 500 response, so the table compares items and dir inspects one item.",
+    "learning_check": {
+      "question": "You need to compare the duration of 40 requests. Which call do you use, and why?",
+      "answer": "console.table, because it puts one request per row, so you can scan one column of durations."
+    },
+    "used_in": [
+      "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/03-console-power-use.mdx"
+    ]
+  },
+  {
+    "id": "breakpoints-async-race-fallback",
+    "title": "Two racing fetches make a search list stale",
+    "kind": "sequence",
+    "scope": "detail",
+    "format": "mermaid",
+    "file": "vault/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/visuals/assets/breakpoints-async-race-fallback-browser-devtools-mastery.mmd",
+    "concept_ids": [
+      "breakpoint-debugging",
+      "async-call-stacks"
+    ],
+    "source_ids": [
+      "chrome-devtools-docs"
+    ],
+    "purpose": "Show the order of events in the search race and where a conditional breakpoint pauses.",
+    "explanation": "Each input event starts its own fetch. The fast react response renders first, then the slow re response renders last and overwrites the list. A conditional breakpoint with query !== input.value pauses only on the stale response, and async frames link it back to the call that started the fetch.",
+    "alt": "Sequence diagram: the search box sends two input events, re and then react. onInput starts a slow fetch for re and a fast fetch for react. The react items arrive first and render Results for react. The re items arrive last; a conditional breakpoint on line 5 pauses there, the Call Stack with async frames shows onInput line 5, await getJSON and onInput line 4, and render writes the stale Results for re.",
+    "learning_check": {
+      "question": "Why does the conditional breakpoint pause on the re response but not on the react response?",
+      "answer": "For the re response, query is re but the box says react, so query !== input.value is true. For react they match."
+    },
+    "used_in": [
+      "projects/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/experiences/breakpoints-async-debugging/experience.json"
+    ]
+  },
+  {
+    "id": "breakpoints-race-intro",
+    "title": "Why a search box shows stale results",
+    "kind": "video",
+    "format": "hyperframes",
+    "concept_ids": [
+      "breakpoint-debugging",
+      "async-call-stacks"
+    ],
+    "source_ids": [
+      "chrome-devtools-docs"
+    ],
+    "purpose": "See how two racing fetches cause stale results, and why a breakpoint finds the cause faster than console.log.",
+    "explanation": "Two requests can be in flight at the same time. The response that arrives last overwrites the list, even when it belongs to an old query.",
+    "alt": "A user types re and then react in a search box. Each input event starts a fetch. The react response arrives first and the slow re response arrives last, so the list shows results for the old query. A breakpoint pauses the code before a line runs, so you can read the Scope, Watch and Call Stack panes instead of guessing with console.log.",
+    "learning_check": {
+      "question": "Why does the list show results for re when the box says react?",
+      "answer": "The re request was slower. Its response arrived after the react response and overwrote the list."
+    },
+    "used_in": [
+      "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/04-breakpoints-and-async-debugging.mdx"
+    ],
+    "video": {
+      "project_dir": "projects/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/videos/breakpoints-race-intro",
+      "status": "storyboard",
+      "blocker": "FFmpeg is not installed and Docker is not running; install FFmpeg (for example `brew install ffmpeg`) or start Docker. The storyboard, captions and transcript are ready; render later with `tutor video frontend-engineering/learning-system-and-workstation/browser-devtools-mastery render breakpoints-race-intro`.",
+      "storyboard": "projects/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/videos/breakpoints-race-intro/storyboard.md",
+      "transcript": "projects/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/videos/breakpoints-race-intro/transcript.md",
+      "captions_source": "projects/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/videos/breakpoints-race-intro/captions.vtt",
+      "duration_s": 45,
+      "scenes": 5,
+      "narration": "say",
+      "input_hash": "4944c2597cc1b28a0d932348667a722da0b895766de2094f4a5884dcfc0e429d",
+      "timeline": [
+        {
+          "id": "intro",
+          "heading": "Stale search results",
+          "start": 0,
+          "duration": 5
+        },
+        {
+          "id": "race",
+          "heading": "Two requests race",
+          "start": 5,
+          "duration": 13
+        },
+        {
+          "id": "why-pause",
+          "heading": "console.log or a breakpoint",
+          "start": 18,
+          "duration": 10
+        },
+        {
+          "id": "loop",
+          "heading": "The debugging loop",
+          "start": 28,
+          "duration": 12
+        },
+        {
+          "id": "next",
+          "heading": "Now catch the race",
+          "start": 40,
+          "duration": 5
+        }
+      ],
+      "composition": "site/public/media/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/breakpoints-race-intro/composition/index.html",
+      "composition_url": "/media/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/breakpoints-race-intro/composition/index.html",
+      "lint": {
+        "hash": "4944c2597cc1b28a0d932348667a722da0b895766de2094f4a5884dcfc0e429d",
+        "errors": 0,
+        "warnings": 20,
+        "findings": []
+      }
+    }
+  },
+  {
+    "id": "breakpoints-race-summary",
+    "title": "Breakpoints and async stacks in one minute",
+    "kind": "video",
+    "format": "hyperframes",
+    "concept_ids": [
+      "breakpoint-debugging",
+      "async-call-stacks"
+    ],
+    "source_ids": [
+      "chrome-devtools-docs"
+    ],
+    "purpose": "Recall which breakpoint answers which question, and how the async call stack explains a race.",
+    "explanation": "Choose the breakpoint by the question you ask. The Call Stack with async frames tells you which earlier call caused the code that is paused now.",
+    "alt": "The summary replays the session. The symptom was a stale list. A fetch breakpoint showed two requests in flight. A conditional breakpoint paused only on the stale response. Stepping showed render writing the old label, and async frames showed which input event started the stale request.",
+    "learning_check": {
+      "question": "You see a wrong request URL. Which breakpoint finds the code that sends it?",
+      "answer": "An XHR/fetch breakpoint with part of the URL as its string."
+    },
+    "used_in": [
+      "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/04-breakpoints-and-async-debugging.mdx"
+    ],
+    "video": {
+      "project_dir": "projects/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/videos/breakpoints-race-summary",
+      "status": "storyboard",
+      "blocker": "FFmpeg is not installed and Docker is not running; install FFmpeg (for example `brew install ffmpeg`) or start Docker. The storyboard, captions and transcript are ready; render later with `tutor video frontend-engineering/learning-system-and-workstation/browser-devtools-mastery render breakpoints-race-summary`.",
+      "storyboard": "projects/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/videos/breakpoints-race-summary/storyboard.md",
+      "transcript": "projects/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/videos/breakpoints-race-summary/transcript.md",
+      "captions_source": "projects/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/videos/breakpoints-race-summary/captions.vtt",
+      "duration_s": 39,
+      "scenes": 4,
+      "narration": "say",
+      "input_hash": "2463e1e6607e1e65da2ef6079f5590ef3be52d631aa32f27bc8dcbb15338cd1f",
+      "timeline": [
+        {
+          "id": "recap",
+          "heading": "What you found",
+          "start": 0,
+          "duration": 5
+        },
+        {
+          "id": "pick",
+          "heading": "Pick the breakpoint by the question",
+          "start": 5,
+          "duration": 13
+        },
+        {
+          "id": "read",
+          "heading": "Read the pause",
+          "start": 18,
+          "duration": 12
+        },
+        {
+          "id": "fix",
+          "heading": "From evidence to fix",
+          "start": 30,
+          "duration": 9
+        }
+      ],
+      "composition": "site/public/media/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/breakpoints-race-summary/composition/index.html",
+      "composition_url": "/media/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/breakpoints-race-summary/composition/index.html",
+      "lint": {
+        "hash": "2463e1e6607e1e65da2ef6079f5590ef3be52d631aa32f27bc8dcbb15338cd1f",
+        "errors": 0,
+        "warnings": 14,
+        "findings": []
+      }
+    }
+  },
+  {
+    "id": "breakpoint-types-and-stepping",
+    "title": "Breakpoint types and stepping",
+    "kind": "presentation",
+    "format": "hyperframes-slideshow",
+    "concept_ids": [
+      "breakpoint-debugging",
+      "async-call-stacks"
+    ],
+    "source_ids": [
+      "chrome-devtools-docs"
+    ],
+    "purpose": "Choose the breakpoint type that answers your question, and choose how to step once the code is paused.",
+    "explanation": "Each breakpoint type answers one question: where in the code, under which condition, on which element, on which request or after which event. Stepping then moves one line or one function at a time.",
+    "alt": "A short deck asks which breakpoint to set for a bug. The main path compares line-of-code, conditional, logpoint, DOM change, XHR/fetch and event listener breakpoints, then the three stepping buttons. Two deep dives show how a conditional breakpoint catches the stale search response and how step into, over and out move through render.",
+    "learning_check": {
+      "question": "You want to log a value on every call without pausing and without editing the code. Which breakpoint type do you use?",
+      "answer": "A logpoint. It logs a message to the Console and does not pause."
+    },
+    "used_in": [
+      "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/04-breakpoints-and-async-debugging.mdx"
+    ],
+    "deck": {
+      "project_dir": "projects/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/videos/breakpoint-types-and-stepping",
+      "status": "built",
+      "input_hash": "5ba2087f90f06cd1f7c729879f253863b8255ff508bf80d1a7eceeb230a2456d",
+      "outline": "projects/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/videos/breakpoint-types-and-stepping/outline.md",
+      "island": {
+        "slides": [
+          {
+            "sceneId": "question",
+            "notes": "Ask the learner what they know about the bug: the line, the element, the request URL or the event. The answer chooses the breakpoint type."
+          },
+          {
+            "sceneId": "types",
+            "notes": "Reveal the types one at a time. Each one pauses on a different kind of event, so each answers a different question.",
+            "fragments": [
+              4.3,
+              4.6,
+              4.9,
+              5.2,
+              5.5,
+              5.8
+            ],
+            "hotspots": [
+              {
+                "id": "types-h1",
+                "label": "Catch the stale response",
+                "target": "conditional-race",
+                "region": {
+                  "x": 5,
+                  "y": 81,
+                  "w": 64,
+                  "h": 12
+                }
+              }
+            ]
+          },
+          {
+            "sceneId": "stepping",
+            "notes": "Once paused, choose how far to move. Step over skips a function that is not related to the bug; step into enters one that is; step out finishes the current function.",
+            "fragments": [
+              8.3,
+              8.6,
+              8.9
+            ],
+            "hotspots": [
+              {
+                "id": "stepping-h1",
+                "label": "Step through render",
+                "target": "step-render",
+                "region": {
+                  "x": 5,
+                  "y": 81,
+                  "w": 64,
+                  "h": 12
+                }
+              }
+            ]
+          },
+          {
+            "sceneId": "takeaway",
+            "notes": "At every pause read Scope for local values, Watch for your own expressions and the Call Stack for how the code got there."
+          }
+        ],
+        "slideSequences": [
+          {
+            "id": "conditional-race",
+            "label": "Catch the stale response",
+            "slides": [
+              {
+                "sceneId": "line-too-often",
+                "notes": "On line 5 a plain breakpoint pauses for the fresh react response and for the stale re response, so you resume past pauses you do not need."
+              },
+              {
+                "sceneId": "condition-skips",
+                "notes": "Right-click the line number, choose Add conditional breakpoint and enter query !== input.value. DevTools now pauses only on the stale response."
+              }
+            ]
+          },
+          {
+            "id": "step-render",
+            "label": "Step through render",
+            "slides": [
+              {
+                "sceneId": "into-render",
+                "notes": "Paused on line 5, step into moves the pause to line 8 inside render. The Call Stack now has render on top of onInput."
+              },
+              {
+                "sceneId": "over-and-out",
+                "notes": "Step over runs line 8 and line 9 one at a time; the label then says Results for re. Step out returns to onInput on line 6."
+              }
+            ]
+          }
+        ]
+      },
+      "timeline": [
+        {
+          "id": "question",
+          "heading": "Which breakpoint do you set?",
+          "start": 0,
+          "duration": 4,
+          "sequence": null,
+          "fragments": []
+        },
+        {
+          "id": "types",
+          "heading": "One type per question",
+          "start": 4,
+          "duration": 4,
+          "sequence": null,
+          "fragments": [
+            4.3,
+            4.6,
+            4.9,
+            5.2,
+            5.5,
+            5.8
+          ]
+        },
+        {
+          "id": "stepping",
+          "heading": "Three ways to step",
+          "start": 8,
+          "duration": 4,
+          "sequence": null,
+          "fragments": [
+            8.3,
+            8.6,
+            8.9
+          ]
+        },
+        {
+          "id": "takeaway",
+          "heading": "Pause, read, move",
+          "start": 12,
+          "duration": 4,
+          "sequence": null,
+          "fragments": []
+        },
+        {
+          "id": "line-too-often",
+          "heading": "A line breakpoint pauses every time",
+          "start": 16,
+          "duration": 4,
+          "sequence": "conditional-race",
+          "fragments": []
+        },
+        {
+          "id": "condition-skips",
+          "heading": "A condition skips the fresh pause",
+          "start": 20,
+          "duration": 4,
+          "sequence": "conditional-race",
+          "fragments": []
+        },
+        {
+          "id": "into-render",
+          "heading": "Step into render",
+          "start": 24,
+          "duration": 4,
+          "sequence": "step-render",
+          "fragments": []
+        },
+        {
+          "id": "over-and-out",
+          "heading": "Step over, then step out",
+          "start": 28,
+          "duration": 4,
+          "sequence": "step-render",
+          "fragments": []
+        }
+      ],
+      "slides": 4,
+      "branches": [
+        {
+          "id": "conditional-race",
+          "label": "Catch the stale response",
+          "slides": 2
+        },
+        {
+          "id": "step-render",
+          "label": "Step through render",
+          "slides": 2
+        }
+      ],
+      "composition": "site/public/media/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/breakpoint-types-and-stepping/composition/index.html",
+      "composition_url": "/media/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/breakpoint-types-and-stepping/composition/index.html",
+      "present_command": "npx --yes hyperframes@0.9.59 present projects/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/videos/breakpoint-types-and-stepping/composition",
+      "check": {
+        "hash": "5ba2087f90f06cd1f7c729879f253863b8255ff508bf80d1a7eceeb230a2456d",
+        "errors": 1,
+        "warnings": 0,
+        "findings": [
+          "check_runtime_failure: The browser is already running for /tmp/claude-501/puppeteer_dev_chrome_profile-rDA4AF. Use a different `userDataDir` or stop the running browser first.\nChrome exited with code 21 when launched on its own.\nstderr:\n[1119/161533.367680:ERROR:third_party/crashpad/crashpad/util/mach/bootstrap.cc:65] bootstrap_check_in org.chromium.crashpad.child_port_handshake.90368.449681.MJQFIWMBYEGCUDZY: Permission denied (1100)\n[1119/161533.371252:ERROR:third_party/crashpad/crashpad/util/file/file_io.cc:103] ReadExactly: expected 4, observed 0\n[1119/161533.373526:ERROR:third_party/crashpad/crashpad/util/file/file_io_posix.cc:208] open /Users/lakshay.goyal/Library/Application Support/Google/Chrome/Crashpad/settings.dat: Operation not permitted (1)\n[1119/161533.373813:ERROR:third_party/crashpad/crashpad/util/file/file_io_posix.cc:208] open /Users/lakshay.goyal/Library/Application Support/Google/Chrome/Crashpad/settings.dat: Operation not permitted (1)\n[90350:449648:1119/161533.396426:ERROR:chrome/browser/process_singleton_posix.cc:1046] Failed to create socket directory.\n[90350:449648:1119/161533.396917:ERROR:chrome/app/chrome_main_delegate.cc:635] Failed to create a ProcessSingleton for your profile directory. This means that running multiple instances would start multiple browser processes rather than opening a new window in the existing process. Aborting now to avoid profile corruption."
+        ]
+      }
+    }
+  },
+  {
+    "id": "breakpoints-race-guided",
+    "title": "Catch the search race with breakpoints",
+    "kind": "video",
+    "format": "hyperframes",
+    "concept_ids": [
+      "breakpoint-debugging",
+      "async-call-stacks"
+    ],
+    "source_ids": [
+      "chrome-devtools-docs"
+    ],
+    "purpose": "Use fetch, line and conditional breakpoints, stepping and async frames to find which response makes the list stale.",
+    "explanation": "A conditional breakpoint skips the pauses you do not need. Async frames in the Call Stack show which earlier call started the code that is paused now.",
+    "alt": "A fetch breakpoint pauses on line 12 each time a request to search?q= starts. A line-of-code breakpoint on line 5 pauses for both responses. A conditional breakpoint with query !== input.value pauses only on the stale re response. Step into enters render, step over runs one line, step out returns. After an await the stack holds only the resumed code; async frames link it back to the code that started the fetch.",
+    "learning_check": {
+      "question": "Which breakpoint pauses only on the stale response?",
+      "answer": "A conditional breakpoint on line 5 with the condition query !== input.value."
+    },
+    "used_in": [
+      "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/04-breakpoints-and-async-debugging.mdx"
+    ],
+    "video": {
+      "project_dir": "projects/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/videos/breakpoints-race-guided",
+      "status": "storyboard",
+      "blocker": "FFmpeg is not installed and Docker is not running; install FFmpeg (for example `brew install ffmpeg`) or start Docker",
+      "storyboard": "projects/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/videos/breakpoints-race-guided/storyboard.md",
+      "transcript": "projects/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/videos/breakpoints-race-guided/transcript.md",
+      "captions_source": "projects/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/videos/breakpoints-race-guided/captions.vtt",
+      "duration_s": 68,
+      "scenes": 6,
+      "narration": "say",
+      "input_hash": "1b7cf9d27e1938e5b9cf1a4a31746b0fc4bfe3ceb7aa79578f1f02b67e95b4dd",
+      "timeline": [
+        {
+          "id": "the-bug",
+          "heading": "The code under test",
+          "start": 0,
+          "duration": 8
+        },
+        {
+          "id": "two-requests",
+          "heading": "A fetch breakpoint",
+          "start": 8,
+          "duration": 11
+        },
+        {
+          "id": "line-pause",
+          "heading": "A line-of-code breakpoint",
+          "start": 19,
+          "duration": 12
+        },
+        {
+          "id": "conditional",
+          "heading": "A conditional breakpoint",
+          "start": 31,
+          "duration": 12
+        },
+        {
+          "id": "step-into",
+          "heading": "Step into, over and out",
+          "start": 43,
+          "duration": 12
+        },
+        {
+          "id": "async-stack",
+          "heading": "Async frames link the call history",
+          "start": 55,
+          "duration": 13
+        }
+      ],
+      "composition": "site/public/media/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/breakpoints-race-guided/composition/index.html",
+      "composition_url": "/media/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/breakpoints-race-guided/composition/index.html",
+      "lint": {
+        "hash": "1b7cf9d27e1938e5b9cf1a4a31746b0fc4bfe3ceb7aa79578f1f02b67e95b4dd",
+        "errors": 0,
+        "warnings": 25,
+        "findings": []
+      }
+    }
+  },
+  {
+    "id": "breakpoints-async-debugging",
+    "title": "Debug a search race with breakpoints and async call stacks",
+    "kind": "experience",
+    "format": "experience",
+    "component": "Experience",
+    "concept_ids": [
+      "breakpoint-debugging",
+      "async-call-stacks"
+    ],
+    "source_ids": [
+      "chrome-devtools-docs"
+    ],
+    "purpose": "Choose a breakpoint type, step through paused code and use async call stack frames to find which fetch makes a search box show stale results.",
+    "explanation": "Watch, experiment with the simulation, step through the walkthrough, explore the deep dives and practice. Choose a breakpoint type, step through paused code and use async call stack frames to find which fetch makes a search box show stale results.",
+    "alt": "An intro video shows a search box whose list shows results for an old query because two fetches race. A stepper lets the learner pause the code with a line-of-code, conditional or XHR/fetch breakpoint, step into, over and out, and compare the Call Stack with and without async frames. A guided walkthrough pauses at each breakpoint, a deck explains the breakpoint types and stepping, and a summary video connects the evidence to the fix.",
+    "learning_check": {
+      "question": "Both requests are in flight and the re request is slower. What does the label say at the end?",
+      "answer": "Results for re, because the slow response arrives last and overwrites the list. Each input event starts its own fetch, and both run at the same time. render runs once per response, in the order the responses arrive, so the slow re response writes the list last."
+    },
+    "used_in": [
+      "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/04-breakpoints-and-async-debugging.mdx"
+    ],
+    "experience": {
+      "mode": "hybrid",
+      "level": "advanced",
+      "project_dir": "projects/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/experiences/breakpoints-async-debugging",
+      "built": "projects/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/experiences/breakpoints-async-debugging/experience.built.json",
+      "tabs": [
+        "watch",
+        "explore",
+        "guided",
+        "deepdive",
+        "practice"
+      ],
+      "parts": {
+        "watch": "breakpoints-race-intro",
+        "guided": "breakpoints-race-guided",
+        "deck": "breakpoint-types-and-stepping",
+        "summary_video": "breakpoints-race-summary",
+        "simulation": "AlgorithmStepper"
+      },
+      "checkpoints": 5,
+      "fallback_visual": "breakpoints-async-race-fallback",
+      "input_hash": "41650ef165f66e7729f6c9f97ff048b9c92365f31a7ba4c4ac0a41234e155bd4",
+      "spec_hash": "2d2cd6f716006bb3692a1e6f224b58e55746686d402bc3c115bab71a950b162f",
+      "built_at": "2026-11-19T10:45:19Z"
+    }
+  },
+  {
+    "id": "debugger-pause-step-resume",
+    "title": "Pause, step and resume: the states of the Sources panel debugger",
+    "kind": "state-machine",
+    "format": "component",
+    "component": "StateMachine",
+    "concept_ids": [
+      "breakpoint-debugging",
+      "async-call-stacks"
+    ],
+    "source_ids": [
+      "chrome-devtools-docs"
+    ],
+    "purpose": "See which debugger control moves the page from running to paused, between functions, and back to running.",
+    "explanation": "A breakpoint moves running code to paused. Step into enters the called function. Step out finishes it and pauses in the caller again. Resume runs until the next breakpoint. A breakpoint in a callback pauses later, and the Call Stack then links the callback to the code that scheduled it.",
+    "alt": "Four states: Running, Paused in updateHeader, Paused in getName and Paused in a .then callback. A breakpoint moves Running to a paused state, Step into and Step out move between caller and callee, and Resume returns to Running, so the debugger is always either running or paused at one line.",
+    "learning_check": {
+      "question": "You are paused inside getName and want to get back to updateHeader without reading the rest of getName. Which control do you press?",
+      "answer": "Step out. It runs the rest of getName and pauses again in the function that called it."
+    },
+    "used_in": [
+      "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/04-breakpoints-and-async-debugging.mdx"
+    ]
+  },
+  {
+    "id": "source-map-position-lookup",
+    "title": "Trace one minified position back to the original line",
+    "kind": "workflow",
+    "scope": "detail",
+    "format": "mermaid",
+    "file": "vault/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/visuals/assets/source-map-position-lookup-browser-devtools-mastery.mmd",
+    "concept_ids": [
+      "source-maps"
+    ],
+    "source_ids": [
+      "ecma-426-source-map",
+      "chrome-devtools-docs"
+    ],
+    "purpose": "Follow how DevTools turns a position in minified code into a file, line and column in the code you wrote.",
+    "explanation": "The minified file ends with a sourceMappingURL comment, so DevTools fetches the map. It splits the mappings string into lines and segments, decodes each base64 VLQ segment and adds it to the previous values. File names are examples; positions count from 0, as in the worked example of the ECMA-426 digest.",
+    "alt": "Five boxes left to right: a position in app.min.js, its sourceMappingURL comment, the fetched app.min.js.map, the decoded segment AACS, and the original position in search.ts. Each lookup goes through the map, so a missing or stale map gives no position or a wrong one.",
+    "learning_check": {
+      "question": "The server stops sending app.min.js.map. Which box in the chain breaks, and what does the Sources panel show?",
+      "answer": "The fetch of the map fails, so DevTools cannot decode any segment. The Sources panel shows only the minified app.min.js."
+    },
+    "used_in": [
+      "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/05-source-maps-overrides-and-workspaces.mdx"
+    ]
+  },
+  {
+    "id": "main-thread-long-task-flow",
+    "title": "One slow click on the main thread becomes a long task",
+    "kind": "sequence",
+    "format": "component",
+    "component": "FlowAnimation",
+    "concept_ids": [
+      "flame-chart-and-long-tasks",
+      "core-web-vitals-in-devtools"
+    ],
+    "source_ids": [
+      "chrome-devtools-performance-reference",
+      "webdev-optimize-long-tasks"
+    ],
+    "purpose": "See why one long task on the main thread delays the next paint after a click.",
+    "explanation": "The main thread runs one task at a time. A 400 ms click handler blocks it, so DevTools marks the task with a red triangle and shades the 350 ms past the 50 ms limit. Style and layout run after it, and the next frame paints late, which raises INP.",
+    "alt": "A click goes to the main thread, which runs handleClick_ for 400 ms, then style and layout, then the next frame. The trace marks 350 ms of the task red, so the paint after the click comes late.",
+    "learning_check": {
+      "question": "A click handler runs for 120 ms. How much of it does DevTools shade red?",
+      "answer": "70 ms, the part past the 50 ms long-task limit."
+    },
+    "used_in": [
+      "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/07-performance-panel-traces.mdx"
+    ]
+  },
+  {
+    "id": "request-timing-phases-sequence",
+    "title": "The timing phases of one network request, in order",
+    "kind": "sequence",
+    "scope": "stage",
+    "format": "mermaid",
+    "file": "vault/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/visuals/assets/request-timing-phases-sequence-browser-devtools-mastery.mmd",
+    "concept_ids": [
+      "request-timing-phases",
+      "network-panel"
+    ],
+    "source_ids": [
+      "chrome-devtools-network-reference"
+    ],
+    "purpose": "Name the Timing tab phases of one request in order and tell which side of the connection spends each one.",
+    "explanation": "The Network panel Timing tab splits one request into phases. The browser waits in Queueing and Stalled, finds the server address in DNS Lookup, then opens a connection with TCP and SSL. After Request sent, Waiting (TTFB) covers one round trip plus server work. Content Download reads the response body. The long phase tells you what to fix.",
+    "alt": "A sequence between Browser, DNS resolver and Server. The browser queues and stalls, asks the resolver for the IP address, opens a TCP and SSL connection to the server, sends the request, waits for the first byte, then downloads the body. Each phase depends on the one before it, so a slow early phase delays all later ones.",
+    "learning_check": {
+      "question": "A request shows a long Waiting (TTFB) bar and a short Content Download bar. Where do you look first?",
+      "answer": "At the server, because Waiting covers one round trip plus server processing time, while the body itself downloads quickly."
+    },
+    "used_in": [
+      "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/06-network-panel-waterfall.mdx",
+      "projects/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/experiences/network-panel-waterfall/experience.json"
+    ]
+  },
+  {
+    "id": "lighthouse-points-lost",
+    "title": "Where one page loses Lighthouse performance points",
+    "kind": "comparison",
+    "format": "component",
+    "component": "Chart",
+    "concept_ids": [
+      "lighthouse-audits",
+      "audit-panels"
+    ],
+    "source_ids": [
+      "googlechrome-lighthouse-repo",
+      "chrome-devtools-docs"
+    ],
+    "purpose": "Show that the Lighthouse performance score is a weighted average, so the metric that loses the most weighted points is the first fix.",
+    "explanation": "Bars compare each metric's weight (TBT 30, LCP 25, CLS 25, FCP 10, Speed Index 10, from core/config/default-config.js:419-424 @ 3b399f6) with the points one example page loses. The metric scores are invented for teaching. TBT loses 19.5 points, so splitting a long task helps most; CLS can add at most 1.3.",
+    "alt": "A bar chart pairs each metric's weight with the points it loses on an example page: TBT loses 19.5 of 30, LCP 11.3 of 25, CLS 1.3 of 25, so fixing TBT moves the score most.",
+    "learning_check": {
+      "question": "A page has a perfect CLS score and a TBT score of 0.35. Which metric should you work on first, and why?",
+      "answer": "TBT, because it has the largest weight (30) and loses about 19.5 points, while CLS loses nothing."
+    },
+    "used_in": [
+      "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/10-lighthouse-and-audit-panels.mdx"
+    ]
+  },
+  {
+    "id": "detached-tree-retainer-graph",
+    "title": "Retainer paths that keep a detached #tree alive",
+    "kind": "dependency-graph",
+    "format": "component",
+    "component": "Graph3D",
+    "concept_ids": [
+      "heap-snapshot-retainers",
+      "detached-dom-nodes",
+      "memory-panel"
+    ],
+    "source_ids": [
+      "chrome-devtools-memory-docs"
+    ],
+    "purpose": "See that an object is freed only when no path of references connects it to a GC root.",
+    "explanation": "Window is a GC root. After body.removeChild(treeRef), #tree is detached but still reachable through treeRef and through leafRef and #leaf. Only when the learner cuts all three paths do #tree and #leaf become collectable. The Retainers section of a heap snapshot lists these paths.",
+    "alt": "An editable graph links Window to body, treeRef and leafRef; body, treeRef and #leaf link to #tree. Cutting body and treeRef from #tree still leaves the path through leafRef, so the subtree is freed only after leafRef is cut too.",
+    "learning_check": {
+      "question": "body.removeChild(treeRef) and treeRef = null have run. Why is #tree still in memory?",
+      "answer": "leafRef points to #leaf, and #leaf keeps a parent reference to #tree, so a path from Window still exists."
+    },
+    "used_in": [
+      "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/08-memory-leaks-and-heap-snapshots.mdx"
+    ]
+  },
+  {
+    "id": "remote-inspector-connections",
+    "title": "Which desktop inspector attaches to which phone browser",
+    "kind": "architecture",
+    "format": "component",
+    "component": "SystemDiagram",
+    "concept_ids": [
+      "remote-device-debugging",
+      "firefox-and-safari-devtools"
+    ],
+    "source_ids": [
+      "chrome-devtools-remote-debugging-docs",
+      "webkit-web-inspector-docs",
+      "firefox-devtools-user-docs"
+    ],
+    "purpose": "Show that each phone browser pairs with one desktop inspector, and that each pair needs switches on both ends.",
+    "explanation": "Three pairs: chrome://inspect attaches to Android Chrome over USB, the Safari Develop menu on a Mac attaches to iPhone Safari by cable or Xcode wireless debugging, and Firefox about:debugging attaches to Firefox for Android over USB. Clicking a node lists its setup steps. A device that does not appear usually misses one switch or prompt.",
+    "alt": "Three desktop inspectors each connect to one phone browser: chrome://inspect to Android Chrome by USB, Safari Develop menu to iPhone Safari by cable or Wi-Fi, about:debugging to Firefox Android by USB, so you pick the inspector by the phone's browser.",
+    "learning_check": {
+      "question": "A bug appears only in Safari on an iPhone. Which desktop tool do you open, and what must be on at both ends?",
+      "answer": "Safari's Develop menu on a Mac with Show features for web developers on, and Web Inspector on in the iPhone's Safari Advanced settings."
+    },
+    "used_in": [
+      "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/11-firefox-safari-and-remote-devices.mdx"
+    ]
+  },
+  {
+    "id": "application-storage-map",
+    "title": "Where a page keeps data, and how long it lives",
+    "kind": "concept-map",
+    "format": "mermaid",
+    "file": "vault/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/visuals/assets/application-storage-map-browser-devtools-mastery.mmd",
+    "concept_ids": [
+      "application-panel",
+      "service-worker-and-cache-inspection"
+    ],
+    "source_ids": [
+      "chrome-devtools-docs"
+    ],
+    "purpose": "Place each store in the Application panel by what it holds and how long it keeps data.",
+    "explanation": "One origin has several stores. Cookies travel to the server in the Cookie header and expire at Expires or at the end of the session. localStorage keeps key-value pairs across browser sessions. sessionStorage clears when the page session ends. IndexedDB holds databases with object stores. A service worker intercepts requests and can answer from Cache Storage.",
+    "alt": "A page on one origin points to Cookies sent to the server, localStorage kept across sessions, sessionStorage kept for one page session, IndexedDB object stores, and a service worker that reads Cache Storage. The lifetime and reader decide the store.",
+    "learning_check": {
+      "question": "A notes app keeps thousands of notes, searched by title and body. Which store fits?",
+      "answer": "IndexedDB, because it holds databases of object stores with indexes on fields such as title and body."
+    },
+    "used_in": [
+      "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/09-application-panel-storage.mdx"
+    ]
+  },
+  {
+    "id": "mini-02-flow-audit-a-slow-page",
+    "title": "The slow product page and where you inspect it",
+    "kind": "architecture",
+    "format": "mermaid",
+    "file": "vault/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/visuals/assets/mini-02-flow-audit-a-slow-page-browser-devtools-mastery.mmd",
+    "concept_ids": [
+      "network-panel",
+      "request-timing-phases",
+      "performance-panel",
+      "flame-chart-and-long-tasks",
+      "lighthouse-audits"
+    ],
+    "source_ids": [
+      "chrome-devtools-network-reference",
+      "chrome-devtools-performance-reference",
+      "webdev-optimize-long-tasks",
+      "googlechrome-lighthouse-repo"
+    ],
+    "purpose": "See which file of the practice server causes which symptom, and which DevTools panel shows it.",
+    "explanation": "The browser asks server.js for the page. server.js builds the HTML in page.js, the hero image in assets.js and the reviews in reviews.js. The click handler runs processInChunks from work.js in the browser. You inspect the load in the Network panel, the click in the Performance panel, and the whole page with Lighthouse.",
+    "alt": "Left to right: the browser requests the page from server.js, which uses page.js, assets.js and reviews.js. The browser runs work.js on click. A dotted line shows DevTools panels inspecting the browser.",
+    "learning_check": {
+      "question": "Which panel do you open first for a slow click, and which for a late image?",
+      "answer": "Performance for the slow click (find the task over 50 ms); Network for the late image (read the waterfall)."
+    },
+    "used_in": [
+      "projects/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/mini-02-audit-a-slow-page/README.md"
+    ]
+  },
+  {
+    "id": "mini-01-flow-debug-an-async-race",
+    "title": "A late response returns to onInput",
+    "kind": "data-flow",
+    "format": "mermaid",
+    "file": "vault/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/visuals/assets/mini-01-flow-debug-an-async-race-browser-devtools-mastery.mmd",
+    "used_in": [
+      "projects/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/mini-01-debug-an-async-race/README.md"
+    ],
+    "concept_ids": [
+      "breakpoint-debugging",
+      "async-call-stacks"
+    ],
+    "source_ids": [
+      "chrome-devtools-docs"
+    ],
+    "purpose": "Show where a stale search response re-enters onInput and where the id check stops it.",
+    "explanation": "Each key press calls onInput. The request goes to the server, which waits a random time. The response returns to onInput, which renders it only when its id matches latestId.",
+    "alt": "Flow from input event to onInput, server, fake API with random delay, back to onInput, then render if the id is the latest.",
+    "learning_check": {
+      "question": "At which step can an old response overwrite a new one, and which check prevents it?",
+      "answer": "When the late response returns to onInput; the id === latestId check stops it."
+    }
+  },
+  {
+    "id": "mini-03-flow-find-the-memory-leak",
+    "title": "How the report view leaks on every route change",
+    "kind": "data-flow",
+    "format": "mermaid",
+    "file": "vault/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/visuals/assets/mini-03-flow-find-the-memory-leak-browser-devtools-mastery.mmd",
+    "concept_ids": [
+      "memory-panel",
+      "heap-snapshot-retainers",
+      "detached-dom-nodes"
+    ],
+    "source_ids": [
+      "chrome-devtools-memory-docs"
+    ],
+    "purpose": "See which two references keep removed DOM nodes alive after a route change.",
+    "explanation": "The router unmounts the old view and clears the page. The report view still has a resize listener on window and 200 rows in the cachedNodes array, so both keep the removed rows reachable. Removing both holders lets the browser free them.",
+    "alt": "A URL hash change calls router render, which unmounts the report view. The report view registers a listener on window and caches rows in cachedNodes. Dotted arrows show window and cachedNodes still holding the view's rows.",
+    "learning_check": {
+      "question": "Why are the rows still in memory after the router clears the page?",
+      "answer": "Because window holds the onResize listener that references them and cachedNodes holds the rows, so they stay reachable."
+    },
+    "used_in": [
+      "projects/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/mini-03-find-the-memory-leak/README.md"
+    ]
   }
 ]

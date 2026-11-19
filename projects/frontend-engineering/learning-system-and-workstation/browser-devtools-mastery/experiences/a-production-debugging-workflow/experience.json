@@ -1,0 +1,134 @@
+{
+  "id": "a-production-debugging-workflow",
+  "title": "Triage a production bug: pick the first panel",
+  "mode": "branching",
+  "objective": "Choose the first DevTools panel from a reported symptom and explain what evidence it gives and what a wrong first choice costs.",
+  "level": "beginner",
+  "summary": "A branching deck starts from six real symptoms: a slow first load, slow clicks, growing memory, a broken layout, old data after a deploy and an error only on an iPhone. Each branch opens the panel that records the matching evidence (Network, Performance, Memory, Elements, Application or remote debugging), shows what to read there, and compares it with a tempting wrong first panel.",
+  "concept_ids": [
+    "debugging-workflow",
+    "browser-devtools"
+  ],
+  "source_ids": [
+    "chrome-devtools-docs",
+    "chrome-devtools-network-reference",
+    "chrome-devtools-performance-reference",
+    "chrome-devtools-memory-docs",
+    "webkit-web-inspector-docs"
+  ],
+  "used_in": [
+    "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/12-a-production-debugging-workflow.mdx"
+  ],
+  "deck": "debugging-triage-paths",
+  "fallback_visual": "debugging-triage-decision",
+  "checkpoints": [
+    {
+      "id": "slow-first-load",
+      "kind": "predict",
+      "at": {
+        "slide": "speed-symptoms"
+      },
+      "prompt": "A page loads slowly for new visitors but fast on a reload. Which panel do you open first?",
+      "choices": [
+        {
+          "text": "Network, with Disable cache ticked, then the slow request's Timing tab",
+          "correct": true
+        },
+        {
+          "text": "Memory, to take a heap snapshot",
+          "misconception": "Treats a slow load as a memory problem, but a heap snapshot has no request timing"
+        },
+        {
+          "text": "Elements, to look at the DOM",
+          "misconception": "Thinks the DOM shows how long a file took to arrive"
+        }
+      ],
+      "explanation": "A reload can use the cache, so the first visit is slower. Disable cache repeats the first visit, and the Timing tab shows whether Waiting or Content Download used the time.",
+      "concept_ids": [
+        "debugging-workflow",
+        "browser-devtools"
+      ]
+    },
+    {
+      "id": "stale-after-deploy",
+      "kind": "predict",
+      "at": {
+        "slide": "wrong-result-symptoms"
+      },
+      "prompt": "After a deploy, some users still see old prices, even after a normal reload. Where do you look first?",
+      "choices": [
+        {
+          "text": "Application: the active service worker and Cache Storage",
+          "correct": true
+        },
+        {
+          "text": "Elements: the price in the DOM",
+          "misconception": "Thinks seeing the old value explains where it came from"
+        },
+        {
+          "text": "Performance: record a trace",
+          "misconception": "Treats wrong data as a speed problem"
+        }
+      ],
+      "explanation": "Old data that survives a reload can come from a cache or a service worker. The Application panel shows which worker is active and what Cache Storage holds, and Bypass for network tests the fresh path.",
+      "concept_ids": [
+        "debugging-workflow",
+        "browser-devtools"
+      ]
+    },
+    {
+      "id": "memory-two-snapshots",
+      "kind": "explain",
+      "at": {
+        "slide": "triage-rule"
+      },
+      "prompt": "The tab gets slower each time a user opens and closes a dialog. Why does one heap snapshot not prove a leak?",
+      "choices": [
+        {
+          "text": "A leak is growth, so you compare a snapshot before and after the same action",
+          "correct": true
+        },
+        {
+          "text": "One snapshot is enough if the heap looks big",
+          "misconception": "Confuses a large heap (bloat) with a growing heap (leak)"
+        },
+        {
+          "text": "Heap snapshots cannot show DOM nodes",
+          "misconception": "Heap snapshots do show detached DOM nodes that JavaScript still references"
+        }
+      ],
+      "explanation": "Progressive slowdown points to a leak. Take a snapshot, open and close the dialog, take another, and the Comparison view shows what grew, such as detached DOM nodes.",
+      "concept_ids": [
+        "debugging-workflow",
+        "browser-devtools"
+      ]
+    },
+    {
+      "id": "iphone-only-error",
+      "kind": "verify",
+      "at": {
+        "tab": "practice"
+      },
+      "prompt": "A checkout button throws an error only on iPhones. Chrome device mode with an iPhone preset shows no error. What next?",
+      "choices": [
+        {
+          "text": "Attach Safari Web Inspector to a real iPhone and read its Console",
+          "correct": true
+        },
+        {
+          "text": "Conclude the bug is fixed because device mode works",
+          "misconception": "Thinks device mode runs the phone's browser, but it is desktop Chrome with a small viewport"
+        },
+        {
+          "text": "Throttle the CPU in device mode until it fails",
+          "misconception": "Treats a browser-specific error as a speed problem"
+        }
+      ],
+      "explanation": "Device mode is a first-order approximation that runs on your laptop. Remote debugging with Web Inspector reads the error from the phone's own browser.",
+      "concept_ids": [
+        "debugging-workflow",
+        "browser-devtools"
+      ]
+    }
+  ]
+}

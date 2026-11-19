@@ -1,0 +1,7 @@
+flowchart LR
+  S[Bug symptom] -->|looks wrong| E[Elements]
+  S -->|error shown| C[Console]
+  S -->|wrong logic| D[Sources]
+  S -->|slow request| N[Network]
+  S -->|janky click| P[Performance]
+  S -->|grows over time| M[Memory]

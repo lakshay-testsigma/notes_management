@@ -1,0 +1,66 @@
+---
+title: Lighthouse and the audit panels
+description: Audit panels turn a page into a scored list of problems, so you fix the issue that costs the most first.
+order: 10
+concepts: [Lighthouse, performance score, Coverage panel, Rendering tab]
+---
+
+<!-- concept: audit-panels -->
+<!-- concept: lighthouse-audits -->
+<!-- concept: rendering-emulation -->
+
+Your page feels slow, but you do not know where to start. The Lighthouse panel runs an audit: an automatic check that loads the page and reports a score for Performance, Accessibility, Best Practices and SEO. Each score comes with the issues behind it.
+
+The Performance score is a weighted average of five metric scores. Total Blocking Time (TBT, how long the main thread blocks input) has weight 30. Largest Contentful Paint (LCP) and Cumulative Layout Shift (CLS) have 25 each. First Contentful Paint and Speed Index have 10 each. Each metric gets a score from 0 to 1 on a curve built from real-site data.
+
+**Assumption.** The chart uses invented metric scores for one page. Point at each bar. Compare the weight with the points that the metric loses.
+
+<Chart
+  title="Where one page loses Lighthouse performance points"
+  type="bar"
+  data={[
+    { metric: "TBT", weight: 30, lost: 19.5 },
+    { metric: "LCP", weight: 25, lost: 11.3 },
+    { metric: "CLS", weight: 25, lost: 1.3 },
+    { metric: "FCP", weight: 10, lost: 2 },
+    { metric: "Speed Index", weight: 10, lost: 3 }
+  ]}
+  x="metric"
+  y={["weight", "lost"]}
+  labels={{ weight: "Weight (max points)", lost: "Points lost" }}
+  xLabel="Metric"
+  yLabel="Points out of 100"
+/>
+
+The page scores about 63. TBT loses the most points, so a long JavaScript task is the first fix. A perfect CLS can add at most 1.3 points here.
+
+<Quiz question="Which fix moves this page's score the most?" options={["Reserve space for a late banner (CLS)", "Split a long JavaScript task (TBT)", "Show the first text sooner (FCP)"]} answer={1} explanation="TBT loses 19.5 of its 30 points. CLS and FCP together lose only 3.3 points, so even perfect fixes there change little." />
+
+Two other tools find the cause. The Coverage panel records which bytes of each JS and CSS file ran: gray bars are unused bytes. The Rendering tab flashes repainted areas green, highlights layout shifts in purple, and emulates user settings such as dark mode or reduced motion.
+
+**Note.** Lighthouse in DevTools depends on your machine, extensions and stored data. Do not compare two runs from different machines.
+
+<Depth level="internals">
+
+Lighthouse fits a log-normal curve through two points per metric: the 10th percentile and the median of real sites, with separate mobile and desktop values (`core/audits/audit.js:89-109 @ 3b399f6`). The weights live in `core/config/default-config.js:419-424 @ 3b399f6`. If one audit fails, its score is null, and the whole category becomes null instead of a misleading partial average (`core/scoring.js:22-42 @ 3b399f6`).
+
+</Depth>
+
+<Depth level="production">
+
+The DevTools docs recommend the Performance panel for deep performance work and Lighthouse for Accessibility, Best Practices and SEO. Teams run Lighthouse CI on separate servers for comparable runs. Navigation mode audits a fresh load, Timespan mode audits a period of interaction, and Snapshot mode audits the current state. Coverage only finds unused code; removing it is a separate refactor. DevTools also has Security, Recorder, Animations, Layers, Issues and Privacy and security panels.
+
+</Depth>
+
+<MatchPairs
+  prompt="Match each DevTools tool to the job it does."
+  pairs={[
+    { term: "Lighthouse", definition: "Scores performance, accessibility, best practices and SEO" },
+    { term: "Coverage", definition: "Shows unused bytes in each JS and CSS file" },
+    { term: "Paint flashing", definition: "Flashes green where the page repaints" },
+    { term: "Layout Shift Regions", definition: "Highlights in purple the areas that shift" },
+    { term: "prefers-color-scheme", definition: "Tests the dark theme without changing the OS" }
+  ]}
+/>
+
+The next page leaves Chrome: Firefox, Safari and real phones show bugs that Chrome on a desktop cannot.

@@ -1,0 +1,12 @@
+sequenceDiagram
+  participant B as Browser
+  participant D as DNS resolver
+  participant S as Server
+  B->>B: Queueing, then Stalled
+  B->>D: DNS Lookup
+  D-->>B: IP address
+  B->>S: Initial connection (TCP + SSL)
+  B->>S: Request sent
+  Note over B,S: Waiting (TTFB): one round trip plus server work
+  S-->>B: first byte
+  S-->>B: Content Download

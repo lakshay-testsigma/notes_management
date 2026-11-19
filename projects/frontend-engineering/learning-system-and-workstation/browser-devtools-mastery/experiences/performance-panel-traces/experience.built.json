@@ -1,0 +1,1097 @@
+{
+  "generated_by": "tutor experience build",
+  "id": "performance-panel-traces",
+  "topic": "frontend-engineering/learning-system-and-workstation/browser-devtools-mastery",
+  "title": "Record a trace and find the long task",
+  "mode": "hybrid",
+  "objective": "Read a main-thread trace, spot long tasks over 50 ms, and predict how CPU throttling and yielding change input delay.",
+  "level": "advanced",
+  "summary": "An intro video records a trace of one slow click. A simulated Main track lets the learner pick CPU throttling (none, 4x, 6x) and one big task or yielding pieces, then step through the trace to see which tasks pass 50 ms, how much is shaded red, and how long a second click waits. A guided walkthrough explains the flame chart axes, deep dives cover yielding and the live Core Web Vitals, and a summary video connects the rules. The task times are a simulated example built on the 50 ms rule; real numbers depend on your machine.",
+  "page": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/07-performance-panel-traces.mdx",
+  "page_url": "/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/lesson/07-performance-panel-traces/",
+  "tabs": [
+    "watch",
+    "explore",
+    "guided",
+    "deepdive",
+    "practice"
+  ],
+  "watch": {
+    "video_id": "perf-trace-intro",
+    "title": "One slow click, recorded in a trace",
+    "status": "storyboard",
+    "blocker": "FFmpeg is not installed and Docker is not running; install FFmpeg (for example `brew install ffmpeg`) or start Docker",
+    "mp4_url": null,
+    "captions_url": null,
+    "composition_url": "/media/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/perf-trace-intro/composition/index.html",
+    "duration": 45,
+    "scenes": [
+      {
+        "id": "intro",
+        "heading": "One slow click, recorded",
+        "start": 0,
+        "duration": 8
+      },
+      {
+        "id": "record",
+        "heading": "Record a runtime trace",
+        "start": 8,
+        "duration": 9
+      },
+      {
+        "id": "main-thread",
+        "heading": "The click becomes a task",
+        "start": 17,
+        "duration": 10
+      },
+      {
+        "id": "throttle",
+        "heading": "Throttling slows the same work",
+        "start": 27,
+        "duration": 8
+      },
+      {
+        "id": "long-task",
+        "heading": "Over 50 ms is a long task",
+        "start": 35,
+        "duration": 10
+      }
+    ],
+    "transcript": "# One slow click, recorded in a trace\n\nYou open the Performance panel, set CPU throttling, record while you click a button, and stop. The Main track shows the click handler as a task. In this example the handler needs 40 ms, 160 ms at 4x and 240 ms at 6x. A task over 50 ms is a long task: DevTools adds a red triangle and shades the time past 50 ms.\n\n**00:00 One slow click, recorded.** A button click feels slow. The Performance panel records a trace, so you can see the slow task.\n\n**00:08 Record a runtime trace.** Open the Performance panel. Set CPU throttling. Click Record, click the button, then click Stop. The Main track shows the tasks.\n\n**00:17 The click becomes a task.** The click starts a task on the main thread. The main thread runs one task at a time, so the next paint waits.\n\n**00:27 Throttling slows the same work.** In this example the handler needs 40 milliseconds. A 4x slowdown makes it 160, and 6x makes it 240.\n\n**00:35 Over 50 ms is a long task.** Any task over 50 milliseconds is a long task. DevTools adds a red triangle and shades only the time past 50 milliseconds red.\n\nSources:\n\n- Performance features reference — https://developer.chrome.com/docs/devtools/performance/reference\n- Optimize long tasks — https://web.dev/articles/optimize-long-tasks\n",
+    "explanation": "A trace turns a slow feeling into one task you can measure. The 50 ms limit tells you which tasks block the page.",
+    "alt": "You open the Performance panel, set CPU throttling, record while you click a button, and stop. The Main track shows the click handler as a task. In this example the handler needs 40 ms, 160 ms at 4x and 240 ms at 6x. A task over 50 ms is a long task: DevTools adds a red triangle and shades the time past 50 ms."
+  },
+  "guided": {
+    "video_id": "perf-trace-guided",
+    "title": "Walk through a throttled trace",
+    "status": "storyboard",
+    "blocker": "FFmpeg is not installed and Docker is not running; install FFmpeg (for example `brew install ffmpeg`) or start Docker",
+    "mp4_url": null,
+    "captions_url": null,
+    "composition_url": "/media/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/perf-trace-guided/composition/index.html",
+    "duration": 62,
+    "scenes": [
+      {
+        "id": "record",
+        "heading": "No throttling: one 40 ms task",
+        "start": 0,
+        "duration": 10
+      },
+      {
+        "id": "flame",
+        "heading": "How to read the flame chart",
+        "start": 10,
+        "duration": 12
+      },
+      {
+        "id": "throttle",
+        "heading": "4x slowdown: one 160 ms task",
+        "start": 22,
+        "duration": 10
+      },
+      {
+        "id": "long-task",
+        "heading": "The second click waits",
+        "start": 32,
+        "duration": 10
+      },
+      {
+        "id": "yield",
+        "heading": "Yield between pieces",
+        "start": 42,
+        "duration": 10
+      },
+      {
+        "id": "six-x",
+        "heading": "6x slowdown: smaller pieces",
+        "start": 52,
+        "duration": 10
+      }
+    ],
+    "transcript": "# Walk through a throttled trace\n\nA guided walk through one click handler. At 1x it is one 40 ms task. The flame chart shows time from left to right and the call stack from top to bottom. A 4x slowdown makes one 160 ms long task, and a second click waits 135 ms. Four yielding pieces of 40 ms remove the long task and cut the wait to 15 ms. At 6x the pieces are 60 ms and long again, so the work needs smaller pieces.\n\n**00:00 No throttling: one 40 ms task.** Without throttling, the handler runs as one task of 40 milliseconds. That is under the 50 millisecond limit, so nothing is red.\n\n**00:10 How to read the flame chart.** Read the flame chart like this. Left to right is time. Top to bottom is the call stack. An event on top causes the events below it.\n\n**00:22 4x slowdown: one 160 ms task.** Now set a 4x slowdown. The CPU runs four times as slowly, so the same handler becomes one task of 160 milliseconds.\n\n**00:32 The second click waits.** A second click arrives at 25 milliseconds. It waits until the task ends at 160. The last 110 milliseconds are shaded red.\n\n**00:42 Yield between pieces.** Split the work into four pieces and yield between them. Each piece takes 40 milliseconds, so the click runs after the first piece.\n\n**00:52 6x slowdown: smaller pieces.** At 6x, each of four pieces takes 60 milliseconds, so every piece is a long task again. Eight pieces of 30 milliseconds fix it.\n\nSources:\n\n- Performance features reference — https://developer.chrome.com/docs/devtools/performance/reference\n- Optimize long tasks — https://web.dev/articles/optimize-long-tasks\n",
+    "explanation": "Throttling makes every task longer; yielding keeps each task short so the browser can handle input between pieces.",
+    "alt": "A guided walk through one click handler. At 1x it is one 40 ms task. The flame chart shows time from left to right and the call stack from top to bottom. A 4x slowdown makes one 160 ms long task, and a second click waits 135 ms. Four yielding pieces of 40 ms remove the long task and cut the wait to 15 ms. At 6x the pieces are 60 ms and long again, so the work needs smaller pieces."
+  },
+  "summary_video": {
+    "video_id": "perf-trace-summary",
+    "title": "Performance traces in four rules",
+    "status": "storyboard",
+    "blocker": "FFmpeg is not installed and Docker is not running; install FFmpeg (for example `brew install ffmpeg`) or start Docker",
+    "mp4_url": null,
+    "captions_url": null,
+    "composition_url": "/media/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/perf-trace-summary/composition/index.html",
+    "duration": 33,
+    "scenes": [
+      {
+        "id": "intro",
+        "heading": "Performance traces in four rules",
+        "start": 0,
+        "duration": 5
+      },
+      {
+        "id": "rules",
+        "heading": "The rules",
+        "start": 5,
+        "duration": 10
+      },
+      {
+        "id": "delay",
+        "heading": "Same work, shorter wait",
+        "start": 15,
+        "duration": 10
+      },
+      {
+        "id": "caveat",
+        "heading": "Throttling is a guide",
+        "start": 25,
+        "duration": 8
+      }
+    ],
+    "transcript": "# Performance traces in four rules\n\nA recap. Live metrics show LCP, CLS and INP while you use the page. A recorded trace shows each task on the main thread. A task over 50 ms is a long task, and only the part past 50 ms is red. Yielding splits long work so input can run between pieces. Throttling is relative to your computer, so it is a guide, not a phone.\n\n**00:00 Performance traces in four rules.** Four rules connect everything you tried in this lab.\n\n**00:05 The rules.** Live metrics spot the problem. A trace shows each task. A task over 50 milliseconds is a long task. Yielding splits long work.\n\n**00:15 Same work, shorter wait.** At 4x in our example, one big task made a second click wait 135 milliseconds. Four yielding pieces cut it to 15.\n\n**00:25 Throttling is a guide.** Throttling slows your own computer. It cannot copy a real phone, so check field data when you can.\n\nSources:\n\n- Performance features reference — https://developer.chrome.com/docs/devtools/performance/reference\n- Optimize long tasks — https://web.dev/articles/optimize-long-tasks\n",
+    "explanation": "Use live metrics to spot a problem, a trace to find the long task, and yielding to keep tasks short.",
+    "alt": "A recap. Live metrics show LCP, CLS and INP while you use the page. A recorded trace shows each task on the main thread. A task over 50 ms is a long task, and only the part past 50 ms is red. Yielding splits long work so input can run between pieces. Throttling is relative to your computer, so it is a guide, not a phone."
+  },
+  "simulation": {
+    "component": "AlgorithmStepper",
+    "props": {
+      "title": "Main track of one click: bars are tasks in ms, highlighted bars are long tasks",
+      "view": "bars",
+      "code": "button.addEventListener('click', async () => {\n  for (const piece of work) {   // 40 ms of work at 1x\n    doPiece(piece);             // one-task presets: no yield\n    await scheduler.yield();    // yield presets: pause here\n  }                             // a waiting click runs now\n});",
+      "lang": "javascript",
+      "frames": [
+        {
+          "caption": "Recording at no throttling. The click handler needs 40 ms at 1x, so here it needs 40 ms of work, run as one task on the main thread.",
+          "array": [
+            40
+          ],
+          "highlight": [],
+          "vars": {
+            "cpu": "1x",
+            "split": "one task",
+            "task_ms": 40
+          },
+          "line": 3
+        },
+        {
+          "caption": "Main track: no task is over 50 ms, so DevTools marks no long task and shades nothing red.",
+          "array": [
+            40
+          ],
+          "highlight": [],
+          "vars": {
+            "cpu": "1x",
+            "split": "one task",
+            "task_ms": 40,
+            "long_tasks": 0,
+            "blocking_ms": 0
+          },
+          "line": 3
+        },
+        {
+          "caption": "A second click arrives 25 ms after the work starts. The main thread runs one task at a time, so the click waits until the task that is running ends at 40 ms: input delay 15 ms.",
+          "array": [
+            40
+          ],
+          "highlight": [],
+          "pointers": {
+            "click 2": 0
+          },
+          "vars": {
+            "cpu": "1x",
+            "split": "one task",
+            "task_ms": 40,
+            "long_tasks": 0,
+            "blocking_ms": 0,
+            "input_delay_ms": 15
+          },
+          "line": 3
+        }
+      ]
+    },
+    "presets": {
+      "cpu-1x-one-task": {
+        "frames": [
+          {
+            "caption": "Recording at no throttling. The click handler needs 40 ms at 1x, so here it needs 40 ms of work, run as one task on the main thread.",
+            "array": [
+              40
+            ],
+            "highlight": [],
+            "vars": {
+              "cpu": "1x",
+              "split": "one task",
+              "task_ms": 40
+            },
+            "line": 3
+          },
+          {
+            "caption": "Main track: no task is over 50 ms, so DevTools marks no long task and shades nothing red.",
+            "array": [
+              40
+            ],
+            "highlight": [],
+            "vars": {
+              "cpu": "1x",
+              "split": "one task",
+              "task_ms": 40,
+              "long_tasks": 0,
+              "blocking_ms": 0
+            },
+            "line": 3
+          },
+          {
+            "caption": "A second click arrives 25 ms after the work starts. The main thread runs one task at a time, so the click waits until the task that is running ends at 40 ms: input delay 15 ms.",
+            "array": [
+              40
+            ],
+            "highlight": [],
+            "pointers": {
+              "click 2": 0
+            },
+            "vars": {
+              "cpu": "1x",
+              "split": "one task",
+              "task_ms": 40,
+              "long_tasks": 0,
+              "blocking_ms": 0,
+              "input_delay_ms": 15
+            },
+            "line": 3
+          }
+        ]
+      },
+      "cpu-1x-yield-4-pieces": {
+        "frames": [
+          {
+            "caption": "Recording at no throttling. The click handler needs 40 ms at 1x, so here it needs 40 ms of work, run as 4 tasks of 10 ms on the main thread.",
+            "array": [
+              10,
+              10,
+              10,
+              10
+            ],
+            "highlight": [],
+            "vars": {
+              "cpu": "1x",
+              "split": "4 pieces, yield between",
+              "task_ms": 10
+            },
+            "line": 4
+          },
+          {
+            "caption": "Main track: no task is over 50 ms, so DevTools marks no long task and shades nothing red.",
+            "array": [
+              10,
+              10,
+              10,
+              10
+            ],
+            "highlight": [],
+            "vars": {
+              "cpu": "1x",
+              "split": "4 pieces, yield between",
+              "task_ms": 10,
+              "long_tasks": 0,
+              "blocking_ms": 0
+            },
+            "line": 4
+          },
+          {
+            "caption": "A second click arrives 25 ms after the work starts. The main thread runs one task at a time, so the click waits until the task that is running ends at 30 ms: input delay 5 ms.",
+            "array": [
+              10,
+              10,
+              10,
+              10
+            ],
+            "highlight": [],
+            "pointers": {
+              "click 2": 2
+            },
+            "vars": {
+              "cpu": "1x",
+              "split": "4 pieces, yield between",
+              "task_ms": 10,
+              "long_tasks": 0,
+              "blocking_ms": 0,
+              "input_delay_ms": 5
+            },
+            "line": 5
+          }
+        ]
+      },
+      "cpu-4x-one-task": {
+        "frames": [
+          {
+            "caption": "Recording at 4x CPU slowdown. The click handler needs 40 ms at 1x, so here it needs 160 ms of work, run as one task on the main thread.",
+            "array": [
+              160
+            ],
+            "highlight": [],
+            "vars": {
+              "cpu": "4x",
+              "split": "one task",
+              "task_ms": 160
+            },
+            "line": 3
+          },
+          {
+            "caption": "Main track: 1 of 1 task is a long task (over 50 ms). DevTools shades only the time past 50 ms red: 110 ms in total.",
+            "array": [
+              160
+            ],
+            "highlight": [
+              0
+            ],
+            "vars": {
+              "cpu": "4x",
+              "split": "one task",
+              "task_ms": 160,
+              "long_tasks": 1,
+              "blocking_ms": 110
+            },
+            "line": 3
+          },
+          {
+            "caption": "A second click arrives 25 ms after the work starts. The main thread runs one task at a time, so the click waits until the task that is running ends at 160 ms: input delay 135 ms.",
+            "array": [
+              160
+            ],
+            "highlight": [
+              0
+            ],
+            "pointers": {
+              "click 2": 0
+            },
+            "vars": {
+              "cpu": "4x",
+              "split": "one task",
+              "task_ms": 160,
+              "long_tasks": 1,
+              "blocking_ms": 110,
+              "input_delay_ms": 135
+            },
+            "line": 3
+          }
+        ]
+      },
+      "cpu-4x-yield-4-pieces": {
+        "frames": [
+          {
+            "caption": "Recording at 4x CPU slowdown. The click handler needs 40 ms at 1x, so here it needs 160 ms of work, run as 4 tasks of 40 ms on the main thread.",
+            "array": [
+              40,
+              40,
+              40,
+              40
+            ],
+            "highlight": [],
+            "vars": {
+              "cpu": "4x",
+              "split": "4 pieces, yield between",
+              "task_ms": 40
+            },
+            "line": 4
+          },
+          {
+            "caption": "Main track: no task is over 50 ms, so DevTools marks no long task and shades nothing red.",
+            "array": [
+              40,
+              40,
+              40,
+              40
+            ],
+            "highlight": [],
+            "vars": {
+              "cpu": "4x",
+              "split": "4 pieces, yield between",
+              "task_ms": 40,
+              "long_tasks": 0,
+              "blocking_ms": 0
+            },
+            "line": 4
+          },
+          {
+            "caption": "A second click arrives 25 ms after the work starts. The main thread runs one task at a time, so the click waits until the task that is running ends at 40 ms: input delay 15 ms.",
+            "array": [
+              40,
+              40,
+              40,
+              40
+            ],
+            "highlight": [],
+            "pointers": {
+              "click 2": 0
+            },
+            "vars": {
+              "cpu": "4x",
+              "split": "4 pieces, yield between",
+              "task_ms": 40,
+              "long_tasks": 0,
+              "blocking_ms": 0,
+              "input_delay_ms": 15
+            },
+            "line": 5
+          }
+        ]
+      },
+      "cpu-6x-one-task": {
+        "frames": [
+          {
+            "caption": "Recording at 6x CPU slowdown. The click handler needs 40 ms at 1x, so here it needs 240 ms of work, run as one task on the main thread.",
+            "array": [
+              240
+            ],
+            "highlight": [],
+            "vars": {
+              "cpu": "6x",
+              "split": "one task",
+              "task_ms": 240
+            },
+            "line": 3
+          },
+          {
+            "caption": "Main track: 1 of 1 task is a long task (over 50 ms). DevTools shades only the time past 50 ms red: 190 ms in total.",
+            "array": [
+              240
+            ],
+            "highlight": [
+              0
+            ],
+            "vars": {
+              "cpu": "6x",
+              "split": "one task",
+              "task_ms": 240,
+              "long_tasks": 1,
+              "blocking_ms": 190
+            },
+            "line": 3
+          },
+          {
+            "caption": "A second click arrives 25 ms after the work starts. The main thread runs one task at a time, so the click waits until the task that is running ends at 240 ms: input delay 215 ms.",
+            "array": [
+              240
+            ],
+            "highlight": [
+              0
+            ],
+            "pointers": {
+              "click 2": 0
+            },
+            "vars": {
+              "cpu": "6x",
+              "split": "one task",
+              "task_ms": 240,
+              "long_tasks": 1,
+              "blocking_ms": 190,
+              "input_delay_ms": 215
+            },
+            "line": 3
+          }
+        ]
+      },
+      "cpu-6x-yield-4-pieces": {
+        "frames": [
+          {
+            "caption": "Recording at 6x CPU slowdown. The click handler needs 40 ms at 1x, so here it needs 240 ms of work, run as 4 tasks of 60 ms on the main thread.",
+            "array": [
+              60,
+              60,
+              60,
+              60
+            ],
+            "highlight": [],
+            "vars": {
+              "cpu": "6x",
+              "split": "4 pieces, yield between",
+              "task_ms": 60
+            },
+            "line": 4
+          },
+          {
+            "caption": "Main track: 4 of 4 tasks are long tasks (over 50 ms). DevTools shades only the time past 50 ms red: 40 ms in total.",
+            "array": [
+              60,
+              60,
+              60,
+              60
+            ],
+            "highlight": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "vars": {
+              "cpu": "6x",
+              "split": "4 pieces, yield between",
+              "task_ms": 60,
+              "long_tasks": 4,
+              "blocking_ms": 40
+            },
+            "line": 4
+          },
+          {
+            "caption": "A second click arrives 25 ms after the work starts. The main thread runs one task at a time, so the click waits until the task that is running ends at 60 ms: input delay 35 ms.",
+            "array": [
+              60,
+              60,
+              60,
+              60
+            ],
+            "highlight": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "pointers": {
+              "click 2": 0
+            },
+            "vars": {
+              "cpu": "6x",
+              "split": "4 pieces, yield between",
+              "task_ms": 60,
+              "long_tasks": 4,
+              "blocking_ms": 40,
+              "input_delay_ms": 35
+            },
+            "line": 5
+          }
+        ]
+      },
+      "cpu-6x-yield-8-pieces": {
+        "frames": [
+          {
+            "caption": "Recording at 6x CPU slowdown. The click handler needs 40 ms at 1x, so here it needs 240 ms of work, run as 8 tasks of 30 ms on the main thread.",
+            "array": [
+              30,
+              30,
+              30,
+              30,
+              30,
+              30,
+              30,
+              30
+            ],
+            "highlight": [],
+            "vars": {
+              "cpu": "6x",
+              "split": "8 pieces, yield between",
+              "task_ms": 30
+            },
+            "line": 4
+          },
+          {
+            "caption": "Main track: no task is over 50 ms, so DevTools marks no long task and shades nothing red.",
+            "array": [
+              30,
+              30,
+              30,
+              30,
+              30,
+              30,
+              30,
+              30
+            ],
+            "highlight": [],
+            "vars": {
+              "cpu": "6x",
+              "split": "8 pieces, yield between",
+              "task_ms": 30,
+              "long_tasks": 0,
+              "blocking_ms": 0
+            },
+            "line": 4
+          },
+          {
+            "caption": "A second click arrives 25 ms after the work starts. The main thread runs one task at a time, so the click waits until the task that is running ends at 30 ms: input delay 5 ms.",
+            "array": [
+              30,
+              30,
+              30,
+              30,
+              30,
+              30,
+              30,
+              30
+            ],
+            "highlight": [],
+            "pointers": {
+              "click 2": 0
+            },
+            "vars": {
+              "cpu": "6x",
+              "split": "8 pieces, yield between",
+              "task_ms": 30,
+              "long_tasks": 0,
+              "blocking_ms": 0,
+              "input_delay_ms": 5
+            },
+            "line": 5
+          }
+        ]
+      }
+    }
+  },
+  "sync": [
+    {
+      "scene": "record",
+      "preset": "cpu-1x-one-task"
+    },
+    {
+      "scene": "throttle",
+      "preset": "cpu-4x-one-task"
+    },
+    {
+      "scene": "yield",
+      "preset": "cpu-4x-yield-4-pieces"
+    },
+    {
+      "scene": "six-x",
+      "preset": "cpu-6x-yield-4-pieces"
+    }
+  ],
+  "inspect": [],
+  "deck": {
+    "deck_id": "perf-deep-dives",
+    "title": "Performance panel deep dives",
+    "composition_url": "/media/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/perf-deep-dives/composition/index.html",
+    "island": {
+      "slides": [
+        {
+          "sceneId": "question",
+          "notes": "Ask the learner how they would find out why one click on a page feels slow."
+        },
+        {
+          "sceneId": "workflow",
+          "notes": "Reveal one step at a time. Live metrics come first, a trace only when the problem repeats.",
+          "fragments": [
+            4.3,
+            4.6,
+            4.9,
+            5.2
+          ]
+        },
+        {
+          "sceneId": "long-tasks",
+          "notes": "A task over 50 ms gets a red triangle, and only the time past 50 ms is shaded red.",
+          "fragments": [
+            8.3,
+            8.6,
+            8.9
+          ],
+          "hotspots": [
+            {
+              "id": "long-tasks-h1",
+              "label": "Long tasks and yielding",
+              "target": "long-tasks-yielding",
+              "region": {
+                "x": 5,
+                "y": 81,
+                "w": 64,
+                "h": 12
+              }
+            }
+          ]
+        },
+        {
+          "sceneId": "live-metrics",
+          "notes": "The live metrics screen updates as you use the page, including soft navigations in single-page apps.",
+          "fragments": [
+            12.3,
+            12.6,
+            12.9
+          ],
+          "hotspots": [
+            {
+              "id": "live-metrics-h1",
+              "label": "Core Web Vitals in a trace",
+              "target": "vitals-in-trace",
+              "region": {
+                "x": 5,
+                "y": 81,
+                "w": 64,
+                "h": 12
+              }
+            }
+          ]
+        },
+        {
+          "sceneId": "takeaway",
+          "notes": "Live metrics are cheap and always on; a trace costs a recording but shows each task."
+        }
+      ],
+      "slideSequences": [
+        {
+          "id": "long-tasks-yielding",
+          "label": "Long tasks and yielding",
+          "slides": [
+            {
+              "sceneId": "one-at-a-time",
+              "notes": "The main thread can only process one task at a time, so input that arrives during a long task must wait.",
+              "fragments": [
+                20.3,
+                20.6,
+                20.9
+              ]
+            },
+            {
+              "sceneId": "split-work",
+              "notes": "Breaking a long task into smaller ones lets the browser respond to input between the pieces."
+            },
+            {
+              "sceneId": "scheduler-yield",
+              "notes": "The await pauses the function; the browser can run input first, then the function continues where it left off.",
+              "fragments": [
+                28.3,
+                28.6,
+                28.9,
+                29.2
+              ]
+            }
+          ]
+        },
+        {
+          "id": "vitals-in-trace",
+          "label": "Core Web Vitals in a trace",
+          "slides": [
+            {
+              "sceneId": "interactions-track",
+              "notes": "Interactions over 200 ms get a red triangle; the tooltip splits the time into three parts.",
+              "fragments": [
+                32.3,
+                32.6,
+                32.9,
+                33.2
+              ]
+            },
+            {
+              "sceneId": "layout-shifts-track",
+              "notes": "Each layout shift is a purple diamond; hover highlights the element, click shows the score and likely culprits.",
+              "fragments": [
+                36.3,
+                36.6,
+                36.9
+              ]
+            },
+            {
+              "sceneId": "insights-tab",
+              "notes": "The Insights tab in the left sidebar groups findings such as LCP and INP subparts and third parties."
+            }
+          ]
+        }
+      ]
+    },
+    "scenes": [
+      {
+        "id": "question",
+        "heading": "Where did the time go?",
+        "start": 0,
+        "duration": 4,
+        "sequence": null,
+        "fragments": []
+      },
+      {
+        "id": "workflow",
+        "heading": "The working loop",
+        "start": 4,
+        "duration": 4,
+        "sequence": null,
+        "fragments": [
+          4.3,
+          4.6,
+          4.9,
+          5.2
+        ]
+      },
+      {
+        "id": "long-tasks",
+        "heading": "The 50 ms rule",
+        "start": 8,
+        "duration": 4,
+        "sequence": null,
+        "fragments": [
+          8.3,
+          8.6,
+          8.9
+        ]
+      },
+      {
+        "id": "live-metrics",
+        "heading": "Live metrics first",
+        "start": 12,
+        "duration": 4,
+        "sequence": null,
+        "fragments": [
+          12.3,
+          12.6,
+          12.9
+        ]
+      },
+      {
+        "id": "takeaway",
+        "heading": "Metrics spot, traces explain",
+        "start": 16,
+        "duration": 4,
+        "sequence": null,
+        "fragments": []
+      },
+      {
+        "id": "one-at-a-time",
+        "heading": "One task at a time",
+        "start": 20,
+        "duration": 4,
+        "sequence": "long-tasks-yielding",
+        "fragments": [
+          20.3,
+          20.6,
+          20.9
+        ]
+      },
+      {
+        "id": "split-work",
+        "heading": "Split the work",
+        "start": 24,
+        "duration": 4,
+        "sequence": "long-tasks-yielding",
+        "fragments": []
+      },
+      {
+        "id": "scheduler-yield",
+        "heading": "await scheduler.yield()",
+        "start": 28,
+        "duration": 4,
+        "sequence": "long-tasks-yielding",
+        "fragments": [
+          28.3,
+          28.6,
+          28.9,
+          29.2
+        ]
+      },
+      {
+        "id": "interactions-track",
+        "heading": "INP: the Interactions track",
+        "start": 32,
+        "duration": 4,
+        "sequence": "vitals-in-trace",
+        "fragments": [
+          32.3,
+          32.6,
+          32.9,
+          33.2
+        ]
+      },
+      {
+        "id": "layout-shifts-track",
+        "heading": "CLS: the Layout shifts track",
+        "start": 36,
+        "duration": 4,
+        "sequence": "vitals-in-trace",
+        "fragments": [
+          36.3,
+          36.6,
+          36.9
+        ]
+      },
+      {
+        "id": "insights-tab",
+        "heading": "The Insights tab",
+        "start": 40,
+        "duration": 4,
+        "sequence": "vitals-in-trace",
+        "fragments": []
+      }
+    ],
+    "outline": "# Performance panel deep dives\n\nA short deck on where page time goes. The main path covers the working loop, the long-task rule, the live metrics view and when to use each. One deep dive explains why the main thread blocks input and how scheduler.yield() splits work. The other shows how INP and CLS appear in a trace: the Interactions track, the Layout shifts track and the Insights tab.\n\n**Purpose.** Go deeper into long tasks and yielding, and into the Core Web Vitals that the live metrics view and trace tracks show.\n\n## Main path\n\n### 1. Where did the time go?\n\n**On screen.** Title card with \"Long tasks and live metrics\".\n\n**Notes.** Ask the learner how they would find out why one click on a page feels slow.\n\n### 2. The working loop\n\n**On screen.** Numbered steps appear one at a time: Read live metrics: LCP, CLS, INP → Record a trace when it repeats → Find red marks in the Main track → Use Bottom-up to find the function.\n\n**Notes.** Reveal one step at a time. Live metrics come first, a trace only when the problem repeats.\n\n### 3. The 50 ms rule\n\n**On screen.** Two columns, \"Task of 40 ms\" and \"Task of 400 ms\", fill in pairs; verdict: Only the time past 50 ms is red..\n\n**Notes.** A task over 50 ms gets a red triangle, and only the time past 50 ms is shaded red.\n\n**Branches.** deep dive \"Long tasks and yielding\".\n\n### 4. Live metrics first\n\n**On screen.** Numbered steps appear one at a time: LCP, CLS and INP update as you use the page → A SOFT NAV badge marks client-side navigations → Turn on field data to compare with real users.\n\n**Notes.** The live metrics screen updates as you use the page, including soft navigations in single-page apps.\n\n**Branches.** deep dive \"Core Web Vitals in a trace\".\n\n### 5. Metrics spot, traces explain\n\n**On screen.** Two columns, \"Live metrics\" and \"Recorded trace\", fill in pairs; verdict: Record when the problem repeats..\n\n**Notes.** Live metrics are cheap and always on; a trace costs a recording but shows each task.\n\n## Deep dive: Long tasks and yielding\n\n### 1. One task at a time\n\n**On screen.** Numbered steps appear one at a time: The main thread runs one task at a time → A click during a long task must wait → Blocking period: task time minus 50 ms.\n\n**Notes.** The main thread can only process one task at a time, so input that arrives during a long task must wait.\n\n### 2. Split the work\n\n**On screen.** Two columns, \"One task\" and \"Four pieces\", fill in pairs; verdict: Same work, input runs between pieces..\n\n**Notes.** Breaking a long task into smaller ones lets the browser respond to input between the pieces.\n\n### 3. await scheduler.yield()\n\n**On screen.** Numbered steps appear one at a time: await scheduler.yield() pauses the function → Input can run before the rest → The function continues where it stopped → Not in all browsers: use a fallback.\n\n**Notes.** The await pauses the function; the browser can run input first, then the function continues where it left off.\n\n## Deep dive: Core Web Vitals in a trace\n\n### 1. INP: the Interactions track\n\n**On screen.** Numbered steps appear one at a time: Red triangle: interaction over 200 ms → Hover: input delay → Processing time → Presentation delay.\n\n**Notes.** Interactions over 200 ms get a red triangle; the tooltip splits the time into three parts.\n\n### 2. CLS: the Layout shifts track\n\n**On screen.** Numbered steps appear one at a time: Each shift is a purple diamond → Hover highlights the element → Click for score and culprits.\n\n**Notes.** Each layout shift is a purple diamond; hover highlights the element, click shows the score and likely culprits.\n\n### 3. The Insights tab\n\n**On screen.** Numbered steps appear one at a time: Open Insights in the left sidebar → LCP and INP subparts → Third parties and legacy JavaScript.\n\n**Notes.** The Insights tab in the left sidebar groups findings such as LCP and INP subparts and third parties.\n\n",
+    "explanation": "Live metrics tell you that something is slow; a trace tells you which task made it slow and why input had to wait."
+  },
+  "checkpoints": [
+    {
+      "id": "why-not-a-phone",
+      "kind": "explain",
+      "at": {
+        "after": "watch"
+      },
+      "prompt": "In one sentence: why does a 4x CPU slowdown not show you exactly how a phone runs your page?",
+      "explanation": "Throttling slows your own CPU by a factor, so the result is relative to your computer. A fast laptop at 4x is still not a given phone. Calibrated presets get closer to low and mid-tier devices.",
+      "concept_ids": [
+        "performance-panel"
+      ]
+    },
+    {
+      "id": "predict-4x",
+      "kind": "predict",
+      "at": {
+        "scene": "throttle"
+      },
+      "prompt": "The handler takes 40 ms with no throttling. You set a 4x slowdown and record again. What does the Main track show?",
+      "choices": [
+        {
+          "text": "One task of about 160 ms, marked as a long task",
+          "correct": true
+        },
+        {
+          "text": "One task of about 40 ms, because the code did not change",
+          "misconception": "Thinks CPU throttling changes only the network, not script time"
+        },
+        {
+          "text": "Four tasks of 40 ms each",
+          "misconception": "Thinks throttling splits a task instead of slowing it down"
+        }
+      ],
+      "explanation": "A 4x slowdown makes the CPU run four times as slowly, so the same work takes about 160 ms. That is over 50 ms, so DevTools marks it as a long task and shades the time past 50 ms red.",
+      "concept_ids": [
+        "performance-panel",
+        "flame-chart-and-long-tasks"
+      ],
+      "revisit": "record"
+    },
+    {
+      "id": "no-long-tasks-at-4x",
+      "kind": "experiment",
+      "at": {
+        "scene": "yield"
+      },
+      "prompt": "Keep the 4x slowdown. Change how the work is split until the trace has no long task and a second click waits at most 20 ms.",
+      "goal": {
+        "preset": "cpu-4x-one-task",
+        "condition": {
+          "all": [
+            {
+              "path": "vars.cpu",
+              "op": "eq",
+              "value": "4x"
+            },
+            {
+              "path": "vars.long_tasks",
+              "op": "eq",
+              "value": 0
+            },
+            {
+              "path": "vars.input_delay_ms",
+              "op": "lte",
+              "value": 20
+            }
+          ]
+        },
+        "hint": "Pick cpu 4x yield 4 pieces, then press Step until the last frame."
+      },
+      "explanation": "Yielding ends the task after each 40 ms piece. No piece passes 50 ms, and the browser can run the waiting click between pieces, so the click waits 15 ms instead of 135 ms. The total work is the same.",
+      "concept_ids": [
+        "flame-chart-and-long-tasks"
+      ]
+    },
+    {
+      "id": "six-x-pieces",
+      "kind": "observe",
+      "at": {
+        "scene": "six-x"
+      },
+      "prompt": "Load cpu 6x yield 4 pieces and step to the second frame. Watch which bars are highlighted.",
+      "look_for": "All four 60 ms pieces are long tasks again, but each has only 10 ms of red. With 8 pieces of 30 ms, none is long.",
+      "explanation": "Yielding helps only when each piece stays under 50 ms on the slow device. A slower CPU makes every piece longer, so the work needs smaller pieces.",
+      "concept_ids": [
+        "flame-chart-and-long-tasks"
+      ]
+    },
+    {
+      "id": "red-part",
+      "kind": "verify",
+      "at": {
+        "slide": "long-tasks"
+      },
+      "prompt": "A task in the Main track lasts 120 ms. Which part does DevTools shade red?",
+      "choices": [
+        {
+          "text": "The last 70 ms, the time past 50 ms",
+          "correct": true
+        },
+        {
+          "text": "The whole 120 ms",
+          "misconception": "Thinks the whole long task is shaded, not only the part past the limit"
+        },
+        {
+          "text": "The first 50 ms",
+          "misconception": "Thinks the red part is the allowed time instead of the excess"
+        }
+      ],
+      "explanation": "DevTools shades only the part of a long task that is past 50 ms. That part is the blocking period: total time minus 50 ms.",
+      "concept_ids": [
+        "flame-chart-and-long-tasks"
+      ]
+    },
+    {
+      "id": "slow-interaction",
+      "kind": "verify",
+      "at": {
+        "slide": "live-metrics"
+      },
+      "prompt": "In a trace, which interactions get a red triangle in the Interactions track?",
+      "choices": [
+        {
+          "text": "Interactions over 200 ms",
+          "correct": true
+        },
+        {
+          "text": "Interactions over 50 ms",
+          "misconception": "Mixes the long-task limit with the interaction limit"
+        },
+        {
+          "text": "Every interaction that causes a layout shift",
+          "misconception": "Mixes the Interactions track with the Layout shifts track"
+        }
+      ],
+      "explanation": "The Interactions track marks interactions over 200 ms with a red triangle. Hover over one to see its input delay, processing time and presentation delay.",
+      "concept_ids": [
+        "core-web-vitals-in-devtools"
+      ]
+    },
+    {
+      "id": "flame-stack",
+      "kind": "verify",
+      "at": {
+        "tab": "practice"
+      },
+      "prompt": "In the flame chart, handleClick sits directly below an anonymous function. What does that tell you?",
+      "choices": [
+        {
+          "text": "The anonymous function called handleClick",
+          "correct": true
+        },
+        {
+          "text": "handleClick ran after the anonymous function finished",
+          "misconception": "Thinks the y-axis is time, not the call stack"
+        },
+        {
+          "text": "handleClick took longer than the anonymous function",
+          "misconception": "Thinks vertical position shows duration instead of width"
+        }
+      ],
+      "explanation": "The x-axis is time and the y-axis is the call stack. Events on top cause the events below them, so the box under a function is a call it made. Width, not height, shows how long it ran.",
+      "concept_ids": [
+        "flame-chart-and-long-tasks"
+      ]
+    }
+  ],
+  "fallback_visual": "chrome-devtools-performance-reference-mechanism",
+  "concept_ids": [
+    "performance-panel",
+    "flame-chart-and-long-tasks",
+    "core-web-vitals-in-devtools"
+  ],
+  "sources": [
+    {
+      "id": "chrome-devtools-performance-reference",
+      "title": "Performance features reference",
+      "url": "https://developer.chrome.com/docs/devtools/performance/reference"
+    },
+    {
+      "id": "webdev-optimize-long-tasks",
+      "title": "Optimize long tasks",
+      "url": "https://web.dev/articles/optimize-long-tasks"
+    }
+  ],
+  "input_hash": "bee997397bb4b5dc2f9c24142389f8e0300273cc468ca30376a93bcd43e4f92f"
+}

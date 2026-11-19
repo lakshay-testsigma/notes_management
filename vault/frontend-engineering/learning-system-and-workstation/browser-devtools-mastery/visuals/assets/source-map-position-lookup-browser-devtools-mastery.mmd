@@ -1,0 +1,5 @@
+flowchart LR
+  A["app.min.js line 1, col 3"] -->|"last comment"| B["sourceMappingURL"]
+  B -->|"fetch"| C["app.min.js.map"]
+  C -->|"split on ; and ,"| D["segment AACS"]
+  D -->|"decode VLQ, add"| E["search.ts line 1, col 18"]

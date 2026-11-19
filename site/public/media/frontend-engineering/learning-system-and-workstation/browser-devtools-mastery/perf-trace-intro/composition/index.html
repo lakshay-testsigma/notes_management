@@ -4,7 +4,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=1920, height=1080" />
-    <title>Why a click can feel slow</title>
+    <title>One slow click, recorded in a trace</title>
     <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src data:; img-src 'self' data:; media-src 'self'; connect-src 'none'; frame-src 'none'; form-action 'none'; base-uri 'none'" />
     <script src="../../../../../_hf/gsap.min.js"></script>
     <script src="../../../../../_hf/hyperframe.runtime.iife.js"></script>
@@ -57,79 +57,74 @@
     </style>
   </head>
   <body>
-    <div id="root" data-composition-id="main" data-start="0" data-duration="58" data-width="1920" data-height="1080">
-      <section id="sc1" class="clip scene" data-start="0" data-duration="6" data-track-index="0"><div class="stage"><div class="title-card"><h1 id="sc1-big">Why a click can feel slow</h1><p id="sc1-sub">Live metrics, traces and long tasks</p></div></div></section>
-      <section id="sc2" class="clip scene" data-start="6" data-duration="12" data-track-index="0"><p class="kicker">Browser DevTools mastery (used in every phase) · 2/5</p><h2 class="heading" id="sc2-h">Live metrics first</h2><div class="stage"><ol class="steps"><li id="sc2-i0"><span class="num">1</span><span>Open the Performance panel</span></li><li id="sc2-i1"><span class="num">2</span><span>LCP and CLS show at once</span></li><li id="sc2-i2"><span class="num">3</span><span>Interact with the page</span></li><li id="sc2-i3"><span class="num">4</span><span>INP shows after the interaction</span></li></ol></div></section>
-      <section id="sc3" class="clip scene" data-start="18" data-duration="14" data-track-index="0"><p class="kicker">Browser DevTools mastery (used in every phase) · 3/5</p><h2 class="heading" id="sc3-h">From click to paint</h2><div class="stage"><svg class="edges" viewBox="0 0 1920 600" width="1920" height="600"><defs><marker id="sc3-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="var(--line-strong)"/></marker></defs><path d="M 566.67 250 L 814 250" class="edge" marker-end="url(#sc3-arrow)"/><path d="M 1100 250 L 1347.33 250" class="edge" marker-end="url(#sc3-arrow)"/></svg><div class="node" id="sc3-n-click" style="left:286.67px;top:190px;width:280px">Click</div><div class="node" id="sc3-n-task" style="left:820px;top:190px;width:280px">Main thread task<small>handler runs</small></div><div class="node" id="sc3-n-paint" style="left:1353.33px;top:190px;width:280px">Next paint</div><div class="packet" id="sc3-pkt"><span class="dot"></span><span class="pkt-label" id="sc3-pl"></span></div><p class="hop-note" id="sc3-hn"></p></div></section>
-      <section id="sc4" class="clip scene" data-start="32" data-duration="14" data-track-index="0"><p class="kicker">Browser DevTools mastery (used in every phase) · 4/5</p><h2 class="heading" id="sc4-h">Record a trace</h2><div class="stage"><ol class="steps"><li id="sc4-i0"><span class="num">1</span><span>Capture settings: CPU slowdown</span></li><li id="sc4-i1"><span class="num">2</span><span>Click Record</span></li><li id="sc4-i2"><span class="num">3</span><span>Click the button on the page</span></li><li id="sc4-i3"><span class="num">4</span><span>Click Stop and read the Main track</span></li></ol></div></section>
-      <section id="sc5" class="clip scene" data-start="46" data-duration="12" data-track-index="0"><p class="kicker">Browser DevTools mastery (used in every phase) · 5/5</p><h2 class="heading" id="sc5-h">What good looks like</h2><div class="stage"><ol class="steps"><li id="sc5-i0"><span class="num">1</span><span>LCP: 2.5 s or less</span></li><li id="sc5-i1"><span class="num">2</span><span>INP: 200 ms or less</span></li><li id="sc5-i2"><span class="num">3</span><span>CLS: 0.1 or less</span></li></ol></div></section>
-      <div class="clip caption" id="cap1" data-start="0.2" data-duration="3.73" data-track-index="1"><p>A click feels slow when the main thread is busy.</p></div>
-      <div class="clip caption" id="cap2" data-start="3.93" data-duration="1.87" data-track-index="1"><p>The Performance panel shows why.</p></div>
-      <div class="clip caption" id="cap3" data-start="6.2" data-duration="2.11" data-track-index="1"><p>Open the Performance panel.</p></div>
-      <div class="clip caption" id="cap4" data-start="8.31" data-duration="5.27" data-track-index="1"><p>Live metrics show your local LCP and CLS at once.</p></div>
-      <div class="clip caption" id="cap5" data-start="13.58" data-duration="4.22" data-track-index="1"><p>Click on the page, and INP appears too.</p></div>
-      <div class="clip caption" id="cap6" data-start="18.2" data-duration="5.32" data-track-index="1"><p>A click starts a task on the main thread.</p></div>
-      <div class="clip caption" id="cap7" data-start="23.52" data-duration="1.78" data-track-index="1"><p>The handler runs.</p></div>
-      <div class="clip caption" id="cap8" data-start="25.3" data-duration="6.5" data-track-index="1"><p>Only after it ends can the browser paint the next frame.</p></div>
-      <div class="clip caption" id="cap9" data-start="32.2" data-duration="4.33" data-track-index="1"><p>To see the cause, record a trace.</p></div>
-      <div class="clip caption" id="cap10" data-start="36.53" data-duration="4.32" data-track-index="1"><p>Set a CPU slowdown in Capture settings,</p></div>
-      <div class="clip caption" id="cap11" data-start="40.85" data-duration="4.95" data-track-index="1"><p>click Record, click the page, then click Stop.</p></div>
-      <div class="clip caption" id="cap12" data-start="46.2" data-duration="4.78" data-track-index="1"><p>Good values: LCP 2.5 seconds or less,</p></div>
-      <div class="clip caption" id="cap13" data-start="50.98" data-duration="6.82" data-track-index="1"><p>INP 200 milliseconds or less, and CLS 0.1 or less.</p></div>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="45" data-width="1920" data-height="1080">
+      <section id="sc1" class="clip scene" data-start="0" data-duration="8" data-track-index="0"><div class="stage"><div class="title-card"><h1 id="sc1-big">One slow click, recorded</h1><p id="sc1-sub">Record, find the long task, explain the delay</p></div></div></section>
+      <section id="sc2" class="clip scene" data-start="8" data-duration="9" data-track-index="0"><p class="kicker">Browser DevTools mastery (used in every phase) · 2/5</p><h2 class="heading" id="sc2-h">Record a runtime trace</h2><div class="stage"><ol class="steps"><li id="sc2-i0"><span class="num">1</span><span>Open the Performance panel</span></li><li id="sc2-i1"><span class="num">2</span><span>Set CPU throttling</span></li><li id="sc2-i2"><span class="num">3</span><span>Click Record, then click the button</span></li><li id="sc2-i3"><span class="num">4</span><span>Click Stop and read the Main track</span></li></ol></div></section>
+      <section id="sc3" class="clip scene" data-start="17" data-duration="10" data-track-index="0"><p class="kicker">Browser DevTools mastery (used in every phase) · 3/5</p><h2 class="heading" id="sc3-h">The click becomes a task</h2><div class="stage"><svg class="edges" viewBox="0 0 1920 600" width="1920" height="600"><defs><marker id="sc3-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="var(--line-strong)"/></marker></defs><path d="M 566.67 250 L 814 250" class="edge" marker-end="url(#sc3-arrow)"/><path d="M 1100 250 L 1347.33 250" class="edge" marker-end="url(#sc3-arrow)"/></svg><div class="node" id="sc3-n-click" style="left:286.67px;top:190px;width:280px">Click</div><div class="node" id="sc3-n-task" style="left:820px;top:190px;width:280px">Task<small>main thread</small></div><div class="node" id="sc3-n-paint" style="left:1353.33px;top:190px;width:280px">Next paint</div><div class="packet" id="sc3-pkt"><span class="dot"></span><span class="pkt-label" id="sc3-pl"></span></div><p class="hop-note" id="sc3-hn"></p></div></section>
+      <section id="sc4" class="clip scene" data-start="27" data-duration="8" data-track-index="0"><p class="kicker">Browser DevTools mastery (used in every phase) · 4/5</p><h2 class="heading" id="sc4-h">Throttling slows the same work</h2><div class="stage"><div class="bars"><div class="bar-row"><span class="bar-label">No throttling</span><span class="bar" id="sc4-b0" style="width:166.67px"></span><span class="bar-value" id="sc4-bv0">40 ms</span></div><div class="bar-row"><span class="bar-label">4x slowdown</span><span class="bar" id="sc4-b1" style="width:666.67px"></span><span class="bar-value" id="sc4-bv1">160 ms</span></div><div class="bar-row"><span class="bar-label">6x slowdown</span><span class="bar" id="sc4-b2" style="width:1000px"></span><span class="bar-value" id="sc4-bv2">240 ms</span></div></div></div></section>
+      <section id="sc5" class="clip scene" data-start="35" data-duration="10" data-track-index="0"><p class="kicker">Browser DevTools mastery (used in every phase) · 5/5</p><h2 class="heading" id="sc5-h">Over 50 ms is a long task</h2><div class="stage"><div class="compare"><div class="col" id="sc5-l"><h3>Under 50 ms</h3><ul><li id="sc5-l0">Normal task</li><li id="sc5-l1">No red mark</li></ul></div><div class="col" id="sc5-r"><h3>Over 50 ms</h3><ul><li id="sc5-r0">Red triangle</li><li id="sc5-r1">Time past 50 ms is red</li></ul></div></div><p class="verdict" id="sc5-v">A 160 ms task: the last 110 ms are red.</p></div></section>
+      <div class="clip caption" id="cap1" data-start="0.2" data-duration="2.11" data-track-index="1"><p>A button click feels slow.</p></div>
+      <div class="clip caption" id="cap2" data-start="2.31" data-duration="2.53" data-track-index="1"><p>The Performance panel records a trace,</p></div>
+      <div class="clip caption" id="cap3" data-start="4.84" data-duration="2.96" data-track-index="1"><p>so you can see the slow task.</p></div>
+      <div class="clip caption" id="cap4" data-start="8.2" data-duration="1.64" data-track-index="1"><p>Open the Performance panel.</p></div>
+      <div class="clip caption" id="cap5" data-start="9.84" data-duration="1.23" data-track-index="1"><p>Set CPU throttling.</p></div>
+      <div class="clip caption" id="cap6" data-start="11.07" data-duration="3.27" data-track-index="1"><p>Click Record, click the button, then click Stop.</p></div>
+      <div class="clip caption" id="cap7" data-start="14.34" data-duration="2.46" data-track-index="1"><p>The Main track shows the tasks.</p></div>
+      <div class="clip caption" id="cap8" data-start="17.2" data-duration="3.76" data-track-index="1"><p>The click starts a task on the main thread.</p></div>
+      <div class="clip caption" id="cap9" data-start="20.96" data-duration="3.75" data-track-index="1"><p>The main thread runs one task at a time,</p></div>
+      <div class="clip caption" id="cap10" data-start="24.71" data-duration="2.09" data-track-index="1"><p>so the next paint waits.</p></div>
+      <div class="clip caption" id="cap11" data-start="27.2" data-duration="3.2" data-track-index="1"><p>In this example the handler needs 40 milliseconds.</p></div>
+      <div class="clip caption" id="cap12" data-start="30.4" data-duration="4.4" data-track-index="1"><p>A 4x slowdown makes it 160, and 6x makes it 240.</p></div>
+      <div class="clip caption" id="cap13" data-start="35.2" data-duration="3.76" data-track-index="1"><p>Any task over 50 milliseconds is a long task.</p></div>
+      <div class="clip caption" id="cap14" data-start="38.96" data-duration="2.92" data-track-index="1"><p>DevTools adds a red triangle and shades</p></div>
+      <div class="clip caption" id="cap15" data-start="41.88" data-duration="2.92" data-track-index="1"><p>only the time past 50 milliseconds red.</p></div>
       
     </div>
     <script>
       const tl = gsap.timeline({ paused: true });
       tl.from("#sc1-sub", { opacity: 0, y: 16, duration: 0.6 }, 0.9);
-      tl.from("#sc2-h", { opacity: 0, y: 20, duration: 0.5 }, 6.05);
-      tl.from("#sc2-i0", { opacity: 0, x: -24, duration: 0.45 }, 6.6);
-      tl.to("#sc2-i0", { borderLeftColor: "var(--accent)", backgroundColor: "var(--soft)", duration: 0.3 }, 6.6);
-      tl.from("#sc2-i1", { opacity: 0, x: -24, duration: 0.45 }, 9.3);
-      tl.to("#sc2-i1", { borderLeftColor: "var(--accent)", backgroundColor: "var(--soft)", duration: 0.3 }, 9.3);
-      tl.to("#sc2-i0", { borderLeftColor: "var(--line)", backgroundColor: "rgba(0,0,0,0)", opacity: 0.7, duration: 0.3 }, 9.3);
-      tl.from("#sc2-i2", { opacity: 0, x: -24, duration: 0.45 }, 12);
-      tl.to("#sc2-i2", { borderLeftColor: "var(--accent)", backgroundColor: "var(--soft)", duration: 0.3 }, 12);
-      tl.to("#sc2-i1", { borderLeftColor: "var(--line)", backgroundColor: "rgba(0,0,0,0)", opacity: 0.7, duration: 0.3 }, 12);
-      tl.from("#sc2-i3", { opacity: 0, x: -24, duration: 0.45 }, 14.7);
-      tl.to("#sc2-i3", { borderLeftColor: "var(--accent)", backgroundColor: "var(--soft)", duration: 0.3 }, 14.7);
-      tl.to("#sc2-i2", { borderLeftColor: "var(--line)", backgroundColor: "rgba(0,0,0,0)", opacity: 0.7, duration: 0.3 }, 14.7);
-      tl.from("#sc3-h", { opacity: 0, y: 20, duration: 0.5 }, 18.05);
-      tl.from("#sc3 .node", { opacity: 0, y: 20, duration: 0.5, stagger: 0.12 }, 18.2);
-      tl.from("#sc3 .edge", { opacity: 0, duration: 0.4 }, 18.5);
-      tl.set("#sc3-pkt", { opacity: 0 }, 18);
-      tl.set("#sc3-pkt", { x: 566.67, y: 250, opacity: 1 }, 18.9);
-      tl.set("#sc3-pl", { textContent: "input", top: 76 }, 18.9);
-      tl.set("#sc3-hn", { textContent: "" }, 18.9);
-      tl.to("#sc3-pkt", { x: 800, duration: 3.78, ease: "power1.inOut" }, 18.9);
-      tl.to("#sc3-n-task", { borderColor: "var(--accent)", backgroundColor: "var(--soft)", duration: 0.25 }, 22.68);
-      tl.to("#sc3 .node:not(#sc3-n-task)", { borderColor: "var(--line-strong)", backgroundColor: "var(--bg)", duration: 0.25 }, 22.68);
-      tl.set("#sc3-pkt", { x: 1100, y: 250, opacity: 1 }, 25.2);
-      tl.set("#sc3-pl", { textContent: "frame", top: 76 }, 25.2);
-      tl.set("#sc3-hn", { textContent: "waits for the task" }, 25.2);
-      tl.to("#sc3-pkt", { x: 1333.33, duration: 3.78, ease: "power1.inOut" }, 25.2);
-      tl.to("#sc3-n-paint", { borderColor: "var(--accent)", backgroundColor: "var(--soft)", duration: 0.25 }, 28.98);
-      tl.to("#sc3 .node:not(#sc3-n-paint)", { borderColor: "var(--line-strong)", backgroundColor: "var(--bg)", duration: 0.25 }, 28.98);
-      tl.from("#sc4-h", { opacity: 0, y: 20, duration: 0.5 }, 32.05);
-      tl.from("#sc4-i0", { opacity: 0, x: -24, duration: 0.45 }, 32.6);
-      tl.to("#sc4-i0", { borderLeftColor: "var(--accent)", backgroundColor: "var(--soft)", duration: 0.3 }, 32.6);
-      tl.from("#sc4-i1", { opacity: 0, x: -24, duration: 0.45 }, 35.8);
-      tl.to("#sc4-i1", { borderLeftColor: "var(--accent)", backgroundColor: "var(--soft)", duration: 0.3 }, 35.8);
-      tl.to("#sc4-i0", { borderLeftColor: "var(--line)", backgroundColor: "rgba(0,0,0,0)", opacity: 0.7, duration: 0.3 }, 35.8);
-      tl.from("#sc4-i2", { opacity: 0, x: -24, duration: 0.45 }, 39);
-      tl.to("#sc4-i2", { borderLeftColor: "var(--accent)", backgroundColor: "var(--soft)", duration: 0.3 }, 39);
-      tl.to("#sc4-i1", { borderLeftColor: "var(--line)", backgroundColor: "rgba(0,0,0,0)", opacity: 0.7, duration: 0.3 }, 39);
-      tl.from("#sc4-i3", { opacity: 0, x: -24, duration: 0.45 }, 42.2);
-      tl.to("#sc4-i3", { borderLeftColor: "var(--accent)", backgroundColor: "var(--soft)", duration: 0.3 }, 42.2);
-      tl.to("#sc4-i2", { borderLeftColor: "var(--line)", backgroundColor: "rgba(0,0,0,0)", opacity: 0.7, duration: 0.3 }, 42.2);
-      tl.from("#sc5-h", { opacity: 0, y: 20, duration: 0.5 }, 46.05);
-      tl.from("#sc5-i0", { opacity: 0, x: -24, duration: 0.45 }, 46.6);
-      tl.to("#sc5-i0", { borderLeftColor: "var(--accent)", backgroundColor: "var(--soft)", duration: 0.3 }, 46.6);
-      tl.from("#sc5-i1", { opacity: 0, x: -24, duration: 0.45 }, 50.2);
-      tl.to("#sc5-i1", { borderLeftColor: "var(--accent)", backgroundColor: "var(--soft)", duration: 0.3 }, 50.2);
-      tl.to("#sc5-i0", { borderLeftColor: "var(--line)", backgroundColor: "rgba(0,0,0,0)", opacity: 0.7, duration: 0.3 }, 50.2);
-      tl.from("#sc5-i2", { opacity: 0, x: -24, duration: 0.45 }, 53.8);
-      tl.to("#sc5-i2", { borderLeftColor: "var(--accent)", backgroundColor: "var(--soft)", duration: 0.3 }, 53.8);
-      tl.to("#sc5-i1", { borderLeftColor: "var(--line)", backgroundColor: "rgba(0,0,0,0)", opacity: 0.7, duration: 0.3 }, 53.8);
+      tl.from("#sc2-h", { opacity: 0, y: 20, duration: 0.5 }, 8.05);
+      tl.from("#sc2-i0", { opacity: 0, x: -24, duration: 0.45 }, 8.6);
+      tl.to("#sc2-i0", { borderLeftColor: "var(--accent)", backgroundColor: "var(--soft)", duration: 0.3 }, 8.6);
+      tl.from("#sc2-i1", { opacity: 0, x: -24, duration: 0.45 }, 10.55);
+      tl.to("#sc2-i1", { borderLeftColor: "var(--accent)", backgroundColor: "var(--soft)", duration: 0.3 }, 10.55);
+      tl.to("#sc2-i0", { borderLeftColor: "var(--line)", backgroundColor: "rgba(0,0,0,0)", opacity: 0.7, duration: 0.3 }, 10.55);
+      tl.from("#sc2-i2", { opacity: 0, x: -24, duration: 0.45 }, 12.5);
+      tl.to("#sc2-i2", { borderLeftColor: "var(--accent)", backgroundColor: "var(--soft)", duration: 0.3 }, 12.5);
+      tl.to("#sc2-i1", { borderLeftColor: "var(--line)", backgroundColor: "rgba(0,0,0,0)", opacity: 0.7, duration: 0.3 }, 12.5);
+      tl.from("#sc2-i3", { opacity: 0, x: -24, duration: 0.45 }, 14.45);
+      tl.to("#sc2-i3", { borderLeftColor: "var(--accent)", backgroundColor: "var(--soft)", duration: 0.3 }, 14.45);
+      tl.to("#sc2-i2", { borderLeftColor: "var(--line)", backgroundColor: "rgba(0,0,0,0)", opacity: 0.7, duration: 0.3 }, 14.45);
+      tl.from("#sc3-h", { opacity: 0, y: 20, duration: 0.5 }, 17.05);
+      tl.from("#sc3 .node", { opacity: 0, y: 20, duration: 0.5, stagger: 0.12 }, 17.2);
+      tl.from("#sc3 .edge", { opacity: 0, duration: 0.4 }, 17.5);
+      tl.set("#sc3-pkt", { opacity: 0 }, 17);
+      tl.set("#sc3-pkt", { x: 566.67, y: 250, opacity: 1 }, 17.9);
+      tl.set("#sc3-pl", { textContent: "event", top: 76 }, 17.9);
+      tl.set("#sc3-hn", { textContent: "" }, 17.9);
+      tl.to("#sc3-pkt", { x: 800, duration: 2.58, ease: "power1.inOut" }, 17.9);
+      tl.to("#sc3-n-task", { borderColor: "var(--accent)", backgroundColor: "var(--soft)", duration: 0.25 }, 20.48);
+      tl.to("#sc3 .node:not(#sc3-n-task)", { borderColor: "var(--line-strong)", backgroundColor: "var(--bg)", duration: 0.25 }, 20.48);
+      tl.set("#sc3-pkt", { x: 1100, y: 250, opacity: 1 }, 22.2);
+      tl.set("#sc3-pl", { textContent: "", top: 76 }, 22.2);
+      tl.set("#sc3-hn", { textContent: "waits for the task" }, 22.2);
+      tl.to("#sc3-pkt", { x: 1333.33, duration: 2.58, ease: "power1.inOut" }, 22.2);
+      tl.to("#sc3-n-paint", { borderColor: "var(--accent)", backgroundColor: "var(--soft)", duration: 0.25 }, 24.78);
+      tl.to("#sc3 .node:not(#sc3-n-paint)", { borderColor: "var(--line-strong)", backgroundColor: "var(--bg)", duration: 0.25 }, 24.78);
+      tl.from("#sc4-h", { opacity: 0, y: 20, duration: 0.5 }, 27.05);
+      tl.from("#sc4-b0", { scaleX: 0, transformOrigin: "left center", duration: 0.6, ease: "power2.out" }, 27.5);
+      tl.from("#sc4-bv0", { opacity: 0, duration: 0.3 }, 27.9);
+      tl.from("#sc4-b1", { scaleX: 0, transformOrigin: "left center", duration: 0.6, ease: "power2.out" }, 29.77);
+      tl.from("#sc4-bv1", { opacity: 0, duration: 0.3 }, 30.17);
+      tl.from("#sc4-b2", { scaleX: 0, transformOrigin: "left center", duration: 0.6, ease: "power2.out" }, 32.03);
+      tl.from("#sc4-bv2", { opacity: 0, duration: 0.3 }, 32.43);
+      tl.from("#sc5-h", { opacity: 0, y: 20, duration: 0.5 }, 35.05);
+      tl.from("#sc5 .col h3", { opacity: 0, y: 16, duration: 0.4, stagger: 0.2 }, 35.3);
+      tl.from("#sc5-l0", { opacity: 0, x: -20, duration: 0.4 }, 35.9);
+      tl.from("#sc5-r0", { opacity: 0, x: 20, duration: 0.4 }, 37.9);
+      tl.from("#sc5-l1", { opacity: 0, x: -20, duration: 0.4 }, 39.9);
+      tl.from("#sc5-r1", { opacity: 0, x: 20, duration: 0.4 }, 41.9);
+      tl.from("#sc5-v", { opacity: 0, y: 12, duration: 0.4 }, 41.1);
       window.__timelines = window.__timelines || {};
       window.__timelines["main"] = tl;
       tl.seek(0);

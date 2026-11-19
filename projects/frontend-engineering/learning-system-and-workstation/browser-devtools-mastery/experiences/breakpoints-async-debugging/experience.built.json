@@ -1,0 +1,1003 @@
+{
+  "generated_by": "tutor experience build",
+  "id": "breakpoints-async-debugging",
+  "topic": "frontend-engineering/learning-system-and-workstation/browser-devtools-mastery",
+  "title": "Debug a search race with breakpoints and async call stacks",
+  "mode": "hybrid",
+  "objective": "Choose a breakpoint type, step through paused code and use async call stack frames to find which fetch makes a search box show stale results.",
+  "level": "advanced",
+  "summary": "An intro video shows a search box whose list shows results for an old query because two fetches race. A stepper lets the learner pause the code with a line-of-code, conditional or XHR/fetch breakpoint, step into, over and out, and compare the Call Stack with and without async frames. A guided walkthrough pauses at each breakpoint, a deck explains the breakpoint types and stepping, and a summary video connects the evidence to the fix.",
+  "page": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/04-breakpoints-and-async-debugging.mdx",
+  "page_url": "/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/lesson/04-breakpoints-and-async-debugging/",
+  "tabs": [
+    "watch",
+    "explore",
+    "guided",
+    "deepdive",
+    "practice"
+  ],
+  "watch": {
+    "video_id": "breakpoints-race-intro",
+    "title": "Why a search box shows stale results",
+    "status": "storyboard",
+    "blocker": "FFmpeg is not installed and Docker is not running; install FFmpeg (for example `brew install ffmpeg`) or start Docker",
+    "mp4_url": null,
+    "captions_url": null,
+    "composition_url": "/media/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/breakpoints-race-intro/composition/index.html",
+    "duration": 45,
+    "scenes": [
+      {
+        "id": "intro",
+        "heading": "Stale search results",
+        "start": 0,
+        "duration": 5
+      },
+      {
+        "id": "race",
+        "heading": "Two requests race",
+        "start": 5,
+        "duration": 13
+      },
+      {
+        "id": "why-pause",
+        "heading": "console.log or a breakpoint",
+        "start": 18,
+        "duration": 10
+      },
+      {
+        "id": "loop",
+        "heading": "The debugging loop",
+        "start": 28,
+        "duration": 12
+      },
+      {
+        "id": "next",
+        "heading": "Now catch the race",
+        "start": 40,
+        "duration": 5
+      }
+    ],
+    "transcript": "# Why a search box shows stale results\n\nA user types re and then react in a search box. Each input event starts a fetch. The react response arrives first and the slow re response arrives last, so the list shows results for the old query. A breakpoint pauses the code before a line runs, so you can read the Scope, Watch and Call Stack panes instead of guessing with console.log.\n\n**00:00 Stale search results.** This search box shows results for an old query. Breakpoints show you why.\n\n**00:05 Two requests race.** The user types re, then react. Each input event starts a fetch to the server. The react response comes back first. The slow re response comes back last and overwrites the list.\n\n**00:18 console.log or a breakpoint.** A console.log prints only the values you guessed in advance. A breakpoint pauses the code, so you can read every variable in scope.\n\n**00:28 The debugging loop.** In the Sources panel, you set a breakpoint. DevTools pauses before that line runs. You read the Scope, Watch and Call Stack panes, then step or resume.\n\n**00:40 Now catch the race.** Next, you set the breakpoints yourself and catch the stale response.\n\nSources:\n\n- Chrome DevTools — https://developer.chrome.com/docs/devtools\n",
+    "explanation": "Two requests can be in flight at the same time. The response that arrives last overwrites the list, even when it belongs to an old query.",
+    "alt": "A user types re and then react in a search box. Each input event starts a fetch. The react response arrives first and the slow re response arrives last, so the list shows results for the old query. A breakpoint pauses the code before a line runs, so you can read the Scope, Watch and Call Stack panes instead of guessing with console.log."
+  },
+  "guided": {
+    "video_id": "breakpoints-race-guided",
+    "title": "Catch the search race with breakpoints",
+    "status": "storyboard",
+    "blocker": "FFmpeg is not installed and Docker is not running; install FFmpeg (for example `brew install ffmpeg`) or start Docker",
+    "mp4_url": null,
+    "captions_url": null,
+    "composition_url": "/media/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/breakpoints-race-guided/composition/index.html",
+    "duration": 68,
+    "scenes": [
+      {
+        "id": "the-bug",
+        "heading": "The code under test",
+        "start": 0,
+        "duration": 8
+      },
+      {
+        "id": "two-requests",
+        "heading": "A fetch breakpoint",
+        "start": 8,
+        "duration": 11
+      },
+      {
+        "id": "line-pause",
+        "heading": "A line-of-code breakpoint",
+        "start": 19,
+        "duration": 12
+      },
+      {
+        "id": "conditional",
+        "heading": "A conditional breakpoint",
+        "start": 31,
+        "duration": 12
+      },
+      {
+        "id": "step-into",
+        "heading": "Step into, over and out",
+        "start": 43,
+        "duration": 12
+      },
+      {
+        "id": "async-stack",
+        "heading": "Async frames link the call history",
+        "start": 55,
+        "duration": 13
+      }
+    ],
+    "transcript": "# Catch the search race with breakpoints\n\nA fetch breakpoint pauses on line 12 each time a request to search?q= starts. A line-of-code breakpoint on line 5 pauses for both responses. A conditional breakpoint with query !== input.value pauses only on the stale re response. Step into enters render, step over runs one line, step out returns. After an await the stack holds only the resumed code; async frames link it back to the code that started the fetch.\n\n**00:00 The code under test.** The onInput function reads the box on line 3, awaits getJSON on line 4, and calls render on line 5.\n\n**00:08 A fetch breakpoint.** An XHR or fetch breakpoint with the text search?q= pauses on line 12 when a request URL contains it. It pauses twice: for re, then for react.\n\n**00:19 A line-of-code breakpoint.** A line-of-code breakpoint on line 5 pauses for every response. First react arrives, and query matches the box. Then re arrives, but the box still says react.\n\n**00:31 A conditional breakpoint.** A conditional breakpoint pauses only when its condition is true. With query !== input.value, it skips the fresh react response and stops on the stale re response.\n\n**00:43 Step into, over and out.** Step into enters render, so render goes on top of the Call Stack. Step over runs one line. Step out finishes render and returns to onInput.\n\n**00:55 Async frames link the call history.** After an await, the stack holds only the resumed code. Async frames link it back to the code that started the fetch, so the Call Stack shows the whole history.\n\nSources:\n\n- Chrome DevTools — https://developer.chrome.com/docs/devtools\n",
+    "explanation": "A conditional breakpoint skips the pauses you do not need. Async frames in the Call Stack show which earlier call started the code that is paused now.",
+    "alt": "A fetch breakpoint pauses on line 12 each time a request to search?q= starts. A line-of-code breakpoint on line 5 pauses for both responses. A conditional breakpoint with query !== input.value pauses only on the stale re response. Step into enters render, step over runs one line, step out returns. After an await the stack holds only the resumed code; async frames link it back to the code that started the fetch."
+  },
+  "summary_video": {
+    "video_id": "breakpoints-race-summary",
+    "title": "Breakpoints and async stacks in one minute",
+    "status": "storyboard",
+    "blocker": "FFmpeg is not installed and Docker is not running; install FFmpeg (for example `brew install ffmpeg`) or start Docker",
+    "mp4_url": null,
+    "captions_url": null,
+    "composition_url": "/media/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/breakpoints-race-summary/composition/index.html",
+    "duration": 39,
+    "scenes": [
+      {
+        "id": "recap",
+        "heading": "What you found",
+        "start": 0,
+        "duration": 5
+      },
+      {
+        "id": "pick",
+        "heading": "Pick the breakpoint by the question",
+        "start": 5,
+        "duration": 13
+      },
+      {
+        "id": "read",
+        "heading": "Read the pause",
+        "start": 18,
+        "duration": 12
+      },
+      {
+        "id": "fix",
+        "heading": "From evidence to fix",
+        "start": 30,
+        "duration": 9
+      }
+    ],
+    "transcript": "# Breakpoints and async stacks in one minute\n\nThe summary replays the session. The symptom was a stale list. A fetch breakpoint showed two requests in flight. A conditional breakpoint paused only on the stale response. Stepping showed render writing the old label, and async frames showed which input event started the stale request.\n\n**00:00 What you found.** The stale list came from a slow response that arrived last.\n\n**00:05 Pick the breakpoint by the question.** Use a line-of-code breakpoint when you know the line. Add a condition to skip pauses you do not need. Use a fetch breakpoint when you know only the URL.\n\n**00:18 Read the pause.** At each pause, Scope shows the local values, Watch tracks your own expression, and the Call Stack shows how the code got there.\n\n**00:30 From evidence to fix.** The evidence points to the fix. The code must ignore a response whose query no longer matches the box.\n\nSources:\n\n- Chrome DevTools — https://developer.chrome.com/docs/devtools\n",
+    "explanation": "Choose the breakpoint by the question you ask. The Call Stack with async frames tells you which earlier call caused the code that is paused now.",
+    "alt": "The summary replays the session. The symptom was a stale list. A fetch breakpoint showed two requests in flight. A conditional breakpoint paused only on the stale response. Stepping showed render writing the old label, and async frames showed which input event started the stale request."
+  },
+  "simulation": {
+    "component": "AlgorithmStepper",
+    "props": {
+      "title": "Search race: Call Stack (top first), Scope and Watch at each pause",
+      "frames": [
+        {
+          "caption": "Breakpoint on line 5. The user typed re, then react. Two fetches are in flight. The Call Stack is empty: nothing is paused.",
+          "array": [
+            "(empty: not paused)"
+          ],
+          "vars": {
+            "breakpoint": "line 5",
+            "query": "-",
+            "input.value": "react",
+            "query === input.value": "-",
+            "label": "(empty)",
+            "in flight": "q=re, q=react"
+          },
+          "line": 4
+        },
+        {
+          "caption": "The react response arrives first. DevTools pauses before line 5 runs. Scope: query is react, the same as the box.",
+          "array": [
+            "onInput, line 5",
+            "async: await getJSON",
+            "onInput, line 4"
+          ],
+          "highlight": [
+            0
+          ],
+          "pointers": {
+            "paused": 0
+          },
+          "vars": {
+            "breakpoint": "line 5",
+            "query": "react",
+            "input.value": "react",
+            "query === input.value": "true",
+            "label": "(empty)",
+            "in flight": "q=re"
+          },
+          "line": 5
+        },
+        {
+          "caption": "Resume. render runs. The label says Results for react. This is correct so far.",
+          "array": [
+            "(empty: not paused)"
+          ],
+          "vars": {
+            "breakpoint": "line 5",
+            "query": "-",
+            "input.value": "react",
+            "query === input.value": "-",
+            "label": "Results for react",
+            "in flight": "q=re"
+          },
+          "line": 6
+        },
+        {
+          "caption": "The slow re response arrives last. The same breakpoint pauses again. query is re, but the box says react: the watch is false.",
+          "array": [
+            "onInput, line 5",
+            "async: await getJSON",
+            "onInput, line 4"
+          ],
+          "highlight": [
+            0
+          ],
+          "pointers": {
+            "paused": 0
+          },
+          "vars": {
+            "breakpoint": "line 5",
+            "query": "re",
+            "input.value": "react",
+            "query === input.value": "false",
+            "label": "Results for react",
+            "in flight": "-"
+          },
+          "line": 5
+        },
+        {
+          "caption": "Resume. render overwrites the list. The label says Results for re while the box says react: stale results.",
+          "array": [
+            "(empty: not paused)"
+          ],
+          "vars": {
+            "breakpoint": "line 5",
+            "query": "-",
+            "input.value": "react",
+            "query === input.value": "-",
+            "label": "Results for re",
+            "in flight": "-"
+          },
+          "line": 6
+        }
+      ],
+      "view": "array",
+      "code": "input.addEventListener('input', onInput);\nasync function onInput() {\n  const query = input.value;\n  const items = await getJSON('/search?q=' + query);\n  render(query, items);\n}\nfunction render(query, items) {\n  list.textContent = items.join(', ');\n  label.textContent = 'Results for ' + query;\n}\nasync function getJSON(url) {\n  const res = await fetch(url);\n  return res.json();\n}",
+      "lang": "javascript",
+      "speed": 2200
+    },
+    "presets": {
+      "line-breakpoint": {
+        "title": "Line-of-code breakpoint on line 5",
+        "frames": [
+          {
+            "caption": "Breakpoint on line 5. The user typed re, then react. Two fetches are in flight. The Call Stack is empty: nothing is paused.",
+            "array": [
+              "(empty: not paused)"
+            ],
+            "vars": {
+              "breakpoint": "line 5",
+              "query": "-",
+              "input.value": "react",
+              "query === input.value": "-",
+              "label": "(empty)",
+              "in flight": "q=re, q=react"
+            },
+            "line": 4
+          },
+          {
+            "caption": "The react response arrives first. DevTools pauses before line 5 runs. Scope: query is react, the same as the box.",
+            "array": [
+              "onInput, line 5",
+              "async: await getJSON",
+              "onInput, line 4"
+            ],
+            "highlight": [
+              0
+            ],
+            "pointers": {
+              "paused": 0
+            },
+            "vars": {
+              "breakpoint": "line 5",
+              "query": "react",
+              "input.value": "react",
+              "query === input.value": "true",
+              "label": "(empty)",
+              "in flight": "q=re"
+            },
+            "line": 5
+          },
+          {
+            "caption": "Resume. render runs. The label says Results for react. This is correct so far.",
+            "array": [
+              "(empty: not paused)"
+            ],
+            "vars": {
+              "breakpoint": "line 5",
+              "query": "-",
+              "input.value": "react",
+              "query === input.value": "-",
+              "label": "Results for react",
+              "in flight": "q=re"
+            },
+            "line": 6
+          },
+          {
+            "caption": "The slow re response arrives last. The same breakpoint pauses again. query is re, but the box says react: the watch is false.",
+            "array": [
+              "onInput, line 5",
+              "async: await getJSON",
+              "onInput, line 4"
+            ],
+            "highlight": [
+              0
+            ],
+            "pointers": {
+              "paused": 0
+            },
+            "vars": {
+              "breakpoint": "line 5",
+              "query": "re",
+              "input.value": "react",
+              "query === input.value": "false",
+              "label": "Results for react",
+              "in flight": "-"
+            },
+            "line": 5
+          },
+          {
+            "caption": "Resume. render overwrites the list. The label says Results for re while the box says react: stale results.",
+            "array": [
+              "(empty: not paused)"
+            ],
+            "vars": {
+              "breakpoint": "line 5",
+              "query": "-",
+              "input.value": "react",
+              "query === input.value": "-",
+              "label": "Results for re",
+              "in flight": "-"
+            },
+            "line": 6
+          }
+        ]
+      },
+      "conditional-breakpoint": {
+        "title": "Conditional breakpoint on line 5, then step into, over and out",
+        "frames": [
+          {
+            "caption": "Conditional breakpoint on line 5: query !== input.value. Two fetches are in flight. Nothing is paused.",
+            "array": [
+              "(empty: not paused)"
+            ],
+            "vars": {
+              "breakpoint": "line 5 if query !== input.value",
+              "query": "-",
+              "input.value": "react",
+              "query === input.value": "-",
+              "label": "(empty)",
+              "in flight": "q=re, q=react"
+            },
+            "line": 4
+          },
+          {
+            "caption": "The react response arrives. The condition is false, so DevTools does not pause. The label says Results for react.",
+            "array": [
+              "(empty: not paused)"
+            ],
+            "vars": {
+              "breakpoint": "line 5 if query !== input.value",
+              "query": "-",
+              "input.value": "react",
+              "query === input.value": "-",
+              "label": "Results for react",
+              "in flight": "q=re"
+            },
+            "line": 6
+          },
+          {
+            "caption": "The re response arrives. The condition is true, so DevTools pauses on line 5. This is the stale response.",
+            "array": [
+              "onInput, line 5",
+              "async: await getJSON",
+              "onInput, line 4"
+            ],
+            "highlight": [
+              0
+            ],
+            "pointers": {
+              "paused": 0
+            },
+            "vars": {
+              "breakpoint": "line 5 if query !== input.value",
+              "query": "re",
+              "input.value": "react",
+              "query === input.value": "false",
+              "label": "Results for react",
+              "in flight": "-"
+            },
+            "line": 5
+          },
+          {
+            "caption": "Step into. The pause moves to line 8 inside render. render is now on top of the Call Stack, above onInput.",
+            "array": [
+              "render, line 8",
+              "onInput, line 5",
+              "async: await getJSON",
+              "onInput, line 4"
+            ],
+            "highlight": [
+              0
+            ],
+            "pointers": {
+              "paused": 0
+            },
+            "vars": {
+              "breakpoint": "line 5 if query !== input.value",
+              "query": "re",
+              "input.value": "react",
+              "query === input.value": "false",
+              "label": "Results for react",
+              "in flight": "-"
+            },
+            "line": 8
+          },
+          {
+            "caption": "Step over. Line 8 runs and the list now holds the re items. The pause moves to line 9.",
+            "array": [
+              "render, line 9",
+              "onInput, line 5",
+              "async: await getJSON",
+              "onInput, line 4"
+            ],
+            "highlight": [
+              0
+            ],
+            "pointers": {
+              "paused": 0
+            },
+            "vars": {
+              "breakpoint": "line 5 if query !== input.value",
+              "query": "re",
+              "input.value": "react",
+              "query === input.value": "false",
+              "label": "Results for react",
+              "in flight": "-"
+            },
+            "line": 9
+          },
+          {
+            "caption": "Step over. Line 9 runs. The label says Results for re while the box says react. You caught the race.",
+            "array": [
+              "render, line 10",
+              "onInput, line 5",
+              "async: await getJSON",
+              "onInput, line 4"
+            ],
+            "highlight": [
+              0
+            ],
+            "pointers": {
+              "paused": 0
+            },
+            "vars": {
+              "breakpoint": "line 5 if query !== input.value",
+              "query": "re",
+              "input.value": "react",
+              "query === input.value": "false",
+              "label": "Results for re",
+              "in flight": "-"
+            },
+            "line": 10
+          },
+          {
+            "caption": "Step out. render finishes and returns. onInput is on top of the Call Stack again.",
+            "array": [
+              "onInput, line 6",
+              "async: await getJSON",
+              "onInput, line 4"
+            ],
+            "highlight": [
+              0
+            ],
+            "pointers": {
+              "paused": 0
+            },
+            "vars": {
+              "breakpoint": "line 5 if query !== input.value",
+              "query": "re",
+              "input.value": "react",
+              "query === input.value": "false",
+              "label": "Results for re",
+              "in flight": "-"
+            },
+            "line": 6
+          }
+        ]
+      },
+      "fetch-breakpoint": {
+        "title": "XHR/fetch breakpoint on the string search?q=",
+        "frames": [
+          {
+            "caption": "XHR/fetch breakpoint with the string search?q=. The user types re. Nothing is paused yet.",
+            "array": [
+              "(empty: not paused)"
+            ],
+            "vars": {
+              "breakpoint": "fetch URL has search?q=",
+              "query": "-",
+              "input.value": "re",
+              "query === input.value": "-",
+              "label": "(empty)",
+              "in flight": "-"
+            },
+            "line": 3
+          },
+          {
+            "caption": "The URL /search?q=re contains the string, so DevTools pauses on line 12, where fetch sends the request. getJSON was called from onInput line 4.",
+            "array": [
+              "getJSON, line 12",
+              "onInput, line 4"
+            ],
+            "highlight": [
+              0
+            ],
+            "pointers": {
+              "paused": 0
+            },
+            "vars": {
+              "breakpoint": "fetch URL has search?q=",
+              "query": "re",
+              "input.value": "re",
+              "query === input.value": "true",
+              "label": "(empty)",
+              "in flight": "-"
+            },
+            "line": 12
+          },
+          {
+            "caption": "Resume. The re request is now in flight. The user types the rest: react.",
+            "array": [
+              "(empty: not paused)"
+            ],
+            "vars": {
+              "breakpoint": "fetch URL has search?q=",
+              "query": "-",
+              "input.value": "re",
+              "query === input.value": "-",
+              "label": "(empty)",
+              "in flight": "q=re"
+            },
+            "line": 4
+          },
+          {
+            "caption": "The URL /search?q=react contains the string too, so DevTools pauses on line 12 again, with query react.",
+            "array": [
+              "getJSON, line 12",
+              "onInput, line 4"
+            ],
+            "highlight": [
+              0
+            ],
+            "pointers": {
+              "paused": 0
+            },
+            "vars": {
+              "breakpoint": "fetch URL has search?q=",
+              "query": "react",
+              "input.value": "react",
+              "query === input.value": "true",
+              "label": "(empty)",
+              "in flight": "q=re"
+            },
+            "line": 12
+          },
+          {
+            "caption": "Resume. Two requests are in flight at the same time. Whichever response arrives last decides the list.",
+            "array": [
+              "(empty: not paused)"
+            ],
+            "vars": {
+              "breakpoint": "fetch URL has search?q=",
+              "query": "-",
+              "input.value": "react",
+              "query === input.value": "-",
+              "label": "(empty)",
+              "in flight": "q=re, q=react"
+            },
+            "line": 4
+          }
+        ]
+      },
+      "sync-stack-only": {
+        "title": "The Call Stack without and with async frames",
+        "frames": [
+          {
+            "caption": "Same pause on the stale re response, but this view hides async frames. The stack holds only the code that resumed after the await.",
+            "array": [
+              "onInput, line 5"
+            ],
+            "highlight": [
+              0
+            ],
+            "pointers": {
+              "paused": 0
+            },
+            "vars": {
+              "breakpoint": "line 5 if query !== input.value",
+              "query": "re",
+              "input.value": "react",
+              "query === input.value": "false",
+              "label": "Results for react",
+              "in flight": "-"
+            },
+            "line": 5
+          },
+          {
+            "caption": "Step into render. The synchronous stack now shows render above onInput, and nothing below: no sign of which input event started this fetch.",
+            "array": [
+              "render, line 8",
+              "onInput, line 5"
+            ],
+            "highlight": [
+              0
+            ],
+            "pointers": {
+              "paused": 0
+            },
+            "vars": {
+              "breakpoint": "line 5 if query !== input.value",
+              "query": "re",
+              "input.value": "react",
+              "query === input.value": "false",
+              "label": "Results for react",
+              "in flight": "-"
+            },
+            "line": 8
+          },
+          {
+            "caption": "With async frames, the same pause links back through await getJSON to onInput line 4, where query re was read and the fetch started.",
+            "array": [
+              "render, line 8",
+              "onInput, line 5",
+              "async: await getJSON",
+              "onInput, line 4"
+            ],
+            "highlight": [
+              0
+            ],
+            "pointers": {
+              "paused": 0
+            },
+            "vars": {
+              "breakpoint": "line 5 if query !== input.value",
+              "query": "re",
+              "input.value": "react",
+              "query === input.value": "false",
+              "label": "Results for react",
+              "in flight": "-"
+            },
+            "line": 8
+          }
+        ]
+      }
+    }
+  },
+  "sync": [
+    {
+      "scene": "two-requests",
+      "preset": "fetch-breakpoint"
+    },
+    {
+      "scene": "line-pause",
+      "preset": "line-breakpoint"
+    },
+    {
+      "scene": "conditional",
+      "preset": "conditional-breakpoint"
+    },
+    {
+      "scene": "async-stack",
+      "preset": "sync-stack-only"
+    }
+  ],
+  "inspect": [],
+  "deck": {
+    "deck_id": "breakpoint-types-and-stepping",
+    "title": "Breakpoint types and stepping",
+    "composition_url": "/media/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/breakpoint-types-and-stepping/composition/index.html",
+    "island": {
+      "slides": [
+        {
+          "sceneId": "question",
+          "notes": "Ask the learner what they know about the bug: the line, the element, the request URL or the event. The answer chooses the breakpoint type."
+        },
+        {
+          "sceneId": "types",
+          "notes": "Reveal the types one at a time. Each one pauses on a different kind of event, so each answers a different question.",
+          "fragments": [
+            4.3,
+            4.6,
+            4.9,
+            5.2,
+            5.5,
+            5.8
+          ],
+          "hotspots": [
+            {
+              "id": "types-h1",
+              "label": "Catch the stale response",
+              "target": "conditional-race",
+              "region": {
+                "x": 5,
+                "y": 81,
+                "w": 64,
+                "h": 12
+              }
+            }
+          ]
+        },
+        {
+          "sceneId": "stepping",
+          "notes": "Once paused, choose how far to move. Step over skips a function that is not related to the bug; step into enters one that is; step out finishes the current function.",
+          "fragments": [
+            8.3,
+            8.6,
+            8.9
+          ],
+          "hotspots": [
+            {
+              "id": "stepping-h1",
+              "label": "Step through render",
+              "target": "step-render",
+              "region": {
+                "x": 5,
+                "y": 81,
+                "w": 64,
+                "h": 12
+              }
+            }
+          ]
+        },
+        {
+          "sceneId": "takeaway",
+          "notes": "At every pause read Scope for local values, Watch for your own expressions and the Call Stack for how the code got there."
+        }
+      ],
+      "slideSequences": [
+        {
+          "id": "conditional-race",
+          "label": "Catch the stale response",
+          "slides": [
+            {
+              "sceneId": "line-too-often",
+              "notes": "On line 5 a plain breakpoint pauses for the fresh react response and for the stale re response, so you resume past pauses you do not need."
+            },
+            {
+              "sceneId": "condition-skips",
+              "notes": "Right-click the line number, choose Add conditional breakpoint and enter query !== input.value. DevTools now pauses only on the stale response."
+            }
+          ]
+        },
+        {
+          "id": "step-render",
+          "label": "Step through render",
+          "slides": [
+            {
+              "sceneId": "into-render",
+              "notes": "Paused on line 5, step into moves the pause to line 8 inside render. The Call Stack now has render on top of onInput."
+            },
+            {
+              "sceneId": "over-and-out",
+              "notes": "Step over runs line 8 and line 9 one at a time; the label then says Results for re. Step out returns to onInput on line 6."
+            }
+          ]
+        }
+      ]
+    },
+    "scenes": [
+      {
+        "id": "question",
+        "heading": "Which breakpoint do you set?",
+        "start": 0,
+        "duration": 4,
+        "sequence": null,
+        "fragments": []
+      },
+      {
+        "id": "types",
+        "heading": "One type per question",
+        "start": 4,
+        "duration": 4,
+        "sequence": null,
+        "fragments": [
+          4.3,
+          4.6,
+          4.9,
+          5.2,
+          5.5,
+          5.8
+        ]
+      },
+      {
+        "id": "stepping",
+        "heading": "Three ways to step",
+        "start": 8,
+        "duration": 4,
+        "sequence": null,
+        "fragments": [
+          8.3,
+          8.6,
+          8.9
+        ]
+      },
+      {
+        "id": "takeaway",
+        "heading": "Pause, read, move",
+        "start": 12,
+        "duration": 4,
+        "sequence": null,
+        "fragments": []
+      },
+      {
+        "id": "line-too-often",
+        "heading": "A line breakpoint pauses every time",
+        "start": 16,
+        "duration": 4,
+        "sequence": "conditional-race",
+        "fragments": []
+      },
+      {
+        "id": "condition-skips",
+        "heading": "A condition skips the fresh pause",
+        "start": 20,
+        "duration": 4,
+        "sequence": "conditional-race",
+        "fragments": []
+      },
+      {
+        "id": "into-render",
+        "heading": "Step into render",
+        "start": 24,
+        "duration": 4,
+        "sequence": "step-render",
+        "fragments": []
+      },
+      {
+        "id": "over-and-out",
+        "heading": "Step over, then step out",
+        "start": 28,
+        "duration": 4,
+        "sequence": "step-render",
+        "fragments": []
+      }
+    ],
+    "outline": "# Breakpoint types and stepping\n\nA short deck asks which breakpoint to set for a bug. The main path compares line-of-code, conditional, logpoint, DOM change, XHR/fetch and event listener breakpoints, then the three stepping buttons. Two deep dives show how a conditional breakpoint catches the stale search response and how step into, over and out move through render.\n\n**Purpose.** Choose the breakpoint type that answers your question, and choose how to step once the code is paused.\n\n## Main path\n\n### 1. Which breakpoint do you set?\n\n**On screen.** Title card with \"Start from what you already know\".\n\n**Notes.** Ask the learner what they know about the bug: the line, the element, the request URL or the event. The answer chooses the breakpoint type.\n\n### 2. One type per question\n\n**On screen.** Numbered steps appear one at a time: Line-of-code: pause on an exact line → Conditional: pause on a line only when true → Logpoint: log to the Console, no pause → DOM change: pause on code that changes a node → XHR/fetch: pause when a URL has a string → Event listener: pause on code after an event.\n\n**Notes.** Reveal the types one at a time. Each one pauses on a different kind of event, so each answers a different question.\n\n**Branches.** deep dive \"Catch the stale response\".\n\n### 3. Three ways to step\n\n**On screen.** Two columns, \"The function is related\" and \"The function is not related\", fill in pairs; verdict: Resume runs until the next breakpoint..\n\n**Notes.** Once paused, choose how far to move. Step over skips a function that is not related to the bug; step into enters one that is; step out finishes the current function.\n\n**Branches.** deep dive \"Step through render\".\n\n### 4. Pause, read, move\n\n**On screen.** Two columns, \"Read\" and \"Move\", fill in pairs; verdict: Evidence first, then the next step..\n\n**Notes.** At every pause read Scope for local values, Watch for your own expressions and the Call Stack for how the code got there.\n\n## Deep dive: Catch the stale response\n\n### 1. A line breakpoint pauses every time\n\n**On screen.** Two columns, \"Pause 1\" and \"Pause 2\", fill in pairs; verdict: Only pause 2 shows the bug..\n\n**Notes.** On line 5 a plain breakpoint pauses for the fresh react response and for the stale re response, so you resume past pauses you do not need.\n\n### 2. A condition skips the fresh pause\n\n**On screen.** The expression query !== input.value with \"query\", \"input.value\" highlighted in turn and explained.\n\n**Notes.** Right-click the line number, choose Add conditional breakpoint and enter query !== input.value. DevTools now pauses only on the stale response.\n\n## Deep dive: Step through render\n\n### 1. Step into render\n\n**On screen.** Numbered steps appear one at a time: Paused on line 5 in onInput → Step into: line 8 in render → Call Stack: render above onInput.\n\n**Notes.** Paused on line 5, step into moves the pause to line 8 inside render. The Call Stack now has render on top of onInput.\n\n### 2. Step over, then step out\n\n**On screen.** Numbered steps appear one at a time: Step over: line 8 writes the re items → Step over: label says Results for re → Step out: back in onInput.\n\n**Notes.** Step over runs line 8 and line 9 one at a time; the label then says Results for re. Step out returns to onInput on line 6.\n\n",
+    "explanation": "Each breakpoint type answers one question: where in the code, under which condition, on which element, on which request or after which event. Stepping then moves one line or one function at a time."
+  },
+  "checkpoints": [
+    {
+      "id": "which-wins",
+      "kind": "predict",
+      "at": {
+        "scene": "two-requests"
+      },
+      "prompt": "Both requests are in flight and the re request is slower. What does the label say at the end?",
+      "choices": [
+        {
+          "text": "Results for re, because the slow response arrives last and overwrites the list",
+          "correct": true
+        },
+        {
+          "text": "Results for react, because react was typed last",
+          "misconception": "Thinks responses arrive in the order the requests were sent"
+        },
+        {
+          "text": "An error, because the browser blocks the second fetch until the first ends",
+          "misconception": "Thinks the browser runs only one fetch at a time"
+        }
+      ],
+      "explanation": "Each input event starts its own fetch, and both run at the same time. render runs once per response, in the order the responses arrive, so the slow re response writes the list last.",
+      "concept_ids": [
+        "breakpoint-debugging"
+      ],
+      "revisit": "the-bug"
+    },
+    {
+      "id": "find-stale-pause",
+      "kind": "experiment",
+      "at": {
+        "scene": "line-pause"
+      },
+      "prompt": "In the stepper, use the line-of-code breakpoint and step until DevTools is paused on the stale response.",
+      "goal": {
+        "preset": "line-breakpoint",
+        "condition": {
+          "all": [
+            {
+              "path": "vars.query",
+              "op": "eq",
+              "value": "re"
+            },
+            {
+              "path": "pointers.paused",
+              "op": "eq",
+              "value": 0
+            }
+          ]
+        },
+        "hint": "Press Forward past the first pause for react, and stop at the pause where query is re."
+      },
+      "explanation": "A line-of-code breakpoint pauses for every response. The second pause is the stale one: query is re, the box says react, so the watch query === input.value is false.",
+      "concept_ids": [
+        "breakpoint-debugging"
+      ]
+    },
+    {
+      "id": "which-breakpoint",
+      "kind": "verify",
+      "at": {
+        "slide": "types"
+      },
+      "prompt": "You want DevTools to pause only on the stale response. Which breakpoint do you set on line 5?",
+      "choices": [
+        {
+          "text": "A conditional breakpoint with query !== input.value",
+          "correct": true
+        },
+        {
+          "text": "A plain line-of-code breakpoint",
+          "misconception": "Thinks a line breakpoint can tell fresh and stale calls apart"
+        },
+        {
+          "text": "A logpoint",
+          "misconception": "Thinks a logpoint pauses the code like a breakpoint"
+        }
+      ],
+      "explanation": "A conditional breakpoint pauses only when its condition is true. The condition is true only when the call read an old query, so DevTools skips the fresh response.",
+      "concept_ids": [
+        "breakpoint-debugging"
+      ]
+    },
+    {
+      "id": "top-after-step-into",
+      "kind": "predict",
+      "at": {
+        "scene": "step-into"
+      },
+      "prompt": "You are paused on line 5 and press Step into. What is on top of the Call Stack?",
+      "choices": [
+        {
+          "text": "render, line 8",
+          "correct": true
+        },
+        {
+          "text": "onInput, line 6",
+          "misconception": "Confuses step into with step over, which runs render whole"
+        },
+        {
+          "text": "Nothing, the stack is empty",
+          "misconception": "Thinks stepping resumes the code like Resume does"
+        }
+      ],
+      "explanation": "Step into enters the function called on the current line. render now runs, so DevTools adds its frame on top of onInput and pauses on its first line.",
+      "concept_ids": [
+        "breakpoint-debugging"
+      ],
+      "revisit": "conditional"
+    },
+    {
+      "id": "why-async-frames",
+      "kind": "explain",
+      "at": {
+        "tab": "practice"
+      },
+      "prompt": "In one sentence: why do you need async frames in the Call Stack to explain this race?",
+      "explanation": "After an await, the stack holds only the resumed code, so it cannot show which input event started the request. Async frames link the resumed code back to onInput line 4, where query re was read and the fetch started.",
+      "concept_ids": [
+        "async-call-stacks"
+      ]
+    }
+  ],
+  "fallback_visual": "breakpoints-async-race-fallback",
+  "concept_ids": [
+    "breakpoint-debugging",
+    "async-call-stacks"
+  ],
+  "sources": [
+    {
+      "id": "chrome-devtools-docs",
+      "title": "Chrome DevTools",
+      "url": "https://developer.chrome.com/docs/devtools"
+    }
+  ],
+  "input_hash": "41650ef165f66e7729f6c9f97ff048b9c92365f31a7ba4c4ac0a41234e155bd4"
+}

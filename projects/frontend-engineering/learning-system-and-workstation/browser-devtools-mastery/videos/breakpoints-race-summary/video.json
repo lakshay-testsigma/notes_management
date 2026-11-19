@@ -1,0 +1,56 @@
+{
+  "id": "breakpoints-race-summary",
+  "title": "Breakpoints and async stacks in one minute",
+  "purpose": "Recall which breakpoint answers which question, and how the async call stack explains a race.",
+  "sequence_reason": "The summary follows the order of a real debugging session, from the symptom to the evidence.",
+  "summary": "The summary replays the session. The symptom was a stale list. A fetch breakpoint showed two requests in flight. A conditional breakpoint paused only on the stale response. Stepping showed render writing the old label, and async frames showed which input event started the stale request.",
+  "explanation": "Choose the breakpoint by the question you ask. The Call Stack with async frames tells you which earlier call caused the code that is paused now.",
+  "learning_check": {
+    "question": "You see a wrong request URL. Which breakpoint finds the code that sends it?",
+    "answer": "An XHR/fetch breakpoint with part of the URL as its string."
+  },
+  "concept_ids": ["breakpoint-debugging", "async-call-stacks"],
+  "source_ids": ["chrome-devtools-docs"],
+  "used_in": ["site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/04-breakpoints-and-async-debugging.mdx"],
+  "narration": { "engine": "auto" },
+  "scenes": [
+    {
+      "id": "recap",
+      "duration": 5,
+      "heading": "What you found",
+      "narration": "The stale list came from a slow response that arrived last.",
+      "visual": { "type": "title", "subtitle": "Evidence, not guesses" }
+    },
+    {
+      "id": "pick",
+      "duration": 13,
+      "heading": "Pick the breakpoint by the question",
+      "narration": "Use a line-of-code breakpoint when you know the line. Add a condition to skip pauses you do not need. Use a fetch breakpoint when you know only the URL.",
+      "source_ids": ["chrome-devtools-docs"],
+      "visual": {
+        "type": "steps",
+        "items": ["Line-of-code: you know the line", "Conditional: pause only when it matters", "XHR/fetch: you know part of the URL", "DOM change: you know the element"]
+      }
+    },
+    {
+      "id": "read",
+      "duration": 12,
+      "heading": "Read the pause",
+      "narration": "At each pause, Scope shows the local values, Watch tracks your own expression, and the Call Stack shows how the code got there.",
+      "source_ids": ["chrome-devtools-docs"],
+      "visual": {
+        "type": "compare",
+        "left": { "label": "Scope and Watch", "items": ["query is re", "query === input.value is false"] },
+        "right": { "label": "Call Stack", "items": ["render, line 9", "onInput, line 5", "async: onInput, line 4"] },
+        "verdict": "Values say what is wrong; the stack says where it came from."
+      }
+    },
+    {
+      "id": "fix",
+      "duration": 9,
+      "heading": "From evidence to fix",
+      "narration": "The evidence points to the fix. The code must ignore a response whose query no longer matches the box.",
+      "visual": { "type": "title", "subtitle": "Ignore responses for old queries" }
+    }
+  ]
+}

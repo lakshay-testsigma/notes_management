@@ -1,0 +1,111 @@
+{
+  "id": "perf-trace-summary",
+  "title": "Performance traces in four rules",
+  "purpose": "Connect live metrics, traces, long tasks and yielding into one way of working.",
+  "sequence_reason": "The rules build on each other: metrics show a problem, a trace locates it, and the long-task rule explains it.",
+  "summary": "A recap. Live metrics show LCP, CLS and INP while you use the page. A recorded trace shows each task on the main thread. A task over 50 ms is a long task, and only the part past 50 ms is red. Yielding splits long work so input can run between pieces. Throttling is relative to your computer, so it is a guide, not a phone.",
+  "explanation": "Use live metrics to spot a problem, a trace to find the long task, and yielding to keep tasks short.",
+  "learning_check": {
+    "question": "You see a high INP in live metrics. What do you do next?",
+    "answer": "Repeat the slow interaction while you record a trace, then look for long tasks in the Main track and the Interactions track."
+  },
+  "concept_ids": [
+    "performance-panel",
+    "flame-chart-and-long-tasks",
+    "core-web-vitals-in-devtools"
+  ],
+  "source_ids": [
+    "chrome-devtools-performance-reference",
+    "webdev-optimize-long-tasks"
+  ],
+  "used_in": [
+    "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/07-performance-panel-traces.mdx"
+  ],
+  "narration": {
+    "engine": "auto"
+  },
+  "scenes": [
+    {
+      "id": "intro",
+      "duration": 5,
+      "heading": "Performance traces in four rules",
+      "narration": "Four rules connect everything you tried in this lab.",
+      "visual": {
+        "type": "title",
+        "subtitle": "Measure, record, find, split"
+      },
+      "source_ids": [
+        "chrome-devtools-performance-reference"
+      ]
+    },
+    {
+      "id": "rules",
+      "duration": 10,
+      "heading": "The rules",
+      "narration": "Live metrics spot the problem. A trace shows each task. A task over 50 milliseconds is a long task. Yielding splits long work.",
+      "visual": {
+        "type": "steps",
+        "items": [
+          "Live metrics spot the problem",
+          "A trace shows each task",
+          "Over 50 ms is a long task",
+          "Yielding splits long work"
+        ]
+      },
+      "source_ids": [
+        "chrome-devtools-performance-reference",
+        "webdev-optimize-long-tasks"
+      ]
+    },
+    {
+      "id": "delay",
+      "duration": 10,
+      "heading": "Same work, shorter wait",
+      "narration": "At 4x in our example, one big task made a second click wait 135 milliseconds. Four yielding pieces cut it to 15.",
+      "visual": {
+        "type": "bars",
+        "unit": " ms",
+        "items": [
+          {
+            "label": "One task at 4x",
+            "value": 135
+          },
+          {
+            "label": "Four pieces at 4x",
+            "value": 15
+          }
+        ]
+      },
+      "source_ids": [
+        "webdev-optimize-long-tasks"
+      ]
+    },
+    {
+      "id": "caveat",
+      "duration": 8,
+      "heading": "Throttling is a guide",
+      "narration": "Throttling slows your own computer. It cannot copy a real phone, so check field data when you can.",
+      "visual": {
+        "type": "compare",
+        "left": {
+          "label": "CPU throttling",
+          "items": [
+            "Slows your CPU by a factor",
+            "Good for finding long tasks"
+          ]
+        },
+        "right": {
+          "label": "Not a real phone",
+          "items": [
+            "Relative to your computer",
+            "Field data shows real users"
+          ]
+        },
+        "verdict": "Use throttling to find problems, not to promise numbers."
+      },
+      "source_ids": [
+        "chrome-devtools-performance-reference"
+      ]
+    }
+  ]
+}

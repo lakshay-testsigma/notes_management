@@ -1,0 +1,65 @@
+---
+title: Firefox, Safari and remote device debugging
+description: Some bugs live only in another browser engine or on a real phone, so you attach that browser's own inspector to it.
+order: 11
+concepts: [Firefox DevTools, Safari Web Inspector, remote debugging, chrome://inspect]
+---
+
+<!-- concept: firefox-and-safari-devtools -->
+<!-- concept: remote-device-debugging -->
+
+A layout works in Chrome on your laptop, but a tester says it breaks on an iPhone. Chrome's device mode cannot show this bug. Device mode only approximates a phone on your desktop CPU, and it still uses Chrome's engine. You need the real browser on the real device.
+
+Each browser has its own inspector. Firefox DevTools draws strong layout overlays. The Grid inspector shows line numbers and area names. The Flexbox inspector explains why an item has its final width. The Accessibility inspector shows the tree of roles and names that a screen reader gets. Safari's Web Inspector is the inspector you need for Safari on iOS.
+
+Remote debugging means that a desktop inspector attaches to a browser on a phone. Click each desktop node and read the steps on its connection.
+
+<SystemDiagram
+  title="Which desktop inspector attaches to which phone browser"
+  initial="inspect"
+  direction="horizontal"
+  nodes={[
+    { id: "inspect", label: "chrome://inspect", kind: "pill", detail: "Desktop Chrome. Turn on Discover USB devices. The phone's model name appears when the connection works. Then click Inspect next to a tab or a WebView app." },
+    { id: "android", label: "Android Chrome", detail: "Turn on Developer Options and USB debugging. Accept the debugging prompt on the phone screen the first time." },
+    { id: "develop", label: "Safari Develop menu", kind: "pill", detail: "Mac Safari: Settings, Advanced, Show features for web developers. The iPhone then appears as a submenu of the Develop menu." },
+    { id: "ios", label: "iPhone Safari", detail: "Settings, Safari, Advanced, Web Inspector on. Connect by cable, or by wireless debugging set up in Xcode." },
+    { id: "aboutdebug", label: "about:debugging", kind: "pill", detail: "Desktop Firefox. Turn on USB devices, refresh, then Connect and Inspect a tab." },
+    { id: "fxandroid", label: "Firefox Android", detail: "USB debugging on, then Remote Debugging via USB in Firefox settings. Accept the authorization prompt." }
+  ]}
+  edges={[
+    { from: "inspect", to: "android", label: "USB" },
+    { from: "develop", to: "ios", label: "cable or Wi-Fi" },
+    { from: "aboutdebug", to: "fxandroid", label: "USB" }
+  ]}
+/>
+
+Each pair is a fixed chain of switches on both ends. When a phone does not appear, check the missed switch or the prompt on the phone first. After the connection works, you use the familiar panels, and they act on the phone's page.
+
+<SortBuckets
+  prompt="Sort each bug by the inspector you open first."
+  buckets={["Firefox DevTools", "Safari Web Inspector", "Chrome chrome://inspect"]}
+  items={[
+    { text: "Two named grid areas overlap", bucket: "Firefox DevTools" },
+    { text: "A flex item is 40px wider than expected", bucket: "Firefox DevTools" },
+    { text: "Keyboard focus jumps in a strange order", bucket: "Firefox DevTools" },
+    { text: "A button breaks only in Safari on an iPhone", bucket: "Safari Web Inspector" },
+    { text: "A page saved to the iOS home screen fails", bucket: "Safari Web Inspector" },
+    { text: "Scrolling stutters on a mid-range Android phone", bucket: "Chrome chrome://inspect" },
+    { text: "A WebView inside an Android app shows a blank page", bucket: "Chrome chrome://inspect" }
+  ]}
+  explanation="Firefox draws grid and flex overlays and a tabbing-order overlay. Safari on iOS needs Web Inspector on a Mac, with the Develop menu. chrome://inspect attaches to Chrome tabs and WebView apps on a real Android phone, with its real CPU."
+/>
+
+<Depth level="production">
+
+Real low-end phones show the CPU and memory limits that device mode cannot. Turn off sleep on both screens and avoid USB hubs; a locked screen can hide the USB prompt. The DevTools version that opens matches the Chrome version on the phone, so an old phone gives an old DevTools. The roadmap names device clouds such as BrowserStack, LambdaTest and Sauce Labs as another way to reach many devices; this lesson does not evaluate them.
+
+</Depth>
+
+<Depth level="internals">
+
+The Firefox Accessibility inspector runs an engine in the background while it is open. It can skew Memory and Performance measurements, so close it before you profile. Its tabbing-order overlay is static and does not follow later page changes. iOS simulators always allow remote inspection and appear in the Develop menu like a real device.
+
+</Depth>
+
+The last page puts all panels into one workflow for a real production incident.

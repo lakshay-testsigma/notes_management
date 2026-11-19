@@ -1,0 +1,50 @@
+---
+title: "Application panel: storage, service workers and bfcache"
+description: The Application panel shows every place a page keeps data, so you can see which store holds a value and how long it lives.
+order: 9
+concepts: [Web Storage, IndexedDB, service worker, back/forward cache]
+---
+
+<!-- concept: application-panel -->
+<!-- concept: service-worker-and-cache-inspection -->
+<!-- concept: bfcache-and-speculative-loads -->
+
+A user logs out, comes back, and the old cart is still there. Some store kept the data, but which one? The Application panel answers that. It lets you inspect, edit and delete the data of one origin, which is the scheme, host and port of a site.
+
+Each store has its own lifetime and reader. A cookie is a small key-value pair that the browser sends to the server in the Cookie header; it lives until its Expires date, or until the session ends. localStorage keeps key-value pairs across browser sessions. sessionStorage clears when the page session ends. IndexedDB holds databases of object stores with indexes, for large structured data. A service worker is a script that the browser runs in the background, separate from the page. It can intercept requests and answer them from Cache Storage. Zoom into the diagram and follow each arrow to its store.
+
+<Diagram id="application-storage-map" />
+
+The diagram shows that the reader decides the store. Only cookies reach the server on each request. The other stores stay in the browser until your code reads them. So a leftover cart can hide in any of them, and the panel lets you open each one and delete a single key.
+
+**Note.** Cache Storage is not the HTTP cache and not the back/forward cache (bfcache). To inspect HTTP cache data, open the Size column in the Network panel.
+
+<Depth level="internals">
+
+The Service workers tab lists the worker for the page's scope. Offline puts DevTools into offline mode. Update on reload forces the worker to update on every page load. Bypass for network sends requests to the network instead of the worker. The Storage tab shows a pie chart of usage, clears all site data, and simulates a custom storage quota. The Manifest tab shows manifest.json with its errors.
+
+</Depth>
+
+<Depth level="production">
+
+The bfcache is a browser optimization that makes Back and Forward instant. Under Background services, click Test back/forward cache. Chrome visits chrome://terms/ and returns. If the page is not cached, the tab lists the causes as Actionable, Pending Support or Not Actionable. The two main blockers are a `Cache-Control: no-store` header and unload handlers. The Speculative loads tab shows the speculative status, the rule sets and each speculative loading attempt.
+
+</Depth>
+
+<SortBuckets
+  prompt="Sort each piece of data into the store that fits its reader and lifetime."
+  buckets={["Cookie", "localStorage", "sessionStorage", "IndexedDB"]}
+  items={[
+    { text: "A session id the server must read on every request", bucket: "Cookie" },
+    { text: "A consent choice the server checks, with an Expires date", bucket: "Cookie" },
+    { text: "A dark-mode choice that must survive a browser restart", bucket: "localStorage" },
+    { text: "The site language, the same in every tab", bucket: "localStorage" },
+    { text: "Step 2 of a checkout form, for this tab only", bucket: "sessionStorage" },
+    { text: "A scroll position that should reset in a new tab", bucket: "sessionStorage" },
+    { text: "5,000 offline notes, searched by title", bucket: "IndexedDB" },
+    { text: "A product catalog with indexes on price and name", bucket: "IndexedDB" }
+  ]}
+  explanation="Only cookies go to the server with each request, so use them when the server must read the value. localStorage keeps small key-value pairs across browser sessions. sessionStorage clears when the page session ends. IndexedDB holds many structured records in object stores, with indexes to search them."
+/>
+
+The next page turns from single panels to Lighthouse, which audits the whole page at once.

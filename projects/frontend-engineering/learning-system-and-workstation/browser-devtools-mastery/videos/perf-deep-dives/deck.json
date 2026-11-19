@@ -1,0 +1,230 @@
+{
+  "id": "perf-deep-dives",
+  "title": "Performance panel deep dives",
+  "purpose": "Go deeper into long tasks and yielding, and into the Core Web Vitals that the live metrics view and trace tracks show.",
+  "summary": "A short deck on where page time goes. The main path covers the working loop, the long-task rule, the live metrics view and when to use each. One deep dive explains why the main thread blocks input and how scheduler.yield() splits work. The other shows how INP and CLS appear in a trace: the Interactions track, the Layout shifts track and the Insights tab.",
+  "explanation": "Live metrics tell you that something is slow; a trace tells you which task made it slow and why input had to wait.",
+  "learning_check": {
+    "question": "What is the blocking period of a 90 ms task?",
+    "answer": "40 ms: the task time minus 50 ms."
+  },
+  "concept_ids": [
+    "performance-panel",
+    "flame-chart-and-long-tasks",
+    "core-web-vitals-in-devtools"
+  ],
+  "source_ids": [
+    "chrome-devtools-performance-reference",
+    "webdev-optimize-long-tasks"
+  ],
+  "used_in": [
+    "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/07-performance-panel-traces.mdx"
+  ],
+  "slides": [
+    {
+      "id": "question",
+      "heading": "Where did the time go?",
+      "notes": "Ask the learner how they would find out why one click on a page feels slow.",
+      "visual": {
+        "type": "title",
+        "subtitle": "Long tasks and live metrics"
+      }
+    },
+    {
+      "id": "workflow",
+      "heading": "The working loop",
+      "notes": "Reveal one step at a time. Live metrics come first, a trace only when the problem repeats.",
+      "reveal": true,
+      "visual": {
+        "type": "steps",
+        "items": [
+          "Read live metrics: LCP, CLS, INP",
+          "Record a trace when it repeats",
+          "Find red marks in the Main track",
+          "Use Bottom-up to find the function"
+        ]
+      }
+    },
+    {
+      "id": "long-tasks",
+      "heading": "The 50 ms rule",
+      "notes": "A task over 50 ms gets a red triangle, and only the time past 50 ms is shaded red.",
+      "reveal": true,
+      "visual": {
+        "type": "compare",
+        "left": {
+          "label": "Task of 40 ms",
+          "items": [
+            "Under 50 ms",
+            "No red part"
+          ]
+        },
+        "right": {
+          "label": "Task of 400 ms",
+          "items": [
+            "Red triangle",
+            "Last 350 ms red"
+          ]
+        },
+        "verdict": "Only the time past 50 ms is red."
+      },
+      "hotspots": [
+        {
+          "label": "Long tasks and yielding",
+          "target": "long-tasks-yielding"
+        }
+      ]
+    },
+    {
+      "id": "live-metrics",
+      "heading": "Live metrics first",
+      "notes": "The live metrics screen updates as you use the page, including soft navigations in single-page apps.",
+      "reveal": true,
+      "visual": {
+        "type": "steps",
+        "items": [
+          "LCP, CLS and INP update as you use the page",
+          "A SOFT NAV badge marks client-side navigations",
+          "Turn on field data to compare with real users"
+        ]
+      },
+      "hotspots": [
+        {
+          "label": "Core Web Vitals in a trace",
+          "target": "vitals-in-trace"
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "heading": "Metrics spot, traces explain",
+      "notes": "Live metrics are cheap and always on; a trace costs a recording but shows each task.",
+      "visual": {
+        "type": "compare",
+        "left": {
+          "label": "Live metrics",
+          "items": [
+            "Spot a problem",
+            "While you browse"
+          ]
+        },
+        "right": {
+          "label": "Recorded trace",
+          "items": [
+            "Explain a problem",
+            "Task by task"
+          ]
+        },
+        "verdict": "Record when the problem repeats."
+      }
+    }
+  ],
+  "sequences": [
+    {
+      "id": "long-tasks-yielding",
+      "label": "Long tasks and yielding",
+      "slides": [
+        {
+          "id": "one-at-a-time",
+          "heading": "One task at a time",
+          "notes": "The main thread can only process one task at a time, so input that arrives during a long task must wait.",
+          "reveal": true,
+          "visual": {
+            "type": "steps",
+            "items": [
+              "The main thread runs one task at a time",
+              "A click during a long task must wait",
+              "Blocking period: task time minus 50 ms"
+            ]
+          }
+        },
+        {
+          "id": "split-work",
+          "heading": "Split the work",
+          "notes": "Breaking a long task into smaller ones lets the browser respond to input between the pieces.",
+          "visual": {
+            "type": "compare",
+            "left": {
+              "label": "One task",
+              "items": [
+                "160 ms",
+                "Blocks 110 ms"
+              ]
+            },
+            "right": {
+              "label": "Four pieces",
+              "items": [
+                "40 ms each",
+                "Blocks 0 ms"
+              ]
+            },
+            "verdict": "Same work, input runs between pieces."
+          }
+        },
+        {
+          "id": "scheduler-yield",
+          "heading": "await scheduler.yield()",
+          "notes": "The await pauses the function; the browser can run input first, then the function continues where it left off.",
+          "reveal": true,
+          "visual": {
+            "type": "steps",
+            "items": [
+              "await scheduler.yield() pauses the function",
+              "Input can run before the rest",
+              "The function continues where it stopped",
+              "Not in all browsers: use a fallback"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "vitals-in-trace",
+      "label": "Core Web Vitals in a trace",
+      "slides": [
+        {
+          "id": "interactions-track",
+          "heading": "INP: the Interactions track",
+          "notes": "Interactions over 200 ms get a red triangle; the tooltip splits the time into three parts.",
+          "reveal": true,
+          "visual": {
+            "type": "steps",
+            "items": [
+              "Red triangle: interaction over 200 ms",
+              "Hover: input delay",
+              "Processing time",
+              "Presentation delay"
+            ]
+          }
+        },
+        {
+          "id": "layout-shifts-track",
+          "heading": "CLS: the Layout shifts track",
+          "notes": "Each layout shift is a purple diamond; hover highlights the element, click shows the score and likely culprits.",
+          "reveal": true,
+          "visual": {
+            "type": "steps",
+            "items": [
+              "Each shift is a purple diamond",
+              "Hover highlights the element",
+              "Click for score and culprits"
+            ]
+          }
+        },
+        {
+          "id": "insights-tab",
+          "heading": "The Insights tab",
+          "notes": "The Insights tab in the left sidebar groups findings such as LCP and INP subparts and third parties.",
+          "visual": {
+            "type": "steps",
+            "items": [
+              "Open Insights in the left sidebar",
+              "LCP and INP subparts",
+              "Third parties and legacy JavaScript"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

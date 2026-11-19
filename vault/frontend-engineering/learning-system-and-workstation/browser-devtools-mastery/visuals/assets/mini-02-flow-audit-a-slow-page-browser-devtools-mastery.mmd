@@ -1,0 +1,7 @@
+flowchart LR
+  browser["Browser: localhost:3000"] -->|"GET /"| server["server.js: createApp"]
+  server --> page["page.js: renderHtml"]
+  server --> assets["assets.js: makeHeroSvg, cacheHeaders"]
+  server --> reviews["reviews.js: createReviewsCache"]
+  browser -->|"click Add to cart"| work["work.js: processInChunks"]
+  browser -.->|"inspect"| tools["DevTools: Network, Performance, Lighthouse"]

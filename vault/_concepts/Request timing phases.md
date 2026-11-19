@@ -14,5 +14,9 @@ The phases are the steps one request passes through, such as queueing, DNS looku
 
 - [[chrome-devtools-network-reference-browser-devtools-mastery]]
 - [[devtools-frontend-pattern-tolerate-incomplete-events]]
+- [[visual-network-panel-waterfall-browser-devtools-mastery]]
+- [[visual-network-waterfall-walkthrough-browser-devtools-mastery]]
+- [[visual-request-timing-phases-sequence-browser-devtools-mastery]]
+- [[visual-mini-02-flow-audit-a-slow-page-browser-devtools-mastery]]
 
 ## My insights
