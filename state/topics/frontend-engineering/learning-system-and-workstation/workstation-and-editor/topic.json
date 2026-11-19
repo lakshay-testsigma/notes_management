@@ -7,7 +7,7 @@
   "subdomain": "learning-system-and-workstation",
   "depth": "standard",
   "created_at": "2026-11-19T04:50:05Z",
-  "updated_at": "2026-11-19T04:52:57Z",
+  "updated_at": "2026-11-19T05:07:49Z",
   "paths": {
     "state": "state/topics/frontend-engineering/learning-system-and-workstation/workstation-and-editor",
     "vault": "vault/frontend-engineering/learning-system-and-workstation/workstation-and-editor",
@@ -305,8 +305,28 @@
           "complexity": "intermediate",
           "importance": "critical",
           "disposition": "included",
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "mit-missing-semester",
+            "github-set-up-git-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/workstation-and-editor/01-why-your-workstation-matters.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case"
+              ]
+            },
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/workstation-and-editor/07-a-production-teams-setup.mdx",
+              "aspects": [
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "roadmap_items": []
         },
         {
@@ -316,8 +336,23 @@
           "complexity": "basic",
           "importance": "core",
           "disposition": "included",
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "mdn-command-line",
+            "ohmyzsh-ohmyzsh-repo"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/workstation-and-editor/02-terminal-and-shell-fluency.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "roadmap_items": [
             "terminal-shell-basics"
           ]
@@ -329,8 +364,23 @@
           "complexity": "intermediate",
           "importance": "critical",
           "disposition": "included",
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "github-set-up-git-docs",
+            "pro-git-book"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/workstation-and-editor/03-git-and-github-fluency.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "roadmap_items": [
             "git-github-fluency"
           ]
@@ -342,8 +392,22 @@
           "complexity": "basic",
           "importance": "core",
           "disposition": "included",
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "vscode-settings-docs"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/workstation-and-editor/04-your-editor-sharpened.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "roadmap_items": [
             "vs-code-or-jetbrains-zed-setup"
           ]
@@ -355,8 +419,22 @@
           "complexity": "intermediate",
           "importance": "core",
           "disposition": "included",
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "openai-codex-repo"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/workstation-and-editor/05-ai-assisted-development.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "roadmap_items": [
             "ai-assisted-development"
           ]
@@ -368,14 +446,81 @@
           "complexity": "basic",
           "importance": "core",
           "disposition": "included",
-          "source_ids": [],
-          "coverage": [],
+          "source_ids": [
+            "nodejs-releases-docs",
+            "nvm-sh-nvm-repo"
+          ],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/workstation-and-editor/06-node-js-and-version-management.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "roadmap_items": [
             "node-js-runtime-version-management"
           ]
         }
       ],
-      "discovery": []
+      "discovery": [
+        {
+          "round": 1,
+          "frontier": [
+            "workstation-setup"
+          ],
+          "source_ids": [
+            "mit-missing-semester"
+          ],
+          "added": [
+            "workstation-setup"
+          ]
+        },
+        {
+          "round": 2,
+          "frontier": [
+            "workstation-setup"
+          ],
+          "source_ids": [
+            "mit-missing-semester",
+            "github-set-up-git-docs"
+          ],
+          "added": [
+            "terminal-and-shell",
+            "git-and-github",
+            "editor-setup",
+            "ai-assisted-development",
+            "node-version-management"
+          ]
+        },
+        {
+          "round": 3,
+          "frontier": [
+            "terminal-and-shell",
+            "git-and-github",
+            "editor-setup",
+            "ai-assisted-development",
+            "node-version-management"
+          ],
+          "source_ids": [
+            "mdn-command-line",
+            "github-set-up-git-docs",
+            "pro-git-book",
+            "vscode-settings-docs",
+            "nodejs-releases-docs",
+            "nvm-sh-nvm-repo",
+            "openai-codex-repo"
+          ],
+          "added": [],
+          "stop_reason": "scope-boundary",
+          "note": "Sub-concepts proposed by discovery (pipes-and-redirection, path-and-environment-variables, signals-and-job-control, dotfiles-and-shell-config, git-identity-and-auth, commit-graph-and-branches, merge-strategy, git-bisect, pr-review-workflow) are folded into their parent concepts at standard depth; merge-strategy and git-bisect evidence is covered by pro-git-book. editor-setup and node-version-management were investigated by the docs and repos category units. The macOS shell-default claim in the MIT lecture was not independently confirmed and is not cited in teaching material."
+        }
+      ]
     }
   },
   "stages": [
@@ -386,15 +531,15 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-19T04:52:22Z",
-      "finished_at": "2026-11-19T04:52:57Z",
+      "finished_at": "2026-11-19T05:07:47Z",
       "attempts": 1,
       "units": [],
       "note": "",
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "39f7c9047aff5c39960e71aa42e5db5666c4fa183965df1b8e744d8e9c236c7e",
-        "at": "2026-11-19T04:52:57Z",
+        "fingerprint": "2f32cbdc732adfe642908271df161c64614a4c0d5cef106810ea2e5a77f64df0",
+        "at": "2026-11-19T05:07:47Z",
         "forced": false
       }
     },
@@ -402,13 +547,36 @@
       "id": "research",
       "wave": 1,
       "skill": "learn-research",
-      "status": "pending",
+      "status": "done",
       "scope": "required",
-      "started_at": null,
-      "finished_at": null,
-      "attempts": 0,
-      "units": [],
-      "note": ""
+      "started_at": "2026-11-19T04:54:37Z",
+      "finished_at": "2026-11-19T05:07:49Z",
+      "attempts": 1,
+      "units": [
+        {
+          "id": "docs",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "repos",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "discovery-01",
+          "status": "done",
+          "handoff": null
+        }
+      ],
+      "note": "",
+      "continue_after_failure": false,
+      "validation": {
+        "version": 2,
+        "fingerprint": "621a083fa30427b4591eb2290d0a64d7a0f03a890b3b66d4f88119daf8e9d635",
+        "at": "2026-11-19T05:07:49Z",
+        "forced": false
+      }
     },
     {
       "id": "brief",
@@ -544,10 +712,325 @@
       "event": "done",
       "message": "gate passed",
       "stage": "intake"
+    },
+    {
+      "at": "2026-11-19T04:54:37Z",
+      "event": "start",
+      "message": "attempt 1",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-19T04:54:38Z",
+      "event": "unit-add",
+      "message": "unit docs",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-19T04:54:40Z",
+      "event": "unit-add",
+      "message": "unit repos",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-19T04:54:41Z",
+      "event": "unit-add",
+      "message": "unit discovery-01",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-19T04:57:08Z",
+      "event": "source-add",
+      "message": "added mdn-command-line",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-19T04:57:09Z",
+      "event": "source-add",
+      "message": "added gnu-bash-manual",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-19T04:57:10Z",
+      "event": "source-add",
+      "message": "added vscode-settings-docs",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-19T04:57:11Z",
+      "event": "source-add",
+      "message": "added nodejs-releases-docs",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-19T04:57:37Z",
+      "event": "source-add",
+      "message": "added mit-missing-semester",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-19T04:57:38Z",
+      "event": "source-add",
+      "message": "added github-set-up-git-docs",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-19T04:57:59Z",
+      "event": "unit-done",
+      "message": "unit docs",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-19T04:58:01Z",
+      "event": "source-add",
+      "message": "added nvm-sh-nvm-repo",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-19T04:58:38Z",
+      "event": "source-add",
+      "message": "added ohmyzsh-ohmyzsh-repo",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-19T04:58:54Z",
+      "event": "source-add",
+      "message": "added openai-codex-repo",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-19T04:59:02Z",
+      "event": "unit-done",
+      "message": "unit discovery-01",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-19T05:00:08Z",
+      "event": "unit-done",
+      "message": "unit repos",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-19T05:02:08Z",
+      "event": "source-add",
+      "message": "added pro-git-book",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-19T05:02:10Z",
+      "event": "source-update",
+      "message": "updated vscode-settings-docs: use_for",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-19T05:02:35Z",
+      "event": "plan",
+      "message": "plan fields set: curriculum",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-19T05:03:25Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-19T05:03:56Z",
+      "event": "execution-check",
+      "message": "research: failed",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-19T05:03:58Z",
+      "event": "gate-failed",
+      "message": "1 problems",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-19T05:04:12Z",
+      "event": "source-update",
+      "message": "updated gnu-bash-manual: url",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-19T05:04:41Z",
+      "event": "execution-check",
+      "message": "research: failed",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-19T05:04:43Z",
+      "event": "gate-failed",
+      "message": "1 problems",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-19T05:05:19Z",
+      "event": "execution-check",
+      "message": "research: failed",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-19T05:06:02Z",
+      "event": "execution-check",
+      "message": "research: failed",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-19T05:06:31Z",
+      "event": "execution-check",
+      "message": "research: failed",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-19T05:07:00Z",
+      "event": "execution-check",
+      "message": "research: failed",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-19T05:07:19Z",
+      "event": "source-remove",
+      "message": "removed gnu-bash-manual: gnu.org unreachable (connection timeout) from this environment; terminal coverage retained via mdn-command-line, mit-missing-semester, ohmyzsh",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-19T05:07:34Z",
+      "event": "plan",
+      "message": "plan fields set: curriculum",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-19T05:07:37Z",
+      "event": "execution-check",
+      "message": "research: pass",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-19T05:07:47Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-19T05:07:49Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "research"
     }
   ],
   "roadmap": {
     "id": "frontend",
     "section": "00.2"
+  },
+  "quality": {
+    "executions": {
+      "research": {
+        "version": 2,
+        "fingerprint": "621a083fa30427b4591eb2290d0a64d7a0f03a890b3b66d4f88119daf8e9d635",
+        "at": "2026-11-19T05:07:37Z",
+        "ok": true,
+        "checks": [
+          {
+            "label": "mdn-command-line: https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Environment_setup/Command_line",
+            "source": "mdn-command-line",
+            "requested_url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Environment_setup/Command_line",
+            "ok": true,
+            "status": 200,
+            "bytes": 228416,
+            "sha256": "cbbcaa664ba54bbb8451e2d0ef9ed712229e0c7a1429d4df684e5181aa06b63f"
+          },
+          {
+            "label": "vscode-settings-docs: https://code.visualstudio.com/docs/configure/settings",
+            "source": "vscode-settings-docs",
+            "requested_url": "https://code.visualstudio.com/docs/configure/settings",
+            "ok": true,
+            "status": 200,
+            "bytes": 179574,
+            "sha256": "bc71ea66192211da8be8d0739059c586b73bed142dabc59ecc4142df36f59cae"
+          },
+          {
+            "label": "nodejs-releases-docs: https://nodejs.org/en/about/previous-releases",
+            "source": "nodejs-releases-docs",
+            "requested_url": "https://nodejs.org/en/about/previous-releases",
+            "ok": true,
+            "status": 200,
+            "bytes": 287585,
+            "sha256": "5ee34d328032434fe012a32f622e46179456db34d19d912c3d6801a9cca9a799"
+          },
+          {
+            "label": "mit-missing-semester: https://missing.csail.mit.edu/",
+            "source": "mit-missing-semester",
+            "requested_url": "https://missing.csail.mit.edu/",
+            "ok": true,
+            "status": 200,
+            "bytes": 14882,
+            "sha256": "b889e7b445bcd8b561a5331fb38a0fb20e94e8a82bf83e0d46835de7cd8398a7"
+          },
+          {
+            "label": "github-set-up-git-docs: https://docs.github.com/en/get-started/git-basics/set-up-git",
+            "source": "github-set-up-git-docs",
+            "requested_url": "https://docs.github.com/en/get-started/git-basics/set-up-git",
+            "ok": true,
+            "status": 200,
+            "bytes": 184220,
+            "sha256": "3e97110ddd40049b0bd39d7ceac7f66fd06aa7ffcef5adce2c812551f1c95478"
+          },
+          {
+            "label": "nvm-sh-nvm-repo: https://api.github.com/repos/nvm-sh/nvm",
+            "source": "nvm-sh-nvm-repo",
+            "requested_url": "https://api.github.com/repos/nvm-sh/nvm",
+            "ok": true,
+            "status": 200,
+            "bytes": 6691,
+            "sha256": "8f25d3243b42a25ecfcb08679c54a56b1dd9693c33b815a97b07f85cbe2a7001",
+            "repository": {
+              "stars": 96176,
+              "archived": false,
+              "pushed_at": "2026-11-18T22:19:08Z",
+              "license": "MIT"
+            }
+          },
+          {
+            "label": "ohmyzsh-ohmyzsh-repo: https://api.github.com/repos/ohmyzsh/ohmyzsh",
+            "source": "ohmyzsh-ohmyzsh-repo",
+            "requested_url": "https://api.github.com/repos/ohmyzsh/ohmyzsh",
+            "ok": true,
+            "status": 200,
+            "bytes": 7272,
+            "sha256": "976e82051aef260677bf2ab5da6e70837dd4af664764aa13066ea39588a072fa",
+            "repository": {
+              "stars": 190641,
+              "archived": false,
+              "pushed_at": "2026-11-16T12:08:14Z",
+              "license": "MIT"
+            }
+          },
+          {
+            "label": "openai-codex-repo: https://api.github.com/repos/openai/codex",
+            "source": "openai-codex-repo",
+            "requested_url": "https://api.github.com/repos/openai/codex",
+            "ok": true,
+            "status": 200,
+            "bytes": 6595,
+            "sha256": "1b0bbb7e4652e4a127b2ae4616dc2f603d79202667a0bf6ad6920cec2d84c36e",
+            "repository": {
+              "stars": 135813,
+              "archived": false,
+              "pushed_at": "2026-11-19T04:49:25Z",
+              "license": "Apache-2.0"
+            }
+          },
+          {
+            "label": "pro-git-book: https://git-scm.com/book/en/v2",
+            "source": "pro-git-book",
+            "requested_url": "https://git-scm.com/book/en/v2",
+            "ok": true,
+            "status": 200,
+            "bytes": 121705,
+            "sha256": "b15cbf1b8bebdd30e5efe84cb7e3b79c56ff6669c1461e7199fc7a95f422f25d"
+          }
+        ]
+      }
+    }
   }
 }

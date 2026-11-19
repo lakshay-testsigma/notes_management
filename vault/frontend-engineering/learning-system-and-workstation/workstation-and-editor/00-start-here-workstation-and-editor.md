@@ -11,7 +11,7 @@ created: 2026-11-19
 This is the map of the topic. Read the steps from top to bottom. Each step links to the next thing to open, so you never have to search.
 
 <!-- tutor:generated:start -->
-**Depth:** standard · **Progress:** 1 of 10 steps ready
+**Depth:** standard · **Progress:** 2 of 10 steps ready
 
 How to set up and keep a disciplined developer workstation: shell, git, editor, AI-assisted coding, and Node version management, so every later frontend topic starts from a reproducible base.
 
@@ -25,7 +25,7 @@ How to set up and keep a disciplined developer workstation: shell, git, editor, 
 6. [[06-capstone-workstation-and-editor|Capstone]] — the production-style project · *not started*
 7. [[07-final-notes-workstation-and-editor|Final notes]] — the one-page refresher · *not started*
 8. [[08-recall-workstation-and-editor|Recall cards]] — flashcards for spaced review · *not started*
-9. [[09-resources-workstation-and-editor|Resources]] — the vetted sources behind everything above · *not started*
+9. [[09-resources-workstation-and-editor|Resources]] — the vetted sources behind everything above · *ready*
 
 Your own additions live in [[my-insights-workstation-and-editor|My insights]].
 
@@ -70,6 +70,8 @@ Set up and keep a disciplined developer workstation: shell, git, editor, AI-assi
 - AI-assisted development: included
 - Node version management: included
 
+Research stopped: scope-boundary. Sub-concepts proposed by discovery (pipes-and-redirection, path-and-environment-variables, signals-and-job-control, dotfiles-and-shell-config, git-identity-and-auth, commit-graph-and-branches, merge-strategy, git-bisect, pr-review-workflow) are folded into their parent concepts at standard depth; merge-strategy and git-bisect evidence is covered by pro-git-book. editor-setup and node-version-management were investigated by the docs and repos category units. The macOS shell-default claim in the MIT lecture was not independently confirmed and is not cited in teaching material.
+
 ## Projects
 
 - Mini project (planned): `projects/frontend-engineering/learning-system-and-workstation/workstation-and-editor/mini-01-dotfiles/` — A developer reproduces their whole shell, git, and editor setup on a new machine from one repository and an install script.
@@ -81,7 +83,7 @@ Set up and keep a disciplined developer workstation: shell, git, editor, AI-assi
 | Wave | Stage | Status |
 |------|-------|--------|
 | 0 | intake | ready |
-| 1 | research | not started |
+| 1 | research | ready |
 | 1 | brief | not started |
 | 2 | digest | not started |
 | 2 | repo-intel | not started |
@@ -91,7 +93,7 @@ Set up and keep a disciplined developer workstation: shell, git, editor, AI-assi
 | 5 | notes | not started |
 | 5 | finalize | not started |
 
-Next to generate: `research`. Ask Claude to continue this topic, or run `node harness/bin/tutor.mjs next frontend-engineering/learning-system-and-workstation/workstation-and-editor`.
+Next to generate: `brief`. Ask Claude to continue this topic, or run `node harness/bin/tutor.mjs next frontend-engineering/learning-system-and-workstation/workstation-and-editor`.
 <!-- tutor:generated:end -->
 
 ## My insights

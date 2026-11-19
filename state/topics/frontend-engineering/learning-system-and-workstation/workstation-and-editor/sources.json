@@ -1,1 +1,229 @@
-[]
+[
+  {
+    "id": "mdn-command-line",
+    "type": "official-docs",
+    "title": "Command line crash course (MDN Learn web development, Environment setup)",
+    "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Environment_setup/Command_line",
+    "authors": "MDN contributors (Mozilla)",
+    "year": 2026,
+    "tier": "A",
+    "why_trusted": "MDN Web Docs, the reference for the web platform, hosts this Environment setup article; the live page says it was last modified on Sep 12, 2026 and lists the article's own learning outcomes for the terminal, basic commands, options and pipes.",
+    "evidence": {
+      "stars": null,
+      "last_commit": null,
+      "citations": null,
+      "venue": null,
+      "publisher": "Mozilla",
+      "used_by": []
+    },
+    "verified_at": "2026-11-19",
+    "verified_via": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Environment_setup/Command_line",
+    "use_for": [
+      "brief",
+      "lesson",
+      "digest"
+    ]
+  },
+  {
+    "id": "vscode-settings-docs",
+    "type": "official-docs",
+    "title": "User and workspace settings in Visual Studio Code",
+    "url": "https://code.visualstudio.com/docs/configure/settings",
+    "authors": "Microsoft (VS Code team)",
+    "year": 2026,
+    "tier": "A",
+    "why_trusted": "Official VS Code documentation on code.visualstudio.com; the live page lists the setting scopes and their precedence (default, user, remote, workspace, workspace folder, policy) and says workspace settings live in .vscode/settings.json.",
+    "evidence": {
+      "stars": null,
+      "last_commit": null,
+      "citations": null,
+      "venue": null,
+      "publisher": "Microsoft",
+      "used_by": []
+    },
+    "verified_at": "2026-11-19",
+    "verified_via": "https://code.visualstudio.com/docs/configure/settings",
+    "use_for": [
+      "brief",
+      "lesson"
+    ]
+  },
+  {
+    "id": "nodejs-releases-docs",
+    "type": "official-docs",
+    "title": "Node.js Releases (release statuses, LTS schedule and installation methods)",
+    "url": "https://nodejs.org/en/about/previous-releases",
+    "authors": "OpenJS Foundation and Node.js contributors",
+    "year": 2026,
+    "tier": "A",
+    "why_trusted": "The Node.js project's own release page; it names each major version's status (Alpha, Current, LTS, EOL) with first-released and last-updated dates, and states that production applications should only use Active LTS or Maintenance LTS releases.",
+    "evidence": {
+      "stars": null,
+      "last_commit": null,
+      "citations": null,
+      "venue": null,
+      "publisher": "OpenJS Foundation",
+      "used_by": []
+    },
+    "verified_at": "2026-11-19",
+    "verified_via": "https://nodejs.org/en/about/previous-releases",
+    "use_for": [
+      "brief",
+      "lesson"
+    ]
+  },
+  {
+    "id": "mit-missing-semester",
+    "type": "course",
+    "title": "The Missing Semester of Your CS Education",
+    "url": "https://missing.csail.mit.edu/",
+    "authors": "Anish Athalye, Jon Gjengset, Jose Javier Gonzalez Ortiz (MIT)",
+    "year": 2026,
+    "tier": "A",
+    "why_trusted": "MIT's public IAP course on developer tools, taught by MIT instructors with lecture notes, recordings and exercises freely available; the 2026 edition teaches the shell, command-line environment, development environment and version control.",
+    "evidence": {
+      "stars": null,
+      "last_commit": null,
+      "citations": null,
+      "venue": "MIT IAP 2026",
+      "publisher": "Massachusetts Institute of Technology",
+      "used_by": []
+    },
+    "verified_at": "2026-11-19",
+    "verified_via": "https://missing.csail.mit.edu/",
+    "use_for": [
+      "brief",
+      "lesson"
+    ]
+  },
+  {
+    "id": "github-set-up-git-docs",
+    "type": "official-docs",
+    "title": "Set up Git",
+    "url": "https://docs.github.com/en/get-started/git-basics/set-up-git",
+    "authors": "GitHub",
+    "year": 2026,
+    "tier": "A",
+    "why_trusted": "GitHub's official setup page on its own domain: the install, identity and authentication steps that GitHub requires before a developer can push to a repository.",
+    "evidence": {
+      "stars": null,
+      "last_commit": null,
+      "citations": null,
+      "venue": null,
+      "publisher": "GitHub, Inc.",
+      "used_by": []
+    },
+    "verified_at": "2026-11-19",
+    "verified_via": "https://docs.github.com/en/get-started/git-basics/set-up-git",
+    "use_for": [
+      "brief",
+      "lesson"
+    ]
+  },
+  {
+    "id": "nvm-sh-nvm-repo",
+    "type": "repo",
+    "title": "nvm-sh/nvm",
+    "url": "https://github.com/nvm-sh/nvm",
+    "authors": "nvm-sh (nvm maintainers)",
+    "year": 2026,
+    "tier": "A",
+    "why_trusted": "The reference implementation of Node version management: a POSIX bash script (MIT) owned by the nvm-sh organisation with 96,173 stars, tests and GitHub Actions CI, and Google Cloud Shell ships it as a pre-installed tool (Google Cloud 'How Cloud Shell works', last updated 2026-11-10).",
+    "evidence": {
+      "stars": 96173,
+      "last_commit": "2026-11-18",
+      "archived": false,
+      "license": "MIT",
+      "citations": null,
+      "venue": null,
+      "publisher": null,
+      "used_by": [
+        "Google Cloud Shell"
+      ]
+    },
+    "verified_at": "2026-11-19",
+    "verified_via": "https://api.github.com/repos/nvm-sh/nvm",
+    "use_for": [
+      "repo-intel",
+      "lesson"
+    ]
+  },
+  {
+    "id": "ohmyzsh-ohmyzsh-repo",
+    "type": "repo",
+    "title": "ohmyzsh/ohmyzsh",
+    "url": "https://github.com/ohmyzsh/ohmyzsh",
+    "authors": "Oh My Zsh project (ohmyzsh organisation, founded by Robby Russell)",
+    "year": 2026,
+    "tier": "A",
+    "why_trusted": "The reference zsh configuration framework: MIT-licensed, owned by its own organisation, 190,639 stars with pushes on 2026-11-16, and the Microsoft-maintained Dev Container Features collection ships an installOhMyZsh option in ghcr.io/devcontainers/features/common-utils.",
+    "evidence": {
+      "stars": 190639,
+      "last_commit": "2026-11-16",
+      "archived": false,
+      "license": "MIT",
+      "citations": null,
+      "venue": null,
+      "publisher": null,
+      "used_by": [
+        "Dev Container Features (devcontainers/features common-utils)"
+      ]
+    },
+    "verified_at": "2026-11-19",
+    "verified_via": "https://api.github.com/repos/ohmyzsh/ohmyzsh",
+    "use_for": [
+      "lesson"
+    ]
+  },
+  {
+    "id": "openai-codex-repo",
+    "type": "repo",
+    "title": "openai/codex",
+    "url": "https://github.com/openai/codex",
+    "authors": "OpenAI",
+    "year": 2026,
+    "tier": "B",
+    "why_trusted": "OpenAI's own Apache-2.0 terminal coding agent, the source behind the official Codex CLI documented at developers.openai.com/codex/cli; an active organisation-owned product (135,813 stars, last push 2026-11-19) that its owner ships to users, not a demo.",
+    "evidence": {
+      "stars": 135813,
+      "last_commit": "2026-11-19",
+      "archived": false,
+      "license": "Apache-2.0",
+      "citations": null,
+      "venue": null,
+      "publisher": null,
+      "used_by": [
+        "OpenAI (official Codex CLI)"
+      ]
+    },
+    "verified_at": "2026-11-19",
+    "verified_via": "https://api.github.com/repos/openai/codex",
+    "use_for": [
+      "lesson"
+    ]
+  },
+  {
+    "id": "pro-git-book",
+    "type": "book",
+    "title": "Pro Git",
+    "url": "https://git-scm.com/book/en/v2",
+    "authors": "Scott Chacon and Ben Straub",
+    "year": 2014,
+    "tier": "A",
+    "why_trusted": "The official, freely available Git book, published on the Git project's own site.",
+    "evidence": {
+      "stars": null,
+      "last_commit": null,
+      "citations": null,
+      "venue": null,
+      "publisher": "Apress",
+      "used_by": []
+    },
+    "verified_at": "2026-11-19",
+    "verified_via": "https://git-scm.com/book/en/v2",
+    "use_for": [
+      "lesson",
+      "digest"
+    ]
+  }
+]
