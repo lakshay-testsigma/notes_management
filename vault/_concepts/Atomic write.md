@@ -13,5 +13,6 @@ Writing a file so readers only ever see the old or the new version, never a half
 ## Where it shows up
 
 - [[nvm-pattern-atomic-publish]]
+- [[06-capstone-workstation-and-editor]]
 
 ## My insights

@@ -1,0 +1,11 @@
+flowchart LR
+  subgraph build["Dockerfile stage · node:22-alpine"]
+    SRC["src/ + package.json"]
+    B["npm run build"]
+  end
+  subgraph serve["Dockerfile stage · nginx:1.27-alpine"]
+    NGINX["nginx :80"]
+  end
+  BROWSER["Browser"] --> NGINX
+  SRC --> B
+  B -->|"dist/"| NGINX

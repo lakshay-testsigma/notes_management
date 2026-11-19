@@ -1,0 +1,26 @@
+flowchart TB
+  subgraph interface["interface · React function components"]
+    FORM["ConfiguratorForm"]
+    HOOK["useConfigurator"]
+  end
+  subgraph application["application"]
+    GEN["DotfilesGenerator"]
+  end
+  subgraph domain["domain"]
+    CFG["DeveloperConfig"]
+    NV["NodeVersion"]
+    PORTS["ConfigStorage · BundleDownloader"]
+  end
+  subgraph infrastructure["infrastructure"]
+    LS["LocalStorageConfigStorage"]
+    BD["BrowserBundleDownloader"]
+    ENV["EnvConfig"]
+    LOG["ConsoleLogger"]
+  end
+  FORM --> HOOK
+  HOOK --> GEN
+  HOOK --> PORTS
+  GEN --> CFG
+  GEN --> NV
+  LS -. implements .-> PORTS
+  BD -. implements .-> PORTS

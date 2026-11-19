@@ -294,5 +294,79 @@
     "used_in": [
       "projects/frontend-engineering/learning-system-and-workstation/workstation-and-editor/mini-02-git-bisect-hunt/README.md"
     ]
+  },
+  {
+    "id": "capstone-layers",
+    "title": "Layers of the Dev environment configurator",
+    "kind": "architecture",
+    "format": "mermaid",
+    "file": "vault/frontend-engineering/learning-system-and-workstation/workstation-and-editor/visuals/assets/capstone-layers-workstation-and-editor.mmd",
+    "concept_ids": [
+      "workstation-setup"
+    ],
+    "source_ids": [
+      "nvm-sh-nvm-repo",
+      "mit-missing-semester"
+    ],
+    "purpose": "See the four layers of the app and that every dependency points inward, toward the domain.",
+    "explanation": "React components and a hook sit in the interface layer, the generator in application, DeveloperConfig, NodeVersion and the ports in domain, and the storage, downloader, config and logger in infrastructure. Arrows point inward, so the domain knows nobody.",
+    "alt": "Four layers: interface holds ConfiguratorForm and useConfigurator, application holds DotfilesGenerator, domain holds DeveloperConfig, NodeVersion and the ports, infrastructure holds LocalStorageConfigStorage, BrowserBundleDownloader, EnvConfig and ConsoleLogger; every arrow points inward.",
+    "learning_check": {
+      "question": "Which layer holds DeveloperConfig, and which direction do the dependencies point?",
+      "answer": "The domain, and inward — the domain depends on nothing outside itself."
+    },
+    "used_in": [
+      "projects/frontend-engineering/learning-system-and-workstation/workstation-and-editor/capstone/ARCHITECTURE.md",
+      "vault/frontend-engineering/learning-system-and-workstation/workstation-and-editor/06-capstone-workstation-and-editor.md"
+    ]
+  },
+  {
+    "id": "capstone-request-flow",
+    "title": "Generate dotfiles request flow",
+    "kind": "sequence",
+    "format": "mermaid",
+    "file": "vault/frontend-engineering/learning-system-and-workstation/workstation-and-editor/visuals/assets/capstone-request-flow-workstation-and-editor.mmd",
+    "concept_ids": [
+      "git-and-github",
+      "node-version-management"
+    ],
+    "source_ids": [
+      "nvm-sh-nvm-repo",
+      "github-set-up-git-docs"
+    ],
+    "purpose": "Follow one submit through validation, generation, save, and download, including the failure path.",
+    "explanation": "The form calls generate, which validates the draft into a DeveloperConfig. Invalid input throws with a code and shows a field error; valid input generates a bundle, saves the config, and downloads the installer.",
+    "alt": "A sequence from Developer through ConfiguratorForm, useConfigurator, DeveloperConfig, DotfilesGenerator, ConfigStorage and BundleDownloader, branching where invalid input returns a coded error and valid input saves and downloads.",
+    "learning_check": {
+      "question": "Where does invalid input stop the flow?",
+      "answer": "In DeveloperConfig.create, which throws an InvalidConfigError with a code before anything is generated or saved."
+    },
+    "used_in": [
+      "projects/frontend-engineering/learning-system-and-workstation/workstation-and-editor/capstone/ARCHITECTURE.md"
+    ]
+  },
+  {
+    "id": "capstone-deployment",
+    "title": "Deployment of the static build",
+    "kind": "deployment",
+    "format": "mermaid",
+    "file": "vault/frontend-engineering/learning-system-and-workstation/workstation-and-editor/visuals/assets/capstone-deployment-workstation-and-editor.mmd",
+    "concept_ids": [
+      "workstation-setup"
+    ],
+    "source_ids": [
+      "nodejs-releases-docs",
+      "nvm-sh-nvm-repo"
+    ],
+    "purpose": "See the two Dockerfile stages: build the static bundle with Node, serve it with nginx.",
+    "explanation": "The Dockerfile builds the app in a node stage with Vite, then copies the dist folder into an nginx stage that serves it on port 80. Configuration is baked in at build time.",
+    "alt": "Two Dockerfile stages: a node:22-alpine stage runs npm run build to produce dist, and an nginx:1.27-alpine stage serves that dist folder to the browser on port 80.",
+    "learning_check": {
+      "question": "Which Dockerfile stage runs npm run build?",
+      "answer": "The node:22-alpine build stage; the nginx stage only serves the result."
+    },
+    "used_in": [
+      "projects/frontend-engineering/learning-system-and-workstation/workstation-and-editor/capstone/ARCHITECTURE.md"
+    ]
   }
 ]

@@ -16,5 +16,6 @@ request later. The rules can therefore be tested without the browser.
 ## Where it shows up
 
 - [[06-capstone-how-to-learn-frontend]]
+- [[06-capstone-workstation-and-editor]]
 
 ## My insights

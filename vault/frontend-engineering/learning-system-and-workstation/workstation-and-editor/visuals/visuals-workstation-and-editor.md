@@ -30,13 +30,19 @@ Every diagram, simulation and video of this topic, with the concepts it teaches 
 ## Architecture
 
 - [[visual-nvm-module-map-workstation-and-editor|nvm's modules and how they call each other]] — See how one shell script is split into responsibilities that call each other.
+- [[visual-capstone-layers-workstation-and-editor|Layers of the Dev environment configurator]] — See the four layers of the app and that every dependency points inward, toward the domain.
 
 ## Sequence
 
 - [[visual-nvm-request-flow-workstation-and-editor|One nvm install request end to end]] — Follow one `nvm install 22` through resolution, download, verification, and the PATH rewrite.
+- [[visual-capstone-request-flow-workstation-and-editor|Generate dotfiles request flow]] — Follow one submit through validation, generation, save, and download, including the failure path.
 
 ## Video
 
 - [[visual-ai-review-loop-workstation-and-editor|The AI review loop]] — See how a sandbox and approvals keep an AI agent's edits safe to merge. · video rendered
+
+## Deployment
+
+- [[visual-capstone-deployment-workstation-and-editor|Deployment of the static build]] — See the two Dockerfile stages: build the static bundle with Node, serve it with nginx.
 
 ## My insights

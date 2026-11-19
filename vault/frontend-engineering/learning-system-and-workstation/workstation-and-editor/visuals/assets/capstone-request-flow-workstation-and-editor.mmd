@@ -1,0 +1,20 @@
+sequenceDiagram
+  participant D as Developer
+  participant F as ConfiguratorForm
+  participant H as useConfigurator
+  participant C as DeveloperConfig
+  participant G as DotfilesGenerator
+  participant S as ConfigStorage
+  participant L as BundleDownloader
+  D->>F: fills the form
+  F->>H: generate()
+  H->>C: create(draft)
+  alt invalid input
+    C-->>H: throws InvalidConfigError(code)
+    H-->>F: field error message
+  else valid
+    H->>G: generate(config)
+    G-->>H: GeneratedBundle
+    H->>S: save(config)
+    H->>L: download(bundle)
+  end

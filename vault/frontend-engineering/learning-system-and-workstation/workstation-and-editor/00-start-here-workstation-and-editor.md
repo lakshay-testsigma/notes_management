@@ -11,7 +11,7 @@ created: 2026-11-19
 This is the map of the topic. Read the steps from top to bottom. Each step links to the next thing to open, so you never have to search.
 
 <!-- tutor:generated:start -->
-**Depth:** standard · **Progress:** 7 of 10 steps ready
+**Depth:** standard · **Progress:** 8 of 10 steps ready
 
 How to set up and keep a disciplined developer workstation: shell, git, editor, AI-assisted coding, and Node version management, so every later frontend topic starts from a reproducible base.
 
@@ -22,7 +22,7 @@ How to set up and keep a disciplined developer workstation: shell, git, editor, 
 3. [[03-mini-projects-workstation-and-editor|Mini projects]] — small builds with a real use case · *ready*
 4. [[00-digests-workstation-and-editor|Digests]] — short summaries of the key papers and docs · *ready*
 5. [[00-repo-intel-workstation-and-editor|Repository deep dive]] — how a production open-source project does it · *ready*
-6. [[06-capstone-workstation-and-editor|Capstone]] — the production-style project · *not started*
+6. [[06-capstone-workstation-and-editor|Capstone]] — the production-style project · *ready*
 7. [[07-final-notes-workstation-and-editor|Final notes]] — the one-page refresher · *not started*
 8. [[08-recall-workstation-and-editor|Recall cards]] — flashcards for spaced review · *not started*
 9. [[09-resources-workstation-and-editor|Resources]] — the vetted sources behind everything above · *ready*
@@ -89,11 +89,11 @@ Research stopped: scope-boundary. Sub-concepts proposed by discovery (pipes-and-
 | 2 | repo-intel | ready |
 | 3 | lesson | ready |
 | 3 | mini-projects | ready |
-| 4 | capstone | not started |
+| 4 | capstone | ready |
 | 5 | notes | not started |
 | 5 | finalize | not started |
 
-Next to generate: `capstone`. Ask Claude to continue this topic, or run `node harness/bin/tutor.mjs next frontend-engineering/learning-system-and-workstation/workstation-and-editor`.
+Next to generate: `notes`. Ask Claude to continue this topic, or run `node harness/bin/tutor.mjs next frontend-engineering/learning-system-and-workstation/workstation-and-editor`.
 <!-- tutor:generated:end -->
 
 ## My insights

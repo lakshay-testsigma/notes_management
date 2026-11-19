@@ -13,5 +13,6 @@ Giving each failure kind its own exit code, so callers can tell wrong usage apar
 ## Where it shows up
 
 - [[nvm-pattern-error-classification]]
+- [[06-capstone-workstation-and-editor]]
 
 ## My insights
