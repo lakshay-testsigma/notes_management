@@ -35,6 +35,7 @@ flowchart TD
   firefox_and_safari_devtools["Firefox and Safari DevTools"]
   remote_device_debugging["Remote device debugging"]
   debugging_workflow["Debugging workflow"]
+  bfcache_and_speculative_loads["Back/forward cache and speculative loads"]
   browser_devtools --> elements_and_styles
   elements_and_styles --> box_model_and_layout_overlays
   browser_devtools --> console_api
@@ -58,6 +59,7 @@ flowchart TD
   browser_devtools --> firefox_and_safari_devtools
   browser_devtools --> remote_device_debugging
   browser_devtools --> debugging_workflow
+  application_panel --> bfcache_and_speculative_loads
 ```
 
 Back to [[visuals-browser-devtools-mastery|all visuals]].

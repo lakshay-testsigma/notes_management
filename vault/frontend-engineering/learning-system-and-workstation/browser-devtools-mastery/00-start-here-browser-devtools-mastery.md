@@ -11,7 +11,7 @@ created: 2026-11-19
 This is the map of the topic. Read the steps from top to bottom. Each step links to the next thing to open, so you never have to search.
 
 <!-- tutor:generated:start -->
-**Depth:** deep · **Progress:** 1 of 10 steps ready
+**Depth:** deep · **Progress:** 2 of 10 steps ready
 
 Browser DevTools are the inspectors built into every browser that show the live page, its code, network, performance and memory, so you can find the cause of a bug from evidence.
 
@@ -25,7 +25,7 @@ Browser DevTools are the inspectors built into every browser that show the live 
 6. [[06-capstone-browser-devtools-mastery|Capstone]] — the production-style project · *not started*
 7. [[07-final-notes-browser-devtools-mastery|Final notes]] — the one-page refresher · *not started*
 8. [[08-recall-browser-devtools-mastery|Recall cards]] — flashcards for spaced review · *not started*
-9. [[09-resources-browser-devtools-mastery|Resources]] — the vetted sources behind everything above · *in progress*
+9. [[09-resources-browser-devtools-mastery|Resources]] — the vetted sources behind everything above · *ready*
 
 Your own additions live in [[my-insights-browser-devtools-mastery|My insights]].
 
@@ -92,6 +92,9 @@ Use the browser DevTools of Chrome, Firefox and Safari to inspect, debug, measur
 - Firefox and Safari DevTools: included
 - Remote device debugging: included
 - Debugging workflow: included
+- Back/forward cache and speculative loads: included
+
+Research stopped: scope-boundary. Discovery units proposed further children (breakpoint-types, call-stack-and-scope-stepping, ignore-list, network-throttling-and-cache, cpu-throttling, long-animation-frames, shallow-vs-retained-size, allocation-timeline, force-state-and-computed-styles, cascade-layers-and-scope-views, console-selection-utilities, console-monitoring-utilities, storage-quota-and-clear-site-data, coverage-panel, device-mode-emulation, firefox-grid-and-accessibility-inspectors, safari-web-inspector-setup). They are folded into their parent concepts and taught on the parent page. Open: container-query badge evidence not found on the Chrome CSS reference page; source-map security not investigated; v8.dev fast-async verified but not recorded (source limit 12); web-dev-vitals-docs removed for the source limit.
 
 ## Projects
 
@@ -105,7 +108,7 @@ Use the browser DevTools of Chrome, Firefox and Safari to inspect, debug, measur
 | Wave | Stage | Status |
 |------|-------|--------|
 | 0 | intake | ready |
-| 1 | research | in progress |
+| 1 | research | ready |
 | 1 | brief | not started |
 | 2 | digest | not started |
 | 2 | repo-intel | not started |
@@ -115,7 +118,7 @@ Use the browser DevTools of Chrome, Firefox and Safari to inspect, debug, measur
 | 5 | notes | not started |
 | 5 | finalize | not started |
 
-Next to generate: `research`. Ask Claude to continue this topic, or run `node harness/bin/tutor.mjs next frontend-engineering/learning-system-and-workstation/browser-devtools-mastery`.
+Next to generate: `brief`. Ask Claude to continue this topic, or run `node harness/bin/tutor.mjs next frontend-engineering/learning-system-and-workstation/browser-devtools-mastery`.
 <!-- tutor:generated:end -->
 
 ## My insights
