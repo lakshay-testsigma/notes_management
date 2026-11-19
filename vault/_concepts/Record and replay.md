@@ -13,5 +13,6 @@ Record and replay means you save raw events from a run and rebuild the result fr
 ## Where it shows up
 
 - [[lighthouse-pattern-record-raw-then-derive]]
+- [[06-capstone-browser-devtools-mastery]]
 
 ## My insights

@@ -13,5 +13,6 @@ Core Web Vitals are three page-experience metrics: LCP (how fast the main conten
 ## Where it shows up
 
 - [[chrome-devtools-performance-reference-browser-devtools-mastery]]
+- [[06-capstone-browser-devtools-mastery]]
 
 ## My insights

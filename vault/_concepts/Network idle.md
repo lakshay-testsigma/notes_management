@@ -13,5 +13,6 @@ Network idle is the moment when a page has stopped loading things over the netwo
 ## Where it shows up
 
 - [[lighthouse-pattern-layered-timeouts-and-settling]]
+- [[06-capstone-browser-devtools-mastery]]
 
 ## My insights

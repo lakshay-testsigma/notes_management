@@ -1,0 +1,24 @@
+sequenceDiagram
+  participant B as Dashboard page
+  participant S as DashboardServer
+  participant U as InspectPageUseCase
+  participant D as ChromeCdpDriver
+  participant C as Headless Chrome
+  participant R as ReportBuilder
+  B->>S: POST /api/inspect url
+  S->>U: execute(url, requestId)
+  U->>U: UrlPolicy.check(url)
+  U->>D: capture(url)
+  D->>C: Target, Network, Page, Tracing commands over WebSocket
+  C-->>D: events, trace, heap samples
+  alt capture fails
+    D-->>U: Result.err
+    U-->>S: Result.err
+    S-->>B: 502 with error code
+  else capture works
+    D-->>U: Result.ok(RawCapture)
+    U->>U: CaptureStore.save(capture)
+    U->>R: build(capture)
+    R-->>S: report with per-section status
+    S-->>B: 200 report JSON
+  end

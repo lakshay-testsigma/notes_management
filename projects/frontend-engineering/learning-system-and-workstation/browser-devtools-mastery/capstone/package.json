@@ -1,0 +1,13 @@
+{
+  "name": "page-health-inspector",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Loads a URL in headless Chrome over the DevTools Protocol and reports network timing, Core Web Vitals, console errors and heap growth.",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "start": "node src/main.js",
+    "analyze": "node src/main.js --file",
+    "test": "node --test tests/"
+  }
+}

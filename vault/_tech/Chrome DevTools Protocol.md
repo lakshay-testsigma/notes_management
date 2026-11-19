@@ -15,5 +15,6 @@ The Chrome DevTools Protocol (CDP) is the message interface Chrome exposes so th
 - [[lighthouse-pattern-record-raw-then-derive]]
 - [[lighthouse-tech-and-services]]
 - [[devtools-frontend-tech-and-services]]
+- [[06-capstone-browser-devtools-mastery]]
 
 ## My insights

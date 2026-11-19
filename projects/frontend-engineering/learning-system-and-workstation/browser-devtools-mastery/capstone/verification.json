@@ -1,0 +1,6 @@
+{
+  "checks": [
+    { "kind": "solution-tests", "command": "node", "args": ["--test", "tests/"], "cwd": "." },
+    { "kind": "build", "command": "node", "args": ["--check", "src/main.js"], "cwd": "." }
+  ]
+}

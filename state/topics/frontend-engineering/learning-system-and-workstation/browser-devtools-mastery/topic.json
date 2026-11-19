@@ -7,7 +7,7 @@
   "subdomain": "learning-system-and-workstation",
   "depth": "deep",
   "created_at": "2026-11-19T09:53:51Z",
-  "updated_at": "2026-11-19T10:54:00Z",
+  "updated_at": "2026-11-19T11:04:35Z",
   "paths": {
     "state": "state/topics/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery",
     "vault": "vault/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery",
@@ -442,7 +442,7 @@
     "repo_targets": 2,
     "capstone": {
       "name": "Page health inspector",
-      "problem": "A team needs one command that loads a URL in headless Chrome through the DevTools Protocol and reports network timing, Core Web Vitals, console errors and heap growth, with tests."
+      "problem": "A team pastes a URL into a small web dashboard; a Node service loads the page in headless Chrome through the DevTools Protocol and shows network timing, Core Web Vitals, console errors and heap growth as a report page, with tests."
     },
     "learner": {
       "experience": "software developer learning frontend end to end",
@@ -1256,15 +1256,15 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-19T09:54:00Z",
-      "finished_at": "2026-11-19T10:01:17Z",
+      "finished_at": "2026-11-19T10:55:36Z",
       "attempts": 1,
       "units": [],
       "note": "",
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "6f85cf4cba4f1479d1a18d8b84bb10a9b6d46dcf97494f2db0a267a7d338301a",
-        "at": "2026-11-19T10:01:17Z",
+        "fingerprint": "18d427ef197e61f0ad6b8f3bfa2e9cbb6bc3ae4faab3723b20f5a09420912ba5",
+        "at": "2026-11-19T10:55:36Z",
         "forced": false
       }
     },
@@ -1275,7 +1275,7 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-19T09:56:31Z",
-      "finished_at": "2026-11-19T10:02:09Z",
+      "finished_at": "2026-11-19T10:56:12Z",
       "attempts": 1,
       "units": [
         {
@@ -1303,8 +1303,8 @@
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "3a8cc0d270a2326ac70f07dc9407f213e9695ca2e683847930e6386d5bfecc49",
-        "at": "2026-11-19T10:02:09Z",
+        "fingerprint": "a5ef6bb6d330c6451a7924bc64cbc63df702ba962a294dcbd62ff677fb9f5e7e",
+        "at": "2026-11-19T10:56:12Z",
         "forced": false
       }
     },
@@ -1315,15 +1315,15 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-19T10:03:23Z",
-      "finished_at": "2026-11-19T10:04:13Z",
+      "finished_at": "2026-11-19T10:56:19Z",
       "attempts": 1,
       "units": [],
       "note": "",
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "12a06056e2373a2febab236e69e0adb756dcd62d7ee917a614759b203618f40d",
-        "at": "2026-11-19T10:04:13Z",
+        "fingerprint": "2bc2f0cc68317489c26da6fb07b9f01e030ec8550d6f15d0cbd3e27ca40de0bf",
+        "at": "2026-11-19T10:56:19Z",
         "forced": false
       }
     },
@@ -1334,7 +1334,7 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-19T10:04:36Z",
-      "finished_at": "2026-11-19T10:33:22Z",
+      "finished_at": "2026-11-19T10:56:26Z",
       "attempts": 1,
       "units": [
         {
@@ -1362,8 +1362,8 @@
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "9eeaf8bb6a834df9682f5f4ad217eadf2a8d3835080c1c948b7a240d61e80169",
-        "at": "2026-11-19T10:33:22Z",
+        "fingerprint": "22e56fdc041ff05833b49d193eb5bd9c356f94e26ac08492f9c2c14fa6c35c1b",
+        "at": "2026-11-19T10:56:26Z",
         "forced": false
       }
     },
@@ -1374,7 +1374,7 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-19T10:04:38Z",
-      "finished_at": "2026-11-19T10:33:31Z",
+      "finished_at": "2026-11-19T10:56:32Z",
       "attempts": 1,
       "units": [
         {
@@ -1442,8 +1442,8 @@
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "beba172c99d93cdb2bdb96aeb7aa55f6e7757abf0981c43c108764be3986e5eb",
-        "at": "2026-11-19T10:33:31Z",
+        "fingerprint": "3df236ea880106dbcde0d60c08b2a16d6060a90d80824fa85c55d061a51c66c3",
+        "at": "2026-11-19T10:56:32Z",
         "forced": false
       }
     },
@@ -1454,7 +1454,7 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-19T10:34:36Z",
-      "finished_at": "2026-11-19T10:50:49Z",
+      "finished_at": "2026-11-19T10:56:39Z",
       "attempts": 1,
       "units": [
         {
@@ -1502,8 +1502,8 @@
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "48e5a4f61adc29857a4209ab2438636411bd8283eab254ac2645b66df963c90c",
-        "at": "2026-11-19T10:50:49Z",
+        "fingerprint": "310edc66a7d63c2ed51c4a116a2dcb677af92eab6f09aa2cedad28a06f00bd8f",
+        "at": "2026-11-19T10:56:39Z",
         "forced": false
       }
     },
@@ -1514,7 +1514,7 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-19T10:34:41Z",
-      "finished_at": "2026-11-19T10:54:00Z",
+      "finished_at": "2026-11-19T10:56:50Z",
       "attempts": 1,
       "units": [
         {
@@ -1537,8 +1537,8 @@
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "edb33730ace3852c665fef0eee8ab82c75765080044f013556f461a9c7d83b19",
-        "at": "2026-11-19T10:54:00Z",
+        "fingerprint": "bbf4e0af4cfec1e217fdf2c5ccfe81b303f131270625d2f95592ef966f6ee47d",
+        "at": "2026-11-19T10:56:50Z",
         "forced": false
       }
     },
@@ -1546,13 +1546,26 @@
       "id": "capstone",
       "wave": 4,
       "skill": "learn-capstone",
-      "status": "pending",
+      "status": "done",
       "scope": "required",
-      "started_at": null,
-      "finished_at": null,
-      "attempts": 0,
-      "units": [],
-      "note": ""
+      "started_at": "2026-11-19T10:56:58Z",
+      "finished_at": "2026-11-19T11:04:35Z",
+      "attempts": 1,
+      "units": [
+        {
+          "id": "capstone",
+          "status": "done",
+          "handoff": null
+        }
+      ],
+      "note": "",
+      "continue_after_failure": false,
+      "validation": {
+        "version": 2,
+        "fingerprint": "51644dbed35d5b9b297e93b1d040836109d6e795a152b5cfb8791cb2113e4c43",
+        "at": "2026-11-19T11:04:35Z",
+        "forced": false
+      }
     },
     {
       "id": "notes",
@@ -2524,6 +2537,116 @@
       "event": "done",
       "message": "gate passed",
       "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-19T10:55:21Z",
+      "event": "plan",
+      "message": "plan fields set: summary, prerequisites, outcomes, lesson_outline, mini_projects, digest_targets, repo_targets, capstone, learner, visual_policy, visual_first, experience_policy, multi_stage, curriculum",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-19T10:55:36Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-19T10:56:03Z",
+      "event": "execution-check",
+      "message": "research: pass",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-19T10:56:12Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-19T10:56:19Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "brief"
+    },
+    {
+      "at": "2026-11-19T10:56:26Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "digest"
+    },
+    {
+      "at": "2026-11-19T10:56:32Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-19T10:56:39Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-19T10:56:44Z",
+      "event": "execution-check",
+      "message": "mini-projects: pass",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-19T10:56:50Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-19T10:56:58Z",
+      "event": "start",
+      "message": "attempt 1",
+      "stage": "capstone"
+    },
+    {
+      "at": "2026-11-19T10:57:01Z",
+      "event": "unit-add",
+      "message": "unit capstone",
+      "stage": "capstone"
+    },
+    {
+      "at": "2026-11-19T10:57:04Z",
+      "event": "note",
+      "message": "capstone re-planned as web-app (dashboard + Node CDP service); all stages re-gated. SPAWN 32/56 (capstone)."
+    },
+    {
+      "at": "2026-11-19T11:03:30Z",
+      "event": "visual",
+      "message": "added visual capstone-architecture"
+    },
+    {
+      "at": "2026-11-19T11:03:30Z",
+      "event": "visual",
+      "message": "added visual capstone-request-flow"
+    },
+    {
+      "at": "2026-11-19T11:03:30Z",
+      "event": "visual",
+      "message": "added visual capstone-deployment"
+    },
+    {
+      "at": "2026-11-19T11:04:03Z",
+      "event": "unit-done",
+      "message": "unit capstone",
+      "stage": "capstone"
+    },
+    {
+      "at": "2026-11-19T11:04:27Z",
+      "event": "execution-check",
+      "message": "capstone: pass",
+      "stage": "capstone"
+    },
+    {
+      "at": "2026-11-19T11:04:35Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "capstone"
     }
   ],
   "roadmap": {
@@ -2534,8 +2657,8 @@
     "executions": {
       "research": {
         "version": 2,
-        "fingerprint": "3a8cc0d270a2326ac70f07dc9407f213e9695ca2e683847930e6386d5bfecc49",
-        "at": "2026-11-19T10:02:05Z",
+        "fingerprint": "a5ef6bb6d330c6451a7924bc64cbc63df702ba962a294dcbd62ff677fb9f5e7e",
+        "at": "2026-11-19T10:56:03Z",
         "ok": true,
         "checks": [
           {
@@ -2545,7 +2668,7 @@
             "ok": true,
             "status": 200,
             "bytes": 204812,
-            "sha256": "a66bd4bb4c2b268f08bcc07f06e426b86a8e8a645a8e960e37f861688debe94f"
+            "sha256": "6f46330dcc3f74ac4a6b71139e7cd4fb3e8dc167c6740e8062a737f2c1c12705"
           },
           {
             "label": "chrome-devtools-network-reference: https://developer.chrome.com/docs/devtools/network/reference",
@@ -2553,8 +2676,8 @@
             "requested_url": "https://developer.chrome.com/docs/devtools/network/reference",
             "ok": true,
             "status": 200,
-            "bytes": 327509,
-            "sha256": "a9f83e64d849f50acb6498c785906688a494b873656d6d885a08e028f09da18b"
+            "bytes": 327505,
+            "sha256": "bda009b97e71e3cee5ff0ef6019a5b7a55baf0027d3444f76143a1bbe18a9c58"
           },
           {
             "label": "chrome-devtools-performance-reference: https://developer.chrome.com/docs/devtools/performance/reference",
@@ -2563,7 +2686,7 @@
             "ok": true,
             "status": 200,
             "bytes": 328835,
-            "sha256": "150239d6447a428419844f9103e617a91fb26e4960c981c5098e414d933a1f5f"
+            "sha256": "95f0d78b6ed0a2591917f7fb93ac5a606a8d17be818320e334d41af492a451bb"
           },
           {
             "label": "chrome-devtools-memory-docs: https://developer.chrome.com/docs/devtools/memory-problems",
@@ -2572,7 +2695,7 @@
             "ok": true,
             "status": 200,
             "bytes": 227430,
-            "sha256": "59f312bffebb3ea6f3f3da8a3b7c6140102c2edfd093196865ba83d0d56528db"
+            "sha256": "36e226786030c08308d896a67fe58bac543861f186940f373efbf058e3cee68a"
           },
           {
             "label": "ecma-426-source-map: https://ecma-international.org/publications-and-standards/standards/ecma-426",
@@ -2599,7 +2722,7 @@
             "ok": true,
             "status": 200,
             "bytes": 212954,
-            "sha256": "9dc134c100ee050bccfa9136bddd739ca031036012bae81cac033b477334cc87"
+            "sha256": "854a97de27d00379401de1fd8fe074b84ae2dafdcfc65ab1c438cf58cdc7c026"
           },
           {
             "label": "firefox-devtools-user-docs: https://firefox-source-docs.mozilla.org/devtools-user/page_inspector/how_to/examine_grid_layouts/index.html",
@@ -2644,7 +2767,7 @@
             "ok": true,
             "status": 200,
             "bytes": 196929,
-            "sha256": "57ed46cb64561ad76fe1f73225ab7d36b810c878ff0ee32c6aa028da4a4cd01d"
+            "sha256": "3189bc680f94337cdbad6c8e6b124680a787bd4087fb230e963b5b61a4084519"
           },
           {
             "label": "googlechrome-lighthouse-repo: https://github.com/GoogleChrome/lighthouse",
@@ -2652,8 +2775,8 @@
             "requested_url": "https://github.com/GoogleChrome/lighthouse",
             "ok": true,
             "status": 200,
-            "bytes": 477185,
-            "sha256": "112834002f05e1d26cf83332c23c8b0433d9d92c97fbb04ec5cbca2f62f4f7f0"
+            "bytes": 477186,
+            "sha256": "94d8f8ca8f5cd9d45dfd1db4b953a622ff2c594e895b2ebcd0fd5dd4b76910b3"
           },
           {
             "label": "puppeteer-puppeteer-repo: https://api.github.com/repos/puppeteer/puppeteer",
@@ -2662,11 +2785,11 @@
             "ok": true,
             "status": 200,
             "bytes": 7379,
-            "sha256": "9d31cc1744e6076fd1863c81a896fe24a851924df9e12a0cf7fa1100d726f6b7",
+            "sha256": "956e6645743a522098dd3acc402c69d9ad6bb86e8ffc6d55dcbdd99661b90ff6",
             "repository": {
-              "stars": 95868,
+              "stars": 95867,
               "archived": false,
-              "pushed_at": "2026-11-19T09:47:01Z",
+              "pushed_at": "2026-11-19T10:35:13Z",
               "license": "Apache-2.0"
             }
           },
@@ -2677,11 +2800,11 @@
             "ok": true,
             "status": 200,
             "bytes": 8041,
-            "sha256": "e93985a2710966157c0e957450fd04425b4d5801d252f2383a684e3fd5561dc4",
+            "sha256": "bf492f9bc15e3ae8297a401d5116b29767f725f7dd2c53d0b9fc3b1aa81f6f73",
             "repository": {
               "stars": 4104,
               "archived": false,
-              "pushed_at": "2026-11-19T09:53:17Z",
+              "pushed_at": "2026-11-19T10:49:28Z",
               "license": "BSD-3-Clause"
             }
           }
@@ -2689,8 +2812,8 @@
       },
       "mini-projects": {
         "version": 2,
-        "fingerprint": "edb33730ace3852c665fef0eee8ab82c75765080044f013556f461a9c7d83b19",
-        "at": "2026-11-19T10:53:53Z",
+        "fingerprint": "bbf4e0af4cfec1e217fdf2c5ccfe81b303f131270625d2f95592ef966f6ee47d",
+        "at": "2026-11-19T10:56:44Z",
         "ok": true,
         "checks": [
           {
@@ -2703,7 +2826,7 @@
             "expected_exit": 0,
             "exit": 0,
             "ok": true,
-            "output_sha256": "2f039b8f26f36c99b270e26806fe8370013df45d68a8a7d4a05c349f06e4aaeb"
+            "output_sha256": "5f9a97b2716881cac30f105d14760be1e608772d21459509236f1dd2cdbb3b64"
           },
           {
             "label": "mini-01-debug-an-async-race: starter-tests",
@@ -2715,7 +2838,7 @@
             "expected_exit": 1,
             "exit": 1,
             "ok": true,
-            "output_sha256": "d203927a30e13e4acae15263fd4f898a384cace5af22381cee9e5344946daee4"
+            "output_sha256": "89373d12bb9dd146b8f0552264099c30aa57caaab07a6129c5178d29fe217cd2"
           },
           {
             "label": "mini-01-debug-an-async-race: starter-start",
@@ -2739,7 +2862,7 @@
             "expected_exit": 0,
             "exit": 0,
             "ok": true,
-            "output_sha256": "e223a7dfddef93b9e0279db26edc18154a8de090a19471e12fbeb4146922fb03"
+            "output_sha256": "d411fb541bf5c3a5e2d9cd054fd626eb639962fa1404f124f3e6ccdb2f9b62c1"
           },
           {
             "label": "mini-02-audit-a-slow-page: starter-tests",
@@ -2751,7 +2874,7 @@
             "expected_exit": 1,
             "exit": 1,
             "ok": true,
-            "output_sha256": "8aa04ebec8f5ada477c938a23f3407d45720881109de6bd3d88fd8a1fb0ef296"
+            "output_sha256": "8608d23765310a5851105354e04716e713c4d42da2c5dd217e31c07688659dcb"
           },
           {
             "label": "mini-02-audit-a-slow-page: starter-start",
@@ -2775,7 +2898,7 @@
             "expected_exit": 0,
             "exit": 0,
             "ok": true,
-            "output_sha256": "30a87255221a82a68d6450abb1f27d5be0afb46033606383d1b4de9a2afff98f"
+            "output_sha256": "e016804c8649f17155953da076c97e1e91f731e8818955dcfc8886c728406bc6"
           },
           {
             "label": "mini-03-find-the-memory-leak: starter-tests",
@@ -2787,7 +2910,7 @@
             "expected_exit": 1,
             "exit": 1,
             "ok": true,
-            "output_sha256": "34115d87e7b021229340e16deba292ee9898a08deaa2e2cdef0159b765a413e0"
+            "output_sha256": "761c851884462d697b9e02899d59ad955924b060adf0ebe2b1cbf9f99eabd505"
           },
           {
             "label": "mini-03-find-the-memory-leak: starter-start",
@@ -2795,6 +2918,38 @@
             "args": [
               "--check",
               "server.js"
+            ],
+            "expected_exit": 0,
+            "exit": 0,
+            "ok": true,
+            "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      "capstone": {
+        "version": 2,
+        "fingerprint": "51644dbed35d5b9b297e93b1d040836109d6e795a152b5cfb8791cb2113e4c43",
+        "at": "2026-11-19T11:04:27Z",
+        "ok": true,
+        "checks": [
+          {
+            "label": "capstone: solution-tests",
+            "command": "node",
+            "args": [
+              "--test",
+              "tests/"
+            ],
+            "expected_exit": 0,
+            "exit": 0,
+            "ok": true,
+            "output_sha256": "f0cd13f6216c6b6a1c3e7a8e8d52ae639004ed55f2d04a7d59dfec8571218064"
+          },
+          {
+            "label": "capstone: build",
+            "command": "node",
+            "args": [
+              "--check",
+              "src/main.js"
             ],
             "expected_exit": 0,
             "exit": 0,

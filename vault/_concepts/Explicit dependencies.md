@@ -13,5 +13,6 @@ A piece of code has explicit dependencies when it lists the inputs it needs and 
 ## Where it shows up
 
 - [[lighthouse-pattern-declare-inputs-explicitly]]
+- [[06-capstone-browser-devtools-mastery]]
 
 ## My insights

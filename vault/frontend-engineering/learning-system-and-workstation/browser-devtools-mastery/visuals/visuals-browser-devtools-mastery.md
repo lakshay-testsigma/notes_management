@@ -18,6 +18,7 @@ Every diagram, simulation and video of this topic, with the concepts it teaches 
 - [[visual-devtools-frontend-module-map-browser-devtools-mastery|DevTools frontend: four modules between the browser and the panels]] — See which module turns raw browser data into what a panel shows.
 - [[visual-remote-inspector-connections-browser-devtools-mastery|Which desktop inspector attaches to which phone browser]] — Show that each phone browser pairs with one desktop inspector, and that each pair needs switches on both ends.
 - [[visual-mini-02-flow-audit-a-slow-page-browser-devtools-mastery|The slow product page and where you inspect it]] — See which file of the practice server causes which symptom, and which DevTools panel shows it.
+- [[visual-capstone-architecture-browser-devtools-mastery|Page health inspector: layers]] — See which layer may depend on which, and which one talks to Chrome.
 
 ## Workflow
 
@@ -35,6 +36,7 @@ Every diagram, simulation and video of this topic, with the concepts it teaches 
 - [[visual-breakpoints-async-race-fallback-browser-devtools-mastery|Two racing fetches make a search list stale]] — Show the order of events in the search race and where a conditional breakpoint pauses.
 - [[visual-main-thread-long-task-flow-browser-devtools-mastery|One slow click on the main thread becomes a long task]] — See why one long task on the main thread delays the next paint after a click.
 - [[visual-request-timing-phases-sequence-browser-devtools-mastery|The timing phases of one network request, in order]] — Name the Timing tab phases of one request in order and tell which side of the connection spends each one.
+- [[visual-capstone-request-flow-browser-devtools-mastery|Page health inspector: one inspection]] — Follow one URL from the dashboard to the report, including the failure path.
 
 ## Branching presentations
 
@@ -85,5 +87,9 @@ Every diagram, simulation and video of this topic, with the concepts it teaches 
 
 - [[visual-mini-01-flow-debug-an-async-race-browser-devtools-mastery|A late response returns to onInput]] — Show where a stale search response re-enters onInput and where the id check stops it.
 - [[visual-mini-03-flow-find-the-memory-leak-browser-devtools-mastery|How the report view leaks on every route change]] — See which two references keep removed DOM nodes alive after a route change.
+
+## Deployment
+
+- [[visual-capstone-deployment-browser-devtools-mastery|Page health inspector: processes and ports]] — Know which processes run, which ports they use, and which settings the service reads.
 
 ## My insights

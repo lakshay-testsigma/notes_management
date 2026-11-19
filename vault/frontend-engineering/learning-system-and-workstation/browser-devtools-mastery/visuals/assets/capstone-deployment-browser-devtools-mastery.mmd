@@ -1,0 +1,6 @@
+flowchart LR
+  T["Team browser"] -->|"HTTP :3000"| N["Node process: npm start"]
+  N -->|"spawns, WebSocket on random debug port"| H["Headless Chrome child process"]
+  N -->|"writes JSON"| F[("captures/ folder")]
+  E[".env: PORT, CHROME_PATH, NAV_TIMEOUT_MS, HEAP_WAIT_MS, CAPTURE_DIR, ALLOW_PRIVATE_HOSTS"] -.read at startup.-> N
+  H -->|"loads"| W["Target web page"]

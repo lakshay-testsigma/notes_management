@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Page health inspector</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <main>
+    <h1>Page health inspector</h1>
+    <form id="form">
+      <label for="url">Page URL</label>
+      <input id="url" name="url" type="url" required placeholder="https://example.com">
+      <button type="submit">Inspect</button>
+    </form>
+    <p id="status" role="status" aria-live="polite"></p>
+    <div id="report"></div>
+  </main>
+  <script src="/app.js" type="module"></script>
+</body>
+</html>

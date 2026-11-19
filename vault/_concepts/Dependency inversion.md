@@ -17,5 +17,6 @@ request later. The rules can therefore be tested without the browser.
 
 - [[06-capstone-how-to-learn-frontend]]
 - [[06-capstone-workstation-and-editor]]
+- [[06-capstone-browser-devtools-mastery]]
 
 ## My insights

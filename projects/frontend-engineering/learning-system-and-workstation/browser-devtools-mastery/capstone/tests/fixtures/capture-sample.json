@@ -1,0 +1,357 @@
+{
+  "schema": 1,
+  "url": "https://shop.example/",
+  "capturedAt": "2026-11-19T10:00:00.000Z",
+  "loadOutcome": "loaded",
+  "settings": {
+    "viewport": {
+      "width": 1350,
+      "height": 940
+    },
+    "cacheDisabled": true,
+    "throttling": "none"
+  },
+  "events": [
+    {
+      "method": "Network.requestWillBeSent",
+      "params": {
+        "requestId": "1",
+        "timestamp": 1000,
+        "request": {
+          "url": "https://shop.example/",
+          "method": "GET"
+        }
+      }
+    },
+    {
+      "method": "Network.responseReceived",
+      "params": {
+        "requestId": "1",
+        "timestamp": 1000.12,
+        "response": {
+          "url": "https://shop.example/",
+          "status": 200,
+          "mimeType": "text/html",
+          "timing": {
+            "requestTime": 1000,
+            "dnsStart": 0,
+            "dnsEnd": 5,
+            "connectStart": 5,
+            "connectEnd": 25,
+            "sslStart": 13,
+            "sslEnd": 25,
+            "sendStart": 26,
+            "sendEnd": 26.5,
+            "receiveHeadersEnd": 110
+          }
+        }
+      }
+    },
+    {
+      "method": "Network.loadingFinished",
+      "params": {
+        "requestId": "1",
+        "timestamp": 1000.16,
+        "encodedDataLength": 5000
+      }
+    },
+    {
+      "method": "Network.requestWillBeSent",
+      "params": {
+        "requestId": "2",
+        "timestamp": 1000.2,
+        "request": {
+          "url": "https://shop.example/app.js",
+          "method": "GET"
+        }
+      }
+    },
+    {
+      "method": "Network.responseReceived",
+      "params": {
+        "requestId": "2",
+        "timestamp": 1000.25,
+        "response": {
+          "url": "https://shop.example/app.js",
+          "status": 200,
+          "mimeType": "text/javascript",
+          "timing": {
+            "requestTime": 1000.2,
+            "dnsStart": -1,
+            "dnsEnd": -1,
+            "connectStart": -1,
+            "connectEnd": -1,
+            "sslStart": -1,
+            "sslEnd": -1,
+            "sendStart": 0.4,
+            "sendEnd": 0.6,
+            "receiveHeadersEnd": 45
+          }
+        }
+      }
+    },
+    {
+      "method": "Network.loadingFinished",
+      "params": {
+        "requestId": "2",
+        "timestamp": 1000.3,
+        "encodedDataLength": 90000
+      }
+    },
+    {
+      "method": "Network.requestWillBeSent",
+      "params": {
+        "requestId": "3",
+        "timestamp": 1000.3,
+        "request": {
+          "url": "http://shop.example/logo",
+          "method": "GET"
+        }
+      }
+    },
+    {
+      "method": "Network.requestWillBeSent",
+      "params": {
+        "requestId": "3",
+        "timestamp": 1000.35,
+        "request": {
+          "url": "https://shop.example/logo.png",
+          "method": "GET"
+        },
+        "redirectResponse": {
+          "url": "http://shop.example/logo",
+          "status": 301
+        }
+      }
+    },
+    {
+      "method": "Network.responseReceived",
+      "params": {
+        "requestId": "3",
+        "timestamp": 1000.4,
+        "response": {
+          "url": "https://shop.example/logo.png",
+          "status": 200,
+          "mimeType": "image/png",
+          "timing": {
+            "requestTime": 1000.35,
+            "dnsStart": -1,
+            "dnsEnd": -1,
+            "connectStart": -1,
+            "connectEnd": -1,
+            "sslStart": -1,
+            "sslEnd": -1,
+            "sendStart": 0.3,
+            "sendEnd": 0.5,
+            "receiveHeadersEnd": 30
+          }
+        }
+      }
+    },
+    {
+      "method": "Network.loadingFinished",
+      "params": {
+        "requestId": "3",
+        "timestamp": 1000.45,
+        "encodedDataLength": 2000
+      }
+    },
+    {
+      "method": "Network.requestWillBeSent",
+      "params": {
+        "requestId": "4",
+        "timestamp": 1000.5,
+        "request": {
+          "url": "https://cdn.example/missing.css",
+          "method": "GET"
+        }
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "4",
+        "timestamp": 1000.6,
+        "errorText": "net::ERR_NAME_NOT_RESOLVED",
+        "canceled": false
+      }
+    },
+    {
+      "method": "Network.responseReceived",
+      "params": {
+        "requestId": "5",
+        "timestamp": 1000.7,
+        "response": {
+          "url": "https://shop.example/late.json",
+          "status": 200,
+          "mimeType": "application/json"
+        }
+      }
+    },
+    {
+      "method": "Runtime.exceptionThrown",
+      "params": {
+        "timestamp": 1,
+        "exceptionDetails": {
+          "text": "Uncaught",
+          "url": "https://shop.example/app.js",
+          "exception": {
+            "description": "TypeError: Cannot read properties of undefined (reading 'price')"
+          }
+        }
+      }
+    },
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "error",
+        "args": [
+          {
+            "type": "string",
+            "value": "Failed to load cart"
+          }
+        ]
+      }
+    },
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "error",
+        "args": [
+          {
+            "type": "string",
+            "value": "Failed to load cart"
+          }
+        ]
+      }
+    },
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "log",
+        "args": [
+          {
+            "type": "string",
+            "value": "debug noise"
+          }
+        ]
+      }
+    },
+    {
+      "method": "Log.entryAdded",
+      "params": {
+        "entry": {
+          "level": "error",
+          "text": "Failed to load resource: net::ERR_NAME_NOT_RESOLVED",
+          "url": "https://cdn.example/missing.css"
+        }
+      }
+    },
+    {
+      "method": "Log.entryAdded",
+      "params": {
+        "entry": {
+          "level": "warning",
+          "text": "Deprecated API"
+        }
+      }
+    }
+  ],
+  "trace": [
+    {
+      "name": "navigationStart",
+      "ts": 1000000000,
+      "args": {
+        "data": {
+          "isOutermostMainFrame": true
+        }
+      }
+    },
+    {
+      "name": "largestContentfulPaint::Candidate",
+      "ts": 1001200000,
+      "args": {
+        "data": {
+          "size": 1000
+        }
+      }
+    },
+    {
+      "name": "largestContentfulPaint::Candidate",
+      "ts": 1002900000,
+      "args": {
+        "data": {
+          "size": 5000
+        }
+      }
+    },
+    {
+      "name": "LayoutShift",
+      "ts": 1000500000,
+      "args": {
+        "data": {
+          "score": 0.05,
+          "had_recent_input": false
+        }
+      }
+    },
+    {
+      "name": "LayoutShift",
+      "ts": 1001000000,
+      "args": {
+        "data": {
+          "score": 0.04,
+          "had_recent_input": false
+        }
+      }
+    },
+    {
+      "name": "LayoutShift",
+      "ts": 1004000000,
+      "args": {
+        "data": {
+          "score": 0.2,
+          "had_recent_input": true
+        }
+      }
+    },
+    {
+      "name": "LayoutShift",
+      "ts": 1007000000,
+      "args": {
+        "data": {
+          "score": 0.03,
+          "had_recent_input": false
+        }
+      }
+    },
+    {
+      "name": "RunTask",
+      "ts": 1000100000,
+      "dur": 30000
+    },
+    {
+      "name": "RunTask",
+      "ts": 1000200000,
+      "dur": 120000
+    },
+    {
+      "name": "RunTask",
+      "ts": 1000400000,
+      "dur": 300000
+    }
+  ],
+  "heapSamples": [
+    {
+      "label": "after-load",
+      "usedSize": 10000000,
+      "totalSize": 16000000
+    },
+    {
+      "label": "after-wait",
+      "usedSize": 12500000,
+      "totalSize": 18000000
+    }
+  ],
+  "collectionErrors": {}
+}

@@ -2324,5 +2324,82 @@
     "used_in": [
       "projects/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/mini-03-find-the-memory-leak/README.md"
     ]
+  },
+  {
+    "id": "capstone-architecture",
+    "title": "Page health inspector: layers",
+    "kind": "architecture",
+    "format": "mermaid",
+    "file": "vault/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/visuals/assets/capstone-architecture-browser-devtools-mastery.mmd",
+    "concept_ids": [
+      "browser-devtools",
+      "debugging-workflow"
+    ],
+    "source_ids": [
+      "googlechrome-lighthouse-repo",
+      "chromedevtools-devtools-frontend-repo"
+    ],
+    "purpose": "See which layer may depend on which, and which one talks to Chrome.",
+    "explanation": "Only the infrastructure layer talks to Chrome. The analysis classes read plain data, so tests need no browser. Dependencies point toward the domain.",
+    "alt": "Layered diagram: DashboardServer calls the application layer, which uses four analyzers and the domain; infrastructure classes depend on the domain, and main.js wires everything.",
+    "learning_check": {
+      "question": "Which layer would change if you switched from Chrome to another browser driver?",
+      "answer": "Only infrastructure: ChromeCdpDriver and its helpers."
+    },
+    "used_in": [
+      "projects/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/capstone/ARCHITECTURE.md",
+      "vault/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/06-capstone-browser-devtools-mastery.md"
+    ]
+  },
+  {
+    "id": "capstone-request-flow",
+    "title": "Page health inspector: one inspection",
+    "kind": "sequence",
+    "format": "mermaid",
+    "file": "vault/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/visuals/assets/capstone-request-flow-browser-devtools-mastery.mmd",
+    "concept_ids": [
+      "network-panel",
+      "request-timing-phases",
+      "core-web-vitals-in-devtools"
+    ],
+    "source_ids": [
+      "googlechrome-lighthouse-repo",
+      "chromedevtools-devtools-frontend-repo"
+    ],
+    "purpose": "Follow one URL from the dashboard to the report, including the failure path.",
+    "explanation": "The use case checks the URL, asks the driver for a raw capture, saves it, and builds the report. A failed capture returns an error value that the server maps to 502.",
+    "alt": "Sequence diagram: the dashboard posts a URL, the server calls the use case, the use case checks the URL and calls the driver, the driver talks to Chrome, and either an error or a report returns.",
+    "learning_check": {
+      "question": "Why is the capture saved before the report is built?",
+      "answer": "So an analysis bug cannot lose the evidence."
+    },
+    "used_in": [
+      "projects/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/capstone/ARCHITECTURE.md"
+    ]
+  },
+  {
+    "id": "capstone-deployment",
+    "title": "Page health inspector: processes and ports",
+    "kind": "deployment",
+    "format": "mermaid",
+    "file": "vault/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/visuals/assets/capstone-deployment-browser-devtools-mastery.mmd",
+    "concept_ids": [
+      "browser-devtools"
+    ],
+    "source_ids": [
+      "chrome-devtools-remote-debugging-docs",
+      "googlechrome-lighthouse-repo"
+    ],
+    "purpose": "Know which processes run, which ports they use, and which settings the service reads.",
+    "explanation": "One Node process serves HTTP and starts a headless Chrome child on demand. Chrome offers a debug WebSocket on a random local port. Reports are saved as JSON in captures/.",
+    "alt": "Deployment diagram: a team browser reaches the Node process on port 3000; Node spawns headless Chrome, writes capture files, and reads its settings from environment variables.",
+    "learning_check": {
+      "question": "Which setting stops the service from opening localhost pages?",
+      "answer": "ALLOW_PRIVATE_HOSTS is false by default."
+    },
+    "used_in": [
+      "projects/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/capstone/ARCHITECTURE.md",
+      "projects/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/capstone/README.md"
+    ]
   }
 ]

@@ -14,5 +14,6 @@ A long task is a piece of work on the browser's main thread that runs longer tha
 
 - [[chrome-devtools-performance-reference-browser-devtools-mastery]]
 - [[devtools-frontend-pattern-two-pass-and-chunked-work]]
+- [[06-capstone-browser-devtools-mastery]]
 
 ## My insights

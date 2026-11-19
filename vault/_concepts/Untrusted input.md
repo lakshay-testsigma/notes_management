@@ -14,5 +14,6 @@ Data that comes from outside your program and may be malicious. You validate and
 
 - [[nvm-pattern-untrusted-input]]
 - [[06-capstone-workstation-and-editor]]
+- [[06-capstone-browser-devtools-mastery]]
 
 ## My insights

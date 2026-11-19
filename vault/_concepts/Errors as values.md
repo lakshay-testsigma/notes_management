@@ -13,5 +13,6 @@ Errors as values means a function returns a failure as ordinary data (for exampl
 ## Where it shows up
 
 - [[devtools-frontend-pattern-failures-as-values]]
+- [[06-capstone-browser-devtools-mastery]]
 
 ## My insights

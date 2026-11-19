@@ -13,5 +13,6 @@ Out-of-order events are messages that arrive in a different order than they happ
 ## Where it shows up
 
 - [[devtools-frontend-pattern-tolerate-incomplete-events]]
+- [[06-capstone-browser-devtools-mastery]]
 
 ## My insights

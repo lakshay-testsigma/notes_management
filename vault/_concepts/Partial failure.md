@@ -14,5 +14,6 @@ Partial failure means one part of a job fails while the rest still finishes. A w
 
 - [[lighthouse-pattern-keep-evidence-on-failure]]
 - [[devtools-frontend-pattern-failures-as-values]]
+- [[06-capstone-browser-devtools-mastery]]
 
 ## My insights

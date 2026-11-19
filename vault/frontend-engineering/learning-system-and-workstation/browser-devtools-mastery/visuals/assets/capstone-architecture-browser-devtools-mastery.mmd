@@ -1,0 +1,8 @@
+flowchart TB
+  UI["interface: DashboardServer"] --> APP["application: InspectPageUseCase, ReportBuilder"]
+  APP --> AN["analysis: four analyzers"]
+  APP --> DOM["domain: Result, UrlPolicy, errors, ports"]
+  AN --> DOM
+  INF["infrastructure: ChromeCdpDriver, CdpConnection, CaptureStore"] --> DOM
+  UI -.wired by.-> MAIN["main.js: composition root"]
+  MAIN -.creates.-> INF
