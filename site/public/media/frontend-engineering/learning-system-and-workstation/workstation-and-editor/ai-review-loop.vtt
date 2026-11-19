@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.200 --> 00:00:02.810
+An AI agent can edit your code.
+
+2
+00:00:02.810 --> 00:00:05.800
+Watch the loop that keeps you in charge.
+
+3
+00:00:06.200 --> 00:00:08.320
+You prompt with context.
+
+4
+00:00:08.320 --> 00:00:12.560
+The agent proposes an edit in the sandbox,
+
+5
+00:00:12.560 --> 00:00:16.800
+tests run, you review the diff, then merge.
+
+6
+00:00:17.200 --> 00:00:21.500
+Inside the sandbox the agent edits and runs tests without asking.
+
+7
+00:00:21.500 --> 00:00:25.800
+To touch the network or other folders, it stops and asks.
+
+8
+00:00:26.200 --> 00:00:31.580
+Before you merge, read the diff and check the tests.
+
+9
+00:00:31.580 --> 00:00:34.800
+Merge only when both are good.
+
+10
+00:00:35.200 --> 00:00:39.440
+Skip the loop and the agent's mistake ships.
+
+11
+00:00:39.440 --> 00:00:45.800
+Run the loop, and you catch it before it reaches your branch.

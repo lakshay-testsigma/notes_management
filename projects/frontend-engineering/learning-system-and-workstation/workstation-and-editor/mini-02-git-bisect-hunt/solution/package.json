@@ -1,0 +1,10 @@
+{
+  "name": "git-bisect-hunt",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Mini project: find the commit that introduced a bug with git bisect.",
+  "scripts": {
+    "setup": "bash setup-demo-repo.sh",
+    "test": "bash test.sh"
+  }
+}

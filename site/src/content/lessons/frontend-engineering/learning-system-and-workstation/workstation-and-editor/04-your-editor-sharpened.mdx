@@ -1,0 +1,43 @@
+---
+title: Your editor, sharpened
+description: Workspace settings in `.vscode/settings.json` are the editor settings a team commits so everyone shares them.
+order: 4
+concepts: [settings scope, user settings, workspace settings]
+---
+
+You clone a team's frontend repository, open it, and your editor indents with tabs while every merged change uses two spaces. You reformat one file by accident and the diff turns into a mess. The team already fixed this, and the answer is sitting in the repo.
+
+VS Code keeps every **setting** — a named option such as format-on-save — in a **scope**, the place that holds it. **User settings** live in a `settings.json` on your machine and apply to every project you open. **Workspace settings** live in a `.vscode/settings.json` inside one repository, apply only to that project, and travel with it through version control.
+
+Read the map from the top. The same change can land in one of two scopes, and only the workspace one reaches the team.
+
+<Mermaid
+  chart={`
+flowchart TB
+  Change["You change a setting"] --> User["user settings.json"]
+  Change --> Workspace[".vscode/settings.json"]
+  User --> Personal["applies everywhere"]
+  Workspace --> Team["shared via git"]
+`}
+  caption="One setting, two scopes. The workspace scope is the one the team commits."
+/>
+
+The lower branch explains why cloning the repo already fixed your indentation. The committed `.vscode/settings.json` applies to everyone who opens the project, while your personal `settings.json` still follows you across machines. Choose a scope with one question: does the whole team need this setting, or just you?
+
+<MatchPairs
+  prompt="Match each setting to the scope it belongs in."
+  pairs={[
+    { term: "The team's format-on-save rule", definition: "Workspace `.vscode/settings.json`" },
+    { term: "Your personal font size", definition: "User `settings.json`" },
+    { term: "Path to the `git` executable", definition: "User only, never workspace" },
+    { term: "Hide the `dist/` build output", definition: "Workspace `.vscode/settings.json`" }
+  ]}
+/>
+
+**Note.** VS Code allows settings that name an executable, such as `git.path` or `terminal.external.*`, only in the user scope. A committed workspace could otherwise point your editor at a command it should not run.
+
+<Depth level="internals">
+When two scopes set the same option, VS Code resolves them in a fixed order: `default`, then `user`, then `remote`, then `workspace`, then `workspace folder`, then a language-specific setting, then an organisation `policy`. A scope further right wins, so the most specific and most shared rule always beats a general personal one.
+</Depth>
+
+Next: the agent that proposes edits to that code — and why you still review every one.

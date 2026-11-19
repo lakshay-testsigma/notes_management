@@ -1,0 +1,7 @@
+flowchart LR
+  cfg["config/: gitconfig, zshrc, vimrc"] --> loop["install.sh: for name in DOTFILES"]
+  loop --> check{"is_symlink_to $HOME/.name?"}
+  check -->|no| backup["backup_existing: mv real file to .name.backup"]
+  check -->|yes| skip["log already linked"]
+  backup --> link["ln -s config/name $HOME/.name"]
+  link --> home["$HOME/.gitconfig .zshrc .vimrc"]

@@ -1,0 +1,26 @@
+{
+  "checks": [
+    {
+      "kind": "solution-tests",
+      "command": "npm",
+      "args": ["test"],
+      "cwd": "solution"
+    },
+    {
+      "kind": "starter-tests",
+      "command": "npm",
+      "args": ["test"],
+      "cwd": "starter",
+      "expected_exit": 1,
+      "expect_output": "TODO"
+    },
+    {
+      "kind": "starter-start",
+      "command": "npm",
+      "args": ["test"],
+      "cwd": "starter",
+      "expected_exit": 1,
+      "expect_output": "TODO"
+    }
+  ]
+}

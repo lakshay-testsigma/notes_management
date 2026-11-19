@@ -1,0 +1,7 @@
+flowchart TD
+  A["setup-demo-repo.sh: 8 commits"] --> B["bisect.sh"]
+  B --> C["git bisect start; bad HEAD; good first"]
+  C --> D["git bisect run node ../check.js"]
+  D --> E{"check.js exits"}
+  E -->|"0 good / 1 bad: pick next midpoint"| D
+  E -->|"no midpoint left"| F["HEAD = commit 5, the bug"]

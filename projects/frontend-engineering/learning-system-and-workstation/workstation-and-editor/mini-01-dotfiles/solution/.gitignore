@@ -1,0 +1,2 @@
+# A backup of an existing config, if install.sh ever writes one into this repo.
+*.backup

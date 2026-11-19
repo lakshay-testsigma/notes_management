@@ -1,0 +1,28 @@
+---
+title: Git & GitHub fluency
+description: Two branches join either by a merge commit or by replaying one onto the other, and only the history differs.
+order: 3
+concepts: [branch, merge, rebase]
+---
+
+Your feature branch and main have diverged. main added one commit, your branch added another, and now your work has to land in main. Both ways of doing that produce the same files; only the history differs.
+
+Zoom into the diagram and trace both paths from the shared commit. Watch which one keeps two lines of history and which one becomes one straight line.
+
+<Diagram id="pro-git-book-mechanism" />
+
+A **merge** runs a three-way merge of the two tips and their common ancestor. It records the result in a commit with two parents. A **rebase** saves your commit as a patch and replays it on top of main's new commit. main then fast-forwards, moving its pointer straight to the new commit. Rebase abandons the old commit and writes a replacement, so never rebase commits that others have already built on.
+
+Now order the commands that rebase a feature branch onto main.
+
+<OrderSteps
+  prompt="Put the commands that rebase a feature branch onto main in order."
+  steps={[
+    "git checkout feature",
+    "git rebase main",
+    "git checkout main",
+    "git merge feature"
+  ]}
+/>
+
+History is where the two join; the editor is where each commit gets written. Next, sharpen it.

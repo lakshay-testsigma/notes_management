@@ -44,7 +44,8 @@
       "answer": "Only the history: merge keeps both lines and adds a commit with two parents, while rebase writes new commits in a straight line and abandons the originals."
     },
     "used_in": [
-      "vault/frontend-engineering/learning-system-and-workstation/workstation-and-editor/04-digests/pro-git-book-workstation-and-editor.md"
+      "vault/frontend-engineering/learning-system-and-workstation/workstation-and-editor/04-digests/pro-git-book-workstation-and-editor.md",
+      "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/workstation-and-editor/03-git-and-github-fluency.mdx"
     ]
   },
   {
@@ -114,6 +115,184 @@
     },
     "used_in": [
       "vault/frontend-engineering/learning-system-and-workstation/workstation-and-editor/05-repo-intel/nvm-sh-nvm/nvm-architecture.md"
+    ]
+  },
+  {
+    "id": "ai-review-loop",
+    "title": "The AI review loop",
+    "kind": "video",
+    "format": "hyperframes",
+    "concept_ids": [
+      "ai-assisted-development"
+    ],
+    "source_ids": [
+      "openai-codex-repo"
+    ],
+    "purpose": "See how a sandbox and approvals keep an AI agent's edits safe to merge.",
+    "explanation": "The sandbox sets technical boundaries and the approval policy decides when the agent must stop and ask.",
+    "alt": "You prompt the agent with context. It proposes an edit inside a workspace-write sandbox. Tests run in the same boundary, then you read the diff and merge only when it passes.",
+    "learning_check": {
+      "question": "What does the sandbox boundary control, and what does the approval policy decide?",
+      "answer": "The sandbox controls which files the agent can edit and whether commands can use the network; the approval policy decides when the agent must stop and ask."
+    },
+    "used_in": [
+      "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/workstation-and-editor/05-ai-assisted-development.mdx"
+    ],
+    "video": {
+      "project_dir": "projects/frontend-engineering/learning-system-and-workstation/workstation-and-editor/videos/ai-review-loop",
+      "status": "rendered",
+      "blocker": null,
+      "storyboard": "projects/frontend-engineering/learning-system-and-workstation/workstation-and-editor/videos/ai-review-loop/storyboard.md",
+      "transcript": "projects/frontend-engineering/learning-system-and-workstation/workstation-and-editor/videos/ai-review-loop/transcript.md",
+      "captions_source": "projects/frontend-engineering/learning-system-and-workstation/workstation-and-editor/videos/ai-review-loop/captions.vtt",
+      "duration_s": 46,
+      "scenes": 5,
+      "narration": "say",
+      "input_hash": "7551bc16db381f2185e4152dd976c89eef8ec75288e71aa89b3540950860c46d",
+      "timeline": [
+        {
+          "id": "intro",
+          "heading": "The AI review loop",
+          "start": 0,
+          "duration": 6
+        },
+        {
+          "id": "loop",
+          "heading": "One loop, six steps",
+          "start": 6,
+          "duration": 11
+        },
+        {
+          "id": "boundary",
+          "heading": "Inside the sandbox vs beyond it",
+          "start": 17,
+          "duration": 9
+        },
+        {
+          "id": "review",
+          "heading": "The review gate",
+          "start": 26,
+          "duration": 9
+        },
+        {
+          "id": "why",
+          "heading": "Why run the loop",
+          "start": 35,
+          "duration": 11
+        }
+      ],
+      "composition": "site/public/media/frontend-engineering/learning-system-and-workstation/workstation-and-editor/ai-review-loop/composition/index.html",
+      "composition_url": "/media/frontend-engineering/learning-system-and-workstation/workstation-and-editor/ai-review-loop/composition/index.html",
+      "mp4": "site/public/media/frontend-engineering/learning-system-and-workstation/workstation-and-editor/ai-review-loop.mp4",
+      "captions": "site/public/media/frontend-engineering/learning-system-and-workstation/workstation-and-editor/ai-review-loop.vtt",
+      "url": "/media/frontend-engineering/learning-system-and-workstation/workstation-and-editor/ai-review-loop.mp4",
+      "captions_url": "/media/frontend-engineering/learning-system-and-workstation/workstation-and-editor/ai-review-loop.vtt",
+      "width": 1920,
+      "height": 1080,
+      "has_audio": true,
+      "renderer": "docker",
+      "rendered_at": "2026-11-19T05:50:10Z",
+      "render_seconds": 86,
+      "rendered_hash": "7551bc16db381f2185e4152dd976c89eef8ec75288e71aa89b3540950860c46d"
+    }
+  },
+  {
+    "id": "mini-01-dotfiles-flow",
+    "title": "Dotfiles install: repo to $HOME via symlinks",
+    "kind": "workflow",
+    "scope": "end-to-end",
+    "format": "mermaid",
+    "file": "vault/frontend-engineering/learning-system-and-workstation/workstation-and-editor/visuals/assets/mini-01-dotfiles-flow-workstation-and-editor.mmd",
+    "concept_ids": [
+      "workstation-setup"
+    ],
+    "source_ids": [
+      "mit-missing-semester"
+    ],
+    "purpose": "See how one install script turns a dotfiles repo into a live home-directory setup.",
+    "explanation": "install.sh loops over each config file, skips a link that already points at it, backs up any real file, then symlinks the repo file into $HOME.",
+    "alt": "Config files gitconfig, zshrc and vimrc flow into install.sh, which checks for an existing link, backs up a real file, and creates a symlink into the home directory.",
+    "learning_check": {
+      "question": "Why does install.sh back up a real .zshrc before linking?",
+      "answer": "To keep the machine's old settings instead of overwriting them when the symlink replaces the file."
+    },
+    "used_in": [
+      "projects/frontend-engineering/learning-system-and-workstation/workstation-and-editor/mini-01-dotfiles/README.md"
+    ]
+  },
+  {
+    "id": "ai-review-gate",
+    "title": "The AI review gate",
+    "kind": "workflow",
+    "scope": "stage",
+    "format": "mermaid",
+    "file": "vault/frontend-engineering/learning-system-and-workstation/workstation-and-editor/visuals/assets/ai-review-gate-workstation-and-editor.mmd",
+    "concept_ids": [
+      "ai-assisted-development"
+    ],
+    "source_ids": [
+      "openai-codex-repo"
+    ],
+    "purpose": "See that every change an agent proposes passes a review gate before it reaches the repository.",
+    "explanation": "The agent proposes edits, but nothing is merged until you approve it and the tests pass. A failing test sends the change back to the agent instead of forward to merge.",
+    "alt": "A flow from your prompt to the coding agent to proposed edits, through a review gate to running the tests; a passing test goes to merge, a failing test loops back to the agent.",
+    "learning_check": {
+      "question": "Which test result sends a change back to the agent?",
+      "answer": "A failing test, so an unverified change never reaches merge."
+    },
+    "used_in": [
+      "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/workstation-and-editor/05-ai-assisted-development.mdx"
+    ]
+  },
+  {
+    "id": "team-setup-workflow",
+    "title": "A production team's reproducible setup",
+    "kind": "workflow",
+    "scope": "end-to-end",
+    "format": "mermaid",
+    "file": "vault/frontend-engineering/learning-system-and-workstation/workstation-and-editor/visuals/assets/team-setup-workflow-workstation-and-editor.mmd",
+    "concept_ids": [
+      "workstation-setup",
+      "node-version-management"
+    ],
+    "source_ids": [
+      "mit-missing-semester",
+      "nvm-sh-nvm-repo",
+      "nodejs-releases-docs"
+    ],
+    "purpose": "See how a team turns shared configuration into identical developer machines.",
+    "explanation": "One dotfiles repo holds the shell, git, and editor config. An install script links those files onto each new laptop, and a `.nvmrc` that pins an LTS version keeps every machine on the same Node runtime.",
+    "alt": "A dotfiles repo feeds an install script, which reproduces a developer laptop. A Long-Term Support policy sets the version a `.nvmrc` file pins, and that file pins the same Node version on every laptop.",
+    "learning_check": {
+      "question": "A new hire's Node differs from the team's. Which file makes it match?",
+      "answer": "The shared `.nvmrc`, which pins the LTS version the policy chose."
+    },
+    "used_in": [
+      "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/workstation-and-editor/07-a-production-teams-setup.mdx"
+    ]
+  },
+  {
+    "id": "mini-02-bisect-flow",
+    "title": "git bisect narrows to the bug commit",
+    "kind": "workflow",
+    "scope": "stage",
+    "format": "mermaid",
+    "file": "vault/frontend-engineering/learning-system-and-workstation/workstation-and-editor/visuals/assets/mini-02-bisect-flow-workstation-and-editor.mmd",
+    "concept_ids": [
+      "git-and-github"
+    ],
+    "source_ids": [
+      "pro-git-book"
+    ],
+    "purpose": "See how git bisect halves the commit range using one test until only the bug commit remains.",
+    "explanation": "bisect.sh marks HEAD bad and the first commit good, then git bisect run invokes check.js at each midpoint. check.js exits 0 for good and 1 for bad, so git halves the range each step and stops at commit 5.",
+    "alt": "A flow from setup-demo-repo.sh to bisect.sh, which marks the range, then loops through git bisect run and check.js exit codes until HEAD ends on commit 5.",
+    "learning_check": {
+      "question": "What does check.js exit 1 tell git bisect?",
+      "answer": "That the current commit is bad, so git searches the older half of the remaining range."
+    },
+    "used_in": [
+      "projects/frontend-engineering/learning-system-and-workstation/workstation-and-editor/mini-02-git-bisect-hunt/README.md"
     ]
   }
 ]

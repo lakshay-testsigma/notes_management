@@ -1,0 +1,43 @@
+---
+title: Terminal & shell fluency
+description: A pipe feeds one command's text output into the next command's input, so small tools combine into one answer.
+order: 2
+concepts: [pipe, standard streams, shell]
+---
+
+You want the final URL after a redirect, and no single command prints it. The shell chains three small tools to get it. Each program writes text to **standard output** (STDOUT) and can read text from **standard input** (STDIN).
+
+Commit to an answer before you look at the code.
+
+<PredictReveal
+  prompt="You run ls | wc -l. Which program reads from standard input, and what does the terminal show?"
+  options={[
+    "wc reads the list that ls wrote, and the terminal shows only the count",
+    "ls reads from standard input, and the terminal shows the list then the count",
+    "Both read from standard input, and the terminal shows the list twice"
+  ]}
+  correct={0}
+  answer="wc reads the list that ls wrote and prints only the line count."
+  reasoning="The pipe sends ls's STDOUT into wc's STDIN, so the file list never reaches the screen; only wc's count does."
+/>
+
+Step through the chain below. At each line, predict what that program passes on before you reveal its caption.
+
+<CodeWalkthrough
+  title="One redirect, resolved by three tools"
+  lang="bash"
+  code={`
+curl -L -I https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch |
+grep location |
+awk '{ print "https://developer.mozilla.org" $2 }'
+`}
+  steps={[
+    { lines: 1, title: "Fetch the headers", caption: "curl asks for headers only (-I) and follows the redirect (-L), then writes the whole header block to STDOUT, so nothing prints yet." },
+    { lines: 2, title: "Keep one line", caption: "The pipe feeds curl's STDOUT into grep's STDIN, and grep location keeps only the line that contains 'location'." },
+    { lines: 3, title: "Rebuild the URL", caption: "awk splits the kept line on whitespace and prints the origin plus field $2, the path, so the terminal shows one complete URL." }
+  ]}
+/>
+
+Three programs that know nothing of each other produced one answer. The pipe is what made them cooperate. Each stage passed its STDOUT to the next stage's STDIN, and only the last stage's output reached the screen. Without a pipe, each tool prints to the screen and you read three separate outputs instead of one answer.
+
+Pipes reshape text; git reshapes history. Next, joining two branches.

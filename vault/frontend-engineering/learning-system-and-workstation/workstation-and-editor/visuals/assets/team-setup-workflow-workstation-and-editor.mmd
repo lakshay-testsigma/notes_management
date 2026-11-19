@@ -1,0 +1,5 @@
+flowchart LR
+  Repo["dotfiles repo"] --> Script["install script"]
+  Script --> Laptop["developer laptop"]
+  Nvmrc[".nvmrc: 20"] --> Laptop
+  Policy["LTS policy"] --> Nvmrc

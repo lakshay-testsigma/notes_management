@@ -1,0 +1,42 @@
+---
+title: Node.js & version management
+description: A version manager keeps several Node.js versions installed and rewrites PATH so each project runs the one it pins.
+order: 6
+concepts: [version manager, .nvmrc, Long-Term Support, PATH]
+---
+
+You work on two apps: one needs Node 20, the other needs Node 22. A single global `node` can be only one of them. Reinstalling to switch is no way to work. A version manager keeps every version side by side, so switching is one command.
+
+Watch how one version manager holds three versions at once, and which one `node` points to.
+
+<Mermaid
+  chart={`
+flowchart LR
+  RC[".nvmrc: 22"] --> NVM["nvm"]
+  NVM --> V18["Node 18"]
+  NVM --> V20["Node 20"]
+  NVM --> V22["Node 22"]
+  V22 --> NODE["node on PATH"]
+`}
+  caption="nvm holds Node 18, 20, and 22. The .nvmrc file picks 22, so node points there."
+/>
+
+A **version manager** such as nvm (Node Version Manager) keeps each installed version in its own directory. `nvm install 22` downloads Node 22. `nvm use 22` rewrites `PATH` so `node`, the JavaScript runtime, resolves to that copy's binary. A `.nvmrc` file in a project's root pins the version, so running `nvm use` there picks the right one. Nothing is deleted when you switch — every version stays installed.
+
+<MatchPairs
+  prompt="Match each Node tool to what it does."
+  pairs={[
+    { term: "node", definition: "Runs JavaScript files — the runtime itself" },
+    { term: "npm", definition: "Installs packages into a project" },
+    { term: "npx", definition: "Runs a package's command without a global install" },
+    { term: "nvm", definition: "Installs and switches between Node versions" }
+  ]}
+/>
+
+<Depth level="production">
+
+A Node major moves through a fixed schedule. It starts as **Current** for about six months, then becomes **Long-Term Support (LTS)**, and finally **End-of-Life**. The Node.js project says production apps should run only Active or Maintenance LTS. Those receive critical bug fixes for 30 months. That is why a team pins `.nvmrc` to an LTS major rather than the newest Current.
+
+</Depth>
+
+Next: how a whole team pins these choices so every laptop and CI server agree.

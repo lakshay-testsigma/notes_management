@@ -1,0 +1,32 @@
+---
+title: A production team's setup
+description: A team keeps its workstation configuration in version control, so every laptop and CI server start from the same base.
+order: 7
+concepts: [dotfiles repo, install script, Long-Term Support]
+---
+
+A new hire's first pull request passes on their laptop and fails in CI, the server that runs the team's checks. Their Node is 22, the team's is 20. The two machines disagree before the code even runs.
+
+A **dotfiles repo** holds shell, git, and editor config in version control. Watch it turn into machines that agree.
+
+<Diagram id="team-setup-workflow" />
+
+An **install script** in that repo links the files onto each new laptop. A `.nvmrc` file pins Node 20. A **Long-Term Support (LTS)** policy chooses that version, because production apps run only Active or Maintenance LTS. One command on a new laptop, and it matches everyone else.
+
+**Note.** The install script is safe to run twice. It skips a link that already points at the right file. It backs up a real file before replacing it, so a re-run converges instead of duplicating.
+
+<Quiz
+  question="A new hire spends two days copying editor settings, git aliases, and shell config from a teammate. Which change fixes it for the next hire?"
+  options={[
+    "Write a longer onboarding document describing each setting",
+    "Commit the dotfiles to a shared repo and run one install script",
+    "Buy everyone the same laptop so settings transfer",
+    "Ask the team lead to configure each machine by hand"
+  ]}
+  answer={1}
+  explanation="Versioned dotfiles plus an install script reproduce the whole setup in minutes. A document still leaves each person to copy settings by hand. Identical hardware does not carry your configuration."
+/>
+
+That is the whole discipline: configuration in version control. Every machine — yours, a teammate's, the CI server — starts from the same base. The sources below are where to go deeper.
+
+<Resources />

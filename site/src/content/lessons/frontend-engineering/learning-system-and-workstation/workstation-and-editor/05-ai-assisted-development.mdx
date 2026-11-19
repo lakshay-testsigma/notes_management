@@ -1,0 +1,38 @@
+---
+title: AI-assisted development, done safely
+description: Nothing a coding agent proposes reaches the repository until you review, test, and approve it.
+order: 5
+concepts: [coding agent, review loop, sandbox, approval]
+---
+
+You run a **coding agent** — a tool such as Codex CLI that turns a prompt into edits — and it reports the work as finished. The diff spans 300 lines, and it added a dependency. Do you merge?
+
+The loop never skips you. Watch one prompt become a merged change, including the turn where the tests fail.
+
+<Video id="ai-review-loop" />
+
+Now the gate that keeps the agent honest. You must review every change it proposes before it reaches the repository.
+
+<Diagram id="ai-review-gate" />
+
+What you just saw: the agent proposes edits, you approve or refuse them, and you merge only an approved change that passes the tests. A failing test loops back to the agent, so an untested change never reaches `main`. A third option — running a command in a **sandbox**, an isolated place that cannot touch your real files — fits the commands you can try safely but do not yet trust.
+
+<SortBuckets
+  prompt="The agent wants to run each command. Sort each one by how you let it through the gate."
+  buckets={["Sandbox", "Approve", "Refuse"]}
+  items={[
+    { text: "Read `package.json`", bucket: "Sandbox" },
+    { text: "Run `npm test`", bucket: "Sandbox" },
+    { text: "Add a dependency with `npm install`", bucket: "Approve" },
+    { text: "Push commits to `main`", bucket: "Refuse" },
+    { text: "Overwrite `.env`", bucket: "Refuse" },
+    { text: "Delete files in the repo", bucket: "Refuse" }
+  ]}
+  explanation="Reading and running tests are read-only or deterministic, so an isolated sandbox is enough. Installing a dependency changes the lockfile, so it needs your approval first. Pushing, deleting, and touching secrets are refused: they go through a pull request, or you do them by hand."
+/>
+
+<Depth level="production">
+Codex CLI runs entirely on your machine. It prints a proposed command or edit and asks how to proceed: run it in a sandbox, require your approval first, or refuse. The gate exists because the agent is fast but not accountable — you are. Nothing it suggests is a fact until your tests and your review say so.
+</Depth>
+
+Next: pinning the Node version your editor, your agent, and your team all rely on.

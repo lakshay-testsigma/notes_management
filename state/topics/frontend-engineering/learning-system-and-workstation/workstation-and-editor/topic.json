@@ -7,7 +7,7 @@
   "subdomain": "learning-system-and-workstation",
   "depth": "standard",
   "created_at": "2026-11-19T04:50:05Z",
-  "updated_at": "2026-11-19T05:42:41Z",
+  "updated_at": "2026-11-19T06:05:30Z",
   "paths": {
     "state": "state/topics/frontend-engineering/learning-system-and-workstation/workstation-and-editor",
     "vault": "vault/frontend-engineering/learning-system-and-workstation/workstation-and-editor",
@@ -604,7 +604,7 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-19T05:10:28Z",
-      "finished_at": "2026-11-19T05:16:47Z",
+      "finished_at": "2026-11-19T06:03:44Z",
       "attempts": 1,
       "units": [
         {
@@ -622,8 +622,8 @@
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "f497875ad246a3cefea5c34c2c1a5a387cfb476459d252473ebcad723d825b36",
-        "at": "2026-11-19T05:16:47Z",
+        "fingerprint": "228c6af089e6a98478717c861a742eb05db160f8be5805bd917b5cf834911bc7",
+        "at": "2026-11-19T06:03:44Z",
         "forced": false
       }
     },
@@ -701,25 +701,71 @@
       "id": "lesson",
       "wave": 3,
       "skill": "learn-site",
-      "status": "pending",
+      "status": "done",
       "scope": "required",
-      "started_at": null,
-      "finished_at": null,
-      "attempts": 0,
-      "units": [],
-      "note": ""
+      "started_at": "2026-11-19T05:43:48Z",
+      "finished_at": "2026-11-19T06:05:30Z",
+      "attempts": 1,
+      "units": [
+        {
+          "id": "pages-01-03",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "pages-04-05",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "pages-06-07",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "video-ai-review-loop",
+          "status": "done",
+          "handoff": null
+        }
+      ],
+      "note": "",
+      "continue_after_failure": false,
+      "validation": {
+        "version": 2,
+        "fingerprint": "8ca0a811e29d7a1413ee0ad03e9f3b5137d0de12bc4ad76ccbdbc83f1d6a0bd4",
+        "at": "2026-11-19T06:05:30Z",
+        "forced": false
+      }
     },
     {
       "id": "mini-projects",
       "wave": 3,
       "skill": "learn-projects",
-      "status": "pending",
+      "status": "done",
       "scope": "required",
-      "started_at": null,
-      "finished_at": null,
-      "attempts": 0,
-      "units": [],
-      "note": ""
+      "started_at": "2026-11-19T05:43:49Z",
+      "finished_at": "2026-11-19T06:05:04Z",
+      "attempts": 1,
+      "units": [
+        {
+          "id": "mini-01",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "mini-02",
+          "status": "done",
+          "handoff": null
+        }
+      ],
+      "note": "",
+      "continue_after_failure": false,
+      "validation": {
+        "version": 2,
+        "fingerprint": "e2672b4fd52056fd1af002326851c94abf0f831058708322d501898425f8553a",
+        "at": "2026-11-19T06:05:04Z",
+        "forced": false
+      }
     },
     {
       "id": "capstone",
@@ -1303,6 +1349,176 @@
       "event": "done",
       "message": "gate passed",
       "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-19T05:43:48Z",
+      "event": "start",
+      "message": "attempt 1",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-19T05:43:49Z",
+      "event": "start",
+      "message": "attempt 1",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-19T05:43:50Z",
+      "event": "unit-add",
+      "message": "unit pages-01-03",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-19T05:43:51Z",
+      "event": "unit-add",
+      "message": "unit pages-04-05",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-19T05:43:52Z",
+      "event": "unit-add",
+      "message": "unit pages-06-07",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-19T05:43:54Z",
+      "event": "unit-add",
+      "message": "unit video-ai-review-loop",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-19T05:43:55Z",
+      "event": "unit-add",
+      "message": "unit mini-01",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-19T05:43:56Z",
+      "event": "unit-add",
+      "message": "unit mini-02",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-19T05:48:18Z",
+      "event": "unit-start",
+      "message": "unit mini-01",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-19T05:50:10Z",
+      "event": "video",
+      "message": "Rendered ai-review-loop with docker: site/public/media/frontend-engineering/learning-system-and-workstation/workstation-and-editor/ai-review-loop.mp4, 46.0 s, 1920×1080, with narration."
+    },
+    {
+      "at": "2026-11-19T05:50:28Z",
+      "event": "visual",
+      "message": "added visual ai-review-gate"
+    },
+    {
+      "at": "2026-11-19T05:50:40Z",
+      "event": "unit-done",
+      "message": "unit video-ai-review-loop",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-19T05:51:12Z",
+      "event": "unit-start",
+      "message": "unit pages-01-03",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-19T05:51:55Z",
+      "event": "unit-done",
+      "message": "unit pages-04-05",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-19T05:55:06Z",
+      "event": "unit-start",
+      "message": "unit pages-06-07",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-19T05:56:14Z",
+      "event": "unit-start",
+      "message": "unit mini-02",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-19T05:57:03Z",
+      "event": "visual",
+      "message": "added visual team-setup-workflow"
+    },
+    {
+      "at": "2026-11-19T05:57:43Z",
+      "event": "unit-done",
+      "message": "unit pages-01-03",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-19T05:58:21Z",
+      "event": "visual",
+      "message": "added visual mini-02-bisect-flow"
+    },
+    {
+      "at": "2026-11-19T05:58:24Z",
+      "event": "unit-done",
+      "message": "unit pages-06-07",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-19T05:58:38Z",
+      "event": "unit-done",
+      "message": "unit mini-02",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-19T06:03:44Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "digest"
+    },
+    {
+      "at": "2026-11-19T06:03:59Z",
+      "event": "execution-check",
+      "message": "mini-projects: pass",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-19T06:04:03Z",
+      "event": "gate-failed",
+      "message": "2 problems",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-19T06:04:36Z",
+      "event": "unit-done",
+      "message": "unit mini-01",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-19T06:04:47Z",
+      "event": "gate-failed",
+      "message": "1 problems",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-19T06:05:01Z",
+      "event": "execution-check",
+      "message": "mini-projects: pass",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-19T06:05:04Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-19T06:05:30Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "lesson"
     }
   ],
   "roadmap": {
@@ -1415,6 +1631,80 @@
             "status": 200,
             "bytes": 121705,
             "sha256": "b15cbf1b8bebdd30e5efe84cb7e3b79c56ff6669c1461e7199fc7a95f422f25d"
+          }
+        ]
+      },
+      "mini-projects": {
+        "version": 2,
+        "fingerprint": "e2672b4fd52056fd1af002326851c94abf0f831058708322d501898425f8553a",
+        "at": "2026-11-19T06:05:01Z",
+        "ok": true,
+        "checks": [
+          {
+            "label": "mini-01-dotfiles: solution-tests",
+            "command": "bash",
+            "args": [
+              "run-tests.sh"
+            ],
+            "expected_exit": 0,
+            "exit": 0,
+            "ok": true,
+            "output_sha256": "ef6391e0947e8fda07e114a787b09821d1fd2aa254d80ce0c8d0a94e48b8d27c"
+          },
+          {
+            "label": "mini-01-dotfiles: starter-tests",
+            "command": "bash",
+            "args": [
+              "run-tests.sh"
+            ],
+            "expected_exit": 1,
+            "exit": 1,
+            "ok": true,
+            "output_sha256": "fba93293ca2d42c44d9ea7a3541712dfc3031c0a1cb2e133c00dc3829b2d09dc"
+          },
+          {
+            "label": "mini-01-dotfiles: starter-start",
+            "command": "bash",
+            "args": [
+              "install.sh"
+            ],
+            "expected_exit": 1,
+            "exit": 1,
+            "ok": true,
+            "output_sha256": "2b89c9e94ae2658ac127f6e415532848089fcf6529d0fc560924c4bb701c93bc"
+          },
+          {
+            "label": "mini-02-git-bisect-hunt: solution-tests",
+            "command": "npm",
+            "args": [
+              "test"
+            ],
+            "expected_exit": 0,
+            "exit": 0,
+            "ok": true,
+            "output_sha256": "e5311fd1b8bdff34d8d961277eb9f25f6b9db40a32f95f6ff97920a52d6864bb"
+          },
+          {
+            "label": "mini-02-git-bisect-hunt: starter-tests",
+            "command": "npm",
+            "args": [
+              "test"
+            ],
+            "expected_exit": 1,
+            "exit": 1,
+            "ok": true,
+            "output_sha256": "c8eea1fa4b33aa695c7d371ab2d708940c81113541e0857670ff2e3998595e54"
+          },
+          {
+            "label": "mini-02-git-bisect-hunt: starter-start",
+            "command": "npm",
+            "args": [
+              "test"
+            ],
+            "expected_exit": 1,
+            "exit": 1,
+            "ok": true,
+            "output_sha256": "c8eea1fa4b33aa695c7d371ab2d708940c81113541e0857670ff2e3998595e54"
           }
         ]
       }

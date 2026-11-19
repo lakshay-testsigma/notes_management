@@ -1,0 +1,30 @@
+---
+title: Why your workstation matters
+description: A versioned dotfiles setup turns a new machine from hours of rebuilding into minutes of work.
+order: 1
+concepts: [dotfiles, reproducible setup, workstation]
+---
+
+You buy a new laptop on a Friday. Your shell aliases, git identity, editor settings, and Node version live only on the old machine, so you spend the weekend re-typing them from memory.
+
+Commit to an answer before you read on.
+
+<PredictReveal
+  prompt="A new machine arrives. One developer runs git clone on a dotfiles repository and one install script. The other re-types each setting by hand. What does the first developer gain?"
+  options={[
+    "Only a faster setup on that one day",
+    "An identical, versioned setup that is reproducible on any future machine",
+    "Nothing, because dotfiles cannot be shared between machines"
+  ]}
+  correct={1}
+  answer="An identical, versioned setup, reproducible on any future machine."
+  reasoning="The dotfiles repository holds the configuration and the install script that links it into place. Cloning it reproduces the same shell, git, editor, and Node setup everywhere."
+/>
+
+Two developers face the same new laptop. The one with a **dotfiles repository** is done before lunch. A dotfile is a configuration file whose name begins with a dot, such as `.zshrc` for the shell and `.gitconfig` for Git.
+
+An **install script** links those files into place with symlinks, so every new machine gets the same shell, git identity, editor settings, and Node version. The repository is under version control, so a broken change is undone with `git checkout`, and a fresh machine is `git clone` plus one script.
+
+The alternative is a team where everyone has slightly different tools, and a bug that shows up on one machine never reproduces on another.
+
+The shell is where all of it runs. Next, how one typed line becomes work.

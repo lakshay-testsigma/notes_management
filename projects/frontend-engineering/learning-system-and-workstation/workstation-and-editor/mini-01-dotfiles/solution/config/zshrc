@@ -1,0 +1,6 @@
+# Shell aliases and editor default.
+export EDITOR=vim
+
+alias ll='ls -lah'
+alias g='git'
+alias gs='git status'

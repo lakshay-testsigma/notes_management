@@ -11,15 +11,15 @@ created: 2026-11-19
 This is the map of the topic. Read the steps from top to bottom. Each step links to the next thing to open, so you never have to search.
 
 <!-- tutor:generated:start -->
-**Depth:** standard · **Progress:** 5 of 10 steps ready
+**Depth:** standard · **Progress:** 7 of 10 steps ready
 
 How to set up and keep a disciplined developer workstation: shell, git, editor, AI-assisted coding, and Node version management, so every later frontend topic starts from a reproducible base.
 
 ## Read in this order
 
 1. [[01-brief-workstation-and-editor|Brief]] — what it is, why it exists, where it is used · *ready*
-2. [[02-lesson-workstation-and-editor|Interactive lesson]] — the animated lesson pages on the local site · *not started*
-3. [[03-mini-projects-workstation-and-editor|Mini projects]] — small builds with a real use case · *not started*
+2. [[02-lesson-workstation-and-editor|Interactive lesson]] — the animated lesson pages on the local site · *ready*
+3. [[03-mini-projects-workstation-and-editor|Mini projects]] — small builds with a real use case · *ready*
 4. [[00-digests-workstation-and-editor|Digests]] — short summaries of the key papers and docs · *ready*
 5. [[00-repo-intel-workstation-and-editor|Repository deep dive]] — how a production open-source project does it · *ready*
 6. [[06-capstone-workstation-and-editor|Capstone]] — the production-style project · *not started*
@@ -74,8 +74,8 @@ Research stopped: scope-boundary. Sub-concepts proposed by discovery (pipes-and-
 
 ## Projects
 
-- Mini project (planned): `projects/frontend-engineering/learning-system-and-workstation/workstation-and-editor/mini-01-dotfiles/` — A developer reproduces their whole shell, git, and editor setup on a new machine from one repository and an install script.
-- Mini project (planned): `projects/frontend-engineering/learning-system-and-workstation/workstation-and-editor/mini-02-git-bisect-hunt/` — A developer uses git bisect to find the exact commit that introduced a bug in a small demo repository.
+- Mini project: `projects/frontend-engineering/learning-system-and-workstation/workstation-and-editor/mini-01-dotfiles/`
+- Mini project: `projects/frontend-engineering/learning-system-and-workstation/workstation-and-editor/mini-02-git-bisect-hunt/`
 - Capstone: `projects/frontend-engineering/learning-system-and-workstation/workstation-and-editor/capstone/` — Setup doctor
 
 ## Build status
@@ -87,13 +87,13 @@ Research stopped: scope-boundary. Sub-concepts proposed by discovery (pipes-and-
 | 1 | brief | ready |
 | 2 | digest | ready |
 | 2 | repo-intel | ready |
-| 3 | lesson | not started |
-| 3 | mini-projects | not started |
+| 3 | lesson | ready |
+| 3 | mini-projects | ready |
 | 4 | capstone | not started |
 | 5 | notes | not started |
 | 5 | finalize | not started |
 
-Next to generate: `lesson`, `mini-projects`. Ask Claude to continue this topic, or run `node harness/bin/tutor.mjs next frontend-engineering/learning-system-and-workstation/workstation-and-editor`.
+Next to generate: `capstone`. Ask Claude to continue this topic, or run `node harness/bin/tutor.mjs next frontend-engineering/learning-system-and-workstation/workstation-and-editor`.
 <!-- tutor:generated:end -->
 
 ## My insights

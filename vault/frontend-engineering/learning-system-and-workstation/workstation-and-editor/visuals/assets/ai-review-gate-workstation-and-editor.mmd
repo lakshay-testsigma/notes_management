@@ -1,0 +1,7 @@
+flowchart LR
+  You["Your prompt"] --> Agent["coding agent"]
+  Agent --> Edits["proposed edits"]
+  Edits --> Review["review: approve or refuse"]
+  Review -->|"approve"| Test["run the tests"]
+  Test -->|"pass"| Merge["merge"]
+  Test -->|"fail"| Agent

@@ -1,0 +1,187 @@
+{
+  "id": "ai-review-loop",
+  "title": "The AI review loop",
+  "purpose": "See how a sandbox and approvals keep an AI agent's edits safe to merge.",
+  "sequence_reason": "Prompt, proposed edit, sandbox, tests, review, and merge form a chronological loop, so motion shows the order better than one static diagram.",
+  "summary": "You prompt the agent with context. It proposes an edit inside a workspace-write sandbox. Tests run in the same boundary, then you read the diff and merge only when it passes.",
+  "explanation": "The sandbox sets technical boundaries and the approval policy decides when the agent must stop and ask.",
+  "learning_check": {
+    "question": "What does the sandbox boundary control, and what does the approval policy decide?",
+    "answer": "The sandbox controls which files the agent can edit and whether commands can use the network; the approval policy decides when the agent must stop and ask."
+  },
+  "concept_ids": [
+    "ai-assisted-development"
+  ],
+  "source_ids": [
+    "openai-codex-repo"
+  ],
+  "used_in": [
+    "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/workstation-and-editor/05-ai-assisted-development.mdx"
+  ],
+  "narration": {
+    "engine": "auto"
+  },
+  "scenes": [
+    {
+      "id": "intro",
+      "duration": 6,
+      "heading": "The AI review loop",
+      "narration": "An AI agent can edit your code. Watch the loop that keeps you in charge.",
+      "visual": {
+        "type": "title",
+        "subtitle": "Prompt, sandbox, test, review, merge"
+      }
+    },
+    {
+      "id": "loop",
+      "duration": 11,
+      "heading": "One loop, six steps",
+      "narration": "You prompt with context. The agent proposes an edit in the sandbox, tests run, you review the diff, then merge.",
+      "source_ids": [
+        "openai-codex-repo"
+      ],
+      "visual": {
+        "type": "flow",
+        "nodes": [
+          {
+            "id": "prompt",
+            "label": "Prompt",
+            "sub": "task + context"
+          },
+          {
+            "id": "edit",
+            "label": "Proposed edit",
+            "sub": "inside sandbox"
+          },
+          {
+            "id": "sandbox",
+            "label": "Sandbox",
+            "sub": "workspace-write"
+          },
+          {
+            "id": "tests",
+            "label": "Tests",
+            "sub": "test runner"
+          },
+          {
+            "id": "review",
+            "label": "Review diff",
+            "sub": "you"
+          },
+          {
+            "id": "merge",
+            "label": "Merge"
+          }
+        ],
+        "path": [
+          {
+            "from": "prompt",
+            "to": "edit",
+            "packet": "task"
+          },
+          {
+            "from": "edit",
+            "to": "sandbox",
+            "packet": "diff"
+          },
+          {
+            "from": "sandbox",
+            "to": "tests",
+            "packet": "run"
+          },
+          {
+            "from": "tests",
+            "to": "review",
+            "packet": "pass"
+          },
+          {
+            "from": "review",
+            "to": "merge",
+            "packet": "approve"
+          }
+        ]
+      }
+    },
+    {
+      "id": "boundary",
+      "duration": 9,
+      "heading": "Inside the sandbox vs beyond it",
+      "narration": "Inside the sandbox the agent edits and runs tests without asking. To touch the network or other folders, it stops and asks.",
+      "source_ids": [
+        "openai-codex-repo"
+      ],
+      "visual": {
+        "type": "flow",
+        "nodes": [
+          {
+            "id": "agent",
+            "label": "Agent",
+            "sub": "edits + tests"
+          },
+          {
+            "id": "workspace",
+            "label": "Workspace",
+            "sub": "inside boundary"
+          },
+          {
+            "id": "beyond",
+            "label": "Beyond boundary",
+            "sub": "network, other repos"
+          }
+        ],
+        "path": [
+          {
+            "from": "agent",
+            "to": "workspace",
+            "packet": "edit",
+            "label": "Autonomous: no prompt inside the sandbox"
+          },
+          {
+            "from": "workspace",
+            "to": "beyond",
+            "packet": "needs access",
+            "label": "Stops to ask before crossing"
+          }
+        ]
+      }
+    },
+    {
+      "id": "review",
+      "duration": 9,
+      "heading": "The review gate",
+      "narration": "Before you merge, read the diff and check the tests. Merge only when both are good.",
+      "visual": {
+        "type": "steps",
+        "items": [
+          "Read the diff",
+          "Check the tests passed",
+          "Merge only when both are good"
+        ]
+      }
+    },
+    {
+      "id": "why",
+      "duration": 11,
+      "heading": "Why run the loop",
+      "narration": "Skip the loop and the agent's mistake ships. Run the loop, and you catch it before it reaches your branch.",
+      "visual": {
+        "type": "compare",
+        "left": {
+          "label": "Trust the output",
+          "items": [
+            "Merge without reading",
+            "The agent's bug ships"
+          ]
+        },
+        "right": {
+          "label": "Run the loop",
+          "items": [
+            "Read the diff",
+            "Tests pass before merge"
+          ]
+        },
+        "verdict": "Never merge AI output without review."
+      }
+    }
+  ]
+}

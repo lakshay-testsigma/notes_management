@@ -14,6 +14,10 @@ Every diagram, simulation and video of this topic, with the concepts it teaches 
 ## Workflow
 
 - [[visual-how-it-works-workstation-and-editor|The reproducible workstation]] — See the reproducible workstation as one install flow.
+- [[visual-mini-01-dotfiles-flow-workstation-and-editor|Dotfiles install: repo to $HOME via symlinks]] — See how one install script turns a dotfiles repo into a live home-directory setup.
+- [[visual-ai-review-gate-workstation-and-editor|The AI review gate]] — See that every change an agent proposes passes a review gate before it reaches the repository.
+- [[visual-team-setup-workflow-workstation-and-editor|A production team's reproducible setup]] — See how a team turns shared configuration into identical developer machines.
+- [[visual-mini-02-bisect-flow-workstation-and-editor|git bisect narrows to the bug commit]] — See how git bisect halves the commit range using one test until only the bug commit remains.
 
 ## Decision tree
 
@@ -30,5 +34,9 @@ Every diagram, simulation and video of this topic, with the concepts it teaches 
 ## Sequence
 
 - [[visual-nvm-request-flow-workstation-and-editor|One nvm install request end to end]] — Follow one `nvm install 22` through resolution, download, verification, and the PATH rewrite.
+
+## Video
+
+- [[visual-ai-review-loop-workstation-and-editor|The AI review loop]] — See how a sandbox and approvals keep an AI agent's edits safe to merge. · video rendered
 
 ## My insights

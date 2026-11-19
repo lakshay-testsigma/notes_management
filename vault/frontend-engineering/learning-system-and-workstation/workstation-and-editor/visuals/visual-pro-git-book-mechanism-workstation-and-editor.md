@@ -44,6 +44,7 @@ Answer: Only the history: merge keeps both lines and adds a commit with two pare
 ## Used in
 
 - [[pro-git-book-workstation-and-editor]]
+- lesson page `/frontend-engineering/learning-system-and-workstation/workstation-and-editor/lesson/03-git-and-github-fluency/` (file `site/src/content/lessons/frontend-engineering/learning-system-and-workstation/workstation-and-editor/03-git-and-github-fluency.mdx`)
 
 Back to [[visuals-workstation-and-editor|all visuals]].
 
