@@ -1,0 +1,10 @@
+flowchart TD
+  A["main: C1, C2"] --> B["git checkout -b feature"]
+  A --> C["commit C3 on main"]
+  B --> D["commit C4 on feature"]
+  C --> Q{"Integrate which way?"}
+  D --> Q
+  Q -->|merge| E["three-way merge of C2, C3, C4"]
+  E --> F["merge commit, two parents"]
+  Q -->|rebase| G["replay C4 on C3"]
+  G --> H["new C4'; main fast-forwards"]

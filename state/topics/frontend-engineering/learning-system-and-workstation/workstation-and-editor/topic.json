@@ -7,7 +7,7 @@
   "subdomain": "learning-system-and-workstation",
   "depth": "standard",
   "created_at": "2026-11-19T04:50:05Z",
-  "updated_at": "2026-11-19T05:09:44Z",
+  "updated_at": "2026-11-19T05:16:47Z",
   "paths": {
     "state": "state/topics/frontend-engineering/learning-system-and-workstation/workstation-and-editor",
     "vault": "vault/frontend-engineering/learning-system-and-workstation/workstation-and-editor",
@@ -601,24 +601,88 @@
       "id": "digest",
       "wave": 2,
       "skill": "learn-digest",
-      "status": "pending",
+      "status": "done",
       "scope": "required",
-      "started_at": null,
-      "finished_at": null,
-      "attempts": 0,
-      "units": [],
-      "note": ""
+      "started_at": "2026-11-19T05:10:28Z",
+      "finished_at": "2026-11-19T05:16:47Z",
+      "attempts": 1,
+      "units": [
+        {
+          "id": "mdn-command-line",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "pro-git-book",
+          "status": "done",
+          "handoff": null
+        }
+      ],
+      "note": "",
+      "continue_after_failure": false,
+      "validation": {
+        "version": 2,
+        "fingerprint": "f497875ad246a3cefea5c34c2c1a5a387cfb476459d252473ebcad723d825b36",
+        "at": "2026-11-19T05:16:47Z",
+        "forced": false
+      }
     },
     {
       "id": "repo-intel",
       "wave": 2,
       "skill": "learn-repo-intel",
-      "status": "pending",
+      "status": "in_progress",
       "scope": "required",
-      "started_at": null,
+      "started_at": "2026-11-19T05:10:29Z",
       "finished_at": null,
-      "attempts": 0,
-      "units": [],
+      "attempts": 1,
+      "units": [
+        {
+          "id": "nvm-sh-nvm-scout",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "nvm-sh-nvm-module-cli-dispatch",
+          "status": "pending",
+          "handoff": null
+        },
+        {
+          "id": "nvm-sh-nvm-module-versions-and-nvmrc",
+          "status": "pending",
+          "handoff": null
+        },
+        {
+          "id": "nvm-sh-nvm-module-aliases-and-listing",
+          "status": "pending",
+          "handoff": null
+        },
+        {
+          "id": "nvm-sh-nvm-module-download-and-security",
+          "status": "pending",
+          "handoff": null
+        },
+        {
+          "id": "nvm-sh-nvm-module-install-node",
+          "status": "pending",
+          "handoff": null
+        },
+        {
+          "id": "nvm-sh-nvm-module-install-script",
+          "status": "pending",
+          "handoff": null
+        },
+        {
+          "id": "nvm-sh-nvm-module-tests-resolution-and-download",
+          "status": "pending",
+          "handoff": null
+        },
+        {
+          "id": "nvm-sh-nvm-module-build-and-infra",
+          "status": "pending",
+          "handoff": null
+        }
+      ],
       "note": ""
     },
     {
@@ -940,6 +1004,153 @@
       "event": "done",
       "message": "gate passed",
       "stage": "brief"
+    },
+    {
+      "at": "2026-11-19T05:10:28Z",
+      "event": "start",
+      "message": "attempt 1",
+      "stage": "digest"
+    },
+    {
+      "at": "2026-11-19T05:10:29Z",
+      "event": "start",
+      "message": "attempt 1",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-19T05:10:31Z",
+      "event": "unit-add",
+      "message": "unit mdn-command-line",
+      "stage": "digest"
+    },
+    {
+      "at": "2026-11-19T05:10:32Z",
+      "event": "unit-add",
+      "message": "unit pro-git-book",
+      "stage": "digest"
+    },
+    {
+      "at": "2026-11-19T05:10:33Z",
+      "event": "unit-add",
+      "message": "unit nvm-sh-nvm-scout",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-19T05:11:19Z",
+      "event": "unit-start",
+      "message": "unit mdn-command-line",
+      "stage": "digest"
+    },
+    {
+      "at": "2026-11-19T05:11:23Z",
+      "event": "unit-start",
+      "message": "unit pro-git-book",
+      "stage": "digest"
+    },
+    {
+      "at": "2026-11-19T05:11:27Z",
+      "event": "unit-start",
+      "message": "unit nvm-sh-nvm-scout",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-19T05:13:36Z",
+      "event": "visual",
+      "message": "added visual pro-git-book-mechanism"
+    },
+    {
+      "at": "2026-11-19T05:13:37Z",
+      "event": "visual",
+      "message": "added visual mdn-command-line-mechanism"
+    },
+    {
+      "at": "2026-11-19T05:14:40Z",
+      "event": "unit-done",
+      "message": "unit mdn-command-line",
+      "stage": "digest"
+    },
+    {
+      "at": "2026-11-19T05:14:46Z",
+      "event": "unit-done",
+      "message": "unit pro-git-book",
+      "stage": "digest"
+    },
+    {
+      "at": "2026-11-19T05:15:09Z",
+      "event": "unit-done",
+      "message": "unit nvm-sh-nvm-scout",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-19T05:15:28Z",
+      "event": "unit-add",
+      "message": "unit nvm-sh-nvm-module-cli-dispatch",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-19T05:15:29Z",
+      "event": "unit-add",
+      "message": "unit nvm-sh-nvm-module-versions-and-nvmrc",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-19T05:15:30Z",
+      "event": "unit-add",
+      "message": "unit nvm-sh-nvm-module-aliases-and-listing",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-19T05:15:32Z",
+      "event": "unit-add",
+      "message": "unit nvm-sh-nvm-module-download-and-security",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-19T05:15:33Z",
+      "event": "unit-add",
+      "message": "unit nvm-sh-nvm-module-install-node",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-19T05:15:34Z",
+      "event": "unit-add",
+      "message": "unit nvm-sh-nvm-module-install-script",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-19T05:15:35Z",
+      "event": "unit-add",
+      "message": "unit nvm-sh-nvm-module-tests-resolution-and-download",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-19T05:15:36Z",
+      "event": "unit-add",
+      "message": "unit nvm-sh-nvm-module-build-and-infra",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-19T05:15:38Z",
+      "event": "gate-failed",
+      "message": "1 problems",
+      "stage": "digest"
+    },
+    {
+      "at": "2026-11-19T05:15:49Z",
+      "event": "gate-failed",
+      "message": "1 problems",
+      "stage": "digest"
+    },
+    {
+      "at": "2026-11-19T05:16:44Z",
+      "event": "reader-order",
+      "message": "Imported explicit authored child-note sequence"
+    },
+    {
+      "at": "2026-11-19T05:16:47Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "digest"
     }
   ],
   "roadmap": {
@@ -1056,5 +1267,14 @@
         ]
       }
     }
+  },
+  "reader_order": {
+    "digest": [
+      "04-digests/mdn-command-line-workstation-and-editor.md",
+      "04-digests/pro-git-book-workstation-and-editor.md"
+    ],
+    "repo-intel": [
+      "05-repo-intel/nvm-sh-nvm/nvm-overview.md"
+    ]
   }
 }

@@ -1,0 +1,7 @@
+flowchart LR
+  U[You type one line] --> A["curl -L -I"]
+  A -->|STDOUT| P1[pipe]
+  P1 --> B["grep location"]
+  B -->|STDOUT| P2[pipe]
+  P2 --> C["awk prints origin + path"]
+  C -->|STDOUT| R[Terminal shows one full URL]

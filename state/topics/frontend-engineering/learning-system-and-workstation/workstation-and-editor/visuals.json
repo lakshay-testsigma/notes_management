@@ -22,5 +22,52 @@
     "used_in": [
       "vault/frontend-engineering/learning-system-and-workstation/workstation-and-editor/01-brief-workstation-and-editor.md"
     ]
+  },
+  {
+    "id": "pro-git-book-mechanism",
+    "title": "Merge or rebase: two ways to integrate a branch",
+    "kind": "decision-tree",
+    "scope": "mechanism",
+    "format": "mermaid",
+    "file": "vault/frontend-engineering/learning-system-and-workstation/workstation-and-editor/visuals/assets/pro-git-book-mechanism-workstation-and-editor.mmd",
+    "concept_ids": [
+      "git-and-github"
+    ],
+    "source_ids": [
+      "pro-git-book"
+    ],
+    "purpose": "Tell apart the two ways Git integrates one branch into another, and predict what each does to the history.",
+    "explanation": "Two branches diverge from a common ancestor C2: main adds C3, the feature branch adds C4. A merge combines the two tips with C2 in a three-way merge and records the result in a commit with two parents. A rebase replays C4's change on top of C3 as a new commit, so main can then fast-forward to it. Both end with the same files; only the history differs (Pro Git, Git Branching, sections Basic Branching and Merging and Rebasing).",
+    "alt": "Flow from a shared commit C2: main gains C3, a feature branch gains C4, then a choice. Merge runs a three-way merge of C2, C3 and C4 and creates a commit with two parents. Rebase replays C4 on C3, creating a new commit that main fast-forwards to.",
+    "learning_check": {
+      "question": "Both paths end with the same file contents. What is actually different?",
+      "answer": "Only the history: merge keeps both lines and adds a commit with two parents, while rebase writes new commits in a straight line and abandons the originals."
+    },
+    "used_in": [
+      "vault/frontend-engineering/learning-system-and-workstation/workstation-and-editor/04-digests/pro-git-book-workstation-and-editor.md"
+    ]
+  },
+  {
+    "id": "mdn-command-line-mechanism",
+    "kind": "flowchart",
+    "format": "mermaid",
+    "file": "vault/frontend-engineering/learning-system-and-workstation/workstation-and-editor/visuals/assets/mdn-command-line-mechanism-workstation-and-editor.mmd",
+    "concept_ids": [
+      "terminal-and-shell"
+    ],
+    "source_ids": [
+      "mdn-command-line"
+    ],
+    "purpose": "Show how one command line hands its output to the next command through a pipe, so the learner can read and build a chain.",
+    "explanation": "You type one command line. Each program writes text to standard output (STDOUT). The pipe symbol takes that text out of the screen and feeds it into the next program as standard input (STDIN). The last program writes its result to the terminal. The example is the article's own chain: curl fetches the response headers with -L to follow redirects and -I for headers only, grep keeps the lines that contain 'location', and awk prints the origin in front of the path in the second field.",
+    "alt": "Flow diagram: you type one line, curl -L -I writes headers to STDOUT, a pipe feeds grep location, grep writes matching lines to STDOUT, a second pipe feeds awk, awk prints the origin plus the path, and the terminal shows one full URL.",
+    "learning_check": {
+      "question": "In `ls | wc -l`, which program reads from standard input, and what does the terminal show?",
+      "answer": "wc reads the text that ls wrote to STDOUT, counts its lines, and prints only that count to the terminal. You never see the file list."
+    },
+    "used_in": [
+      "vault/frontend-engineering/learning-system-and-workstation/workstation-and-editor/04-digests/mdn-command-line-workstation-and-editor.md"
+    ],
+    "title": "How a pipe connects one command to the next"
   }
 ]

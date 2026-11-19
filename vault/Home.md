@@ -22,7 +22,7 @@ Everything you have learned, by domain. Open a topic and follow its "start here"
 ## All topics
 
 - [[00-start-here-how-to-learn-frontend|How to learn frontend (and keep improving)]] — standard · 9/10 steps ready
-- [[00-start-here-workstation-and-editor|Workstation & editor]] — standard · 3/10 steps ready
+- [[00-start-here-workstation-and-editor|Workstation & editor]] — standard · 4/10 steps ready
 
 ## Review
 

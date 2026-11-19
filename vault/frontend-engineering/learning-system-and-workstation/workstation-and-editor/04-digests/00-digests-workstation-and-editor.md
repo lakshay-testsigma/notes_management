@@ -4,12 +4,16 @@ topic: frontend-engineering/learning-system-and-workstation/workstation-and-edit
 stage: digest
 tags: [frontend-engineering, learning-system-and-workstation, digest]
 created: 2026-11-19
-sources: []
+sources: [mdn-command-line, pro-git-book]
 ---
 
 # Digests for Workstation & editor
 
-<!-- tutor:placeholder -->
-_Not written yet. The digest stage replaces this line with a link to every digest note in this folder._
+These are the sources worth reading in full one day, each reduced to a ten-minute note. Read them in this order.
+
+1. [[mdn-command-line-workstation-and-editor|Command line crash course]] — defines the pipe rule (STDOUT → STDIN) and the local-install default that the brief and lesson build on.
+2. [[pro-git-book-workstation-and-editor|Pro Git]] — defines git snapshots, branch pointers, and the merge-versus-rebase decision behind the topic's git outcome.
+
+Back to the map: [[00-start-here-workstation-and-editor|Start here]].
 
 ## My insights

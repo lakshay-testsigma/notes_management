@@ -19,6 +19,7 @@ Every source below was checked against a live page before it was recommended.
   - Why it is trusted: MDN Web Docs, the reference for the web platform, hosts this Environment setup article; the live page says it was last modified on Sep 12, 2026 and lists the article's own learning outcomes for the terminal, basic commands, options and pipes.
   - Used for: brief, lesson, digest
   - Verified: 2026-11-19
+  - Digest: [[mdn-command-line-workstation-and-editor|read the digest]]
 - **[Node.js Releases (release statuses, LTS schedule and installation methods)](https://nodejs.org/en/about/previous-releases)** — OpenJS Foundation and Node.js contributors, 2026 · tier A
   - Why it is trusted: The Node.js project's own release page; it names each major version's status (Alpha, Current, LTS, EOL) with first-released and last-updated dates, and states that production applications should only use Active LTS or Maintenance LTS releases.
   - Used for: brief, lesson
@@ -38,6 +39,7 @@ Every source below was checked against a live page before it was recommended.
   - Why it is trusted: The official, freely available Git book, published on the Git project's own site.
   - Used for: lesson, digest
   - Verified: 2026-11-19
+  - Digest: [[pro-git-book-workstation-and-editor|read the digest]]
 
 ## Repositories
 

@@ -13,5 +13,6 @@ A text interface where you type commands to run programs, move between folders, 
 ## Where it shows up
 
 - [[01-brief-workstation-and-editor]]
+- [[mdn-command-line-workstation-and-editor]]
 
 ## My insights

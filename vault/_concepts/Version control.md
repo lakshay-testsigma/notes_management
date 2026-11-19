@@ -13,5 +13,6 @@ A system that records every change to your files, so you can go back to an earli
 ## Where it shows up
 
 - [[01-brief-workstation-and-editor]]
+- [[pro-git-book-workstation-and-editor]]
 
 ## My insights
