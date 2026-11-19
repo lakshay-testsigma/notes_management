@@ -11,14 +11,14 @@ updated: 2026-11-17
 One sequential path through the field. Each section is one topic; work top to bottom.
 
 <!-- tutor:generated:start -->
-Progress: **1 of 107** topics have finished notes (8 of 707 roadmap items).
+Progress: **0 of 107** topics have finished notes (0 of 707 roadmap items).
 Interactive checklist: run `npm run site:dev` and open `/roadmaps/frontend.html`.
 
 ## 00 Learning System & Workstation
 
 Set up how you learn and the tools you will use for every later phase. Mastery = reading primary sources + building + measuring.
 
-- [x] **00.1** [[frontend-engineering/learning-system-and-workstation/how-to-learn-frontend/00-start-here-how-to-learn-frontend|How to learn frontend (and keep improving)]] — Notes ready · 8 items · `frontend-engineering/learning-system-and-workstation/how-to-learn-frontend`
+- [ ] **00.1** [[frontend-engineering/learning-system-and-workstation/how-to-learn-frontend/00-start-here-how-to-learn-frontend|How to learn frontend (and keep improving)]] — Being generated · 8 items · `frontend-engineering/learning-system-and-workstation/how-to-learn-frontend`
     - Learning loop: read → build → measure → explain (core)
     - Primary sources over tutorials (core)
     - Browser support literacy: Baseline & caniuse (core)
@@ -27,7 +27,7 @@ Set up how you learn and the tools you will use for every later phase. Mastery =
     - Practice platforms & interview prep (core)
     - Read other people's code (adv)
     - Build in public & teach (adv)
-- [ ] **00.2** Workstation & editor — Not generated yet · 5 items · `frontend-engineering/learning-system-and-workstation/workstation-and-editor`
+- [ ] **00.2** [[frontend-engineering/learning-system-and-workstation/workstation-and-editor/00-start-here-workstation-and-editor|Workstation & editor]] — Being generated · 5 items · `frontend-engineering/learning-system-and-workstation/workstation-and-editor`
     - Terminal & shell basics (core)
     - Git & GitHub fluency (core)
     - VS Code (or JetBrains / Zed) setup (core)

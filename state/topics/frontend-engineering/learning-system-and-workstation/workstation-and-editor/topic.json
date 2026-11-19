@@ -1,0 +1,553 @@
+{
+  "schema": 1,
+  "id": "frontend-engineering/learning-system-and-workstation/workstation-and-editor",
+  "title": "Workstation & editor",
+  "slug": "workstation-and-editor",
+  "domain": "frontend-engineering",
+  "subdomain": "learning-system-and-workstation",
+  "depth": "standard",
+  "created_at": "2026-11-19T04:50:05Z",
+  "updated_at": "2026-11-19T04:52:57Z",
+  "paths": {
+    "state": "state/topics/frontend-engineering/learning-system-and-workstation/workstation-and-editor",
+    "vault": "vault/frontend-engineering/learning-system-and-workstation/workstation-and-editor",
+    "lessons": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/workstation-and-editor",
+    "projects": "projects/frontend-engineering/learning-system-and-workstation/workstation-and-editor",
+    "cache": ".cache"
+  },
+  "profile": {
+    "lesson_pages": [
+      5,
+      7
+    ],
+    "mini_projects": 2,
+    "digests": [
+      2,
+      3
+    ],
+    "repos": [
+      1,
+      1
+    ],
+    "capstone": true,
+    "sources": [
+      5,
+      12
+    ],
+    "recall_cards": 8
+  },
+  "plan": {
+    "summary": "How to set up and keep a disciplined developer workstation: shell, git, editor, AI-assisted coding, and Node version management, so every later frontend topic starts from a reproducible base.",
+    "prerequisites": [
+      {
+        "concept": "Basic programming",
+        "known": true,
+        "bridge": ""
+      },
+      {
+        "concept": "Command line",
+        "known": true,
+        "bridge": ""
+      },
+      {
+        "concept": "Version control",
+        "known": true,
+        "bridge": ""
+      }
+    ],
+    "outcomes": [
+      "Explain why a disciplined, reproducible workstation pays off every day.",
+      "Explain what PATH and environment variables do when a command runs.",
+      "Build a dotfiles repository that reproduces your setup on a new machine.",
+      "Decide between merge and rebase for a given branch history.",
+      "Decide how to use an AI coding agent without trusting its output.",
+      "Build a git bisect run that finds the commit that introduced a bug."
+    ],
+    "lesson_outline": [
+      {
+        "order": 1,
+        "slug": "why-your-workstation-matters",
+        "title": "Why your workstation matters",
+        "activity": "PredictReveal",
+        "complexity": "basic",
+        "importance": "supporting",
+        "spatial": false,
+        "visual": null,
+        "visual_reason": "A concrete story of a slow, unreproducible setup is enough to show the cost.",
+        "experience": {
+          "signals": {
+            "complexity": 1,
+            "concepts": 1,
+            "dependent_steps": 0,
+            "changes_over_time": false,
+            "spatial": false,
+            "parameters": 0,
+            "decision_paths": 0,
+            "benefit": "low"
+          },
+          "concept_ids": [
+            "workstation-setup"
+          ]
+        }
+      },
+      {
+        "order": 2,
+        "slug": "terminal-and-shell-fluency",
+        "title": "Terminal & shell fluency",
+        "activity": "PredictReveal",
+        "complexity": "intermediate",
+        "importance": "core",
+        "spatial": false,
+        "visual": "CodeWalkthrough",
+        "visual_reason": "A pipe that filters and transforms text is read line by line.",
+        "interaction_goal": "Step through a pipeline and predict what each stage passes on.",
+        "experience": {
+          "signals": {
+            "complexity": 2,
+            "concepts": 3,
+            "dependent_steps": 1,
+            "changes_over_time": false,
+            "spatial": false,
+            "parameters": 0,
+            "decision_paths": 0,
+            "benefit": "medium"
+          },
+          "concept_ids": [
+            "terminal-and-shell"
+          ]
+        }
+      },
+      {
+        "order": 3,
+        "slug": "git-and-github-fluency",
+        "title": "Git & GitHub fluency",
+        "activity": "OrderSteps",
+        "complexity": "intermediate",
+        "importance": "critical",
+        "spatial": false,
+        "visual": "Diagram",
+        "visual_reason": "A branch-and-merge workflow is a graph, best drawn once and reused.",
+        "interaction_goal": "Order the git commands for a feature branch and predict the history.",
+        "experience": {
+          "signals": {
+            "complexity": 2,
+            "concepts": 3,
+            "dependent_steps": 2,
+            "changes_over_time": false,
+            "spatial": false,
+            "parameters": 0,
+            "decision_paths": 1,
+            "benefit": "medium"
+          },
+          "concept_ids": [
+            "git-and-github"
+          ]
+        }
+      },
+      {
+        "order": 4,
+        "slug": "your-editor-sharpened",
+        "title": "Your editor, sharpened",
+        "activity": "MatchPairs",
+        "complexity": "basic",
+        "importance": "core",
+        "spatial": false,
+        "visual": "Mermaid",
+        "visual_reason": "A small map of editor features and their shortcuts is all this idea needs.",
+        "interaction_goal": "Match each editor feature to the shortcut or command that invokes it.",
+        "experience": {
+          "signals": {
+            "complexity": 2,
+            "concepts": 2,
+            "dependent_steps": 0,
+            "changes_over_time": false,
+            "spatial": false,
+            "parameters": 0,
+            "decision_paths": 0,
+            "benefit": "low"
+          },
+          "concept_ids": [
+            "editor-setup"
+          ]
+        }
+      },
+      {
+        "order": 5,
+        "slug": "ai-assisted-development",
+        "title": "AI-assisted development, done safely",
+        "activity": "SortBuckets",
+        "complexity": "intermediate",
+        "importance": "core",
+        "spatial": false,
+        "visual": "Diagram",
+        "visual_reason": "Prompt, review, test, and merge form one review loop; a workflow view fits.",
+        "interaction_goal": "Sort each AI output into the review action it needs before merge.",
+        "video": {
+          "id": "ai-review-loop",
+          "reason": "Prompt, generate, test, and merge form a chronological loop that motion explains better than a picture."
+        },
+        "experience": {
+          "signals": {
+            "complexity": 2,
+            "concepts": 3,
+            "dependent_steps": 3,
+            "changes_over_time": false,
+            "spatial": false,
+            "parameters": 0,
+            "decision_paths": 1,
+            "benefit": "medium"
+          },
+          "concept_ids": [
+            "ai-assisted-development"
+          ]
+        }
+      },
+      {
+        "order": 6,
+        "slug": "node-js-and-version-management",
+        "title": "Node.js & version management",
+        "activity": "MatchPairs",
+        "complexity": "basic",
+        "importance": "core",
+        "spatial": false,
+        "visual": "Mermaid",
+        "visual_reason": "One runtime with several installed versions is a small static structure.",
+        "interaction_goal": "Match each Node tool (node, npx, a version manager) to what it does.",
+        "experience": {
+          "signals": {
+            "complexity": 2,
+            "concepts": 2,
+            "dependent_steps": 0,
+            "changes_over_time": false,
+            "spatial": false,
+            "parameters": 0,
+            "decision_paths": 0,
+            "benefit": "low"
+          },
+          "concept_ids": [
+            "node-version-management"
+          ]
+        }
+      },
+      {
+        "order": 7,
+        "slug": "a-production-teams-setup",
+        "title": "A production team's setup",
+        "activity": "Quiz",
+        "complexity": "intermediate",
+        "importance": "core",
+        "spatial": false,
+        "visual": "Diagram",
+        "visual_reason": "A team standardizes workstation, CI, and version policy; a workflow diagram ties it together.",
+        "interaction_goal": "Choose the workstation change a team should make given a symptom.",
+        "experience": {
+          "signals": {
+            "complexity": 2,
+            "concepts": 2,
+            "dependent_steps": 0,
+            "changes_over_time": false,
+            "spatial": false,
+            "parameters": 0,
+            "decision_paths": 1,
+            "benefit": "low"
+          },
+          "concept_ids": [
+            "workstation-setup"
+          ]
+        }
+      }
+    ],
+    "mini_projects": [
+      {
+        "n": 1,
+        "slug": "dotfiles",
+        "use_case": "A developer reproduces their whole shell, git, and editor setup on a new machine from one repository and an install script."
+      },
+      {
+        "n": 2,
+        "slug": "git-bisect-hunt",
+        "use_case": "A developer uses git bisect to find the exact commit that introduced a bug in a small demo repository."
+      }
+    ],
+    "digest_targets": 2,
+    "repo_targets": 1,
+    "capstone": {
+      "name": "Setup doctor",
+      "problem": "A developer runs one command that audits a machine (Node version, git identity, editor settings, PATH) and reports exactly what is missing, with tests."
+    },
+    "learner": {
+      "experience": "software developer learning frontend end to end",
+      "known": [
+        "basic programming",
+        "git and the command line"
+      ],
+      "goals": [
+        "master frontend engineering",
+        "choose tools from evidence",
+        "learn visually and by experimenting"
+      ]
+    },
+    "visual_policy": "adaptive",
+    "visual_first": true,
+    "experience_policy": "adaptive",
+    "multi_stage": false,
+    "curriculum": {
+      "schema": 1,
+      "scope": "Set up and keep a disciplined developer workstation: shell, git, editor, AI-assisted coding, and Node version management, as the reproducible base for every later frontend topic.",
+      "max_depth": 3,
+      "max_concepts": 30,
+      "max_rounds": 6,
+      "concepts": [
+        {
+          "id": "workstation-setup",
+          "title": "Workstation setup",
+          "parent": null,
+          "complexity": "intermediate",
+          "importance": "critical",
+          "disposition": "included",
+          "source_ids": [],
+          "coverage": [],
+          "roadmap_items": []
+        },
+        {
+          "id": "terminal-and-shell",
+          "title": "Terminal and shell",
+          "parent": "workstation-setup",
+          "complexity": "basic",
+          "importance": "core",
+          "disposition": "included",
+          "source_ids": [],
+          "coverage": [],
+          "roadmap_items": [
+            "terminal-shell-basics"
+          ]
+        },
+        {
+          "id": "git-and-github",
+          "title": "Git and GitHub",
+          "parent": "workstation-setup",
+          "complexity": "intermediate",
+          "importance": "critical",
+          "disposition": "included",
+          "source_ids": [],
+          "coverage": [],
+          "roadmap_items": [
+            "git-github-fluency"
+          ]
+        },
+        {
+          "id": "editor-setup",
+          "title": "Editor setup",
+          "parent": "workstation-setup",
+          "complexity": "basic",
+          "importance": "core",
+          "disposition": "included",
+          "source_ids": [],
+          "coverage": [],
+          "roadmap_items": [
+            "vs-code-or-jetbrains-zed-setup"
+          ]
+        },
+        {
+          "id": "ai-assisted-development",
+          "title": "AI-assisted development",
+          "parent": "workstation-setup",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "source_ids": [],
+          "coverage": [],
+          "roadmap_items": [
+            "ai-assisted-development"
+          ]
+        },
+        {
+          "id": "node-version-management",
+          "title": "Node version management",
+          "parent": "workstation-setup",
+          "complexity": "basic",
+          "importance": "core",
+          "disposition": "included",
+          "source_ids": [],
+          "coverage": [],
+          "roadmap_items": [
+            "node-js-runtime-version-management"
+          ]
+        }
+      ],
+      "discovery": []
+    }
+  },
+  "stages": [
+    {
+      "id": "intake",
+      "wave": 0,
+      "skill": "learn-intake",
+      "status": "done",
+      "scope": "required",
+      "started_at": "2026-11-19T04:52:22Z",
+      "finished_at": "2026-11-19T04:52:57Z",
+      "attempts": 1,
+      "units": [],
+      "note": "",
+      "continue_after_failure": false,
+      "validation": {
+        "version": 2,
+        "fingerprint": "39f7c9047aff5c39960e71aa42e5db5666c4fa183965df1b8e744d8e9c236c7e",
+        "at": "2026-11-19T04:52:57Z",
+        "forced": false
+      }
+    },
+    {
+      "id": "research",
+      "wave": 1,
+      "skill": "learn-research",
+      "status": "pending",
+      "scope": "required",
+      "started_at": null,
+      "finished_at": null,
+      "attempts": 0,
+      "units": [],
+      "note": ""
+    },
+    {
+      "id": "brief",
+      "wave": 1,
+      "skill": "learn-brief",
+      "status": "pending",
+      "scope": "required",
+      "started_at": null,
+      "finished_at": null,
+      "attempts": 0,
+      "units": [],
+      "note": ""
+    },
+    {
+      "id": "digest",
+      "wave": 2,
+      "skill": "learn-digest",
+      "status": "pending",
+      "scope": "required",
+      "started_at": null,
+      "finished_at": null,
+      "attempts": 0,
+      "units": [],
+      "note": ""
+    },
+    {
+      "id": "repo-intel",
+      "wave": 2,
+      "skill": "learn-repo-intel",
+      "status": "pending",
+      "scope": "required",
+      "started_at": null,
+      "finished_at": null,
+      "attempts": 0,
+      "units": [],
+      "note": ""
+    },
+    {
+      "id": "lesson",
+      "wave": 3,
+      "skill": "learn-site",
+      "status": "pending",
+      "scope": "required",
+      "started_at": null,
+      "finished_at": null,
+      "attempts": 0,
+      "units": [],
+      "note": ""
+    },
+    {
+      "id": "mini-projects",
+      "wave": 3,
+      "skill": "learn-projects",
+      "status": "pending",
+      "scope": "required",
+      "started_at": null,
+      "finished_at": null,
+      "attempts": 0,
+      "units": [],
+      "note": ""
+    },
+    {
+      "id": "capstone",
+      "wave": 4,
+      "skill": "learn-capstone",
+      "status": "pending",
+      "scope": "required",
+      "started_at": null,
+      "finished_at": null,
+      "attempts": 0,
+      "units": [],
+      "note": ""
+    },
+    {
+      "id": "notes",
+      "wave": 5,
+      "skill": "learn-notes",
+      "status": "pending",
+      "scope": "required",
+      "started_at": null,
+      "finished_at": null,
+      "attempts": 0,
+      "units": [],
+      "note": ""
+    },
+    {
+      "id": "finalize",
+      "wave": 5,
+      "skill": "learn",
+      "status": "pending",
+      "scope": "required",
+      "started_at": null,
+      "finished_at": null,
+      "attempts": 0,
+      "units": [],
+      "note": ""
+    }
+  ],
+  "recall": {
+    "cards": {}
+  },
+  "log": [
+    {
+      "at": "2026-11-19T04:50:05Z",
+      "event": "init",
+      "message": "created with depth standard for roadmap frontend section 00.2"
+    },
+    {
+      "at": "2026-11-19T04:52:22Z",
+      "event": "start",
+      "message": "attempt 1",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-19T04:52:23Z",
+      "event": "plan",
+      "message": "plan fields set: summary, prerequisites, outcomes, lesson_outline, mini_projects, digest_targets, repo_targets, capstone, learner, visual_policy, visual_first, experience_policy, multi_stage, curriculum",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-19T04:52:46Z",
+      "event": "plan",
+      "message": "plan fields set: summary, prerequisites, outcomes, lesson_outline, mini_projects, digest_targets, repo_targets, capstone, learner, visual_policy, visual_first, experience_policy, multi_stage, curriculum",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-19T04:52:56Z",
+      "event": "note",
+      "message": "intake: domain=frontend-engineering/learning-system-and-workstation, depth=standard. Assumptions: all 5 roadmap items become included concepts (root workstation-setup added); git and AI-assisted marked critical; AI review loop gets an explainer video; repo-intel target nvm-sh/nvm; learner already knows command line and basic git."
+    },
+    {
+      "at": "2026-11-19T04:52:57Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "intake"
+    }
+  ],
+  "roadmap": {
+    "id": "frontend",
+    "section": "00.2"
+  }
+}

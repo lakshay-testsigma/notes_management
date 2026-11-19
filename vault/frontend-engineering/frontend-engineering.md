@@ -13,7 +13,8 @@ Building fast, accessible user interfaces for the browser with HTML, CSS, TypeSc
 <!-- tutor:generated:start -->
 ## learning-system-and-workstation
 
-- [[00-start-here-how-to-learn-frontend|How to learn frontend (and keep improving)]] — standard · 10/10 steps ready
+- [[00-start-here-how-to-learn-frontend|How to learn frontend (and keep improving)]] — standard · 9/10 steps ready
+- [[00-start-here-workstation-and-editor|Workstation & editor]] — standard · 1/10 steps ready
 <!-- tutor:generated:end -->
 
 ## My insights
