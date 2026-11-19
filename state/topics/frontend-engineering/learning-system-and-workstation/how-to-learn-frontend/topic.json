@@ -7,7 +7,7 @@
   "subdomain": "learning-system-and-workstation",
   "depth": "standard",
   "created_at": "2026-11-18T17:03:48Z",
-  "updated_at": "2026-11-19T04:05:39Z",
+  "updated_at": "2026-11-19T04:11:53Z",
   "paths": {
     "state": "state/topics/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend",
     "vault": "vault/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend",
@@ -300,7 +300,19 @@
           "source_ids": [
             "mdn-learn-web-development"
           ],
-          "coverage": [],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend/02-the-learning-loop.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "roadmap_items": [
             "learning-loop-read-build-measure-explain"
           ]
@@ -315,7 +327,19 @@
           "source_ids": [
             "mdn-web-standards-model"
           ],
-          "coverage": [],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend/03-primary-sources.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "roadmap_items": [
             "primary-sources-over-tutorials"
           ]
@@ -330,7 +354,19 @@
           "source_ids": [
             "web-dev-baseline"
           ],
-          "coverage": [],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend/04-browser-support.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "roadmap_items": [
             "browser-support-literacy-baseline-caniuse"
           ]
@@ -345,7 +381,19 @@
           "source_ids": [
             "mdn-feature-detection"
           ],
-          "coverage": [],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend/05-feature-detection.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "roadmap_items": [
             "feature-detection-polyfills-experimental-features"
           ]
@@ -360,7 +408,19 @@
           "source_ids": [
             "chrome-for-developers-release-notes"
           ],
-          "coverage": [],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend/07-teach-and-stay-current.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "roadmap_items": [
             "stay-current-newsletters-podcasts-surveys"
           ]
@@ -375,7 +435,19 @@
           "source_ids": [
             "frontendmentor-challenges"
           ],
-          "coverage": [],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend/06-practice-and-read-code.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "roadmap_items": [
             "practice-platforms-interview-prep"
           ]
@@ -391,7 +463,19 @@
             "ai-nanoid-repo",
             "pmndrs-zustand-repo"
           ],
-          "coverage": [],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend/06-practice-and-read-code.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "roadmap_items": [
             "read-other-people-s-code"
           ]
@@ -406,7 +490,19 @@
           "source_ids": [
             "mdn-getting-started-contributing"
           ],
-          "coverage": [],
+          "coverage": [
+            {
+              "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend/07-teach-and-stay-current.mdx",
+              "aspects": [
+                "explanation",
+                "mechanism",
+                "use-case",
+                "trade-offs",
+                "failure-modes",
+                "practice"
+              ]
+            }
+          ],
           "roadmap_items": [
             "build-in-public-teach"
           ]
@@ -466,7 +562,7 @@
           ],
           "added": [],
           "stop_reason": "scope-boundary",
-          "note": "Research proposed sub-concepts (release-notes-tracking, challenge-briefs, portfolio-and-review, ai-assisted-practice, writing-for-learners, review-feedback-loop) that are folded into their parents' coverage at standard depth; ecosystem-signals and open-source-etiquette deferred. The read-build-measure-explain loop is a synthesis of MDN's documented learn cycle; no official page states that exact loop."
+          "note": "Research proposed sub-concepts (release-notes-tracking, challenge-briefs, portfolio-and-review, ai-assisted-practice, writing-for-learners, review-feedback-loop) folded into their parents' coverage at standard depth; ecosystem-signals and open-source-etiquette deferred. The read-build-measure-explain loop is a synthesis of MDN's documented learn cycle."
         }
       ]
     }
@@ -479,15 +575,15 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T17:03:54Z",
-      "finished_at": "2026-11-18T17:32:25Z",
+      "finished_at": "2026-11-19T04:07:45Z",
       "attempts": 1,
       "units": [],
       "note": "",
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "ec1dc49b00b2fd8ba31d00622282e2da4a6644602dcc5ff738f81c49c40d0c51",
-        "at": "2026-11-18T17:32:25Z",
+        "fingerprint": "19672a66ec3fae7dcf3b876ca6be7371fc3eb16b98af36185400126a2c5449b5",
+        "at": "2026-11-19T04:07:45Z",
         "forced": false
       }
     },
@@ -498,7 +594,7 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T17:05:59Z",
-      "finished_at": "2026-11-18T17:32:38Z",
+      "finished_at": "2026-11-19T04:08:42Z",
       "attempts": 1,
       "units": [
         {
@@ -521,8 +617,8 @@
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "c3b68824854de3180e7b9e4e01ccc8038fd07c93a25253fde3b47de79b2478bd",
-        "at": "2026-11-18T17:32:38Z",
+        "fingerprint": "c10bd8bb2bffaca08db3a718e20dd0b09b91c50269c9cdf5480c790bc542d984",
+        "at": "2026-11-19T04:08:42Z",
         "forced": false
       }
     },
@@ -533,15 +629,15 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T17:32:55Z",
-      "finished_at": "2026-11-18T19:16:20Z",
+      "finished_at": "2026-11-19T04:08:43Z",
       "attempts": 1,
       "units": [],
       "note": "",
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "f9b3d3e7c60ce7169978da1a9f0d24bdb10cf1ef2f2db76812d72c4233be36bf",
-        "at": "2026-11-18T19:16:20Z",
+        "fingerprint": "941e063b3f6132ab3f4b12332d16bda87a19459be8eeaca16916559c119f28cb",
+        "at": "2026-11-19T04:08:43Z",
         "forced": false
       }
     },
@@ -552,7 +648,7 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T17:35:09Z",
-      "finished_at": "2026-11-18T17:44:40Z",
+      "finished_at": "2026-11-19T04:08:45Z",
       "attempts": 1,
       "units": [
         {
@@ -570,8 +666,8 @@
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "2dad536dfcfa13f87dd3c743faedacc839a5a11fffe8c9013d60aacdb1338993",
-        "at": "2026-11-18T17:44:40Z",
+        "fingerprint": "3ebc0d5feee7740c3021fcc515b3926438bd66daa02ab756ef2a0dd788ae5541",
+        "at": "2026-11-19T04:08:45Z",
         "forced": false
       }
     },
@@ -582,7 +678,7 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T17:35:10Z",
-      "finished_at": "2026-11-18T18:18:05Z",
+      "finished_at": "2026-11-19T04:08:46Z",
       "attempts": 1,
       "units": [
         {
@@ -620,8 +716,8 @@
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "449ff11e724ffffb61c305d2cff78de8f8bf62ef281944b06352c8485e02a45e",
-        "at": "2026-11-18T18:18:05Z",
+        "fingerprint": "9e59b7fc6a19afad554d15e00c60cc003aa31bf1351dd40f7541299b3840521f",
+        "at": "2026-11-19T04:08:46Z",
         "forced": false
       }
     },
@@ -632,7 +728,7 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T19:48:29Z",
-      "finished_at": "2026-11-19T04:05:30Z",
+      "finished_at": "2026-11-19T04:08:47Z",
       "attempts": 3,
       "units": [
         {
@@ -713,8 +809,8 @@
       ],
       "validation": {
         "version": 2,
-        "fingerprint": "bdd608edd146ed04f37d29736b3e4874c8c4acd82b2e4271de1592779e97c9fb",
-        "at": "2026-11-19T04:05:30Z",
+        "fingerprint": "4465abb97f76528adc5d118ef9aecac6a4483482c0c77684730f07022dd287ad",
+        "at": "2026-11-19T04:08:47Z",
         "forced": false
       }
     },
@@ -725,7 +821,7 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T18:18:40Z",
-      "finished_at": "2026-11-18T19:20:37Z",
+      "finished_at": "2026-11-19T04:08:59Z",
       "attempts": 1,
       "units": [
         {
@@ -743,8 +839,8 @@
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "58ca234ea861b75c140f836d8d1a1455bbbcd528e6362395f8daa317f14cfba9",
-        "at": "2026-11-18T19:20:37Z",
+        "fingerprint": "af0b510644ed5686a83974e4c297328476ba975e3077c043a87c03c4812856fb",
+        "at": "2026-11-19T04:08:59Z",
         "forced": false
       }
     },
@@ -755,7 +851,7 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T19:21:04Z",
-      "finished_at": "2026-11-18T19:32:10Z",
+      "finished_at": "2026-11-19T04:09:07Z",
       "attempts": 1,
       "units": [
         {
@@ -768,8 +864,8 @@
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "4ce7aa098b1146c6e4a92532ebc529278aa27a1e338d2ed39ec09de92279550f",
-        "at": "2026-11-18T19:32:10Z",
+        "fingerprint": "5264991e1c3d92c5ee016da7ae08bbd1975c1dc28e1fab92ad74ab37ad8ca082",
+        "at": "2026-11-19T04:09:07Z",
         "forced": false
       }
     },
@@ -780,15 +876,15 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T19:32:36Z",
-      "finished_at": "2026-11-19T04:05:39Z",
+      "finished_at": "2026-11-19T04:09:08Z",
       "attempts": 1,
       "units": [],
       "note": "",
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "2ecac9b566ba4055efa331b6e6c2a072d6b1bac6ce6fbcd975bcc7a6600aca22",
-        "at": "2026-11-19T04:05:39Z",
+        "fingerprint": "8ad64af809041520d2eeaae4023645ba32f1cc59db59757dd0efdd1f0176e17d",
+        "at": "2026-11-19T04:09:08Z",
         "forced": false
       }
     },
@@ -796,11 +892,11 @@
       "id": "finalize",
       "wave": 5,
       "skill": "learn",
-      "status": "pending",
+      "status": "in_progress",
       "scope": "required",
-      "started_at": null,
+      "started_at": "2026-11-19T04:06:00Z",
       "finished_at": null,
-      "attempts": 0,
+      "attempts": 1,
       "units": [],
       "note": ""
     }
@@ -1612,6 +1708,102 @@
       "event": "done",
       "message": "gate passed",
       "stage": "notes"
+    },
+    {
+      "at": "2026-11-19T04:06:00Z",
+      "event": "start",
+      "message": "attempt 1",
+      "stage": "finalize"
+    },
+    {
+      "at": "2026-11-19T04:07:43Z",
+      "event": "plan",
+      "message": "plan fields set: curriculum",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-19T04:07:45Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-19T04:08:41Z",
+      "event": "execution-check",
+      "message": "research: pass",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-19T04:08:42Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-19T04:08:43Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "brief"
+    },
+    {
+      "at": "2026-11-19T04:08:45Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "digest"
+    },
+    {
+      "at": "2026-11-19T04:08:46Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-19T04:08:47Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-19T04:08:58Z",
+      "event": "execution-check",
+      "message": "mini-projects: pass",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-19T04:08:59Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-19T04:09:05Z",
+      "event": "execution-check",
+      "message": "capstone: pass",
+      "stage": "capstone"
+    },
+    {
+      "at": "2026-11-19T04:09:07Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "capstone"
+    },
+    {
+      "at": "2026-11-19T04:09:08Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "notes"
+    },
+    {
+      "at": "2026-11-19T04:09:21Z",
+      "event": "execution-check",
+      "message": "finalize: failed",
+      "stage": "finalize"
+    },
+    {
+      "at": "2026-11-19T04:11:53Z",
+      "event": "execution-check",
+      "message": "finalize: pass",
+      "stage": "finalize"
     }
   ],
   "roadmap": {
@@ -1622,8 +1814,8 @@
     "executions": {
       "research": {
         "version": 2,
-        "fingerprint": "c3b68824854de3180e7b9e4e01ccc8038fd07c93a25253fde3b47de79b2478bd",
-        "at": "2026-11-18T17:32:34Z",
+        "fingerprint": "c10bd8bb2bffaca08db3a718e20dd0b09b91c50269c9cdf5480c790bc542d984",
+        "at": "2026-11-19T04:08:41Z",
         "ok": true,
         "checks": [
           {
@@ -1632,8 +1824,8 @@
             "requested_url": "https://developer.chrome.com/release-notes",
             "ok": true,
             "status": 200,
-            "bytes": 93514,
-            "sha256": "09b09bec9dab5b24148308644fb777b5f010cda12c8e27cee5e3a4e8a59fca73"
+            "bytes": 93518,
+            "sha256": "7fdbd767840cc7c51bac3acfe94dcfc8403e77904044bac47bb43a9ca41e54ae"
           },
           {
             "label": "frontendmentor-challenges: https://www.frontendmentor.io/",
@@ -1651,7 +1843,7 @@
             "ok": true,
             "status": 200,
             "bytes": 156014,
-            "sha256": "d864f118a272c04c00e1067b34dd6bc40e1aa0f603de6a95b5e5fb581b1f3bf2"
+            "sha256": "ebeb0a946ccc8f6e52b83315de3c085110e4b86f3509923b1c0bdbbde68e90c1"
           },
           {
             "label": "mdn-learn-web-development: https://developer.mozilla.org/en-US/docs/Learn_web_development",
@@ -1659,8 +1851,8 @@
             "requested_url": "https://developer.mozilla.org/en-US/docs/Learn_web_development",
             "ok": true,
             "status": 200,
-            "bytes": 185448,
-            "sha256": "28812d12a7e833202679c02f019fe7d6213d3146fd1200cbf0244a12efea8c88"
+            "bytes": 187822,
+            "sha256": "c9d84970666e385642d32afcbc573132007a95f84b887016e2aafcb9808b5f4b"
           },
           {
             "label": "mdn-web-standards-model: https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Web_standards/The_web_standards_model",
@@ -1668,8 +1860,8 @@
             "requested_url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Web_standards/The_web_standards_model",
             "ok": true,
             "status": 200,
-            "bytes": 208340,
-            "sha256": "d45dde1ea57786d6305ad7eaf8367513f52442b6e76bd0ce7cd8284dda5656ca"
+            "bytes": 210718,
+            "sha256": "d55470fbe331f99c446d9680dc571abad8f06e6c8963210504cea456bb439b1b"
           },
           {
             "label": "web-dev-baseline: https://web.dev/baseline",
@@ -1677,8 +1869,8 @@
             "requested_url": "https://web.dev/baseline",
             "ok": true,
             "status": 200,
-            "bytes": 215823,
-            "sha256": "ccfeac16cccf516eafb8380a4fa803d7a344f0017f03cfd06dee2f49488efb39"
+            "bytes": 215819,
+            "sha256": "b85c0cbc0e063f9d61c0cad0a1fc112048e9c524f91b750c35c246fba50b11a1"
           },
           {
             "label": "mdn-feature-detection: https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Testing/Feature_detection",
@@ -1686,8 +1878,8 @@
             "requested_url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Testing/Feature_detection",
             "ok": true,
             "status": 200,
-            "bytes": 190881,
-            "sha256": "6d4dd51ed8afecd95b8aa935ead7d96e7e6564575a76acd342601b16be0e85c1"
+            "bytes": 193259,
+            "sha256": "568e337482fc4c9d0cb536fac1d9af8aa50f4c59c80e4b1b29943cd0b7effafd"
           },
           {
             "label": "ai-nanoid-repo: https://api.github.com/repos/ai/nanoid",
@@ -1696,9 +1888,9 @@
             "ok": true,
             "status": 200,
             "bytes": 5316,
-            "sha256": "1d70f55bd67add6bc278f685d3ffe14e22860f457987cfabc2c48e95cdfe8a26",
+            "sha256": "bceb62410517efea6a3c0aca743b47a8294e6dc2c38bd21459cf0af188a562e7",
             "repository": {
-              "stars": 27136,
+              "stars": 27139,
               "archived": false,
               "pushed_at": "2026-11-05T20:34:00Z",
               "license": "MIT"
@@ -1711,7 +1903,7 @@
             "ok": true,
             "status": 200,
             "bytes": 6800,
-            "sha256": "42b092f85f46cd122538aa75cd9f615c02449290a0475173c1fc04cc050c142a",
+            "sha256": "f3d9b407eaaf90294d4be90f9c51a395cfac1afdcfa8d7c70354b911c08dd3fc",
             "repository": {
               "stars": 58948,
               "archived": false,
@@ -1723,8 +1915,8 @@
       },
       "mini-projects": {
         "version": 2,
-        "fingerprint": "58ca234ea861b75c140f836d8d1a1455bbbcd528e6362395f8daa317f14cfba9",
-        "at": "2026-11-18T19:20:27Z",
+        "fingerprint": "af0b510644ed5686a83974e4c297328476ba975e3077c043a87c03c4812856fb",
+        "at": "2026-11-19T04:08:58Z",
         "ok": true,
         "checks": [
           {
@@ -1736,7 +1928,7 @@
             "expected_exit": 0,
             "exit": 0,
             "ok": true,
-            "output_sha256": "b7e8ae7f59c2ccbda31b55d1fdac836477d4c832a11939da9ed92c1e92f02368"
+            "output_sha256": "35ac8d813f1a5eafa647ef1782da6bccdac5a635f4b6b607b2b3a91ca28dbafc"
           },
           {
             "label": "mini-01-ship-it-checker: typecheck",
@@ -1771,7 +1963,7 @@
             "expected_exit": 1,
             "exit": 1,
             "ok": true,
-            "output_sha256": "5fe9e53c260a75ac24aad97d03750789671967b29863be19547960456661f7ee"
+            "output_sha256": "85e38a64b9788f7958e8bd9cd40a32981f5f7fe2175905b1d673684a66eb5173"
           },
           {
             "label": "mini-01-ship-it-checker: starter-start",
@@ -1817,7 +2009,7 @@
             "expected_exit": 0,
             "exit": 0,
             "ok": true,
-            "output_sha256": "d3e48889918f492eb153910a1c23c0aa8cedd919b5f39c59be5b53fcd16280c2"
+            "output_sha256": "61f465f03f4b5bb8fa8e2d9d86c2b1b31771bd7616fc1d3926c9744378cc8a80"
           },
           {
             "label": "mini-02-learning-log: typecheck",
@@ -1852,7 +2044,7 @@
             "expected_exit": 1,
             "exit": 1,
             "ok": true,
-            "output_sha256": "c5ee18aa039b48d483bbfba2e39c7a82dadef15e9f1aa80073b9b97c210a6cf7"
+            "output_sha256": "b678e8bd3d74e6710498a268c25048622687e0ded4bac23e863ef8b8a88a6003"
           },
           {
             "label": "mini-02-learning-log: starter-start",
@@ -1870,7 +2062,7 @@
             "expected_exit": 1,
             "exit": 1,
             "ok": true,
-            "output_sha256": "f314f9b6bcf02571be6c0321328e2568df55050e993ebd6597d7702897c60d34"
+            "output_sha256": "28f89249d81b9acc9615c4997d5ee56e38be65b715d88905ab82bf522acc1608"
           },
           {
             "label": "mini-02-learning-log: typecheck",
@@ -1900,8 +2092,8 @@
       },
       "capstone": {
         "version": 2,
-        "fingerprint": "4ce7aa098b1146c6e4a92532ebc529278aa27a1e338d2ed39ec09de92279550f",
-        "at": "2026-11-18T19:32:02Z",
+        "fingerprint": "5264991e1c3d92c5ee016da7ae08bbd1975c1dc28e1fab92ad74ab37ad8ca082",
+        "at": "2026-11-19T04:09:05Z",
         "ok": true,
         "checks": [
           {
@@ -1913,7 +2105,7 @@
             "expected_exit": 0,
             "exit": 0,
             "ok": true,
-            "output_sha256": "107784525df8971b674eaa480874f367e72b2d6c25484ebd55fb94ba996e90c4"
+            "output_sha256": "52d0b49e9e07e7581a065ee4883859c83c183bc9f1ee52b86803dfa7b71335e0"
           },
           {
             "label": "capstone: typecheck",
@@ -1937,7 +2129,7 @@
             "expected_exit": 0,
             "exit": 0,
             "ok": true,
-            "output_sha256": "a15f6706375d4761f9630a792aad998beddfe5ed3ee06a85357294902f236e89"
+            "output_sha256": "aeff7f9418669ad0dd9bfbb53d0c29b6b4b5f865670f0c8564d88a534ba61391"
           },
           {
             "label": "capstone: audit",
@@ -1950,6 +2142,56 @@
             "exit": 0,
             "ok": true,
             "output_sha256": "6d8c5c8f3d7684adb070417bd608d01ae90aa3dc26a65af03ffda4955f38d9a3"
+          }
+        ]
+      },
+      "finalize": {
+        "version": 2,
+        "fingerprint": "43699744241c8b7f52dc5e4d1f03ae114ceffd2cbf8ea9becfc06a196456706e",
+        "at": "2026-11-19T04:11:53Z",
+        "ok": true,
+        "checks": [
+          {
+            "label": "site build",
+            "command": "npm",
+            "args": [
+              "--prefix",
+              "site",
+              "run",
+              "build"
+            ],
+            "expected_exit": 0,
+            "exit": 0,
+            "ok": true,
+            "output_sha256": "4d116289841906482cf14408455df1af551ac14dcc4b0c6d2bf3c589d5eab179"
+          },
+          {
+            "label": "site smoke",
+            "command": "npm",
+            "args": [
+              "--prefix",
+              "site",
+              "run",
+              "smoke"
+            ],
+            "expected_exit": 0,
+            "exit": 0,
+            "ok": true,
+            "output_sha256": "67270482ec59c39179282ae2125f632eb04a8b9570825c67e1335d90faca9cb8"
+          },
+          {
+            "label": "site manifest:check",
+            "command": "npm",
+            "args": [
+              "--prefix",
+              "site",
+              "run",
+              "manifest:check"
+            ],
+            "expected_exit": 0,
+            "exit": 0,
+            "ok": true,
+            "output_sha256": "9cf80b4d6837916eb7b42c75c5478750c54297762700cff81b192e0cd083e529"
           }
         ]
       }

@@ -11,7 +11,7 @@ created: 2026-11-18
 This is the map of the topic. Read the steps from top to bottom. Each step links to the next thing to open, so you never have to search.
 
 <!-- tutor:generated:start -->
-**Depth:** standard · **Progress:** 9 of 10 steps ready
+**Depth:** standard · **Progress:** 8 of 10 steps ready
 
 How to learn frontend and keep improving: a repeatable read-build-measure-explain loop built on primary sources, browser-support literacy, and continuous practice.
 
@@ -70,7 +70,7 @@ Set up how a developer learns frontend and keeps improving: the learning loop, p
 - Reading source code: included
 - Teaching in public: included
 
-Research stopped: scope-boundary. Research proposed sub-concepts (release-notes-tracking, challenge-briefs, portfolio-and-review, ai-assisted-practice, writing-for-learners, review-feedback-loop) that are folded into their parents' coverage at standard depth; ecosystem-signals and open-source-etiquette deferred. The read-build-measure-explain loop is a synthesis of MDN's documented learn cycle; no official page states that exact loop.
+Research stopped: scope-boundary. Research proposed sub-concepts (release-notes-tracking, challenge-briefs, portfolio-and-review, ai-assisted-practice, writing-for-learners, review-feedback-loop) folded into their parents' coverage at standard depth; ecosystem-signals and open-source-etiquette deferred. The read-build-measure-explain loop is a synthesis of MDN's documented learn cycle.
 
 ## Projects
 
@@ -91,9 +91,9 @@ Research stopped: scope-boundary. Research proposed sub-concepts (release-notes-
 | 3 | mini-projects | ready |
 | 4 | capstone | ready |
 | 5 | notes | ready |
-| 5 | finalize | not started |
+| 5 | finalize | in progress |
 
-Next to generate: `finalize`. Ask Claude to continue this topic, or run `node harness/bin/tutor.mjs next frontend-engineering/learning-system-and-workstation/how-to-learn-frontend`.
+Next to generate: `lesson`. Ask Claude to continue this topic, or run `node harness/bin/tutor.mjs next frontend-engineering/learning-system-and-workstation/how-to-learn-frontend`.
 <!-- tutor:generated:end -->
 
 ## My insights
