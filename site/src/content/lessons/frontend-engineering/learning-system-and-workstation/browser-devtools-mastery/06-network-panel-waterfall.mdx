@@ -52,11 +52,21 @@ Now change the conditions yourself. Pick a throttling preset or turn off Disable
   ]}
 />
 
+<Depth level="internals">
+
+The Initiator column names what started a request: the HTML parser, a redirect, a script, an HTTP 103 Early Hints response, or Other, such as a typed URL. For a script, it links to the source line. Hover the cell to see the stack trace that sent the request. Hold Shift and hover a row: DevTools colors initiators green and dependencies red. The first green row above is the initiator, and a green row above that is its initiator. Use this chain when a file loads late, to see which file had to load first.
+
+Right-click the table header to add the Priority column. With Settings > Big request rows, it shows the initial priority (bottom value) and the final priority (top value). A low priority explains a long Queueing phase: the browser sent higher-priority requests first.
+
+</Depth>
+
 <Depth level="production">
 
-The Initiator column names what started a request: the HTML parser, a redirect or a script, with a link to the script line. Hold Shift and hover a row: initiators turn green and dependencies red. Right-click a row to copy it as cURL or as fetch and replay it outside the browser. The Network request blocking tab in the drawer blocks a URL, so you see how the page behaves without it. A HAR export leaves out Cookie, Set-Cookie and Authorization headers unless you turn on sensitive data. Then treat the file as a secret.
+Right-click a row and choose Copy > Copy as cURL or Copy as fetch. You get the same request as a command. Run it in a terminal or in Node.js to replay a failing API call without the UI, or send it to a backend developer as an exact repro.
 
-Right-click the table header to add columns such as Priority. Check Disable cache to see what a first-time visitor loads. A "Provisional headers" warning means the request came from cache or was invalid, so the Headers tab may be incomplete.
+A HAR (HTTP Archive) file is JSON that holds every recorded request. Export HAR (sanitized) leaves out Cookie, Set-Cookie and Authorization headers. Export with sensitive data needs a setting first, and that file can hold session cookies and tokens, so treat it as a secret. A teammate can drag a HAR into their Network panel and read the same waterfall.
+
+The Network request blocking tab in the drawer blocks a URL, so you see how the page behaves without it. Check Disable cache to see what a first-time visitor loads. A "Provisional headers" warning means the request came from cache or was invalid, so the Headers tab may be incomplete.
 
 </Depth>
 

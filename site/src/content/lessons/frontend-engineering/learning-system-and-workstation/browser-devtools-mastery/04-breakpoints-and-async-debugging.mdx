@@ -56,11 +56,15 @@ A plain breakpoint pauses on every keystroke. A **conditional breakpoint** pause
 
 DevTools links the two halves of async code through a feature it calls Async Stack Tagging. It is based on the `console.createTask()` API method, and each framework must call that API itself. Angular supports it. When your framework does not, the Call Stack can stop at the callback. The Restart frame action reruns one paused function without restarting the whole flow.
 
+A line breakpoint is slow to set when you do not know where to look. Three other types find the line for you. An XHR/fetch breakpoint pauses on the line that sends a request when its URL contains a string, such as `/search`. Use it when the page requests a wrong URL and you cannot find the code that sends it. A DOM change breakpoint pauses on the code that changes a node: its subtree, its attributes, or its removal. Use it when something rewrites the results list and you do not know what. An event listener breakpoint pauses in the handler that runs after an event, such as `input` or `click`.
+
 </Depth>
 
 <Depth level="production">
 
 By default, the Call Stack hides frames from scripts on the Ignore List, such as framework code. Turn on "Show ignore-listed frames" when the cause sits inside a library. Right-click the Call Stack and choose Copy stack trace to paste the chain into a bug report.
+
+A **snippet** is a script that you save in Sources > Snippets and run on any page with Ctrl+Enter (Cmd+Enter on Mac). It runs in the page's JavaScript context. For example, a snippet can type "ca" and "cat" into the search box each time you reproduce the race. The benefit over pasting code into the Console is reuse. DevTools stores snippets as local preferences only, so they do not sync to another machine.
 
 </Depth>
 

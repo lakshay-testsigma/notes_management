@@ -7,7 +7,7 @@
   "subdomain": "learning-system-and-workstation",
   "depth": "deep",
   "created_at": "2026-11-19T09:53:51Z",
-  "updated_at": "2026-11-19T11:12:54Z",
+  "updated_at": "2026-11-19T11:18:46Z",
   "paths": {
     "state": "state/topics/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery",
     "vault": "vault/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery",
@@ -1453,57 +1453,82 @@
       "skill": "learn-site",
       "status": "done",
       "scope": "required",
-      "started_at": "2026-11-19T10:34:36Z",
-      "finished_at": "2026-11-19T10:56:39Z",
-      "attempts": 1,
+      "started_at": "2026-11-19T11:16:13Z",
+      "finished_at": "2026-11-19T11:18:46Z",
+      "attempts": 2,
       "units": [
         {
-          "id": "experience-breakpoints-async-debugging",
+          "id": "audit1-pages-04-06-07",
           "status": "done",
           "handoff": null
         },
         {
-          "id": "experience-network-panel-waterfall",
-          "status": "done",
-          "handoff": null
-        },
-        {
-          "id": "experience-performance-panel-traces",
-          "status": "done",
-          "handoff": null
-        },
-        {
-          "id": "experience-a-production-debugging-workflow",
-          "status": "done",
-          "handoff": null
-        },
-        {
-          "id": "pages-01-03",
-          "status": "done",
-          "handoff": null
-        },
-        {
-          "id": "pages-04-06",
-          "status": "done",
-          "handoff": null
-        },
-        {
-          "id": "pages-07-09",
-          "status": "done",
-          "handoff": null
-        },
-        {
-          "id": "pages-10-12",
+          "id": "audit1-pages-10-11",
           "status": "done",
           "handoff": null
         }
       ],
       "note": "",
       "continue_after_failure": false,
+      "history": [
+        {
+          "at": "2026-11-19T11:16:10Z",
+          "status": "done",
+          "validation": {
+            "version": 2,
+            "fingerprint": "310edc66a7d63c2ed51c4a116a2dcb677af92eab6f09aa2cedad28a06f00bd8f",
+            "at": "2026-11-19T10:56:39Z",
+            "forced": false
+          },
+          "units": [
+            {
+              "id": "experience-breakpoints-async-debugging",
+              "status": "done",
+              "handoff": null
+            },
+            {
+              "id": "experience-network-panel-waterfall",
+              "status": "done",
+              "handoff": null
+            },
+            {
+              "id": "experience-performance-panel-traces",
+              "status": "done",
+              "handoff": null
+            },
+            {
+              "id": "experience-a-production-debugging-workflow",
+              "status": "done",
+              "handoff": null
+            },
+            {
+              "id": "pages-01-03",
+              "status": "done",
+              "handoff": null
+            },
+            {
+              "id": "pages-04-06",
+              "status": "done",
+              "handoff": null
+            },
+            {
+              "id": "pages-07-09",
+              "status": "done",
+              "handoff": null
+            },
+            {
+              "id": "pages-10-12",
+              "status": "done",
+              "handoff": null
+            }
+          ],
+          "note": ""
+        }
+      ],
       "validation": {
         "version": 2,
-        "fingerprint": "310edc66a7d63c2ed51c4a116a2dcb677af92eab6f09aa2cedad28a06f00bd8f",
-        "at": "2026-11-19T10:56:39Z",
+        "fingerprint": "9f2189ae7208d2dbc687d50722242032b9ded3b994d27917ef3ba843983d19dc",
+        "at": "2026-11-19T11:18:46Z",
         "forced": false
       }
     },
@@ -2803,6 +2828,58 @@
       "event": "done",
       "message": "gate passed",
       "stage": "notes"
+    },
+    {
+      "at": "2026-11-19T11:15:46Z",
+      "event": "note",
+      "message": "SPAWN 33/56 (coverage audit round 1)"
+    },
+    {
+      "at": "2026-11-19T11:16:10Z",
+      "event": "reset",
+      "message": "was done",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-19T11:16:13Z",
+      "event": "start",
+      "message": "attempt 2",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-19T11:16:16Z",
+      "event": "unit-add",
+      "message": "unit audit1-pages-04-06-07",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-19T11:16:19Z",
+      "event": "unit-add",
+      "message": "unit audit1-pages-10-11",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-19T11:16:22Z",
+      "event": "note",
+      "message": "AUDIT round 1: 7 gaps, 6 sent to owning pages as FIX LIST (04,06,07,10,11), interactivity gap dropped (grep false positive). SPAWN 35/56."
+    },
+    {
+      "at": "2026-11-19T11:18:10Z",
+      "event": "unit-done",
+      "message": "unit audit1-pages-04-06-07",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-19T11:18:29Z",
+      "event": "unit-done",
+      "message": "unit audit1-pages-10-11",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-19T11:18:46Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "lesson"
     }
   ],
   "roadmap": {

@@ -55,7 +55,7 @@ Click a box in the Main track to see its duration, self time, source link and st
 
 <Depth level="production">
 
-The benefit over timing code by hand is that one recording covers loading, scripts and rendering, with no code change. For a slow first load, use Record and reload: DevTools opens about:blank, reloads, and stops a few seconds after load. The Insights tab lists the same insights as Lighthouse and highlights the matching events. Annotate a trace and share it with a teammate. The fix for a long task is usually to split it and yield to the main thread.
+The benefit over timing code by hand is that one recording covers loading, scripts and rendering, with no code change. For a slow first load, use Record and reload: DevTools opens about:blank, reloads, and stops a few seconds after load. The Insights tab in the left sidebar lists the insights that Lighthouse also reports, such as LCP and INP subparts, third parties, and duplicated JavaScript. Failed insights get their own sections, and passed ones collapse at the bottom. Click an item, and the panel highlights the matching events in the trace. So you go from advice to the exact task. The reference says that you can annotate a recording and share it, but it leaves the steps to a separate guide. The reference does not mention Long Animation Frames, so this page uses only its long-task marks. The fix for a long task is usually to split it and yield to the main thread.
 
 </Depth>
 
