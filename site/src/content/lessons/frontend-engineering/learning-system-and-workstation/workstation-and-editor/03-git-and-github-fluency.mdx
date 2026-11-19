@@ -25,4 +25,12 @@ Now order the commands that rebase a feature branch onto main.
   ]}
 />
 
+Both integrations land on a **remote**, a copy of the repository on a server such as GitHub. `git push` sends a branch up; `git pull` fetches and merges the remote's new commits. When a change goes wrong, three tools recover it. `git stash` shelves uncommitted work. `git reset` moves a branch back. `git reflog` shows where your branches recently pointed, so a reset-away commit can be found.
+
+<Depth level="internals">
+
+Two ways to authenticate a push. **HTTPS** uses a personal access token that a credential helper caches. **SSH** uses a key pair: the public key goes on GitHub, the private key stays on your machine. `git stash` records uncommitted changes and restores the working tree to HEAD, the commit you have checked out. `git stash pop` reapplies them. `git reset --soft`, `--mixed`, and `--hard` move a branch back while keeping changes staged, unstaged, or discarded. `git reflog` lists every position HEAD has held, so a reset-away commit can be checked out again.
+
+</Depth>
+
 History is where the two join; the editor is where each commit gets written. Next, sharpen it.

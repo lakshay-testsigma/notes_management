@@ -7,6 +7,8 @@ concepts: [settings scope, user settings, workspace settings]
 
 You clone a team's frontend repository, open it, and your editor indents with tabs while every merged change uses two spaces. You reformat one file by accident and the diff turns into a mess. The team already fixed this, and the answer is sitting in the repo.
 
+This page uses VS Code, but JetBrains IDEs and Zed offer the same capabilities with different defaults; choosing among them is workflow, not power.
+
 VS Code keeps every **setting** — a named option such as format-on-save — in a **scope**, the place that holds it. **User settings** live in a `settings.json` on your machine and apply to every project you open. **Workspace settings** live in a `.vscode/settings.json` inside one repository, apply only to that project, and travel with it through version control.
 
 Read the map from the top. The same change can land in one of two scopes, and only the workspace one reaches the team.

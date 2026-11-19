@@ -40,4 +40,12 @@ awk '{ print "https://developer.mozilla.org" $2 }'
 
 Three programs that know nothing of each other produced one answer. The pipe is what made them cooperate. Each stage passed its STDOUT to the next stage's STDIN, and only the last stage's output reached the screen. Without a pipe, each tool prints to the screen and you read three separate outputs instead of one answer.
 
+Not every command finishes in a blink. When one runs too long, **job control** pauses or stops it. **Ctrl-C** sends the signal SIGINT and stops the foreground process. **Ctrl-Z** suspends it instead. `fg` brings it back to the foreground and `bg` lets it keep running behind the prompt. Environment variables and aliases you want on every shell live in `~/.zshrc`.
+
+<Depth level="internals">
+
+The terminal turns a key press into a **signal**, a short message to a running process. SIGINT ("interrupt") stops the foreground process; SIGTSTP ("terminal stop") suspends it so the shell can resume it later. `fg` and `bg` move that suspended job between the foreground and the background. `.zshrc` is a shell script that zsh runs at every interactive start. That is why an alias or `export` you add there shows up at the next prompt, not in a shell that was already open.
+
+</Depth>
+
 Pipes reshape text; git reshapes history. Next, joining two branches.
