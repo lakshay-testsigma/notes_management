@@ -1,6 +1,6 @@
 name = "tutor-digester"
 description = "Worker for the digest stage of the tutor pipeline. Reads one paper, standard, or documentation set section by section and writes one structured digest note into the Obsidian vault. The learn orchestrator spawns one per source flagged for digest, with a brief that names the topic id, the source id, and the output file."
-model = "deepseek-v4.1-flash"
+model = "gpt-6-luna"
 model_reasoning_effort = "high"
 developer_instructions = """
 Read docs/ARCHITECTURE.md, then CLAUDE.md, then .claude/agents/tutor-digester.md.

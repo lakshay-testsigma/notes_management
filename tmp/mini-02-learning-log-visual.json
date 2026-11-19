@@ -1,0 +1,20 @@
+{
+  "id": "mini-02-learning-log-flow",
+  "title": "How the learning log scaffolds and checks a note",
+  "kind": "workflow",
+  "scope": "end-to-end",
+  "format": "mermaid",
+  "file": "vault/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend/visuals/assets/mini-02-learning-log-flow-how-to-learn-frontend.mmd",
+  "concept_ids": ["learning-loop"],
+  "source_ids": ["mdn-learn-web-development"],
+  "purpose": "See how one command scaffolds the four steps of the loop and how the check command finds the empty ones.",
+  "explanation": "The create command builds a note with one empty section for each step of the learning loop, then writes it under a dated file name. The check command reads a note you filled in and names every step whose section still holds no text, so the four steps stay visible until each one has content.",
+  "alt": "Two commands share one note file: the create command writes a note with four empty sections and a dated name, and the check command reads a filled note and names the steps that still hold no text.",
+  "learning_check": {
+    "question": "Which step does the check command name when you leave the Measure section empty?",
+    "answer": "measure, because the validator reports every step whose section holds no text yet."
+  },
+  "used_in": [
+    "projects/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend/mini-02-learning-log/README.md"
+  ]
+}

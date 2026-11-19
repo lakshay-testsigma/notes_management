@@ -1,0 +1,18 @@
+{
+  "id": "mdn-publish-review-loop",
+  "title": "Publishing on MDN: the review loop",
+  "kind": "workflow",
+  "scope": "detail",
+  "format": "mermaid",
+  "file": "vault/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend/visuals/assets/mdn-publish-review-loop-how-to-learn-frontend.mmd",
+  "concept_ids": ["teaching-in-public"],
+  "source_ids": ["mdn-getting-started-contributing"],
+  "purpose": "See that publishing on MDN is a review loop, not a one-shot upload.",
+  "explanation": "A contribution to MDN starts when you pick a task from the board, claim it, and tag the MDN community team so a mentor can find it. You open a pull request, get the writing reviewed, and the page goes live. Teaching in public is this loop: write it, ship it, and let a reviewer correct what you missed.",
+  "alt": "Six steps in a row: pick a task, claim it and tag the MDN community team, get hints from a mentor, open a pull request, get the writing reviewed, and the page is published.",
+  "learning_check": {
+    "question": "Which step catches the mistakes you did not know you made?",
+    "answer": "The review, because a reviewer checks the writing and asks you to fix what you got wrong."
+  },
+  "used_in": ["site/src/content/lessons/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend/07-teach-and-stay-current.mdx"]
+}

@@ -7,7 +7,7 @@
   "subdomain": "learning-system-and-workstation",
   "depth": "standard",
   "created_at": "2026-11-19T04:50:05Z",
-  "updated_at": "2026-11-19T06:39:13Z",
+  "updated_at": "2026-11-19T07:13:00Z",
   "paths": {
     "state": "state/topics/frontend-engineering/learning-system-and-workstation/workstation-and-editor",
     "vault": "vault/frontend-engineering/learning-system-and-workstation/workstation-and-editor",
@@ -303,7 +303,7 @@
           "title": "Workstation setup",
           "parent": null,
           "complexity": "intermediate",
-          "importance": "critical",
+          "importance": "core",
           "disposition": "included",
           "source_ids": [
             "mit-missing-semester",
@@ -531,15 +531,15 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-19T04:52:22Z",
-      "finished_at": "2026-11-19T06:07:11Z",
+      "finished_at": "2026-11-19T06:42:52Z",
       "attempts": 1,
       "units": [],
       "note": "",
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "22ea85bb8fc6076fad80c00edb1ba9ff92ad504742b497fedf1b8cfaa4408271",
-        "at": "2026-11-19T06:07:11Z",
+        "fingerprint": "96a17eaf8bf8568fa4a0b95126e2ee668ed683e57e7883136857623c7ae6cb14",
+        "at": "2026-11-19T06:42:52Z",
         "forced": false
       }
     },
@@ -550,7 +550,7 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-19T04:54:37Z",
-      "finished_at": "2026-11-19T06:07:25Z",
+      "finished_at": "2026-11-19T06:43:09Z",
       "attempts": 1,
       "units": [
         {
@@ -573,8 +573,8 @@
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "452ab3a5fa4300c0727c287d26706b0539e9c6473cacca7d44afa2c9f891d62b",
-        "at": "2026-11-19T06:07:25Z",
+        "fingerprint": "a6d11b630cfeba2de018925f3da1974bd1979982cbe446cff815a1efb699795c",
+        "at": "2026-11-19T06:43:09Z",
         "forced": false
       }
     },
@@ -585,15 +585,15 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-19T05:09:42Z",
-      "finished_at": "2026-11-19T06:07:27Z",
+      "finished_at": "2026-11-19T06:43:12Z",
       "attempts": 1,
       "units": [],
       "note": "",
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "baa7fc1ca85cc6bfd6d6aa1406810d65712eeedd349a3fdcd0ba870420b60eb7",
-        "at": "2026-11-19T06:07:27Z",
+        "fingerprint": "da2ddb9423fee4f27f219bf824f63fd7f6db32e176b3115c72a8faaf62917139",
+        "at": "2026-11-19T06:43:12Z",
         "forced": false
       }
     },
@@ -604,7 +604,7 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-19T05:10:28Z",
-      "finished_at": "2026-11-19T06:07:30Z",
+      "finished_at": "2026-11-19T06:43:15Z",
       "attempts": 1,
       "units": [
         {
@@ -622,8 +622,8 @@
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "08006939c73f2dc5e7ef28ee7ab486184f21b2b638c4060886c08cf9e978d998",
-        "at": "2026-11-19T06:07:30Z",
+        "fingerprint": "f2f82fa57ee37d2da678737e7bafaab472fa8dceac085cd49ca55455b324f3b1",
+        "at": "2026-11-19T06:43:15Z",
         "forced": false
       }
     },
@@ -634,7 +634,7 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-19T05:10:29Z",
-      "finished_at": "2026-11-19T06:07:34Z",
+      "finished_at": "2026-11-19T06:43:19Z",
       "attempts": 1,
       "units": [
         {
@@ -692,8 +692,8 @@
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "d2dc3cab6b9304fc2b3b3af43d3a11377e392f68f35adebd8a6c6172624986ea",
-        "at": "2026-11-19T06:07:34Z",
+        "fingerprint": "97eec2891bae4a6aab7be66cba97f7833877eeb7ab0a0442ea85edc3ea6b3302",
+        "at": "2026-11-19T06:43:19Z",
         "forced": false
       }
     },
@@ -704,7 +704,7 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-19T06:35:07Z",
-      "finished_at": "2026-11-19T06:39:13Z",
+      "finished_at": "2026-11-19T07:01:46Z",
       "attempts": 2,
       "units": [
         {
@@ -752,8 +752,8 @@
       ],
       "validation": {
         "version": 2,
-        "fingerprint": "b256d594fcb934e826556e3e881a3ca5a914c0e6c48e95eadccb77660693c513",
-        "at": "2026-11-19T06:39:13Z",
+        "fingerprint": "40f88ecc467bbe01d3f5634cf71ccfb11e85bc1141074c22ac17d413f0ccfe6c",
+        "at": "2026-11-19T07:01:46Z",
         "forced": false
       }
     },
@@ -764,7 +764,7 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-19T05:43:49Z",
-      "finished_at": "2026-11-19T06:07:46Z",
+      "finished_at": "2026-11-19T06:43:36Z",
       "attempts": 1,
       "units": [
         {
@@ -782,8 +782,8 @@
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "df1e37ce6f9150e846af943da3fba97a170bf7bcdce734fde48f999953740760",
-        "at": "2026-11-19T06:07:46Z",
+        "fingerprint": "e76383243d1af6bd6cee7ce5e8cecd0cc6b536f69beb16661c9275e5ad7d65f6",
+        "at": "2026-11-19T06:43:36Z",
         "forced": false
       }
     },
@@ -794,7 +794,7 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-19T06:08:02Z",
-      "finished_at": "2026-11-19T06:29:16Z",
+      "finished_at": "2026-11-19T06:43:47Z",
       "attempts": 1,
       "units": [
         {
@@ -807,8 +807,8 @@
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "cb97a54d42695ee37276423c742729b7c508002b3328f8bb23d0cbe810794782",
-        "at": "2026-11-19T06:29:16Z",
+        "fingerprint": "b524c034b5ae632b0a3551f1955a8e9e45822d0d11277ca6b2381034cbda522c",
+        "at": "2026-11-19T06:43:47Z",
         "forced": false
       }
     },
@@ -819,15 +819,15 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-19T06:30:55Z",
-      "finished_at": "2026-11-19T06:31:08Z",
+      "finished_at": "2026-11-19T06:43:50Z",
       "attempts": 1,
       "units": [],
       "note": "",
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "aa988e17cbfa697451e7c43aa6d11b727284644be2485c8b01852faebee0e789",
-        "at": "2026-11-19T06:31:08Z",
+        "fingerprint": "b87d18ba5d1bf0099cd4815d8a11dbc5382d84d730511da1bc6b10dafdee4ce9",
+        "at": "2026-11-19T06:43:50Z",
         "forced": false
       }
     },
@@ -835,13 +835,20 @@
       "id": "finalize",
       "wave": 5,
       "skill": "learn",
-      "status": "pending",
+      "status": "done",
       "scope": "required",
-      "started_at": null,
-      "finished_at": null,
-      "attempts": 0,
+      "started_at": "2026-11-19T06:39:52Z",
+      "finished_at": "2026-11-19T07:13:00Z",
+      "attempts": 1,
       "units": [],
-      "note": ""
+      "note": "",
+      "continue_after_failure": false,
+      "validation": {
+        "version": 2,
+        "fingerprint": "96248a0eba9038baef4552ff15ab02d676b24a14d73461f23d8ff2771c3466df",
+        "at": "2026-11-19T07:13:00Z",
+        "forced": false
+      }
     }
   ],
   "recall": {
@@ -1810,6 +1817,131 @@
       "event": "done",
       "message": "gate passed",
       "stage": "lesson"
+    },
+    {
+      "at": "2026-11-19T06:39:52Z",
+      "event": "start",
+      "message": "attempt 1",
+      "stage": "finalize"
+    },
+    {
+      "at": "2026-11-19T06:42:00Z",
+      "event": "plan",
+      "message": "plan fields set: curriculum",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-19T06:42:37Z",
+      "event": "note",
+      "message": "AUDIT round 2: 3 gaps (git-ignore-files, tool-install-scope, editor-extensions) recorded as research boundary — spawn budget nearly exhausted, reviewers reserved."
+    },
+    {
+      "at": "2026-11-19T06:42:52Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-19T06:43:05Z",
+      "event": "execution-check",
+      "message": "research: pass",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-19T06:43:09Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-19T06:43:12Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "brief"
+    },
+    {
+      "at": "2026-11-19T06:43:15Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "digest"
+    },
+    {
+      "at": "2026-11-19T06:43:19Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-19T06:43:26Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-19T06:43:32Z",
+      "event": "execution-check",
+      "message": "mini-projects: pass",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-19T06:43:36Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-19T06:43:43Z",
+      "event": "execution-check",
+      "message": "capstone: pass",
+      "stage": "capstone"
+    },
+    {
+      "at": "2026-11-19T06:43:47Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "capstone"
+    },
+    {
+      "at": "2026-11-19T06:43:50Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "notes"
+    },
+    {
+      "at": "2026-11-19T06:44:35Z",
+      "event": "execution-check",
+      "message": "finalize: pass",
+      "stage": "finalize"
+    },
+    {
+      "at": "2026-11-19T07:01:46Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-19T07:02:16Z",
+      "event": "execution-check",
+      "message": "finalize: pass",
+      "stage": "finalize"
+    },
+    {
+      "at": "2026-11-19T07:08:16Z",
+      "event": "quality-review",
+      "message": "projects: pass",
+      "stage": "finalize"
+    },
+    {
+      "at": "2026-11-19T07:12:55Z",
+      "event": "quality-review",
+      "message": "content: pass",
+      "stage": "finalize"
+    },
+    {
+      "at": "2026-11-19T07:13:00Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "finalize"
     }
   ],
   "roadmap": {
@@ -1820,8 +1952,8 @@
     "executions": {
       "research": {
         "version": 2,
-        "fingerprint": "452ab3a5fa4300c0727c287d26706b0539e9c6473cacca7d44afa2c9f891d62b",
-        "at": "2026-11-19T06:07:21Z",
+        "fingerprint": "a6d11b630cfeba2de018925f3da1974bd1979982cbe446cff815a1efb699795c",
+        "at": "2026-11-19T06:43:05Z",
         "ok": true,
         "checks": [
           {
@@ -1840,7 +1972,7 @@
             "ok": true,
             "status": 200,
             "bytes": 179574,
-            "sha256": "b136b552833f25f153c47311896357c647ac187585268aa59a93cf1fa201c799"
+            "sha256": "bc71ea66192211da8be8d0739059c586b73bed142dabc59ecc4142df36f59cae"
           },
           {
             "label": "nodejs-releases-docs: https://nodejs.org/en/about/previous-releases",
@@ -1876,11 +2008,11 @@
             "ok": true,
             "status": 200,
             "bytes": 6691,
-            "sha256": "006f8e97bf6818caa65c3d13bffdf0a8d0183e71b88064ae212a1d8937ba9a93",
+            "sha256": "dcda9c3237759e382178bab2a813f1a86d0d923ba7e4b3fef69570d519f349dd",
             "repository": {
-              "stars": 96179,
+              "stars": 96184,
               "archived": false,
-              "pushed_at": "2026-11-19T05:31:21Z",
+              "pushed_at": "2026-11-19T06:30:50Z",
               "license": "MIT"
             }
           },
@@ -1891,9 +2023,9 @@
             "ok": true,
             "status": 200,
             "bytes": 7272,
-            "sha256": "4d0b0ba35f0efdb32fecfb56780bb7ba3c67641097a0828fdb135557e0fef82a",
+            "sha256": "b0123176dea268ac95d2ad72e569bff8b497531a44825bc6d686aa8a4ee9379b",
             "repository": {
-              "stars": 190648,
+              "stars": 190655,
               "archived": false,
               "pushed_at": "2026-11-16T12:08:14Z",
               "license": "MIT"
@@ -1906,11 +2038,11 @@
             "ok": true,
             "status": 200,
             "bytes": 6595,
-            "sha256": "d27a7065615d92dd2ad9d9ac8a3dc94c122729837eb64fd46c3f800732dce17e",
+            "sha256": "a05bc2c2b162c4b913143edf664e4618edb0340839bbcef46ad3fa2fbb83c8e5",
             "repository": {
-              "stars": 135815,
+              "stars": 135818,
               "archived": false,
-              "pushed_at": "2026-11-19T06:03:45Z",
+              "pushed_at": "2026-11-19T06:35:28Z",
               "license": "Apache-2.0"
             }
           },
@@ -1927,8 +2059,8 @@
       },
       "mini-projects": {
         "version": 2,
-        "fingerprint": "df1e37ce6f9150e846af943da3fba97a170bf7bcdce734fde48f999953740760",
-        "at": "2026-11-19T06:07:43Z",
+        "fingerprint": "e76383243d1af6bd6cee7ce5e8cecd0cc6b536f69beb16661c9275e5ad7d65f6",
+        "at": "2026-11-19T06:43:32Z",
         "ok": true,
         "checks": [
           {
@@ -1973,7 +2105,7 @@
             "expected_exit": 0,
             "exit": 0,
             "ok": true,
-            "output_sha256": "ee49ca1184525fc3a19d851a6a9bad37e73b742b80f90a07af7ae95e0d39cb5e"
+            "output_sha256": "41f5e6ce61293f4c62c5386c7b7eff24862731128a41823bff1bcda80f397b44"
           },
           {
             "label": "mini-02-git-bisect-hunt: starter-tests",
@@ -2001,8 +2133,8 @@
       },
       "capstone": {
         "version": 2,
-        "fingerprint": "cb97a54d42695ee37276423c742729b7c508002b3328f8bb23d0cbe810794782",
-        "at": "2026-11-19T06:29:13Z",
+        "fingerprint": "b524c034b5ae632b0a3551f1955a8e9e45822d0d11277ca6b2381034cbda522c",
+        "at": "2026-11-19T06:43:43Z",
         "ok": true,
         "checks": [
           {
@@ -2014,7 +2146,7 @@
             "expected_exit": 0,
             "exit": 0,
             "ok": true,
-            "output_sha256": "b4a12b9443d7a3c25269c1d4f9469a90429c02199e17afce21864ba3f7cc09da"
+            "output_sha256": "57ab9683da9a3fe571920fb986381866dfa28ce7364fc970e494da606f588191"
           },
           {
             "label": "capstone: typecheck",
@@ -2038,7 +2170,7 @@
             "expected_exit": 0,
             "exit": 0,
             "ok": true,
-            "output_sha256": "d189a88f68a0b1b282cd73adadefea1b76eeb8d29d85c86a79d9a45fae7e9954"
+            "output_sha256": "b66062d09771f391a60a777a3f63249ec646fd07a259f5e50ec03dfc7271d36a"
           },
           {
             "label": "capstone: audit",
@@ -2054,6 +2186,168 @@
             "output_sha256": "6d8c5c8f3d7684adb070417bd608d01ae90aa3dc26a65af03ffda4955f38d9a3"
           }
         ]
+      },
+      "finalize": {
+        "version": 2,
+        "fingerprint": "96248a0eba9038baef4552ff15ab02d676b24a14d73461f23d8ff2771c3466df",
+        "at": "2026-11-19T07:02:16Z",
+        "ok": true,
+        "checks": [
+          {
+            "label": "site build",
+            "command": "npm",
+            "args": [
+              "--prefix",
+              "site",
+              "run",
+              "build"
+            ],
+            "expected_exit": 0,
+            "exit": 0,
+            "ok": true,
+            "output_sha256": "d4fa7ec8ea89ca0b5d8cc0468ed8cd3cbc3348a293b61a1264a4083ea93a51ac"
+          },
+          {
+            "label": "site smoke",
+            "command": "npm",
+            "args": [
+              "--prefix",
+              "site",
+              "run",
+              "smoke"
+            ],
+            "expected_exit": 0,
+            "exit": 0,
+            "ok": true,
+            "output_sha256": "e4d95a54ffdd30a50ac251651aba06979420bb26a01a8dcb0c44fffb8a3847eb"
+          },
+          {
+            "label": "site manifest:check",
+            "command": "npm",
+            "args": [
+              "--prefix",
+              "site",
+              "run",
+              "manifest:check"
+            ],
+            "expected_exit": 0,
+            "exit": 0,
+            "ok": true,
+            "output_sha256": "9cf80b4d6837916eb7b42c75c5478750c54297762700cff81b192e0cd083e529"
+          }
+        ]
+      }
+    },
+    "reviews": {
+      "projects": {
+        "scope": "projects",
+        "reviewer": "verifier-projects-workstation-editor-9c1e",
+        "verdict": "pass",
+        "checks": [
+          "solution-tests",
+          "starter-behavior",
+          "dependency-health",
+          "architecture",
+          "documented-commands",
+          "project-diagrams"
+        ],
+        "findings": [
+          {
+            "severity": "warning",
+            "path": "projects/frontend-engineering/learning-system-and-workstation/workstation-and-editor/capstone/ARCHITECTURE.md",
+            "problem": "The 'Interactive walkthrough' FlowAnimation claims storage unavailability does not block the download, but useConfigurator.generate() catches StorageError and never produces the bundle, so with storage unavailable the download does not work in the real code.",
+            "fix": "Either implement the resilience, or correct the FlowAnimation caption and walkthrough prose to describe the actual behavior (storage failure surfaces an error and no bundle is produced)."
+          },
+          {
+            "severity": "warning",
+            "path": "projects/frontend-engineering/learning-system-and-workstation/workstation-and-editor/capstone/ARCHITECTURE.md",
+            "problem": "The 'Request flow' sequence diagram shows download(bundle) as the final step of the 'valid' branch of generate(), but in code download is a separate user-initiated step (the Download button), not part of generate().",
+            "fix": "Add a second user activation to the sequence diagram so download is a separate step."
+          }
+        ],
+        "not_checked": [
+          "capstone npm run dev / preview not run (long-running server)",
+          "Docker build/run not performed (requires Docker daemon; deployment diagram verified statically against the Dockerfile)",
+          "capstone npm run typecheck not run standalone (covered by npm run build, which passed)"
+        ],
+        "independent": true,
+        "reviewer_run_id": "ses_e0d627718ffe4brezAz2pKgelw",
+        "input_fingerprint": "96248a0eba9038baef4552ff15ab02d676b24a14d73461f23d8ff2771c3466df",
+        "assessments": {
+          "solution-tests": "mini-01 solution bash run-tests.sh -> '8 passed, 0 failed', exit 0. mini-02 solution npm test -> 'first bad commit: Fix the truncate boundary' + 'PASS: bisect landed on the bug commit.', exit 0. capstone npm install && npm test && npm run build -> vitest 6 files / 24 tests passed; vite build + tsc --noEmit exit 0.",
+          "starter-behavior": "mini-01 starter bash run-tests.sh -> '0 passed, 4 failed', exit 1, failures naming 'TODO(4)'. mini-02 starter npm test -> 'TODO(3)(4): bisect.sh does not run the bisect yet', exit 1. Both fail only on TODO markers.",
+          "dependency-health": "capstone npm audit --audit-level=high --omit=dev -> 'found 0 vulnerabilities'. Dependencies pinned exactly (react/react-dom 18.3.1 prod; vite/vitest/typescript dev). npm install emits only informational esbuild allowScripts warning; build succeeds.",
+          "architecture": "ARCHITECTURE.md class table matches code: DeveloperConfig/NodeVersion/ConfigStorage/BundleDownloader/GeneratedBundle, DotfilesGenerator, LocalStorageConfigStorage, BrowserBundleDownloader, EnvConfig, ConsoleLogger, ConfigError family, ErrorBoundary. main.tsx wires adapters via ConfiguratorServices. Borrowed-from-production claims verified against cited files.",
+          "documented-commands": "README commands and file names match the folders for all three projects; verification.json cwds match.",
+          "project-diagrams": "mini-01 and mini-02 README diagrams match their scripts; capstone Layers/Request-flow/Deployment diagrams match classes and Dockerfile. Two warnings: FlowAnimation storage-fallback claim contradicts useConfigurator; Request-flow diagram elides that download is a separate user action."
+        },
+        "at": "2026-11-19T07:08:16Z",
+        "fingerprint": "96248a0eba9038baef4552ff15ab02d676b24a14d73461f23d8ff2771c3466df"
+      },
+      "content": {
+        "scope": "content",
+        "reviewer": "content-verifier-96248a0e",
+        "verdict": "pass",
+        "checks": [
+          "sources",
+          "reading-order",
+          "activity-correctness",
+          "diagram-semantics",
+          "beginner-readability",
+          "insights",
+          "research-coverage",
+          "practical-depth",
+          "visual-usefulness",
+          "learner-fit",
+          "visual-accuracy",
+          "visual-efficacy",
+          "interaction-behavior",
+          "interactive-topic-fit",
+          "accessibility-responsive",
+          "writing-standard",
+          "video-consistency",
+          "experience-behavior"
+        ],
+        "findings": [
+          {
+            "severity": "warning",
+            "path": "vault/frontend-engineering/learning-system-and-workstation/workstation-and-editor/05-repo-intel/nvm-sh-nvm/nvm-takeaways.md",
+            "problem": "The takeaways note frames the capstone as 'Setup doctor' (an audit tool), but the actual capstone is 'Dev environment configurator' (a dotfiles generator). A learner reading the takeaways then the capstone note meets two different tools.",
+            "fix": "Align the takeaways with the generator capstone: rename 'Setup doctor' to 'Dev environment configurator' and re-frame the borrowed patterns as generation/validation advice."
+          },
+          {
+            "severity": "warning",
+            "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/workstation-and-editor/04-your-editor-sharpened.mdx",
+            "problem": "The Note names git.path and terminal.external.* as user-only settings, but the cited source vscode-settings-docs supports only the general principle and does not name those specific settings.",
+            "fix": "Either add a verified source documenting the machine/user-only scope, or soften the examples to the general principle the cited source states."
+          }
+        ],
+        "not_checked": [],
+        "independent": true,
+        "reviewer_run_id": "ses_e0d62771bffezKOzT6LPyzfvrh",
+        "input_fingerprint": "96248a0eba9038baef4552ff15ab02d676b24a14d73461f23d8ff2771c3466df",
+        "assessments": {
+          "sources": "Read sources.json (9 entries: 8 tier A, 1 tier B justified as OpenAI's own product). Spot-checked nvm repo (gh api: 96,186 stars, MIT, not archived), nodejs.org previous-releases (confirms Active/Maintenance LTS + 30 months + six months Current), and VS Code settings docs (precedence chain + .vscode workspace sharing). No page cited outside sources.json.",
+          "reading-order": "00-start-here lists steps 1-9 all ready; reading order 01-08 complete. 02-lesson maps all 6 outcomes to pages/projects.",
+          "activity-correctness": "All 7 pages carry one varied activity. p04 MatchPairs verified in Playwright: 4 distinct terms and 4 distinct definitions, all pairs findable, 'All matched.' on completion, Clear resets. p06 MatchPairs, p03 OrderSteps, p07 Quiz correct.",
+          "diagram-semantics": "All mermaid diagrams accurate and <=7 nodes; pro-git-book-mechanism matches Pro Git; no invented arrows.",
+          "beginner-readability": "All pages 110-260 words, open with a situation, terms defined in bold on first use, one idea per description.",
+          "insights": "Every stage note ends with '## My insights' with nothing generated below; my-insights note untouched.",
+          "research-coverage": "6 included concepts, all with coverage declaring all six aspects; read every page and verified each aspect (e.g. node-version-management failure-mode = PATH-hook note). discovery ends scope-boundary with honest deferral note.",
+          "practical-depth": "Real names/values throughout; repo-intel 9 findings with path:line @ ad42d90; capstone is a layered React app with 3 diagrams.",
+          "visual-usefulness": "13 registered visuals each with purpose/explanation/alt/learning_check; 4 lesson visuals expose real mechanisms; visual-first minimum met.",
+          "learner-fit": "Assumes basic programming/git/CLI; spends budget on tool-choice rationale matching the learner's evidence-based goals.",
+          "visual-accuracy": "Each drawn relationship checked against source_ids; no arrow implies an order a source does not state.",
+          "visual-efficacy": "Learning checks answerable from explanation+diagram; visuals make answers derivable; no decoration. Reviewer judgment.",
+          "interaction-behavior": "Playwright verified p04 MatchPairs controls change state, meaningful result, Check disabled until complete, Clear restores initial state.",
+          "interactive-topic-fit": "Every interactive object uses its page's own concept; no placeholder data or copied scenario.",
+          "accessibility-responsive": "13 visuals carry alt; video has captions + transcript; MatchPairs uses native buttons with aria labels + live region; 375px no horizontal scroll, zero console errors.",
+          "writing-standard": "Short active sentences, terms defined before use; structure-only validation passed with no style warnings blocking.",
+          "video-consistency": "storyboard/transcript/captions/registry tell the same 5-scene sequence; video rendered with mp4 + captions.vtt + has_audio.",
+          "experience-behavior": "No experiences under the topic (list empty, no <Experience> component); noted N/A rather than a failed check."
+        },
+        "at": "2026-11-19T07:12:55Z",
+        "fingerprint": "96248a0eba9038baef4552ff15ab02d676b24a14d73461f23d8ff2771c3466df"
       }
     }
   },

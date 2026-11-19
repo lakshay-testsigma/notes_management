@@ -3,6 +3,7 @@ title: Your editor, sharpened
 description: Workspace settings in `.vscode/settings.json` are the editor settings a team commits so everyone shares them.
 order: 4
 concepts: [settings scope, user settings, workspace settings]
+# <!-- concept: editor-setup -->
 ---
 
 You clone a team's frontend repository, open it, and your editor indents with tabs while every merged change uses two spaces. You reformat one file by accident and the diff turns into a mess. The team already fixed this, and the answer is sitting in the repo.
@@ -29,10 +30,10 @@ The lower branch explains why cloning the repo already fixed your indentation. T
 <MatchPairs
   prompt="Match each setting to the scope it belongs in."
   pairs={[
-    { term: "The team's format-on-save rule", definition: "Workspace `.vscode/settings.json`" },
+    { term: "The team's format-on-save rule", definition: "Workspace — `editor.formatOnSave`" },
     { term: "Your personal font size", definition: "User `settings.json`" },
     { term: "Path to the `git` executable", definition: "User only, never workspace" },
-    { term: "Hide the `dist/` build output", definition: "Workspace `.vscode/settings.json`" }
+    { term: "Hide the `dist/` build output", definition: "Workspace — `files.exclude` for `dist/`" }
   ]}
 />
 

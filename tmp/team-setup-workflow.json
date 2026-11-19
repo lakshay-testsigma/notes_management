@@ -1,0 +1,18 @@
+{
+  "id": "team-setup-workflow",
+  "title": "A production team's reproducible setup",
+  "kind": "workflow",
+  "scope": "end-to-end",
+  "format": "mermaid",
+  "file": "vault/frontend-engineering/learning-system-and-workstation/workstation-and-editor/visuals/assets/team-setup-workflow-workstation-and-editor.mmd",
+  "concept_ids": ["workstation-setup", "node-version-management"],
+  "source_ids": ["mit-missing-semester", "nvm-sh-nvm-repo", "nodejs-releases-docs"],
+  "purpose": "See how a team turns shared configuration into identical developer machines.",
+  "explanation": "One dotfiles repo holds the shell, git, and editor config. An install script links those files onto each new laptop, and a `.nvmrc` that pins an LTS version keeps every machine on the same Node runtime.",
+  "alt": "A dotfiles repo feeds an install script, which reproduces a developer laptop. A Long-Term Support policy sets the version a `.nvmrc` file pins, and that file pins the same Node version on every laptop.",
+  "learning_check": {
+    "question": "A new hire's Node differs from the team's. Which file makes it match?",
+    "answer": "The shared `.nvmrc`, which pins the LTS version the policy chose."
+  },
+  "used_in": ["site/src/content/lessons/frontend-engineering/learning-system-and-workstation/workstation-and-editor/07-a-production-teams-setup.mdx"]
+}

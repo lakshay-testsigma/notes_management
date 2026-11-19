@@ -3,6 +3,7 @@ title: Node.js & version management
 description: A version manager keeps several Node.js versions installed and rewrites PATH so each project runs the one it pins.
 order: 6
 concepts: [version manager, .nvmrc, Long-Term Support, PATH]
+# <!-- concept: node-version-management -->
 ---
 
 You work on two apps: one needs Node 20, the other needs Node 22. A single global `node` can be only one of them. Reinstalling to switch is no way to work. A version manager keeps every version side by side, so switching is one command.
@@ -21,7 +22,7 @@ flowchart LR
   caption="nvm holds Node 18, 20, and 22. The .nvmrc file picks 22, so node points there."
 />
 
-A **version manager** such as nvm (Node Version Manager) keeps each installed version in its own directory. `nvm install 22` downloads Node 22. `nvm use 22` rewrites `PATH` so `node`, the JavaScript runtime, resolves to that copy's binary. A `.nvmrc` file in a project's root pins the version, so running `nvm use` there picks the right one. Nothing is deleted when you switch — every version stays installed.
+A **version manager** such as nvm (Node Version Manager) keeps each installed version in its own directory. `nvm install 22` downloads Node 22. `nvm use 22` rewrites `PATH` so `node`, the JavaScript runtime, resolves to that copy's binary. A `.nvmrc` file in a project's root pins the version, so running `nvm use` there picks the right one. Nothing is deleted when you switch — every version stays installed. **Note.** If the version manager's shell hook is not sourced, `nvm use` runs but `PATH` stays unchanged, so `node -v` still prints the old version.
 
 <MatchPairs
   prompt="Match each Node tool to what it does."

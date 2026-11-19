@@ -7,7 +7,7 @@
   "subdomain": "learning-system-and-workstation",
   "depth": "standard",
   "created_at": "2026-11-18T17:03:48Z",
-  "updated_at": "2026-11-19T04:40:28Z",
+  "updated_at": "2026-11-19T09:58:12Z",
   "paths": {
     "state": "state/topics/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend",
     "vault": "vault/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend",
@@ -1955,6 +1955,41 @@
       "event": "done",
       "message": "gate passed",
       "stage": "finalize"
+    },
+    {
+      "at": "2026-11-19T09:12:24Z",
+      "event": "execution-check",
+      "message": "finalize: failed",
+      "stage": "finalize"
+    },
+    {
+      "at": "2026-11-19T09:12:36Z",
+      "event": "execution-check",
+      "message": "finalize: failed",
+      "stage": "finalize"
+    },
+    {
+      "at": "2026-11-19T09:13:01Z",
+      "event": "execution-check",
+      "message": "finalize: failed",
+      "stage": "finalize"
+    },
+    {
+      "at": "2026-11-19T09:47:23Z",
+      "event": "execution-check",
+      "message": "finalize: failed",
+      "stage": "finalize"
+    },
+    {
+      "at": "2026-11-19T09:53:25Z",
+      "event": "execution-check",
+      "message": "finalize: failed",
+      "stage": "finalize"
+    },
+    {
+      "at": "2026-11-19T09:58:12Z",
+      "event": "note",
+      "message": "BLOCKED finalize check: site smoke cannot launch Chromium inside the macOS sandbox (bootstrap_check_in Permission denied); needs check run outside sandbox"
     }
   ],
   "roadmap": {
@@ -2298,9 +2333,9 @@
       },
       "finalize": {
         "version": 2,
-        "fingerprint": "f364e9721675600fdd74e738e3eae3ec51106f843b23c27d002f5186c2f24359",
-        "at": "2026-11-19T04:26:29Z",
-        "ok": true,
+        "fingerprint": "d53286e96683903538e363528911af514237ca2437e38980d9d50dad4746457a",
+        "at": "2026-11-19T09:53:25Z",
+        "ok": false,
         "checks": [
           {
             "label": "site build",
@@ -2314,7 +2349,7 @@
             "expected_exit": 0,
             "exit": 0,
             "ok": true,
-            "output_sha256": "7a5757adcaf80d8b09f110a633b8295c58aec64e691312e1edf8543e6b2bf0c1"
+            "output_sha256": "fddc7b583ab13005e9b8cee4cab31775bb78fcce8452180707b7b5c03f348796"
           },
           {
             "label": "site smoke",
@@ -2326,9 +2361,10 @@
               "smoke"
             ],
             "expected_exit": 0,
-            "exit": 0,
-            "ok": true,
-            "output_sha256": "72eaf246061a86bd22a9cc7cfcc1941a625118411c64c26bbcec1c9ccaea1425"
+            "exit": 1,
+            "ok": false,
+            "output_sha256": "f5b0cff13ea23c27269f62342cd952ac332740c7ecea52607882b73de240fa0c",
+            "problem": "g --disable-updater-scheduler --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --enable-unsafe-swiftshader --edge-skip-compat-layer-relaunch --disable-stack-profiler --disable-infobars --disable-sync --do-not-de-elevate --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --no-sandbox --enable-unsafe-swiftshader --use-angle=swiftshader --ignore-gpu-blocklist --user-data-dir=/tmp/claude-501/playwright_chromiumdev_profile-3wEcUl --remote-debugging-pipe --no-startup-window\u001b[22m\n\u001b[2m  - <launched> pid=18296\u001b[22m\n\u001b[2m  - [pid=18296][err] [1119/152324.603688:WARNING:net/dns/dns_config_service_posix.cc:198] Failed to read DnsConfig.\u001b[22m\n\u001b[2m  - [pid=18296][err] [1119/152324.604106:FATAL:base/apple/mach_port_rendezvous_mac.cc:159] Check failed: kr == KERN_SUCCESS. bootstrap_check_in org.chromium.Chromium.MachPortRendezvousServer.18296: Permission denied (1100)\u001b[22m\n\u001b[2m  - [pid=18296] <gracefully close start>\u001b[22m\n\u001b[2m  - [pid=18296] <kill>\u001b[22m\n\u001b[2m  - [pid=18296] <will force kill>\u001b[22m\n\u001b[2m  - [pid=18296] exception while trying to kill process: Error: kill ESRCH\u001b[22m\n\u001b[2m  - [pid=18296] <process did exit: exitCode=null, signal=SIGTRAP>\u001b[22m\n\u001b[2m  - [pid=18296] starting temporary directories cleanup\u001b[22m\n\u001b[2m  - [pid=18296] finished temporary directories cleanup\u001b[22m\n\u001b[2m  - [pid=18296] <gracefully close end>\u001b[22m\n\n    at openBrowser (/Users/lakshay.goyal/Desktop/Learning/notes_management/site/scripts/smoke.mjs:132:25)\n    at async file:///Users/lakshay.goyal/Desktop/Learning/notes_management/site/scripts/smoke.mjs:322:12\n"
           },
           {
             "label": "site manifest:check",

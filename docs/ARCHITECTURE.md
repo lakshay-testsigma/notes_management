@@ -445,19 +445,19 @@ shape so a smaller model can run it without guessing:
 Defined in `.claude/agents/`. Subagents cannot spawn subagents, so only the
 session running `learn` fans out. Each agent definition names the skill file it
 must read first. Claude Code is the default host: role frontmatter records both
-`tier:` and the `model:` (`deepseek-v4.1-flash` for fact, `deepseek-v4-pro` for writer). An optional
+`tier:` and the Claude `model:` (`MiMo V2.6 Flash` for fact, `MiMo V2.6 Pro` for writer). An optional
 Codex mapping lives in `.codex/config.toml` and `.codex/agents/`.
 
-| Agent | Tier / model | Used by stage | One unit of work |
+| Agent | Tier / Claude model | Used by stage | One unit of work |
 |-------|-----------------|---------------|------------------|
-| `tutor-researcher` | fact (`deepseek-v4.1-flash`) | research | one source category (docs / papers+books / repos) |
-| `tutor-digester` | fact (`deepseek-v4.1-flash`) | digest | one source |
-| `tutor-repo-analyst` | fact (`deepseek-v4.1-flash`) | repo-intel | one repo slice from `tutor slice` |
-| `tutor-project-builder` | fact (`deepseek-v4.1-flash`) | mini-projects, capstone | one project |
-| `tutor-coverage-auditor` | fact (`deepseek-v4.1-flash`) | coverage audit (after notes) | one gap-finding round over one topic, read-only |
-| `tutor-lesson-builder` | writer (`deepseek-v4-pro`) | lesson | 2–3 lesson pages |
-| `tutor-video-producer` | writer (`deepseek-v4-pro`) | lesson | one planned explainer video (`video-<id>`) |
-| `tutor-verifier` | writer (`deepseek-v4-pro`) | finalize | independent quality review of one topic |
+| `tutor-researcher` | fact (`MiMo V2.6 Flash`) | research | one source category (docs / papers+books / repos) |
+| `tutor-digester` | fact (`MiMo V2.6 Flash`) | digest | one source |
+| `tutor-repo-analyst` | fact (`MiMo V2.6 Flash`) | repo-intel | one repo slice from `tutor slice` |
+| `tutor-project-builder` | fact (`MiMo V2.6 Flash`) | mini-projects, capstone | one project |
+| `tutor-coverage-auditor` | fact (`MiMo V2.6 Flash`) | coverage audit (after notes) | one gap-finding round over one topic, read-only |
+| `tutor-lesson-builder` | writer (`MiMo V2.6 Pro`) | lesson | 2–3 lesson pages |
+| `tutor-video-producer` | writer (`MiMo V2.6 Pro`) | lesson | one planned explainer video (`video-<id>`) |
+| `tutor-verifier` | writer (`MiMo V2.6 Pro`) | finalize | independent quality review of one topic |
 
 Fact-tier workers find and extract public facts; writer-tier workers (and the inline `brief`
 and `notes` stages of the orchestrator) turn them into the learner-facing wording. The

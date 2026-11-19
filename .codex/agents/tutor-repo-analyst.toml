@@ -1,6 +1,6 @@
 name = "tutor-repo-analyst"
 description = "Worker for the repo-intel stage of the tutor pipeline. Does exactly one unit on one production repository - a scout unit (clone, slice, choose slices, write the overview), a module unit (analyze one slice of code with file-and-line evidence), or a synthesis unit (write architecture, tech-and-services, findings, takeaways, and patterns from the module notes). The learn orchestrator spawns one per unit, with a brief that names the unit id and which part of the skill to follow."
-model = "deepseek-v4.1-flash"
+model = "gpt-6-luna"
 model_reasoning_effort = "high"
 developer_instructions = """
 Read docs/ARCHITECTURE.md, then CLAUDE.md, then .claude/agents/tutor-repo-analyst.md.

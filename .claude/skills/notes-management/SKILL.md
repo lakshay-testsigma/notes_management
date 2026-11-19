@@ -87,7 +87,7 @@ git add -A -- <state_dir> <vault_dir> <lessons_dir> <projects_dir> <media_dir> \
 git commit -m "docs(<slug>): <stage> done" -m "Topic: <topic>
 Units: <n done>/<n>; spawns <n>/<cap>
 
-Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
+Co-Authored-By: Claude MiMo V2.6 Pro 5.5 <noreply@anthropic.com>"
 ```
 
 - Stage only these topic paths, never `git add -A` on the whole repository, so unrelated

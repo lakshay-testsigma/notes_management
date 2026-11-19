@@ -19,13 +19,13 @@ sequenceDiagram
   participant Srv as Server
   participant R as render
   Box->>On: input event, query = re
-  On->>Srv: fetch /search?q=re (slow)
+  On->>Srv: fetch /search q=re (slow)
   Box->>On: input event, query = react
-  On->>Srv: fetch /search?q=react (fast)
+  On->>Srv: fetch /search q=react (fast)
   Srv-->>On: react items arrive first
   On->>R: render(react): Results for react
   Srv-->>On: re items arrive last
-  Note over On: Conditional breakpoint on line 5, query !== input.value, pauses here
+  Note over On: Conditional breakpoint on line 5, query differs from input.value
   Note over On: Call Stack with async frames: onInput line 5, await getJSON, onInput line 4
   On->>R: render(re): Results for re (stale)
 ```

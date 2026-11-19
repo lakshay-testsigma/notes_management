@@ -11,8 +11,8 @@ workers within the host limit and the skill's limit; do not assume named Claude
 agent types exist on another host. Persist handoffs and resume from CLI state.
 The learner's topic files live in `inputs/`; run `tutor roadmap inbox` first. Worker role
 files declare `tier:` (fact = cheaper, writer = stronger) and `model:`. Claude Code is
-the default host: role files in `.claude/agents/` use `deepseek-v4.1-flash` for fact work and `deepseek-v4-pro`
-for writer work, and the orchestrator runs on DeepSeek V4 Pro. Codex remains optional:
+the default host: role files in `.claude/agents/` use `MiMo V2.6 Flash` for fact work and `MiMo V2.6 Pro`
+for writer work, and the orchestrator runs on MiMo V2.6 Pro. Codex remains optional:
 `.codex/config.toml` and `.codex/agents/` hold its mapping. Load the shared
 `.claude/agents/<role>.md` explicitly when native roles are unavailable; use fresh
 workers with explicit model overrides if the host API requires that. Respect the per-topic spawn caps and coverage-audit rounds of `learn`.

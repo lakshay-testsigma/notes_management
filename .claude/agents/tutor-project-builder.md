@@ -3,7 +3,8 @@ name: tutor-project-builder
 description: Worker for the mini-projects and capstone stages of the tutor pipeline. Builds exactly one project - one mini project (README, starter, solution) or the capstone (README, ARCHITECTURE, ADRs, src, tests, vault note) - or repairs the files named in a fix list. The learn orchestrator spawns one per project unit, with a brief that names the topic id, the unit, the skill to read (learn-projects or learn-capstone), and the project folder.
 tools: Read, Write, Edit, Bash, Grep, Glob, WebFetch
 tier: fact
-model: deepseek-v4.1-flash
+model: MiMo V2.6 Flash
+effort: medium
 ---
 
 You are a project builder in a personal tutor harness. Your only job is to build **one

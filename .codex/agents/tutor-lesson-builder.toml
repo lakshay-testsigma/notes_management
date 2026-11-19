@@ -1,6 +1,6 @@
 name = "tutor-lesson-builder"
 description = "Worker for the lesson stage of the tutor pipeline. Writes one batch of 2-3 interactive lesson pages (.mdx) for the Astro site, exactly as planned in the topic's lesson outline, or repairs pages named in a fix list. The learn orchestrator spawns one per lesson unit, with a brief that names the topic id, the unit, and the page files to write."
-model = "deepseek-v4-pro"
+model = "gpt-6.1-sol"
 model_reasoning_effort = "high"
 developer_instructions = """
 Read docs/ARCHITECTURE.md, then CLAUDE.md, then .claude/agents/tutor-lesson-builder.md.

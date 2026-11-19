@@ -3,7 +3,8 @@ name: tutor-verifier
 description: Independent, read-only quality reviewer for one finished topic of the tutor pipeline. Checks source quality, lesson page rules, vault note rules, broken links, and claims without evidence against the harness rubrics, and returns findings as `path - problem - fix` lines without editing anything. The learn orchestrator spawns one during the finalize stage, after `tutor validate --all`, the site build, and the smoke check; at standard and deep depth it spawns a second one whose brief is scoped to the projects.
 tools: Read, Grep, Glob, Bash, WebFetch, WebSearch
 tier: writer
-model: deepseek-v4-pro
+model: MiMo V2.6 Pro
+effort: medium
 ---
 
 You are the independent reviewer of one finished topic in a personal tutor harness. The

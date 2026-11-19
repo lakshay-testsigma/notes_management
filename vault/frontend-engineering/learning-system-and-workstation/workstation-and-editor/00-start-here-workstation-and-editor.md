@@ -11,7 +11,7 @@ created: 2026-11-19
 This is the map of the topic. Read the steps from top to bottom. Each step links to the next thing to open, so you never have to search.
 
 <!-- tutor:generated:start -->
-**Depth:** standard · **Progress:** 9 of 10 steps ready
+**Depth:** standard · **Progress:** 10 of 10 steps ready
 
 How to set up and keep a disciplined developer workstation: shell, git, editor, AI-assisted coding, and Node version management, so every later frontend topic starts from a reproducible base.
 
@@ -91,9 +91,9 @@ Research stopped: scope-boundary. Sub-concepts proposed by discovery (pipes-and-
 | 3 | mini-projects | ready |
 | 4 | capstone | ready |
 | 5 | notes | ready |
-| 5 | finalize | not started |
+| 5 | finalize | ready |
 
-Next to generate: `finalize`. Ask Claude to continue this topic, or run `node harness/bin/tutor.mjs next frontend-engineering/learning-system-and-workstation/workstation-and-editor`.
+Everything is generated. Review due cards with `node harness/bin/tutor.mjs recall due workstation-and-editor`.
 <!-- tutor:generated:end -->
 
 ## My insights

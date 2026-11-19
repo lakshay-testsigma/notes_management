@@ -7,8 +7,8 @@ select a model, set reasoning parameters, or guarantee equal quality across mode
 The learner chose two model tiers, declared in the role files of `.claude/agents/`
 (`tier:` plus the actual `model:`): **fact** (cheaper: research, digests, repository analysis, projects, gap
 audits) and **writer** (stronger: lesson pages, experiences, review, and the inline brief
-and notes). The default mapping is fact → `deepseek-v4.1-flash`, writer and
-orchestrator → `deepseek-v4-pro`, declared in `.claude/agents/`. An optional Codex mapping
+and notes). The default Claude mapping is fact → `MiMo V2.6 Flash`, writer and
+orchestrator → `MiMo V2.6 Pro`, declared in `.claude/agents/`. An optional Codex mapping
 lives in `.codex/config.toml` and `.codex/agents/`. On another host, map fact to its cheaper model and writer to its strongest.
 Use the model id actually available in the host; never invent an id from a spoken
 name. More reasoning cannot substitute for live sources, executable checks, and
