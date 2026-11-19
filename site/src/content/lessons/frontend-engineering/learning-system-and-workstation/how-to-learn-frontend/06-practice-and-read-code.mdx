@@ -11,10 +11,10 @@ Tutorials show the happy path and stop there. A practice platform such as Fronte
 
 When the goal is a job, the loop turns into interview-style drills. GreatFrontEnd and BFE.dev drill UI components and system design, JavaScript30 is a vanilla build, and CSS Battle is a layout under a constraint. MDN pairs that practice with a structured route: its Learn web development modules and skill tests. It also lists job-oriented courses — Scrimba, freeCodeCamp, and Codecademy.
 
-Here is the core of nanoid's `index.js`, a 174-line file reduced to the lines that make an id. Step through it and predict what each random byte becomes.
+Here is nanoid v3's `customRandom`, which masks a random byte into an alphabet index. (Current `index.js` uses rejection sampling; the idea is the same.) Step through and predict each byte.
 
 <CodeWalkthrough
-  title="nanoid/index.js (core)"
+  title="nanoid v3 customRandom (historical)"
   lang="js"
   code={`
 let urlAlphabet =

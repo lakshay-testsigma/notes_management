@@ -7,7 +7,7 @@
   "subdomain": "learning-system-and-workstation",
   "depth": "standard",
   "created_at": "2026-11-18T17:03:48Z",
-  "updated_at": "2026-11-19T04:22:02Z",
+  "updated_at": "2026-11-19T04:26:29Z",
   "paths": {
     "state": "state/topics/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend",
     "vault": "vault/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend",
@@ -594,7 +594,7 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T17:05:59Z",
-      "finished_at": "2026-11-19T04:08:42Z",
+      "finished_at": "2026-11-19T04:24:53Z",
       "attempts": 1,
       "units": [
         {
@@ -617,8 +617,8 @@
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "c10bd8bb2bffaca08db3a718e20dd0b09b91c50269c9cdf5480c790bc542d984",
-        "at": "2026-11-19T04:08:42Z",
+        "fingerprint": "ffa690ffcc3bb29017df87dcdf4780f100124a50d2deab6c16d727d27bb72166",
+        "at": "2026-11-19T04:24:53Z",
         "forced": false
       }
     },
@@ -629,15 +629,15 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T17:32:55Z",
-      "finished_at": "2026-11-19T04:08:43Z",
+      "finished_at": "2026-11-19T04:24:54Z",
       "attempts": 1,
       "units": [],
       "note": "",
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "941e063b3f6132ab3f4b12332d16bda87a19459be8eeaca16916559c119f28cb",
-        "at": "2026-11-19T04:08:43Z",
+        "fingerprint": "10787d46e9dae9ec4a6591f58d0f7d6dd8de021bdcb13dfc27b41f5ded377a64",
+        "at": "2026-11-19T04:24:54Z",
         "forced": false
       }
     },
@@ -648,7 +648,7 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T17:35:09Z",
-      "finished_at": "2026-11-19T04:08:45Z",
+      "finished_at": "2026-11-19T04:24:56Z",
       "attempts": 1,
       "units": [
         {
@@ -666,8 +666,8 @@
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "3ebc0d5feee7740c3021fcc515b3926438bd66daa02ab756ef2a0dd788ae5541",
-        "at": "2026-11-19T04:08:45Z",
+        "fingerprint": "aa63d9c3f0268ab0c4f1a644e53b336e613db62c2fba75cc2cb11a60fd9b4070",
+        "at": "2026-11-19T04:24:56Z",
         "forced": false
       }
     },
@@ -678,7 +678,7 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T17:35:10Z",
-      "finished_at": "2026-11-19T04:08:46Z",
+      "finished_at": "2026-11-19T04:24:57Z",
       "attempts": 1,
       "units": [
         {
@@ -716,8 +716,8 @@
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "9e59b7fc6a19afad554d15e00c60cc003aa31bf1351dd40f7541299b3840521f",
-        "at": "2026-11-19T04:08:46Z",
+        "fingerprint": "38ccfcbe4956e5d92c7f83c56aff375216d3d170a5fd936f6e62740a42786056",
+        "at": "2026-11-19T04:24:57Z",
         "forced": false
       }
     },
@@ -728,7 +728,7 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T19:48:29Z",
-      "finished_at": "2026-11-19T04:21:55Z",
+      "finished_at": "2026-11-19T04:25:51Z",
       "attempts": 3,
       "units": [
         {
@@ -809,8 +809,8 @@
       ],
       "validation": {
         "version": 2,
-        "fingerprint": "07b1acb624b07368d4c4a8b018cedfb375d257e908a4da11c7939ac3e38c9a76",
-        "at": "2026-11-19T04:21:55Z",
+        "fingerprint": "3b09f55e464283d295d0a91f5c08eae5f608c2eac214a05df5da2c6095a54ee1",
+        "at": "2026-11-19T04:25:51Z",
         "forced": false
       }
     },
@@ -821,7 +821,7 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T18:18:40Z",
-      "finished_at": "2026-11-19T04:21:18Z",
+      "finished_at": "2026-11-19T04:25:12Z",
       "attempts": 1,
       "units": [
         {
@@ -839,8 +839,8 @@
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "72a019eab9ee3053484f339e298a25469ab18e9e5c7442d077438bd014146249",
-        "at": "2026-11-19T04:21:18Z",
+        "fingerprint": "8fcd2673a51c0b54c70290b473cd5d004f749a10b2743a92332c41742efcbacd",
+        "at": "2026-11-19T04:25:12Z",
         "forced": false
       }
     },
@@ -851,7 +851,7 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T19:21:04Z",
-      "finished_at": "2026-11-19T04:22:02Z",
+      "finished_at": "2026-11-19T04:25:58Z",
       "attempts": 1,
       "units": [
         {
@@ -864,8 +864,8 @@
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "797f84171297b0e6d89339f586cd91e682b2a4582d1776c3ce34a36cdf07f6dd",
-        "at": "2026-11-19T04:22:02Z",
+        "fingerprint": "c594b5c19d98ddc06588556c276f156984676d12655c700921c5b41980ea832b",
+        "at": "2026-11-19T04:25:58Z",
         "forced": false
       }
     },
@@ -876,15 +876,15 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T19:32:36Z",
-      "finished_at": "2026-11-19T04:09:08Z",
+      "finished_at": "2026-11-19T04:26:00Z",
       "attempts": 1,
       "units": [],
       "note": "",
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "8ad64af809041520d2eeaae4023645ba32f1cc59db59757dd0efdd1f0176e17d",
-        "at": "2026-11-19T04:09:08Z",
+        "fingerprint": "4022c829c1b3dbb23851eee374a903921156e72d2f3d971a8112c1f1bd6ec2bf",
+        "at": "2026-11-19T04:26:00Z",
         "forced": false
       }
     },
@@ -1840,6 +1840,96 @@
       "event": "done",
       "message": "gate passed",
       "stage": "capstone"
+    },
+    {
+      "at": "2026-11-19T04:23:33Z",
+      "event": "source-update",
+      "message": "updated frontendmentor-challenges: type, evidence.used_by",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-19T04:24:52Z",
+      "event": "execution-check",
+      "message": "research: pass",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-19T04:24:53Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-19T04:24:54Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "brief"
+    },
+    {
+      "at": "2026-11-19T04:24:56Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "digest"
+    },
+    {
+      "at": "2026-11-19T04:24:57Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-19T04:24:59Z",
+      "event": "gate-failed",
+      "message": "1 problems",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-19T04:25:10Z",
+      "event": "execution-check",
+      "message": "mini-projects: pass",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-19T04:25:12Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-19T04:25:18Z",
+      "event": "execution-check",
+      "message": "capstone: pass",
+      "stage": "capstone"
+    },
+    {
+      "at": "2026-11-19T04:25:51Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-19T04:25:57Z",
+      "event": "execution-check",
+      "message": "capstone: pass",
+      "stage": "capstone"
+    },
+    {
+      "at": "2026-11-19T04:25:58Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "capstone"
+    },
+    {
+      "at": "2026-11-19T04:26:00Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "notes"
+    },
+    {
+      "at": "2026-11-19T04:26:29Z",
+      "event": "execution-check",
+      "message": "finalize: pass",
+      "stage": "finalize"
     }
   ],
   "roadmap": {
@@ -1850,8 +1940,8 @@
     "executions": {
       "research": {
         "version": 2,
-        "fingerprint": "c10bd8bb2bffaca08db3a718e20dd0b09b91c50269c9cdf5480c790bc542d984",
-        "at": "2026-11-19T04:08:41Z",
+        "fingerprint": "ffa690ffcc3bb29017df87dcdf4780f100124a50d2deab6c16d727d27bb72166",
+        "at": "2026-11-19T04:24:52Z",
         "ok": true,
         "checks": [
           {
@@ -1860,8 +1950,8 @@
             "requested_url": "https://developer.chrome.com/release-notes",
             "ok": true,
             "status": 200,
-            "bytes": 93518,
-            "sha256": "7fdbd767840cc7c51bac3acfe94dcfc8403e77904044bac47bb43a9ca41e54ae"
+            "bytes": 93514,
+            "sha256": "c485594db969b80996814938472bb66b5f084ccbeaacb3be0099b800a2df503e"
           },
           {
             "label": "frontendmentor-challenges: https://www.frontendmentor.io/",
@@ -1905,8 +1995,8 @@
             "requested_url": "https://web.dev/baseline",
             "ok": true,
             "status": 200,
-            "bytes": 215819,
-            "sha256": "b85c0cbc0e063f9d61c0cad0a1fc112048e9c524f91b750c35c246fba50b11a1"
+            "bytes": 215823,
+            "sha256": "421398bc3755bf901f38618a8d8d9801220b7dc32bafb877a1aa519e9245c1c5"
           },
           {
             "label": "mdn-feature-detection: https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Testing/Feature_detection",
@@ -1951,8 +2041,8 @@
       },
       "mini-projects": {
         "version": 2,
-        "fingerprint": "72a019eab9ee3053484f339e298a25469ab18e9e5c7442d077438bd014146249",
-        "at": "2026-11-19T04:21:17Z",
+        "fingerprint": "8fcd2673a51c0b54c70290b473cd5d004f749a10b2743a92332c41742efcbacd",
+        "at": "2026-11-19T04:25:10Z",
         "ok": true,
         "checks": [
           {
@@ -1964,7 +2054,7 @@
             "expected_exit": 0,
             "exit": 0,
             "ok": true,
-            "output_sha256": "6ff0014af22a2c51f299f5b51fb48ee3f18a0e220017b53a1a16faca5a8ebc29"
+            "output_sha256": "fee8b9d91b554caf1c7bc240970a9fda5c3ac1e8c312d467a0620d89c08f4b0f"
           },
           {
             "label": "mini-01-ship-it-checker: typecheck",
@@ -1999,7 +2089,7 @@
             "expected_exit": 1,
             "exit": 1,
             "ok": true,
-            "output_sha256": "2da9b5541a549b6709dd542735e83892a1d03c0ac46618df6052bb9303afb76a"
+            "output_sha256": "2dad3c471041e41e6e8e1313dde28a72bc684b9665ea2e275d21025fe9dc36e6"
           },
           {
             "label": "mini-01-ship-it-checker: starter-start",
@@ -2045,7 +2135,7 @@
             "expected_exit": 0,
             "exit": 0,
             "ok": true,
-            "output_sha256": "0c06e8be9fb7fce12299f1cab86d00a1c5c10fc3850d48adcdcc3c0144287c90"
+            "output_sha256": "a02b6d88aa47565afcb149b1dc28f80ebfa72fd302ea573a7af74d85ce957ea8"
           },
           {
             "label": "mini-02-learning-log: typecheck",
@@ -2080,7 +2170,7 @@
             "expected_exit": 1,
             "exit": 1,
             "ok": true,
-            "output_sha256": "a60862f43a54643fe6e31df76decf73e055af39306619464da31066bf2015cfe"
+            "output_sha256": "90aa667a3581265af71583973b68b60c6e60a023570793134a2739aad810bbe6"
           },
           {
             "label": "mini-02-learning-log: starter-start",
@@ -2098,7 +2188,7 @@
             "expected_exit": 1,
             "exit": 1,
             "ok": true,
-            "output_sha256": "30ece07d86ed4715c7b0e14700e9d67d096c698153715f5b1011b960f5fed157"
+            "output_sha256": "0ec8b2dbd772d1e64c6664fa0700ff05e8751e60097034bbe36f5ba136bcc0c5"
           },
           {
             "label": "mini-02-learning-log: typecheck",
@@ -2128,8 +2218,8 @@
       },
       "capstone": {
         "version": 2,
-        "fingerprint": "797f84171297b0e6d89339f586cd91e682b2a4582d1776c3ce34a36cdf07f6dd",
-        "at": "2026-11-19T04:22:01Z",
+        "fingerprint": "c594b5c19d98ddc06588556c276f156984676d12655c700921c5b41980ea832b",
+        "at": "2026-11-19T04:25:57Z",
         "ok": true,
         "checks": [
           {
@@ -2141,7 +2231,7 @@
             "expected_exit": 0,
             "exit": 0,
             "ok": true,
-            "output_sha256": "e7e780e7b37938351fc5e98175e1a03d25f31ead734e28caa9b548fc25242c84"
+            "output_sha256": "ee78d5c788319c6046e46eb3061c716a546a1fd6824be3d4025f8b21faf1c54a"
           },
           {
             "label": "capstone: typecheck",
@@ -2165,7 +2255,7 @@
             "expected_exit": 0,
             "exit": 0,
             "ok": true,
-            "output_sha256": "aeff7f9418669ad0dd9bfbb53d0c29b6b4b5f865670f0c8564d88a534ba61391"
+            "output_sha256": "10d5b825fb97c3d087de7ae7a38f3e8b8e845db3bceef6e748e748db990879e5"
           },
           {
             "label": "capstone: audit",
@@ -2183,8 +2273,8 @@
       },
       "finalize": {
         "version": 2,
-        "fingerprint": "43699744241c8b7f52dc5e4d1f03ae114ceffd2cbf8ea9becfc06a196456706e",
-        "at": "2026-11-19T04:11:53Z",
+        "fingerprint": "f364e9721675600fdd74e738e3eae3ec51106f843b23c27d002f5186c2f24359",
+        "at": "2026-11-19T04:26:29Z",
         "ok": true,
         "checks": [
           {
@@ -2199,7 +2289,7 @@
             "expected_exit": 0,
             "exit": 0,
             "ok": true,
-            "output_sha256": "4d116289841906482cf14408455df1af551ac14dcc4b0c6d2bf3c589d5eab179"
+            "output_sha256": "7a5757adcaf80d8b09f110a633b8295c58aec64e691312e1edf8543e6b2bf0c1"
           },
           {
             "label": "site smoke",
@@ -2213,7 +2303,7 @@
             "expected_exit": 0,
             "exit": 0,
             "ok": true,
-            "output_sha256": "67270482ec59c39179282ae2125f632eb04a8b9570825c67e1335d90faca9cb8"
+            "output_sha256": "72eaf246061a86bd22a9cc7cfcc1941a625118411c64c26bbcec1c9ccaea1425"
           },
           {
             "label": "site manifest:check",

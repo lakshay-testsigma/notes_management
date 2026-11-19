@@ -41,10 +41,6 @@ Every source below was checked against a live page before it was recommended.
   - Why it is trusted: MDN's own account of which bodies write the web standards (W3C, WHATWG, TC39 with ECMA, Khronos) and how a feature moves from explainer to specification, so a learner can reach the primary source instead of a tutorial summary.
   - Used for: brief, lesson
   - Verified: 2026-11-18
-- **[Frontend Mentor — practice challenges for front-end developers](https://www.frontendmentor.io/)** — Frontend Mentor, 2026 · tier B
-  - Why it is trusted: The practice platform's own site, which states that 1,207,602 people build portfolio-worthy projects there and publishes 133 challenges in five difficulty levels with design files, a product-spec format, and a code review loop.
-  - Used for: brief, lesson
-  - Verified: 2026-11-18
 
 ## Repositories
 
@@ -55,6 +51,13 @@ Every source below was checked against a live page before it was recommended.
 - **[pmndrs/zustand: Bear necessities for state management in React](https://github.com/pmndrs/zustand)** — pmndrs (Poimandres), 2026 · tier A
   - Why it is trusted: The organisation-owned reference implementation of a modern React store, MIT licensed with eight CI workflows and a vitest suite, and a runtime dependency of cal.com ("zustand": "4.5.2" in packages/features/package.json) and of OpenReplay's tracker package ("zustand": "^4.5.2" in tracker/tracker-zustand/package.json).
   - Used for: lesson, repo-intel
+  - Verified: 2026-11-18
+
+## Courses
+
+- **[Frontend Mentor — practice challenges for front-end developers](https://www.frontendmentor.io/)** — Frontend Mentor, 2026 · tier B
+  - Why it is trusted: The practice platform's own site, which states that 1,207,602 people build portfolio-worthy projects there and publishes 133 challenges in five difficulty levels with design files, a product-spec format, and a code review loop.
+  - Used for: brief, lesson
   - Verified: 2026-11-18
 <!-- tutor:generated:end -->
 

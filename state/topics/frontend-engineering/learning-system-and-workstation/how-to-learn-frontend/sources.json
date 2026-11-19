@@ -25,7 +25,7 @@
   },
   {
     "id": "frontendmentor-challenges",
-    "type": "official-docs",
+    "type": "course",
     "title": "Frontend Mentor — practice challenges for front-end developers",
     "url": "https://www.frontendmentor.io/",
     "authors": "Frontend Mentor",
@@ -38,10 +38,7 @@
       "citations": null,
       "venue": null,
       "publisher": "Frontend Mentor",
-      "used_by": [
-        "CSS-Tricks",
-        "Stack Overflow"
-      ]
+      "used_by": []
     },
     "verified_at": "2026-11-18",
     "verified_via": "https://www.frontendmentor.io/",
