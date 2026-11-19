@@ -48,6 +48,8 @@ let nanoid = (size = 21) => customAlphabet(urlAlphabet, size)()
 
 A call to `nanoid()` reads 21 secure random bytes and masks each to 6 bits. Every byte becomes an index from 0 to 63, which picks one of 64 URL-safe symbols. That is why every id has 21 characters and 126 random bits — the part a summary leaves out.
 
+Reading is only half the habit. To cement it, close the tab and re-implement a 50-line version from memory: zustand's core store, `Promise.all`, or a `debounce`. Then test your version against the real library.
+
 Now sort the habits you actually use into deliberate practice and passive input.
 
 <SortBuckets

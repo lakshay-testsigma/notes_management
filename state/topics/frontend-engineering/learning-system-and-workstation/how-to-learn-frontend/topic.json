@@ -7,7 +7,7 @@
   "subdomain": "learning-system-and-workstation",
   "depth": "standard",
   "created_at": "2026-11-18T17:03:48Z",
-  "updated_at": "2026-11-18T19:43:54Z",
+  "updated_at": "2026-11-19T04:05:39Z",
   "paths": {
     "state": "state/topics/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend",
     "vault": "vault/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend",
@@ -631,9 +631,9 @@
       "skill": "learn-site",
       "status": "done",
       "scope": "required",
-      "started_at": "2026-11-18T19:39:18Z",
-      "finished_at": "2026-11-18T19:43:54Z",
-      "attempts": 2,
+      "started_at": "2026-11-18T19:48:29Z",
+      "finished_at": "2026-11-19T04:05:30Z",
+      "attempts": 3,
       "units": [
         {
           "id": "pages-01-03",
@@ -681,12 +681,40 @@
             }
           ],
           "note": ""
+        },
+        {
+          "at": "2026-11-18T19:48:28Z",
+          "status": "done",
+          "validation": {
+            "version": 2,
+            "fingerprint": "1fea74f7ad4f3ff73b4ccfda7faacd4e3008a60f345bc8a3399fb51efc72a628",
+            "at": "2026-11-18T19:43:54Z",
+            "forced": false
+          },
+          "units": [
+            {
+              "id": "pages-01-03",
+              "status": "done",
+              "handoff": null
+            },
+            {
+              "id": "pages-04-05",
+              "status": "done",
+              "handoff": null
+            },
+            {
+              "id": "pages-06-07",
+              "status": "done",
+              "handoff": null
+            }
+          ],
+          "note": ""
         }
       ],
       "validation": {
         "version": 2,
-        "fingerprint": "1fea74f7ad4f3ff73b4ccfda7faacd4e3008a60f345bc8a3399fb51efc72a628",
-        "at": "2026-11-18T19:43:54Z",
+        "fingerprint": "bdd608edd146ed04f37d29736b3e4874c8c4acd82b2e4271de1592779e97c9fb",
+        "at": "2026-11-19T04:05:30Z",
         "forced": false
       }
     },
@@ -752,15 +780,15 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T19:32:36Z",
-      "finished_at": "2026-11-18T19:33:56Z",
+      "finished_at": "2026-11-19T04:05:39Z",
       "attempts": 1,
       "units": [],
       "note": "",
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "b408b87a948e200f0ef04b2de5bc0163dbf0d5c70106d673b04a86c33567fc48",
-        "at": "2026-11-18T19:33:56Z",
+        "fingerprint": "2ecac9b566ba4055efa331b6e6c2a072d6b1bac6ce6fbcd975bcc7a6600aca22",
+        "at": "2026-11-19T04:05:39Z",
         "forced": false
       }
     },
@@ -1524,6 +1552,66 @@
       "event": "done",
       "message": "gate passed",
       "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T19:48:28Z",
+      "event": "reset",
+      "message": "was done",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T19:48:29Z",
+      "event": "start",
+      "message": "attempt 3",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T19:48:30Z",
+      "event": "unit-add",
+      "message": "unit pages-01-03",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T19:48:30Z",
+      "event": "unit-add",
+      "message": "unit pages-04-05",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T19:48:31Z",
+      "event": "unit-add",
+      "message": "unit pages-06-07",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T19:49:57Z",
+      "event": "unit-done",
+      "message": "unit pages-01-03",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-18T19:51:54Z",
+      "event": "unit-done",
+      "message": "unit pages-06-07",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-19T04:05:24Z",
+      "event": "unit-done",
+      "message": "unit pages-04-05",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-19T04:05:30Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-19T04:05:39Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "notes"
     }
   ],
   "roadmap": {

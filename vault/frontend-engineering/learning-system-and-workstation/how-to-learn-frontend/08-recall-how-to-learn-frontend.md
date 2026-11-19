@@ -16,9 +16,9 @@ You watch tutorials all weekend but on Monday cannot start a new feature. Which 
 The measure and explain steps. Reading alone never checks understanding, so the gap survives until a real problem exposes it.
 
 <!-- card: hlf-02 -->
-A feature shows the Baseline label "Newly available". Is it safe to ship today with no fallback, and why?
+A feature shows the Baseline label "Newly available". What must you check before shipping it with no fallback, and why?
 ?
-No. Newly available means the core browsers added it less than 30 months ago, so older browsers still lack it. Wait for Widely available, or add a fallback.
+Your users' browser versions. Newly available means the current core browsers all support it, but versions older than 30 months do not, so you must decide whether your audience updates fast enough.
 
 <!-- card: hlf-03 -->
 Your learning-log note has only a "read" section filled in. Why is the note incomplete, and what does the loop add?
