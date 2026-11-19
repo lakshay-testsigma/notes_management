@@ -13,7 +13,7 @@ Everything you have learned, by domain. Open a topic and follow its "start here"
 <!-- tutor:generated:start -->
 ## Roadmaps
 
-- [[_roadmaps/frontend|N1 Frontend Engineering Mastery Roadmap]] — 0/107 topics ready
+- [[_roadmaps/frontend|N1 Frontend Engineering Mastery Roadmap]] — 1/107 topics ready
 
 ## Domains
 
@@ -21,7 +21,7 @@ Everything you have learned, by domain. Open a topic and follow its "start here"
 
 ## All topics
 
-- [[00-start-here-how-to-learn-frontend|How to learn frontend (and keep improving)]] — standard · 9/10 steps ready
+- [[00-start-here-how-to-learn-frontend|How to learn frontend (and keep improving)]] — standard · 10/10 steps ready
 
 ## Review
 

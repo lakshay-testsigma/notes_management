@@ -7,7 +7,7 @@
   "subdomain": "learning-system-and-workstation",
   "depth": "standard",
   "created_at": "2026-11-18T17:03:48Z",
-  "updated_at": "2026-11-19T04:26:29Z",
+  "updated_at": "2026-11-19T04:40:28Z",
   "paths": {
     "state": "state/topics/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend",
     "vault": "vault/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend",
@@ -892,13 +892,20 @@
       "id": "finalize",
       "wave": 5,
       "skill": "learn",
-      "status": "in_progress",
+      "status": "done",
       "scope": "required",
       "started_at": "2026-11-19T04:06:00Z",
-      "finished_at": null,
+      "finished_at": "2026-11-19T04:40:28Z",
       "attempts": 1,
       "units": [],
-      "note": ""
+      "note": "",
+      "continue_after_failure": false,
+      "validation": {
+        "version": 2,
+        "fingerprint": "f364e9721675600fdd74e738e3eae3ec51106f843b23c27d002f5186c2f24359",
+        "at": "2026-11-19T04:40:28Z",
+        "forced": false
+      }
     }
   ],
   "recall": {
@@ -1930,6 +1937,24 @@
       "event": "execution-check",
       "message": "finalize: pass",
       "stage": "finalize"
+    },
+    {
+      "at": "2026-11-19T04:40:19Z",
+      "event": "quality-review",
+      "message": "content: pass",
+      "stage": "finalize"
+    },
+    {
+      "at": "2026-11-19T04:40:19Z",
+      "event": "quality-review",
+      "message": "projects: pass",
+      "stage": "finalize"
+    },
+    {
+      "at": "2026-11-19T04:40:28Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "finalize"
     }
   ],
   "roadmap": {
@@ -2320,6 +2345,107 @@
             "output_sha256": "9cf80b4d6837916eb7b42c75c5478750c54297762700cff81b192e0cd083e529"
           }
         ]
+      }
+    },
+    "reviews": {
+      "content": {
+        "scope": "content",
+        "reviewer": "content-review",
+        "verdict": "pass",
+        "checks": [
+          "sources",
+          "reading-order",
+          "activity-correctness",
+          "diagram-semantics",
+          "beginner-readability",
+          "insights",
+          "research-coverage",
+          "practical-depth",
+          "visual-usefulness",
+          "learner-fit",
+          "visual-accuracy",
+          "visual-efficacy",
+          "interaction-behavior",
+          "interactive-topic-fit",
+          "accessibility-responsive",
+          "writing-standard",
+          "experience-behavior"
+        ],
+        "findings": [
+          {
+            "severity": "warning",
+            "path": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend/06-practice-and-read-code.mdx",
+            "problem": "Prose states a nanoid() call reads 21 secure random bytes and masks each to 6 bits; nanoid v3 customRandom computes step = 34 and reads 34 bytes, then uses 21 of them. The 21-characters/126-bits conclusion is correct; the byte count is not.",
+            "fix": "Reword to 'reads 34 secure random bytes (the step size) and masks 21 of them to 6-bit indices', or drop the byte count."
+          },
+          {
+            "severity": "warning",
+            "path": "vault/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend/08-recall-how-to-learn-frontend.md",
+            "problem": "Card hlf-02 says 'versions older than 30 months do not' support a Newly available feature; the 30-month threshold marks Widely available, not which versions ship a feature.",
+            "fix": "Reword to 'browser versions released before the feature became Newly available lack it'."
+          },
+          {
+            "severity": "warning",
+            "path": "state/topics/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend/sources.json",
+            "problem": "frontendmentor-challenges is typed 'course' tier B, whose rubric requires a named instructor and a current syllabus; Frontend Mentor is a self-serve practice platform.",
+            "fix": "Strengthen why_trusted to justify the fit for a recognised practice platform."
+          }
+        ],
+        "not_checked": [],
+        "independent": true,
+        "reviewer_run_id": "ses_e0def4ea7fferIULI5E5pTuqxu",
+        "input_fingerprint": "f364e9721675600fdd74e738e3eae3ec51106f843b23c27d002f5186c2f24359",
+        "assessments": {
+          "sources": "9 sources (8 tier A, 1 tier B) with verified_via; spot-checked ai/nanoid and pmndrs/zustand via api.github.com matching recorded evidence; web.dev/baseline live confirms core browser set + 30-month rule. Prior fixes resolved: frontendmentor type course with used_by []; nanoid snippet relabelled v3 historical; polyfill.io/core-js claim softened.",
+          "reading-order": "00-start-here + 01..09 present; 04-digests (index + 2) and 05-repo-intel (index + zustand notes); reading order 01..08 complete, no gaps.",
+          "activity-correctness": "All 7 pages carry exactly one activity with correct answers and beginner-mistake distractors; OrderSteps and SortBuckets partitions verified.",
+          "diagram-semantics": "how-it-works (4-node cycle), baseline-ship-decision (Limited->Newly->Widely + 30 months), mdn-publish-review-loop (6-step) all 3-7 nodes and sourced.",
+          "beginner-readability": "Prose 110-260 words/page, terms bolded once, no blockquotes/callouts/cards (grep clean).",
+          "insights": "Every stage note ends with exactly one ## My insights as last heading; nothing generated below it.",
+          "research-coverage": "All 8 concepts have coverage paths with all six aspects; use-case states benefit over alternative; no empty headings.",
+          "practical-depth": "zustand findings carry path:line@9fed2eb; opened src/vanilla.ts:70-88 confirming Object.is, Object.assign patch merge, getInitialState.",
+          "visual-usefulness": "12 registered visuals each with purpose/explanation/alt/learning_check; the three lesson visuals expose their mechanism; interact confirmed Diagram zoom/reset works.",
+          "learner-fit": "Learner is an existing developer; bridges only unfamiliar domain concepts without re-teaching basics; real libraries (nanoid, zustand) used.",
+          "visual-accuracy": "Each .mmd matches its source_ids; baseline 3 states/30 months/4 browsers confirmed live; no invented arrows or numbers.",
+          "visual-efficacy": "Learning checks answered and reachable from prose; diagrams reinforcing, not decorative.",
+          "interaction-behavior": "interact.mjs OK 86 checks (CompareView, SortBuckets, Diagram zoom/reset pass, controls named); smoke OK 49 pages, 10 islands hydrated, 27 diagrams drawn.",
+          "interactive-topic-fit": "Each interactive object uses its page's own concept and real names; no placeholder data or borrowed scenarios.",
+          "accessibility-responsive": "interact: no sideways scroll at 375px, no reduced-motion errors, buttons have accessible names, alts state structure and conclusion.",
+          "writing-standard": "tutor style on pages above 80% target; active voice; analogies/interpretations marked.",
+          "experience-behavior": "tutor experience plan selects static (0/10) for all 7 pages; no experiences to misbehave; consistent with adaptive policy."
+        },
+        "at": "2026-11-19T04:40:19Z",
+        "fingerprint": "f364e9721675600fdd74e738e3eae3ec51106f843b23c27d002f5186c2f24359"
+      },
+      "projects": {
+        "scope": "projects",
+        "reviewer": "projects-review",
+        "verdict": "pass",
+        "checks": [
+          "solution-tests",
+          "starter-behavior",
+          "dependency-health",
+          "architecture",
+          "documented-commands",
+          "project-diagrams"
+        ],
+        "findings": [],
+        "not_checked": [
+          "capstone live browser walkthrough (npm run dev/preview) not exercised; UI behavior is covered by the passing jsdom integration tests (trackerFlow, dashboardView, builtArtefact)"
+        ],
+        "independent": true,
+        "reviewer_run_id": "ses_e0def4ea5ffe0usCyXPvFlir7O",
+        "input_fingerprint": "f364e9721675600fdd74e738e3eae3ec51106f843b23c27d002f5186c2f24359",
+        "assessments": {
+          "solution-tests": "Ran README's npm test in each solution: mini-01 12/12, mini-02 13/13, capstone 50/50 (42 unit + 8 integration).",
+          "starter-behavior": "mini-01 starter 11 failed/1 passed on TODO throws; mini-02 starter 12 failed/1 passed on TODOs; both npm start print TODO(1) and exit 1; the single passing test is non-TODO wiring.",
+          "dependency-health": "npm audit --audit-level=high returned 0 vulnerabilities in all three solutions.",
+          "architecture": "capstone ARCHITECTURE.md names 12 classes with files that exist; domain functions and error classes present; main.tsx is the composition root as documented.",
+          "documented-commands": "README commands map to package.json scripts; live runs match expectations (2024 fallback vs 2025 safe-today outputs).",
+          "project-diagrams": "mini-01 and mini-02 mermaid name real files/functions; capstone diagrams match code (setStep, no UC1->NOTE edge, no markStep); both previously flagged items resolved."
+        },
+        "at": "2026-11-19T04:40:19Z",
+        "fingerprint": "f364e9721675600fdd74e738e3eae3ec51106f843b23c27d002f5186c2f24359"
       }
     }
   },
