@@ -7,7 +7,7 @@
   "subdomain": "learning-system-and-workstation",
   "depth": "standard",
   "created_at": "2026-11-19T04:50:05Z",
-  "updated_at": "2026-11-19T06:05:30Z",
+  "updated_at": "2026-11-19T06:07:46Z",
   "paths": {
     "state": "state/topics/frontend-engineering/learning-system-and-workstation/workstation-and-editor",
     "vault": "vault/frontend-engineering/learning-system-and-workstation/workstation-and-editor",
@@ -272,8 +272,8 @@
     "digest_targets": 2,
     "repo_targets": 1,
     "capstone": {
-      "name": "Setup doctor",
-      "problem": "A developer runs one command that audits a machine (Node version, git identity, editor settings, PATH) and reports exactly what is missing, with tests."
+      "name": "Dev environment configurator",
+      "problem": "A developer picks their shell, git identity, editor, and Node version in a web form and receives a ready dotfiles repository with an install script and a setup checklist, with tests."
     },
     "learner": {
       "experience": "software developer learning frontend end to end",
@@ -531,15 +531,15 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-19T04:52:22Z",
-      "finished_at": "2026-11-19T05:07:47Z",
+      "finished_at": "2026-11-19T06:07:11Z",
       "attempts": 1,
       "units": [],
       "note": "",
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "2f32cbdc732adfe642908271df161c64614a4c0d5cef106810ea2e5a77f64df0",
-        "at": "2026-11-19T05:07:47Z",
+        "fingerprint": "22ea85bb8fc6076fad80c00edb1ba9ff92ad504742b497fedf1b8cfaa4408271",
+        "at": "2026-11-19T06:07:11Z",
         "forced": false
       }
     },
@@ -550,7 +550,7 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-19T04:54:37Z",
-      "finished_at": "2026-11-19T05:07:49Z",
+      "finished_at": "2026-11-19T06:07:25Z",
       "attempts": 1,
       "units": [
         {
@@ -573,8 +573,8 @@
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "621a083fa30427b4591eb2290d0a64d7a0f03a890b3b66d4f88119daf8e9d635",
-        "at": "2026-11-19T05:07:49Z",
+        "fingerprint": "452ab3a5fa4300c0727c287d26706b0539e9c6473cacca7d44afa2c9f891d62b",
+        "at": "2026-11-19T06:07:25Z",
         "forced": false
       }
     },
@@ -585,15 +585,15 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-19T05:09:42Z",
-      "finished_at": "2026-11-19T05:09:44Z",
+      "finished_at": "2026-11-19T06:07:27Z",
       "attempts": 1,
       "units": [],
       "note": "",
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "e186ada631515130659a4e4225e00213f40de8e06b5cc8610e1ad9f28e5a490f",
-        "at": "2026-11-19T05:09:44Z",
+        "fingerprint": "baa7fc1ca85cc6bfd6d6aa1406810d65712eeedd349a3fdcd0ba870420b60eb7",
+        "at": "2026-11-19T06:07:27Z",
         "forced": false
       }
     },
@@ -604,7 +604,7 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-19T05:10:28Z",
-      "finished_at": "2026-11-19T06:03:44Z",
+      "finished_at": "2026-11-19T06:07:30Z",
       "attempts": 1,
       "units": [
         {
@@ -622,8 +622,8 @@
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "228c6af089e6a98478717c861a742eb05db160f8be5805bd917b5cf834911bc7",
-        "at": "2026-11-19T06:03:44Z",
+        "fingerprint": "08006939c73f2dc5e7ef28ee7ab486184f21b2b638c4060886c08cf9e978d998",
+        "at": "2026-11-19T06:07:30Z",
         "forced": false
       }
     },
@@ -634,7 +634,7 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-19T05:10:29Z",
-      "finished_at": "2026-11-19T05:42:41Z",
+      "finished_at": "2026-11-19T06:07:34Z",
       "attempts": 1,
       "units": [
         {
@@ -692,8 +692,8 @@
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "0a490d9ec072dbde5b6ff0262d1c94d3069527d5f31b8fb17e3ffda31f1765fa",
-        "at": "2026-11-19T05:42:41Z",
+        "fingerprint": "d2dc3cab6b9304fc2b3b3af43d3a11377e392f68f35adebd8a6c6172624986ea",
+        "at": "2026-11-19T06:07:34Z",
         "forced": false
       }
     },
@@ -704,7 +704,7 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-19T05:43:48Z",
-      "finished_at": "2026-11-19T06:05:30Z",
+      "finished_at": "2026-11-19T06:07:37Z",
       "attempts": 1,
       "units": [
         {
@@ -732,8 +732,8 @@
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "8ca0a811e29d7a1413ee0ad03e9f3b5137d0de12bc4ad76ccbdbc83f1d6a0bd4",
-        "at": "2026-11-19T06:05:30Z",
+        "fingerprint": "b65ebcb413ed68bf8846f2f65ad923732e2eba5b46371fe2bcf37d8d117bece2",
+        "at": "2026-11-19T06:07:37Z",
         "forced": false
       }
     },
@@ -744,7 +744,7 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-19T05:43:49Z",
-      "finished_at": "2026-11-19T06:05:04Z",
+      "finished_at": "2026-11-19T06:07:46Z",
       "attempts": 1,
       "units": [
         {
@@ -762,8 +762,8 @@
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "e2672b4fd52056fd1af002326851c94abf0f831058708322d501898425f8553a",
-        "at": "2026-11-19T06:05:04Z",
+        "fingerprint": "df1e37ce6f9150e846af943da3fba97a170bf7bcdce734fde48f999953740760",
+        "at": "2026-11-19T06:07:46Z",
         "forced": false
       }
     },
@@ -1519,6 +1519,66 @@
       "event": "done",
       "message": "gate passed",
       "stage": "lesson"
+    },
+    {
+      "at": "2026-11-19T06:06:47Z",
+      "event": "plan",
+      "message": "plan fields set: capstone",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-19T06:07:11Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-19T06:07:21Z",
+      "event": "execution-check",
+      "message": "research: pass",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-19T06:07:25Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-19T06:07:27Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "brief"
+    },
+    {
+      "at": "2026-11-19T06:07:30Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "digest"
+    },
+    {
+      "at": "2026-11-19T06:07:34Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-19T06:07:37Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-19T06:07:43Z",
+      "event": "execution-check",
+      "message": "mini-projects: pass",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-19T06:07:46Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "mini-projects"
     }
   ],
   "roadmap": {
@@ -1529,8 +1589,8 @@
     "executions": {
       "research": {
         "version": 2,
-        "fingerprint": "621a083fa30427b4591eb2290d0a64d7a0f03a890b3b66d4f88119daf8e9d635",
-        "at": "2026-11-19T05:07:37Z",
+        "fingerprint": "452ab3a5fa4300c0727c287d26706b0539e9c6473cacca7d44afa2c9f891d62b",
+        "at": "2026-11-19T06:07:21Z",
         "ok": true,
         "checks": [
           {
@@ -1549,7 +1609,7 @@
             "ok": true,
             "status": 200,
             "bytes": 179574,
-            "sha256": "bc71ea66192211da8be8d0739059c586b73bed142dabc59ecc4142df36f59cae"
+            "sha256": "b136b552833f25f153c47311896357c647ac187585268aa59a93cf1fa201c799"
           },
           {
             "label": "nodejs-releases-docs: https://nodejs.org/en/about/previous-releases",
@@ -1557,8 +1617,8 @@
             "requested_url": "https://nodejs.org/en/about/previous-releases",
             "ok": true,
             "status": 200,
-            "bytes": 287585,
-            "sha256": "5ee34d328032434fe012a32f622e46179456db34d19d912c3d6801a9cca9a799"
+            "bytes": 287490,
+            "sha256": "3d9e187ddb39709d1e04b41436bd58cee94c7bc2347d08755e0cae9f4fb16829"
           },
           {
             "label": "mit-missing-semester: https://missing.csail.mit.edu/",
@@ -1585,11 +1645,11 @@
             "ok": true,
             "status": 200,
             "bytes": 6691,
-            "sha256": "8f25d3243b42a25ecfcb08679c54a56b1dd9693c33b815a97b07f85cbe2a7001",
+            "sha256": "006f8e97bf6818caa65c3d13bffdf0a8d0183e71b88064ae212a1d8937ba9a93",
             "repository": {
-              "stars": 96176,
+              "stars": 96179,
               "archived": false,
-              "pushed_at": "2026-11-18T22:19:08Z",
+              "pushed_at": "2026-11-19T05:31:21Z",
               "license": "MIT"
             }
           },
@@ -1600,9 +1660,9 @@
             "ok": true,
             "status": 200,
             "bytes": 7272,
-            "sha256": "976e82051aef260677bf2ab5da6e70837dd4af664764aa13066ea39588a072fa",
+            "sha256": "4d0b0ba35f0efdb32fecfb56780bb7ba3c67641097a0828fdb135557e0fef82a",
             "repository": {
-              "stars": 190641,
+              "stars": 190648,
               "archived": false,
               "pushed_at": "2026-11-16T12:08:14Z",
               "license": "MIT"
@@ -1615,11 +1675,11 @@
             "ok": true,
             "status": 200,
             "bytes": 6595,
-            "sha256": "1b0bbb7e4652e4a127b2ae4616dc2f603d79202667a0bf6ad6920cec2d84c36e",
+            "sha256": "d27a7065615d92dd2ad9d9ac8a3dc94c122729837eb64fd46c3f800732dce17e",
             "repository": {
-              "stars": 135813,
+              "stars": 135815,
               "archived": false,
-              "pushed_at": "2026-11-19T04:49:25Z",
+              "pushed_at": "2026-11-19T06:03:45Z",
               "license": "Apache-2.0"
             }
           },
@@ -1636,8 +1696,8 @@
       },
       "mini-projects": {
         "version": 2,
-        "fingerprint": "e2672b4fd52056fd1af002326851c94abf0f831058708322d501898425f8553a",
-        "at": "2026-11-19T06:05:01Z",
+        "fingerprint": "df1e37ce6f9150e846af943da3fba97a170bf7bcdce734fde48f999953740760",
+        "at": "2026-11-19T06:07:43Z",
         "ok": true,
         "checks": [
           {
@@ -1682,7 +1742,7 @@
             "expected_exit": 0,
             "exit": 0,
             "ok": true,
-            "output_sha256": "e5311fd1b8bdff34d8d961277eb9f25f6b9db40a32f95f6ff97920a52d6864bb"
+            "output_sha256": "ee49ca1184525fc3a19d851a6a9bad37e73b742b80f90a07af7ae95e0d39cb5e"
           },
           {
             "label": "mini-02-git-bisect-hunt: starter-tests",

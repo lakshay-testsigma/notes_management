@@ -76,7 +76,7 @@ Research stopped: scope-boundary. Sub-concepts proposed by discovery (pipes-and-
 
 - Mini project: `projects/frontend-engineering/learning-system-and-workstation/workstation-and-editor/mini-01-dotfiles/`
 - Mini project: `projects/frontend-engineering/learning-system-and-workstation/workstation-and-editor/mini-02-git-bisect-hunt/`
-- Capstone: `projects/frontend-engineering/learning-system-and-workstation/workstation-and-editor/capstone/` — Setup doctor
+- Capstone: `projects/frontend-engineering/learning-system-and-workstation/workstation-and-editor/capstone/` — Dev environment configurator
 
 ## Build status
 
