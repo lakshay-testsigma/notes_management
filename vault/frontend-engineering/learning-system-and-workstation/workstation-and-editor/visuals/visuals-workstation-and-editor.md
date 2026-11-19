@@ -11,6 +11,8 @@ Every diagram, simulation and video of this topic, with the concepts it teaches 
 
 - [[concept-map-workstation-and-editor|Concept map]] — how the concepts of this topic depend on each other
 
-No visual is registered yet.
+## Workflow
+
+- [[visual-how-it-works-workstation-and-editor|The reproducible workstation]] — See the reproducible workstation as one install flow.
 
 ## My insights

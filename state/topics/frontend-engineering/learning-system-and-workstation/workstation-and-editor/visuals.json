@@ -1,0 +1,26 @@
+[
+  {
+    "id": "how-it-works",
+    "title": "The reproducible workstation",
+    "kind": "workflow",
+    "scope": "end-to-end",
+    "format": "mermaid",
+    "file": "vault/frontend-engineering/learning-system-and-workstation/workstation-and-editor/visuals/assets/how-it-works-workstation-and-editor.mmd",
+    "concept_ids": [
+      "workstation-setup"
+    ],
+    "source_ids": [
+      "mit-missing-semester"
+    ],
+    "purpose": "See the reproducible workstation as one install flow.",
+    "explanation": "Your configuration lives in a versioned dotfiles repository. An install script links those files into place, producing a shell, git, and editor setup that any new machine can reproduce in minutes.",
+    "alt": "Four steps left to right: a dotfiles repo feeds an install script, which creates shell, git and editor settings, which make any new machine ready to work.",
+    "learning_check": {
+      "question": "Which file makes the setup reproducible on a new machine?",
+      "answer": "The dotfiles repository, because it holds the configuration and the install script that links it into place."
+    },
+    "used_in": [
+      "vault/frontend-engineering/learning-system-and-workstation/workstation-and-editor/01-brief-workstation-and-editor.md"
+    ]
+  }
+]
