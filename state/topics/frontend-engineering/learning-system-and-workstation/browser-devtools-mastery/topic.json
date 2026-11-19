@@ -7,7 +7,7 @@
   "subdomain": "learning-system-and-workstation",
   "depth": "deep",
   "created_at": "2026-11-19T09:53:51Z",
-  "updated_at": "2026-11-19T11:04:35Z",
+  "updated_at": "2026-11-19T11:12:54Z",
   "paths": {
     "state": "state/topics/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery",
     "vault": "vault/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery",
@@ -1571,13 +1571,20 @@
       "id": "notes",
       "wave": 5,
       "skill": "learn-notes",
-      "status": "pending",
+      "status": "done",
       "scope": "required",
-      "started_at": null,
-      "finished_at": null,
-      "attempts": 0,
+      "started_at": "2026-11-19T11:11:23Z",
+      "finished_at": "2026-11-19T11:12:54Z",
+      "attempts": 1,
       "units": [],
-      "note": ""
+      "note": "",
+      "continue_after_failure": false,
+      "validation": {
+        "version": 2,
+        "fingerprint": "bc8ac98471f6de4dd2ab31072a8245afddd01909451fce6c1c2d213176d04aea",
+        "at": "2026-11-19T11:12:54Z",
+        "forced": false
+      }
     },
     {
       "id": "finalize",
@@ -1593,7 +1600,128 @@
     }
   ],
   "recall": {
-    "cards": {}
+    "cards": {
+      "bdm-01": {
+        "box": 1,
+        "due": "2026-11-19",
+        "added": "2026-11-19",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      },
+      "bdm-02": {
+        "box": 1,
+        "due": "2026-11-19",
+        "added": "2026-11-19",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      },
+      "bdm-03": {
+        "box": 1,
+        "due": "2026-11-19",
+        "added": "2026-11-19",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      },
+      "bdm-04": {
+        "box": 1,
+        "due": "2026-11-19",
+        "added": "2026-11-19",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      },
+      "bdm-05": {
+        "box": 1,
+        "due": "2026-11-19",
+        "added": "2026-11-19",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      },
+      "bdm-06": {
+        "box": 1,
+        "due": "2026-11-19",
+        "added": "2026-11-19",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      },
+      "bdm-07": {
+        "box": 1,
+        "due": "2026-11-19",
+        "added": "2026-11-19",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      },
+      "bdm-08": {
+        "box": 1,
+        "due": "2026-11-19",
+        "added": "2026-11-19",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      },
+      "bdm-09": {
+        "box": 1,
+        "due": "2026-11-19",
+        "added": "2026-11-19",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      },
+      "bdm-10": {
+        "box": 1,
+        "due": "2026-11-19",
+        "added": "2026-11-19",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      },
+      "bdm-11": {
+        "box": 1,
+        "due": "2026-11-19",
+        "added": "2026-11-19",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      },
+      "bdm-12": {
+        "box": 1,
+        "due": "2026-11-19",
+        "added": "2026-11-19",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      },
+      "bdm-13": {
+        "box": 1,
+        "due": "2026-11-19",
+        "added": "2026-11-19",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      },
+      "bdm-14": {
+        "box": 1,
+        "due": "2026-11-19",
+        "added": "2026-11-19",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      },
+      "bdm-15": {
+        "box": 1,
+        "due": "2026-11-19",
+        "added": "2026-11-19",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      }
+    }
   },
   "log": [
     {
@@ -2647,6 +2775,34 @@
       "event": "done",
       "message": "gate passed",
       "stage": "capstone"
+    },
+    {
+      "at": "2026-11-19T11:11:10Z",
+      "event": "note",
+      "message": "HANDOFF wave 4 done. Next: notes inline (learn-notes), coverage audit x2, finalize. finalize smoke + deck check blocked by sandbox Chromium."
+    },
+    {
+      "at": "2026-11-19T11:11:23Z",
+      "event": "start",
+      "message": "attempt 1",
+      "stage": "notes"
+    },
+    {
+      "at": "2026-11-19T11:12:31Z",
+      "event": "recall-sync",
+      "message": "15 added, 0 removed, 15 total"
+    },
+    {
+      "at": "2026-11-19T11:12:35Z",
+      "event": "gate-failed",
+      "message": "1 problems",
+      "stage": "notes"
+    },
+    {
+      "at": "2026-11-19T11:12:54Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "notes"
     }
   ],
   "roadmap": {
