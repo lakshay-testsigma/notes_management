@@ -1,0 +1,17 @@
+sequenceDiagram
+  participant B as Browser
+  participant C as DevToolsCDPConnection
+  participant R as SessionRouter
+  participant D as NetworkDispatcher
+  participant L as NetworkLog
+  participant T as calculateRequestTimeRanges
+  B->>C: JSON event Network.requestWillBeSent
+  C->>R: onEvent
+  R->>D: dispatch by sessionId
+  D->>L: RequestStarted
+  B->>C: Network.responseReceived with timing
+  C->>R: onEvent
+  R->>D: dispatch
+  D->>L: RequestUpdated
+  L->>T: request with timing
+  T-->>L: phase ranges

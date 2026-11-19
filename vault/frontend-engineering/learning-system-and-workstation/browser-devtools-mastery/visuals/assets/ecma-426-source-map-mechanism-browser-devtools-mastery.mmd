@@ -1,0 +1,7 @@
+flowchart TD
+  A[Generated file ends with sourceMappingURL] --> B[Tool fetches map JSON]
+  B --> C[Split mappings on semicolon: lines]
+  C --> D[Split each line on comma: segments]
+  D --> E[Decode base64 VLQ fields]
+  E --> F[Add to previous values]
+  F --> G[Original file, line, column]

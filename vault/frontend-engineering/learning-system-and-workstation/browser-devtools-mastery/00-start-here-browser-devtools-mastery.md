@@ -11,7 +11,7 @@ created: 2026-11-19
 This is the map of the topic. Read the steps from top to bottom. Each step links to the next thing to open, so you never have to search.
 
 <!-- tutor:generated:start -->
-**Depth:** deep · **Progress:** 3 of 10 steps ready
+**Depth:** deep · **Progress:** 5 of 10 steps ready
 
 Browser DevTools are the inspectors built into every browser that show the live page, its code, network, performance and memory, so you can find the cause of a bug from evidence.
 
@@ -20,8 +20,8 @@ Browser DevTools are the inspectors built into every browser that show the live 
 1. [[01-brief-browser-devtools-mastery|Brief]] — what it is, why it exists, where it is used · *ready*
 2. [[02-lesson-browser-devtools-mastery|Interactive lesson]] — the animated lesson pages on the local site · *not started*
 3. [[03-mini-projects-browser-devtools-mastery|Mini projects]] — small builds with a real use case · *not started*
-4. [[00-digests-browser-devtools-mastery|Digests]] — short summaries of the key papers and docs · *not started*
-5. [[00-repo-intel-browser-devtools-mastery|Repository deep dive]] — how a production open-source project does it · *not started*
+4. [[00-digests-browser-devtools-mastery|Digests]] — short summaries of the key papers and docs · *ready*
+5. [[00-repo-intel-browser-devtools-mastery|Repository deep dive]] — how a production open-source project does it · *ready*
 6. [[06-capstone-browser-devtools-mastery|Capstone]] — the production-style project · *not started*
 7. [[07-final-notes-browser-devtools-mastery|Final notes]] — the one-page refresher · *not started*
 8. [[08-recall-browser-devtools-mastery|Recall cards]] — flashcards for spaced review · *not started*
@@ -110,15 +110,15 @@ Research stopped: scope-boundary. Discovery units proposed further children (bre
 | 0 | intake | ready |
 | 1 | research | ready |
 | 1 | brief | ready |
-| 2 | digest | not started |
-| 2 | repo-intel | not started |
+| 2 | digest | ready |
+| 2 | repo-intel | ready |
 | 3 | lesson | not started |
 | 3 | mini-projects | not started |
 | 4 | capstone | not started |
 | 5 | notes | not started |
 | 5 | finalize | not started |
 
-Next to generate: `digest`, `repo-intel`. Ask Claude to continue this topic, or run `node harness/bin/tutor.mjs next frontend-engineering/learning-system-and-workstation/browser-devtools-mastery`.
+Next to generate: `lesson`, `mini-projects`. Ask Claude to continue this topic, or run `node harness/bin/tutor.mjs next frontend-engineering/learning-system-and-workstation/browser-devtools-mastery`.
 <!-- tutor:generated:end -->
 
 ## My insights

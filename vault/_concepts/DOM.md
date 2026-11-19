@@ -13,5 +13,7 @@ The DOM (Document Object Model) is the live tree of objects that the browser bui
 ## Where it shows up
 
 - [[01-brief-browser-devtools-mastery]]
+- [[chrome-devtools-performance-reference-browser-devtools-mastery]]
+- [[firefox-devtools-user-docs-browser-devtools-mastery]]
 
 ## My insights

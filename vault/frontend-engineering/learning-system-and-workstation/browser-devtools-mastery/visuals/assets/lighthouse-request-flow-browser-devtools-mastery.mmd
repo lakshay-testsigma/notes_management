@@ -1,0 +1,14 @@
+sequenceDiagram
+  participant NR as navigation-runner
+  participant D as Driver
+  participant G as Gatherers
+  participant R as Runner
+  participant M as Metric audit
+  NR->>D: connect (driver.js:79-91)
+  NR->>D: prepare, then five phases (navigation-runner.js:206-222)
+  D->>G: raw CDP events (devtools-log.js:27)
+  NR->>G: getArtifact (navigation-runner.js:175-177)
+  G-->>R: artifacts, errors kept as values
+  R->>M: only declared artifacts (runner.js:430-442)
+  M-->>R: log-normal score (audit.js:107-109)
+  R-->>R: weighted category mean (scoring.js:22-42)

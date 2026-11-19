@@ -13,5 +13,7 @@ HTTP (Hypertext Transfer Protocol) is how a browser asks a server for files and 
 ## Where it shows up
 
 - [[01-brief-browser-devtools-mastery]]
+- [[chrome-devtools-network-reference-browser-devtools-mastery]]
+- [[ecma-426-source-map-browser-devtools-mastery]]
 
 ## My insights

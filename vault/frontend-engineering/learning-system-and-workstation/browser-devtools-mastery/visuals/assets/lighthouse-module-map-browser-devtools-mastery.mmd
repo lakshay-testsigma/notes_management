@@ -1,0 +1,6 @@
+flowchart LR
+  CDP["CDP session and navigation: drive Chrome"] -->|raw events| GA["Gatherers: save trace and log"]
+  GA -->|artifacts| AU["Runner and audits: check and score"]
+  GA -->|trace and log| ME["Metrics: LCP TBT CLS"]
+  ME -->|metric values| AU
+  AU --> LHR["Result object and report"]

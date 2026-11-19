@@ -23,6 +23,7 @@ Every source below was checked against a live page before it was recommended.
   - Why it is trusted: The official user documentation of Firefox DevTools, hosted on Mozilla's Firefox Source Docs and covering the Grid and Flexbox inspectors, Edit fonts, Accessibility inspector and about:debugging.
   - Used for: lesson, digest
   - Verified: 2026-11-18
+  - Digest: [[firefox-devtools-user-docs-browser-devtools-mastery|read the digest]]
 - **[Fix memory problems](https://developer.chrome.com/docs/devtools/memory-problems)** — Kayce Basques (Chrome DevTools team), 2026 · tier A
   - Why it is trusted: Official Chrome DevTools guide to memory leaks: heap snapshots, detached DOM nodes, allocation timelines and sampling.
   - Used for: lesson
@@ -35,6 +36,7 @@ Every source below was checked against a live page before it was recommended.
   - Why it is trusted: Official Chrome DevTools reference for the Network panel: recording, waterfall, timing phases, throttling, disable cache, filtering.
   - Used for: lesson, digest
   - Verified: 2026-11-19
+  - Digest: [[chrome-devtools-network-reference-browser-devtools-mastery|read the digest]]
 - **[Optimize long tasks](https://web.dev/articles/optimize-long-tasks)** — Google Chrome team (web.dev), 2025 · tier A
   - Why it is trusted: Published on web.dev by the Chrome team that created Core Web Vitals and INP; defines long tasks (over 50 ms), blocking period, and yielding with scheduler.yield().
   - Used for: brief, lesson
@@ -43,6 +45,7 @@ Every source below was checked against a live page before it was recommended.
   - Why it is trusted: Official Chrome DevTools reference for the Performance panel: live metrics, recording, flame chart, main thread, CPU throttling, insights.
   - Used for: lesson, digest
   - Verified: 2026-11-19
+  - Digest: [[chrome-devtools-performance-reference-browser-devtools-mastery|read the digest]]
 - **[Web Inspector Reference (WebKit)](https://webkit.org/web-inspector/)** — WebKit project, 2026 · tier A
   - Why it is trusted: Web Inspector reference published by the WebKit project, the engine behind Safari; its Enabling Web Inspector page gives the Mac and iOS steps read today.
   - Used for: lesson
@@ -69,6 +72,7 @@ Every source below was checked against a live page before it was recommended.
   - Why it is trusted: The Ecma International standard that defines the source map format, 1st edition published December 2024; the HTML at tc39.es is the live draft of the same standard.
   - Used for: lesson, digest
   - Verified: 2026-11-19
+  - Digest: [[ecma-426-source-map-browser-devtools-mastery|read the digest]]
 <!-- tutor:generated:end -->
 
 ## My insights

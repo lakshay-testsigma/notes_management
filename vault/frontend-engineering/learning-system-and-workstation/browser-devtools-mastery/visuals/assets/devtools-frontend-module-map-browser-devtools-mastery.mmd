@@ -1,0 +1,8 @@
+flowchart LR
+  B[Browser] -->|CDP JSON| PC[protocol-client]
+  PC -->|Network events| NT[network-timing]
+  PC -->|script events| SM[source-maps]
+  TR[trace events] --> TP[trace-processing]
+  NT -->|request and phase bars| P[Panels]
+  SM -->|original positions| P
+  TP -->|ParsedTrace and insights| P

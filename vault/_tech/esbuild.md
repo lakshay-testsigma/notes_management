@@ -15,5 +15,6 @@ Zustand lets Rollup use esbuild for the transform step, so the build stays quick
 ## Where it shows up
 
 - [[zustand-tech-and-services]]
+- [[devtools-frontend-tech-and-services]]
 
 ## My insights

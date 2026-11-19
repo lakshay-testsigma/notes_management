@@ -17,5 +17,6 @@ for one test that creates a promise in another realm.
 
 - [[zustand-tech-and-services]]
 - [[nvm-tech-and-services]]
+- [[lighthouse-tech-and-services]]
 
 ## My insights

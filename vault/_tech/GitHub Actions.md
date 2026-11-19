@@ -18,5 +18,6 @@ publishing and documentation.
 - [[zustand-module-build-and-infra]]
 - [[zustand-tech-and-services]]
 - [[nvm-tech-and-services]]
+- [[lighthouse-tech-and-services]]
 
 ## My insights

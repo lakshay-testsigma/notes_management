@@ -16,5 +16,7 @@ type system rather than by a runtime check.
 ## Where it shows up
 
 - [[zustand-tech-and-services]]
+- [[lighthouse-tech-and-services]]
+- [[devtools-frontend-tech-and-services]]
 
 ## My insights

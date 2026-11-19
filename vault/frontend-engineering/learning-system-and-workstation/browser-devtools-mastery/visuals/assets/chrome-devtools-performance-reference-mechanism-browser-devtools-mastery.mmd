@@ -1,0 +1,8 @@
+flowchart LR
+  A[Live metrics: LCP, CLS, INP] --> B[Problem repeats]
+  B --> C[Record and reload, or Record]
+  C --> D[Flame chart in Main track]
+  D --> E{Task over 50 ms?}
+  E -->|yes| F[Red part marks the long task]
+  F --> G[Bottom-up or Call tree finds the cost]
+  E -->|no| H[Look at Frames, Network, Layout shifts]

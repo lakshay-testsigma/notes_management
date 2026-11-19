@@ -16,5 +16,6 @@ test-only rules in a separate block for the `tests/**` folder.
 ## Where it shows up
 
 - [[zustand-tech-and-services]]
+- [[devtools-frontend-tech-and-services]]
 
 ## My insights

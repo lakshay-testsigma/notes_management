@@ -24,5 +24,199 @@
     "used_in": [
       "vault/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/01-brief-browser-devtools-mastery.md"
     ]
+  },
+  {
+    "id": "chrome-devtools-network-reference-mechanism",
+    "title": "Network panel workflow, from recording to one request's timing",
+    "kind": "workflow",
+    "scope": "stage",
+    "format": "mermaid",
+    "file": "vault/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/visuals/assets/chrome-devtools-network-reference-mechanism-browser-devtools-mastery.mmd",
+    "concept_ids": [
+      "network-panel"
+    ],
+    "source_ids": [
+      "chrome-devtools-network-reference"
+    ],
+    "purpose": "See the order of work in the Network panel: record, set loading conditions, narrow the list, then read one request.",
+    "explanation": "The panel records every request while DevTools is open. You can change the cache and the network speed, then filter or search the list. You open one request to read its timing phases. When you must share the evidence, you export a HAR file, which hides cookies and authorization headers by default.",
+    "alt": "Left to right flowchart of six steps: record requests, set conditions such as disable cache and throttling, filter and search, pick one request, read its Timing tab phases, and export a HAR file.",
+    "learning_check": {
+      "question": "Why set conditions before you read a request's timing?",
+      "answer": "Cache and throttling change the phases you see, so a first-visit slow-network run shows different timing than a cached fast run."
+    },
+    "used_in": [
+      "vault/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/04-digests/chrome-devtools-network-reference-browser-devtools-mastery.md"
+    ]
+  },
+  {
+    "id": "chrome-devtools-performance-reference-mechanism",
+    "title": "From live metrics to a long task in the Performance panel",
+    "kind": "workflow",
+    "scope": "detail",
+    "format": "mermaid",
+    "file": "vault/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/visuals/assets/chrome-devtools-performance-reference-mechanism-browser-devtools-mastery.mmd",
+    "concept_ids": [
+      "performance-panel",
+      "flame-chart-and-long-tasks",
+      "core-web-vitals-in-devtools"
+    ],
+    "source_ids": [
+      "chrome-devtools-performance-reference"
+    ],
+    "purpose": "Learn the order of steps: spot a problem in live metrics, record a trace, find the long task in the flame chart, then name its cost.",
+    "explanation": "The Performance panel starts with live Core Web Vitals. When a problem repeats, you record a trace. In the Main track, the flame chart shows tasks over time. The part of a task beyond 50 ms is shaded red. Bottom-up and Call tree then show which activity used the time.",
+    "alt": "Flowchart: live metrics lead to recording a trace, then to the flame chart in the Main track. A decision asks whether a task exceeds 50 ms. If yes, the red part marks a long task and Bottom-up finds the cost. If no, look at other tracks.",
+    "learning_check": {
+      "question": "A task takes 400 ms. How much of it is shaded red?",
+      "answer": "The part beyond the first 50 ms, so about 350 ms."
+    },
+    "used_in": [
+      "vault/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/04-digests/chrome-devtools-performance-reference-browser-devtools-mastery.md"
+    ]
+  },
+  {
+    "id": "ecma-426-source-map-mechanism",
+    "title": "How a source map turns generated code positions into original positions",
+    "kind": "workflow",
+    "scope": "detail",
+    "format": "mermaid",
+    "file": "vault/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/visuals/assets/ecma-426-source-map-mechanism-browser-devtools-mastery.mmd",
+    "concept_ids": [
+      "source-maps"
+    ],
+    "source_ids": [
+      "ecma-426-source-map"
+    ],
+    "purpose": "Show the order of steps from a generated file to an original source position.",
+    "explanation": "The generated file points to a map file. The tool fetches the JSON and splits the mappings string into lines and segments. It decodes each segment from base64 VLQ and adds the numbers to the previous values. The result is an original file, line and column.",
+    "alt": "Flowchart with seven steps: the generated file ends with a sourceMappingURL comment, the tool fetches the map JSON, splits mappings on semicolons into lines, splits each line on commas into segments, decodes VLQ fields, adds them to the previous values, and gets an original file, line and column.",
+    "learning_check": {
+      "question": "Why must a tool decode segments in order instead of reading one segment alone?",
+      "answer": "Most fields are relative to the previous segment, so each value depends on the ones before it."
+    },
+    "used_in": [
+      "vault/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/04-digests/ecma-426-source-map-browser-devtools-mastery.md"
+    ]
+  },
+  {
+    "id": "firefox-devtools-user-docs-mechanism",
+    "title": "Connecting desktop Firefox DevTools to a phone over USB",
+    "kind": "workflow",
+    "scope": "detail",
+    "format": "mermaid",
+    "file": "vault/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/visuals/assets/firefox-devtools-user-docs-mechanism-browser-devtools-mastery.mmd",
+    "concept_ids": [
+      "firefox-and-safari-devtools"
+    ],
+    "source_ids": [
+      "firefox-devtools-user-docs"
+    ],
+    "purpose": "Learn the order of steps that attach desktop DevTools to a tab on an Android phone.",
+    "explanation": "You switch on USB debugging on the phone and in Firefox for Android, plug in the cable, and refresh the device list in about:debugging. After you accept the prompt on the phone and click Connect, the device and its tabs appear. Inspect attaches desktop DevTools to a tab.",
+    "alt": "Flowchart of seven steps: turn on Developer options and USB debugging on the phone, enable Remote Debugging via USB in Firefox for Android, plug in the cable, turn on USB support in about:debugging and refresh the device list, accept the authorization prompt on the phone, then Connect and Inspect a tab.",
+    "learning_check": {
+      "question": "What must you do on the phone after the cable is connected and the device list is refreshed?",
+      "answer": "Accept the authorization prompt, then click Connect in about:debugging."
+    },
+    "used_in": [
+      "vault/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/04-digests/firefox-devtools-user-docs-browser-devtools-mastery.md"
+    ]
+  },
+  {
+    "id": "lighthouse-module-map",
+    "title": "Lighthouse module map",
+    "kind": "architecture",
+    "format": "mermaid",
+    "file": "vault/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/visuals/assets/lighthouse-module-map-browser-devtools-mastery.mmd",
+    "concept_ids": [
+      "lighthouse-audits"
+    ],
+    "source_ids": [
+      "googlechrome-lighthouse-repo"
+    ],
+    "purpose": "See the four slices of Lighthouse and which one feeds which.",
+    "explanation": "Lighthouse drives Chrome first, then saves raw data as artifacts, then computes metrics from the trace, then audits score the artifacts. Audits never talk to Chrome. Each arrow in the picture is one hand-off of data.",
+    "alt": "Left to right flowchart: CDP session and navigation sends raw events to gatherers; gatherers send artifacts to runner and audits and a trace to metrics; metrics send values to audits; audits produce the result object.",
+    "learning_check": {
+      "question": "Which module talks to Chrome, and which modules never do?",
+      "answer": "Only the CDP session and navigation module talks to Chrome; gatherers read its events, and metrics and audits only read saved artifacts."
+    },
+    "used_in": [
+      "vault/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/05-repo-intel/googlechrome-lighthouse/lighthouse-architecture.md"
+    ]
+  },
+  {
+    "id": "lighthouse-request-flow",
+    "title": "One Lighthouse run, from URL to score",
+    "kind": "sequence",
+    "format": "mermaid",
+    "file": "vault/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/visuals/assets/lighthouse-request-flow-browser-devtools-mastery.mmd",
+    "concept_ids": [
+      "lighthouse-audits"
+    ],
+    "source_ids": [
+      "googlechrome-lighthouse-repo"
+    ],
+    "purpose": "Follow one page load from the first CDP connection to a category score.",
+    "explanation": "The navigation runner connects a driver, prepares the page, and runs five instrumentation phases around the load. Gatherers record raw events and return artifacts. The runner hands each audit only the artifacts it declared, and the scoring code takes a weighted mean.",
+    "alt": "Sequence diagram: navigation-runner connects and prepares the driver, gatherers record raw events, getArtifact returns artifacts to the runner, the runner passes declared artifacts to a metric audit, which returns a score, and the runner computes the weighted category mean.",
+    "learning_check": {
+      "question": "Why can the audit phase run later without a browser?",
+      "answer": "Because gatherers saved raw events as artifacts, and audits read only those artifacts."
+    },
+    "used_in": [
+      "vault/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/05-repo-intel/googlechrome-lighthouse/lighthouse-architecture.md"
+    ]
+  },
+  {
+    "id": "devtools-frontend-module-map",
+    "title": "DevTools frontend: four modules between the browser and the panels",
+    "kind": "architecture",
+    "scope": "end-to-end",
+    "format": "mermaid",
+    "file": "vault/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/visuals/assets/devtools-frontend-module-map-browser-devtools-mastery.mmd",
+    "concept_ids": [
+      "browser-devtools",
+      "network-panel"
+    ],
+    "source_ids": [
+      "chromedevtools-devtools-frontend-repo"
+    ],
+    "purpose": "See which module turns raw browser data into what a panel shows.",
+    "explanation": "The browser sends JSON protocol messages. The protocol client routes them. Network code turns events into requests and timing bars. Source map code maps built code back to your files. Trace code turns recorded events into a model for the Performance panel. Panels only draw the results.",
+    "alt": "Left to right: the browser sends protocol JSON to the protocol-client module, which feeds network-timing and source-maps. Trace events go to trace-processing. All three modules feed the panels, which draw the results.",
+    "learning_check": {
+      "question": "Which module owns the work of turning Network events into timing bars?",
+      "answer": "The network-timing module, after the protocol client routes the events to it."
+    },
+    "used_in": [
+      "vault/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/05-repo-intel/chromedevtools-devtools-frontend/devtools-frontend-architecture.md"
+    ]
+  },
+  {
+    "id": "devtools-frontend-request-flow",
+    "title": "One network event from the browser to a timing bar",
+    "kind": "sequence",
+    "scope": "detail",
+    "format": "mermaid",
+    "file": "vault/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/visuals/assets/devtools-frontend-request-flow-browser-devtools-mastery.mmd",
+    "concept_ids": [
+      "browser-devtools",
+      "network-panel"
+    ],
+    "source_ids": [
+      "chromedevtools-devtools-frontend-repo"
+    ],
+    "purpose": "Follow one request through the real classes, from a protocol message to its phase ranges.",
+    "explanation": "The browser sends a JSON event. The connection passes it to the router. The router picks the target by session id. The network dispatcher updates the request and the log announces it. Later, the timing function turns the browser's timing numbers into named phases.",
+    "alt": "Sequence of six participants: browser, connection, session router, network dispatcher, network log and the time-range function. Events flow down the chain; the log asks the function for phase ranges and gets them back.",
+    "learning_check": {
+      "question": "Which object chooses the target that receives an event?",
+      "answer": "The SessionRouter, using the sessionId in the event."
+    },
+    "used_in": [
+      "vault/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/05-repo-intel/chromedevtools-devtools-frontend/devtools-frontend-architecture.md"
+    ]
   }
 ]
