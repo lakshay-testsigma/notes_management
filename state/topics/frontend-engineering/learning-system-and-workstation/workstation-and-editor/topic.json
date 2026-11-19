@@ -7,7 +7,7 @@
   "subdomain": "learning-system-and-workstation",
   "depth": "standard",
   "created_at": "2026-11-19T04:50:05Z",
-  "updated_at": "2026-11-19T05:16:47Z",
+  "updated_at": "2026-11-19T05:42:41Z",
   "paths": {
     "state": "state/topics/frontend-engineering/learning-system-and-workstation/workstation-and-editor",
     "vault": "vault/frontend-engineering/learning-system-and-workstation/workstation-and-editor",
@@ -631,10 +631,10 @@
       "id": "repo-intel",
       "wave": 2,
       "skill": "learn-repo-intel",
-      "status": "in_progress",
+      "status": "done",
       "scope": "required",
       "started_at": "2026-11-19T05:10:29Z",
-      "finished_at": null,
+      "finished_at": "2026-11-19T05:42:41Z",
       "attempts": 1,
       "units": [
         {
@@ -644,46 +644,58 @@
         },
         {
           "id": "nvm-sh-nvm-module-cli-dispatch",
-          "status": "pending",
+          "status": "done",
           "handoff": null
         },
         {
           "id": "nvm-sh-nvm-module-versions-and-nvmrc",
-          "status": "pending",
+          "status": "done",
           "handoff": null
         },
         {
           "id": "nvm-sh-nvm-module-aliases-and-listing",
-          "status": "pending",
+          "status": "done",
           "handoff": null
         },
         {
           "id": "nvm-sh-nvm-module-download-and-security",
-          "status": "pending",
+          "status": "done",
           "handoff": null
         },
         {
           "id": "nvm-sh-nvm-module-install-node",
-          "status": "pending",
+          "status": "done",
           "handoff": null
         },
         {
           "id": "nvm-sh-nvm-module-install-script",
-          "status": "pending",
+          "status": "done",
           "handoff": null
         },
         {
           "id": "nvm-sh-nvm-module-tests-resolution-and-download",
-          "status": "pending",
+          "status": "done",
           "handoff": null
         },
         {
           "id": "nvm-sh-nvm-module-build-and-infra",
-          "status": "pending",
+          "status": "done",
+          "handoff": null
+        },
+        {
+          "id": "nvm-sh-nvm-synthesis",
+          "status": "done",
           "handoff": null
         }
       ],
-      "note": ""
+      "note": "",
+      "continue_after_failure": false,
+      "validation": {
+        "version": 2,
+        "fingerprint": "0a490d9ec072dbde5b6ff0262d1c94d3069527d5f31b8fb17e3ffda31f1765fa",
+        "at": "2026-11-19T05:42:41Z",
+        "forced": false
+      }
     },
     {
       "id": "lesson",
@@ -1151,6 +1163,146 @@
       "event": "done",
       "message": "gate passed",
       "stage": "digest"
+    },
+    {
+      "at": "2026-11-19T05:17:58Z",
+      "event": "unit-start",
+      "message": "unit nvm-sh-nvm-module-download-and-security",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-19T05:17:59Z",
+      "event": "unit-start",
+      "message": "unit nvm-sh-nvm-module-aliases-and-listing",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-19T05:18:06Z",
+      "event": "unit-start",
+      "message": "unit nvm-sh-nvm-module-cli-dispatch",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-19T05:18:36Z",
+      "event": "note",
+      "message": "HOST: fact model deepseek-v4.1-flash-free hit free usage limit; remaining fact workers fall back to deepseek-v4-pro."
+    },
+    {
+      "at": "2026-11-19T05:20:30Z",
+      "event": "unit-start",
+      "message": "unit nvm-sh-nvm-module-aliases-and-listing",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-19T05:20:40Z",
+      "event": "unit-start",
+      "message": "unit nvm-sh-nvm-module-versions-and-nvmrc",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-19T05:22:37Z",
+      "event": "unit-done",
+      "message": "unit nvm-sh-nvm-module-aliases-and-listing",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-19T05:22:50Z",
+      "event": "unit-done",
+      "message": "unit nvm-sh-nvm-module-versions-and-nvmrc",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-19T05:22:51Z",
+      "event": "unit-done",
+      "message": "unit nvm-sh-nvm-module-download-and-security",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-19T05:24:27Z",
+      "event": "unit-done",
+      "message": "unit nvm-sh-nvm-module-cli-dispatch",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-19T05:25:29Z",
+      "event": "unit-start",
+      "message": "unit nvm-sh-nvm-module-build-and-infra",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-19T05:26:06Z",
+      "event": "unit-start",
+      "message": "unit nvm-sh-nvm-module-install-script",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-19T05:26:22Z",
+      "event": "unit-start",
+      "message": "unit nvm-sh-nvm-module-tests-resolution-and-download",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-19T05:27:35Z",
+      "event": "unit-done",
+      "message": "unit nvm-sh-nvm-module-install-node",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-19T05:28:32Z",
+      "event": "unit-done",
+      "message": "unit nvm-sh-nvm-module-build-and-infra",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-19T05:29:20Z",
+      "event": "unit-done",
+      "message": "unit nvm-sh-nvm-module-install-script",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-19T05:29:41Z",
+      "event": "unit-done",
+      "message": "unit nvm-sh-nvm-module-tests-resolution-and-download",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-19T05:29:58Z",
+      "event": "unit-add",
+      "message": "unit nvm-sh-nvm-synthesis",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-19T05:31:22Z",
+      "event": "unit-start",
+      "message": "unit nvm-sh-nvm-synthesis",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-19T05:36:33Z",
+      "event": "visual",
+      "message": "added visual nvm-module-map"
+    },
+    {
+      "at": "2026-11-19T05:36:33Z",
+      "event": "visual",
+      "message": "added visual nvm-request-flow"
+    },
+    {
+      "at": "2026-11-19T05:42:01Z",
+      "event": "unit-done",
+      "message": "unit nvm-sh-nvm-synthesis",
+      "stage": "repo-intel"
+    },
+    {
+      "at": "2026-11-19T05:42:39Z",
+      "event": "reader-order",
+      "message": "Imported explicit authored child-note sequence"
+    },
+    {
+      "at": "2026-11-19T05:42:41Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "repo-intel"
     }
   ],
   "roadmap": {
@@ -1274,7 +1426,23 @@
       "04-digests/pro-git-book-workstation-and-editor.md"
     ],
     "repo-intel": [
-      "05-repo-intel/nvm-sh-nvm/nvm-overview.md"
+      "05-repo-intel/nvm-sh-nvm/nvm-overview.md",
+      "05-repo-intel/nvm-sh-nvm/nvm-architecture.md",
+      "05-repo-intel/nvm-sh-nvm/nvm-findings.md",
+      "05-repo-intel/nvm-sh-nvm/nvm-tech-and-services.md",
+      "05-repo-intel/nvm-sh-nvm/nvm-takeaways.md",
+      "05-repo-intel/nvm-sh-nvm/nvm-module-cli-dispatch.md",
+      "05-repo-intel/nvm-sh-nvm/nvm-module-versions-and-nvmrc.md",
+      "05-repo-intel/nvm-sh-nvm/nvm-module-aliases-and-listing.md",
+      "05-repo-intel/nvm-sh-nvm/nvm-module-download-and-security.md",
+      "05-repo-intel/nvm-sh-nvm/nvm-module-install-node.md",
+      "05-repo-intel/nvm-sh-nvm/nvm-module-install-script.md",
+      "05-repo-intel/nvm-sh-nvm/nvm-module-tests-resolution-and-download.md",
+      "05-repo-intel/nvm-sh-nvm/nvm-module-build-and-infra.md",
+      "05-repo-intel/nvm-sh-nvm/nvm-pattern-untrusted-input.md",
+      "05-repo-intel/nvm-sh-nvm/nvm-pattern-atomic-publish.md",
+      "05-repo-intel/nvm-sh-nvm/nvm-pattern-error-classification.md",
+      "05-repo-intel/nvm-sh-nvm/nvm-pattern-shell-portability.md"
     ]
   }
 }

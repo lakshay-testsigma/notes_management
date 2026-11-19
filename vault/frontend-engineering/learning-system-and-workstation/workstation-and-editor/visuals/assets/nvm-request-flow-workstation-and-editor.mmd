@@ -1,0 +1,14 @@
+sequenceDiagram
+  participant U as User
+  participant CLI as cli-dispatch
+  participant VV as versions-and-nvmrc
+  participant DS as download-and-security
+  participant IN as install-node
+  U->>CLI: nvm install 22
+  CLI->>VV: nvm_version "22"
+  VV-->>CLI: concrete version
+  CLI->>IN: nvm_install_binary
+  IN->>DS: nvm_download_artifact
+  DS-->>IN: checksum-verified tarball
+  IN->>VV: nvm_change_path
+  VV-->>U: PATH points at node 22

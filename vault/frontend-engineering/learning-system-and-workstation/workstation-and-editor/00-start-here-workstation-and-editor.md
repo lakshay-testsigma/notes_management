@@ -11,7 +11,7 @@ created: 2026-11-19
 This is the map of the topic. Read the steps from top to bottom. Each step links to the next thing to open, so you never have to search.
 
 <!-- tutor:generated:start -->
-**Depth:** standard · **Progress:** 4 of 10 steps ready
+**Depth:** standard · **Progress:** 5 of 10 steps ready
 
 How to set up and keep a disciplined developer workstation: shell, git, editor, AI-assisted coding, and Node version management, so every later frontend topic starts from a reproducible base.
 
@@ -21,7 +21,7 @@ How to set up and keep a disciplined developer workstation: shell, git, editor, 
 2. [[02-lesson-workstation-and-editor|Interactive lesson]] — the animated lesson pages on the local site · *not started*
 3. [[03-mini-projects-workstation-and-editor|Mini projects]] — small builds with a real use case · *not started*
 4. [[00-digests-workstation-and-editor|Digests]] — short summaries of the key papers and docs · *ready*
-5. [[00-repo-intel-workstation-and-editor|Repository deep dive]] — how a production open-source project does it · *in progress*
+5. [[00-repo-intel-workstation-and-editor|Repository deep dive]] — how a production open-source project does it · *ready*
 6. [[06-capstone-workstation-and-editor|Capstone]] — the production-style project · *not started*
 7. [[07-final-notes-workstation-and-editor|Final notes]] — the one-page refresher · *not started*
 8. [[08-recall-workstation-and-editor|Recall cards]] — flashcards for spaced review · *not started*
@@ -86,14 +86,14 @@ Research stopped: scope-boundary. Sub-concepts proposed by discovery (pipes-and-
 | 1 | research | ready |
 | 1 | brief | ready |
 | 2 | digest | ready |
-| 2 | repo-intel | in progress |
+| 2 | repo-intel | ready |
 | 3 | lesson | not started |
 | 3 | mini-projects | not started |
 | 4 | capstone | not started |
 | 5 | notes | not started |
 | 5 | finalize | not started |
 
-Next to generate: `repo-intel`. Ask Claude to continue this topic, or run `node harness/bin/tutor.mjs next frontend-engineering/learning-system-and-workstation/workstation-and-editor`.
+Next to generate: `lesson`, `mini-projects`. Ask Claude to continue this topic, or run `node harness/bin/tutor.mjs next frontend-engineering/learning-system-and-workstation/workstation-and-editor`.
 <!-- tutor:generated:end -->
 
 ## My insights

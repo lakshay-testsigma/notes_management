@@ -23,4 +23,12 @@ Every diagram, simulation and video of this topic, with the concepts it teaches 
 
 - [[visual-mdn-command-line-mechanism-workstation-and-editor|How a pipe connects one command to the next]] — Show how one command line hands its output to the next command through a pipe, so the learner can read and build a chain.
 
+## Architecture
+
+- [[visual-nvm-module-map-workstation-and-editor|nvm's modules and how they call each other]] — See how one shell script is split into responsibilities that call each other.
+
+## Sequence
+
+- [[visual-nvm-request-flow-workstation-and-editor|One nvm install request end to end]] — Follow one `nvm install 22` through resolution, download, verification, and the PATH rewrite.
+
 ## My insights

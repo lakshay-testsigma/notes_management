@@ -1,0 +1,10 @@
+flowchart LR
+  U[User] --> IS[install-script: bootstrap nvm]
+  U --> CLI[cli-dispatch: nvm router]
+  IS --> CLI
+  CLI --> VV[versions-and-nvmrc: resolve version + PATH]
+  CLI --> AL[aliases-and-listing: aliases + lists]
+  VV --> DS[download-and-security: fetch + verify]
+  AL --> DS
+  DS --> IN[install-node: download, extract, build]
+  IN --> VV

@@ -16,5 +16,6 @@ for one test that creates a promise in another realm.
 ## Where it shows up
 
 - [[zustand-tech-and-services]]
+- [[nvm-tech-and-services]]
 
 ## My insights

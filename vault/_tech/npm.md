@@ -16,5 +16,6 @@ job a short-lived identity instead of a stored token.
 ## Where it shows up
 
 - [[zustand-tech-and-services]]
+- [[nvm-tech-and-services]]
 
 ## My insights
