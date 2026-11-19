@@ -7,7 +7,7 @@
   "subdomain": "learning-system-and-workstation",
   "depth": "standard",
   "created_at": "2026-11-19T04:50:05Z",
-  "updated_at": "2026-11-19T06:29:16Z",
+  "updated_at": "2026-11-19T06:31:08Z",
   "paths": {
     "state": "state/topics/frontend-engineering/learning-system-and-workstation/workstation-and-editor",
     "vault": "vault/frontend-engineering/learning-system-and-workstation/workstation-and-editor",
@@ -796,13 +796,20 @@
       "id": "notes",
       "wave": 5,
       "skill": "learn-notes",
-      "status": "pending",
+      "status": "done",
       "scope": "required",
-      "started_at": null,
-      "finished_at": null,
-      "attempts": 0,
+      "started_at": "2026-11-19T06:30:55Z",
+      "finished_at": "2026-11-19T06:31:08Z",
+      "attempts": 1,
       "units": [],
-      "note": ""
+      "note": "",
+      "continue_after_failure": false,
+      "validation": {
+        "version": 2,
+        "fingerprint": "aa988e17cbfa697451e7c43aa6d11b727284644be2485c8b01852faebee0e789",
+        "at": "2026-11-19T06:31:08Z",
+        "forced": false
+      }
     },
     {
       "id": "finalize",
@@ -818,7 +825,88 @@
     }
   ],
   "recall": {
-    "cards": {}
+    "cards": {
+      "wae-01": {
+        "box": 1,
+        "due": "2026-11-19",
+        "added": "2026-11-19",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      },
+      "wae-02": {
+        "box": 1,
+        "due": "2026-11-19",
+        "added": "2026-11-19",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      },
+      "wae-03": {
+        "box": 1,
+        "due": "2026-11-19",
+        "added": "2026-11-19",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      },
+      "wae-04": {
+        "box": 1,
+        "due": "2026-11-19",
+        "added": "2026-11-19",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      },
+      "wae-05": {
+        "box": 1,
+        "due": "2026-11-19",
+        "added": "2026-11-19",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      },
+      "wae-06": {
+        "box": 1,
+        "due": "2026-11-19",
+        "added": "2026-11-19",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      },
+      "wae-07": {
+        "box": 1,
+        "due": "2026-11-19",
+        "added": "2026-11-19",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      },
+      "wae-08": {
+        "box": 1,
+        "due": "2026-11-19",
+        "added": "2026-11-19",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      },
+      "wae-09": {
+        "box": 1,
+        "due": "2026-11-19",
+        "added": "2026-11-19",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      },
+      "wae-10": {
+        "box": 1,
+        "due": "2026-11-19",
+        "added": "2026-11-19",
+        "last_reviewed": null,
+        "reviews": 0,
+        "history": []
+      }
+    }
   },
   "log": [
     {
@@ -1649,6 +1737,23 @@
       "event": "done",
       "message": "gate passed",
       "stage": "capstone"
+    },
+    {
+      "at": "2026-11-19T06:30:55Z",
+      "event": "start",
+      "message": "attempt 1",
+      "stage": "notes"
+    },
+    {
+      "at": "2026-11-19T06:30:57Z",
+      "event": "recall-sync",
+      "message": "10 added, 0 removed, 10 total"
+    },
+    {
+      "at": "2026-11-19T06:31:08Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "notes"
     }
   ],
   "roadmap": {
