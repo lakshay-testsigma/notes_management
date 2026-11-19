@@ -7,7 +7,7 @@
   "subdomain": "learning-system-and-workstation",
   "depth": "standard",
   "created_at": "2026-11-18T17:03:48Z",
-  "updated_at": "2026-11-19T04:11:53Z",
+  "updated_at": "2026-11-19T04:22:02Z",
   "paths": {
     "state": "state/topics/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend",
     "vault": "vault/frontend-engineering/learning-system-and-workstation/how-to-learn-frontend",
@@ -728,7 +728,7 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T19:48:29Z",
-      "finished_at": "2026-11-19T04:08:47Z",
+      "finished_at": "2026-11-19T04:21:55Z",
       "attempts": 3,
       "units": [
         {
@@ -809,8 +809,8 @@
       ],
       "validation": {
         "version": 2,
-        "fingerprint": "4465abb97f76528adc5d118ef9aecac6a4483482c0c77684730f07022dd287ad",
-        "at": "2026-11-19T04:08:47Z",
+        "fingerprint": "07b1acb624b07368d4c4a8b018cedfb375d257e908a4da11c7939ac3e38c9a76",
+        "at": "2026-11-19T04:21:55Z",
         "forced": false
       }
     },
@@ -821,7 +821,7 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T18:18:40Z",
-      "finished_at": "2026-11-19T04:08:59Z",
+      "finished_at": "2026-11-19T04:21:18Z",
       "attempts": 1,
       "units": [
         {
@@ -839,8 +839,8 @@
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "af0b510644ed5686a83974e4c297328476ba975e3077c043a87c03c4812856fb",
-        "at": "2026-11-19T04:08:59Z",
+        "fingerprint": "72a019eab9ee3053484f339e298a25469ab18e9e5c7442d077438bd014146249",
+        "at": "2026-11-19T04:21:18Z",
         "forced": false
       }
     },
@@ -851,7 +851,7 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-18T19:21:04Z",
-      "finished_at": "2026-11-19T04:09:07Z",
+      "finished_at": "2026-11-19T04:22:02Z",
       "attempts": 1,
       "units": [
         {
@@ -864,8 +864,8 @@
       "continue_after_failure": false,
       "validation": {
         "version": 2,
-        "fingerprint": "5264991e1c3d92c5ee016da7ae08bbd1975c1dc28e1fab92ad74ab37ad8ca082",
-        "at": "2026-11-19T04:09:07Z",
+        "fingerprint": "797f84171297b0e6d89339f586cd91e682b2a4582d1776c3ce34a36cdf07f6dd",
+        "at": "2026-11-19T04:22:02Z",
         "forced": false
       }
     },
@@ -1804,6 +1804,42 @@
       "event": "execution-check",
       "message": "finalize: pass",
       "stage": "finalize"
+    },
+    {
+      "at": "2026-11-19T04:21:17Z",
+      "event": "execution-check",
+      "message": "mini-projects: pass",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-19T04:21:18Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "mini-projects"
+    },
+    {
+      "at": "2026-11-19T04:21:24Z",
+      "event": "execution-check",
+      "message": "capstone: pass",
+      "stage": "capstone"
+    },
+    {
+      "at": "2026-11-19T04:21:55Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-19T04:22:01Z",
+      "event": "execution-check",
+      "message": "capstone: pass",
+      "stage": "capstone"
+    },
+    {
+      "at": "2026-11-19T04:22:02Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "capstone"
     }
   ],
   "roadmap": {
@@ -1915,8 +1951,8 @@
       },
       "mini-projects": {
         "version": 2,
-        "fingerprint": "af0b510644ed5686a83974e4c297328476ba975e3077c043a87c03c4812856fb",
-        "at": "2026-11-19T04:08:58Z",
+        "fingerprint": "72a019eab9ee3053484f339e298a25469ab18e9e5c7442d077438bd014146249",
+        "at": "2026-11-19T04:21:17Z",
         "ok": true,
         "checks": [
           {
@@ -1928,7 +1964,7 @@
             "expected_exit": 0,
             "exit": 0,
             "ok": true,
-            "output_sha256": "35ac8d813f1a5eafa647ef1782da6bccdac5a635f4b6b607b2b3a91ca28dbafc"
+            "output_sha256": "6ff0014af22a2c51f299f5b51fb48ee3f18a0e220017b53a1a16faca5a8ebc29"
           },
           {
             "label": "mini-01-ship-it-checker: typecheck",
@@ -1963,7 +1999,7 @@
             "expected_exit": 1,
             "exit": 1,
             "ok": true,
-            "output_sha256": "85e38a64b9788f7958e8bd9cd40a32981f5f7fe2175905b1d673684a66eb5173"
+            "output_sha256": "2da9b5541a549b6709dd542735e83892a1d03c0ac46618df6052bb9303afb76a"
           },
           {
             "label": "mini-01-ship-it-checker: starter-start",
@@ -2009,7 +2045,7 @@
             "expected_exit": 0,
             "exit": 0,
             "ok": true,
-            "output_sha256": "61f465f03f4b5bb8fa8e2d9d86c2b1b31771bd7616fc1d3926c9744378cc8a80"
+            "output_sha256": "0c06e8be9fb7fce12299f1cab86d00a1c5c10fc3850d48adcdcc3c0144287c90"
           },
           {
             "label": "mini-02-learning-log: typecheck",
@@ -2044,7 +2080,7 @@
             "expected_exit": 1,
             "exit": 1,
             "ok": true,
-            "output_sha256": "b678e8bd3d74e6710498a268c25048622687e0ded4bac23e863ef8b8a88a6003"
+            "output_sha256": "a60862f43a54643fe6e31df76decf73e055af39306619464da31066bf2015cfe"
           },
           {
             "label": "mini-02-learning-log: starter-start",
@@ -2062,7 +2098,7 @@
             "expected_exit": 1,
             "exit": 1,
             "ok": true,
-            "output_sha256": "28f89249d81b9acc9615c4997d5ee56e38be65b715d88905ab82bf522acc1608"
+            "output_sha256": "30ece07d86ed4715c7b0e14700e9d67d096c698153715f5b1011b960f5fed157"
           },
           {
             "label": "mini-02-learning-log: typecheck",
@@ -2092,8 +2128,8 @@
       },
       "capstone": {
         "version": 2,
-        "fingerprint": "5264991e1c3d92c5ee016da7ae08bbd1975c1dc28e1fab92ad74ab37ad8ca082",
-        "at": "2026-11-19T04:09:05Z",
+        "fingerprint": "797f84171297b0e6d89339f586cd91e682b2a4582d1776c3ce34a36cdf07f6dd",
+        "at": "2026-11-19T04:22:01Z",
         "ok": true,
         "checks": [
           {
@@ -2105,7 +2141,7 @@
             "expected_exit": 0,
             "exit": 0,
             "ok": true,
-            "output_sha256": "52d0b49e9e07e7581a065ee4883859c83c183bc9f1ee52b86803dfa7b71335e0"
+            "output_sha256": "e7e780e7b37938351fc5e98175e1a03d25f31ead734e28caa9b548fc25242c84"
           },
           {
             "label": "capstone: typecheck",

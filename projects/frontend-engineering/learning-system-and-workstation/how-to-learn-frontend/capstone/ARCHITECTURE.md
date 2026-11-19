@@ -52,7 +52,6 @@ flowchart TB
   UC4 --> STORE
   STORE --> MODEL
   STORE --> PORTS
-  UC1 --> NOTE
   REPO -. implements .-> PORTS
   STORAGE -. implements .-> PORTS
   LOG -. implements .-> PORTS
@@ -102,9 +101,9 @@ sequenceDiagram
   participant R as LocalStorageTrackerRepository
   participant A as BrowserStorageAdapter
   D->>N: checks "build"
-  N->>H: markStep(noteId, "build")
-  H->>C: markStep(noteId, "build")
-  C->>U: execute(noteId, "build")
+  N->>H: setStep(noteId, "build", true)
+  H->>C: setStep(noteId, "build", { done: true })
+  C->>U: execute(noteId, "build", { done: true })
   U->>S: getState()
   U->>S: applyPatch(patch)
   S->>S: applyPatch(state, patch)
@@ -164,7 +163,7 @@ page to let the learner switch the storage off and watch the change stop.
   ]}
   steps={[
     { from: "developer", to: "hook", packet: "build", caption: "The developer checks the build step of one roadmap item." },
-    { from: "hook", to: "controller", packet: "markStep", caption: "The hook hands the command to the controller." },
+    { from: "hook", to: "controller", packet: "setStep", caption: "The hook hands the command to the controller." },
     { from: "controller", to: "usecase", packet: "execute", caption: "The controller calls one use case and nothing else." },
     { from: "usecase", to: "store", packet: "patch", caption: "The use case returns a patch that changes one step of one note." },
     { from: "store", to: "repository", packet: "save", caption: "The store applies the patch, saves the log, and tells its subscribers." },

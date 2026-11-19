@@ -11,7 +11,7 @@ created: 2026-11-18
 This is the map of the topic. Read the steps from top to bottom. Each step links to the next thing to open, so you never have to search.
 
 <!-- tutor:generated:start -->
-**Depth:** standard · **Progress:** 8 of 10 steps ready
+**Depth:** standard · **Progress:** 9 of 10 steps ready
 
 How to learn frontend and keep improving: a repeatable read-build-measure-explain loop built on primary sources, browser-support literacy, and continuous practice.
 
@@ -93,7 +93,7 @@ Research stopped: scope-boundary. Research proposed sub-concepts (release-notes-
 | 5 | notes | ready |
 | 5 | finalize | in progress |
 
-Next to generate: `lesson`. Ask Claude to continue this topic, or run `node harness/bin/tutor.mjs next frontend-engineering/learning-system-and-workstation/how-to-learn-frontend`.
+Next to generate: `finalize`. Ask Claude to continue this topic, or run `node harness/bin/tutor.mjs next frontend-engineering/learning-system-and-workstation/how-to-learn-frontend`.
 <!-- tutor:generated:end -->
 
 ## My insights

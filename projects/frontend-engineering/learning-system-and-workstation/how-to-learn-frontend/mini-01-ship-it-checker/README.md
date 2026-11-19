@@ -109,8 +109,10 @@ npm test
 
 Expected: `12 passed`. Then check it by hand. Run `npm start -- --target 2024
 popover css-nesting`. The report must say that the Popover API needs a fallback
-under the 2024 target. It must also say that the feature is safe today under the
-2025 target, with the runtime check `"popover" in HTMLElement.prototype`.
+under the 2024 target, and that fallback line carries the runtime check
+`"popover" in HTMLElement.prototype`. Then run `npm start -- --target 2025
+popover`: the report must now say the feature is safe today, with no runtime
+check because no fallback is needed.
 
 ## Stretch goals
 
