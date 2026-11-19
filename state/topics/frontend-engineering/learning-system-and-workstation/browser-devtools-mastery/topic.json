@@ -7,7 +7,7 @@
   "subdomain": "learning-system-and-workstation",
   "depth": "deep",
   "created_at": "2026-11-19T09:53:51Z",
-  "updated_at": "2026-11-19T10:03:17Z",
+  "updated_at": "2026-11-19T10:04:13Z",
   "paths": {
     "state": "state/topics/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery",
     "vault": "vault/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery",
@@ -1312,13 +1312,20 @@
       "id": "brief",
       "wave": 1,
       "skill": "learn-brief",
-      "status": "pending",
+      "status": "done",
       "scope": "required",
-      "started_at": null,
-      "finished_at": null,
-      "attempts": 0,
+      "started_at": "2026-11-19T10:03:23Z",
+      "finished_at": "2026-11-19T10:04:13Z",
+      "attempts": 1,
       "units": [],
-      "note": ""
+      "note": "",
+      "continue_after_failure": false,
+      "validation": {
+        "version": 2,
+        "fingerprint": "12a06056e2373a2febab236e69e0adb756dcd62d7ee917a614759b203618f40d",
+        "at": "2026-11-19T10:04:13Z",
+        "forced": false
+      }
     },
     {
       "id": "digest",
@@ -1626,6 +1633,23 @@
       "at": "2026-11-19T10:03:17Z",
       "event": "note",
       "message": "research: 4 units, 12 sources (11 A), digests: network-ref, performance-ref, ecma-426, firefox-docs; repos: lighthouse, devtools-frontend. 25 concepts frozen. Proceeding past lookahead stop because 00.1 is content-complete and only blocked on sandboxed smoke."
+    },
+    {
+      "at": "2026-11-19T10:03:23Z",
+      "event": "start",
+      "message": "attempt 1",
+      "stage": "brief"
+    },
+    {
+      "at": "2026-11-19T10:04:08Z",
+      "event": "visual",
+      "message": "added visual how-it-works"
+    },
+    {
+      "at": "2026-11-19T10:04:13Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "brief"
     }
   ],
   "roadmap": {

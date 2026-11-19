@@ -1,0 +1,28 @@
+[
+  {
+    "id": "how-it-works",
+    "title": "DevTools and scripts read the same page",
+    "kind": "architecture",
+    "scope": "end-to-end",
+    "format": "mermaid",
+    "file": "vault/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/visuals/assets/how-it-works-browser-devtools-mastery.mmd",
+    "concept_ids": [
+      "browser-devtools",
+      "debugging-workflow"
+    ],
+    "source_ids": [
+      "chromedevtools-devtools-frontend-repo",
+      "puppeteer-puppeteer-repo"
+    ],
+    "purpose": "See that the DevTools panels and automation scripts both inspect the page through one protocol.",
+    "explanation": "The DevTools panels are a web app. They send commands to the running page through the DevTools Protocol and get back DOM, network, JavaScript and memory data. A Puppeteer script uses the same protocol, so a manual inspection can become an automated check.",
+    "alt": "Left to right: you use the DevTools panels, and a test script uses the DevTools Protocol directly. Both go through the protocol to the browser page, which sends DOM, network, JavaScript and memory data back.",
+    "learning_check": {
+      "question": "Why can a check you do by hand in DevTools also run in a script?",
+      "answer": "Because the panels and a script such as Puppeteer use the same DevTools Protocol to talk to the page."
+    },
+    "used_in": [
+      "vault/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/01-brief-browser-devtools-mastery.md"
+    ]
+  }
+]

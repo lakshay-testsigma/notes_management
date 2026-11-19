@@ -14,5 +14,6 @@ Writing instructions a computer follows: variables, conditions, loops, and funct
 
 - [[01-brief-how-to-learn-frontend]]
 - [[01-brief-workstation-and-editor]]
+- [[01-brief-browser-devtools-mastery]]
 
 ## My insights

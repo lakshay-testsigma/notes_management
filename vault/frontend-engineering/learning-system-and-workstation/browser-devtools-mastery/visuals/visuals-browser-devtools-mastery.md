@@ -11,6 +11,8 @@ Every diagram, simulation and video of this topic, with the concepts it teaches 
 
 - [[concept-map-browser-devtools-mastery|Concept map]] — how the concepts of this topic depend on each other
 
-No visual is registered yet.
+## Architecture
+
+- [[visual-how-it-works-browser-devtools-mastery|DevTools and scripts read the same page]] — See that the DevTools panels and automation scripts both inspect the page through one protocol.
 
 ## My insights

@@ -14,5 +14,6 @@ A text interface where you type commands to run programs, move between folders, 
 
 - [[01-brief-workstation-and-editor]]
 - [[mdn-command-line-workstation-and-editor]]
+- [[01-brief-browser-devtools-mastery]]
 
 ## My insights
