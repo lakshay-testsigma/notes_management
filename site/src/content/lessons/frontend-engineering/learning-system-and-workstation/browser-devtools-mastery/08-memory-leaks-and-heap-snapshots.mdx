@@ -3,11 +3,11 @@ title: "Memory leaks and heap snapshots"
 description: An object leaks when a path of references still connects it to a GC root, and a heap snapshot shows you that path.
 order: 8
 concepts: [heap snapshot, retainers, detached DOM node, garbage collection]
+# <!-- concept: memory-panel -->
+# <!-- concept: heap-snapshot-retainers -->
+# <!-- concept: detached-dom-nodes -->
 ---
 
-<!-- concept: memory-panel -->
-<!-- concept: heap-snapshot-retainers -->
-<!-- concept: detached-dom-nodes -->
 
 Your single-page app gets slower each hour a user keeps it open. That is the usual symptom of a memory leak: a bug that makes the page use more and more memory over time. The Task Manager shows that memory grows. It cannot show which object holds it. The Memory panel can.
 

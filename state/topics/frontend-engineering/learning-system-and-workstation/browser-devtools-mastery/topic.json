@@ -7,7 +7,7 @@
   "subdomain": "learning-system-and-workstation",
   "depth": "deep",
   "created_at": "2026-11-19T09:53:51Z",
-  "updated_at": "2026-11-19T11:18:46Z",
+  "updated_at": "2026-11-19T11:27:52Z",
   "paths": {
     "state": "state/topics/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery",
     "vault": "vault/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery",
@@ -1454,7 +1454,7 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-19T11:16:13Z",
-      "finished_at": "2026-11-19T11:18:46Z",
+      "finished_at": "2026-11-19T11:27:43Z",
       "attempts": 2,
       "units": [
         {
@@ -1527,8 +1527,8 @@
       ],
       "validation": {
         "version": 2,
-        "fingerprint": "9f2189ae7208d2dbc687d50722242032b9ded3b994d27917ef3ba843983d19dc",
-        "at": "2026-11-19T11:18:46Z",
+        "fingerprint": "7c2dd8729247744f4b447efa6e870073d1996c79c9c278b98502a39de1b87c9d",
+        "at": "2026-11-19T11:27:43Z",
         "forced": false
       }
     },
@@ -1599,7 +1599,7 @@
       "status": "done",
       "scope": "required",
       "started_at": "2026-11-19T11:11:23Z",
-      "finished_at": "2026-11-19T11:12:54Z",
+      "finished_at": "2026-11-19T11:27:52Z",
       "attempts": 1,
       "units": [],
       "note": "",
@@ -1607,7 +1607,7 @@
       "validation": {
         "version": 2,
         "fingerprint": "bc8ac98471f6de4dd2ab31072a8245afddd01909451fce6c1c2d213176d04aea",
-        "at": "2026-11-19T11:12:54Z",
+        "at": "2026-11-19T11:27:52Z",
         "forced": false
       }
     },
@@ -1615,11 +1615,11 @@
       "id": "finalize",
       "wave": 5,
       "skill": "learn",
-      "status": "pending",
+      "status": "in_progress",
       "scope": "required",
-      "started_at": null,
+      "started_at": "2026-11-19T11:26:21Z",
       "finished_at": null,
-      "attempts": 0,
+      "attempts": 1,
       "units": [],
       "note": ""
     }
@@ -1749,23 +1749,6 @@
     }
   },
   "log": [
-    {
-      "at": "2026-11-19T09:53:51Z",
-      "event": "init",
-      "message": "created with depth deep for roadmap frontend section 00.3"
-    },
-    {
-      "at": "2026-11-19T09:54:00Z",
-      "event": "start",
-      "message": "attempt 1",
-      "stage": "intake"
-    },
-    {
-      "at": "2026-11-19T09:55:41Z",
-      "event": "plan",
-      "message": "plan fields set: summary, prerequisites, outcomes, lesson_outline, mini_projects, digest_targets, repo_targets, capstone, learner, visual_policy, visual_first, experience_policy, multi_stage, curriculum",
-      "stage": "intake"
-    },
     {
       "at": "2026-11-19T09:55:55Z",
       "event": "plan",
@@ -2880,6 +2863,40 @@
       "event": "done",
       "message": "gate passed",
       "stage": "lesson"
+    },
+    {
+      "at": "2026-11-19T11:26:00Z",
+      "event": "note",
+      "message": "SPAWN 36/56 (coverage audit round 2)"
+    },
+    {
+      "at": "2026-11-19T11:26:20Z",
+      "event": "note",
+      "message": "AUDIT round 2: 0 gaps, 0 added"
+    },
+    {
+      "at": "2026-11-19T11:26:21Z",
+      "event": "start",
+      "message": "attempt 1",
+      "stage": "finalize"
+    },
+    {
+      "at": "2026-11-19T11:26:33Z",
+      "event": "execution-check",
+      "message": "finalize: failed",
+      "stage": "finalize"
+    },
+    {
+      "at": "2026-11-19T11:27:43Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "lesson"
+    },
+    {
+      "at": "2026-11-19T11:27:52Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "notes"
     }
   ],
   "roadmap": {
@@ -3188,6 +3205,58 @@
             "exit": 0,
             "ok": true,
             "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      "finalize": {
+        "version": 2,
+        "fingerprint": "644ee4e310419d0066bb5da0cb3bf1777d5a133fbbf885b2a65958b174157114",
+        "at": "2026-11-19T11:26:33Z",
+        "ok": false,
+        "checks": [
+          {
+            "label": "site build",
+            "command": "npm",
+            "args": [
+              "--prefix",
+              "site",
+              "run",
+              "build"
+            ],
+            "expected_exit": 0,
+            "exit": 1,
+            "ok": false,
+            "output_sha256": "e9d360576b5afbf2409bf382cbe28aa84ef48e15d2fb8fdbe489de22ac3359de",
+            "problem": "\n> tutor-site@0.0.1 build\n> astro build\n\n16:56:31 [content] Syncing content\n16:56:32 [tutor-vault] vault: 164 notes from 3 topics\n16:56:32 [content] Synced content\n16:56:32 [types] Generated 774ms\n16:56:32 [build] output: \"static\"\n16:56:32 [build] mode: \"static\"\n16:56:32 [build] directory: /Users/lakshay.goyal/Desktop/Learning/notes_management/site/dist/\n16:56:32 [build] Collecting build info...\n16:56:32 [build] ✓ Completed in 794ms.\n16:56:32 [build] Building static entrypoints...\n16:56:32 [assets] Copying fonts (2 files)...\n16:56:32 [ERROR] [vite] ✗ Build failed in 358ms\n8:1: Unexpected character `!` (U+0021) before name, expected a character that can start a name, such as a letter, `$`, or `_` (note: to create a comment in MDX, use `{/* text */}`) (mdx-jsx:unexpected-character)\n  Location:\n    /Users/lakshay.goyal/Desktop/Learning/notes_management/site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/02-elements-and-styles.mdx:8:1\n  Stack trace:\n    at TransformPluginContextImpl.handler (file:///Users/lakshay.goyal/Desktop/Learning/notes_management/site/node_modules/@astrojs/mdx/dist/vite-plugin-mdx.js:73:12)\n    at async plugin.<computed> (file:///Users/lakshay.goyal/Desktop/Learning/notes_management/site/node_modules/rolldown/dist/shared/bindingify-input-options-BjFSnI07.mjs:2343:12)\n"
+          },
+          {
+            "label": "site smoke",
+            "command": "npm",
+            "args": [
+              "--prefix",
+              "site",
+              "run",
+              "smoke"
+            ],
+            "expected_exit": 0,
+            "exit": 2,
+            "ok": false,
+            "output_sha256": "05a80a8102b9de8bb8c79a67a00dc4bfb6fa062ddc2c0d4164b510022973aabc",
+            "problem": "\n> tutor-site@0.0.1 smoke\n> node scripts/smoke.mjs\n\nsmoke: no built site at /Users/lakshay.goyal/Desktop/Learning/notes_management/site/dist. Run `npm run build` first.\n"
+          },
+          {
+            "label": "site manifest:check",
+            "command": "npm",
+            "args": [
+              "--prefix",
+              "site",
+              "run",
+              "manifest:check"
+            ],
+            "expected_exit": 0,
+            "exit": 0,
+            "ok": true,
+            "output_sha256": "9cf80b4d6837916eb7b42c75c5478750c54297762700cff81b192e0cd083e529"
           }
         ]
       }
