@@ -2,6 +2,16 @@
   "schema": 1,
   "topics": [
     {
+      "id": "frontend-engineering/learning-system-and-workstation/browser-devtools-mastery",
+      "title": "Browser DevTools mastery (used in every phase)",
+      "slug": "browser-devtools-mastery",
+      "domain": "frontend-engineering",
+      "subdomain": "learning-system-and-workstation",
+      "depth": "deep",
+      "created_at": "2026-11-19T09:53:51Z",
+      "state": "state/topics/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery"
+    },
+    {
       "id": "frontend-engineering/learning-system-and-workstation/how-to-learn-frontend",
       "title": "How to learn frontend (and keep improving)",
       "slug": "how-to-learn-frontend",

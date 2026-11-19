@@ -1,0 +1,986 @@
+{
+  "schema": 1,
+  "id": "frontend-engineering/learning-system-and-workstation/browser-devtools-mastery",
+  "title": "Browser DevTools mastery (used in every phase)",
+  "slug": "browser-devtools-mastery",
+  "domain": "frontend-engineering",
+  "subdomain": "learning-system-and-workstation",
+  "depth": "deep",
+  "created_at": "2026-11-19T09:53:51Z",
+  "updated_at": "2026-11-19T09:58:11Z",
+  "paths": {
+    "state": "state/topics/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery",
+    "vault": "vault/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery",
+    "lessons": "site/src/content/lessons/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery",
+    "projects": "projects/frontend-engineering/learning-system-and-workstation/browser-devtools-mastery",
+    "cache": ".cache"
+  },
+  "profile": {
+    "lesson_pages": [
+      8,
+      12
+    ],
+    "mini_projects": 3,
+    "digests": [
+      4,
+      6
+    ],
+    "repos": [
+      2,
+      3
+    ],
+    "capstone": true,
+    "sources": [
+      5,
+      12
+    ],
+    "recall_cards": 8
+  },
+  "plan": {
+    "summary": "Browser DevTools are the inspectors built into every browser that show the live page, its code, network, performance and memory, so you can find the cause of a bug from evidence.",
+    "prerequisites": [
+      {
+        "concept": "Basic programming",
+        "known": true,
+        "bridge": ""
+      },
+      {
+        "concept": "Command line",
+        "known": true,
+        "bridge": ""
+      },
+      {
+        "concept": "DOM",
+        "known": false,
+        "bridge": "The DOM is the live tree of objects for page elements."
+      },
+      {
+        "concept": "HTTP",
+        "known": false,
+        "bridge": "HTTP is how a browser asks a server for files."
+      }
+    ],
+    "outcomes": [
+      "Explain the phases of a network request shown in the waterfall.",
+      "Debug async JavaScript with conditional breakpoints and async call stacks.",
+      "Find a memory leak by comparing heap snapshots and reading retainers.",
+      "Build a scripted page health report with the Chrome DevTools Protocol.",
+      "Decide which DevTools panel to open first for a given symptom."
+    ],
+    "lesson_outline": [
+      {
+        "order": 1,
+        "slug": "what-devtools-are-for",
+        "title": "What DevTools are for",
+        "activity": "MatchPairs",
+        "complexity": "basic",
+        "importance": "supporting",
+        "spatial": false,
+        "visual": "Diagram",
+        "visual_reason": "A map of the panels and the symptom each one answers gives the mental model for the whole topic.",
+        "interaction_goal": "Match a symptom to the panel that shows its cause.",
+        "experience": {
+          "signals": {
+            "complexity": 1,
+            "concepts": 2,
+            "dependent_steps": 0,
+            "changes_over_time": false,
+            "spatial": false,
+            "parameters": 0,
+            "decision_paths": 0,
+            "benefit": "low"
+          },
+          "concept_ids": [
+            "browser-devtools"
+          ]
+        }
+      },
+      {
+        "order": 2,
+        "slug": "elements-and-styles",
+        "title": "Elements & Styles: the live DOM and cascade",
+        "activity": "PredictReveal",
+        "complexity": "intermediate",
+        "importance": "core",
+        "spatial": false,
+        "visual": "CompareView",
+        "visual_reason": "Before/after of a live CSS edit shows how the cascade, computed value and box model change.",
+        "interaction_goal": "Toggle a rule and predict the computed value and box size.",
+        "experience": {
+          "signals": {
+            "complexity": 2,
+            "concepts": 3,
+            "dependent_steps": 1,
+            "changes_over_time": false,
+            "spatial": false,
+            "parameters": 1,
+            "decision_paths": 0,
+            "benefit": "medium"
+          },
+          "concept_ids": [
+            "elements-and-styles",
+            "box-model-and-layout-overlays"
+          ]
+        }
+      },
+      {
+        "order": 3,
+        "slug": "console-power-use",
+        "title": "Console power use",
+        "activity": "Quiz",
+        "complexity": "basic",
+        "importance": "core",
+        "spatial": false,
+        "visual": "CodePlayground",
+        "visual_reason": "Running console utilities on real data shows what each one prints faster than a list.",
+        "interaction_goal": "Run console.table and console.dir on the same object and compare.",
+        "experience": {
+          "signals": {
+            "complexity": 2,
+            "concepts": 2,
+            "dependent_steps": 0,
+            "changes_over_time": false,
+            "spatial": false,
+            "parameters": 0,
+            "decision_paths": 0,
+            "benefit": "medium"
+          },
+          "concept_ids": [
+            "console-api"
+          ]
+        }
+      },
+      {
+        "order": 4,
+        "slug": "breakpoints-and-async-debugging",
+        "title": "Breakpoints and async debugging",
+        "activity": "OrderSteps",
+        "complexity": "advanced",
+        "importance": "critical",
+        "spatial": false,
+        "visual": "Experience",
+        "visual_reason": "Pausing, stepping and resuming are states; an async call stack shows how a callback links back to its caller.",
+        "interaction_goal": "Step through an async race and see the call stack and scope change at each pause.",
+        "experience": {
+          "signals": {
+            "complexity": 4,
+            "concepts": 4,
+            "dependent_steps": 4,
+            "changes_over_time": true,
+            "spatial": false,
+            "parameters": 2,
+            "decision_paths": 2,
+            "benefit": "high"
+          },
+          "concept_ids": [
+            "breakpoint-debugging",
+            "async-call-stacks"
+          ],
+          "id": "breakpoints-async-debugging"
+        },
+        "extra_visuals": [
+          "StateMachine"
+        ]
+      },
+      {
+        "order": 5,
+        "slug": "source-maps-overrides-and-workspaces",
+        "title": "Source maps, overrides and workspaces",
+        "activity": "PredictReveal",
+        "complexity": "intermediate",
+        "importance": "core",
+        "spatial": false,
+        "visual": "Diagram",
+        "visual_reason": "A mapping diagram shows how a minified position resolves back to an original source line.",
+        "interaction_goal": "Trace one minified column back to its original line.",
+        "experience": {
+          "signals": {
+            "complexity": 2,
+            "concepts": 3,
+            "dependent_steps": 2,
+            "changes_over_time": false,
+            "spatial": false,
+            "parameters": 0,
+            "decision_paths": 0,
+            "benefit": "medium"
+          },
+          "concept_ids": [
+            "source-maps",
+            "local-overrides-and-workspaces"
+          ]
+        }
+      },
+      {
+        "order": 6,
+        "slug": "network-panel-waterfall",
+        "title": "Network panel: reading the waterfall",
+        "activity": "OrderSteps",
+        "complexity": "advanced",
+        "importance": "critical",
+        "spatial": false,
+        "visual": "Experience",
+        "visual_reason": "DNS, TCP, TLS, request wait and download happen in a fixed order that the waterfall bars encode.",
+        "interaction_goal": "Change throttling and watch which timing phases grow.",
+        "experience": {
+          "signals": {
+            "complexity": 3,
+            "concepts": 4,
+            "dependent_steps": 5,
+            "changes_over_time": true,
+            "spatial": false,
+            "parameters": 1,
+            "decision_paths": 0,
+            "benefit": "high"
+          },
+          "concept_ids": [
+            "network-panel",
+            "request-timing-phases"
+          ],
+          "id": "network-panel-waterfall"
+        },
+        "extra_visuals": [
+          "SequenceDiagram"
+        ]
+      },
+      {
+        "order": 7,
+        "slug": "performance-panel-traces",
+        "title": "Performance panel: traces and Core Web Vitals",
+        "activity": "Quiz",
+        "complexity": "advanced",
+        "importance": "critical",
+        "spatial": false,
+        "visual": "Experience",
+        "visual_reason": "A main-thread trace is a timeline of tasks; long tasks and layout shifts must be seen on that timeline.",
+        "interaction_goal": "Throttle the CPU and see which task becomes a long task and how INP changes.",
+        "experience": {
+          "signals": {
+            "complexity": 4,
+            "concepts": 4,
+            "dependent_steps": 3,
+            "changes_over_time": true,
+            "spatial": false,
+            "parameters": 2,
+            "decision_paths": 0,
+            "benefit": "high"
+          },
+          "concept_ids": [
+            "performance-panel",
+            "flame-chart-and-long-tasks",
+            "core-web-vitals-in-devtools"
+          ],
+          "id": "performance-panel-traces"
+        },
+        "extra_visuals": [
+          "FlowAnimation"
+        ]
+      },
+      {
+        "order": 8,
+        "slug": "memory-leaks-and-heap-snapshots",
+        "title": "Memory leaks and heap snapshots",
+        "activity": "PredictReveal",
+        "complexity": "advanced",
+        "importance": "core",
+        "spatial": true,
+        "visual": "Graph3D",
+        "visual_reason": "A leak is a path in the object graph from a GC root to a detached node; the retainer graph is the idea.",
+        "interaction_goal": "Cut an edge in the retainer graph and see which nodes become collectable.",
+        "experience": {
+          "signals": {
+            "complexity": 4,
+            "concepts": 3,
+            "dependent_steps": 3,
+            "changes_over_time": false,
+            "spatial": true,
+            "parameters": 1,
+            "decision_paths": 1,
+            "benefit": "high"
+          },
+          "concept_ids": [
+            "memory-panel",
+            "heap-snapshot-retainers",
+            "detached-dom-nodes"
+          ],
+          "mode": "static",
+          "override_reason": "The editable Graph3D retainer graph already lets the learner cut edges and watch nodes become collectable; the experience budget is kept for the three critical pages."
+        }
+      },
+      {
+        "order": 9,
+        "slug": "application-panel-storage",
+        "title": "Application panel: storage, service workers and bfcache",
+        "activity": "SortBuckets",
+        "complexity": "intermediate",
+        "importance": "core",
+        "spatial": false,
+        "visual": "Diagram",
+        "visual_reason": "One diagram places cookies, Web Storage, IndexedDB, Cache Storage and the service worker by scope and lifetime.",
+        "interaction_goal": "Sort data examples into the storage that fits their lifetime and size.",
+        "experience": {
+          "signals": {
+            "complexity": 2,
+            "concepts": 4,
+            "dependent_steps": 1,
+            "changes_over_time": false,
+            "spatial": false,
+            "parameters": 0,
+            "decision_paths": 1,
+            "benefit": "medium"
+          },
+          "concept_ids": [
+            "application-panel",
+            "service-worker-and-cache-inspection"
+          ]
+        }
+      },
+      {
+        "order": 10,
+        "slug": "lighthouse-and-audit-panels",
+        "title": "Lighthouse and the audit panels",
+        "activity": "MatchPairs",
+        "complexity": "intermediate",
+        "importance": "core",
+        "spatial": false,
+        "visual": "Chart",
+        "visual_reason": "A coverage and Lighthouse score chart shows where bytes and points are lost.",
+        "interaction_goal": "Read the chart and pick the fix that moves the score most.",
+        "experience": {
+          "signals": {
+            "complexity": 2,
+            "concepts": 4,
+            "dependent_steps": 1,
+            "changes_over_time": false,
+            "spatial": false,
+            "parameters": 0,
+            "decision_paths": 1,
+            "benefit": "medium"
+          },
+          "concept_ids": [
+            "audit-panels",
+            "lighthouse-audits",
+            "rendering-emulation"
+          ]
+        }
+      },
+      {
+        "order": 11,
+        "slug": "firefox-safari-and-remote-devices",
+        "title": "Firefox, Safari and remote device debugging",
+        "activity": "SortBuckets",
+        "complexity": "intermediate",
+        "importance": "core",
+        "spatial": false,
+        "visual": "SystemDiagram",
+        "visual_reason": "A connection diagram shows how a desktop inspector attaches to a phone browser over USB or Wi-Fi.",
+        "interaction_goal": "Choose the inspector and connection for a given device and bug.",
+        "experience": {
+          "signals": {
+            "complexity": 2,
+            "concepts": 3,
+            "dependent_steps": 2,
+            "changes_over_time": false,
+            "spatial": false,
+            "parameters": 0,
+            "decision_paths": 1,
+            "benefit": "medium"
+          },
+          "concept_ids": [
+            "firefox-and-safari-devtools",
+            "remote-device-debugging"
+          ]
+        }
+      },
+      {
+        "order": 12,
+        "slug": "a-production-debugging-workflow",
+        "title": "A production debugging workflow",
+        "activity": "OrderSteps",
+        "complexity": "intermediate",
+        "importance": "core",
+        "spatial": false,
+        "visual": "Experience",
+        "visual_reason": "A triage flow from symptom to panel to evidence to fix shows how teams use DevTools on real incidents.",
+        "interaction_goal": "Pick the next panel at each branch of a real incident.",
+        "experience": {
+          "signals": {
+            "complexity": 3,
+            "concepts": 4,
+            "dependent_steps": 4,
+            "changes_over_time": false,
+            "spatial": false,
+            "parameters": 0,
+            "decision_paths": 3,
+            "benefit": "high"
+          },
+          "concept_ids": [
+            "debugging-workflow"
+          ],
+          "id": "a-production-debugging-workflow"
+        }
+      }
+    ],
+    "mini_projects": [
+      {
+        "n": 1,
+        "slug": "debug-an-async-race",
+        "use_case": "A support engineer reproduces and fixes a search box that shows stale results because two fetches race."
+      },
+      {
+        "n": 2,
+        "slug": "audit-a-slow-page",
+        "use_case": "A frontend developer finds why a product page loads slowly using the waterfall, a trace and Lighthouse, then fixes LCP."
+      },
+      {
+        "n": 3,
+        "slug": "find-the-memory-leak",
+        "use_case": "A single-page app grows memory on every route change; the developer finds the detached nodes and the retaining listener."
+      }
+    ],
+    "digest_targets": 4,
+    "repo_targets": 2,
+    "capstone": {
+      "name": "Page health inspector",
+      "problem": "A team needs one command that loads a URL in headless Chrome through the DevTools Protocol and reports network timing, Core Web Vitals, console errors and heap growth, with tests."
+    },
+    "learner": {
+      "experience": "software developer learning frontend end to end",
+      "known": [
+        "basic programming",
+        "git and the command line",
+        "a reproducible workstation (workstation-and-editor topic)"
+      ],
+      "goals": [
+        "master frontend engineering",
+        "debug from evidence instead of guessing",
+        "learn visually and by experimenting with simulations"
+      ]
+    },
+    "visual_policy": "adaptive",
+    "visual_first": true,
+    "experience_policy": "adaptive",
+    "multi_stage": false,
+    "curriculum": {
+      "schema": 1,
+      "scope": "Use the browser DevTools of Chrome, Firefox and Safari to inspect, debug, measure and audit web pages on desktop and real devices, as the evidence tool for every later frontend topic.",
+      "max_depth": 4,
+      "max_concepts": 60,
+      "max_rounds": 6,
+      "concepts": [
+        {
+          "id": "browser-devtools",
+          "title": "Browser DevTools",
+          "parent": null,
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "source_ids": [],
+          "coverage": [],
+          "roadmap_items": []
+        },
+        {
+          "id": "elements-and-styles",
+          "title": "Elements and Styles panel",
+          "parent": "browser-devtools",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "source_ids": [],
+          "coverage": [],
+          "roadmap_items": [
+            "elements-styles-panel"
+          ]
+        },
+        {
+          "id": "box-model-and-layout-overlays",
+          "title": "Box model and layout overlays",
+          "parent": "elements-and-styles",
+          "complexity": "intermediate",
+          "importance": "supporting",
+          "disposition": "included",
+          "source_ids": [],
+          "coverage": [],
+          "roadmap_items": []
+        },
+        {
+          "id": "console-api",
+          "title": "Console API and utilities",
+          "parent": "browser-devtools",
+          "complexity": "basic",
+          "importance": "core",
+          "disposition": "included",
+          "source_ids": [],
+          "coverage": [],
+          "roadmap_items": [
+            "console-power-use"
+          ]
+        },
+        {
+          "id": "breakpoint-debugging",
+          "title": "Breakpoint debugging",
+          "parent": "browser-devtools",
+          "complexity": "advanced",
+          "importance": "critical",
+          "disposition": "included",
+          "source_ids": [],
+          "coverage": [],
+          "roadmap_items": [
+            "sources-panel-debugging"
+          ]
+        },
+        {
+          "id": "async-call-stacks",
+          "title": "Async call stacks",
+          "parent": "breakpoint-debugging",
+          "complexity": "advanced",
+          "importance": "core",
+          "disposition": "included",
+          "source_ids": [],
+          "coverage": [],
+          "roadmap_items": []
+        },
+        {
+          "id": "source-maps",
+          "title": "Source maps",
+          "parent": "breakpoint-debugging",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "source_ids": [],
+          "coverage": [],
+          "roadmap_items": []
+        },
+        {
+          "id": "local-overrides-and-workspaces",
+          "title": "Local overrides and workspaces",
+          "parent": "breakpoint-debugging",
+          "complexity": "intermediate",
+          "importance": "supporting",
+          "disposition": "included",
+          "source_ids": [],
+          "coverage": [],
+          "roadmap_items": []
+        },
+        {
+          "id": "network-panel",
+          "title": "Network panel",
+          "parent": "browser-devtools",
+          "complexity": "advanced",
+          "importance": "critical",
+          "disposition": "included",
+          "source_ids": [],
+          "coverage": [],
+          "roadmap_items": [
+            "network-panel"
+          ]
+        },
+        {
+          "id": "request-timing-phases",
+          "title": "Request timing phases",
+          "parent": "network-panel",
+          "complexity": "advanced",
+          "importance": "core",
+          "disposition": "included",
+          "source_ids": [],
+          "coverage": [],
+          "roadmap_items": []
+        },
+        {
+          "id": "performance-panel",
+          "title": "Performance panel",
+          "parent": "browser-devtools",
+          "complexity": "advanced",
+          "importance": "critical",
+          "disposition": "included",
+          "source_ids": [],
+          "coverage": [],
+          "roadmap_items": [
+            "performance-panel"
+          ]
+        },
+        {
+          "id": "flame-chart-and-long-tasks",
+          "title": "Flame chart and long tasks",
+          "parent": "performance-panel",
+          "complexity": "advanced",
+          "importance": "core",
+          "disposition": "included",
+          "source_ids": [],
+          "coverage": [],
+          "roadmap_items": []
+        },
+        {
+          "id": "core-web-vitals-in-devtools",
+          "title": "Core Web Vitals in DevTools",
+          "parent": "performance-panel",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "source_ids": [],
+          "coverage": [],
+          "roadmap_items": []
+        },
+        {
+          "id": "memory-panel",
+          "title": "Memory panel",
+          "parent": "browser-devtools",
+          "complexity": "advanced",
+          "importance": "core",
+          "disposition": "included",
+          "source_ids": [],
+          "coverage": [],
+          "roadmap_items": [
+            "memory-panel"
+          ]
+        },
+        {
+          "id": "heap-snapshot-retainers",
+          "title": "Heap snapshot retainers",
+          "parent": "memory-panel",
+          "complexity": "advanced",
+          "importance": "core",
+          "disposition": "included",
+          "source_ids": [],
+          "coverage": [],
+          "roadmap_items": []
+        },
+        {
+          "id": "detached-dom-nodes",
+          "title": "Detached DOM nodes",
+          "parent": "memory-panel",
+          "complexity": "advanced",
+          "importance": "supporting",
+          "disposition": "included",
+          "source_ids": [],
+          "coverage": [],
+          "roadmap_items": []
+        },
+        {
+          "id": "application-panel",
+          "title": "Application panel",
+          "parent": "browser-devtools",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "source_ids": [],
+          "coverage": [],
+          "roadmap_items": [
+            "application-panel"
+          ]
+        },
+        {
+          "id": "service-worker-and-cache-inspection",
+          "title": "Service worker and cache inspection",
+          "parent": "application-panel",
+          "complexity": "intermediate",
+          "importance": "supporting",
+          "disposition": "included",
+          "source_ids": [],
+          "coverage": [],
+          "roadmap_items": []
+        },
+        {
+          "id": "audit-panels",
+          "title": "Lighthouse and other audit panels",
+          "parent": "browser-devtools",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "source_ids": [],
+          "coverage": [],
+          "roadmap_items": [
+            "lighthouse-panel-other-panels"
+          ]
+        },
+        {
+          "id": "lighthouse-audits",
+          "title": "Lighthouse audits",
+          "parent": "audit-panels",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "source_ids": [],
+          "coverage": [],
+          "roadmap_items": []
+        },
+        {
+          "id": "rendering-emulation",
+          "title": "Rendering and emulation tools",
+          "parent": "audit-panels",
+          "complexity": "intermediate",
+          "importance": "supporting",
+          "disposition": "included",
+          "source_ids": [],
+          "coverage": [],
+          "roadmap_items": []
+        },
+        {
+          "id": "firefox-and-safari-devtools",
+          "title": "Firefox and Safari DevTools",
+          "parent": "browser-devtools",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "source_ids": [],
+          "coverage": [],
+          "roadmap_items": [
+            "firefox-safari-devtools"
+          ]
+        },
+        {
+          "id": "remote-device-debugging",
+          "title": "Remote device debugging",
+          "parent": "browser-devtools",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "source_ids": [],
+          "coverage": [],
+          "roadmap_items": [
+            "remote-device-debugging"
+          ]
+        },
+        {
+          "id": "debugging-workflow",
+          "title": "Debugging workflow",
+          "parent": "browser-devtools",
+          "complexity": "intermediate",
+          "importance": "core",
+          "disposition": "included",
+          "source_ids": [],
+          "coverage": [],
+          "roadmap_items": []
+        }
+      ],
+      "discovery": []
+    }
+  },
+  "stages": [
+    {
+      "id": "intake",
+      "wave": 0,
+      "skill": "learn-intake",
+      "status": "done",
+      "scope": "required",
+      "started_at": "2026-11-19T09:54:00Z",
+      "finished_at": "2026-11-19T09:56:06Z",
+      "attempts": 1,
+      "units": [],
+      "note": "",
+      "continue_after_failure": false,
+      "validation": {
+        "version": 2,
+        "fingerprint": "b2c45e146e25128329be3a85bf99da3563e9b4d148147bbc270dea3e06ff723f",
+        "at": "2026-11-19T09:56:06Z",
+        "forced": false
+      }
+    },
+    {
+      "id": "research",
+      "wave": 1,
+      "skill": "learn-research",
+      "status": "in_progress",
+      "scope": "required",
+      "started_at": "2026-11-19T09:56:31Z",
+      "finished_at": null,
+      "attempts": 1,
+      "units": [
+        {
+          "id": "docs",
+          "status": "pending",
+          "handoff": null
+        },
+        {
+          "id": "repos",
+          "status": "pending",
+          "handoff": null
+        },
+        {
+          "id": "discovery-01-runtime",
+          "status": "pending",
+          "handoff": null
+        },
+        {
+          "id": "discovery-01-inspect",
+          "status": "pending",
+          "handoff": null
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "brief",
+      "wave": 1,
+      "skill": "learn-brief",
+      "status": "pending",
+      "scope": "required",
+      "started_at": null,
+      "finished_at": null,
+      "attempts": 0,
+      "units": [],
+      "note": ""
+    },
+    {
+      "id": "digest",
+      "wave": 2,
+      "skill": "learn-digest",
+      "status": "pending",
+      "scope": "required",
+      "started_at": null,
+      "finished_at": null,
+      "attempts": 0,
+      "units": [],
+      "note": ""
+    },
+    {
+      "id": "repo-intel",
+      "wave": 2,
+      "skill": "learn-repo-intel",
+      "status": "pending",
+      "scope": "required",
+      "started_at": null,
+      "finished_at": null,
+      "attempts": 0,
+      "units": [],
+      "note": ""
+    },
+    {
+      "id": "lesson",
+      "wave": 3,
+      "skill": "learn-site",
+      "status": "pending",
+      "scope": "required",
+      "started_at": null,
+      "finished_at": null,
+      "attempts": 0,
+      "units": [],
+      "note": ""
+    },
+    {
+      "id": "mini-projects",
+      "wave": 3,
+      "skill": "learn-projects",
+      "status": "pending",
+      "scope": "required",
+      "started_at": null,
+      "finished_at": null,
+      "attempts": 0,
+      "units": [],
+      "note": ""
+    },
+    {
+      "id": "capstone",
+      "wave": 4,
+      "skill": "learn-capstone",
+      "status": "pending",
+      "scope": "required",
+      "started_at": null,
+      "finished_at": null,
+      "attempts": 0,
+      "units": [],
+      "note": ""
+    },
+    {
+      "id": "notes",
+      "wave": 5,
+      "skill": "learn-notes",
+      "status": "pending",
+      "scope": "required",
+      "started_at": null,
+      "finished_at": null,
+      "attempts": 0,
+      "units": [],
+      "note": ""
+    },
+    {
+      "id": "finalize",
+      "wave": 5,
+      "skill": "learn",
+      "status": "pending",
+      "scope": "required",
+      "started_at": null,
+      "finished_at": null,
+      "attempts": 0,
+      "units": [],
+      "note": ""
+    }
+  ],
+  "recall": {
+    "cards": {}
+  },
+  "log": [
+    {
+      "at": "2026-11-19T09:53:51Z",
+      "event": "init",
+      "message": "created with depth deep for roadmap frontend section 00.3"
+    },
+    {
+      "at": "2026-11-19T09:54:00Z",
+      "event": "start",
+      "message": "attempt 1",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-19T09:55:41Z",
+      "event": "plan",
+      "message": "plan fields set: summary, prerequisites, outcomes, lesson_outline, mini_projects, digest_targets, repo_targets, capstone, learner, visual_policy, visual_first, experience_policy, multi_stage, curriculum",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-19T09:55:55Z",
+      "event": "plan",
+      "message": "plan fields set: summary, prerequisites, outcomes, lesson_outline, mini_projects, digest_targets, repo_targets, capstone, learner, visual_policy, visual_first, experience_policy, multi_stage, curriculum",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-19T09:56:04Z",
+      "event": "note",
+      "message": "intake: domain=frontend-engineering/learning-system-and-workstation, depth=deep (roadmap). Assumptions: 12 pages, items mapped 1:1 to concepts plus sub-concepts; Firefox/Safari and remote debugging share one page; memory page overridden to static Graph3D to fit experience budget 18; DOM and HTTP bridged as unknown."
+    },
+    {
+      "at": "2026-11-19T09:56:06Z",
+      "event": "done",
+      "message": "gate passed",
+      "stage": "intake"
+    },
+    {
+      "at": "2026-11-19T09:56:31Z",
+      "event": "start",
+      "message": "attempt 1",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-19T09:56:33Z",
+      "event": "unit-add",
+      "message": "unit docs",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-19T09:56:35Z",
+      "event": "unit-add",
+      "message": "unit repos",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-19T09:56:37Z",
+      "event": "unit-add",
+      "message": "unit discovery-01-runtime",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-19T09:56:38Z",
+      "event": "unit-add",
+      "message": "unit discovery-01-inspect",
+      "stage": "research"
+    },
+    {
+      "at": "2026-11-19T09:58:11Z",
+      "event": "note",
+      "message": "SPAWN 4/56 (research batch 1: docs, repos, discovery-01-runtime, discovery-01-inspect)"
+    }
+  ],
+  "roadmap": {
+    "id": "frontend",
+    "section": "00.3"
+  }
+}

@@ -33,7 +33,7 @@ Set up how you learn and the tools you will use for every later phase. Mastery =
     - VS Code (or JetBrains / Zed) setup (core)
     - AI-assisted development (core)
     - Node.js runtime & version management (core)
-- [ ] **00.3** Browser DevTools mastery (used in every phase) — Not generated yet · 10 items · `frontend-engineering/learning-system-and-workstation/browser-devtools-mastery`
+- [ ] **00.3** [[frontend-engineering/learning-system-and-workstation/browser-devtools-mastery/00-start-here-browser-devtools-mastery|Browser DevTools mastery (used in every phase)]] — Being generated · 10 items · `frontend-engineering/learning-system-and-workstation/browser-devtools-mastery`
     - Elements & Styles panel (core)
     - Console power use (core)
     - Sources panel & debugging (core)
